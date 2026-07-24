@@ -31,9 +31,11 @@
   /* ---------- Sidebar ---------- */
   aside{
     width:236px;flex:0 0 236px;background:#1c1b19;color:#b7b3a8;
-    display:flex;flex-direction:column;padding:26px 14px;
-    position:sticky;top:0;height:100vh;border-right:1px solid #000;
+    display:flex;flex-direction:column;padding:24px 14px;
+    position:sticky;top:0;height:100vh;border-right:1px solid #000;overflow-y:auto;
   }
+  aside::-webkit-scrollbar{width:8px}
+  aside::-webkit-scrollbar-thumb{background:#3a3830;border-radius:8px}
   .brand{padding:2px 10px 22px;border-bottom:1px solid #33312c;margin-bottom:14px}
   .brand b{font-family:var(--serif);color:#f2efe6;font-size:19px;font-weight:600;letter-spacing:.2px;display:block}
   .brand span{font-size:11px;color:#8a8578;letter-spacing:.6px;text-transform:uppercase}
@@ -183,18 +185,32 @@
     <span>Wahrscheinlichkeiten sichtbar</span>
   </div>
 
-  <div class="nav-label">Sätze &amp; Modelle</div>
+  <div class="nav-label">Deskriptive Statistik</div>
+  <div class="nav-item" data-page="deskriptiv">Lage &amp; Streuung</div>
+
+  <div class="nav-label">Wahrscheinlichkeitstheorie</div>
   <div class="nav-item active" data-page="bayes">Satz von Bayes</div>
+  <div class="nav-item" data-page="kombinatorik">Kombinatorik</div>
+  <div class="nav-item" data-page="zufall">Zufallsvariablen</div>
+  <div class="nav-item" data-page="monty">Ziegenproblem</div>
+
+  <div class="nav-label">Verteilungen</div>
+  <div class="nav-item" data-page="binom">Binomialverteilung</div>
   <div class="nav-item" data-page="normal">Normalverteilung</div>
+  <div class="nav-item" data-page="poisson">Poissonverteilung</div>
+
+  <div class="nav-label">Grenzwertsätze</div>
   <div class="nav-item" data-page="lln">Gesetz der großen Zahlen</div>
+  <div class="nav-item" data-page="clt">Zentraler Grenzwertsatz</div>
 
-  <div class="nav-label">In Arbeit</div>
-  <div class="nav-item soon">Ziegenproblem <span class="tag">bald</span></div>
-  <div class="nav-item soon">Binomialverteilung <span class="tag">bald</span></div>
-  <div class="nav-item soon">Geburtstagsparadoxon <span class="tag">bald</span></div>
-  <div class="nav-item soon">Zentraler Grenzwertsatz <span class="tag">bald</span></div>
+  <div class="nav-label">Zusammenhänge</div>
+  <div class="nav-item" data-page="regression">Korrelation &amp; Regression</div>
 
-  <div class="foot">Ein Werkzeug, um bedingte<br>Wahrscheinlichkeiten zu begreifen.</div>
+  <div class="nav-label">Schließende Statistik</div>
+  <div class="nav-item" data-page="konfidenz">Konfidenzintervalle</div>
+  <div class="nav-item" data-page="hypothese">Hypothesentests</div>
+
+  <div class="foot">Interaktive Einführung in die<br>Statistik &amp; Wahrscheinlichkeit.</div>
 </aside>
 
 <main>
@@ -584,6 +600,686 @@
   </div>
 </section>
 
+<!-- ============================================================ DESKRIPTIV -->
+<section class="viewpage" id="page-deskriptiv">
+  <div class="kicker">Deskriptive Statistik</div>
+  <h1>Lage und Streuung einer Verteilung</h1>
+  <p class="lede">Bevor man Wahrscheinlichkeiten modelliert, fasst man Daten zusammen. Zwei Fragen stehen im Zentrum: Wo liegt die Mitte der Werte, und wie stark streuen sie darum herum? Verändere die Streuung und schiebe einen einzelnen Ausreißer, um zu sehen, wie empfindlich Mittelwert und Median darauf reagieren.</p>
+
+  <div class="grid">
+    <div class="panel pad">
+      <div class="eyebrow">Daten einstellen</div>
+      <div class="ctrl">
+        <div class="row"><span class="name">Streuung</span>
+          <span class="field"><input type="number" id="spreadN" min="0.3" max="2" step="0.1" value="1"><span class="unit">×</span></span>
+        </div>
+        <input type="range" id="spread" min="0.3" max="2" step="0.1" value="1">
+        <div class="hint">Zieht die Werte enger zusammen oder weiter auseinander.</div>
+      </div>
+      <div class="ctrl">
+        <div class="row"><span class="name">Ausreißer</span>
+          <span class="field"><input type="number" id="outlierN" min="0" max="40" step="1" value="9"></span>
+        </div>
+        <input type="range" id="outlier" min="0" max="40" step="1" value="9">
+        <div class="hint">Ein einzelner Datenpunkt, den du frei verschieben kannst.</div>
+      </div>
+      <div class="divider"></div>
+      <div class="ctrl">
+        <div class="name" style="margin-bottom:10px">Beispiele laden</div>
+        <div class="presets" id="dPresets">
+          <button class="chip" data-p="1,6">Symmetrisch</button>
+          <button class="chip" data-p="1,36">Mit Ausreißer</button>
+          <button class="chip" data-p="1.9,9">Große Streuung</button>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <label class="toggle">
+        <input type="checkbox" id="dBand" checked>
+        <span class="switch"></span>
+        <span><span class="lbl">Bereich Mittelwert ± 1σ zeigen</span><br><span class="sub">Die typische Streubreite um die Mitte.</span></span>
+      </label>
+    </div>
+
+    <div class="rightcol">
+      <div class="panel viz">
+        <div class="viz-top">
+          <div class="legend">
+            <div class="li"><span class="bar" style="background:#8a8578"></span>Datenpunkt</div>
+            <div class="li"><span class="bar" style="background:var(--tp)"></span>Mittelwert</div>
+            <div class="li"><span class="bar" style="background:var(--accent)"></span>Median</div>
+            <div class="li"><span class="bar" style="background:#c9c3b5"></span>± 1σ</div>
+          </div>
+        </div>
+        <div class="holder" id="dHolder"><canvas id="cvDesk"></canvas></div>
+      </div>
+      <div class="headline"><div class="big" id="dBig">6,3</div>
+        <div class="cap">ist der Mittelwert. Der Median liegt daneben – rückt der Ausreißer weit weg, folgt ihm nur der Mittelwert.</div></div>
+      <div class="stats">
+        <div class="stat"><div class="n" style="color:var(--tp)" id="dMean">6,3</div><div class="l">Mittelwert x̄</div></div>
+        <div class="stat"><div class="n" style="color:var(--accent)" id="dMedian">6,0</div><div class="l">Median</div></div>
+        <div class="stat"><div class="n" id="dSd">1,71</div><div class="l">Standardabweichung σ</div></div>
+        <div class="stat"><div class="n" id="dRange">6,0</div><div class="l">Spannweite</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="result">
+    <div class="panel pad">
+      <table class="counts"><thead><tr><th>Kennzahl</th><th style="text-align:right">Wert</th><th>Kennzahl</th><th style="text-align:right">Wert</th></tr></thead><tbody id="dTab"></tbody></table>
+    </div>
+    <div class="formula">
+      <div class="eyebrow">Lagemaße und Streuungsmaße</div>
+      <div class="fblock"><div class="flabel">Arithmetischer Mittelwert</div>
+        <div class="eq eqc">x̄ <span class="op">=</span>
+          <span class="frac"><span class="top">1</span><span class="bot">n</span></span>
+          <span style="font-size:20px">&#8721;</span><sub style="font-size:12px">i=1</sub><sup style="font-size:12px">n</sup> x<sub>i</sub></div></div>
+      <div class="fblock"><div class="flabel">Varianz und Standardabweichung</div>
+        <div class="eq eqc">σ² <span class="op">=</span>
+          <span class="frac"><span class="top">1</span><span class="bot">n</span></span>
+          <span style="font-size:20px">&#8721;</span> (x<sub>i</sub> − x̄)² <span class="op" style="margin-left:14px">σ =</span> &radic;<span style="text-decoration:overline">&nbsp;σ²&nbsp;</span></div></div>
+      <p class="prose">Der Mittelwert ist der Schwerpunkt der Daten: die Summe aller Werte geteilt durch ihre Anzahl. Er nutzt jeden Wert, reagiert dadurch aber empfindlich auf Ausreißer – ein einziger sehr großer Wert zieht ihn merklich nach oben. Der Median, der mittlere Wert der geordneten Reihe, teilt die Daten in zwei gleich große Hälften und bleibt von Ausreißern nahezu unberührt. Genau diesen Unterschied macht der Regler „Ausreißer" sichtbar.</p>
+      <p class="prose">Die Varianz misst die mittlere quadratische Abweichung vom Mittelwert; ihre Wurzel, die Standardabweichung σ, hat dieselbe Einheit wie die Daten und beschreibt die typische Streubreite. Das schattierte Band Mittelwert ± 1σ umfasst bei annähernd glockenförmigen Daten rund zwei Drittel der Werte und verbindet dieses Kapitel mit der Normalverteilung.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ BINOMIAL -->
+<section class="viewpage" id="page-binom">
+  <div class="kicker">Verteilungen</div>
+  <h1>Die Binomialverteilung</h1>
+  <p class="lede">Wie oft tritt ein Ereignis ein, wenn man denselben Versuch mit fester Erfolgswahrscheinlichkeit n-mal wiederholt? Von Münzwürfen über Qualitätskontrollen bis zu Wahlumfragen zählt die Binomialverteilung die Anzahl der Erfolge. Stelle die Anzahl der Versuche n und die Erfolgswahrscheinlichkeit p ein und beobachte, wie sich die Wahrscheinlichkeit über alle möglichen Trefferzahlen verteilt.</p>
+
+  <div class="grid">
+    <div class="panel pad">
+      <div class="eyebrow">Verteilung einstellen</div>
+      <div class="ctrl">
+        <div class="row"><span class="name">Anzahl Versuche n</span>
+          <span class="field"><input type="number" id="bnN" min="1" max="50" step="1" value="10"></span>
+        </div>
+        <input type="range" id="bn" min="1" max="50" step="1" value="10">
+        <div class="hint">Wie oft der Versuch wiederholt wird.</div>
+      </div>
+      <div class="ctrl">
+        <div class="row"><span class="name">Erfolgswahrscheinlichkeit p</span>
+          <span class="field"><input type="number" id="bpN" min="0.01" max="0.99" step="0.01" value="0.5"></span>
+        </div>
+        <input type="range" id="bp" min="0.01" max="0.99" step="0.01" value="0.5">
+        <div class="hint">Wahrscheinlichkeit für einen Erfolg pro Versuch.</div>
+      </div>
+      <div class="ctrl">
+        <div class="row"><span class="name">Herausgegriffenes k</span>
+          <span class="field"><input type="number" id="bkN" min="0" max="10" step="1" value="5"></span>
+        </div>
+        <input type="range" id="bk" min="0" max="10" step="1" value="5">
+        <div class="hint">Die rot markierte Trefferzahl, für die P(X = k) angezeigt wird.</div>
+      </div>
+      <div class="divider"></div>
+      <div class="ctrl">
+        <div class="name" style="margin-bottom:10px">Beispiele laden</div>
+        <div class="presets" id="biPresets">
+          <button class="chip" data-p="10,0.5,5">Münzwürfe</button>
+          <button class="chip" data-p="40,0.05,2">Seltenes Ereignis</button>
+          <button class="chip" data-p="20,0.9,18">Fast sicher</button>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <label class="toggle">
+        <input type="checkbox" id="biNormal" checked>
+        <span class="switch"></span>
+        <span><span class="lbl">Normalapproximation zeigen</span><br><span class="sub">Für großes n nähert sich die Verteilung der Glockenkurve.</span></span>
+      </label>
+    </div>
+
+    <div class="rightcol">
+      <div class="panel viz">
+        <div class="viz-top">
+          <div class="legend">
+            <div class="li"><span class="bar" style="background:#9fb0bc;height:11px;border-radius:2px"></span>P(X = k)</div>
+            <div class="li"><span class="bar" style="background:var(--tp);height:11px;border-radius:2px"></span>gewähltes k</div>
+            <div class="li"><span class="bar" style="background:#1c1b19"></span>Normalapproximation</div>
+          </div>
+        </div>
+        <div class="holder" id="biHolder"><canvas id="cvBinom"></canvas></div>
+      </div>
+      <div class="headline"><div class="big" id="biBig">24,6 %</div>
+        <div class="cap">Wahrscheinlichkeit für genau k Erfolge. Die ganze Verteilung summiert sich über alle k zu 100 %.</div></div>
+      <div class="stats">
+        <div class="stat"><div class="n" id="biMean">5,00</div><div class="l">Erwartungswert E(X) = n·p</div></div>
+        <div class="stat"><div class="n" id="biVar">2,50</div><div class="l">Varianz n·p·(1−p)</div></div>
+        <div class="stat"><div class="n" id="biSd">1,58</div><div class="l">Standardabweichung σ</div></div>
+        <div class="stat"><div class="n" id="biCum">62,3 %</div><div class="l">P(X ≤ k), kumuliert</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="result">
+    <div class="formula">
+      <div class="eyebrow">Die Binomialverteilung</div>
+      <div class="fblock"><div class="flabel">Wahrscheinlichkeitsfunktion</div>
+        <div class="eq eqc">P(X = k) <span class="op">=</span>
+          <span class="frac"><span class="top">n!</span><span class="bot">k! · (n−k)!</span></span>
+          · p<sup style="font-size:12px">k</sup> · (1−p)<sup style="font-size:12px">n−k</sup></div></div>
+      <div class="fblock"><div class="flabel">Mit deinen Werten eingesetzt</div><div class="eq small eqc" id="biEq"></div></div>
+      <p class="prose">Der Bruch mit den Fakultäten ist der Binomialkoeffizient „n über k". Er zählt, auf wie viele Arten sich k Erfolge auf n Versuche verteilen können. Multipliziert wird er mit der Wahrscheinlichkeit einer einzelnen solchen Abfolge: p für jeden der k Erfolge und (1−p) für jeden der n−k Misserfolge. So entsteht die Wahrscheinlichkeit für genau k Treffer.</p>
+      <p class="prose">Der Erwartungswert n·p ist die Trefferzahl, die man im Schnitt erwartet; die Streuung wächst mit √(n·p·(1−p)). Vergrößert man n, wird die Verteilung glatter und symmetrischer und lässt sich immer besser durch eine Normalverteilung mit demselben Mittelwert und derselben Standardabweichung annähern – eine erste Vorschau auf den zentralen Grenzwertsatz.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ CLT -->
+<section class="viewpage" id="page-clt">
+  <div class="kicker">Grenzwertsätze</div>
+  <h1>Der zentrale Grenzwertsatz</h1>
+  <p class="lede">Warum taucht die Glockenkurve überall auf? Weil sich Mittelwerte erstaunlich gutmütig verhalten. Ganz gleich, wie schief oder zweigipflig die Ausgangsdaten sind: Zieht man immer wieder Stichproben und bildet deren Mittelwert, so verteilen sich diese Mittelwerte annähernd normal. Wähle eine Quellverteilung, stelle die Stichprobengröße n ein und starte die Simulation.</p>
+
+  <div class="grid">
+    <div class="panel pad">
+      <div class="eyebrow">Simulation einstellen</div>
+      <div class="ctrl">
+        <div class="name" style="margin-bottom:10px">Quellverteilung</div>
+        <div class="presets" id="cltPresets">
+          <button class="chip on" data-s="uniform">Gleichverteilung</button>
+          <button class="chip" data-s="skew">Rechtsschief</button>
+          <button class="chip" data-s="bimodal">Zweigipflig</button>
+          <button class="chip" data-s="dice">Würfel</button>
+        </div>
+      </div>
+      <div class="ctrl" style="margin-top:22px">
+        <div class="row"><span class="name">Stichprobengröße n</span>
+          <span class="field"><input type="number" id="cltNN" min="1" max="40" step="1" value="5"></span>
+        </div>
+        <input type="range" id="cltN" min="1" max="40" step="1" value="5">
+        <div class="hint">Wie viele Einzelwerte pro Stichprobe gemittelt werden. Bei n = 1 sieht man noch die Ausgangsform.</div>
+      </div>
+      <div class="divider"></div>
+      <div class="btnrow">
+        <button class="btn" id="cltStart">Start</button>
+        <button class="btn ghost" id="cltReset">Zurücksetzen</button>
+      </div>
+    </div>
+
+    <div class="rightcol">
+      <div class="panel viz">
+        <div class="viz-top">
+          <div class="legend">
+            <div class="li"><span class="bar" style="background:#9fb0bc;height:11px;border-radius:2px"></span>Verteilung der Mittelwerte</div>
+            <div class="li"><span class="bar" style="background:var(--tp)"></span>theoretische Normalverteilung</div>
+          </div>
+        </div>
+        <div class="flabel" style="margin-bottom:8px">Quellverteilung der Einzelwerte</div>
+        <div class="holder" id="cltSrcHolder"><canvas id="cltSrc"></canvas></div>
+        <div class="flabel" style="margin:16px 0 8px">Verteilung der Stichprobenmittelwerte</div>
+        <div class="holder" id="cltHolder"><canvas id="cltMain"></canvas></div>
+      </div>
+      <div class="headline"><div class="big" id="cltBig">0,129</div>
+        <div class="cap">ist der Standardfehler σ/√n – die Mittelwerte streuen viel enger als die Einzelwerte, und zwar mit wachsendem n immer enger.</div></div>
+      <div class="stats">
+        <div class="stat"><div class="n" id="cltMu">0,500</div><div class="l">Populationsmittel μ</div></div>
+        <div class="stat"><div class="n" id="cltSd">0,289</div><div class="l">Populations-σ</div></div>
+        <div class="stat"><div class="n" id="cltSe">0,129</div><div class="l">Standardfehler σ/√n</div></div>
+        <div class="stat"><div class="n" id="cltSamples">0</div><div class="l">gezogene Stichproben</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="result">
+    <div class="formula">
+      <div class="eyebrow">Der zentrale Grenzwertsatz</div>
+      <div class="fblock"><div class="flabel">Stichprobenmittel</div>
+        <div class="eq eqc">X̄ <span class="op">=</span>
+          <span class="frac"><span class="top">1</span><span class="bot">n</span></span>
+          <span style="font-size:18px">&#8721;</span><sub style="font-size:12px">i=1</sub><sup style="font-size:12px">n</sup> X<sub>i</sub></div></div>
+      <div class="fblock"><div class="flabel">Verteilung des Mittelwerts für großes n</div>
+        <div class="eq eqc">X̄ <span class="op">&#8776;</span> N&thinsp;(&thinsp;<span class="num">μ</span>,
+          <span class="frac"><span class="top"><span class="num">σ²</span></span><span class="bot">n</span></span>&thinsp;)
+          <span class="op" style="margin-left:14px">Standardfehler =</span>
+          <span class="frac"><span class="top"><span class="num">σ</span></span><span class="bot">&radic;<span style="text-decoration:overline">&nbsp;n&nbsp;</span></span></span></div></div>
+      <p class="prose">Der Erwartungswert der Stichprobenmittelwerte ist stets der wahre Populationsmittelwert μ, unabhängig von der Stichprobengröße. Ihre Streuung dagegen schrumpft mit der Wurzel aus n: Vervierfacht man die Stichprobengröße, halbiert sich der Standardfehler. Das ist der quantitative Kern des Gesetzes der großen Zahlen.</p>
+      <p class="prose">Das eigentlich Erstaunliche ist die Form. Selbst wenn die Quellverteilung rechtsschief, zweigipflig oder wie beim Würfel gleichverteilt ist, nähert sich das Histogramm der Mittelwerte mit wachsendem n einer Glockenkurve an. Bei n = 1 zeigt es noch die Ausgangsform, doch schon für moderate n liegt die rote Normalkurve verblüffend genau darüber. Das erklärt, warum die Normalverteilung in so vielen Messungen auftaucht, die als Summe oder Durchschnitt vieler kleiner Einflüsse entstehen.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ POISSON -->
+<section class="viewpage" id="page-poisson">
+  <div class="kicker">Verteilungen</div>
+  <h1>Die Poissonverteilung</h1>
+  <p class="lede">Wie viele seltene, unabhängige Ereignisse treten in einem festen Zeit- oder Raumintervall auf? Anrufe in einer Stunde, Tippfehler pro Seite, radioaktive Zerfälle pro Sekunde: Die Poissonverteilung beschreibt solche Zählungen mit einer einzigen Kennzahl, der mittleren Rate λ. Stelle λ ein und beobachte, wie sich die Wahrscheinlichkeit über die möglichen Anzahlen verteilt.</p>
+
+  <div class="grid">
+    <div class="panel pad">
+      <div class="eyebrow">Verteilung einstellen</div>
+      <div class="ctrl">
+        <div class="row"><span class="name">Mittlere Rate λ</span>
+          <span class="field"><input type="number" id="plamN" min="0.1" max="20" step="0.1" value="4"></span>
+        </div>
+        <input type="range" id="plam" min="0.1" max="20" step="0.1" value="4">
+        <div class="hint">Erwartete Anzahl der Ereignisse pro Intervall.</div>
+      </div>
+      <div class="ctrl">
+        <div class="row"><span class="name">Herausgegriffenes k</span>
+          <span class="field"><input type="number" id="pkN" min="0" max="30" step="1" value="4"></span>
+        </div>
+        <input type="range" id="pk" min="0" max="30" step="1" value="4">
+        <div class="hint">Die rot markierte Anzahl, für die P(X = k) angezeigt wird.</div>
+      </div>
+      <div class="divider"></div>
+      <div class="ctrl">
+        <div class="name" style="margin-bottom:10px">Beispiele laden</div>
+        <div class="presets" id="poPresets">
+          <button class="chip" data-p="1,1">Sehr selten</button>
+          <button class="chip" data-p="4,4">Anrufe je Stunde</button>
+          <button class="chip" data-p="12,12">Häufig</button>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <label class="toggle">
+        <input type="checkbox" id="poNormal" checked>
+        <span class="switch"></span>
+        <span><span class="lbl">Normalapproximation zeigen</span><br><span class="sub">Für großes λ nähert sich Poisson der Glockenkurve.</span></span>
+      </label>
+    </div>
+
+    <div class="rightcol">
+      <div class="panel viz">
+        <div class="viz-top">
+          <div class="legend">
+            <div class="li"><span class="bar" style="background:#9fb0bc;height:11px;border-radius:2px"></span>P(X = k)</div>
+            <div class="li"><span class="bar" style="background:var(--tp);height:11px;border-radius:2px"></span>gewähltes k</div>
+            <div class="li"><span class="bar" style="background:#1c1b19"></span>Normalapproximation</div>
+          </div>
+        </div>
+        <div class="holder" id="poHolder"><canvas id="cvPois"></canvas></div>
+      </div>
+      <div class="headline"><div class="big" id="poBig">19,5 %</div>
+        <div class="cap">Wahrscheinlichkeit für genau k Ereignisse im Intervall.</div></div>
+      <div class="stats">
+        <div class="stat"><div class="n" id="poMean">4,00</div><div class="l">Erwartungswert E(X) = λ</div></div>
+        <div class="stat"><div class="n" id="poVar">4,00</div><div class="l">Varianz = λ</div></div>
+        <div class="stat"><div class="n" id="poSd">2,00</div><div class="l">Standardabweichung √λ</div></div>
+        <div class="stat"><div class="n" id="poCum">62,9 %</div><div class="l">P(X ≤ k), kumuliert</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="result">
+    <div class="formula">
+      <div class="eyebrow">Die Poissonverteilung</div>
+      <div class="fblock"><div class="flabel">Wahrscheinlichkeitsfunktion</div>
+        <div class="eq eqc">P(X = k) <span class="op">=</span>
+          <span class="frac"><span class="top">λ<sup style="font-size:11px">k</sup> · e<sup style="font-size:11px">−λ</sup></span><span class="bot">k!</span></span></div></div>
+      <div class="fblock"><div class="flabel">Mit deinem λ eingesetzt</div><div class="eq small eqc" id="poEq"></div></div>
+      <p class="prose">Die Poissonverteilung entsteht als Grenzfall der Binomialverteilung, wenn man sehr viele Versuche mit sehr kleiner Erfolgswahrscheinlichkeit betrachtet, deren Produkt n·p den festen Wert λ ergibt. Sie braucht dann nur noch diese eine Kennzahl. Besonders bemerkenswert ist, dass Erwartungswert und Varianz beide gleich λ sind – Mittelwert und Streuung sind hier untrennbar gekoppelt.</p>
+      <p class="prose">Für kleine λ ist die Verteilung stark rechtsschief und liegt dicht bei null, denn seltene Ereignisse bleiben meist aus. Mit wachsendem λ wird sie symmetrischer und lässt sich, wie schon die Binomialverteilung, gut durch eine Normalverteilung mit Mittelwert λ und Standardabweichung √λ annähern.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ REGRESSION -->
+<section class="viewpage" id="page-regression">
+  <div class="kicker">Zusammenhänge</div>
+  <h1>Korrelation und Regression</h1>
+  <p class="lede">Hängen zwei Größen zusammen, und wie eng? Der Korrelationskoeffizient misst die Stärke und Richtung eines linearen Zusammenhangs auf einer Skala von −1 bis +1, und die Regressionsgerade legt die bestmögliche Linie durch die Punktwolke. Ziehe am Regler und beobachte, wie sich Punktwolke und Gerade verändern.</p>
+
+  <div class="grid">
+    <div class="panel pad">
+      <div class="eyebrow">Zusammenhang einstellen</div>
+      <div class="ctrl">
+        <div class="row"><span class="name">Korrelation r</span>
+          <span class="field"><input type="number" id="corrN" min="-0.99" max="0.99" step="0.01" value="0.7"></span>
+        </div>
+        <input type="range" id="corr" min="-0.99" max="0.99" step="0.01" value="0.7">
+        <div class="hint">Ziel-Korrelation der erzeugten Punktwolke.</div>
+      </div>
+      <div class="divider"></div>
+      <div class="ctrl">
+        <div class="name" style="margin-bottom:10px">Beispiele laden</div>
+        <div class="presets" id="rePresets">
+          <button class="chip" data-p="0.9">Stark positiv</button>
+          <button class="chip" data-p="0">Kein Zusammenhang</button>
+          <button class="chip" data-p="-0.7">Negativ</button>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="btnrow">
+        <button class="btn ghost" id="reNew">Neue Punkte</button>
+      </div>
+    </div>
+
+    <div class="rightcol">
+      <div class="panel viz">
+        <div class="viz-top">
+          <div class="legend">
+            <div class="li"><span class="dot" style="background:#8a8578"></span>Datenpunkt</div>
+            <div class="li"><span class="bar" style="background:var(--tp)"></span>Regressionsgerade</div>
+          </div>
+        </div>
+        <div class="holder" id="reHolder"><canvas id="cvReg"></canvas></div>
+      </div>
+      <div class="headline"><div class="big" id="reBig">0,70</div>
+        <div class="cap">ist der gemessene Korrelationskoeffizient. Nahe ±1 liegen die Punkte fast auf einer Geraden, nahe 0 ist kein linearer Zusammenhang erkennbar.</div></div>
+      <div class="stats">
+        <div class="stat"><div class="n" id="reR">0,70</div><div class="l">Korrelation r</div></div>
+        <div class="stat"><div class="n" id="reR2">0,49</div><div class="l">Bestimmtheitsmaß r²</div></div>
+        <div class="stat"><div class="n" id="reSlope">0,70</div><div class="l">Steigung b</div></div>
+        <div class="stat"><div class="n" id="reInt">0,0</div><div class="l">Achsenabschnitt a</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="result">
+    <div class="formula">
+      <div class="eyebrow">Korrelation und Regressionsgerade</div>
+      <div class="fblock"><div class="flabel">Korrelationskoeffizient nach Pearson</div>
+        <div class="eq eqc">r <span class="op">=</span>
+          <span class="frac"><span class="top">Cov(x, y)</span><span class="bot">s<sub>x</sub> · s<sub>y</sub></span></span></div></div>
+      <div class="fblock"><div class="flabel">Regressionsgerade (Methode der kleinsten Quadrate)</div>
+        <div class="eq eqc" id="reEq">ŷ = a + b · x</div></div>
+      <p class="prose">Der Korrelationskoeffizient r setzt die gemeinsame Streuung zweier Größen (die Kovarianz) ins Verhältnis zu ihren Einzelstreuungen. Er ist einheitenlos und liegt stets zwischen −1 und +1. Sein Vorzeichen gibt die Richtung des Zusammenhangs an, sein Betrag dessen Stärke. Das Quadrat r² heißt Bestimmtheitsmaß und gibt an, welcher Anteil der Streuung von y sich durch x erklären lässt.</p>
+      <p class="prose">Die Regressionsgerade minimiert die Summe der quadrierten senkrechten Abstände der Punkte von der Linie. Ihre Steigung hängt eng mit der Korrelation zusammen. Wichtig bleibt die alte Warnung: Korrelation ist nicht Kausalität. Ein starker Zusammenhang belegt noch nicht, dass die eine Größe die andere verursacht – beide können auch von einer dritten Ursache abhängen.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ KONFIDENZ -->
+<section class="viewpage" id="page-konfidenz">
+  <div class="kicker">Schließende Statistik</div>
+  <h1>Konfidenzintervalle</h1>
+  <p class="lede">Aus einer Stichprobe schätzt man einen unbekannten wahren Wert – aber wie sicher ist diese Schätzung? Ein Konfidenzintervall gibt einen Bereich an, der den wahren Wert mit einer festgelegten Wahrscheinlichkeit überdeckt. Jede Stichprobe liefert ein eigenes Intervall; hier ziehst du viele auf einmal und siehst, wie zuverlässig sie den wahren Wert einfangen.</p>
+
+  <div class="grid">
+    <div class="panel pad">
+      <div class="eyebrow">Stichproben einstellen</div>
+      <div class="ctrl">
+        <div class="row"><span class="name">Konfidenzniveau</span>
+          <span class="field"><input type="number" id="kLevelN" min="80" max="99" step="1" value="95"><span class="unit">%</span></span>
+        </div>
+        <input type="range" id="kLevel" min="80" max="99" step="1" value="95">
+        <div class="hint">Anteil der Intervalle, die den wahren Wert auf lange Sicht überdecken sollen.</div>
+      </div>
+      <div class="ctrl">
+        <div class="row"><span class="name">Stichprobengröße n</span>
+          <span class="field"><input type="number" id="kNN" min="5" max="100" step="1" value="30"></span>
+        </div>
+        <input type="range" id="kN" min="5" max="100" step="1" value="30">
+        <div class="hint">Größere Stichproben liefern engere Intervalle.</div>
+      </div>
+      <div class="divider"></div>
+      <div class="btnrow">
+        <button class="btn ghost" id="kNew">Neue Stichproben</button>
+      </div>
+    </div>
+
+    <div class="rightcol">
+      <div class="panel viz">
+        <div class="viz-top">
+          <div class="legend">
+            <div class="li"><span class="bar" style="background:var(--accent)"></span>enthält μ</div>
+            <div class="li"><span class="bar" style="background:var(--tp)"></span>verfehlt μ</div>
+            <div class="li"><span class="bar" style="background:#2f4858;height:12px;width:2px"></span>wahrer Wert μ</div>
+          </div>
+        </div>
+        <div class="holder" id="kHolder"><canvas id="cvKonf"></canvas></div>
+      </div>
+      <div class="headline"><div class="big" id="kBig">95 %</div>
+        <div class="cap">der gezeigten Intervalle überdecken den wahren Wert – das entspricht dem eingestellten Konfidenzniveau.</div></div>
+      <div class="stats">
+        <div class="stat"><div class="n" id="kLvl">95 %</div><div class="l">Konfidenzniveau</div></div>
+        <div class="stat"><div class="n" id="kHit">38 / 40</div><div class="l">Intervalle enthalten μ</div></div>
+        <div class="stat"><div class="n" id="kWidth">0,36</div><div class="l">halbe Intervallbreite</div></div>
+        <div class="stat"><div class="n" id="kZ">1,96</div><div class="l">z-Wert zum Niveau</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="result">
+    <div class="formula">
+      <div class="eyebrow">Das Konfidenzintervall</div>
+      <div class="fblock"><div class="flabel">Intervall für den Mittelwert</div>
+        <div class="eq eqc">x̄ <span class="op">±</span> z<sub style="font-size:11px">1−α/2</sub> ·
+          <span class="frac"><span class="top">σ</span><span class="bot">&radic;<span style="text-decoration:overline">&nbsp;n&nbsp;</span></span></span></div></div>
+      <p class="prose">Um den Stichprobenmittelwert x̄ legt man eine Spanne, deren Breite vom Konfidenzniveau und vom Standardfehler σ/√n abhängt. Der z-Wert wächst mit dem geforderten Niveau: Wer sicherer sein will, muss ein breiteres Intervall in Kauf nehmen. Größere Stichproben verengen es dagegen, weil der Standardfehler mit √n schrumpft.</p>
+      <p class="prose">Entscheidend ist die richtige Deutung. Das Konfidenzniveau ist keine Aussage über ein einzelnes Intervall, sondern über das Verfahren: Wiederholte man die Stichprobe sehr oft, so überdeckten rund 95 % der so gebildeten Intervalle den wahren Wert. Genau das zeigt die Simulation – die roten Intervalle sind die Ausnahmen, die ihn verfehlen, und ihr Anteil pendelt sich beim gewählten Niveau ein.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ HYPOTHESE -->
+<section class="viewpage" id="page-hypothese">
+  <div class="kicker">Schließende Statistik</div>
+  <h1>Hypothesentests und der p-Wert</h1>
+  <p class="lede">Ist ein beobachteter Effekt echt oder nur Zufall? Ein Signifikanztest vergleicht die Beobachtung mit dem, was unter der Nullhypothese – also reinem Zufall – zu erwarten wäre. Der p-Wert misst, wie außergewöhnlich die Beobachtung dann wäre. Verschiebe die Prüfgröße und das Signifikanzniveau und sieh, wann der Test die Nullhypothese verwirft.</p>
+
+  <div class="grid">
+    <div class="panel pad">
+      <div class="eyebrow">Test einstellen</div>
+      <div class="ctrl">
+        <div class="row"><span class="name">Prüfgröße z</span>
+          <span class="field"><input type="number" id="hZN" min="0" max="4" step="0.05" value="2"></span>
+        </div>
+        <input type="range" id="hZ" min="0" max="4" step="0.05" value="2">
+        <div class="hint">Wie viele Standardfehler die Beobachtung vom Nullwert entfernt liegt.</div>
+      </div>
+      <div class="ctrl">
+        <div class="row"><span class="name">Signifikanzniveau α</span>
+          <span class="field"><input type="number" id="hAlphaN" min="1" max="10" step="0.5" value="5"><span class="unit">%</span></span>
+        </div>
+        <input type="range" id="hAlpha" min="1" max="10" step="0.5" value="5">
+        <div class="hint">Die zulässige Irrtumswahrscheinlichkeit, die Nullhypothese fälschlich zu verwerfen.</div>
+      </div>
+      <div class="divider"></div>
+      <label class="toggle">
+        <input type="checkbox" id="hTwo" checked>
+        <span class="switch"></span>
+        <span><span class="lbl">Zweiseitiger Test</span><br><span class="sub">Abweichungen in beide Richtungen zählen.</span></span>
+      </label>
+    </div>
+
+    <div class="rightcol">
+      <div class="panel viz">
+        <div class="viz-top">
+          <div class="legend">
+            <div class="li"><span class="bar" style="background:rgba(178,59,46,0.30)"></span>Ablehnbereich (α)</div>
+            <div class="li"><span class="bar" style="background:rgba(47,72,88,0.35)"></span>p-Wert-Fläche</div>
+            <div class="li"><span class="bar" style="background:var(--tp)"></span>Prüfgröße z</div>
+          </div>
+        </div>
+        <div class="holder" id="hHolder"><canvas id="cvHyp"></canvas></div>
+      </div>
+      <div class="headline"><div class="big" id="hBig">4,6 %</div>
+        <div class="cap" id="hCap">ist der p-Wert. Ist er kleiner als α, gilt das Ergebnis als signifikant und die Nullhypothese wird verworfen.</div></div>
+      <div class="stats">
+        <div class="stat"><div class="n" id="hZv">2,00</div><div class="l">Prüfgröße z</div></div>
+        <div class="stat"><div class="n" id="hP">4,6 %</div><div class="l">p-Wert</div></div>
+        <div class="stat"><div class="n" id="hCrit">± 1,96</div><div class="l">kritischer Wert</div></div>
+        <div class="stat"><div class="n" id="hDec">verwirft H₀</div><div class="l">Entscheidung</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="result">
+    <div class="formula">
+      <div class="eyebrow">Der Signifikanztest</div>
+      <div class="fblock"><div class="flabel">Prüfgröße und p-Wert (zweiseitig)</div>
+        <div class="eq eqc">z <span class="op">=</span>
+          <span class="frac"><span class="top">x̄ − μ<sub style="font-size:11px">0</sub></span><span class="bot">σ / &radic;<span style="text-decoration:overline">&nbsp;n&nbsp;</span></span></span>
+          <span class="op" style="margin-left:14px">p =</span> 2 · (1 − Φ(|z|))</div></div>
+      <p class="prose">Man nimmt zunächst an, dass nur der Zufall wirkt – das ist die Nullhypothese H₀. Unter ihr ist die Prüfgröße z standardnormalverteilt. Der p-Wert ist die Wahrscheinlichkeit, unter H₀ einen mindestens so extremen Wert zu beobachten wie den tatsächlichen. Ein kleiner p-Wert bedeutet: Die Beobachtung passt schlecht zum reinen Zufall, also spricht sie gegen H₀.</p>
+      <p class="prose">Vor dem Test legt man das Signifikanzniveau α fest, die Schwelle, ab der man H₀ verwirft. Fällt die Prüfgröße in den roten Ablehnbereich, ist der p-Wert kleiner als α und das Ergebnis heißt signifikant. Wichtig: Ein kleiner p-Wert beweist nichts mit Sicherheit, und ein nicht signifikantes Ergebnis belegt nicht die Nullhypothese – es fehlt nur der Beleg dagegen.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ MONTY -->
+<section class="viewpage" id="page-monty">
+  <div class="kicker">Wahrscheinlichkeitstheorie</div>
+  <h1>Das Ziegenproblem</h1>
+  <p class="lede">Hinter einer von drei Türen steht ein Auto, hinter den anderen je eine Ziege. Du wählst eine Tür, der Moderator öffnet eine andere mit einer Ziege und bietet dir an, zu wechseln. Sollte man? Die Intuition sagt „egal", doch Wechseln gewinnt doppelt so oft. Lass die Simulation viele Spiele durchspielen und überzeuge dich selbst.</p>
+
+  <div class="grid">
+    <div class="panel pad">
+      <div class="eyebrow">Simulation</div>
+      <p class="hint" style="margin-top:0">Jedes Spiel wird zweimal ausgewertet: einmal mit der Strategie „immer wechseln", einmal mit „immer bleiben". So sieht man beide Gewinnraten direkt nebeneinander.</p>
+      <div class="divider"></div>
+      <div class="btnrow">
+        <button class="btn" id="montyStart">Start</button>
+        <button class="btn ghost" id="montyReset">Zurücksetzen</button>
+      </div>
+    </div>
+
+    <div class="rightcol">
+      <div class="panel viz">
+        <div class="viz-top">
+          <div class="legend">
+            <div class="li"><span class="bar" style="background:#2f4858;height:11px;border-radius:2px"></span>Wechseln</div>
+            <div class="li"><span class="bar" style="background:var(--tp);height:11px;border-radius:2px"></span>Bleiben</div>
+            <div class="li"><span class="bar" style="background:#ddd8cc"></span>Theorie 1/3 und 2/3</div>
+          </div>
+        </div>
+        <div class="holder" id="mHolder"><canvas id="cvMonty"></canvas></div>
+      </div>
+      <div class="headline"><div class="big" id="montyBig">–</div>
+        <div class="cap">Gewinnrate mit der Strategie „wechseln". Sie pendelt sich bei zwei Dritteln ein.</div></div>
+      <div class="stats">
+        <div class="stat"><div class="n" id="montyGames">0</div><div class="l">gespielte Runden</div></div>
+        <div class="stat"><div class="n" style="color:var(--accent)" id="montySw">–</div><div class="l">Gewinnrate Wechseln</div></div>
+        <div class="stat"><div class="n" style="color:var(--tp)" id="montySt">–</div><div class="l">Gewinnrate Bleiben</div></div>
+        <div class="stat"><div class="n">2/3 : 1/3</div><div class="l">theoretisches Verhältnis</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="result">
+    <div class="formula">
+      <div class="eyebrow">Warum Wechseln gewinnt</div>
+      <p class="prose" style="margin-top:0">Der Schlüssel liegt in der ersten Wahl. Mit Wahrscheinlichkeit 1/3 zeigst du gleich auf das Auto, mit Wahrscheinlichkeit 2/3 auf eine Ziege. Der Moderator, der weiß, wo das Auto steht, öffnet danach immer eine Ziegentür. Dadurch bündelt sich die restliche Wahrscheinlichkeit von 2/3 auf der einzigen anderen geschlossenen Tür.</p>
+      <div class="eq eqc">P(Gewinn bei Wechseln) <span class="op">=</span> 1 − P(erste Wahl richtig) <span class="op">=</span> 1 − <span class="frac"><span class="top">1</span><span class="bot">3</span></span> <span class="op">=</span> <b class="num">2/3</b></div>
+      <p class="prose">Bleibst du dagegen bei deiner Tür, gewinnst du nur, wenn deine erste Wahl schon richtig war – also mit 1/3. Entscheidend ist, dass der Moderator sein Wissen einbringt: Er öffnet nie zufällig, sondern gezielt eine Ziegentür. Genau diese zusätzliche Information macht das Wechseln überlegen und ist der Grund, warum die Intuition hier in die Irre führt.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ ZUFALL -->
+<section class="viewpage" id="page-zufall">
+  <div class="kicker">Wahrscheinlichkeitstheorie</div>
+  <h1>Zufallsvariablen: Erwartungswert und Varianz</h1>
+  <p class="lede">Eine Zufallsvariable ordnet jedem Ausgang eines Zufallsexperiments eine Zahl zu. Der Erwartungswert ist ihr langfristiger Durchschnitt, die Varianz ihre Streuung. Hier siehst du einen Würfel, dessen Wahrscheinlichkeiten du verzerren kannst – und wie Erwartungswert und Varianz darauf reagieren.</p>
+
+  <div class="grid">
+    <div class="panel pad">
+      <div class="eyebrow">Verteilung einstellen</div>
+      <div class="ctrl">
+        <div class="row"><span class="name">Verzerrung</span>
+          <span class="field"><input type="number" id="zbiasN" min="-1" max="1" step="0.05" value="0"></span>
+        </div>
+        <input type="range" id="zbias" min="-1" max="1" step="0.05" value="0">
+        <div class="hint">Neigt die Wahrscheinlichkeiten zu hohen (rechts) oder niedrigen (links) Augenzahlen.</div>
+      </div>
+      <div class="divider"></div>
+      <div class="ctrl">
+        <div class="name" style="margin-bottom:10px">Beispiele laden</div>
+        <div class="presets" id="zPresets">
+          <button class="chip" data-p="0">Fairer Würfel</button>
+          <button class="chip" data-p="0.7">Hohe Augen</button>
+          <button class="chip" data-p="-0.7">Niedrige Augen</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="rightcol">
+      <div class="panel viz">
+        <div class="viz-top">
+          <div class="legend">
+            <div class="li"><span class="bar" style="background:#9fb0bc;height:11px;border-radius:2px"></span>Wahrscheinlichkeit P(X = x)</div>
+            <div class="li"><span class="bar" style="background:var(--tp)"></span>Erwartungswert E(X)</div>
+          </div>
+        </div>
+        <div class="holder" id="zHolder"><canvas id="cvZufall"></canvas></div>
+      </div>
+      <div class="headline"><div class="big" id="zBig">3,50</div>
+        <div class="cap">ist der Erwartungswert – der Wert, um den sich der Durchschnitt vieler Würfe einpendelt.</div></div>
+      <div class="stats">
+        <div class="stat"><div class="n" style="color:var(--tp)" id="zE">3,50</div><div class="l">Erwartungswert E(X)</div></div>
+        <div class="stat"><div class="n" id="zVar">2,92</div><div class="l">Varianz Var(X)</div></div>
+        <div class="stat"><div class="n" id="zSd">1,71</div><div class="l">Standardabweichung σ</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="result">
+    <div class="panel pad">
+      <table class="counts"><tbody id="zTab"></tbody></table>
+    </div>
+    <div class="formula">
+      <div class="eyebrow">Erwartungswert und Varianz</div>
+      <div class="fblock"><div class="flabel">Erwartungswert</div>
+        <div class="eq eqc">E(X) <span class="op">=</span> <span style="font-size:18px">&#8721;</span> x<sub>i</sub> · P(X = x<sub>i</sub>)</div></div>
+      <div class="fblock"><div class="flabel">Varianz</div>
+        <div class="eq eqc">Var(X) <span class="op">=</span> <span style="font-size:18px">&#8721;</span> (x<sub>i</sub> − E(X))² · P(X = x<sub>i</sub>)</div></div>
+      <p class="prose">Der Erwartungswert gewichtet jeden möglichen Wert mit seiner Wahrscheinlichkeit und summiert auf. Beim fairen Würfel ist er 3,5 – ein Wert, der selbst nie gewürfelt wird, sich aber als Durchschnitt vieler Würfe einstellt. Verzerrt man die Wahrscheinlichkeiten zu hohen Augen, wandert der Erwartungswert nach oben.</p>
+      <p class="prose">Die Varianz misst, wie weit die Werte im Schnitt vom Erwartungswert entfernt liegen, indem sie die quadrierten Abstände mit ihren Wahrscheinlichkeiten gewichtet. Sie ist am größten, wenn die Wahrscheinlichkeit auf die äußeren Werte konzentriert ist, und klein, wenn sie sich um den Erwartungswert bündelt. Erwartungswert und Varianz sind die Brücke von einzelnen Zufallsvariablen zu den Verteilungen der folgenden Kapitel.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ KOMBINATORIK -->
+<section class="viewpage" id="page-kombinatorik">
+  <div class="kicker">Wahrscheinlichkeitstheorie</div>
+  <h1>Kombinatorik: das Zählen von Möglichkeiten</h1>
+  <p class="lede">Wie viele Möglichkeiten gibt es, aus n Dingen k auszuwählen? Die Antwort hängt davon ab, ob die Reihenfolge zählt und ob man zurücklegt. Kombinatorik liefert die Bausteine, aus denen sich Wahrscheinlichkeiten zusammensetzen. Stelle n und k ein und finde die passende Zelle im Pascalschen Dreieck.</p>
+
+  <div class="grid">
+    <div class="panel pad">
+      <div class="eyebrow">Auswahl einstellen</div>
+      <div class="ctrl">
+        <div class="row"><span class="name">Anzahl Dinge n</span>
+          <span class="field"><input type="number" id="koNN" min="0" max="10" step="1" value="5"></span>
+        </div>
+        <input type="range" id="koN" min="0" max="10" step="1" value="5">
+        <div class="hint">Größe der Grundmenge.</div>
+      </div>
+      <div class="ctrl">
+        <div class="row"><span class="name">Ausgewählte k</span>
+          <span class="field"><input type="number" id="koKN" min="0" max="5" step="1" value="2"></span>
+        </div>
+        <input type="range" id="koK" min="0" max="5" step="1" value="2">
+        <div class="hint">Wie viele davon gezogen werden.</div>
+      </div>
+    </div>
+
+    <div class="rightcol">
+      <div class="panel viz">
+        <div class="viz-top">
+          <div class="legend">
+            <div class="li"><span class="dot" style="background:#eef0f2"></span>Binomialkoeffizient „r über c"</div>
+            <div class="li"><span class="dot" style="background:var(--tp)"></span>gewählte Zelle „n über k"</div>
+          </div>
+        </div>
+        <div class="holder" id="koHolder"><canvas id="cvKomb"></canvas></div>
+      </div>
+      <div class="headline"><div class="big" id="koBig">10</div>
+        <div class="cap">Möglichkeiten, k aus n ohne Beachtung der Reihenfolge auszuwählen – der Binomialkoeffizient „n über k".</div></div>
+      <div class="stats">
+        <div class="stat"><div class="n" id="koFact">120</div><div class="l">n! (Permutationen)</div></div>
+        <div class="stat"><div class="n" id="koPerm">20</div><div class="l">n!/(n−k)! (Variationen)</div></div>
+        <div class="stat"><div class="n" style="color:var(--tp)" id="koComb">10</div><div class="l">n über k (Kombinationen)</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="result">
+    <div class="formula">
+      <div class="eyebrow">Die drei Grundformeln</div>
+      <div class="fblock"><div class="flabel">Permutationen · Variationen · Kombinationen</div>
+        <div class="eq eqc">n! <span class="op" style="margin:0 10px">|</span> P(n,k) = <span class="frac"><span class="top">n!</span><span class="bot">(n−k)!</span></span>
+          <span class="op" style="margin:0 10px">|</span> <span style="font-size:15px">(</span><span class="frac" style="margin:0"><span class="top" style="border:none;padding-bottom:0">n</span><span class="bot" style="padding-top:0">k</span></span><span style="font-size:15px">)</span> = <span class="frac"><span class="top">n!</span><span class="bot">k! · (n−k)!</span></span></div></div>
+      <div class="fblock"><div class="flabel">Mit deinen Werten</div><div class="eq small eqc" id="koEq"></div></div>
+      <p class="prose">Die Fakultät n! zählt, auf wie viele Arten sich n Dinge anordnen lassen. Kommt es auf die Reihenfolge an und wählt man nur k davon, erhält man die Variationen n!/(n−k)!. Ist die Reihenfolge dagegen gleichgültig, teilt man zusätzlich durch die k! Anordnungen der Auswahl und landet beim Binomialkoeffizienten „n über k", der Zahl der Kombinationen.</p>
+      <p class="prose">Diese Binomialkoeffizienten bilden das Pascalsche Dreieck: Jede Zahl ist die Summe der beiden darüber. Dieselben Werte tauchen als Vorfaktoren in der Binomialverteilung wieder auf – dort zählen sie, auf wie viele Arten sich k Erfolge auf n Versuche verteilen. So verbindet die Kombinatorik das reine Zählen mit der Wahrscheinlichkeitsrechnung.</p>
+    </div>
+  </div>
+</section>
+
 </main>
 
 <script>
@@ -621,6 +1317,18 @@ function erf(x){
 }
 const normCdf = (x,mu,sig)=> 0.5*(1+erf((x-mu)/(sig*Math.SQRT2)));
 const normPdf = (x,mu,sig)=> Math.exp(-0.5*((x-mu)/sig)**2)/(sig*Math.sqrt(2*Math.PI));
+/* Inverse Standardnormalverteilung (Acklam-Approximation) */
+function normInv(p){
+  if(p<=0)return -1/0; if(p>=1)return 1/0;
+  const a=[-3.969683028665376e1,2.209460984245205e2,-2.759285104469687e2,1.383577518672690e2,-3.066479806614716e1,2.506628277459239e0];
+  const b=[-5.447609879822406e1,1.615858368580409e2,-1.556989798598866e2,6.680131188771972e1,-1.328068155288572e1];
+  const c=[-7.784894002430293e-3,-3.223964580411365e-1,-2.400758277161838e0,-2.549732539343734e0,4.374664141464968e0,2.938163982698783e0];
+  const d=[7.784695709041462e-3,3.224671290700398e-1,2.445134137142996e0,3.754408661907416e0];
+  const pl=0.02425, ph=1-pl; let q,r;
+  if(p<pl){q=Math.sqrt(-2*Math.log(p));return(((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5])/((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1);}
+  if(p<=ph){q=p-0.5;r=q*q;return(((((a[0]*r+a[1])*r+a[2])*r+a[3])*r+a[4])*r+a[5])*q/(((((b[0]*r+b[1])*r+b[2])*r+b[3])*r+b[4])*r+1);}
+  q=Math.sqrt(-2*Math.log(1-p));return-(((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5])/((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1);
+}
 
 /* ================================================= BAYES module */
 (function(){
@@ -860,6 +1568,431 @@ const normPdf = (x,mu,sig)=> Math.exp(-0.5*((x-mu)/sig)**2)/(sig*Math.sqrt(2*Mat
   window.Pages=window.Pages||{};
   window.Pages.lln={onShow(){ if(runs.length===0) reset(); else drawChart(); }, onHide(){ if(running){running=false;if(anim)cancelAnimationFrame(anim);anim=null;$('lStart').textContent='Weiter';} }};
   window.addEventListener('resize',()=>{if(document.getElementById('page-lln').classList.contains('active'))drawChart();});
+})();
+
+/* ================================================= DESKRIPTIV module */
+(function(){
+  const cv=$('cvDesk'), holder=$('dHolder');
+  const BASE=[3,4,5,5,6,6,6,7,7,8,9];
+  const state={spread:1, outlier:9, band:true};
+  function data(){ return BASE.map(v=>6+state.spread*(v-6)).concat([state.outlier]); }
+  function stats(){
+    const d=data(), n=d.length, s=[...d].sort((a,b)=>a-b);
+    const mean=d.reduce((a,b)=>a+b,0)/n;
+    const median=n%2? s[(n-1)/2] : (s[n/2-1]+s[n/2])/2;
+    const quant=p=>{const idx=p*(n-1),lo=Math.floor(idx),hi=Math.ceil(idx);return s[lo]+(s[hi]-s[lo])*(idx-lo);};
+    const q1=quant(0.25), q3=quant(0.75);
+    const variance=d.reduce((a,b)=>a+(b-mean)**2,0)/n, sd=Math.sqrt(variance);
+    const cnt={}; let mode=Math.round(s[0]),best=0; s.forEach(v=>{const k=Math.round(v);cnt[k]=(cnt[k]||0)+1;if(cnt[k]>best){best=cnt[k];mode=k;}});
+    return {d,n,s,mean,median,q1,q3,iqr:q3-q1,variance,sd,min:s[0],max:s[n-1],range:s[n-1]-s[0],mode};
+  }
+  function niceStep(x){const p=Math.pow(10,Math.floor(Math.log10(x))),f=x/p;return (f<1.5?1:f<3?2:f<7?5:10)*p;}
+  function draw(st){
+    const f=fitCanvas(cv,holder,W=>Math.min(300,Math.max(210,Math.round(W*0.42)))); if(!f)return;
+    const {g,W,H}=f;
+    const padL=12,padR=12,padB=26,padT=18, pW=W-padL-padR, pH=H-padT-padB;
+    // mitwachsende Achse: umschließt Daten und das σ-Band mit etwas Rand
+    let lo=Math.min(st.min, st.mean-st.sd), hi=Math.max(st.max, st.mean+st.sd);
+    let D0=Math.max(0,Math.floor(lo)-1), D1=Math.ceil(hi)+1;
+    if(D1-D0<8){const c=(D0+D1)/2; D0=Math.max(0,c-4); D1=D0+8;}
+    const span=D1-D0, X=v=>padL+(v-D0)/span*pW, baseY=padT+pH;
+    if(state.band){const a=X(Math.max(D0,st.mean-st.sd)),b=X(Math.min(D1,st.mean+st.sd));g.fillStyle='rgba(138,133,120,0.22)';g.fillRect(a,padT,Math.max(0,b-a),pH);}
+    const step=niceStep(span/6);
+    g.font='11px "Segoe UI",sans-serif';g.textAlign='center';g.textBaseline='top';
+    for(let v=Math.ceil(D0/step)*step; v<=D1+1e-9; v+=step){const px=X(v);g.strokeStyle='#eceadf';g.beginPath();g.moveTo(px,padT);g.lineTo(px,baseY);g.stroke();g.fillStyle='#8a8578';g.fillText(de(v,0),px,baseY+6);}
+    g.strokeStyle='#c9c3b5';g.lineWidth=1;g.beginPath();g.moveTo(padL,baseY);g.lineTo(W-padR,baseY);g.stroke();
+    const unitPx=pW/span, dotR=Math.max(3,Math.min(7,unitPx*0.40)), stacks={};
+    st.d.forEach(v=>{const bin=Math.round(v);stacks[bin]=(stacks[bin]||0)+1;const cx=X(v),cy=baseY-dotR-2-(stacks[bin]-1)*(dotR*2+2);g.beginPath();g.arc(cx,cy,dotR,0,Math.PI*2);g.fillStyle='#8a8578';g.fill();g.strokeStyle='#fff';g.lineWidth=1;g.stroke();});
+    const vline=(v,col)=>{const px=X(v);g.strokeStyle=col;g.lineWidth=2;g.beginPath();g.moveTo(px,padT-2);g.lineTo(px,baseY);g.stroke();};
+    vline(st.median,'#2f4858');
+    vline(st.mean,'#b23b2e');
+  }
+  function render(){
+    const st=stats();
+    $('dBig').textContent=de(st.mean,1);
+    $('dMean').textContent=de(st.mean,1);
+    $('dMedian').textContent=de(st.median,1);
+    $('dSd').textContent=de(st.sd,2);
+    $('dRange').textContent=de(st.range,1);
+    $('dTab').innerHTML=`<tr><td>Modus</td><td class="num">${de(st.mode,0)}</td><td>Varianz σ²</td><td class="num">${de(st.variance,2)}</td></tr>`+
+      `<tr><td>Minimum</td><td class="num">${de(st.min,1)}</td><td>Maximum</td><td class="num">${de(st.max,1)}</td></tr>`+
+      `<tr><td>1. Quartil Q₁</td><td class="num">${de(st.q1,1)}</td><td>3. Quartil Q₃</td><td class="num">${de(st.q3,1)}</td></tr>`+
+      `<tr><td>Median (Q₂)</td><td class="num">${de(st.median,1)}</td><td>Interquartilsabstand</td><td class="num">${de(st.iqr,1)}</td></tr>`;
+    draw(st);
+  }
+  pairControl($('spread'),$('spreadN'),v=>{state.spread=v;render();});
+  pairControl($('outlier'),$('outlierN'),v=>{state.outlier=v;render();});
+  $('dPresets').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;const[sp,o]=b.dataset.p.split(',').map(Number);state.spread=sp;state.outlier=o;setPair($('spread'),$('spreadN'),sp);setPair($('outlier'),$('outlierN'),o);render();});
+  $('dBand').addEventListener('change',e=>{state.band=e.target.checked;render();});
+  window.Pages=window.Pages||{};
+  window.Pages.deskriptiv={onShow(){render();}};
+  window.addEventListener('resize',()=>{if(document.getElementById('page-deskriptiv').classList.contains('active'))render();});
+})();
+
+/* ================================================= BINOMIAL module */
+(function(){
+  const cv=$('cvBinom'), holder=$('biHolder');
+  const state={n:10,p:0.5,k:5,normal:true};
+  function pmfArray(){
+    const n=state.n,p=state.p, arr=new Array(n+1).fill(0);
+    if(p<=0){arr[0]=1;return arr;}
+    if(p>=1){arr[n]=1;return arr;}
+    let P=Math.pow(1-p,n); arr[0]=P;
+    for(let k=0;k<n;k++){ P=P*((n-k)/(k+1))*(p/(1-p)); arr[k+1]=P; }
+    return arr;
+  }
+  function draw(pmf){
+    const f=fitCanvas(cv,holder,W=>Math.min(320,Math.max(230,Math.round(W*0.5)))); if(!f)return;
+    const {g,W,H}=f;
+    const n=state.n, padL=36,padR=12,padT=14,padB=26, pW=W-padL-padR, pH=H-padT-padB;
+    const maxP=Math.max(...pmf,0.001), barW=pW/(n+1), Y=v=>padT+pH-(v/maxP)*pH;
+    g.font='11px "Segoe UI",sans-serif';g.textAlign='right';g.textBaseline='middle';
+    for(let i=0;i<=4;i++){const val=maxP*i/4,y=Y(val);g.strokeStyle='#eceadf';g.beginPath();g.moveTo(padL,y);g.lineTo(W-padR,y);g.stroke();g.fillStyle='#8a8578';g.fillText(de(val,2),padL-6,y);}
+    for(let k=0;k<=n;k++){const x=padL+k*barW,h=(pmf[k]/maxP)*pH,y=padT+pH-h;g.fillStyle=k===state.k?'#b23b2e':'#9fb0bc';g.fillRect(x+barW*0.12,y,Math.max(1,barW*0.76),h);}
+    g.fillStyle='#8a8578';g.textAlign='center';g.textBaseline='top';
+    const step=n<=12?1:(n<=25?2:5);
+    for(let k=0;k<=n;k+=step){g.fillText(k,padL+k*barW+barW/2,padT+pH+6);}
+    if(state.normal){
+      const mu=n*state.p, sig=Math.sqrt(n*state.p*(1-state.p));
+      if(sig>0){g.beginPath();for(let px=padL;px<=W-padR;px+=2){const kx=(px-padL)/barW-0.5,dens=normPdf(kx,mu,sig),y=padT+pH-(dens/maxP)*pH;px===padL?g.moveTo(px,y):g.lineTo(px,y);}g.strokeStyle='#1c1b19';g.lineWidth=1.8;g.stroke();}
+    }
+  }
+  function render(){
+    const pmf=pmfArray(), n=state.n,p=state.p,k=Math.min(state.k,n);
+    const mean=n*p, variance=n*p*(1-p), sd=Math.sqrt(variance), pk=pmf[k]||0;
+    let cum=0; for(let i=0;i<=k;i++)cum+=pmf[i]||0;
+    $('biBig').textContent=de(pk*100,1)+' %';
+    $('biMean').textContent=de(mean,2);
+    $('biVar').textContent=de(variance,2);
+    $('biSd').textContent=de(sd,2);
+    $('biCum').textContent=de(cum*100,1)+' %';
+    $('biEq').innerHTML=`P(X = ${k}) <span class="op">=</span> <span class="frac"><span class="top"><span class="num">${n}</span>!</span><span class="bot"><span class="num">${k}</span>! · <span class="num">${n-k}</span>!</span></span> · <span class="num">${de(p,2)}</span><sup style="font-size:11px">${k}</sup> · <span class="num">${de(1-p,2)}</span><sup style="font-size:11px">${n-k}</sup> <span class="op">=</span> <b class="num">${de(pk*100,1)} %</b>`;
+    draw(pmf);
+  }
+  pairControl($('bn'),$('bnN'),v=>{state.n=Math.round(v);$('bk').max=state.n;$('bkN').max=state.n;if(state.k>state.n){state.k=state.n;setPair($('bk'),$('bkN'),state.n);}render();});
+  pairControl($('bp'),$('bpN'),v=>{state.p=v;render();});
+  pairControl($('bk'),$('bkN'),v=>{state.k=Math.round(v);render();});
+  $('biPresets').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;const[n,p,k]=b.dataset.p.split(',').map(Number);state.n=n;state.p=p;state.k=k;$('bk').max=n;$('bkN').max=n;setPair($('bn'),$('bnN'),n);setPair($('bp'),$('bpN'),p);setPair($('bk'),$('bkN'),k);render();});
+  $('biNormal').addEventListener('change',e=>{state.normal=e.target.checked;render();});
+  window.Pages=window.Pages||{};
+  window.Pages.binom={onShow(){render();}};
+  window.addEventListener('resize',()=>{if(document.getElementById('page-binom').classList.contains('active'))render();});
+})();
+
+/* ================================================= CLT module */
+(function(){
+  const cvS=$('cltSrc'), holderS=$('cltSrcHolder'), cv=$('cltMain'), holder=$('cltHolder');
+  function gauss(){ let u=0,v=0; while(u===0)u=Math.random(); while(v===0)v=Math.random(); return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v); }
+  const SOURCES={
+    uniform:()=>Math.random(),
+    skew:()=>Math.random()**3,
+    bimodal:()=>{ const x=(Math.random()<0.5?0.22:0.78)+0.09*gauss(); return Math.min(1,Math.max(0,x)); },
+    dice:()=>(Math.floor(Math.random()*6)+1)/6
+  };
+  const state={src:'uniform', n:5};
+  const BINS=44, HBINS=34, CAP=5000;
+  let means=[], anim=null, running=false, srcMu=0.5, srcSd=0.289, srcHist=null;
+
+  function computeSource(){
+    const f=SOURCES[state.src], N=60000, hist=new Array(BINS).fill(0); let sum=0,sum2=0;
+    for(let i=0;i<N;i++){const x=f();sum+=x;sum2+=x*x;hist[Math.min(BINS-1,Math.max(0,Math.floor(x*BINS)))]++;}
+    srcMu=sum/N; srcSd=Math.sqrt(Math.max(0,sum2/N-srcMu*srcMu)); srcHist=hist;
+  }
+  function drawSource(){
+    const f=fitCanvas(cvS,holderS,W=>Math.min(150,Math.max(96,Math.round(W*0.34)))); if(!f)return;
+    const {g,W,H}=f, padL=8,padR=8,padT=8,padB=8, pW=W-padL-padR, pH=H-padT-padB, maxC=Math.max(...srcHist,1);
+    for(let b=0;b<BINS;b++){const x=padL+b/BINS*pW,w=pW/BINS,h=srcHist[b]/maxC*pH;g.fillStyle='#cfc9ba';g.fillRect(x,padT+pH-h,Math.max(1,w-0.5),h);}
+    g.strokeStyle='#c9c3b5';g.lineWidth=1;g.beginPath();g.moveTo(padL,padT+pH);g.lineTo(W-padR,padT+pH);g.stroke();
+  }
+  function drawMain(){
+    const f=fitCanvas(cv,holder,W=>Math.min(280,Math.max(200,Math.round(W*0.40)))); if(!f)return;
+    const {g,W,H}=f, padL=10,padR=10,padT=14,padB=26, pW=W-padL-padR, pH=H-padT-padB;
+    const hist=new Array(HBINS).fill(0);
+    means.forEach(m=>{hist[Math.min(HBINS-1,Math.max(0,Math.floor(m*HBINS)))]++;});
+    const total=means.length||1, binW=1/HBINS;
+    let maxDens=0; const dens=hist.map(c=>{const d=c/total/binW; if(d>maxDens)maxDens=d; return d;});
+    const se=srcSd/Math.sqrt(state.n), peakN=se>0?normPdf(srcMu,srcMu,se):0;
+    const scaleMax=Math.max(maxDens,peakN,0.001);
+    const X=v=>padL+v*pW, Y=d=>padT+pH-(d/scaleMax)*pH;
+    for(let b=0;b<HBINS;b++){const x=X(b*binW),w=pW/HBINS,y=Y(dens[b]);g.fillStyle='#9fb0bc';g.fillRect(x,y,Math.max(1,w-0.6),padT+pH-y);}
+    if(se>0){g.beginPath();for(let px=padL;px<=W-padR;px+=2){const v=(px-padL)/pW,d=normPdf(v,srcMu,se),y=Y(d);px===padL?g.moveTo(px,y):g.lineTo(px,y);}g.strokeStyle='#b23b2e';g.lineWidth=2;g.stroke();}
+    g.strokeStyle='#c9c3b5';g.lineWidth=1;g.beginPath();g.moveTo(padL,padT+pH);g.lineTo(W-padR,padT+pH);g.stroke();
+    g.fillStyle='#8a8578';g.font='11px "Segoe UI",sans-serif';g.textAlign='center';g.textBaseline='top';
+    for(let v=0;v<=1.0001;v+=0.25){g.fillText(de(v,2),X(v),padT+pH+6);}
+    g.strokeStyle='#2f4858';g.setLineDash([4,4]);g.lineWidth=1.5;g.beginPath();g.moveTo(X(srcMu),padT);g.lineTo(X(srcMu),padT+pH);g.stroke();g.setLineDash([]);
+  }
+  function updateStats(){
+    const se=srcSd/Math.sqrt(state.n);
+    $('cltSamples').textContent=means.length.toLocaleString('de-DE');
+    $('cltMu').textContent=de(srcMu,3); $('cltSd').textContent=de(srcSd,3);
+    $('cltSe').textContent=de(se,3); $('cltBig').textContent=de(se,3);
+  }
+  function reset(){ running=false; if(anim){cancelAnimationFrame(anim);anim=null;} $('cltStart').textContent='Start'; means=[]; computeSource(); drawSource(); drawMain(); updateStats(); }
+  function step(){
+    const f=SOURCES[state.src], n=state.n, batch=Math.min(200,CAP-means.length);
+    for(let i=0;i<batch;i++){let s=0;for(let j=0;j<n;j++)s+=f();means.push(s/n);}
+    drawMain(); updateStats();
+    if(means.length>=CAP){running=false;anim=null;$('cltStart').textContent='Nochmal';return;}
+    anim=requestAnimationFrame(step);
+  }
+  function start(){
+    if(running){running=false;if(anim)cancelAnimationFrame(anim);anim=null;$('cltStart').textContent='Weiter';return;}
+    if(means.length>=CAP) means=[];
+    running=true; $('cltStart').textContent='Pause'; anim=requestAnimationFrame(step);
+  }
+  pairControl($('cltN'),$('cltNN'),v=>{state.n=Math.round(v);reset();});
+  $('cltPresets').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;state.src=b.dataset.s;document.querySelectorAll('#cltPresets .chip').forEach(c=>c.classList.toggle('on',c===b));reset();});
+  $('cltStart').addEventListener('click',start);
+  $('cltReset').addEventListener('click',reset);
+  window.Pages=window.Pages||{};
+  window.Pages.clt={onShow(){ if(!srcHist) reset(); else {drawSource();drawMain();} }, onHide(){ if(running){running=false;if(anim)cancelAnimationFrame(anim);anim=null;$('cltStart').textContent='Weiter';} }};
+  window.addEventListener('resize',()=>{if(document.getElementById('page-clt').classList.contains('active')){drawSource();drawMain();}});
+})();
+
+/* ================================================= POISSON module */
+(function(){
+  const cv=$('cvPois'), holder=$('poHolder');
+  const state={lambda:4,k:4,normal:true};
+  function kmax(){ return Math.min(40, Math.max(8, Math.ceil(state.lambda+4*Math.sqrt(state.lambda)+4))); }
+  function pmfArray(){
+    const lam=state.lambda, K=kmax(), arr=new Array(K+1); let P=Math.exp(-lam); arr[0]=P;
+    for(let k=0;k<K;k++){ P=P*lam/(k+1); arr[k+1]=P; } return arr;
+  }
+  function draw(pmf){
+    const f=fitCanvas(cv,holder,W=>Math.min(320,Math.max(230,Math.round(W*0.5)))); if(!f)return;
+    const {g,W,H}=f, K=pmf.length-1, padL=36,padR=12,padT=14,padB=26, pW=W-padL-padR, pH=H-padT-padB;
+    const maxP=Math.max(...pmf,0.001), barW=pW/(K+1), Y=v=>padT+pH-(v/maxP)*pH;
+    g.font='11px "Segoe UI",sans-serif';g.textAlign='right';g.textBaseline='middle';
+    for(let i=0;i<=4;i++){const val=maxP*i/4,y=Y(val);g.strokeStyle='#eceadf';g.beginPath();g.moveTo(padL,y);g.lineTo(W-padR,y);g.stroke();g.fillStyle='#8a8578';g.fillText(de(val,2),padL-6,y);}
+    for(let k=0;k<=K;k++){const x=padL+k*barW,h=(pmf[k]/maxP)*pH,y=padT+pH-h;g.fillStyle=k===state.k?'#b23b2e':'#9fb0bc';g.fillRect(x+barW*0.12,y,Math.max(1,barW*0.76),h);}
+    g.fillStyle='#8a8578';g.textAlign='center';g.textBaseline='top';
+    const step=K<=12?1:(K<=25?2:5);
+    for(let k=0;k<=K;k+=step){g.fillText(k,padL+k*barW+barW/2,padT+pH+6);}
+    if(state.normal){const mu=state.lambda,sig=Math.sqrt(state.lambda);if(sig>0){g.beginPath();for(let px=padL;px<=W-padR;px+=2){const kx=(px-padL)/barW-0.5,dens=normPdf(kx,mu,sig),y=padT+pH-(dens/maxP)*pH;px===padL?g.moveTo(px,y):g.lineTo(px,y);}g.strokeStyle='#1c1b19';g.lineWidth=1.8;g.stroke();}}
+  }
+  function render(){
+    const pmf=pmfArray(), K=pmf.length-1, lam=state.lambda, k=Math.min(state.k,K);
+    const pk=pmf[k]||0; let cum=0; for(let i=0;i<=k;i++)cum+=pmf[i]||0;
+    $('poBig').textContent=de(pk*100,1)+' %';
+    $('poMean').textContent=de(lam,2); $('poVar').textContent=de(lam,2); $('poSd').textContent=de(Math.sqrt(lam),2);
+    $('poCum').textContent=de(cum*100,1)+' %';
+    $('poEq').innerHTML=`P(X = ${k}) <span class="op">=</span> <span class="frac"><span class="top"><span class="num">${de(lam,1)}</span><sup style="font-size:11px">${k}</sup> · e<sup style="font-size:11px">−${de(lam,1)}</sup></span><span class="bot"><span class="num">${k}</span>!</span></span> <span class="op">=</span> <b class="num">${de(pk*100,1)} %</b>`;
+    draw(pmf);
+  }
+  pairControl($('plam'),$('plamN'),v=>{state.lambda=v;const K=kmax();$('pk').max=K;$('pkN').max=K;if(state.k>K){state.k=K;setPair($('pk'),$('pkN'),K);}render();});
+  pairControl($('pk'),$('pkN'),v=>{state.k=Math.round(v);render();});
+  $('poPresets').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;const[l,k]=b.dataset.p.split(',').map(Number);state.lambda=l;state.k=k;const K=kmax();$('pk').max=K;$('pkN').max=K;setPair($('plam'),$('plamN'),l);setPair($('pk'),$('pkN'),k);render();});
+  $('poNormal').addEventListener('change',e=>{state.normal=e.target.checked;render();});
+  window.Pages=window.Pages||{};
+  window.Pages.poisson={onShow(){render();}};
+  window.addEventListener('resize',()=>{if(document.getElementById('page-poisson').classList.contains('active'))render();});
+})();
+
+/* ================================================= REGRESSION module */
+(function(){
+  const cv=$('cvReg'), holder=$('reHolder');
+  const N=90, state={r:0.7};
+  let xs=[], es=[];
+  function gauss(){let u=0,v=0;while(u===0)u=Math.random();while(v===0)v=Math.random();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);}
+  function regen(){ xs=[];es=[]; for(let i=0;i<N;i++){xs.push(gauss());es.push(gauss());} }
+  function points(){ const r=state.r, s=Math.sqrt(Math.max(0,1-r*r)); return xs.map((x,i)=>({x,y:r*x+s*es[i]})); }
+  function stats(pts){
+    const n=pts.length; let mx=0,my=0; pts.forEach(p=>{mx+=p.x;my+=p.y;}); mx/=n;my/=n;
+    let sxx=0,syy=0,sxy=0; pts.forEach(p=>{sxx+=(p.x-mx)**2;syy+=(p.y-my)**2;sxy+=(p.x-mx)*(p.y-my);});
+    const r=sxy/Math.sqrt((sxx*syy)||1), b=sxy/(sxx||1), a=my-b*mx;
+    return {r,b,a};
+  }
+  function draw(pts,st){
+    const f=fitCanvas(cv,holder,W=>Math.min(340,Math.max(250,Math.round(W*0.66)))); if(!f)return;
+    const {g,W,H}=f, pad=24, pW=W-2*pad, pH=H-2*pad, D0=-3.2, D1=3.2;
+    const X=x=>pad+(x-D0)/(D1-D0)*pW, Y=y=>pad+pH-(y-D0)/(D1-D0)*pH;
+    g.strokeStyle='#e8e4da';g.lineWidth=1;
+    g.beginPath();g.moveTo(X(D0),Y(0));g.lineTo(X(D1),Y(0));g.stroke();
+    g.beginPath();g.moveTo(X(0),Y(D0));g.lineTo(X(0),Y(D1));g.stroke();
+    pts.forEach(p=>{g.beginPath();g.arc(X(p.x),Y(p.y),3.5,0,Math.PI*2);g.fillStyle='rgba(138,133,120,0.85)';g.fill();});
+    g.strokeStyle='#b23b2e';g.lineWidth=2.2;g.beginPath();g.moveTo(X(D0),Y(st.a+st.b*D0));g.lineTo(X(D1),Y(st.a+st.b*D1));g.stroke();
+  }
+  function render(){
+    const pts=points(), st=stats(pts);
+    $('reBig').textContent=de(st.r,2);
+    $('reR').textContent=de(st.r,2); $('reR2').textContent=de(st.r*st.r,2);
+    $('reSlope').textContent=de(st.b,2); $('reInt').textContent=de(st.a,2);
+    $('reEq').innerHTML=`ŷ = <b class="num">${de(st.a,2)}</b> + <b class="num">${de(st.b,2)}</b> · x`;
+    draw(pts,st);
+  }
+  pairControl($('corr'),$('corrN'),v=>{state.r=v;render();});
+  $('rePresets').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;const v=Number(b.dataset.p);state.r=v;setPair($('corr'),$('corrN'),v);render();});
+  $('reNew').addEventListener('click',()=>{regen();render();});
+  regen();
+  window.Pages=window.Pages||{};
+  window.Pages.regression={onShow(){render();}};
+  window.addEventListener('resize',()=>{if(document.getElementById('page-regression').classList.contains('active'))render();});
+})();
+
+/* ================================================= KONFIDENZ module */
+(function(){
+  const cv=$('cvKonf'), holder=$('kHolder');
+  const M=40, state={level:95,n:30};
+  let xbars=[];
+  function gauss(){let u=0,v=0;while(u===0)u=Math.random();while(v===0)v=Math.random();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);}
+  function regen(){ xbars=[]; for(let i=0;i<M;i++) xbars.push(gauss()/Math.sqrt(state.n)); }
+  function calc(){ const z=normInv((1+state.level/100)/2), h=z/Math.sqrt(state.n); let hit=0; xbars.forEach(x=>{if(Math.abs(x)<=h)hit++;}); return {z,h,hit}; }
+  function draw(c){
+    const f=fitCanvas(cv,holder,W=>Math.min(320,Math.max(240,Math.round(W*0.62)))); if(!f)return;
+    const {g,W,H}=f, pad=14, padB=24, pW=W-2*pad, pH=H-pad-padB, D=1.5, X=v=>pad+(v+D)/(2*D)*pW;
+    g.strokeStyle='#2f4858';g.lineWidth=1.5;g.setLineDash([3,3]);g.beginPath();g.moveTo(X(0),pad-2);g.lineTo(X(0),pad+pH);g.stroke();g.setLineDash([]);
+    const rowH=pH/M;
+    xbars.forEach((x,i)=>{const y=pad+i*rowH+rowH/2, contains=Math.abs(x)<=c.h, col=contains?'#2f4858':'#b23b2e';
+      g.strokeStyle=col;g.lineWidth=1.6;g.globalAlpha=contains?0.5:1;g.beginPath();g.moveTo(X(x-c.h),y);g.lineTo(X(x+c.h),y);g.stroke();
+      g.globalAlpha=1;g.fillStyle=col;g.beginPath();g.arc(X(x),y,1.8,0,Math.PI*2);g.fill();});
+    g.fillStyle='#8a8578';g.font='11px "Segoe UI",sans-serif';g.textAlign='center';g.textBaseline='top';
+    [-1,0,1].forEach(v=>g.fillText(v===0?'μ':de(v,0),X(v),pad+pH+5));
+  }
+  function render(){
+    const c=calc();
+    $('kBig').textContent=Math.round(c.hit/M*100)+' %';
+    $('kLvl').textContent=state.level+' %';
+    $('kHit').textContent=c.hit+' / '+M;
+    $('kWidth').textContent=de(c.h,2);
+    $('kZ').textContent=de(c.z,2);
+    draw(c);
+  }
+  pairControl($('kLevel'),$('kLevelN'),v=>{state.level=Math.round(v);render();});
+  pairControl($('kN'),$('kNN'),v=>{state.n=Math.round(v);regen();render();});
+  $('kNew').addEventListener('click',()=>{regen();render();});
+  regen();
+  window.Pages=window.Pages||{};
+  window.Pages.konfidenz={onShow(){render();}};
+  window.addEventListener('resize',()=>{if(document.getElementById('page-konfidenz').classList.contains('active'))render();});
+})();
+
+/* ================================================= HYPOTHESE module */
+(function(){
+  const cv=$('cvHyp'), holder=$('hHolder');
+  const state={z:2, alpha:5, two:true};
+  function draw(crit){
+    const f=fitCanvas(cv,holder,W=>Math.min(300,Math.max(220,Math.round(W*0.46)))); if(!f)return;
+    const {g,W,H}=f, padL=10,padR=10,padT=14,padB=26, pW=W-padL-padR, pH=H-padT-padB, D=4;
+    const X=v=>padL+(v+D)/(2*D)*pW, peak=normPdf(0,0,1), Y=d=>padT+pH-(d/peak)*pH*0.92, baseY=Y(0), z=state.z;
+    function shade(lo,hi,style){lo=Math.max(lo,-D);hi=Math.min(hi,D);if(hi<=lo)return;g.fillStyle=style;g.beginPath();g.moveTo(X(lo),baseY);for(let v=lo;v<=hi;v+=0.04)g.lineTo(X(v),Y(normPdf(v,0,1)));g.lineTo(X(hi),baseY);g.closePath();g.fill();}
+    shade(crit,D,'rgba(178,59,46,0.26)'); if(state.two)shade(-D,-crit,'rgba(178,59,46,0.26)');
+    shade(z,D,'rgba(47,72,88,0.34)'); if(state.two)shade(-D,-z,'rgba(47,72,88,0.34)');
+    g.beginPath();for(let px=padL;px<=W-padR;px+=1.5){const v=(px-padL)/pW*2*D-D;const y=Y(normPdf(v,0,1));px===padL?g.moveTo(px,y):g.lineTo(px,y);}g.strokeStyle='#1c1b19';g.lineWidth=2;g.stroke();
+    g.strokeStyle='#c9c3b5';g.lineWidth=1;g.beginPath();g.moveTo(padL,baseY);g.lineTo(W-padR,baseY);g.stroke();
+    g.fillStyle='#8a8578';g.font='11px "Segoe UI",sans-serif';g.textAlign='center';g.textBaseline='top';
+    for(let v=-4;v<=4;v+=1)g.fillText(v,X(v),baseY+6);
+    const drawZ=v=>{g.strokeStyle='#b23b2e';g.lineWidth=2;g.beginPath();g.moveTo(X(v),padT-2);g.lineTo(X(v),baseY);g.stroke();};
+    drawZ(z); if(state.two)drawZ(-z);
+  }
+  function render(){
+    const alpha=state.alpha/100, z=state.z;
+    const crit=state.two?normInv(1-alpha/2):normInv(1-alpha);
+    const p=state.two?2*(1-normCdf(z,0,1)):(1-normCdf(z,0,1)), reject=p<alpha;
+    $('hBig').textContent=de(p*100,1)+' %';
+    $('hCap').textContent=reject?'ist der p-Wert – kleiner als α, das Ergebnis ist signifikant und die Nullhypothese wird verworfen.':'ist der p-Wert – größer als α, das Ergebnis ist nicht signifikant und die Nullhypothese wird nicht verworfen.';
+    $('hZv').textContent=de(z,2);
+    $('hP').textContent=de(p*100,1)+' %';
+    $('hCrit').textContent=(state.two?'± ':'')+de(crit,2);
+    $('hDec').textContent=reject?'verwirft H₀':'behält H₀';
+    $('hDec').style.color=reject?'#b23b2e':'#2f4858';
+    draw(crit);
+  }
+  pairControl($('hZ'),$('hZN'),v=>{state.z=v;render();});
+  pairControl($('hAlpha'),$('hAlphaN'),v=>{state.alpha=v;render();});
+  $('hTwo').addEventListener('change',e=>{state.two=e.target.checked;render();});
+  window.Pages=window.Pages||{};
+  window.Pages.hypothese={onShow(){render();}};
+  window.addEventListener('resize',()=>{if(document.getElementById('page-hypothese').classList.contains('active'))render();});
+})();
+
+/* ================================================= MONTY module */
+(function(){
+  const cv=$('cvMonty'), holder=$('mHolder');
+  const CAP=3000; let winSwitch=0, winStay=0, games=0, anim=null, running=false;
+  function playOne(){ const car=Math.floor(Math.random()*3), pick=Math.floor(Math.random()*3); if(pick===car)winStay++; else winSwitch++; games++; }
+  function draw(){
+    const f=fitCanvas(cv,holder,W=>Math.min(300,Math.max(230,Math.round(W*0.52)))); if(!f)return;
+    const {g,W,H}=f, padL=12,padR=12,padT=24,padB=30, pW=W-padL-padR, pH=H-padT-padB;
+    const rSw=games?winSwitch/games:0, rSt=games?winStay/games:0, barW=pW*0.24, x1=padL+pW*0.16, x2=x1+barW+pW*0.2;
+    g.strokeStyle='#ddd8cc';g.setLineDash([4,4]);g.lineWidth=1;g.font='10.5px "Segoe UI",sans-serif';g.textAlign='right';g.textBaseline='middle';
+    [1/3,2/3].forEach(fr=>{const y=padT+pH-fr*pH;g.beginPath();g.moveTo(padL,y);g.lineTo(W-padR,y);g.stroke();g.fillStyle='#a49e8f';g.fillText(fr>0.5?'2/3':'1/3',W-padR,y-7);});
+    g.setLineDash([]);
+    const bar=(x,r,col,lab)=>{const h=r*pH,y=padT+pH-h;g.fillStyle=col;g.fillRect(x,y,barW,h);g.fillStyle='#1c1b19';g.font='700 15px Georgia,serif';g.textAlign='center';g.textBaseline='bottom';g.fillText(games?de(r*100,1)+' %':'–',x+barW/2,y-5);g.fillStyle='#68655d';g.font='12px "Segoe UI",sans-serif';g.textBaseline='top';g.fillText(lab,x+barW/2,padT+pH+7);};
+    bar(x1,rSw,'#2f4858','Wechseln'); bar(x2,rSt,'#b23b2e','Bleiben');
+  }
+  function upd(){ $('montyGames').textContent=games.toLocaleString('de-DE'); $('montySw').textContent=games?de(winSwitch/games*100,1)+' %':'–'; $('montySt').textContent=games?de(winStay/games*100,1)+' %':'–'; $('montyBig').textContent=games?de(winSwitch/games*100,1)+' %':'–'; }
+  function step(){ const batch=Math.min(50,CAP-games); for(let i=0;i<batch;i++)playOne(); draw();upd(); if(games>=CAP){running=false;anim=null;$('montyStart').textContent='Nochmal';return;} anim=requestAnimationFrame(step); }
+  function start(){ if(running){running=false;if(anim)cancelAnimationFrame(anim);anim=null;$('montyStart').textContent='Weiter';return;} if(games>=CAP){winSwitch=winStay=games=0;} running=true;$('montyStart').textContent='Pause';anim=requestAnimationFrame(step); }
+  function reset(){ running=false;if(anim)cancelAnimationFrame(anim);anim=null;$('montyStart').textContent='Start';winSwitch=winStay=games=0;draw();upd(); }
+  $('montyStart').addEventListener('click',start); $('montyReset').addEventListener('click',reset);
+  window.Pages=window.Pages||{};
+  window.Pages.monty={onShow(){draw();upd();}, onHide(){if(running){running=false;if(anim)cancelAnimationFrame(anim);anim=null;$('montyStart').textContent='Weiter';}}};
+  window.addEventListener('resize',()=>{if(document.getElementById('page-monty').classList.contains('active'))draw();});
+})();
+
+/* ================================================= ZUFALL module */
+(function(){
+  const cv=$('cvZufall'), holder=$('zHolder');
+  const state={bias:0};
+  function probs(){ const w=[]; let s=0; for(let i=1;i<=6;i++){const x=Math.exp(state.bias*(i-3.5));w.push(x);s+=x;} return w.map(x=>x/s); }
+  function stats(p){ let E=0; for(let i=0;i<6;i++)E+=(i+1)*p[i]; let V=0; for(let i=0;i<6;i++)V+=((i+1)-E)**2*p[i]; return {E,V,sd:Math.sqrt(V)}; }
+  function draw(p,st){
+    const f=fitCanvas(cv,holder,W=>Math.min(300,Math.max(220,Math.round(W*0.5)))); if(!f)return;
+    const {g,W,H}=f, padL=34,padR=12,padT=16,padB=28, pW=W-padL-padR, pH=H-padT-padB;
+    const maxP=Math.max(...p,0.05), barW=pW/6, Y=v=>padT+pH-(v/maxP)*pH;
+    g.font='11px "Segoe UI",sans-serif';g.textAlign='right';g.textBaseline='middle';
+    for(let i=0;i<=4;i++){const val=maxP*i/4,y=Y(val);g.strokeStyle='#eceadf';g.beginPath();g.moveTo(padL,y);g.lineTo(W-padR,y);g.stroke();g.fillStyle='#8a8578';g.fillText(de(val,2),padL-6,y);}
+    for(let i=0;i<6;i++){const x=padL+i*barW,h=(p[i]/maxP)*pH,y=padT+pH-h;g.fillStyle='#9fb0bc';g.fillRect(x+barW*0.15,y,barW*0.7,h);}
+    g.fillStyle='#8a8578';g.textAlign='center';g.textBaseline='top';for(let i=0;i<6;i++)g.fillText(i+1,padL+i*barW+barW/2,padT+pH+6);
+    const ex=padL+(st.E-0.5)*barW;g.strokeStyle='#b23b2e';g.lineWidth=2;g.beginPath();g.moveTo(ex,padT-2);g.lineTo(ex,padT+pH);g.stroke();
+    g.fillStyle='#b23b2e';g.font='600 11px "Segoe UI",sans-serif';g.textAlign='center';g.textBaseline='top';g.fillText('E(X)',ex,padT-1);
+  }
+  function render(){ const p=probs(), st=stats(p);
+    $('zBig').textContent=de(st.E,2); $('zE').textContent=de(st.E,2); $('zVar').textContent=de(st.V,2); $('zSd').textContent=de(st.sd,2);
+    $('zTab').innerHTML=`<tr><td>Augenzahl x</td>${[1,2,3,4,5,6].map(f=>`<td class="num">${f}</td>`).join('')}</tr><tr><td>P(X = x)</td>${p.map(x=>`<td class="num">${de(x*100,1)} %</td>`).join('')}</tr>`;
+    draw(p,st);
+  }
+  pairControl($('zbias'),$('zbiasN'),v=>{state.bias=v;render();});
+  $('zPresets').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;const v=Number(b.dataset.p);state.bias=v;setPair($('zbias'),$('zbiasN'),v);render();});
+  window.Pages=window.Pages||{};
+  window.Pages.zufall={onShow(){render();}};
+  window.addEventListener('resize',()=>{if(document.getElementById('page-zufall').classList.contains('active'))render();});
+})();
+
+/* ================================================= KOMBINATORIK module */
+(function(){
+  const cv=$('cvKomb'), holder=$('koHolder');
+  const state={n:5,k:2};
+  function fact(x){let r=1;for(let i=2;i<=x;i++)r*=i;return r;}
+  function choose(n,k){ if(k<0||k>n)return 0; k=Math.min(k,n-k); let r=1; for(let i=0;i<k;i++)r=r*(n-i)/(i+1); return Math.round(r); }
+  function draw(){
+    const f=fitCanvas(cv,holder,W=>Math.min(330,Math.max(230,Math.round(W*0.62)))); if(!f)return;
+    const {g,W,H}=f, rows=state.n, padT=14, availH=H-2*padT;
+    const cell=Math.min(36,(W-16)/(rows+1), availH/((rows+1)*0.9));
+    g.textAlign='center';g.textBaseline='middle';
+    for(let r=0;r<=rows;r++){
+      const y=padT+r*cell*0.9+cell*0.5, rowW=(r+1)*cell, x0=W/2-rowW/2;
+      for(let c=0;c<=r;c++){
+        const cx=x0+c*cell+cell/2, val=choose(r,c), hot=(r===state.n && c===state.k);
+        g.beginPath();g.arc(cx,y,cell*0.42,0,Math.PI*2);g.fillStyle=hot?'#b23b2e':'#eef0f2';g.fill();
+        g.fillStyle=hot?'#fff':'#3a3833';g.font=(hot?'600 ':'')+Math.max(8,Math.min(12,cell*0.32))+'px "Segoe UI",sans-serif';
+        g.fillText(val,cx,y);
+      }
+    }
+  }
+  function render(){ const n=state.n,k=Math.min(state.k,n);
+    $('koBig').textContent=choose(n,k).toLocaleString('de-DE');
+    $('koFact').textContent=fact(n).toLocaleString('de-DE');
+    $('koPerm').textContent=Math.round(fact(n)/fact(n-k)).toLocaleString('de-DE');
+    $('koComb').textContent=choose(n,k).toLocaleString('de-DE');
+    $('koEq').innerHTML=`<span style="font-size:15px">(</span><span class="frac" style="margin:0"><span class="top" style="border:none;padding-bottom:0"><span class="num">${n}</span></span><span class="bot" style="padding-top:0"><span class="num">${k}</span></span></span><span style="font-size:15px">)</span> = <span class="frac"><span class="top">${n}!</span><span class="bot">${k}! · ${n-k}!</span></span> = <b class="num">${choose(n,k).toLocaleString('de-DE')}</b>`;
+    draw();
+  }
+  pairControl($('koN'),$('koNN'),v=>{state.n=Math.round(v);$('koK').max=state.n;$('koKN').max=state.n;if(state.k>state.n){state.k=state.n;setPair($('koK'),$('koKN'),state.n);}render();});
+  pairControl($('koK'),$('koKN'),v=>{state.k=Math.round(v);render();});
+  window.Pages=window.Pages||{};
+  window.Pages.kombinatorik={onShow(){render();}};
+  window.addEventListener('resize',()=>{if(document.getElementById('page-kombinatorik').classList.contains('active'))render();});
 })();
 
 /* ================================================= Router */
