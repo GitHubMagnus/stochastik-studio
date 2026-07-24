@@ -49,6 +49,8 @@
   .nav-item.soon{opacity:.42;cursor:default}
   .nav-item.soon:hover{background:none;color:#c3bfb3}
   .nav-item .tag{float:right;font-size:9px;letter-spacing:.8px;text-transform:uppercase;color:#7b7669;margin-top:3px}
+  .nav-item.sub{font-size:12.5px;padding-left:20px;color:#a8a396}
+  .nav-item.sub.active{color:#fff}
   aside .foot{margin-top:auto;font-size:11px;color:#6f6b60;padding:12px;line-height:1.6}
 
   /* ---------- Main ---------- */
@@ -158,10 +160,20 @@
   table.counts .sw{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:9px;vertical-align:middle}
 
   /* ---------- Formula ---------- */
-  .formula{margin-top:22px;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:24px 28px;max-width:760px}
+  .formula{margin-top:22px;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:24px 28px}
   .formula .prose{max-width:none}
-  .formula table.counts{max-width:640px}
-  .result .panel.pad{max-width:760px}
+  /* Lange Textpanels zweispaltig setzen: Box füllt die volle Breite wie die
+     interaktiven Karten darüber, die Zeilenlänge bleibt trotzdem lesbar. */
+  .formula.twocol{column-count:2;column-gap:40px}
+  .formula.twocol > .eyebrow,
+  .formula.twocol > .fblock,
+  .formula.twocol > .subhead,
+  .formula.twocol > .figbox,
+  .formula.twocol > .noteline,
+  .formula.twocol > table,
+  .formula.twocol > .eq{column-span:all}
+  .formula.twocol > p.prose{margin-top:0;margin-bottom:13px}
+  .formula.twocol > p.prose + p.prose{margin-top:0}
   .fblock{margin:6px 0 22px}
   .fblock:last-of-type{margin-bottom:6px}
   .flabel{font-size:11.5px;text-transform:uppercase;letter-spacing:1px;color:var(--ink-soft);margin-bottom:12px}
@@ -190,9 +202,9 @@
 
   <div class="nav-label">Wahrscheinlichkeitstheorie</div>
   <div class="nav-item active" data-page="bayes">Satz von Bayes</div>
+  <div class="nav-item sub" data-page="monty">↳ Anwendung: Ziegenproblem</div>
   <div class="nav-item" data-page="kombinatorik">Kombinatorik</div>
   <div class="nav-item" data-page="zufall">Zufallsvariablen</div>
-  <div class="nav-item" data-page="monty">Ziegenproblem</div>
 
   <div class="nav-label">Verteilungen</div>
   <div class="nav-item" data-page="binom">Binomialverteilung</div>
@@ -203,12 +215,18 @@
   <div class="nav-item" data-page="lln">Gesetz der großen Zahlen</div>
   <div class="nav-item" data-page="clt">Zentraler Grenzwertsatz</div>
 
-  <div class="nav-label">Zusammenhänge</div>
-  <div class="nav-item" data-page="regression">Korrelation &amp; Regression</div>
-
   <div class="nav-label">Schließende Statistik</div>
   <div class="nav-item" data-page="konfidenz">Konfidenzintervalle</div>
   <div class="nav-item" data-page="hypothese">Hypothesentests</div>
+
+  <div class="nav-label">Regression · Aufbaukurs</div>
+  <div class="nav-item" data-page="regression">1 · Korrelation &amp; Regression</div>
+  <div class="nav-item" data-page="ols">2 · Kleinste Quadrate</div>
+  <div class="nav-item" data-page="rsq">3 · Anpassungsgüte &amp; F-Test</div>
+  <div class="nav-item" data-page="reginf">4 · Inferenz für die Steigung</div>
+  <div class="nav-item" data-page="multireg">5 · Multiple Regression</div>
+  <div class="nav-item" data-page="diag">6 · Annahmen &amp; Diagnostik</div>
+  <div class="nav-item" data-page="iv">7 · Endogenität &amp; Instrumente</div>
 
   <div class="foot">Interaktive Einführung in die<br>Statistik &amp; Wahrscheinlichkeit.</div>
 </aside>
@@ -917,7 +935,7 @@
 
 <!-- ============================================================ REGRESSION -->
 <section class="viewpage" id="page-regression">
-  <div class="kicker">Zusammenhänge</div>
+  <div class="kicker">Regression · Lektion 1</div>
   <h1>Korrelation und Regression</h1>
   <p class="lede">Hängen zwei Größen zusammen, und wie eng? Der Korrelationskoeffizient misst die Stärke und Richtung eines linearen Zusammenhangs auf einer Skala von −1 bis +1, und die Regressionsgerade legt die bestmögliche Linie durch die Punktwolke. Ziehe am Regler und beobachte, wie sich Punktwolke und Gerade verändern.</p>
 
@@ -976,7 +994,50 @@
       <div class="fblock"><div class="flabel">Regressionsgerade (Methode der kleinsten Quadrate)</div>
         <div class="eq eqc" id="reEq">ŷ = a + b · x</div></div>
       <p class="prose">Der Korrelationskoeffizient r setzt die gemeinsame Streuung zweier Größen (die Kovarianz) ins Verhältnis zu ihren Einzelstreuungen. Er ist einheitenlos und liegt stets zwischen −1 und +1. Sein Vorzeichen gibt die Richtung des Zusammenhangs an, sein Betrag dessen Stärke. Das Quadrat r² heißt Bestimmtheitsmaß und gibt an, welcher Anteil der Streuung von y sich durch x erklären lässt.</p>
-      <p class="prose">Die Regressionsgerade minimiert die Summe der quadrierten senkrechten Abstände der Punkte von der Linie. Ihre Steigung hängt eng mit der Korrelation zusammen. Wichtig bleibt die alte Warnung: Korrelation ist nicht Kausalität. Ein starker Zusammenhang belegt noch nicht, dass die eine Größe die andere verursacht – beide können auch von einer dritten Ursache abhängen.</p>
+      <p class="prose">Die Regressionsgerade minimiert die Summe der quadrierten senkrechten Abstände der Punkte von der Linie. Ihre Steigung hängt eng mit der Korrelation zusammen: b = r · s<sub>y</sub>/s<sub>x</sub>. Wie diese Minimierung genau funktioniert, ist das Thema von Lektion 2.</p>
+    </div>
+
+    <div class="formula">
+      <div class="eyebrow">Das durchgehende Beispiel: Lernzeit und Klausurpunkte</div>
+      <p class="prose" style="margin-top:0">Durch den gesamten Aufbaukurs begleitet uns ein kleines, von Hand nachrechenbares Beispiel. Acht Studierende notieren ihre Lernstunden x für eine Statistikklausur und die erreichten Punkte y:</p>
+      <table class="counts">
+        <tbody>
+          <tr><td>Lernstunden x</td><td class="num">2</td><td class="num">4</td><td class="num">5</td><td class="num">6</td><td class="num">8</td><td class="num">9</td><td class="num">11</td><td class="num">13</td></tr>
+          <tr><td>Klausurpunkte y</td><td class="num">42</td><td class="num">44</td><td class="num">55</td><td class="num">50</td><td class="num">63</td><td class="num">60</td><td class="num">74</td><td class="num">78</td></tr>
+        </tbody>
+      </table>
+      <p class="prose">Die Mittelwerte sind x̄ = 7,25 Stunden und ȳ = 58,25 Punkte. Daraus ergeben sich die Quadratsummen S<sub>xx</sub> = 95,5 und S<sub>yy</sub> = 1209,5 sowie die Kreuzproduktsumme S<sub>xy</sub> = 328,5. Eingesetzt in die Formeln:</p>
+      <div class="eq small eqc">r <span class="op">=</span>
+        <span class="frac"><span class="top"><span class="num">328,5</span></span><span class="bot">&radic;<span style="text-decoration:overline">&nbsp;95,5 · 1209,5&nbsp;</span></span></span>
+        <span class="op">=</span> <b class="num">0,967</b>
+        <span class="op" style="margin-left:18px">b =</span>
+        <span class="frac"><span class="top"><span class="num">328,5</span></span><span class="bot"><span class="num">95,5</span></span></span>
+        <span class="op">=</span> <b class="num">3,44</b>
+        <span class="op" style="margin-left:18px">a = 58,25 − 3,44 · 7,25 =</span> <b class="num">33,3</b></div>
+      <p class="prose">Die geschätzte Gerade lautet also ŷ = 33,3 + 3,44 · x. Wer zehn Stunden lernt, dem sagt das Modell 33,3 + 3,44 · 10 ≈ 67,7 Punkte voraus. Die Korrelation von 0,967 ist für echte Daten ungewöhnlich hoch – bei nur acht Beobachtungen können solche Werte aber auch zufällig entstehen; ob der Zusammenhang statistisch belastbar ist, klärt erst der Test in Lektion 4. Merke dir die Zwischenergebnisse: S<sub>xx</sub>, die Gerade und die Quadratsummen tauchen in den folgenden Lektionen wieder auf.</p>
+    </div>
+
+    <div class="formula">
+      <div class="eyebrow">Die Korrelation richtig lesen</div>
+      <p class="prose" style="margin-top:0">Für die Einordnung des Betrags von r haben sich grobe Konventionen eingebürgert, die je nach Fachgebiet variieren – in der Psychologie gilt anderes als in der Physik:</p>
+      <table class="counts">
+        <thead><tr><th>|r|</th><th>übliche Deutung</th></tr></thead>
+        <tbody>
+          <tr><td class="num">0,0 – 0,1</td><td>kein bis vernachlässigbarer linearer Zusammenhang</td></tr>
+          <tr><td class="num">0,1 – 0,3</td><td>schwach</td></tr>
+          <tr><td class="num">0,3 – 0,5</td><td>mittel</td></tr>
+          <tr><td class="num">0,5 – 0,8</td><td>stark</td></tr>
+          <tr><td class="num">0,8 – 1,0</td><td>sehr stark – bei Beobachtungsdaten fast verdächtig</td></tr>
+        </tbody>
+      </table>
+      <p class="prose">Drei Fallstricke sind wichtiger als jede Tabelle. Erstens misst r ausschließlich lineare Zusammenhänge: Eine perfekte U-Form – etwa Stress und Prüfungsleistung, wo sowohl zu wenig als auch zu viel Anspannung schadet – kann r ≈ 0 liefern, obwohl ein enger Zusammenhang besteht. r = 0 heißt also nicht unabhängig. Zweitens reagiert r empfindlich auf einzelne Ausreißer, die den Wert dramatisch heben oder senken können; ein Blick auf das Streudiagramm gehört deshalb immer dazu. Drittens schrumpft r, wenn man nur einen Ausschnitt des Wertebereichs betrachtet: Unter lauter Spitzensportlern korreliert Training kaum noch mit Leistung, weil die Unterschiede im Training fehlen – die sogenannte Varianzeinschränkung.</p>
+    </div>
+
+    <div class="formula">
+      <div class="eyebrow">Korrelation ist nicht Kausalität</div>
+      <p class="prose" style="margin-top:0">Der berühmteste Merksatz der Statistik verdient eine genaue Begründung. Beobachtet man eine Korrelation zwischen X und Y, gibt es grundsätzlich drei Erklärungen: X verursacht Y, Y verursacht X, oder eine dritte Größe Z beeinflusst beide. Das Klassikerbeispiel: In Regionen mit vielen Störchen werden mehr Kinder geboren – nicht weil der Storch die Kinder bringt, sondern weil ländliche Gegenden sowohl mehr Störche als auch höhere Geburtenraten haben. Ebenso korrelieren Eisverkäufe und Ertrinkungsunfälle, weil beide vom Sommerwetter abhängen.</p>
+      <p class="prose">Solche Hintergrundvariablen heißen Störvariablen oder Confounder. Auch die Richtung ist oft unklar: Korrelieren Selbstvertrauen und Erfolg, weil Selbstvertrauen erfolgreich macht – oder Erfolg selbstbewusst? Im Beispiel unseres Aufbaukurses ist sogar denkbar, dass gute Studierende schlicht beides tun: viel lernen und gut abschneiden, weil Motivation beides antreibt. Beobachtungsdaten allein können das nicht trennen; dafür braucht es Experimente mit zufälliger Zuteilung oder das Herausrechnen der Störvariablen – genau das leistet die multiple Regression in Lektion 5.</p>
+      <div class="noteline">Ein r von 0,967 wie im Beispiel belegt also einen engen linearen Gleichlauf – nicht mehr und nicht weniger. Was ihn verursacht, sagt die Zahl nicht.</div>
     </div>
   </div>
 </section>
@@ -1112,7 +1173,7 @@
 
 <!-- ============================================================ MONTY -->
 <section class="viewpage" id="page-monty">
-  <div class="kicker">Wahrscheinlichkeitstheorie</div>
+  <div class="kicker">Anwendung des Satzes von Bayes</div>
   <h1>Das Ziegenproblem</h1>
   <p class="lede">Hinter einer von drei Türen steht ein Auto, hinter den anderen je eine Ziege. Du wählst eine Tür, der Moderator öffnet eine andere mit einer Ziege und bietet dir an, zu wechseln. Sollte man? Die Intuition sagt „egal", doch Wechseln gewinnt doppelt so oft. Lass die Simulation viele Spiele durchspielen und überzeuge dich selbst.</p>
 
@@ -1155,6 +1216,18 @@
       <p class="prose" style="margin-top:0">Der Schlüssel liegt in der ersten Wahl. Mit Wahrscheinlichkeit 1/3 zeigst du gleich auf das Auto, mit Wahrscheinlichkeit 2/3 auf eine Ziege. Der Moderator, der weiß, wo das Auto steht, öffnet danach immer eine Ziegentür. Dadurch bündelt sich die restliche Wahrscheinlichkeit von 2/3 auf der einzigen anderen geschlossenen Tür.</p>
       <div class="eq eqc">P(Gewinn bei Wechseln) <span class="op">=</span> 1 − P(erste Wahl richtig) <span class="op">=</span> 1 − <span class="frac"><span class="top">1</span><span class="bot">3</span></span> <span class="op">=</span> <b class="num">2/3</b></div>
       <p class="prose">Bleibst du dagegen bei deiner Tür, gewinnst du nur, wenn deine erste Wahl schon richtig war – also mit 1/3. Entscheidend ist, dass der Moderator sein Wissen einbringt: Er öffnet nie zufällig, sondern gezielt eine Ziegentür. Genau diese zusätzliche Information macht das Wechseln überlegen und ist der Grund, warum die Intuition hier in die Irre führt.</p>
+    </div>
+
+    <div class="formula">
+      <div class="eyebrow">Formal: derselbe Satz von Bayes</div>
+      <p class="prose" style="margin-top:0">Das Ziegenproblem ist kein eigenständiges Gesetz, sondern eine Anwendung der bedingten Wahrscheinlichkeit aus dem Bayes-Kapitel – und ein Musterbeispiel dafür, wie eine Beobachtung die Priori-Wahrscheinlichkeiten umverteilt. Nehmen wir an, du wählst Tür 1 und der Moderator öffnet Tür 3. Die Priori-Wahrscheinlichkeiten sind für jede Tür 1/3. Entscheidend sind die Likelihoods, also wie wahrscheinlich der Moderator Tür 3 öffnet, je nachdem, wo das Auto steht: Steht es hinter Tür 1, darf er zwischen Tür 2 und 3 wählen, also 1/2. Steht es hinter Tür 2, muss er Tür 3 öffnen, also 1. Steht es hinter Tür 3, kann er sie nicht öffnen, also 0.</p>
+      <div class="eq small eqc">P(Auto&nbsp;2&nbsp;|&nbsp;öffnet&nbsp;3) <span class="op">=</span>
+        <span class="frac"><span class="top"><span class="num">1</span> · <span class="num">1/3</span></span>
+        <span class="bot"><span class="num">1</span>·<span class="num">1/3</span> <span class="op">+</span> <span class="num">1/2</span>·<span class="num">1/3</span> <span class="op">+</span> <span class="num">0</span>·<span class="num">1/3</span></span></span>
+        <span class="op">=</span>
+        <span class="frac"><span class="top"><span class="num">1/3</span></span><span class="bot"><span class="num">1/2</span></span></span>
+        <span class="op">=</span> <b class="num">2/3</b></div>
+      <p class="prose">Die Posteriori-Wahrscheinlichkeit für die verbleibende Tür ist also 2/3, für die ursprünglich gewählte bleibt 1/3 – exakt die Werte, gegen die die Simulation oben konvergiert. Aufschlussreich ist die Variante, in der der Moderator selbst nicht weiß, wo das Auto steht, und zufällig eine Tür öffnet, hinter der zufällig eine Ziege war: Dann ist die Likelihood in allen Fällen 1/2, der Nenner wird 1/3, und beide Türen stehen bei 1/2 – Wechseln bringt nichts. Nicht das Öffnen der Tür verändert die Wahrscheinlichkeiten, sondern das Wissen des Moderators, das darin steckt.</p>
     </div>
   </div>
 </section>
@@ -1276,6 +1349,664 @@
       <div class="fblock"><div class="flabel">Mit deinen Werten</div><div class="eq small eqc" id="koEq"></div></div>
       <p class="prose">Die Fakultät n! zählt, auf wie viele Arten sich n Dinge anordnen lassen. Kommt es auf die Reihenfolge an und wählt man nur k davon, erhält man die Variationen n!/(n−k)!. Ist die Reihenfolge dagegen gleichgültig, teilt man zusätzlich durch die k! Anordnungen der Auswahl und landet beim Binomialkoeffizienten „n über k", der Zahl der Kombinationen.</p>
       <p class="prose">Diese Binomialkoeffizienten bilden das Pascalsche Dreieck: Jede Zahl ist die Summe der beiden darüber. Dieselben Werte tauchen als Vorfaktoren in der Binomialverteilung wieder auf – dort zählen sie, auf wie viele Arten sich k Erfolge auf n Versuche verteilen. So verbindet die Kombinatorik das reine Zählen mit der Wahrscheinlichkeitsrechnung.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ OLS (Lektion 2) -->
+<section class="viewpage" id="page-ols">
+  <div class="kicker">Regression · Lektion 2</div>
+  <h1>Die Methode der kleinsten Quadrate</h1>
+  <p class="lede">Was heißt „bestmögliche Gerade" eigentlich genau? Die Regression wählt die Linie, für die die Summe der quadrierten senkrechten Abstände zu den Punkten am kleinsten ist. Schiebe Steigung und Achsenabschnitt von Hand und versuche, diese Summe zu minimieren – dann vergleiche mit der Geraden, die die Formel liefert.</p>
+
+  <div class="grid">
+    <div class="panel pad">
+      <div class="eyebrow">Gerade anpassen</div>
+      <div class="ctrl">
+        <div class="row"><span class="name">Steigung b</span>
+          <span class="field"><input type="number" id="olsBN" min="-2" max="2" step="0.05" value="0.3"></span>
+        </div>
+        <input type="range" id="olsB" min="-2" max="2" step="0.05" value="0.3">
+        <div class="hint">Wie stark die Gerade ansteigt.</div>
+      </div>
+      <div class="ctrl">
+        <div class="row"><span class="name">Achsenabschnitt a</span>
+          <span class="field"><input type="number" id="olsAN" min="-3" max="3" step="0.05" value="0"></span>
+        </div>
+        <input type="range" id="olsA" min="-3" max="3" step="0.05" value="0">
+        <div class="hint">Wo die Gerade die y-Achse schneidet.</div>
+      </div>
+      <div class="divider"></div>
+      <div class="btnrow">
+        <button class="btn" id="olsFit">Beste Gerade</button>
+        <button class="btn ghost" id="olsNew">Neue Punkte</button>
+      </div>
+      <p class="hint" style="margin-top:14px">„Beste Gerade" setzt Steigung und Achsenabschnitt auf die Werte der kleinsten Quadrate. Kleiner geht die Fehlerquadratsumme dann nicht mehr.</p>
+    </div>
+
+    <div class="rightcol">
+      <div class="panel viz">
+        <div class="viz-top">
+          <div class="legend">
+            <div class="li"><span class="dot" style="background:#8a8578"></span>Datenpunkt</div>
+            <div class="li"><span class="bar" style="background:var(--accent)"></span>deine Gerade</div>
+            <div class="li"><span class="bar" style="background:var(--tp)"></span>Residuum</div>
+          </div>
+        </div>
+        <div class="holder" id="olsHolder"><canvas id="cvOls"></canvas></div>
+      </div>
+      <div class="headline"><div class="big" id="olsBig">–</div>
+        <div class="cap">ist die aktuelle Summe der quadrierten Residuen (SSR). Ziel ist, sie so klein wie möglich zu machen.</div></div>
+      <div class="stats">
+        <div class="stat"><div class="n" id="olsSSR">–</div><div class="l">SSR deiner Geraden</div></div>
+        <div class="stat"><div class="n" style="color:var(--accent)" id="olsMin">–</div><div class="l">kleinstmögliche SSR</div></div>
+        <div class="stat"><div class="n" id="olsBstar">–</div><div class="l">optimale Steigung b*</div></div>
+        <div class="stat"><div class="n" id="olsAstar">–</div><div class="l">optimaler Achsenabschnitt a*</div></div>
+        <div class="stat"><div class="n" id="olsSum">–</div><div class="l">Summe der Residuen Σe</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="result">
+    <div class="formula">
+      <div class="eyebrow">Kleinste Quadrate</div>
+      <div class="fblock"><div class="flabel">Zu minimierende Fehlerquadratsumme</div>
+        <div class="eq eqc">SSR(a, b) <span class="op">=</span> <span style="font-size:18px">&#8721;</span> (y<sub>i</sub> − (a + b·x<sub>i</sub>))²</div></div>
+      <div class="fblock"><div class="flabel">Lösung (Ableiten und Nullsetzen)</div>
+        <div class="eq eqc">b* <span class="op">=</span>
+          <span class="frac"><span class="top">S<sub>xy</sub></span><span class="bot">S<sub>xx</sub></span></span>
+          <span class="op" style="margin-left:14px">a* =</span> ȳ − b*·x̄</div></div>
+      <p class="prose">Die senkrechten Abstände der Punkte von der Geraden heißen Residuen. Positive und negative Abstände dürfen sich nicht einfach aufheben, deshalb quadriert man sie, bevor man sie summiert. Das Quadrieren bestraft große Ausreißer zusätzlich stark. Gesucht ist das Paar aus Achsenabschnitt und Steigung, für das diese Fehlerquadratsumme ihr Minimum annimmt.</p>
+      <p class="prose">Setzt man die partiellen Ableitungen nach a und b gleich null, erhält man die sogenannten Normalgleichungen mit einer eindeutigen Lösung: Die optimale Steigung ist das Verhältnis aus der Kovariation von x und y zur Streuung von x, und die Gerade verläuft stets durch den Schwerpunkt (x̄, ȳ). Kein anderes Paar liefert eine kleinere SSR – genau das siehst du, wenn du von Hand nicht unter den Wert der Schaltfläche kommst.</p>
+    </div>
+
+    <div class="formula">
+      <div class="eyebrow">Warum gerade Quadrate?</div>
+      <p class="prose" style="margin-top:0">Man könnte Abweichungen auch anders bestrafen, etwa über die Summe der absoluten Abstände Σ|e<sub>i</sub>|. Dass sich die Quadrate durchgesetzt haben, hat handfeste Gründe. Die quadratische Zielfunktion ist glatt und überall differenzierbar, sodass Ableiten eine eindeutige, geschlossene Lösungsformel liefert – die absolute Abweichung hat am Nullpunkt einen Knick und führt auf ein Optimierungsproblem ohne einfache Formel, dessen Lösung nicht einmal eindeutig sein muss. Außerdem passt die Quadratsumme perfekt zur Varianzrechnung der vorigen Kapitel und, wie Lektion 4 zeigt, zur Normalverteilung der Fehler: Unter normalverteilten Störgrößen ist die Kleinste-Quadrate-Lösung zugleich die plausibelste (Maximum-Likelihood-Schätzung).</p>
+      <p class="prose">Der Preis dafür ist die Ausreißerempfindlichkeit: Ein Punkt mit doppelt so großem Abstand zählt vierfach, einer mit zehnfachem Abstand hundertfach. Einzelne extreme Beobachtungen können die Gerade deshalb spürbar zu sich ziehen – ein Thema, das in Lektion 6 zur Diagnostik wieder auftaucht. Die Alternative mit absoluten Abständen (Median-Regression) ist robuster, aber rechnerisch und theoretisch sperriger.</p>
+    </div>
+
+    <div class="formula">
+      <div class="eyebrow">Eigenschaften der Kleinste-Quadrate-Geraden</div>
+      <p class="prose" style="margin-top:0">Aus den Normalgleichungen folgen zwei Eigenschaften, die man direkt im Experiment oben sehen kann. Erstens summieren sich die Residuen der optimalen Geraden exakt zu null: Was sie oben zu viel lässt, gleicht sie unten aus. Beobachte die Kennzahl Σe – bei deiner handjustierten Geraden ist sie meist deutlich von null verschieden, nach dem Klick auf „Beste Gerade" springt sie auf 0,00. Zweitens sind die Residuen unkorreliert mit x: In ihnen steckt kein linearer Rest-Zusammenhang mehr, den die Gerade noch hätte aufnehmen können.</p>
+      <div class="eq eqc"><span style="font-size:17px">&#8721;</span> e<sub>i</sub> <span class="op">=</span> 0
+        <span class="op" style="margin-left:22px"></span><span style="font-size:17px">&#8721;</span> x<sub>i</sub>·e<sub>i</sub> <span class="op">=</span> 0</div>
+      <p class="prose">Wichtig ist die Umkehrung: Σe = 0 allein macht noch keine gute Gerade. Jede Gerade durch den Schwerpunkt hat diese Eigenschaft, auch mit völlig falscher Steigung. Erst beide Bedingungen zusammen legen die Lösung fest – genau das besagen die zwei Normalgleichungen für die zwei Unbekannten a und b.</p>
+    </div>
+
+    <div class="formula">
+      <div class="eyebrow">Koeffizienten interpretieren: vom Beispiel zur Lohngleichung</div>
+      <p class="prose" style="margin-top:0">Im Klausurbeispiel aus Lektion 1 war die Lösung ŷ = 33,3 + 3,44 · x. Die Steigung ist die eigentliche Botschaft des Modells: Pro zusätzlicher Lernstunde steigt die erwartete Punktzahl um rund 3,4 Punkte. Der Achsenabschnitt 33,3 wäre die Prognose für null Lernstunden – hier noch halbwegs sinnvoll deutbar als Vorwissen, oft aber liegt x = 0 weit außerhalb der Daten, und der Achsenabschnitt ist nur eine technische Verankerung der Geraden ohne eigene Bedeutung. Prognosen außerhalb des beobachteten x-Bereichs (Extrapolation) sind generell riskant: Dass 40 Lernstunden 171 Punkte brächten, glaubt niemand.</p>
+      <p class="prose">Die Ökonometrie ist voll von solchen Gleichungen. Das Standardbeispiel ist die Lohngleichung, etwa Stundenlohn = a + b · Bildungsjahre: Ein b von 1,20 hieße, dass jedes zusätzliche Bildungsjahr im Durchschnitt mit 1,20 Euro mehr Stundenlohn einhergeht. Die Formulierung „einhergeht" ist bewusst gewählt – ob Bildung den Lohn verursacht oder fähigere Personen schlicht länger zur Schule gehen, kann die einfache Regression nicht entscheiden. Diese Frage führt direkt zur multiplen Regression in Lektion 5. Achte beim Interpretieren stets auf die Einheiten: b trägt die Einheit „y pro x", hier Punkte je Stunde bzw. Euro je Bildungsjahr.</p>
+      <div class="noteline">Ausblick: Unter den Annahmen aus Lektion 6 ist die Kleinste-Quadrate-Schätzung nach dem Satz von Gauß-Markov die beste lineare unverzerrte Schätzung („BLUE") – kein anderes lineares, unverzerrtes Verfahren hat kleinere Varianz.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ RSQ (Lektion 3) -->
+<section class="viewpage" id="page-rsq">
+  <div class="kicker">Regression · Lektion 3</div>
+  <h1>Anpassungsgüte: Varianzanalyse, R² und F-Test</h1>
+  <p class="lede">Wie gut passt die Gerade eigentlich? Die Antwort liefert die Zerlegung der Streuung in einen erklärten und einen unerklärten Teil. Aus ihr folgen gleich zwei Werkzeuge: das Bestimmtheitsmaß R² als beschreibende Kennzahl und der F-Test, der prüft, ob das Modell als Ganzes mehr erklärt als der reine Zufall. Stelle die Stärke des Zusammenhangs ein und beobachte beide zugleich.</p>
+
+  <div class="grid">
+    <div class="panel pad">
+      <div class="eyebrow">Streuung einstellen</div>
+      <div class="ctrl">
+        <div class="row"><span class="name">Stärke des Zusammenhangs</span>
+          <span class="field"><input type="number" id="rsqStrengthN" min="0" max="0.98" step="0.02" value="0.8"></span>
+        </div>
+        <input type="range" id="rsqStrength" min="0" max="0.98" step="0.02" value="0.8">
+        <div class="hint">Je stärker, desto enger liegen die Punkte an der Geraden.</div>
+      </div>
+      <div class="divider"></div>
+      <label class="toggle">
+        <input type="checkbox" id="rsqTotal">
+        <span class="switch"></span>
+        <span><span class="lbl">Gesamtabweichung statt Residuen</span><br><span class="sub">Abstände zur Mittelwertlinie ȳ anzeigen.</span></span>
+      </label>
+      <div class="divider"></div>
+      <div class="btnrow">
+        <button class="btn ghost" id="rsqNew">Neue Punkte</button>
+      </div>
+    </div>
+
+    <div class="rightcol">
+      <div class="panel viz">
+        <div class="viz-top">
+          <div class="legend">
+            <div class="li"><span class="bar" style="background:var(--accent)"></span>Regressionsgerade</div>
+            <div class="li"><span class="bar" style="background:#8a8578;height:2px"></span>Mittelwert ȳ</div>
+            <div class="li"><span class="bar" style="background:var(--tp)"></span>Abweichung</div>
+          </div>
+        </div>
+        <div class="holder" id="rsqHolder"><canvas id="cvRsq"></canvas></div>
+      </div>
+      <div class="headline"><div class="big" id="rsqBig">64 %</div>
+        <div class="cap">der Streuung von y werden durch x erklärt. Der Rest bleibt als unerklärte Reststreuung.</div></div>
+      <div class="stats">
+        <div class="stat"><div class="n" id="rsqSST">–</div><div class="l">Gesamtstreuung SST</div></div>
+        <div class="stat"><div class="n" style="color:var(--accent)" id="rsqSSE">–</div><div class="l">erklärt SSE</div></div>
+        <div class="stat"><div class="n" style="color:var(--tp)" id="rsqSSR">–</div><div class="l">Rest SSR</div></div>
+        <div class="stat"><div class="n" id="rsqR2">0,64</div><div class="l">R² = SSE / SST</div></div>
+        <div class="stat"><div class="n" id="rsqAdj">–</div><div class="l">adjustiertes R̄²</div></div>
+        <div class="stat"><div class="n" id="rsqF">–</div><div class="l">F-Statistik</div></div>
+        <div class="stat"><div class="n" id="rsqP">–</div><div class="l">p-Wert des F-Tests</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="result">
+    <div class="formula">
+      <div class="eyebrow">Varianzzerlegung und R²</div>
+      <div class="fblock"><div class="flabel">Die Streuung zerfällt in zwei Teile</div>
+        <div class="eq eqc"><span style="font-size:17px">&#8721;</span>(y<sub>i</sub>−ȳ)² <span class="op">=</span> <span style="font-size:17px">&#8721;</span>(ŷ<sub>i</sub>−ȳ)² <span class="op">+</span> <span style="font-size:17px">&#8721;</span>(y<sub>i</sub>−ŷ<sub>i</sub>)²
+          <span class="op" style="margin-left:10px">→</span> SST = SSE + SSR</div></div>
+      <div class="fblock"><div class="flabel">Bestimmtheitsmaß</div>
+        <div class="eq eqc">R² <span class="op">=</span> <span class="frac"><span class="top">SSE</span><span class="bot">SST</span></span> <span class="op">=</span> 1 − <span class="frac"><span class="top">SSR</span><span class="bot">SST</span></span></div></div>
+      <div class="fblock"><div class="flabel">Mit deinen Werten eingesetzt</div>
+        <div class="eq small eqc" id="rsqEq"></div></div>
+      <p class="prose">Ohne jede Erklärung wäre der beste Tipp für jedes y der Mittelwert ȳ. Die gesamte Streuung SST misst, wie weit die Werte von dieser Mittellinie entfernt liegen. Die Regressionsgerade erklärt einen Teil davon: SSE erfasst, wie weit die vorhergesagten Werte ŷ vom Mittelwert abweichen. Was danach übrig bleibt, ist die Reststreuung SSR, die Summe der quadrierten Residuen aus der vorigen Lektion.</p>
+      <p class="prose">Das Bestimmtheitsmaß R² ist der Anteil der Gesamtstreuung, den das Modell erklärt, und liegt zwischen null und eins. Bei der einfachen linearen Regression ist es genau das Quadrat des Korrelationskoeffizienten. Ein hohes R² bedeutet gute Anpassung, sagt aber nichts über Ursache und Wirkung und nicht darüber, ob das lineare Modell überhaupt angemessen ist – das prüfen erst die späteren Lektionen zur Inferenz und Diagnostik.</p>
+    </div>
+
+    <div class="formula">
+      <div class="eyebrow">Das Beispiel weitergerechnet</div>
+      <p class="prose" style="margin-top:0">Für die Klausurdaten aus Lektion 1 mit der Geraden ŷ = 33,3 + 3,44 · x lässt sich die Zerlegung von Hand nachvollziehen. Die Gesamtstreuung war S<sub>yy</sub> = SST = 1209,5. Berechnet man für jede der acht Beobachtungen den vorhergesagten Wert und das Residuum, summieren sich die quadrierten Residuen zu SSR = 79,5 – der Rest ist erklärte Streuung:</p>
+      <div class="eq small eqc">SST <span class="op">=</span> SSE + SSR
+        <span class="op" style="margin-left:14px">→</span>
+        <span class="num">1209,5</span> <span class="op">=</span> <span class="num">1130,0</span> <span class="op">+</span> <span class="num">79,5</span>
+        <span class="op" style="margin-left:18px">R² =</span>
+        <span class="frac"><span class="top"><span class="num">1130,0</span></span><span class="bot"><span class="num">1209,5</span></span></span>
+        <span class="op">=</span> <b class="num">0,93</b></div>
+      <p class="prose">93 % der Unterschiede in den Klausurpunkten lassen sich durch die Lernzeit erklären, 7 % bleiben ungeklärt – Tagesform, Vorwissen, Prüfungsglück. Zur Kontrolle: Das Quadrat der Korrelation aus Lektion 1 ist 0,967² = 0,93, wie es die Theorie verlangt. Diese Übereinstimmung gilt allerdings nur im Modell mit einer einzigen Einflussgröße.</p>
+    </div>
+
+    <div class="formula">
+      <div class="eyebrow">Die Varianzanalyse-Tabelle und der F-Test</div>
+      <p class="prose" style="margin-top:0">Dieselbe Zerlegung, die R² liefert, trägt man in der Statistik traditionell in eine ANOVA-Tabelle ein (von englisch <i>analysis of variance</i>). Jede Quadratsumme wird durch ihre Freiheitsgrade geteilt; das Ergebnis heißt mittleres Quadrat. Bei einer Einflussgröße entfällt ein Freiheitsgrad auf die Regression und n − 2 auf die Residuen:</p>
+      <table class="counts">
+        <thead><tr><th>Quelle</th><th style="text-align:right">Quadratsumme</th><th style="text-align:right">Freiheitsgrade</th><th style="text-align:right">mittleres Quadrat</th></tr></thead>
+        <tbody id="rsqAnova"></tbody>
+      </table>
+      <div class="fblock" style="margin-top:20px"><div class="flabel">Die F-Statistik als Verhältnis der mittleren Quadrate</div>
+        <div class="eq eqc">F <span class="op">=</span>
+          <span class="frac"><span class="top">SSE / 1</span><span class="bot">SSR / (n − 2)</span></span>
+          <span class="op" style="margin-left:14px">=</span>
+          <span class="frac"><span class="top">erklärte Streuung je Freiheitsgrad</span><span class="bot">unerklärte Streuung je Freiheitsgrad</span></span></div></div>
+      <p class="prose">Die Idee ist ein Signal-Rausch-Verhältnis: Im Zähler steht, wie viel Streuung das Modell je verbrauchtem Freiheitsgrad erklärt, im Nenner die geschätzte Fehlervarianz s² aus Lektion 4. Erklärt das Modell nichts, schwanken beide um denselben Wert und F liegt nahe 1. Je größer F, desto unwahrscheinlicher ist reiner Zufall. Unter der Nullhypothese „alle Steigungen sind null" folgt F einer F-Verteilung mit 1 und n − 2 Freiheitsgraden.</p>
+      <p class="prose">In der einfachen Regression ist der F-Test kein neues Werkzeug, sondern der alte Bekannte in anderer Gestalt: Es gilt exakt F = t², und der p-Wert stimmt mit dem des zweiseitigen t-Tests aus Lektion 4 überein. Prüfe es an unserem Klausurbeispiel nach – dort war t = 9,23, also F = 9,23² ≈ 85,2. Seine eigentliche Stärke spielt der F-Test erst in der multiplen Regression aus. Dort prüft er mehrere Koeffizienten gleichzeitig, etwa ob eine ganze Gruppe von Variablen gemeinsam etwas beiträgt – eine Frage, die einzelne t-Tests nicht beantworten können, weil sich bei vielen Einzeltests die Fehlalarme aufaddieren.</p>
+      <div class="noteline">Ein typischer Fall aus der Praxis: Bei stark korrelierten Regressoren kann der F-Test das Modell als hochsignifikant ausweisen, während kein einzelner t-Test signifikant ist – die Variablen erklären gemeinsam viel, aber keine lässt sich einzeln von den anderen trennen. Das ist Multikollinearität aus Lektion 5 in Reinform.</div>
+    </div>
+
+    <div class="formula">
+      <div class="eyebrow">Das adjustierte R²</div>
+      <div class="fblock" style="margin-top:14px"><div class="flabel">Korrigiert um die Zahl der Regressoren k</div>
+        <div class="eq eqc">R̄² <span class="op">=</span> 1 − (1 − R²) ·
+          <span class="frac"><span class="top">n − 1</span><span class="bot">n − k − 1</span></span></div></div>
+      <p class="prose">R² hat einen eingebauten Fehlanreiz: Nimmt man eine weitere Erklärungsvariable ins Modell auf, kann R² niemals sinken – selbst wenn die Variable reiner Unsinn ist, findet die Schätzung irgendein Streuungskrümel, das sie „erklärt". Wer Modelle nur nach R² auswählt, baut deshalb überladene Modelle. Das adjustierte R̄² bestraft jede zusätzliche Variable über den Faktor mit den Freiheitsgraden: Es steigt nur, wenn die neue Variable mehr erklärt, als man durch bloßes Hinzufügen ohnehin erwarten würde, und kann sonst fallen, sogar unter null.</p>
+      <p class="prose">Beim Vergleich von Modellen mit unterschiedlich vielen Variablen ist deshalb R̄² die faire Größe – in Lektion 5, wo eine zweite Einflussgröße hinzukommt, wird genau das relevant. Für die Güte eines einzelnen, feststehenden Modells bleibt das gewöhnliche R² die anschaulichere Zahl.</p>
+    </div>
+
+    <div class="formula">
+      <div class="eyebrow">Was R² nicht verrät</div>
+      <p class="prose" style="margin-top:0">Der Statistiker Francis Anscombe konstruierte 1973 vier Datensätze, die alle dieselben Mittelwerte, dieselbe Regressionsgerade ŷ = 3 + 0,5 · x und dasselbe R² ≈ 0,67 besitzen – und doch völlig verschieden aussehen: eine ordentliche Punktwolke, eine perfekte Parabel, eine Gerade mit einem einzigen Ausreißer und ein Datensatz, dessen gesamter Zusammenhang an einem einzelnen Punkt hängt. Die Lehre: Identische Kennzahlen können grundverschiedene Wirklichkeiten verdecken. Kein R² ersetzt den Blick auf das Streudiagramm; die systematische Version dieses Blicks ist die Residuen-Diagnostik in Lektion 6.</p>
+      <p class="prose">Auch die Höhe von R² ist kontextabhängig. In Zeitreihen mit gemeinsamen Trends sind Werte über 0,95 alltäglich und oft bedeutungslos, weil zwei wachsende Größen fast zwangsläufig korrelieren. In Querschnittsdaten über Personen gelten dagegen schon Werte um 0,3 als beachtlich – individuelle Löhne etwa hängen von so vielen Unwägbarkeiten ab, dass kein Modell sie zu 90 % erklärt. Ein niedriges R² macht ein Modell also nicht wertlos: Die geschätzte Steigung kann trotzdem präzise und hochinformativ sein, wie Lektion 4 zeigt. Umgekehrt beweist ein hohes R² weder Kausalität noch die richtige Modellform.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ REGINF (Lektion 4) -->
+<section class="viewpage" id="page-reginf">
+  <div class="kicker">Regression · Lektion 4</div>
+  <h1>Inferenz: Ist die Steigung echt?</h1>
+  <p class="lede">Die geschätzte Steigung stammt aus einer Stichprobe – eine andere Stichprobe hätte eine andere Gerade geliefert. Wie stark schwankt die Steigung, und reicht die Beobachtung, um einen echten Zusammenhang zu belegen? Hier ziehst du viele Stichproben aus demselben wahren Modell und siehst das Bündel der geschätzten Geraden; für die hervorgehobene Stichprobe rechnet der t-Test, ob ihre Steigung signifikant von null verschieden ist.</p>
+
+  <div class="grid">
+    <div class="panel pad">
+      <div class="eyebrow">Wahres Modell einstellen</div>
+      <div class="ctrl">
+        <div class="row"><span class="name">Wahre Steigung β</span>
+          <span class="field"><input type="number" id="riBetaN" min="0" max="1.5" step="0.05" value="0.4"></span>
+        </div>
+        <input type="range" id="riBeta" min="0" max="1.5" step="0.05" value="0.4">
+        <div class="hint">Bei β = 0 gibt es in Wahrheit keinen Zusammenhang – die Nullhypothese stimmt.</div>
+      </div>
+      <div class="ctrl">
+        <div class="row"><span class="name">Störstreuung σ</span>
+          <span class="field"><input type="number" id="riSigN" min="0.2" max="3" step="0.1" value="1"></span>
+        </div>
+        <input type="range" id="riSig" min="0.2" max="3" step="0.1" value="1">
+        <div class="hint">Wie stark die Punkte um die wahre Gerade rauschen.</div>
+      </div>
+      <div class="ctrl">
+        <div class="row"><span class="name">Stichprobengröße n</span>
+          <span class="field"><input type="number" id="riNN" min="8" max="120" step="1" value="25"></span>
+        </div>
+        <input type="range" id="riN" min="8" max="120" step="1" value="25">
+        <div class="hint">Mehr Beobachtungen machen die Schätzung stabiler.</div>
+      </div>
+      <div class="divider"></div>
+      <div class="btnrow">
+        <button class="btn ghost" id="riNew">Neue Stichproben</button>
+      </div>
+    </div>
+
+    <div class="rightcol">
+      <div class="panel viz">
+        <div class="viz-top">
+          <div class="legend">
+            <div class="li"><span class="bar" style="background:#cfc9ba"></span>Geraden vieler Stichproben</div>
+            <div class="li"><span class="bar" style="background:var(--accent)"></span>deine Stichprobe</div>
+            <div class="li"><span class="bar" style="background:var(--tp)"></span>wahre Gerade</div>
+          </div>
+        </div>
+        <div class="holder" id="riHolder"><canvas id="cvReginf"></canvas></div>
+      </div>
+      <div class="headline"><div class="big" id="riBig">–</div>
+        <div class="cap" id="riCap">ist der p-Wert des t-Tests für die Steigung deiner Stichprobe.</div></div>
+      <div class="stats">
+        <div class="stat"><div class="n" style="color:var(--accent)" id="riBhat">–</div><div class="l">geschätzte Steigung b̂</div></div>
+        <div class="stat"><div class="n" id="riSE">–</div><div class="l">Standardfehler SE(b̂)</div></div>
+        <div class="stat"><div class="n" id="riT">–</div><div class="l">t-Statistik b̂ / SE</div></div>
+        <div class="stat"><div class="n" id="riCI">–</div><div class="l">95-%-Intervall für β</div></div>
+        <div class="stat"><div class="n" id="riPow">–</div><div class="l">signifikante der 40 grauen Stichproben</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="result">
+    <div class="formula">
+      <div class="eyebrow">Der t-Test für die Steigung</div>
+      <div class="fblock"><div class="flabel">Standardfehler und Prüfgröße</div>
+        <div class="eq eqc">SE(b̂) <span class="op">=</span>
+          <span class="frac"><span class="top">s</span><span class="bot">&radic;<span style="text-decoration:overline">&nbsp;S<sub>xx</sub>&nbsp;</span></span></span>
+          <span class="op" style="margin-left:6px">mit</span>
+          s² <span class="op">=</span> <span class="frac"><span class="top">SSR</span><span class="bot">n − 2</span></span>
+          <span class="op" style="margin-left:14px">t =</span>
+          <span class="frac"><span class="top">b̂ − 0</span><span class="bot">SE(b̂)</span></span></div></div>
+      <div class="fblock"><div class="flabel">Konfidenzintervall für die wahre Steigung</div>
+        <div class="eq eqc">b̂ <span class="op">±</span> t<sub style="font-size:11px">n−2; 0,975</sub> · SE(b̂)</div></div>
+      <p class="prose">Der Standardfehler der Steigung fasst alles zusammen, was die Schätzung wackeln lässt: Er wächst mit der Reststreuung s (geschätzt aus den Residuen, mit n − 2 Freiheitsgraden, weil zwei Parameter geschätzt wurden) und schrumpft, wenn die x-Werte weit streuen oder die Stichprobe groß ist. Genau das zeigt das Geradenbündel – mit kleinem σ oder großem n liegen die grauen Linien eng am wahren Verlauf.</p>
+      <p class="prose">Die t-Statistik misst, wie viele Standardfehler die geschätzte Steigung von null entfernt ist. Unter der Nullhypothese „kein Zusammenhang" folgt sie einer t-Verteilung mit n − 2 Freiheitsgraden – bei kleinen Stichproben hat diese schwerere Ränder als die Normalverteilung, weil zusätzlich die Fehlerstreuung geschätzt werden muss; ab etwa n = 30 sind beide kaum noch zu unterscheiden. Ein kleiner p-Wert spricht gegen die Nullhypothese.</p>
+      <div class="noteline" id="riNote"></div>
+    </div>
+
+    <div class="formula">
+      <div class="eyebrow">Der Test Schritt für Schritt</div>
+      <p class="prose" style="margin-top:0">In der Vorlesung wie in jeder Software läuft der Signifikanztest für eine Steigung immer nach demselben Schema ab:</p>
+      <table class="counts">
+        <thead><tr><th>Schritt</th><th>Inhalt</th></tr></thead>
+        <tbody>
+          <tr><td>1 · Hypothesen</td><td>H₀: β = 0 (kein Zusammenhang) gegen H₁: β ≠ 0</td></tr>
+          <tr><td>2 · Niveau</td><td>Signifikanzniveau festlegen, üblich α = 5 %</td></tr>
+          <tr><td>3 · Teststatistik</td><td>t = b̂ / SE(b̂) aus den Daten berechnen</td></tr>
+          <tr><td>4 · Verteilung</td><td>unter H₀ ist t t-verteilt mit n − 2 Freiheitsgraden</td></tr>
+          <tr><td>5 · Entscheidung</td><td>|t| &gt; kritischer Wert (bzw. p &lt; α) → H₀ verwerfen</td></tr>
+        </tbody>
+      </table>
+      <p class="prose">Für das Klausurbeispiel aus Lektion 1 lässt sich alles einsetzen: Aus SSR = 79,5 und n − 2 = 6 Freiheitsgraden folgt die Fehlervarianz s² = 79,5 / 6 = 13,25, daraus mit S<sub>xx</sub> = 95,5 der Standardfehler.</p>
+      <div class="eq small eqc">SE(b̂) <span class="op">=</span>
+        <span class="frac"><span class="top">&radic;<span style="text-decoration:overline">&nbsp;13,25&nbsp;</span></span><span class="bot">&radic;<span style="text-decoration:overline">&nbsp;95,5&nbsp;</span></span></span>
+        <span class="op">=</span> <b class="num">0,373</b>
+        <span class="op" style="margin-left:16px">t =</span>
+        <span class="frac"><span class="top"><span class="num">3,44</span></span><span class="bot"><span class="num">0,373</span></span></span>
+        <span class="op">=</span> <b class="num">9,23</b>
+        <span class="op" style="margin-left:16px">krit. Wert t<sub style="font-size:10px">6; 0,975</sub> =</span> <b class="num">2,447</b></div>
+      <p class="prose">Mit 9,23 liegt die Teststatistik weit jenseits des kritischen Werts 2,447; der p-Wert ist kleiner als 0,01 %. Der Zusammenhang zwischen Lernzeit und Punkten ist also statistisch gesichert. Das 95-%-Konfidenzintervall lautet 3,44 ± 2,447 · 0,373, also etwa 2,5 bis 4,4 Punkte pro Lernstunde – die Daten sind mit einem schwachen wie mit einem starken Lerneffekt vereinbar, aber nicht mit gar keinem.</p>
+    </div>
+
+    <div class="formula">
+      <div class="eyebrow">Fehlerarten und die Macht des Tests</div>
+      <p class="prose" style="margin-top:0">Zwei Irrtümer sind möglich. Der Fehler 1. Art: H₀ stimmt (β = 0), aber der Test schlägt an – per Konstruktion passiert das mit Wahrscheinlichkeit α. Der Fehler 2. Art: Es gibt einen echten Effekt, aber der Test übersieht ihn. Die Gegenwahrscheinlichkeit, einen echten Effekt auch zu finden, heißt Power oder Macht des Tests. Genau sie zeigt die neue Kennzahl unter der Grafik: Von den 40 grauen Stichproben wird gezählt, wie viele ein signifikantes Ergebnis liefern.</p>
+      <p class="prose">Damit wird die Simulation zum Labor. Stelle β = 0 ein – der Zähler pendelt um 2 von 40, das sind die 5 % Fehlalarme. Stelle β = 0,4 bei kleinem n und großem σ ein: Der Zähler bleibt niedrig, der Test ist zu schwach, ein echter Effekt wird meist verpasst. Erhöhe dann n oder senke σ, und der Zähler klettert Richtung 40 von 40. In der Studienplanung rechnet man diesen Zusammenhang vorab aus, um die nötige Stichprobengröße für eine angestrebte Power (üblich 80 %) zu bestimmen – zu kleine Studien finden selbst wahre Effekte nur per Glückstreffer.</p>
+    </div>
+
+    <div class="formula">
+      <div class="eyebrow">Signifikanz ist nicht Relevanz</div>
+      <p class="prose" style="margin-top:0">Der p-Wert wird notorisch überinterpretiert. Er ist nicht die Wahrscheinlichkeit, dass die Nullhypothese stimmt, und erst recht kein Maß für die Größe des Effekts. Er sagt nur, wie unplausibel die Daten wären, wenn es keinen Zusammenhang gäbe. Bei sehr großen Stichproben wird der Standardfehler winzig, und selbst belanglose Effekte werden hochsignifikant: Eine Lohnregression mit einer Million Beobachtungen kann b̂ = 0,003 Euro pro Bildungsjahr mit p &lt; 0,001 ausweisen – statistisch gesichert und ökonomisch bedeutungslos. Umgekehrt kann ein großer, wichtiger Effekt in einer kleinen Studie ein unscheinbares p = 0,15 liefern.</p>
+      <p class="prose">Deshalb gehören in jeden Ergebnisbericht beide Informationen: die Effektgröße mit Konfidenzintervall für die praktische Bedeutung und der Test für die statistische Absicherung. Das Konfidenzintervall leistet dabei mehr als der p-Wert allein – es zeigt auf einen Blick, welche Effektstärken mit den Daten vereinbar sind, und der Test steckt gratis mit drin: H₀ wird genau dann verworfen, wenn die Null nicht im Intervall liegt.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ MULTIREG (Lektion 5) -->
+<section class="viewpage" id="page-multireg">
+  <div class="kicker">Regression · Lektion 5</div>
+  <h1>Multiple Regression und Störvariablen</h1>
+  <p class="lede">Meist wirkt nicht nur eine Größe auf y, sondern mehrere zugleich – und sie hängen untereinander zusammen. Lässt man eine relevante Variable weg, landet ihr Einfluss fälschlich bei der anderen: der berüchtigte Omitted-Variable-Bias. Stelle die wahren Effekte und die Korrelation der Regressoren ein und vergleiche, was das einfache und das multiple Modell aus denselben Daten schätzen.</p>
+
+  <div class="grid">
+    <div class="panel pad">
+      <div class="eyebrow">Wahres Modell einstellen</div>
+      <div class="ctrl">
+        <div class="row"><span class="name">Wahrer Effekt β₁ von x₁</span>
+          <span class="field"><input type="number" id="muB1N" min="-1" max="1" step="0.05" value="0.3"></span>
+        </div>
+        <input type="range" id="muB1" min="-1" max="1" step="0.05" value="0.3">
+        <div class="hint">Der Effekt, den die Schätzungen treffen sollen.</div>
+      </div>
+      <div class="ctrl">
+        <div class="row"><span class="name">Wahrer Effekt β₂ von x₂</span>
+          <span class="field"><input type="number" id="muB2N" min="-1" max="1" step="0.05" value="0.8"></span>
+        </div>
+        <input type="range" id="muB2" min="-1" max="1" step="0.05" value="0.8">
+        <div class="hint">Der Einfluss der zweiten, im einfachen Modell vergessenen Variable.</div>
+      </div>
+      <div class="ctrl">
+        <div class="row"><span class="name">Korrelation von x₁ und x₂</span>
+          <span class="field"><input type="number" id="muRhoN" min="-0.95" max="0.95" step="0.05" value="0.6"></span>
+        </div>
+        <input type="range" id="muRho" min="-0.95" max="0.95" step="0.05" value="0.6">
+        <div class="hint">Je stärker verknüpft, desto größer die Verzerrung im einfachen Modell.</div>
+      </div>
+      <div class="divider"></div>
+      <div class="btnrow">
+        <button class="btn ghost" id="muNew">Neue Daten</button>
+      </div>
+    </div>
+
+    <div class="rightcol">
+      <div class="panel viz">
+        <div class="viz-top">
+          <div class="legend">
+            <div class="li"><span class="bar" style="background:var(--fp);height:11px;border-radius:2px"></span>einfaches Modell (nur x₁)</div>
+            <div class="li"><span class="bar" style="background:var(--accent);height:11px;border-radius:2px"></span>multiples Modell (x₁ und x₂)</div>
+            <div class="li"><span class="bar" style="background:var(--tp)"></span>wahres β₁</div>
+          </div>
+        </div>
+        <div class="holder" id="muHolder"><canvas id="cvMulti"></canvas></div>
+      </div>
+      <div class="headline"><div class="big" id="muBig">–</div>
+        <div class="cap" id="muCap">schätzt das einfache Modell für β₁ – die Verzerrung durch die vergessene Variable.</div></div>
+      <div class="stats">
+        <div class="stat"><div class="n" id="muTrue">0,30</div><div class="l">wahres β₁</div></div>
+        <div class="stat"><div class="n" style="color:var(--fp)" id="muSimple">–</div><div class="l">einfaches Modell b₁</div></div>
+        <div class="stat"><div class="n" style="color:var(--accent)" id="muMulti">–</div><div class="l">multiples Modell b₁</div></div>
+        <div class="stat"><div class="n" id="muBias">–</div><div class="l">Verzerrung (Bias)</div></div>
+        <div class="stat"><div class="n" id="muSE">–</div><div class="l">SE(b̂₁) im multiplen Modell</div></div>
+        <div class="stat"><div class="n" id="muVif">–</div><div class="l">Varianzinflation VIF</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="result">
+    <div class="formula">
+      <div class="eyebrow">Multiple Regression und Omitted-Variable-Bias</div>
+      <div class="fblock"><div class="flabel">Das multiple Modell</div>
+        <div class="eq eqc">y <span class="op">=</span> β<sub>0</sub> + β<sub>1</sub>·x<sub>1</sub> + β<sub>2</sub>·x<sub>2</sub> + ε</div></div>
+      <div class="fblock"><div class="flabel">Erwartete Verzerrung beim Weglassen von x₂</div>
+        <div class="eq eqc">E(b<sub>1</sub><sup style="font-size:11px">einfach</sup>) <span class="op">=</span> β<sub>1</sub> <span class="op">+</span> β<sub>2</sub> · <span class="frac"><span class="top">Cov(x<sub>1</sub>, x<sub>2</sub>)</span><span class="bot">Var(x<sub>1</sub>)</span></span></div></div>
+      <p class="prose">Die multiple Regression schätzt den Effekt jeder Variablen „unter Konstanthaltung" der übrigen: b₁ beschreibt, wie sich y ändert, wenn x₁ um eine Einheit steigt, während x₂ festgehalten wird. Rechnerisch gelingt das, indem aus x₁ zunächst alles herausgerechnet wird, was sich schon durch x₂ erklären lässt – übrig bleibt der eigenständige Beitrag.</p>
+      <p class="prose">Das einfache Modell kann das nicht. Ist x₂ mit x₁ korreliert und wirkt selbst auf y, dann schreibt die einfache Regression einen Teil dieses fremden Effekts der Variablen x₁ zu. Die Formel zeigt die Richtung: Die Verzerrung ist das Produkt aus dem Effekt der vergessenen Variable und ihrem Zusammenhang mit der aufgenommenen. Sie verschwindet nur, wenn β₂ = 0 ist oder die Regressoren unkorreliert sind – genau das kannst du mit den Reglern nachprüfen.</p>
+    </div>
+
+    <div class="formula">
+      <div class="eyebrow">Ceteris paribus: die Lohngleichung erweitert</div>
+      <p class="prose" style="margin-top:0">Das Paradebeispiel der Ökonometrie macht den Nutzen greifbar. Regressiert man den Stundenlohn nur auf die Bildungsjahre, fällt der Bildungskoeffizient oft überraschend klein aus. Der Grund ist eine vergessene Variable mit negativem Vorzeichen im Zusammenhang: Wer länger zur Schule geht, steigt später ins Berufsleben ein und hat zum Befragungszeitpunkt weniger Berufserfahrung – und Erfahrung wird ebenfalls bezahlt. Das einfache Modell verrechnet den positiven Bildungseffekt stillschweigend mit dem entgangenen Erfahrungseffekt.</p>
+      <p class="prose">Nimmt man die Erfahrung als x₂ mit ins Modell, trennt die multiple Regression beide Kanäle: Der Bildungskoeffizient beantwortet nun die Frage „Was bringt ein Bildungsjahr mehr bei gleicher Berufserfahrung?" – die berühmte Ceteris-paribus-Deutung, „unter sonst gleichen Umständen". Rechnerisch steckt dahinter das Herauspartialisieren: Aus x₁ wird zunächst alles entfernt, was sich linear durch x₂ erklären lässt, und nur der verbleibende eigenständige Teil erklärt y (Satz von Frisch-Waugh-Lovell). Deshalb ändern sich Koeffizienten, wenn Variablen hinzukommen – und deshalb ist die Frage „Welche Variablen gehören ins Modell?" die eigentliche Kunst der Ökonometrie.</p>
+    </div>
+
+    <div class="formula">
+      <div class="eyebrow">In welche Richtung verzerrt es?</div>
+      <p class="prose" style="margin-top:0">Oft kann man die vergessene Variable nicht messen, aber ihr Vorzeichen abschätzen. Dann verrät die Bias-Formel wenigstens die Richtung des Fehlers – nach dem Schema Vorzeichen der Verzerrung = Vorzeichen von β₂ mal Vorzeichen der Korrelation:</p>
+      <table class="counts">
+        <thead><tr><th></th><th>Corr(x₁, x₂) &gt; 0</th><th>Corr(x₁, x₂) &lt; 0</th></tr></thead>
+        <tbody>
+          <tr><td>β₂ &gt; 0</td><td class="num">Überschätzung (+)</td><td class="num">Unterschätzung (−)</td></tr>
+          <tr><td>β₂ &lt; 0</td><td class="num">Unterschätzung (−)</td><td class="num">Überschätzung (+)</td></tr>
+        </tbody>
+      </table>
+      <p class="prose">Klassische Anwendung: In der Lohngleichung ist unbeobachtete Fähigkeit vermutlich positiv mit Bildung korreliert und wirkt positiv auf den Lohn – der einfache Bildungskoeffizient überzeichnet den kausalen Bildungseffekt also tendenziell. Solche Überlegungen ersetzen keine saubere Identifikation, schützen aber vor naiven Kausalaussagen. Prüfe die Tabelle in der Simulation: Stelle β₂ negativ und die Korrelation positiv, und das einfache Modell unterschätzt β₁, genau wie vorhergesagt.</p>
+    </div>
+
+    <div class="formula">
+      <div class="eyebrow">Multikollinearität: der Preis der Kontrolle</div>
+      <div class="fblock" style="margin-top:14px"><div class="flabel">Varianz des Steigungsschätzers im multiplen Modell</div>
+        <div class="eq eqc">Var(b̂₁) <span class="op">=</span>
+          <span class="frac"><span class="top">s²</span><span class="bot">S<sub>11</sub> · (1 − r²<sub>12</sub>)</span></span>
+          <span class="op" style="margin-left:16px">VIF =</span>
+          <span class="frac"><span class="top">1</span><span class="bot">1 − r²<sub>12</sub></span></span></div></div>
+      <p class="prose">Kontrolle hat ihren Preis. Je stärker x₁ und x₂ korrelieren, desto weniger eigenständige Variation bleibt in x₁ übrig, nachdem x₂ herausgerechnet wurde – und aus desto dünnerer Information muss b̂₁ geschätzt werden. Der Nenner (1 − r²₁₂) schrumpft, die Varianz explodiert. Der Varianzinflationsfaktor VIF beziffert das: Bei r₁₂ = 0,6 bläht sich die Varianz um den Faktor 1,6 auf, bei 0,95 bereits um den Faktor 10. Ab VIF-Werten um 10 gilt Multikollinearität als ernstes Problem.</p>
+      <p class="prose">Beobachte dazu die beiden neuen Kennzahlen unter der Grafik, während du die Korrelation der Regressoren Richtung ±0,95 schiebst: Der Standardfehler von b̂₁ wächst sichtbar, obwohl sich am wahren Modell nichts ändert, und die Balken zittern bei jedem Klick auf „Neue Daten" stärker. Wichtig für die Einordnung: Multikollinearität verzerrt nichts – die Schätzung bleibt im Mittel richtig, nur unpräzise. Sie ist auch kein Modellfehler, sondern ein Datenproblem: Die Stichprobe enthält schlicht zu wenig unabhängige Bewegung der beiden Größen. Abhilfe schaffen mehr Daten, das Zusammenfassen fast identischer Variablen oder der Verzicht auf eine von ihnen, wenn ihr Effekt nicht einzeln interessiert.</p>
+      <div class="noteline">Für den Modellvergleich mit unterschiedlich vielen Regressoren ist das adjustierte R̄² aus Lektion 3 zuständig – das gewöhnliche R² steigt beim Hinzufügen von x₂ immer.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ DIAG (Lektion 6) -->
+<section class="viewpage" id="page-diag">
+  <div class="kicker">Regression · Lektion 6</div>
+  <h1>Annahmen und Residuen-Diagnostik</h1>
+  <p class="lede">Alle Formeln der letzten Lektionen gelten nur, wenn das Modell zu den Daten passt. Ob es das tut, verrät der Blick auf die Residuen: Trägt man sie gegen die vorhergesagten Werte auf, sollte reines, strukturloses Rauschen übrig bleiben. Wähle ein Szenario und lerne die typischen Muster zu lesen, mit denen Daten gegen die Annahmen verstoßen.</p>
+
+  <div class="grid">
+    <div class="panel pad">
+      <div class="eyebrow">Szenario wählen</div>
+      <div class="ctrl">
+        <div class="presets" id="dgPresets">
+          <button class="chip on" data-s="ok">Annahmen erfüllt</button>
+          <button class="chip" data-s="nonlin">Nichtlinear</button>
+          <button class="chip" data-s="hetero">Heteroskedastisch</button>
+          <button class="chip" data-s="autokorr">Autokorreliert</button>
+          <button class="chip" data-s="outlier">Ausreißer</button>
+          <button class="chip" data-s="schwer">Nicht normal</button>
+        </div>
+        <div class="hint" style="margin-top:12px" id="dgHint">Die Punkte streuen gleichmäßig um eine Gerade – das lineare Modell ist angemessen.</div>
+      </div>
+      <div class="divider"></div>
+      <div class="btnrow">
+        <button class="btn ghost" id="dgNew">Neue Daten</button>
+      </div>
+      <div class="divider"></div>
+      <table class="counts">
+        <thead><tr><th>Annahme</th><th>Kurz</th></tr></thead>
+        <tbody>
+          <tr><td>Linearität</td><td>Der Zusammenhang ist im Mittel eine Gerade</td></tr>
+          <tr><td>Exogenität</td><td>E(ε | x) = 0 – der Fehler hängt nicht von x ab</td></tr>
+          <tr><td>Unabhängigkeit</td><td>Die Fehler beeinflussen einander nicht</td></tr>
+          <tr><td>Homoskedastizität</td><td>Die Fehlerstreuung ist überall gleich groß</td></tr>
+          <tr><td>keine perfekte Kollinearität</td><td>Kein Regressor ist Linearkombination der übrigen</td></tr>
+          <tr><td>Normalität</td><td>Die Fehler sind annähernd normalverteilt</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="rightcol">
+      <div class="panel viz">
+        <div class="viz-top">
+          <div class="legend">
+            <div class="li"><span class="dot" style="background:#8a8578"></span>Datenpunkt / Residuum</div>
+            <div class="li"><span class="bar" style="background:var(--accent)"></span>Regressionsgerade</div>
+          </div>
+        </div>
+        <div class="flabel" style="margin-bottom:8px">Daten mit angepasster Gerade</div>
+        <div class="holder" id="dgTopHolder"><canvas id="cvDiagTop"></canvas></div>
+        <div class="flabel" style="margin:16px 0 8px" id="dgBotLabel">Residuen gegen vorhergesagte Werte</div>
+        <div class="holder" id="dgBotHolder"><canvas id="cvDiagBot"></canvas></div>
+        <div class="flabel" style="margin:16px 0 8px">QQ-Plot: Residuen gegen Normalverteilung</div>
+        <div class="holder" id="dgQQHolder"><canvas id="cvDiagQQ"></canvas></div>
+      </div>
+      <div class="headline"><div class="big" id="dgBig">✓</div>
+        <div class="cap" id="dgCap">Das Residuenbild ist strukturlos – kein Hinweis auf verletzte Annahmen.</div></div>
+      <div class="stats">
+        <div class="stat"><div class="n" id="dgR2">–</div><div class="l">R² der Anpassung</div></div>
+        <div class="stat"><div class="n" id="dgB">–</div><div class="l">geschätzte Steigung b̂</div></div>
+        <div class="stat"><div class="n" id="dgDW">–</div><div class="l">Durbin-Watson d</div></div>
+        <div class="stat"><div class="n" id="dgN">60</div><div class="l">Beobachtungen</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="result">
+    <div class="formula">
+      <div class="eyebrow">Residuen lesen</div>
+      <div class="fblock"><div class="flabel">Residuum</div>
+        <div class="eq eqc">e<sub>i</sub> <span class="op">=</span> y<sub>i</sub> − ŷ<sub>i</sub> <span class="op" style="margin-left:12px">mit</span> ŷ<sub>i</sub> = a + b·x<sub>i</sub></div></div>
+      <p class="prose">Ist das Modell richtig, enthalten die Residuen nur noch den zufälligen Fehler: Sie streuen gleichmäßig um null, ohne Muster, ohne Trichter, ohne Bögen. Jede erkennbare Struktur bedeutet, dass das Modell etwas Systematisches übersehen hat. Ein Bogen im Residuenplot verrät einen nichtlinearen Zusammenhang, den die Gerade nicht abbilden kann. Ein Trichter – wachsende Streuung nach rechts – heißt Heteroskedastizität; die Schätzung der Geraden bleibt dann zwar unverzerrt, aber Standardfehler, t-Tests und Konfidenzintervalle aus Lektion 4 stimmen nicht mehr.</p>
+      <p class="prose">Beachte dabei die Kennzahlen unter der Grafik: Auch im nichtlinearen und im Ausreißer-Szenario liefert die Regression ein ordentlich aussehendes R² und eine präzise wirkende Steigung. Die Zahlen allein schlagen keinen Alarm – das tut nur der Residuenplot. Genau diese Lücke zwischen Kennzahl und Wirklichkeit ist die Kernbotschaft der Diagnostik.</p>
+    </div>
+
+    <div class="formula">
+      <div class="eyebrow">Exogenität: die Annahme, an der alles hängt</div>
+      <div class="fblock" style="margin-top:14px"><div class="flabel">Die zentrale Bedingung</div>
+        <div class="eq eqc">E(ε | x) <span class="op">=</span> 0</div></div>
+      <p class="prose">Unter allen Annahmen ist diese die wichtigste und zugleich die einzige, die sich nicht aus den Residuen ablesen lässt. Sie verlangt, dass die unbeobachteten Einflüsse im Fehlerterm nichts mit der Erklärungsvariablen zu tun haben. Ist sie verletzt, spricht man von Endogenität – und dann ist die Schätzung nicht bloß ungenau, sondern systematisch falsch, ganz gleich wie groß die Stichprobe wird. Alle anderen Verstöße betreffen nur die Präzision oder die Standardfehler; dieser trifft den Koeffizienten selbst.</p>
+      <p class="prose">Drei Wege führen zur Endogenität. Erstens ausgelassene Variablen: Wirkt eine unbeobachtete Größe auf y und hängt mit x zusammen, landet sie im Fehlerterm und korreliert mit x – das ist der Omitted-Variable-Bias aus Lektion 5, hier in seiner allgemeinen Form. Zweitens Messfehler in x, die den Koeffizienten systematisch Richtung null ziehen (Attenuation Bias). Drittens Simultanität, wenn x und y sich gegenseitig bestimmen: Bei Angebot und Nachfrage beeinflusst der Preis die Menge und die Menge den Preis. Das Tückische: Der Residuenplot sieht in all diesen Fällen makellos aus, denn die Kleinste-Quadrate-Residuen sind konstruktionsbedingt immer unkorreliert mit x. Endogenität erkennt man nicht in den Daten, sondern nur durch Nachdenken über die Herkunft der Daten.</p>
+    </div>
+
+    <div class="formula">
+      <div class="eyebrow">Autokorrelation: wenn Fehler ein Gedächtnis haben</div>
+      <p class="prose" style="margin-top:0">Die Unabhängigkeitsannahme verlangt, dass die Fehler einander nichts verraten. In Zeitreihen ist das oft verletzt: Ein überdurchschnittlicher Monat folgt auf einen überdurchschnittlichen, weil Konjunktur, Wetter oder Stimmungen nachwirken. Formal beschreibt man das als autoregressiven Prozess erster Ordnung, bei dem jeder Fehler den vorigen zu einem Anteil ρ erbt. Wähle das Szenario „Autokorreliert": Der Residuenplot wechselt dann auf die Beobachtungsreihenfolge, und statt eines Rauschens erscheinen lange Wellen ober- und unterhalb der Nulllinie.</p>
+      <div class="fblock"><div class="flabel">AR(1)-Fehler und die Durbin-Watson-Statistik</div>
+        <div class="eq eqc">ε<sub>t</sub> <span class="op">=</span> ρ·ε<sub>t−1</sub> + u<sub>t</sub>
+          <span class="op" style="margin-left:20px">d =</span>
+          <span class="frac"><span class="top"><span style="font-size:15px">&#8721;</span>(e<sub>t</sub> − e<sub>t−1</sub>)²</span><span class="bot"><span style="font-size:15px">&#8721;</span> e<sub>t</sub>²</span></span>
+          <span class="op" style="margin-left:12px">&#8776;</span> 2·(1 − ρ̂)</div></div>
+      <p class="prose">Die Durbin-Watson-Statistik misst genau das und ist als Kennzahl unter der Grafik eingeblendet. Sie liegt zwischen 0 und 4: Werte um 2 bedeuten keine Autokorrelation, Werte deutlich unter 2 positive (das typische Trägheitsmuster), Werte über 2 negative Autokorrelation mit ständigem Vorzeichenwechsel. Als Faustregel gilt der Bereich zwischen etwa 1,5 und 2,5 als unauffällig. Vergleiche die Anzeige zwischen dem Szenario „Annahmen erfüllt" und „Autokorreliert" – der Wert bricht sichtbar ein.</p>
+      <p class="prose">Die Folgen ähneln denen der Heteroskedastizität: Die Gerade bleibt unverzerrt, aber die Standardfehler sind zu klein. Man hält seine Schätzung für präziser, als sie ist, findet zu häufig Signifikanz und berichtet zu enge Konfidenzintervalle. Bei positiver Autokorrelation, dem Normalfall in der Ökonomie, ist die Unterschätzung teils dramatisch. Abhilfe schaffen HAC-Standardfehler nach Newey-West, das Aufnehmen verzögerter Variablen oder eine Modellierung der Fehlerstruktur. Verwandt ist das Problem bei geclusterten Daten, etwa mehreren Beobachtungen pro Schulklasse oder Betrieb – dort verwendet man geclusterte Standardfehler.</p>
+    </div>
+
+    <div class="formula">
+      <div class="eyebrow">Das Anscombe-Quartett als Mahnung</div>
+      <p class="prose" style="margin-top:0">Die vier Szenarien oben sind eine interaktive Verwandtschaft des Anscombe-Quartetts von 1973: vier Datensätze mit identischen Mittelwerten, identischer Regressionsgerade und identischem R², von denen nur einer die Modellannahmen erfüllt – die anderen verbergen eine Parabel, einen Ausreißer und einen Hebelpunkt. Seither gilt in jeder Statistikvorlesung: Erst zeichnen, dann rechnen, dann den Residuen misstrauen. Moderne Software macht es leicht, eine Regression zu schätzen, aber kein Programm prüft von selbst, ob die Gerade überhaupt die richtige Geschichte erzählt.</p>
+    </div>
+
+    <div class="formula">
+      <div class="eyebrow">Befund und Abhilfe</div>
+      <p class="prose" style="margin-top:0">Zu jedem typischen Residuenmuster gehört ein Standardrepertoire an Gegenmaßnahmen:</p>
+      <table class="counts">
+        <thead><tr><th>Befund im Residuenplot</th><th>Bedeutung</th><th>übliche Abhilfe</th></tr></thead>
+        <tbody>
+          <tr><td>Bogen / Welle</td><td>Nichtlinearität</td><td>quadratischen Term aufnehmen, x oder y transformieren (z. B. Logarithmus)</td></tr>
+          <tr><td>Trichter</td><td>Heteroskedastizität</td><td>robuste (White-)Standardfehler, gewichtete Regression, log(y)</td></tr>
+          <tr><td>einzelne Extrempunkte</td><td>Ausreißer / Hebelpunkte</td><td>Datenfehler prüfen, Sensitivitätsanalyse mit und ohne Punkt, robuste Verfahren</td></tr>
+          <tr><td>Muster über die Zeit</td><td>Autokorrelation der Fehler</td><td>Zeitreihenmethoden, HAC-Standardfehler (Newey-West)</td></tr>
+        </tbody>
+      </table>
+      <p class="prose">Die Logarithmus-Transformation ist dabei das Schweizer Taschenmesser der Ökonometrie: Sie macht multiplikative Zusammenhänge linear, dämpft Ausreißer und stabilisiert häufig zugleich die Fehlerstreuung. In einer Lohngleichung mit log(Lohn) als abhängiger Variable werden die Koeffizienten zudem elegant als annähernd prozentuale Effekte lesbar – ein Bildungsjahr mehr entspricht dann etwa b · 100 Prozent mehr Lohn.</p>
+    </div>
+
+    <div class="formula">
+      <div class="eyebrow">Hebelwirkung und Einfluss</div>
+      <p class="prose" style="margin-top:0">Nicht jeder Ausreißer ist gleich gefährlich. Ein Punkt mit ungewöhnlichem y mitten im x-Bereich verschiebt die Gerade kaum – die vielen Nachbarn halten dagegen. Ein Punkt am äußersten Rand des x-Bereichs dagegen sitzt am langen Hebel: Schon eine mäßige y-Abweichung kippt die Steigung spürbar, wie das Ausreißer-Szenario zeigt, dessen zwei Punkte bewusst rechts außen platziert sind. Die Statistik unterscheidet deshalb Hebelwirkung (ungewöhnliches x, englisch leverage) von Einfluss (tatsächliche Wirkung auf die Schätzung); Kennzahlen wie die Cook-Distanz messen für jeden Punkt, wie stark sich die Gerade ohne ihn ändern würde.</p>
+      <p class="prose">Der richtige Umgang ist detektivisch, nicht kosmetisch. Erst klären, ob ein Tippfehler oder Messfehler vorliegt – dann darf korrigiert oder entfernt werden. Ist der Punkt echt, gehört er zur Wirklichkeit: Man berichtet die Ergebnisse mit und ohne ihn und diskutiert den Unterschied, statt das unbequeme Datum stillschweigend zu löschen. Manche „Ausreißer" sind die eigentliche Entdeckung.</p>
+    </div>
+
+    <div class="formula">
+      <div class="eyebrow">Und die Normalverteilung der Fehler?</div>
+      <p class="prose" style="margin-top:0">Die vierte Annahme wirkt oft am strengsten, ist aber in großen Stichproben die harmloseste. Für die Unverzerrtheit der Kleinste-Quadrate-Schätzung wird sie gar nicht gebraucht, und für Tests und Konfidenzintervalle springt bei wachsendem n der zentrale Grenzwertsatz aus dem Kapitel Grenzwertsätze ein: Die Verteilung der geschätzten Steigung nähert sich der Normalverteilung, ganz gleich, wie die einzelnen Fehler verteilt sind. Kritisch ist Nicht-Normalität vor allem bei kleinen Stichproben und schweren Verteilungsrändern.</p>
+      <p class="prose">Geprüft wird sie mit dem QQ-Plot als drittem Diagramm oben: Er trägt die sortierten Residuen gegen die theoretischen Quantile der Normalverteilung auf. Liegen die Punkte auf der eingezeichneten Diagonalen, passt die Annahme. Wähle das Szenario „Nicht normal", bei dem die Fehler aus einer Verteilung mit schweren Rändern stammen – die Punkte an den Enden kippen dann deutlich von der Geraden weg, ein S-förmiges Muster. Im Szenario „Annahmen erfüllt" schmiegen sie sich dagegen an. Ergänzend prüfen formale Tests wie Jarque-Bera die Schiefe und Wölbung der Residuen.</p>
+    </div>
+
+    <div class="formula">
+      <div class="eyebrow">Formale Tests im Überblick</div>
+      <p class="prose" style="margin-top:0">Grafiken zeigen mehr, Tests entscheiden schärfer – in der Praxis nutzt man beides. Jede Annahme hat ihren Standardtest, den jedes Statistikprogramm auf Knopfdruck liefert:</p>
+      <table class="counts">
+        <thead><tr><th>Annahme</th><th>Test</th><th>Nullhypothese</th></tr></thead>
+        <tbody>
+          <tr><td>Linearität / Modellform</td><td>RESET nach Ramsey</td><td>Die Spezifikation ist korrekt</td></tr>
+          <tr><td>Homoskedastizität</td><td>Breusch-Pagan, White</td><td>Die Fehlervarianz ist konstant</td></tr>
+          <tr><td>Keine Autokorrelation</td><td>Durbin-Watson, Breusch-Godfrey</td><td>Die Fehler sind unkorreliert</td></tr>
+          <tr><td>Normalität</td><td>Jarque-Bera, Shapiro-Wilk</td><td>Die Fehler sind normalverteilt</td></tr>
+          <tr><td>Keine Multikollinearität</td><td>VIF (kein Test, Kennzahl)</td><td>— Faustregel: VIF &lt; 10</td></tr>
+          <tr><td>Strukturelle Stabilität</td><td>Chow-Test</td><td>Die Koeffizienten sind über Teilgruppen gleich</td></tr>
+        </tbody>
+      </table>
+      <p class="prose">Bei allen gilt dieselbe Logik wie im Kapitel Hypothesentests, oft mit ungewohnter Blickrichtung: Die Nullhypothese ist hier meist das, was man sich wünscht. Ein kleiner p-Wert bedeutet also Ärger – die Annahme wird verworfen. Ein großer p-Wert beweist umgekehrt nicht, dass alles in Ordnung ist; er heißt nur, dass die Daten nicht ausreichen, um den Verstoß nachzuweisen. Bei kleinen Stichproben übersehen diese Tests Probleme leicht, bei sehr großen schlagen sie schon bei belanglosen Abweichungen an. Deshalb bleibt der Blick auf die Grafiken unverzichtbar.</p>
+      <p class="prose">Für die Praxis hat sich ein pragmatischer Standard durchgesetzt: Statt lange zu testen, ob Heteroskedastizität vorliegt, verwenden viele Anwender von vornherein robuste Standardfehler, die in beiden Fällen gültig sind. Endogenität dagegen lässt sich weder wegtesten noch robust reparieren – sie erfordert ein anderes Schätzverfahren, und genau davon handelt die letzte Lektion.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ IV (Lektion 7) -->
+<section class="viewpage" id="page-iv">
+  <div class="kicker">Regression · Lektion 7</div>
+  <h1>Endogenität und Instrumentvariablen</h1>
+  <p class="lede">Wenn eine unbeobachtete Größe zugleich auf x und auf y wirkt, hilft keine noch so große Stichprobe: Die Kleinste-Quadrate-Schätzung bleibt systematisch falsch. Der Ausweg ist ein Instrument – eine Variable, die x verschiebt, aber sonst nichts mit y zu tun hat. Stelle Konfundierung und Instrumentstärke ein und vergleiche, was OLS und die Instrumentvariablen-Schätzung aus denselben Daten machen.</p>
+
+  <div class="grid">
+    <div class="panel pad">
+      <div class="eyebrow">Wahres Modell einstellen</div>
+      <div class="ctrl">
+        <div class="row"><span class="name">Wahrer Effekt β</span>
+          <span class="field"><input type="number" id="ivBetaN" min="-0.5" max="1.5" step="0.05" value="0.4"></span>
+        </div>
+        <input type="range" id="ivBeta" min="-0.5" max="1.5" step="0.05" value="0.4">
+        <div class="hint">Der kausale Effekt von x auf y, den wir treffen wollen.</div>
+      </div>
+      <div class="ctrl">
+        <div class="row"><span class="name">Konfundierung γ</span>
+          <span class="field"><input type="number" id="ivConfN" min="0" max="1.5" step="0.05" value="0.8"></span>
+        </div>
+        <input type="range" id="ivConf" min="0" max="1.5" step="0.05" value="0.8">
+        <div class="hint">Wie stark die unbeobachtete Störgröße auf x und y zugleich wirkt. Bei 0 ist x exogen.</div>
+      </div>
+      <div class="ctrl">
+        <div class="row"><span class="name">Instrumentstärke π</span>
+          <span class="field"><input type="number" id="ivPiN" min="0.02" max="1.2" step="0.02" value="0.7"></span>
+        </div>
+        <input type="range" id="ivPi" min="0.02" max="1.2" step="0.02" value="0.7">
+        <div class="hint">Wie stark das Instrument z die Variable x verschiebt. Kleine Werte bedeuten ein schwaches Instrument.</div>
+      </div>
+      <div class="divider"></div>
+      <div class="btnrow">
+        <button class="btn ghost" id="ivNew">Neue Daten</button>
+      </div>
+    </div>
+
+    <div class="rightcol">
+      <div class="panel viz">
+        <div class="viz-top">
+          <div class="legend">
+            <div class="li"><span class="bar" style="background:var(--fp);height:11px;border-radius:2px"></span>OLS (verzerrt)</div>
+            <div class="li"><span class="bar" style="background:var(--accent);height:11px;border-radius:2px"></span>IV-Schätzung</div>
+            <div class="li"><span class="bar" style="background:var(--tp)"></span>wahres β</div>
+          </div>
+        </div>
+        <div class="holder" id="ivHolder"><canvas id="cvIv"></canvas></div>
+      </div>
+      <div class="headline"><div class="big" id="ivBig">–</div>
+        <div class="cap" id="ivCap">schätzt die Instrumentvariablen-Methode für β.</div></div>
+      <div class="stats">
+        <div class="stat"><div class="n" id="ivTrue">0,40</div><div class="l">wahres β</div></div>
+        <div class="stat"><div class="n" style="color:var(--fp)" id="ivOls">–</div><div class="l">OLS-Schätzung</div></div>
+        <div class="stat"><div class="n" style="color:var(--accent)" id="ivIv">–</div><div class="l">IV-Schätzung</div></div>
+        <div class="stat"><div class="n" id="ivF">–</div><div class="l">F der ersten Stufe</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="result">
+    <div class="formula">
+      <div class="eyebrow">Das Problem: Korrelation zwischen x und dem Fehler</div>
+      <div class="fblock" style="margin-top:14px"><div class="flabel">Was OLS im Grenzfall schätzt</div>
+        <div class="eq eqc">plim b<sub>OLS</sub> <span class="op">=</span> β <span class="op">+</span>
+          <span class="frac"><span class="top">Cov(x, ε)</span><span class="bot">Var(x)</span></span></div></div>
+      <p class="prose">Wirkt eine unbeobachtete Größe – Fähigkeit, Motivation, Unternehmensqualität – zugleich auf x und auf y, dann steckt sie im Fehlerterm und korreliert mit x. Der zweite Summand verschwindet dann nicht, auch nicht bei einer Million Beobachtungen. Genau das unterscheidet Endogenität von allen Problemen der vorigen Lektion: Sie ist keine Frage der Präzision, sondern der Konsistenz. Mehr Daten machen die falsche Antwort nur präziser.</p>
+      <p class="prose">Der Regler „Konfundierung" steuert diese Störgröße. Stelle ihn auf null, und der orangefarbene OLS-Balken trifft das wahre β punktgenau – x ist dann exogen, und OLS ist völlig in Ordnung. Schiebe ihn nach oben, und OLS wandert systematisch nach oben weg, während der blaue IV-Balken auf dem wahren Wert bleibt.</p>
+    </div>
+
+    <div class="formula">
+      <div class="eyebrow">Die Lösung: ein Instrument</div>
+      <div class="fblock" style="margin-top:14px"><div class="flabel">Der Instrumentvariablen-Schätzer</div>
+        <div class="eq eqc">b<sub>IV</sub> <span class="op">=</span>
+          <span class="frac"><span class="top">Cov(z, y)</span><span class="bot">Cov(z, x)</span></span></div></div>
+      <p class="prose">Ein Instrument z muss zwei Bedingungen erfüllen. Die Relevanz verlangt, dass z tatsächlich mit x zusammenhängt – sonst steht im Nenner beinahe null. Die Exklusionsbedingung verlangt, dass z ausschließlich über x auf y wirkt und selbst nicht mit der Störgröße korreliert. Die erste Bedingung lässt sich in den Daten prüfen, die zweite grundsätzlich nicht – sie muss inhaltlich begründet werden. Das macht die Suche nach guten Instrumenten zur eigentlichen Kunst der modernen Ökonometrie.</p>
+      <p class="prose">Die Anschauung dahinter: Nur derjenige Teil der Variation in x, der von z stammt, ist frei von der Störgröße. Der IV-Schätzer nutzt genau diesen sauberen Ausschnitt und ignoriert den Rest. In der Praxis rechnet man das als zweistufige Kleinste Quadrate (2SLS): In der ersten Stufe regressiert man x auf z und behält die vorhergesagten Werte, in der zweiten Stufe regressiert man y auf diese vorhergesagten Werte. Der Preis ist Präzision – man wirft absichtlich Information weg und erhält deutlich größere Standardfehler als OLS.</p>
+    </div>
+
+    <div class="formula">
+      <div class="eyebrow">Schwache Instrumente</div>
+      <p class="prose" style="margin-top:0">Der Nenner Cov(z, x) ist die Achillesferse des Verfahrens. Ist das Instrument schwach, also nur lose mit x verknüpft, wird durch eine fast verschwindende Zahl geteilt: Die Schätzung springt wild, und schon eine winzige Verletzung der Exklusionsbedingung wird enorm verstärkt – ein schwaches Instrument kann schlechter sein als gar keines. Schiebe die Instrumentstärke nach unten und klicke mehrfach auf „Neue Daten": Der blaue Balken tanzt, obwohl sich am wahren Modell nichts geändert hat.</p>
+      <p class="prose">Diagnostiziert wird das über die erste Stufe. Deren F-Statistik – als Kennzahl eingeblendet – misst, wie kräftig z die Variable x erklärt. Als Faustregel gilt seit Staiger und Stock ein Wert über 10 als ausreichend; darunter spricht man von einem schwachen Instrument, und die üblichen Konfidenzintervalle sind nicht mehr vertrauenswürdig. Beobachte, wie der Wert beim Verkleinern von π unter diese Schwelle rutscht.</p>
+    </div>
+
+    <div class="formula">
+      <div class="eyebrow">Instrumente aus der Praxis</div>
+      <p class="prose" style="margin-top:0">Die berühmten Anwendungen zeigen, wie erfinderisch die Suche ist. Angrist und Krueger nutzten das Geburtsquartal als Instrument für die Schulbildung: Wer früh im Jahr geboren ist, erreicht das Mindestalter für den Schulabgang eine Klassenstufe früher und bleibt im Schnitt kürzer in der Schule – das Geburtsquartal beeinflusst die Bildung, hat aber mit der Fähigkeit einer Person nichts zu tun. Angrist verwendete außerdem die Lotterienummer der Einberufung im Vietnamkrieg, um den Effekt des Militärdienstes auf spätere Löhne zu schätzen; die Nummer wurde per Los vergeben und ist damit garantiert zufällig. Weitere Klassiker sind die Entfernung zur nächsten Universität als Instrument für Bildung oder Niederschlagsmengen als Instrument für das landwirtschaftliche Einkommen.</p>
+      <p class="prose">Instrumentvariablen sind Teil einer größeren Familie kausaler Methoden, die alle dasselbe Ziel verfolgen: eine Variation in x zu finden, die so gut wie zufällig ist. Dazu gehören Differenzen-von-Differenzen-Vergleiche, Regressions-Diskontinuitäten an Schwellenwerten und Paneldaten mit festen Effekten. Der Goldstandard bleibt das randomisierte Experiment, in dem die Zuteilung per Los erfolgt und Endogenität von vornherein ausgeschlossen ist – 2021 gab es dafür den Wirtschaftsnobelpreis an Card, Angrist und Imbens. Damit schließt der Aufbaukurs dort, wo die empirische Forschung heute steht: Nicht die Rechnung ist das Schwierige, sondern die Frage, warum die Daten so aussehen, wie sie aussehen.</p>
+      <div class="noteline">Ob Endogenität überhaupt vorliegt, prüft der Hausman-Test, der OLS- und IV-Schätzung vergleicht: Weichen sie stärker voneinander ab, als der Zufall erklären kann, spricht das für Endogenität – und für die IV-Schätzung.</div>
     </div>
   </div>
 </section>
@@ -1995,6 +2726,397 @@ function normInv(p){
   window.addEventListener('resize',()=>{if(document.getElementById('page-kombinatorik').classList.contains('active'))render();});
 })();
 
+/* ================================================= OLS module (Lektion 2) */
+(function(){
+  const cv=$('cvOls'), holder=$('olsHolder');
+  const N=11, state={a:0,b:0.3};
+  let xs=[], ys=[];
+  function gauss(){let u=0,v=0;while(u===0)u=Math.random();while(v===0)v=Math.random();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);}
+  function regen(){ xs=[];ys=[]; for(let i=0;i<N;i++){const x=(-2.4+4.8*i/(N-1))+gauss()*0.18, y=0.6*x+0.3+gauss()*0.7; xs.push(x);ys.push(y);} }
+  function ols(){ let mx=0,my=0; for(let i=0;i<N;i++){mx+=xs[i];my+=ys[i];} mx/=N;my/=N; let sxy=0,sxx=0; for(let i=0;i<N;i++){sxy+=(xs[i]-mx)*(ys[i]-my);sxx+=(xs[i]-mx)**2;} const b=sxy/sxx; return {a:my-b*mx,b}; }
+  function ssr(a,b){ let s=0; for(let i=0;i<N;i++){const e=ys[i]-(a+b*xs[i]); s+=e*e;} return s; }
+  function draw(){
+    const f=fitCanvas(cv,holder,W=>Math.min(320,Math.max(240,Math.round(W*0.62)))); if(!f)return;
+    const {g,W,H}=f, pad=24, pW=W-2*pad, pH=H-2*pad, D0=-3.2,D1=3.2, X=x=>pad+(x-D0)/(D1-D0)*pW, Y=y=>pad+pH-(y-D0)/(D1-D0)*pH;
+    g.strokeStyle='#e8e4da';g.lineWidth=1;g.beginPath();g.moveTo(X(D0),Y(0));g.lineTo(X(D1),Y(0));g.stroke();g.beginPath();g.moveTo(X(0),Y(D0));g.lineTo(X(0),Y(D1));g.stroke();
+    g.strokeStyle='rgba(178,59,46,0.85)';g.lineWidth=1.4;
+    for(let i=0;i<N;i++){const yh=state.a+state.b*xs[i];g.beginPath();g.moveTo(X(xs[i]),Y(ys[i]));g.lineTo(X(xs[i]),Y(yh));g.stroke();}
+    g.strokeStyle='#2f4858';g.lineWidth=2.2;g.beginPath();g.moveTo(X(D0),Y(state.a+state.b*D0));g.lineTo(X(D1),Y(state.a+state.b*D1));g.stroke();
+    for(let i=0;i<N;i++){g.beginPath();g.arc(X(xs[i]),Y(ys[i]),4,0,Math.PI*2);g.fillStyle='#8a8578';g.fill();g.strokeStyle='#fff';g.lineWidth=1;g.stroke();}
+  }
+  function render(){
+    const cur=ssr(state.a,state.b), o=ols(), min=ssr(o.a,o.b);
+    $('olsBig').textContent=de(cur,2);
+    $('olsSSR').textContent=de(cur,2); $('olsMin').textContent=de(min,2);
+    $('olsBstar').textContent=de(o.b,2); $('olsAstar').textContent=de(o.a,2);
+    let sum=0; for(let i=0;i<N;i++) sum+=ys[i]-(state.a+state.b*xs[i]);
+    $('olsSum').textContent=de(sum,2);
+    draw();
+  }
+  pairControl($('olsB'),$('olsBN'),v=>{state.b=v;render();});
+  pairControl($('olsA'),$('olsAN'),v=>{state.a=v;render();});
+  $('olsFit').addEventListener('click',()=>{const o=ols();state.a=o.a;state.b=o.b;setPair($('olsB'),$('olsBN'),+o.b.toFixed(2));setPair($('olsA'),$('olsAN'),+o.a.toFixed(2));render();});
+  $('olsNew').addEventListener('click',()=>{regen();render();});
+  regen();
+  window.Pages=window.Pages||{};
+  window.Pages.ols={onShow(){render();}};
+  window.addEventListener('resize',()=>{if(document.getElementById('page-ols').classList.contains('active'))render();});
+})();
+
+/* ================================================= RSQ module (Lektion 3) */
+(function(){
+  const cv=$('cvRsq'), holder=$('rsqHolder');
+  const N=60, state={strength:0.8, total:false};
+  let xs=[], es=[];
+  function gauss(){let u=0,v=0;while(u===0)u=Math.random();while(v===0)v=Math.random();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);}
+  function regen(){ xs=[];es=[]; for(let i=0;i<N;i++){xs.push(gauss());es.push(gauss());} }
+  function data(){ const r=state.strength, s=Math.sqrt(Math.max(0,1-r*r)); return xs.map((x,i)=>({x,y:r*x+s*es[i]})); }
+  function stats(pts){
+    const n=pts.length; let mx=0,my=0; pts.forEach(p=>{mx+=p.x;my+=p.y;}); mx/=n;my/=n;
+    let sxx=0,sxy=0; pts.forEach(p=>{sxx+=(p.x-mx)**2;sxy+=(p.x-mx)*(p.y-my);});
+    const b=sxy/sxx, a=my-b*mx;
+    let sst=0,ssr=0,sse=0; pts.forEach(p=>{const yh=a+b*p.x;sst+=(p.y-my)**2;ssr+=(p.y-yh)**2;sse+=(yh-my)**2;});
+    return {a,b,my,sst,ssr,sse,r2:sst>0?sse/sst:0};
+  }
+  function draw(pts,st){
+    const f=fitCanvas(cv,holder,W=>Math.min(320,Math.max(240,Math.round(W*0.6)))); if(!f)return;
+    const {g,W,H}=f, pad=22, pW=W-2*pad, pH=H-2*pad, D0=-3,D1=3, X=x=>pad+(x-D0)/(D1-D0)*pW, Y=y=>pad+pH-(y-D0)/(D1-D0)*pH;
+    g.strokeStyle='#e8e4da';g.lineWidth=1;g.beginPath();g.moveTo(X(D0),Y(0));g.lineTo(X(D1),Y(0));g.stroke();g.beginPath();g.moveTo(X(0),Y(D0));g.lineTo(X(0),Y(D1));g.stroke();
+    g.strokeStyle='#8a8578';g.setLineDash([5,4]);g.lineWidth=1.5;g.beginPath();g.moveTo(X(D0),Y(st.my));g.lineTo(X(D1),Y(st.my));g.stroke();g.setLineDash([]);
+    g.strokeStyle='rgba(178,59,46,0.55)';g.lineWidth=1.2;
+    pts.forEach(p=>{const t=state.total?st.my:(st.a+st.b*p.x);g.beginPath();g.moveTo(X(p.x),Y(p.y));g.lineTo(X(p.x),Y(t));g.stroke();});
+    g.strokeStyle='#2f4858';g.lineWidth=2.2;g.beginPath();g.moveTo(X(D0),Y(st.a+st.b*D0));g.lineTo(X(D1),Y(st.a+st.b*D1));g.stroke();
+    pts.forEach(p=>{g.beginPath();g.arc(X(p.x),Y(p.y),3,0,Math.PI*2);g.fillStyle='rgba(138,133,120,0.9)';g.fill();});
+  }
+  function render(){
+    const pts=data(), st=stats(pts);
+    $('rsqBig').textContent=Math.round(st.r2*100)+' %';
+    $('rsqSST').textContent=de(st.sst,1); $('rsqSSE').textContent=de(st.sse,1); $('rsqSSR').textContent=de(st.ssr,1);
+    $('rsqR2').textContent=de(st.r2,2);
+    const rr=Math.sign(st.b)*Math.sqrt(st.r2);
+    $('rsqEq').innerHTML=`R² <span class="op">=</span> <span class="frac"><span class="top"><span class="num">${de(st.sse,1)}</span></span><span class="bot"><span class="num">${de(st.sst,1)}</span></span></span> <span class="op">=</span> <b class="num">${de(st.r2,2)}</b> <span class="op" style="margin-left:16px">und damit r = ${st.b<0?'−':''}&radic;<span style="text-decoration:overline">&nbsp;R²&nbsp;</span> =</span> <b class="num">${de(rr,2)}</b>`;
+    // Varianzanalyse: F = (SSE/1) / (SSR/(n-2)); bei df1=1 gilt F = t², also p wie beim t-Test
+    const df2=N-2, msE=st.sse, msR=st.ssr/df2, F=msR>0?msE/msR:0;
+    const pF=2*(1-tCdf(Math.sqrt(Math.max(F,0)),df2));
+    const adj=1-(1-st.r2)*(N-1)/df2;
+    $('rsqAdj').textContent=de(adj,2);
+    $('rsqF').textContent=de(F,1);
+    $('rsqP').textContent=pF<0.001?'< 0,1 %':de(pF*100,1)+' %';
+    $('rsqAnova').innerHTML=
+      `<tr><td>Regression (erklärt)</td><td class="num">${de(st.sse,1)}</td><td class="num">1</td><td class="num">${de(msE,1)}</td></tr>`+
+      `<tr><td>Residuen (Rest)</td><td class="num">${de(st.ssr,1)}</td><td class="num">${df2}</td><td class="num">${de(msR,2)}</td></tr>`+
+      `<tr style="font-weight:700"><td>Gesamt</td><td class="num">${de(st.sst,1)}</td><td class="num">${N-1}</td><td class="num">—</td></tr>`;
+    draw(pts,st);
+  }
+  pairControl($('rsqStrength'),$('rsqStrengthN'),v=>{state.strength=v;render();});
+  $('rsqTotal').addEventListener('change',e=>{state.total=e.target.checked;render();});
+  $('rsqNew').addEventListener('click',()=>{regen();render();});
+  regen();
+  window.Pages=window.Pages||{};
+  window.Pages.rsq={onShow(){render();}};
+  window.addEventListener('resize',()=>{if(document.getElementById('page-rsq').classList.contains('active'))render();});
+})();
+
+/* ---------------- t-Verteilung (für Regressions-Inferenz) ---------------- */
+const lgamma=(function(){
+  const c=[76.18009172947146,-86.50532032941677,24.01409824083091,-1.231739572450155,0.1208650973866179e-2,-0.5395239384953e-5];
+  return function(x){let y=x,t=x+5.5;t-=(x+0.5)*Math.log(t);let s=1.000000000190015;for(let j=0;j<6;j++)s+=c[j]/++y;return -t+Math.log(2.5066282746310005*s/x);};
+})();
+function tPdf(x,v){ return Math.exp(lgamma((v+1)/2)-lgamma(v/2))/Math.sqrt(v*Math.PI)*Math.pow(1+x*x/v,-(v+1)/2); }
+function tCdf(x,v){ // Simpson-Integration von 0 bis |x|
+  const ax=Math.min(Math.abs(x),80), n=200, h=ax/n; let s=tPdf(0,v)+tPdf(ax,v);
+  for(let i=1;i<n;i++) s+=tPdf(i*h,v)*(i%2?4:2);
+  const half=s*h/3; return x>=0?0.5+half:0.5-half;
+}
+function tInv975(v){ let lo=1,hi=15; for(let i=0;i<60;i++){const m=(lo+hi)/2; if(tCdf(m,v)<0.975)lo=m;else hi=m;} return (lo+hi)/2; }
+
+/* ================================================= REGINF module (Lektion 4) */
+(function(){
+  const cv=$('cvReginf'), holder=$('riHolder');
+  const M=40, state={beta:0.4, sig:1, n:25};
+  let bg=[], main=null;
+  function gauss(){let u=0,v=0;while(u===0)u=Math.random();while(v===0)v=Math.random();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);}
+  function sample(){
+    const n=state.n, xs=[], ys=[];
+    for(let i=0;i<n;i++){const x=-2.5+5*i/(n-1)+gauss()*0.12; xs.push(x); ys.push(state.beta*x+state.sig*gauss());}
+    let mx=0,my=0; for(let i=0;i<n;i++){mx+=xs[i];my+=ys[i];} mx/=n;my/=n;
+    let sxx=0,sxy=0; for(let i=0;i<n;i++){sxx+=(xs[i]-mx)**2;sxy+=(xs[i]-mx)*(ys[i]-my);}
+    const b=sxy/sxx, a=my-b*mx;
+    let ssr=0; for(let i=0;i<n;i++){const e=ys[i]-(a+b*xs[i]); ssr+=e*e;}
+    const s2=ssr/(n-2), se=Math.sqrt(s2/sxx);
+    return {xs,ys,a,b,se,df:n-2};
+  }
+  function regen(){ bg=[]; for(let i=0;i<M;i++)bg.push(sample()); main=sample(); }
+  function draw(){
+    const f=fitCanvas(cv,holder,W=>Math.min(320,Math.max(240,Math.round(W*0.6)))); if(!f)return;
+    const {g,W,H}=f, pad=22, pW=W-2*pad, pH=H-2*pad, D=3.2, X=x=>pad+(x+D)/(2*D)*pW, Y=y=>pad+pH-(y+D)/(2*D)*pH;
+    g.strokeStyle='#e8e4da';g.lineWidth=1;g.beginPath();g.moveTo(X(-D),Y(0));g.lineTo(X(D),Y(0));g.stroke();g.beginPath();g.moveTo(X(0),Y(-D));g.lineTo(X(0),Y(D));g.stroke();
+    g.strokeStyle='#cfc9ba';g.lineWidth=1;g.globalAlpha=0.75;
+    bg.forEach(s=>{g.beginPath();g.moveTo(X(-D),Y(s.a-s.b*D));g.lineTo(X(D),Y(s.a+s.b*D));g.stroke();});
+    g.globalAlpha=1;
+    g.strokeStyle='#b23b2e';g.setLineDash([6,4]);g.lineWidth=2;g.beginPath();g.moveTo(X(-D),Y(-state.beta*D));g.lineTo(X(D),Y(state.beta*D));g.stroke();g.setLineDash([]);
+    main.xs.forEach((x,i)=>{g.beginPath();g.arc(X(x),Y(main.ys[i]),2.8,0,Math.PI*2);g.fillStyle='rgba(138,133,120,0.85)';g.fill();});
+    g.strokeStyle='#2f4858';g.lineWidth=2.4;g.beginPath();g.moveTo(X(-D),Y(main.a-main.b*D));g.lineTo(X(D),Y(main.a+main.b*D));g.stroke();
+  }
+  function render(){
+    const t=main.b/main.se, p=2*(1-tCdf(Math.abs(t),main.df));
+    const q=tInv975(main.df), lo=main.b-q*main.se, hi=main.b+q*main.se;
+    $('riBig').textContent=(p<0.001?'< 0,1':de(p*100,1))+' %';
+    $('riCap').textContent = p<0.05
+      ? 'ist der p-Wert des t-Tests – die Steigung deiner Stichprobe ist signifikant von null verschieden.'
+      : 'ist der p-Wert des t-Tests – die Daten reichen nicht, um einen Zusammenhang zu belegen.';
+    $('riBhat').textContent=de(main.b,3);
+    $('riSE').textContent=de(main.se,3);
+    $('riT').textContent=de(t,2);
+    $('riCI').textContent=de(lo,2)+' … '+de(hi,2);
+    let cnt=0; bg.forEach(s=>{ if(Math.abs(s.b/s.se)>q) cnt++; });
+    $('riPow').textContent=cnt+' / '+M;
+    $('riNote').textContent=`Aktuelle Stichprobe: |t| = ${de(Math.abs(t),2)} ${Math.abs(t)>q?'>':'≤'} ${de(q,2)} (kritischer Wert bei df = ${main.df}) — H₀ wird ${Math.abs(t)>q?'verworfen':'nicht verworfen'}. Der empirische Power-Zähler rechts zeigt, wie oft das bei ${M} Wiederholungen desselben Experiments gelingt.`;
+    draw();
+  }
+  pairControl($('riBeta'),$('riBetaN'),v=>{state.beta=v;regen();render();});
+  pairControl($('riSig'),$('riSigN'),v=>{state.sig=v;regen();render();});
+  pairControl($('riN'),$('riNN'),v=>{state.n=Math.round(v);regen();render();});
+  $('riNew').addEventListener('click',()=>{regen();render();});
+  regen();
+  window.Pages=window.Pages||{};
+  window.Pages.reginf={onShow(){render();}};
+  window.addEventListener('resize',()=>{if(document.getElementById('page-reginf').classList.contains('active'))draw();});
+})();
+
+/* ================================================= MULTIREG module (Lektion 5) */
+(function(){
+  const cv=$('cvMulti'), holder=$('muHolder');
+  const N=400, state={b1:0.3, b2:0.8, rho:0.6};
+  let u1=[], u2=[], ee=[];
+  function gauss(){let u=0,v=0;while(u===0)u=Math.random();while(v===0)v=Math.random();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);}
+  function regen(){ u1=[];u2=[];ee=[]; for(let i=0;i<N;i++){u1.push(gauss());u2.push(gauss());ee.push(gauss());} }
+  function fit(){
+    const r=state.rho, x1=u1, x2=u1.map((v,i)=>r*v+Math.sqrt(1-r*r)*u2[i]);
+    const y=x1.map((v,i)=>state.b1*v+state.b2*x2[i]+0.5*ee[i]);
+    const mean=a=>a.reduce((s,v)=>s+v,0)/a.length;
+    const m1=mean(x1),m2=mean(x2),my=mean(y);
+    let s11=0,s22=0,s12=0,s1y=0,s2y=0;
+    for(let i=0;i<N;i++){const d1=x1[i]-m1,d2=x2[i]-m2,dy=y[i]-my;s11+=d1*d1;s22+=d2*d2;s12+=d1*d2;s1y+=d1*dy;s2y+=d2*dy;}
+    const simple=s1y/s11;
+    const det=s11*s22-s12*s12;
+    const b1=(s22*s1y-s12*s2y)/det, b2m=(s11*s2y-s12*s1y)/det;
+    const b0=my-b1*m1-b2m*m2;
+    let ssr=0; for(let i=0;i<N;i++){const e=y[i]-(b0+b1*x1[i]+b2m*x2[i]); ssr+=e*e;}
+    const s2=ssr/(N-3), se1=Math.sqrt(s2*s22/det);
+    const r12sq=(s12*s12)/(s11*s22), vif=1/(1-r12sq);
+    return {simple,b1,b2m,se1,vif};
+  }
+  function draw(ft){
+    const f=fitCanvas(cv,holder,W=>Math.min(300,Math.max(220,Math.round(W*0.5)))); if(!f)return;
+    const {g,W,H}=f, padL=44,padR=16,padT=18,padB=32, pW=W-padL-padR, pH=H-padT-padB;
+    const vals=[ft.simple,ft.b1,state.b1];
+    const lim=Math.max(0.4,...vals.map(v=>Math.abs(v)))*1.25;
+    const Y=v=>padT+pH/2-(v/lim)*(pH/2);
+    g.font='11px "Segoe UI",sans-serif';g.textAlign='right';g.textBaseline='middle';
+    for(const v of [-lim*0.8,-lim*0.4,0,lim*0.4,lim*0.8]){const y=Y(v);g.strokeStyle=v===0?'#c9c3b5':'#eceadf';g.beginPath();g.moveTo(padL,y);g.lineTo(W-padR,y);g.stroke();g.fillStyle='#8a8578';g.fillText(de(v,2),padL-7,y);}
+    const barW=pW*0.22, x1=padL+pW*0.16, x2=padL+pW*0.62;
+    const bar=(x,v,col,lab)=>{const y0=Y(0),y1=Y(v);g.fillStyle=col;g.fillRect(x,Math.min(y0,y1),barW,Math.abs(y0-y1));
+      g.fillStyle='#1c1b19';g.font='700 14px Georgia,serif';g.textAlign='center';g.textBaseline='bottom';g.fillText(de(v,2),x+barW/2,Math.min(y0,y1)-4);
+      g.fillStyle='#68655d';g.font='11.5px "Segoe UI",sans-serif';g.textBaseline='top';g.fillText(lab,x+barW/2,padT+pH+8);};
+    bar(x1,ft.simple,'#c98a29','nur x₁');
+    bar(x2,ft.b1,'#2f4858','x₁ und x₂');
+    g.strokeStyle='#b23b2e';g.setLineDash([6,4]);g.lineWidth=2;g.beginPath();g.moveTo(padL,Y(state.b1));g.lineTo(W-padR,Y(state.b1));g.stroke();g.setLineDash([]);
+    g.fillStyle='#b23b2e';g.font='600 11px "Segoe UI",sans-serif';g.textAlign='left';g.textBaseline='top';g.fillText('wahres β₁ = '+de(state.b1,2),padL+4,Y(state.b1)+5);
+  }
+  function render(){
+    const ft=fit();
+    $('muBig').textContent=de(ft.simple,2);
+    $('muTrue').textContent=de(state.b1,2);
+    $('muSimple').textContent=de(ft.simple,2);
+    $('muMulti').textContent=de(ft.b1,2);
+    $('muBias').textContent=de(ft.simple-state.b1,2);
+    $('muSE').textContent=de(ft.se1,3);
+    $('muVif').textContent=de(ft.vif,1);
+    const off=Math.abs(ft.simple-state.b1);
+    $('muCap').textContent = off<0.07
+      ? 'schätzt das einfache Modell für β₁ – hier fast unverzerrt, weil die vergessene Variable kaum stört.'
+      : 'schätzt das einfache Modell für β₁ – deutlich daneben, weil der Effekt der vergessenen Variable x₂ mit eingerechnet wird.';
+    draw(ft);
+  }
+  pairControl($('muB1'),$('muB1N'),v=>{state.b1=v;render();});
+  pairControl($('muB2'),$('muB2N'),v=>{state.b2=v;render();});
+  pairControl($('muRho'),$('muRhoN'),v=>{state.rho=v;render();});
+  $('muNew').addEventListener('click',()=>{regen();render();});
+  regen();
+  window.Pages=window.Pages||{};
+  window.Pages.multireg={onShow(){render();}};
+  window.addEventListener('resize',()=>{if(document.getElementById('page-multireg').classList.contains('active'))render();});
+})();
+
+/* ================================================= DIAG module (Lektion 6) */
+(function(){
+  const cvT=$('cvDiagTop'), hT=$('dgTopHolder'), cvB=$('cvDiagBot'), hB=$('dgBotHolder'), cvQ=$('cvDiagQQ'), hQ=$('dgQQHolder');
+  const N=60, state={sc:'ok'};
+  let base=[];
+  function gauss(){let u=0,v=0;while(u===0)u=Math.random();while(v===0)v=Math.random();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);}
+  function regen(){
+    base=[]; let prev=gauss(); const rho=0.88, sd=Math.sqrt(1-rho*rho);
+    for(let i=0;i<N;i++){
+      prev=rho*prev+sd*gauss();
+      base.push({x:-3+6*i/(N-1)+gauss()*0.06, e:gauss(), ar:prev, h:gauss()*(Math.random()<0.13?3.6:0.55)});
+    }
+  }
+  const SC={
+    ok:     {hint:'Die Punkte streuen gleichmäßig um eine Gerade – das lineare Modell ist angemessen.',
+             big:'✓', cap:'Das Residuenbild ist strukturlos – kein Hinweis auf verletzte Annahmen.',
+             y:p=>0.5*p.x+0.55*p.e},
+    nonlin: {hint:'Der wahre Zusammenhang ist gekrümmt. Die Gerade unterschätzt die Ränder und überschätzt die Mitte.',
+             big:'⌒', cap:'Der Bogen im Residuenplot verrät Nichtlinearität – die Annahme „Linearität" ist verletzt.',
+             y:p=>0.28*p.x*p.x+0.25*p.x-0.8+0.35*p.e},
+    hetero: {hint:'Die Streuung der Fehler wächst mit x – links präzise, rechts verrauscht.',
+             big:'◁', cap:'Der Trichter zeigt Heteroskedastizität – Standardfehler und t-Tests aus Lektion 4 sind dann unzuverlässig.',
+             y:p=>0.5*p.x+0.16*(p.x+3.3)*p.e},
+    autokorr:{hint:'Die Fehler folgen einem AR(1)-Prozess: Jeder erbt einen Teil des vorigen. Der untere Plot wechselt auf die Beobachtungsreihenfolge.',
+             big:'∿', cap:'Lange Wellen über und unter der Nulllinie zeigen Autokorrelation – die Standardfehler sind dann zu klein.',
+             y:p=>0.5*p.x+0.8*p.ar},
+    outlier:{hint:'Zwei weit abliegende Punkte am rechten Rand ziehen die Gerade zu sich.',
+             big:'!', cap:'Einzelne einflussreiche Ausreißer kippen die Gerade – solche Punkte einzeln prüfen, nicht still löschen.',
+             y:null},
+    schwer: {hint:'Die Fehler stammen aus einer Verteilung mit schweren Rändern: meist klein, gelegentlich extrem.',
+             big:'S', cap:'Das S-förmige Abknicken an beiden Enden des QQ-Plots verrät nicht normalverteilte Fehler.',
+             y:p=>0.5*p.x+0.5*p.h}
+  };
+  function data(){
+    if(state.sc!=='outlier') return base.map(p=>({x:p.x, y:SC[state.sc].y(p)}));
+    const pts=base.slice(0,N-2).map(p=>({x:p.x, y:0.5*p.x+0.5*p.e}));
+    pts.push({x:2.55,y:-2.4},{x:2.85,y:-2.1});
+    return pts;
+  }
+  function fit(pts){
+    const n=pts.length; let mx=0,my=0; pts.forEach(p=>{mx+=p.x;my+=p.y;}); mx/=n;my/=n;
+    let sxx=0,sxy=0; pts.forEach(p=>{sxx+=(p.x-mx)**2;sxy+=(p.x-mx)*(p.y-my);});
+    const b=sxy/sxx; return {a:my-b*mx,b};
+  }
+  function drawTop(pts,ft){
+    const f=fitCanvas(cvT,hT,W=>Math.min(220,Math.max(160,Math.round(W*0.4)))); if(!f)return;
+    const {g,W,H}=f, pad=16, pW=W-2*pad, pH=H-2*pad;
+    const ys=pts.map(p=>p.y), lo=Math.min(...ys)-0.4, hi=Math.max(...ys)+0.4;
+    const X=x=>pad+(x+3.2)/6.4*pW, Y=y=>pad+pH-(y-lo)/(hi-lo)*pH;
+    g.strokeStyle='#eceadf';g.lineWidth=1;g.beginPath();g.moveTo(pad,Y(0));g.lineTo(W-pad,Y(0));g.stroke();
+    g.strokeStyle='#2f4858';g.lineWidth=2;g.beginPath();g.moveTo(X(-3.2),Y(ft.a-3.2*ft.b));g.lineTo(X(3.2),Y(ft.a+3.2*ft.b));g.stroke();
+    pts.forEach(p=>{g.beginPath();g.arc(X(p.x),Y(p.y),2.8,0,Math.PI*2);g.fillStyle='rgba(138,133,120,0.9)';g.fill();});
+  }
+  function drawBot(pts,ft){
+    const f=fitCanvas(cvB,hB,W=>Math.min(200,Math.max(140,Math.round(W*0.36)))); if(!f)return;
+    const {g,W,H}=f, pad=16, pW=W-2*pad, pH=H-2*pad;
+    const res=pts.map(p=>({f:ft.a+ft.b*p.x, e:p.y-(ft.a+ft.b*p.x)}));
+    const byIndex=(state.sc==='autokorr');
+    const fs=res.map(r=>r.f), flo=Math.min(...fs), fhi=Math.max(...fs);
+    const lim=Math.max(...res.map(r=>Math.abs(r.e)))*1.15+1e-9;
+    const X=byIndex ? (v,i)=>pad+i/(res.length-1)*pW : v=>pad+(v-flo)/(fhi-flo||1)*pW;
+    const Y=e=>pad+pH/2-(e/lim)*(pH/2);
+    g.strokeStyle='#c9c3b5';g.lineWidth=1.2;g.beginPath();g.moveTo(pad,Y(0));g.lineTo(W-pad,Y(0));g.stroke();
+    if(byIndex){
+      g.strokeStyle='rgba(178,59,46,0.55)';g.lineWidth=1.3;g.beginPath();
+      res.forEach((r,i)=>{const px=X(r.f,i),py=Y(r.e);i?g.lineTo(px,py):g.moveTo(px,py);});g.stroke();
+    }
+    res.forEach((r,i)=>{g.beginPath();g.arc(X(r.f,i),Y(r.e),2.8,0,Math.PI*2);g.fillStyle='rgba(178,59,46,0.75)';g.fill();});
+  }
+  function drawQQ(pts,ft){
+    const f=fitCanvas(cvQ,hQ,W=>Math.min(190,Math.max(130,Math.round(W*0.34)))); if(!f)return;
+    const {g,W,H}=f, pad=16, pW=W-2*pad, pH=H-2*pad;
+    const es=pts.map(p=>p.y-(ft.a+ft.b*p.x));
+    const n=es.length, mean=es.reduce((s,v)=>s+v,0)/n;
+    const sd=Math.sqrt(es.reduce((s,v)=>s+(v-mean)**2,0)/n)||1;
+    const sorted=[...es].sort((a,b)=>a-b).map(v=>(v-mean)/sd);
+    const lim=Math.max(3, Math.abs(sorted[0]), Math.abs(sorted[n-1]))*1.05;
+    const X=v=>pad+(v+lim)/(2*lim)*pW, Y=v=>pad+pH-(v+lim)/(2*lim)*pH;
+    g.strokeStyle='#c9c3b5';g.setLineDash([5,4]);g.lineWidth=1.4;
+    g.beginPath();g.moveTo(X(-lim),Y(-lim));g.lineTo(X(lim),Y(lim));g.stroke();g.setLineDash([]);
+    sorted.forEach((v,i)=>{const q=normInv((i+0.5)/n);g.beginPath();g.arc(X(q),Y(v),2.6,0,Math.PI*2);g.fillStyle='rgba(47,72,88,0.8)';g.fill();});
+    g.fillStyle='#8a8578';g.font='10.5px "Segoe UI",sans-serif';g.textAlign='center';g.textBaseline='bottom';
+    g.fillText('theoretische Quantile',pad+pW/2,H-2);
+  }
+  function render(){
+    const pts=data(), ft=fit(pts), sc=SC[state.sc];
+    $('dgHint').textContent=sc.hint;
+    $('dgBig').textContent=sc.big;
+    $('dgCap').textContent=sc.cap;
+    let my=0; pts.forEach(p=>my+=p.y); my/=pts.length;
+    let sst=0,ssr=0; pts.forEach(p=>{const yh=ft.a+ft.b*p.x; sst+=(p.y-my)**2; ssr+=(p.y-yh)**2;});
+    $('dgR2').textContent=de(sst>0?1-ssr/sst:0,2);
+    $('dgB').textContent=de(ft.b,2);
+    const es=pts.map(p=>p.y-(ft.a+ft.b*p.x));
+    let num=0,den=0; es.forEach((e,i)=>{den+=e*e; if(i) num+=(e-es[i-1])**2;});
+    $('dgDW').textContent=de(den>0?num/den:0,2);
+    $('dgBotLabel').textContent = state.sc==='autokorr'
+      ? 'Residuen in Beobachtungsreihenfolge' : 'Residuen gegen vorhergesagte Werte';
+    drawTop(pts,ft); drawBot(pts,ft); drawQQ(pts,ft);
+  }
+  $('dgPresets').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;state.sc=b.dataset.s;document.querySelectorAll('#dgPresets .chip').forEach(c=>c.classList.toggle('on',c===b));render();});
+  $('dgNew').addEventListener('click',()=>{regen();render();});
+  regen();
+  window.Pages=window.Pages||{};
+  window.Pages.diag={onShow(){render();}};
+  window.addEventListener('resize',()=>{if(document.getElementById('page-diag').classList.contains('active'))render();});
+})();
+
+/* ================================================= IV module (Lektion 7) */
+(function(){
+  const cv=$('cvIv'), holder=$('ivHolder');
+  const N=1500, state={beta:0.4, conf:0.8, pi:0.7};
+  let z=[],u=[],ex=[],ey=[];
+  function gauss(){let a=0,b=0;while(a===0)a=Math.random();while(b===0)b=Math.random();return Math.sqrt(-2*Math.log(a))*Math.cos(2*Math.PI*b);}
+  function regen(){ z=[];u=[];ex=[];ey=[]; for(let i=0;i<N;i++){z.push(gauss());u.push(gauss());ex.push(gauss());ey.push(gauss());} }
+  function fit(){
+    const x=[],y=[];
+    for(let i=0;i<N;i++){ const xi=state.pi*z[i]+state.conf*u[i]+0.5*ex[i]; x.push(xi); y.push(state.beta*xi+state.conf*u[i]+0.5*ey[i]); }
+    const mean=a=>a.reduce((s,v)=>s+v,0)/a.length;
+    const mx=mean(x),my=mean(y),mz=mean(z);
+    let sxx=0,sxy=0,szx=0,szy=0,szz=0;
+    for(let i=0;i<N;i++){const dx=x[i]-mx,dy=y[i]-my,dz=z[i]-mz;sxx+=dx*dx;sxy+=dx*dy;szx+=dz*dx;szy+=dz*dy;szz+=dz*dz;}
+    const ols=sxy/sxx, iv=szy/szx;
+    const p1=szx/szz, p0=mx-p1*mz;
+    let ssr=0; for(let i=0;i<N;i++){const e=x[i]-(p0+p1*z[i]); ssr+=e*e;}
+    const sep=Math.sqrt((ssr/(N-2))/szz), F=(p1/sep)**2;
+    return {ols,iv,F};
+  }
+  function draw(ft){
+    const f=fitCanvas(cv,holder,W=>Math.min(300,Math.max(220,Math.round(W*0.5)))); if(!f)return;
+    const {g,W,H}=f, padL=44,padR=16,padT=18,padB=32, pW=W-padL-padR, pH=H-padT-padB;
+    const lim=Math.max(0.5,Math.abs(ft.ols),Math.abs(ft.iv),Math.abs(state.beta))*1.3;
+    const Y=v=>padT+pH/2-(v/lim)*(pH/2);
+    g.font='11px "Segoe UI",sans-serif';g.textAlign='right';g.textBaseline='middle';
+    for(const v of [-lim*0.8,-lim*0.4,0,lim*0.4,lim*0.8]){const y=Y(v);g.strokeStyle=v===0?'#c9c3b5':'#eceadf';g.beginPath();g.moveTo(padL,y);g.lineTo(W-padR,y);g.stroke();g.fillStyle='#8a8578';g.fillText(de(v,2),padL-7,y);}
+    const barW=pW*0.22, x1=padL+pW*0.16, x2=padL+pW*0.62;
+    const bar=(x,v,col,lab)=>{const y0=Y(0),y1=Y(v);g.fillStyle=col;g.fillRect(x,Math.min(y0,y1),barW,Math.abs(y0-y1));
+      g.fillStyle='#1c1b19';g.font='700 14px Georgia,serif';g.textAlign='center';g.textBaseline='bottom';g.fillText(de(v,2),x+barW/2,Math.min(y0,y1)-4);
+      g.fillStyle='#68655d';g.font='11.5px "Segoe UI",sans-serif';g.textBaseline='top';g.fillText(lab,x+barW/2,padT+pH+8);};
+    bar(x1,ft.ols,'#c98a29','OLS');
+    bar(x2,ft.iv,'#2f4858','IV (2SLS)');
+    g.strokeStyle='#b23b2e';g.setLineDash([6,4]);g.lineWidth=2;g.beginPath();g.moveTo(padL,Y(state.beta));g.lineTo(W-padR,Y(state.beta));g.stroke();g.setLineDash([]);
+    g.fillStyle='#b23b2e';g.font='600 11px "Segoe UI",sans-serif';g.textAlign='left';g.textBaseline='top';g.fillText('wahres β = '+de(state.beta,2),padL+4,Y(state.beta)+5);
+  }
+  function render(){
+    const ft=fit();
+    $('ivBig').textContent=de(ft.iv,2);
+    $('ivTrue').textContent=de(state.beta,2);
+    $('ivOls').textContent=de(ft.ols,2);
+    $('ivIv').textContent=de(ft.iv,2);
+    $('ivF').textContent=ft.F>=1000?Math.round(ft.F).toLocaleString('de-DE'):de(ft.F,1);
+    $('ivCap').textContent = ft.F<10
+      ? 'schätzt die IV-Methode für β – aber Vorsicht: Die erste Stufe ist schwach (F < 10), die Schätzung ist unzuverlässig.'
+      : (Math.abs(ft.ols-state.beta)>0.1
+         ? 'schätzt die Instrumentvariablen-Methode für β – sie trifft den wahren Wert, während OLS systematisch danebenliegt.'
+         : 'schätzt die Instrumentvariablen-Methode für β. Ohne Konfundierung liefert auch OLS den richtigen Wert, nur präziser.');
+    draw(ft);
+  }
+  pairControl($('ivBeta'),$('ivBetaN'),v=>{state.beta=v;render();});
+  pairControl($('ivConf'),$('ivConfN'),v=>{state.conf=v;render();});
+  pairControl($('ivPi'),$('ivPiN'),v=>{state.pi=v;render();});
+  $('ivNew').addEventListener('click',()=>{regen();render();});
+  regen();
+  window.Pages=window.Pages||{};
+  window.Pages.iv={onShow(){render();}};
+  window.addEventListener('resize',()=>{if(document.getElementById('page-iv').classList.contains('active'))render();});
+})();
+
 /* ================================================= Router */
 (function(){
   let current='bayes';
@@ -2009,6 +3131,21 @@ function normInv(p){
     if(mod&&mod.onShow) mod.onShow();
   }
   document.querySelectorAll('.nav-item[data-page]').forEach(n=>n.addEventListener('click',()=>show(n.dataset.page)));
+})();
+
+/* ============ Textsatz: lange Panels zweispaltig, kurze einspaltig ============ */
+(function(){
+  function apply(){
+    const wide=window.innerWidth>=1080;
+    document.querySelectorAll('.formula').forEach(f=>{
+      let chars=0;
+      f.querySelectorAll(':scope > p.prose').forEach(p=>{chars+=p.textContent.length;});
+      f.classList.toggle('twocol', wide && chars>380);
+    });
+  }
+  apply();
+  let t=null;
+  window.addEventListener('resize',()=>{clearTimeout(t);t=setTimeout(apply,120);});
 })();
 </script>
 </body>
