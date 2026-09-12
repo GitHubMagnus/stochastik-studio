@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Kelly Studio · Positionsgrößen verstehen und berechnen</title>
+  <meta name="description" content="Kelly-Rechner für Einzelpositionen und Portfolios: Szenarien, Korrelationen, Sensitivität, Simulation und mathematische Herleitung.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%230b2238'/%3E%3Ctext x='10' y='29' font-size='30' fill='%2364dfd5' font-family='serif'%3EK%3C/text%3E%3C/svg%3E">
+  <style>
+:root{color-scheme:light;--bg:#f0f4f8;--paper:#fff;--ink:#102d45;--muted:#53677a;--line:#d6e0e8;--navy:#0c2439;--teal:#087e82;--teal-soft:#e5f6f3;--blue:#3468ca;--amber:#a6610b;--red:#ba3b45;--shadow:0 4px 20px #12345005;--radius:14px;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:16px}
+*{box-sizing:border-box}body{margin:0;color:var(--ink);background:var(--bg);line-height:1.55}button,input,select{font:inherit}button,a,input,select,summary{-webkit-tap-highlight-color:transparent}button,a,summary{touch-action:manipulation}a{color:var(--teal);text-underline-offset:3px}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.5}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #52b4cf;outline-offset:3px}[hidden]{display:none!important}h1,h2,h3,p{margin:0}h1{font-size:clamp(1.65rem,3vw,2.5rem);line-height:1.2;letter-spacing:-.035em;font-weight:650}h2{font-size:1.14rem;line-height:1.35;font-weight:650;letter-spacing:-.015em}h3{font-size:1rem}p+p{margin-top:.9rem}.topbar{background:var(--navy);color:#fff;padding:19px max(24px,calc((100vw - 1320px)/2));display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:12px;letter-spacing:.14em;font-size:.9rem}.brand b{font-weight:400;color:#8db0c8}.brand-mark{font-family:Georgia,serif;font-size:1.8rem;line-height:1;background:#64dfd5;color:var(--navy);padding:4px 10px;border-radius:5px}.tag{font-size:.8rem;color:#b2c7d7}.title-row{display:flex;justify-content:space-between;gap:24px;align-items:center;margin:32px 0 24px}.eyebrow{font-size:.74rem;font-weight:700;letter-spacing:.14em;color:var(--teal);margin-bottom:7px}.intro{font-size:.86rem;color:var(--muted)}main{max-width:1376px;padding:0 28px;margin:0 auto}.tabs{display:flex;gap:5px;border-bottom:1px solid var(--line);margin-bottom:20px;flex-wrap:wrap}.tabs button{border:0;background:transparent;padding:14px 18px 15px;color:var(--muted);font-size:.78rem;display:flex;gap:10px;align-items:center;border-bottom:3px solid transparent;margin-bottom:-1px}.tabs button span{font-size:.95rem;font-weight:600}.tabs button[aria-current]{color:var(--teal);border-bottom-color:var(--teal)}.tabs button:hover{background:#e4edf3}.global-controls{display:flex;align-items:center;gap:26px;margin:0 0 24px;padding:18px 22px;background:#e5edf4;border-radius:10px}.global-controls label{max-width:260px;flex:1}.global-controls p{margin-left:auto;font-size:.86rem;color:var(--ink)}.global-controls p span{color:var(--muted)}label{display:flex;flex-direction:column;gap:7px;font-size:.86rem;font-weight:500;min-width:0}input,select{width:100%;min-width:0;border:1px solid #bacbd8;background:var(--paper);border-radius:7px;padding:10px 11px;color:var(--ink);min-height:43px;font-size:1rem;font-variant-numeric:tabular-nums}input:hover,select:hover{border-color:#688fa5}input[type=range]{padding:0;border:0;accent-color:var(--teal);background:transparent;min-height:30px}.panel{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:23px;box-shadow:var(--shadow);min-width:0}.work-grid{display:grid;grid-template-columns:minmax(300px,370px) minmax(0,1fr);gap:22px;align-items:start}.input-panel{padding:24px}.section-title{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:17px}.section-title>span{font-size:.78rem;color:var(--muted);text-align:right}.helper{font-size:.82rem;color:var(--muted);line-height:1.6;margin:12px 0}.fields{display:grid;gap:17px}.field-pair{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field-pair label{font-size:.82rem}details{border-top:1px solid var(--line);margin-top:20px;padding-top:17px}summary{cursor:pointer;font-size:.89rem;font-weight:600;margin-bottom:15px}summary::marker{color:var(--teal)}.result-stack{display:grid;gap:19px}.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.metric{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:18px 19px;min-width:0}.metric.accent{background:var(--navy);color:#fff;border-color:var(--navy)}.metric-label{font-size:.79rem;color:var(--muted);margin-bottom:7px}.accent .metric-label{color:#bdd3e2}.metric-value{font-size:clamp(1.5rem,2.5vw,2.3rem);font-weight:650;letter-spacing:-.045em;line-height:1.2;font-variant-numeric:tabular-nums}.metric-sub{font-size:.77rem;margin-top:9px;color:var(--muted)}.accent .metric-sub{color:#9be3d9}.breakdown{display:grid;grid-template-columns:1fr 1fr;gap:0 24px}.stat{padding:12px 0;border-bottom:1px solid #e6edf2;display:flex;justify-content:space-between;gap:14px;align-items:baseline;font-size:.86rem}.stat strong{font-variant-numeric:tabular-nums;font-size:.96rem;white-space:nowrap}.stat span{color:var(--muted)}.note{font-size:.85rem;color:var(--muted);margin-top:16px;line-height:1.65;padding:12px 14px;border-left:3px solid var(--teal);background:#f1f8f9}.error{padding:16px 18px;background:#fff0f1;border:1px solid #e2b3b7;color:#8b2531;border-radius:10px;margin-bottom:15px;font-size:.95rem}.chart{min-width:0;position:relative;width:100%;margin-top:6px}.chart svg{display:block;width:100%;overflow:visible}.chart .axis{font-size:12px;fill:var(--muted)}.chart .axis-title{font-size:12px;fill:var(--ink)}.chart-legend{display:flex;gap:16px;flex-wrap:wrap;margin:3px 0 10px;font-size:.78rem;color:var(--muted)}.legend-item{display:inline-flex;align-items:center;gap:7px}.swatch{display:inline-block;width:18px;height:3px;border-radius:2px}.chart-readout{font-size:.78rem;color:var(--muted);min-height:22px;margin-top:5px;font-variant-numeric:tabular-nums}.probe{border-top:1px solid var(--line);padding-top:15px;margin-top:10px}.probe label{display:flex;flex-direction:row;justify-content:space-between;font-size:.87rem}.probe output{font-variant-numeric:tabular-nums;color:var(--teal);font-weight:700}.probe p{font-size:.85rem;color:var(--muted)}.secondary{margin-top:23px}.simulation-panel{margin:23px 0}.simulation-controls{display:grid;grid-template-columns:repeat(3,1fr) auto;align-items:end;gap:16px;margin-top:20px}.primary{color:#fff;background:var(--teal);border:1px solid var(--teal);border-radius:7px;padding:10px 20px;min-height:45px;font-weight:600;font-size:.91rem}.primary:hover{background:#05666b}.secondary-button{border:1px solid #b7ced8;border-radius:7px;padding:8px 14px;min-height:40px;color:var(--teal);background:#f8fcfd;font-size:.86rem}.secondary-button:hover{background:var(--teal-soft)}.table-wrap{overflow-x:auto;max-width:100%;margin-top:14px}table{border-collapse:collapse;width:100%;font-size:.88rem;text-align:left}th{font-weight:600;color:var(--muted);font-size:.8rem;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:bottom}td{padding:12px;border-bottom:1px solid #e5edf3;font-variant-numeric:tabular-nums;vertical-align:middle}th:first-child,td:first-child{padding-left:0}th:last-child,td:last-child{padding-right:0}.input-table{font-size:.84rem}.input-table th{padding:8px 4px;font-size:.74rem}.input-table td{padding:8px 4px}.input-table input{padding:8px 6px;min-height:40px;width:100%}.input-table td:first-child input{min-width:76px}.input-table td:not(:first-child) input{min-width:57px}.input-table .remove{width:28px;min-height:38px;padding:0;border:0;color:var(--muted);background:transparent;font-size:1.2rem}.row-actions{display:flex;align-items:center;gap:14px;justify-content:space-between;margin:13px 0 25px;font-size:.82rem}.asset-table td:first-child{width:27%}.portfolio-controls{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;border-top:1px solid var(--line);padding-top:22px;margin-top:22px}.model-note{margin-top:0;margin-bottom:20px;background:#e6f3f5;color:var(--ink)}.portfolio-grid{display:grid;grid-template-columns:minmax(300px,.8fr) minmax(0,1.2fr);gap:22px;align-items:start}.correlation-table input{width:70px;padding:7px;font-size:.95rem}.correlation-table th,.correlation-table td{padding:7px;font-size:.78rem;min-width:66px}.correlation-table th:first-child{min-width:75px;max-width:110px;overflow-wrap:anywhere}.correlation-table .mirror{color:var(--muted);text-align:center}.alloc-row{display:grid;grid-template-columns:115px 1fr 70px;gap:10px;align-items:center;font-size:.84rem;margin:16px 0}.alloc-track{height:10px;background:#e7eff3;border-radius:3px;overflow:hidden}.alloc-fill{height:100%;background:var(--teal)}.alloc-row.cash .alloc-fill{background:#a7bac8}.alloc-row strong{text-align:right;font-variant-numeric:tabular-nums}.alloc-row span{overflow-wrap:anywhere}.formula{background:#eef4f8;color:var(--ink);border-left:3px solid var(--blue);padding:18px 20px;font-family:Georgia,"Times New Roman",serif;line-height:2;font-size:1.08rem;margin:18px 0;overflow-wrap:anywhere}.reading{max-width:940px;margin:0 auto;padding:40px 48px}.reading h2{font-size:1.55rem;margin-bottom:17px}.reading p,.reading li{line-height:1.85}.reading p{margin-bottom:17px}.reading hr{height:1px;border:0;background:var(--line);margin:34px 0}.reading ol{padding-left:22px}.reading li{padding-left:6px;margin:12px 0}.reading .eyebrow{font-size:.75rem;margin-bottom:9px}.learn{padding-bottom:10px}footer{display:flex;gap:22px;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding:25px 0 32px;margin-top:30px;font-size:.78rem;color:var(--muted);flex-wrap:wrap}.text-button{border:0;background:transparent;color:var(--teal);padding:0;text-decoration:underline;text-underline-offset:3px;font-size:inherit}
+@media(min-width:1400px){.chart-panel{padding:24px 28px}}
+@media(max-width:1050px){.work-grid{grid-template-columns:minmax(270px,330px) minmax(0,1fr)}.metrics{gap:8px}.metric{padding:16px 12px}.metric-value{font-size:1.65rem}.breakdown{grid-template-columns:1fr}.portfolio-grid{grid-template-columns:1fr}.portfolio-grid .metrics{max-width:none}.simulation-controls{grid-template-columns:repeat(3,1fr)}.simulation-controls .primary{grid-column:1/-1}.section-title{flex-wrap:wrap;gap:6px}.section-title>span{text-align:left}}
+@media(max-width:760px){main{padding:0 16px}.topbar{padding:16px}.tag{display:none}.title-row{margin:25px 0 18px;display:block}.intro{margin-top:14px}.tabs{gap:0}.tabs button{flex:1 1 50%;padding:11px 9px;gap:7px;justify-content:flex-start}.tabs button span{font-size:.86rem}.global-controls{padding:16px;gap:15px;flex-wrap:wrap}.global-controls label{min-width:140px;max-width:none}.global-controls p{margin-left:0;flex-basis:100%;font-size:.79rem}.global-controls p br{display:none}.global-controls p span{margin-left:5px}.work-grid{grid-template-columns:1fr}.panel{padding:20px}.metrics{gap:8px}.metric{padding:15px 11px}.metric-label{font-size:.74rem}.metric-value{font-size:1.6rem}.metric-sub{font-size:.72rem}.breakdown{grid-template-columns:1fr 1fr;gap:0 15px}.stat{font-size:.8rem;flex-direction:column;gap:2px}.stat strong{font-size:.95rem}.simulation-controls{grid-template-columns:1fr 1fr;gap:13px}.simulation-controls .primary{grid-column:auto}.portfolio-controls{grid-template-columns:1fr 1fr}.asset-table{min-width:560px}.reading{padding:24px 22px}.reading h2{font-size:1.3rem}.formula{font-size:1rem;padding:14px 13px}.alloc-row{grid-template-columns:90px 1fr 65px}.section-title h2{font-size:1.06rem}}
+@media(max-width:380px){main{padding:0 12px}.panel{padding:17px}.metrics{grid-template-columns:1fr}.metric{display:grid;grid-template-columns:1fr auto;align-items:center;gap:3px 9px}.metric-label{font-size:.81rem}.metric-sub{grid-column:1/-1;margin:0}.metric-value{font-size:1.6rem}.simulation-controls{grid-template-columns:1fr}.portfolio-controls{grid-template-columns:1fr}.breakdown{grid-template-columns:1fr}.stat{flex-direction:row}.global-controls label{min-width:125px}.field-pair{gap:10px}}
+@media(prefers-reduced-motion:no-preference){button,.metric{transition:background-color .15s,border-color .15s}}
+
+</style>
+<style id="kelly-math-css">.formula{overflow:auto;white-space:normal}.formula .katex,.formula math{display:block;min-width:max-content;text-align:center}.formula math{font-family:"Cambria Math","STIX Two Math","Times New Roman",serif;font-size:1.08em;margin:auto}</style>
+</head>
+<body>
+<header class="topbar"><div class="brand"><span class="brand-mark">K</span><span>KELLY <b>STUDIO</b></span></div><span class="tag">Modellieren · verstehen · dimensionieren</span></header>
+<main>
+  <div class="title-row"><div><p class="eyebrow">KAPITALWACHSTUM & RISIKO</p><h1>Die Größe deiner Position zählt.</h1></div><p class="intro">Alle Startwerte sind fiktive Beispiele.<br>Deine Annahmen bestimmen das Ergebnis.</p></div>
+  <nav class="tabs" aria-label="Rechenmodell">
+    <button type="button" data-tab="binary" aria-current="page">01 <span>Einzelposition</span></button>
+    <button type="button" data-tab="scenario">02 <span>Szenarien</span></button>
+    <button type="button" data-tab="portfolio">03 <span>Portfolio</span></button>
+    <button type="button" data-tab="learn">04 <span>Herleitung & Praxis</span></button>
+  </nav>
+  <div class="global-controls" id="global-controls">
+    <label>Verfügbares Anlagekapital (€)<input id="capital" type="number" min="1" max="1000000000000" step="100" value="100000"></label>
+    <label>Kelly-Anteil λ<select id="fraction"><option value="0.25">¼ Kelly · 25 %</option><option value="0.5" selected>½ Kelly · 50 %</option><option value="0.75">¾ Kelly · 75 %</option><option value="1">Full Kelly · 100 %</option></select></label>
+    <p>Long-only · ohne Kredithebel<br><span>Der Rest bleibt in Cash.</span></p>
+  </div>
+
+  <section id="view-binary" class="view" aria-label="Einzelposition berechnen">
+    <div class="work-grid">
+      <aside class="panel input-panel">
+        <div class="section-title"><h2>Deine Wette</h2><span>2 Ausgänge</span></div>
+        <p class="helper">Renditen beziehen sich auf die Position. Alle Angaben gelten für denselben Anlagezeitraum.</p>
+        <div class="fields">
+          <label>Gewinnwahrscheinlichkeit p (%)<input id="b-p" type="number" min="0" max="100" step="0.1" value="55"></label>
+          <div class="field-pair"><label>Gewinnfall +G (%)<input id="b-gain" type="number" min="0.01" max="1000" step="0.1" value="20"></label><label>Verlustfall −L (%)<input id="b-loss" type="number" min="0.01" max="100" step="0.1" value="20"></label></div>
+          <div class="field-pair"><label>Kosten c (% der Position)<input id="b-cost" type="number" min="0" max="20" step="0.01" value="0"></label><label>Cash-Zins r (%)<input id="b-cash" type="number" min="0" max="100" step="0.1" value="0"></label></div>
+          <p class="helper">Kosten für Kauf und Verkauf zusammen, einmal pro Periode; in beiden Ausgängen abgezogen. Bei einer Wette mit vollständigem Einsatzverlust: L = 100 %, G = 100 × (Dezimalquote − 1).</p>
+        </div>
+        <details open><summary>Schätzfehler & Positionsgrenzen</summary><div class="fields">
+          <label>Abschlag auf p (Prozentpunkte)<input id="b-haircut" type="number" min="0" max="100" step="0.5" value="0"></label>
+          <div class="field-pair"><label>Max. Position (% Depot)<input id="b-cap" type="number" min="0" max="100" step="1" value="25"></label><label>Stressbudget (% Depot)<input id="b-budget" type="number" min="0" max="100" step="0.1" value="5"></label></div>
+          <label>Stressverlust der Aktie (%)<input id="b-stress" type="number" min="0" max="100" step="1" value="40"></label>
+          <p class="helper">Der Stressverlust wird mindestens auf L gesetzt. Das Budget begrenzt diesen einzelnen Modellverlust; es garantiert keinen maximalen Drawdown.</p>
+        </div></details>
+        <details><summary>Umrechnung in Stückzahl</summary><label>Einstiegskurs in €<input id="b-price" type="number" min="0.000001" max="1000000000" step="0.01" value="100"></label></details>
+      </aside>
+      <div><div id="b-error" class="error" role="alert" hidden></div><div id="b-results" class="result-stack" aria-live="polite">
+        <div class="metrics" id="b-metrics"></div>
+        <div class="panel result-panel"><div class="section-title"><h2>Vom Depotanteil zum Risiko</h2><span id="b-edge"></span></div><div id="b-breakdown"></div><div id="b-note" class="note"></div></div>
+        <div class="panel chart-panel"><div class="section-title"><h2>Mehr Einsatz ≠ mehr Wachstum</h2><span>Exaktes Zwei-Ausgänge-Modell</span></div><div id="growth-chart" class="chart"></div><div class="probe"><label for="probe">Testposition <output id="probe-value">25 %</output></label><input id="probe" type="range" min="0" max="100" step="0.1" value="25"><p id="probe-detail"></p></div></div>
+      </div></div>
+    </div>
+    <div class="panel chart-panel secondary" id="sensitivity-panel"><div class="section-title"><h2>Wie empfindlich ist die Größe gegenüber p?</h2><span>Gewinn und Verlust unverändert</span></div><div id="sensitivity-chart" class="chart"></div><p class="helper">Die Kurven ändern die angenommene Trefferquote. Der Abschlag verschiebt die Berechnung der geplanten Position zusätzlich nach unten. Das ist eine Sensitivitätsanalyse, kein statistisches Konfidenzintervall.</p></div>
+    <div class="panel simulation-panel">
+      <div class="section-title"><div><p class="eyebrow">WIEDERHOLTE WETTEN</p><h2>Wachstum hat einen Preis.</h2></div><span>1.500 simulierte Pfade · feste Zufallsfolge</span></div>
+      <div class="simulation-controls"><label>Tatsächliches p im Test (%)<input id="sim-p" type="number" min="0" max="100" step="0.1" value="55"></label><label>Anzahl Perioden<input id="sim-periods" type="number" min="1" max="500" step="1" value="200"></label><label>Drawdown-Schwelle (%)<input id="sim-dd" type="number" min="1" max="99" step="1" value="30"></label><button type="button" id="simulate" class="primary">Simulation berechnen</button></div>
+      <p class="helper">Die Positionsgrößen bleiben aus deiner Schätzung abgeleitet. Das tatsächliche p lässt sich separat verschlechtern. Unabhängige, identisch verteilte Ausgänge, konstante Quoten und Rebalancing nach jeder Periode; keine Prognose für Aktienkurse.</p>
+      <p id="sim-status" class="note" role="status">Bereit für den Vergleich von Full Kelly, reduziertem Kelly und deiner geplanten Position.</p>
+      <div id="sim-error" class="error" role="alert" hidden></div><div id="sim-results" hidden><div id="sim-chart" class="chart"></div><div id="sim-table" class="table-wrap"></div><p class="helper">Die Hülle zeigt das 10.–90. Perzentil des Depotwerts deiner Planung zu jedem Zeitpunkt. Sie ist kein simultanes Sicherheitsband. Drawdown = Rückgang vom bis dahin höchsten Depotwert. Monte-Carlo-Häufigkeiten haben Stichprobenfehler; bei 1.500 Pfaden beträgt der maximale Standardfehler einer Häufigkeit etwa 1,3 Prozentpunkte.</p></div>
+    </div>
+  </section>
+
+  <section id="view-scenario" class="view" hidden aria-label="Szenarien berechnen">
+    <div class="work-grid">
+      <aside class="panel input-panel"><div class="section-title"><h2>Eine Aktie, mehrere Ausgänge</h2></div><p class="helper">Alle Szenarien beziehen sich auf denselben zukünftigen Zeitpunkt. Auch einen Kurssturz oder Totalverlust mit eigener Wahrscheinlichkeit eintragen.</p>
+        <div class="table-wrap"><table class="input-table"><thead><tr><th>Szenario</th><th>p (%)</th><th>Rendite (%)</th><th></th></tr></thead><tbody id="scenario-rows"></tbody></table></div><div class="row-actions"><button id="add-scenario" type="button" class="secondary-button">+ Szenario</button><span id="s-total"></span></div>
+        <div class="fields"><div class="field-pair"><label>Kosten (% der Position)<input id="s-cost" type="number" min="0" max="20" step="0.01" value="0"></label><label>Cash-Zins (%)<input id="s-cash" type="number" min="0" max="100" step="0.1" value="0"></label></div><div class="field-pair"><label>Max. Position (% Depot)<input id="s-cap" type="number" min="0" max="100" step="1" value="25"></label><label>Stressbudget (% Depot)<input id="s-budget" type="number" min="0" max="100" step="0.1" value="5"></label></div><label>Zusätzlicher Stressverlust (%)<input id="s-stress" type="number" min="0" max="100" step="1" value="60"></label></div>
+        <p class="helper">Kein automatischer Abschlag auf Wahrscheinlichkeiten. Für vorsichtigere Annahmen die gesamte Verteilung ändern. Die Summe muss 100 % sein.</p>
+      </aside>
+      <div><div id="s-error" class="error" role="alert" hidden></div><div id="s-results" class="result-stack" aria-live="polite"><div id="s-metrics" class="metrics"></div><div class="panel result-panel"><h2>Was die Szenarien für dein Depot bedeuten</h2><div id="s-breakdown"></div><p id="s-note" class="note"></p></div><div class="panel chart-panel"><h2>Wachstum über alle Ausgänge</h2><div id="scenario-chart" class="chart"></div><p class="formula" data-math="scenario-growth"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>g</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>=</mo><munder><mo>∑</mo><mi>j</mi></munder><msub><mi>p</mi><mi>j</mi></msub><mi>ln</mi><mo>⁡</mo><mtext> ⁣</mtext><mrow><mo fence="true">[</mo><mn>1</mn><mo>+</mo><mi>r</mi><mo>+</mo><mi>f</mi><mo stretchy="false">(</mo><msub><mi>R</mi><mi>j</mi></msub><mo>−</mo><mi>c</mi><mo>−</mo><mi>r</mi><mo stretchy="false">)</mo><mo fence="true">]</mo></mrow></mrow><annotation encoding="application/x-tex">g(f)=\sum_j p_j\ln\!\left[1+r+f(R_j-c-r)\right]</annotation></semantics></math></span></p></div></div></div>
+    </div>
+  </section>
+
+  <section id="view-portfolio" class="view" hidden aria-label="Portfolio berechnen">
+    <div class="note model-note"><b>Kontinuierliches Rendite-/Kovarianzmodell.</b> Hier werden erwartete arithmetische Renditeraten, jährliche Volatilitäten und Korrelationen eingesetzt. Exakt bei den unten beschriebenen Diffusionsannahmen; für reale Aktien und diskrete Anlageperioden eine Näherung. Sprünge, Ausfälle und Steuern fehlen.</div>
+    <div class="panel"><div class="section-title"><h2>Die Positionen gemeinsam betrachten</h2><span>2–6 Anlagen · fiktive Startwerte</span></div><div class="table-wrap"><table class="input-table asset-table"><thead><tr><th>Anlage</th><th>Renditerate μ (% p. a.)</th><th>Volatilität σ (% p. a.)</th><th>Max. Gewicht (%)</th><th></th></tr></thead><tbody id="asset-rows"></tbody></table></div><button id="add-asset" type="button" class="secondary-button">+ Anlage</button>
+      <div class="portfolio-controls"><label>Cash-Rate (% p. a.)<input id="p-cash" type="number" min="0" max="50" step="0.1" value="3"></label><label>Kostenabzug (% p. a.)<input id="p-cost" type="number" min="0" max="20" step="0.01" value="0"></label><label>Abschlag auf Überschussrendite (%)<input id="p-shrink" type="number" min="0" max="100" step="1" value="25"></label><label>Max. Gesamtgewicht (% Depot)<input id="p-cap" type="number" min="0" max="100" step="1" value="100"></label></div>
+      <p class="helper">α<sub>i</sub> = (μ<sub>i</sub> − Kosten − Cash-Rate) × (1 − Abschlag). Kosten sind hier ein jährlicher Renditeabzug je investierter Anlage; keine umsatzabhängigen Handelskosten. Negative Überschussrenditen bleiben negativ.</p>
+    </div>
+    <div class="portfolio-grid secondary"><div class="panel"><h2>Korrelationen</h2><p class="helper">Nur die obere Dreiecksmatrix ist editierbar. Gegenüberliegende Werte werden gespiegelt.</p><div id="correlation-table" class="table-wrap"></div><p id="matrix-note" class="helper"></p></div><div><div id="p-error" class="error" role="alert" hidden></div><div id="p-results" class="result-stack" aria-live="polite"><div id="p-metrics" class="metrics"></div><div class="panel"><h2>Gemeinsam optimierte Gewichte</h2><div id="allocation-bars"></div><div id="p-table" class="table-wrap"></div><p id="p-note" class="note"></p></div></div></div></div>
+    <div id="p-stress-panel" class="panel chart-panel secondary"><div class="section-title"><h2>Wenn die Anlagen stärker gemeinsam schwanken</h2><span>Gewichte deiner Planung bleiben fest</span></div><div id="correlation-chart" class="chart"></div><p class="helper">Die Matrix wird schrittweise in Richtung „alle Korrelationen = 1“ verschoben: C(t) = (1 − t) C + t · 11ᵀ. Das ist ein struktureller Stresstest. Er modelliert keinen konkreten Crash und keine Drawdown-Grenze.</p></div>
+  </section>
+
+  <section id="view-learn" class="view learn" hidden aria-label="Kelly Herleitung und Intuition">
+    <article class="panel reading">
+      <p class="eyebrow">01 · DAS ZIEL</p><h2>Wachstum durch wiederholtes Investieren</h2>
+      <p>Du bestimmst einen Anteil f deines aktuellen Kapitals W. Eine Rendite R auf die Position verändert das Depot zu W′ = W(1 + fR), wenn der Rest unverzinst bleibt. Beim Wiederholen multiplizieren sich diese Faktoren. Kelly wählt f so, dass der Erwartungswert ihres Logarithmus maximal ist.</p>
+      <div class="formula" data-math="compound-growth"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.25em" columnalign="right left" columnspacing="0em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><msub><mi>W</mi><mi>n</mi></msub></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><msub><mi>W</mi><mn>0</mn></msub><munderover><mo>∏</mo><mrow><mi>t</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><mi>f</mi><msub><mi>R</mi><mi>t</mi></msub><mo stretchy="false">)</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mi>ln</mi><mo>⁡</mo><mtext> ⁣</mtext><mrow><mo fence="true">(</mo><mstyle scriptlevel="0" displaystyle="true"><mfrac><msub><mi>W</mi><mi>n</mi></msub><msub><mi>W</mi><mn>0</mn></msub></mfrac></mstyle><mo fence="true">)</mo></mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><munderover><mo>∑</mo><mrow><mi>t</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><mi>ln</mi><mo>⁡</mo><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><mi>f</mi><msub><mi>R</mi><mi>t</mi></msub><mo stretchy="false">)</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><msup><mi>f</mi><mo>∗</mo></msup></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><munder><mrow><mi mathvariant="normal">arg max</mi><mo>⁡</mo></mrow><mi>f</mi></munder><mi mathvariant="normal">E</mi><mo>⁡</mo><mo stretchy="false">[</mo><mi>ln</mi><mo>⁡</mo><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><mi>f</mi><mi>R</mi><mo stretchy="false">)</mo><mo stretchy="false">]</mo></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{aligned}W_n&amp;=W_0\prod_{t=1}^{n}(1+fR_t)\\[3pt]\ln\!\left(\dfrac{W_n}{W_0}\right)&amp;=\sum_{t=1}^{n}\ln(1+fR_t)\\[3pt]f^*&amp;=\operatorname*{arg\,max}_{f}\operatorname{E}[\ln(1+fR)]\end{aligned}</annotation></semantics></math></span></div>
+      <p>Unter unabhängigen, identisch verteilten Ausgängen und endlichem Erwartungswert des absoluten Logarithmus konvergiert das realisierte mittlere Log-Wachstum gegen g(f) = E[ln(1 + fR)]. Kelly optimiert dieses langfristige Kriterium. Es maximiert weder die Trefferquote noch die Chance, in einem bestimmten Jahr im Plus zu sein. Der Ursprung liegt in <a href="https://www.quantst.com/wp-content/uploads/2016/07/kelly_original_paper.pdf" target="_blank" rel="noopener">Kellys Originalarbeit von 1956</a>.</p>
+      <p>Die Intuition: +50 % und anschließend −50 % ergeben 1,5 × 0,5 = 0,75, also −25 %. Nach −50 % brauchst du +100 %, um wieder am Ausgangspunkt zu sein. Große Verluste beschädigen den Zinseszinseffekt überproportional. Der Logarithmus bildet genau dieses multiplikative Problem ab. log(0) = −∞: Ein möglicher vollständiger Depotverlust hat unendlichen negativen Log-Nutzen.</p>
+      <hr><p class="eyebrow">02 · ZWEI AUSGÄNGE, EXAKT</p><h2>Die Formel und ihre Herleitung</h2>
+      <p>p ist die Gewinnwahrscheinlichkeit, q = 1 − p. Im Gewinnfall steigt die Position um G &gt; 0; im Verlustfall fällt sie um L &gt; 0. G und L sind Dezimalzahlen. Der investierte Depotanteil ist f. Ohne Kosten und Cash-Zins gilt:</p>
+      <div class="formula" data-math="binary-solution"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.25em" columnalign="right left" columnspacing="0em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mi>g</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mi>p</mi><mi>ln</mi><mo>⁡</mo><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><mi>f</mi><mi>G</mi><mo stretchy="false">)</mo><mo>+</mo><mi>q</mi><mi>ln</mi><mo>⁡</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mi>L</mi><mo stretchy="false">)</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><msup><mi>g</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mstyle scriptlevel="0" displaystyle="true"><mfrac><mrow><mi>p</mi><mi>G</mi></mrow><mrow><mn>1</mn><mo>+</mo><mi>f</mi><mi>G</mi></mrow></mfrac></mstyle><mo>−</mo><mstyle scriptlevel="0" displaystyle="true"><mfrac><mrow><mi>q</mi><mi>L</mi></mrow><mrow><mn>1</mn><mo>−</mo><mi>f</mi><mi>L</mi></mrow></mfrac></mstyle></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><msup><mi>g</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>⟹</mo><mi>p</mi><mi>G</mi><mo>−</mo><mi>p</mi><mi>f</mi><mi>G</mi><mi>L</mi><mo>=</mo><mi>q</mi><mi>L</mi><mo>+</mo><mi>q</mi><mi>f</mi><mi>G</mi><mi>L</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>⟹</mo><mi>p</mi><mi>G</mi><mo>−</mo><mi>q</mi><mi>L</mi><mo>=</mo><mi>f</mi><mi>G</mi><mi>L</mi><mo stretchy="false">(</mo><mi>p</mi><mo>+</mo><mi>q</mi><mo stretchy="false">)</mo><mo>=</mo><mi>f</mi><mi>G</mi><mi>L</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><msup><mi>f</mi><mo>∗</mo></msup></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mstyle scriptlevel="0" displaystyle="true"><mfrac><mrow><mi>p</mi><mi>G</mi><mo>−</mo><mi>q</mi><mi>L</mi></mrow><mrow><mi>G</mi><mi>L</mi></mrow></mfrac></mstyle><mo>=</mo><mstyle scriptlevel="0" displaystyle="true"><mfrac><mi>p</mi><mi>L</mi></mfrac></mstyle><mo>−</mo><mstyle scriptlevel="0" displaystyle="true"><mfrac><mi>q</mi><mi>G</mi></mfrac></mstyle></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{aligned}g(f)&amp;=p\ln(1+fG)+q\ln(1-fL)\\g&#x27;(f)&amp;=\dfrac{pG}{1+fG}-\dfrac{qL}{1-fL}\\g&#x27;(f)=0&amp;\Longrightarrow pG-pfGL=qL+qfGL\\&amp;\Longrightarrow pG-qL=fGL(p+q)=fGL\\[3pt]f^*&amp;=\dfrac{pG-qL}{GL}=\dfrac{p}{L}-\dfrac{q}{G}\end{aligned}</annotation></semantics></math></span></div>
+      <div class="formula" data-math="binary-concavity"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msup><mi>g</mi><mrow><mo mathvariant="normal">′</mo><mo mathvariant="normal">′</mo></mrow></msup><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>=</mo><mo>−</mo><mstyle scriptlevel="0" displaystyle="true"><mfrac><mrow><mi>p</mi><msup><mi>G</mi><mn>2</mn></msup></mrow><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><mi>f</mi><mi>G</mi><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow></mfrac></mstyle><mo>−</mo><mstyle scriptlevel="0" displaystyle="true"><mfrac><mrow><mi>q</mi><msup><mi>L</mi><mn>2</mn></msup></mrow><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mi>L</mi><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow></mfrac></mstyle><mo>&lt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">g&#x27;&#x27;(f)=-\dfrac{pG^2}{(1+fG)^2}-\dfrac{qL^2}{(1-fL)^2}&lt;0</annotation></semantics></math></span></div>
+      <p>Die Funktion ist strikt konkav, sofern die aktive Verteilung nicht trivial ist. Eine zulässige innere Nullstelle der ersten Ableitung ist deshalb das eindeutige Maximum. Jeder Ausgang mit positiver Wahrscheinlichkeit muss 1 + fR &gt; 0 erfüllen. Bei einem möglichen Verlust L liegt die Ruinschwelle bei f = 1/L. Für diese App gilt zusätzlich 0 ≤ f ≤ 1. Liegt das Optimum außerhalb, wird eine zulässige Randlösung gewählt. Bei fehlendem Vorteil gegen Cash lautet die Long-only-Lösung 0 %.</p>
+      <p>Bei einer klassischen Wette wird der Einsatz im Verlustfall vollständig verloren: L = 1. Mit Nettogewinn b pro eingesetztem Euro wird daraus <b>f* = (bp − q)/b = p − q/b</b>. Für eine Dezimalquote D einschließlich Einsatzrückzahlung gilt b = D − 1. Gewinnschwelle: p &gt; 1/D. Die Formel allein aus Trefferquote und durchschnittlichem Gewinn/Verlust ist bei breiter streuenden Ausgängen keine exakte Kelly-Lösung.</p>
+      <hr><p class="eyebrow">03 · RECHENBEISPIEL</p><h2>10 % Einsatzrisiko sind 50 % Aktiengewicht</h2>
+      <p>Angenommen p = 55 %, G = 20 %, L = 20 %, W = 100.000 €, keine Kosten, Cash-Zins 0.</p>
+      <div class="formula" data-math="worked-example"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.25em" columnalign="right left" columnspacing="0em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><msup><mi>f</mi><mo>∗</mo></msup></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mstyle scriptlevel="0" displaystyle="true"><mfrac><mn>0,55</mn><mn>0,20</mn></mfrac></mstyle><mo>−</mo><mstyle scriptlevel="0" displaystyle="true"><mfrac><mn>0,45</mn><mn>0,20</mn></mfrac></mstyle><mo>=</mo><mn>0,50</mn><mo>=</mo><mn>50</mn><mi mathvariant="normal">%</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mtext>Position</mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mn>100.000</mn><mtext> </mtext><mrow><mi mathvariant="normal">E</mi><mi mathvariant="normal">U</mi><mi mathvariant="normal">R</mi></mrow><mo>⋅</mo><mn>0,50</mn><mo>=</mo><mn>50.000</mn><mtext> </mtext><mrow><mi mathvariant="normal">E</mi><mi mathvariant="normal">U</mi><mi mathvariant="normal">R</mi></mrow></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mtext>Depotverlust</mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mn>0,50</mn><mo>⋅</mo><mn>0,20</mn><mo>=</mo><mn>10</mn><mi mathvariant="normal">%</mi><mo>=</mo><mn>10.000</mn><mtext> </mtext><mrow><mi mathvariant="normal">E</mi><mi mathvariant="normal">U</mi><mi mathvariant="normal">R</mi></mrow></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mi>g</mi><mo stretchy="false">(</mo><mn>0,50</mn><mo stretchy="false">)</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mn>0,55</mn><mi>ln</mi><mo>⁡</mo><mo stretchy="false">(</mo><mn>1,10</mn><mo stretchy="false">)</mo><mo>+</mo><mn>0,45</mn><mi>ln</mi><mo>⁡</mo><mo stretchy="false">(</mo><mn>0,90</mn><mo stretchy="false">)</mo><mo>≈</mo><mn>0,005008</mn></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{aligned}f^*&amp;=\dfrac{0{,}55}{0{,}20}-\dfrac{0{,}45}{0{,}20}=0{,}50=50\%\\\text{Position}&amp;=100{.}000\,\mathrm{EUR}\cdot0{,}50=50{.}000\,\mathrm{EUR}\\\text{Depotverlust}&amp;=0{,}50\cdot0{,}20=10\%=10{.}000\,\mathrm{EUR}\\g(0{,}50)&amp;=0{,}55\ln(1{,}10)+0{,}45\ln(0{,}90)\approx0{,}005008\end{aligned}</annotation></semantics></math></span></div>
+      <p>Das entspricht exp(g) − 1 ≈ 0,5021 % geometrischem Wachstum je Wiederholung im Modell. Der arithmetische Erwartungswert der Depotrendite beträgt dagegen 1 %. Der Wert exp(n g) ist das exponentierte erwartete Log-Vermögen relativ zum Start; er ist kein garantierter Depotwert und bei endlich vielen diskreten Versuchen nicht exakt der Median.</p>
+      <p>½ Kelly gibt 25 % Position und 5 % Depotverlust im Verlustfall. Wenn du zusätzlich höchstens 2 % Depotverlust bei einem −40-%-Stressfall akzeptieren willst, ist f ≤ 0,02/0,40 = 5 %. Bei 100.000 € wären das 5.000 € investiertes Kapital. Dieser Stressverlust ist eine einzelne angenommene Bewegung, kein garantierter maximaler Drawdown.</p>
+      <hr><p class="eyebrow">04 · DIE BERECHNUNG IM TOOL</p><h2>Cash, Kosten und Fractional Kelly</h2>
+      <p>Mit Cash-Rendite r pro Periode und Kosten c je investiertem Euro beträgt der Depotfaktor 1 + r + f(R − c − r). Cash wird nur auf den nicht investierten Teil verdient. Die Kosten fallen in jedem Ausgang an.</p>
+      <div class="formula" data-math="cash-costs"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.25em" columnalign="right left right left right left" columnspacing="0em 1em 0em 1em 0em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mi>U</mi></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mi>G</mi><mo>−</mo><mi>c</mi><mo>−</mo><mi>r</mi><mo separator="true">,</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mi>D</mi></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mi>L</mi><mo>+</mo><mi>c</mi><mo>+</mo><mi>r</mi><mo separator="true">,</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mi>B</mi></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mn>1</mn><mo>+</mo><mi>r</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mi>g</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mi>p</mi><mi>ln</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>B</mi><mo>+</mo><mi>f</mi><mi>U</mi><mo stretchy="false">)</mo><mo>+</mo><mi>q</mi><mi>ln</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>B</mi><mo>−</mo><mi>f</mi><mi>D</mi><mo stretchy="false">)</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><msup><mi>f</mi><mo>∗</mo></msup></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mstyle scriptlevel="0" displaystyle="true"><mfrac><mrow><mi>B</mi><mo stretchy="false">(</mo><mi>p</mi><mi>U</mi><mo>−</mo><mi>q</mi><mi>D</mi><mo stretchy="false">)</mo></mrow><mrow><mi>U</mi><mi>D</mi></mrow></mfrac></mstyle><mo separator="true">,</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mtext>falls </mtext><mi>U</mi><mo>&gt;</mo><mn>0</mn><mtext> und </mtext><mi>D</mi><mo>&gt;</mo><mn>0</mn></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mi>p</mi></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>&gt;</mo><mstyle scriptlevel="0" displaystyle="true"><mfrac><mi>D</mi><mrow><mi>U</mi><mo>+</mo><mi>D</mi></mrow></mfrac></mstyle></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mtext>(Gewinnschwelle gegen Cash)</mtext></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{aligned}U&amp;=G-c-r,&amp;D&amp;=L+c+r,&amp;B&amp;=1+r\\g(f)&amp;=p\ln(B+fU)+q\ln(B-fD)\\f^*&amp;=\dfrac{B(pU-qD)}{UD},&amp; &amp;\text{falls }U&gt;0\text{ und }D&gt;0\\p&amp;&gt;\dfrac{D}{U+D}&amp; &amp;\text{(Gewinnschwelle gegen Cash)}\end{aligned}</annotation></semantics></math></span></div>
+      <p>Die App löst direkt die konkave Log-Funktion auf dem zulässigen Intervall von 0–100 %. Sie berechnet zunächst Full Kelly unter diesen Grenzen. Bei der Einzelposition wird außerdem mit p<sub>vorsichtig</sub> = max(0, p − Abschlag) neu optimiert. Dieser frei gewählte Abschlag ist keine statistisch ermittelte Unsicherheitsgrenze.</p>
+      <div class="formula" data-math="fractional-kelly"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.25em" columnalign="right left" columnspacing="0em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><msub><mi>f</mi><mrow><mi mathvariant="normal">r</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">d</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">z</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">t</mi></mrow></msub></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mi>λ</mi><msubsup><mi>f</mi><mrow><mi mathvariant="normal">v</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">c</mi><mi mathvariant="normal">h</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">g</mi></mrow><mo>∗</mo></msubsup></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><msub><mi>f</mi><mrow><mi mathvariant="normal">P</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">n</mi></mrow></msub></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mi>min</mi><mo>⁡</mo><mtext> ⁣</mtext><mrow><mo fence="true">(</mo><msub><mi>f</mi><mrow><mi mathvariant="normal">r</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">d</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">z</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">t</mi></mrow></msub><mo separator="true">,</mo><mtext> Positionsgrenze</mtext><mo separator="true">,</mo><mtext> </mtext><mstyle scriptlevel="0" displaystyle="true"><mfrac><mtext>Stressbudget</mtext><mrow><mtext>Stressverlust</mtext><mo>+</mo><mi>c</mi></mrow></mfrac></mstyle><mo fence="true">)</mo></mrow></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{aligned}f_{\mathrm{reduziert}}&amp;=\lambda f^*_{\mathrm{vorsichtig}}\\f_{\mathrm{Plan}}&amp;=\min\!\left(f_{\mathrm{reduziert}},\ \text{Positionsgrenze},\ \dfrac{\text{Stressbudget}}{\text{Stressverlust}+c}\right)\end{aligned}</annotation></semantics></math></span></div>
+      <p>Der effektive Stressverlust ist mindestens der größte eingegebene Szenarioverlust. Cash-Zinsen werden bei der Stressgrenze konservativ nicht gutgeschrieben. Alle Eingabewerte und Grenzen sind Beispiele. λ ist frei wählbar: Auch ¼ oder ½ Kelly kann bei schlechten Schätzungen zu viel sein. Wenn ein ungehebeltes Optimum bei 100 % abgeschnitten ist, wird hier <em>dieses begrenzte Optimum</em> mit λ multipliziert. Das ist nicht identisch mit dem Skalieren eines hypothetischen, ungehebelten Grenzen nicht unterliegenden Optimums.</p>
+      <p>In einer quadratischen Näherung g(f) ≈ af − ½vf² ist f* = a/v. Beim Anteil λ von Kelly erhältst du den Anteil 2λ − λ² des maximalen zusätzlichen Log-Wachstums gegenüber Cash. ½ Kelly liefert dann 75 % dieses Wachstums bei halber Volatilität und einem Viertel der Varianz. Das ist eine Näherungs-/Diffusionsaussage, keine universelle Garantie für beliebige Aktienverteilungen. Die Behandlung von Teil-Kelly und Wertpapierportfolios findet sich bei <a href="https://gwern.net/doc/statistics/decision/2006-thorp.pdf" target="_blank" rel="noopener">Edward Thorp</a>.</p>
+      <hr><p class="eyebrow">05 · MEHRERE AUSGÄNGE & PORTFOLIO</p><h2>Eine Aktie ist selten eine Münze</h2>
+      <p>Der Szenarienrechner maximiert Σp<sub>j</sub> ln[1 + r + f(R<sub>j</sub> − c − r)]. Er braucht die gesamte von dir angenommene Verteilung. Ein Stop-Kurs macht aus einer Aktie keine Wette mit garantiert begrenztem Verlust. Ein Gap, illiquider Handel oder eine Aussetzung kann eine Ausführung am Stop verhindern.</p>
+      <p>Für mehrere Anlagen ist das allgemeine Ziel die gemeinsame Optimierung. R<sub>j,i</sub> ist die Rendite der Anlage i im gemeinsamen Zustand j:</p>
+      <div class="formula" data-math="portfolio-discrete"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><munder><mrow><mi>max</mi><mo>⁡</mo></mrow><mi>w</mi></munder><mtext> </mtext><munder><mo>∑</mo><mi>j</mi></munder><msub><mi>p</mi><mi>j</mi></msub><mi>ln</mi><mo>⁡</mo><mtext> ⁣</mtext><mrow><mo fence="true">[</mo><mn>1</mn><mo>+</mo><mi>r</mi><mo>+</mo><munder><mo>∑</mo><mi>i</mi></munder><msub><mi>w</mi><mi>i</mi></msub><mo stretchy="false">(</mo><msub><mi>R</mi><mrow><mi>j</mi><mo separator="true">,</mo><mi>i</mi></mrow></msub><mo>−</mo><msub><mi>c</mi><mi>i</mi></msub><mo>−</mo><mi>r</mi><mo stretchy="false">)</mo><mo fence="true">]</mo></mrow></mrow><annotation encoding="application/x-tex">\max_{w}\ \sum_jp_j\ln\!\left[1+r+\sum_iw_i(R_{j,i}-c_i-r)\right]</annotation></semantics></math></span></div>
+      <p>Diese gemeinsame Verteilung ist mehr als eine Liste einzelner Trefferquoten. Zwei ähnliche Aktien können gleichzeitig verlieren. Einzel-Kelly-Werte separat zu berechnen und anschließend zu addieren ergibt im Allgemeinen kein Kelly-Portfolio.</p>
+      <p>Der Portfolio-Rechner verwendet stattdessen das kontinuierliche Diffusionsmodell mit konstanten erwarteten arithmetischen Renditeraten μ, Cash-Rate r und Kovarianzraten Σ. Bei kontinuierlichem Rebalancing und ohne Sprünge gilt mit α = μ − r·1:</p>
+      <div class="formula" data-math="portfolio-continuous"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.25em" columnalign="right left" columnspacing="0em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mi>g</mi><mo stretchy="false">(</mo><mi>w</mi><mo stretchy="false">)</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mi>r</mi><mo>+</mo><msup><mi>w</mi><mi mathvariant="sans-serif">T</mi></msup><mi>α</mi><mo>−</mo><mstyle scriptlevel="0" displaystyle="true"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><msup><mi>w</mi><mi mathvariant="sans-serif">T</mi></msup><mi mathvariant="normal">Σ</mi><mi>w</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><msub><mi mathvariant="normal">Σ</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><msub><mi>σ</mi><mi>i</mi></msub><msub><mi>σ</mi><mi>j</mi></msub><msub><mi>ρ</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mi mathvariant="normal">∇</mi><mi>g</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mi>α</mi><mo>−</mo><mi mathvariant="normal">Σ</mi><mi>w</mi><mo>=</mo><mn>0</mn><mspace width="1em"/><mo>⟹</mo><mspace width="1em"/><msup><mi>w</mi><mo>∗</mo></msup><mo>=</mo><msup><mi mathvariant="normal">Σ</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><mi>α</mi></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{aligned}g(w)&amp;=r+w^{\mathsf T}\alpha-\dfrac{1}{2}w^{\mathsf T}\Sigma w\\\Sigma_{ij}&amp;=\sigma_i\sigma_j\rho_{ij}\\\nabla g&amp;=\alpha-\Sigma w=0\quad\Longrightarrow\quad w^*=\Sigma^{-1}\alpha\end{aligned}</annotation></semantics></math></span></div>
+      <p>Die inverse Formel gilt ohne Gewichtsgrenzen und nur bei invertierbarer Σ. Die App optimiert das gemeinsame quadratische Ziel direkt unter w<sub>i</sub> ≥ 0, individuellen Obergrenzen und Σw<sub>i</sub> ≤ Gesamtgrenze ≤ 1; anschließend werden die gefundenen Gewichte mit λ reduziert und der Rest in Cash gehalten. Invertieren und negative Gewichte einfach abschneiden würde das Problem nicht korrekt lösen. Eine ungültige Korrelationsmatrix wird abgewiesen.</p>
+      <p>Bei einer Anlage folgt f* = (μ − r)/σ². Beispiel: μ = 8 % p. a., r = 3 % p. a., σ = 25 % p. a. ⇒ f* = 0,05/0,0625 = 80 %. Renditerate und Varianz müssen dieselbe Zeiteinheit haben. Ein CAGR ist kein arithmetisches μ. Für diskrete kleine Renditen lautet die direkte Taylor-Näherung ohne Cash E[ln(1 + fR)] ≈ f E[R] − ½f²E[R²]; ihr Nenner ist E[R²] = Var(R) + E[R]², nicht exakt die Varianz. Erst im Grenzübergang kurzer Zeitschritte entsteht die Diffusionsformel.</p>
+      <hr><p class="eyebrow">06 · PRAKTISCHE ANWENDUNG</p><h2>Gute Eingaben sind der Engpass.</h2>
+      <ol><li>Lege Anlagehorizont und tatsächlich verfügbares Risikokapital fest. Geld für absehbare Ausgaben gehört nicht in diese Modellbasis.</li><li>Schätze Renditen und Wahrscheinlichkeiten als Verteilung, einschließlich ungünstiger Ausgänge. Eine historische Trefferquote ist nur ein Schätzwert. Überlappende Trades, Regimewechsel und Auswahlverzerrungen reduzieren ihre Aussagekraft.</li><li>Prüfe pessimistischere Wahrscheinlichkeiten, Renditen und größere Verluste. Der p-Abschlag und der Renditeabschlag im Tool sind von dir gesetzte Annahmen.</li><li>Berücksichtige dein gesamtes gleichzeitiges Risiko: bestehende Anlagen, gemeinsame Branchen- und Marktrisiken sowie Cash. Korrelationen können sich verändern.</li><li>Wähle λ und Positionsgrenzen passend zu Schätzunsicherheit und tragbaren Verlusten. Es gibt keinen allgemein sicheren Kelly-Anteil.</li><li>Beobachte die Kalibrierung deiner Prognosen außerhalb der Daten, mit denen du sie entwickelt hast. Eine exakte Optimierung unzuverlässiger Eingaben erzeugt keine zuverlässige Positionsgröße.</li></ol>
+      <p>Kelly allein setzt keine harte Drawdown-Grenze. Explizite Beschränkungen der Wahrscheinlichkeit, unter ein Vermögensniveau zu fallen, erfordern ein anderes Optimierungsproblem; siehe <a href="https://arxiv.org/pdf/1603.06183" target="_blank" rel="noopener">Busseti, Ryu und Boyd: Risk-Constrained Kelly Gambling</a>. Auch Unsicherheit über die gesamte Verteilung kann explizit modelliert werden; siehe <a href="https://arxiv.org/pdf/1812.10371" target="_blank" rel="noopener">Sun und Boyd: Distributional Robust Kelly Gambling</a>. Die einfachen Abschläge in dieser App implementieren diese Verfahren nicht.</p>
+      <p class="note">Dieses Tool ist eine Lern- und Entscheidungshilfe auf Basis deiner Annahmen. Es bewertet keine konkreten Aktien und gibt keine persönliche Anlageempfehlung. Reale Verluste können über die eingegebenen Szenarien hinausgehen.</p>
+    </article>
+  </section>
+  <footer><span>Kelly Studio · Berechnung im Browser · keine Live-Marktdaten</span><span>Offline-Version · Eingaben werden nicht gespeichert</span><button type="button" id="show-method" class="text-button">Annahmen & Herleitung</button></footer>
+</main>
+<script>
+// Alle Renditen und Gewichte sind Dezimalzahlen, nicht Prozentwerte.
+const sum = a => a.reduce((x, y) => x + y, 0);
+const dot = (a, b) => sum(a.map((x, i) => x * b[i]));
+const clamp = (x, lo, hi) => Math.max(lo, Math.min(hi, x));
+
+function validateScenarios(rows) {
+  if (!rows.length || rows.some(s => !Number.isFinite(s.p) || s.p < 0 || s.p > 1 || !Number.isFinite(s.r) || s.r < -1)) throw Error('Szenarien: Wahrscheinlichkeiten müssen zwischen 0 und 100 %, Renditen mindestens −100 % sein.');
+  if (Math.abs(sum(rows.map(s => s.p)) - 1) > 1e-7) throw Error('Die Wahrscheinlichkeiten müssen zusammen 100 % ergeben.');
+}
+function logGrowth(f, rows, cash = 0, cost = 0) {
+  let g = 0;
+  for (const s of rows) {
+    if (s.p === 0) continue;
+    const factor = 1 + cash + f * (s.r - cost - cash);
+    if (factor <= 0) return -Infinity;
+    g += s.p * Math.log(factor);
+  }
+  return g;
+}
+function optimalSingle(rows, cash = 0, cost = 0, cap = 1) {
+  validateScenarios(rows);
+  if (![cash, cost, cap].every(Number.isFinite) || cash < 0 || cost < 0 || cap < 0 || cap > 1) throw Error('Ungültige Cash-, Kosten- oder Gewichtsgrenze.');
+  const active = rows.filter(s => s.p > 0);
+  const B = 1 + cash;
+  let upper = cap;
+  for (const s of active) if (s.r - cost - cash < 0) upper = Math.min(upper, B / (cash + cost - s.r) * (1 - 1e-12));
+  const derivative = f => sum(active.map(s => s.p * (s.r - cost - cash) / (B + f * (s.r - cost - cash))));
+  if (derivative(0) <= 1e-14 || !upper) return 0;
+  if (derivative(upper) >= 0) return upper;
+  let lo = 0, hi = upper;
+  for (let i = 0; i < 100; i++) {
+    const mid = (lo + hi) / 2;
+    if (derivative(mid) > 0) lo = mid; else hi = mid;
+  }
+  return (lo + hi) / 2;
+}
+function rawBinary(p, gain, loss, cash = 0, cost = 0) {
+  const u = gain - cost - cash, d = loss + cost + cash;
+  return u > 0 && d > 0 ? (1 + cash) * (p * u - (1 - p) * d) / (u * d) : null;
+}
+function singleSizing({rows, conservativeRows = rows, cash = 0, cost = 0, fraction = .5, cap = .25, budget = .05, stress = .4}) {
+  validateScenarios(rows); validateScenarios(conservativeRows);
+  const full = optimalSingle(rows, cash, cost);
+  const conservative = optimalSingle(conservativeRows, cash, cost);
+  // Stress enthält mindestens den größten eingegebenen Verlust (auch bei p = 0).
+  const effectiveStress = Math.max(stress, ...rows.map(s => Math.max(0, -s.r)));
+  const stressCost = effectiveStress + cost;
+  const stressCap = stressCost > 0 ? budget / stressCost : 1;
+  const fractional = fraction * conservative;
+  const planned = Math.max(0, Math.min(fractional, cap, stressCap));
+  return {full, conservative, fractional, planned, stressCap, effectiveStress, stressLoss: planned * stressCost, growth: logGrowth(planned, rows, cash, cost), conservativeGrowth: logGrowth(planned, conservativeRows, cash, cost), arithmetic: cash + planned * (sum(rows.map(s => s.p * s.r)) - cost - cash)};
+}
+
+// Echte symmetrische Eigenwertprüfung: paarweise gültige Korrelationen allein reichen nicht.
+function eigenvalues(A) {
+  const a = A.map(r => [...r]), n = a.length;
+  for (let k = 0; k < 100 * n * n; k++) {
+    let p = 0, q = 1, largest = 0;
+    for (let i = 0; i < n; i++) for (let j = i + 1; j < n; j++) if (Math.abs(a[i][j]) > largest) { largest = Math.abs(a[i][j]); p = i; q = j; }
+    if (largest < 1e-13 || n === 1) break;
+    const angle = .5 * Math.atan2(2 * a[p][q], a[q][q] - a[p][p]);
+    const c = Math.cos(angle), s = Math.sin(angle), pp = a[p][p], qq = a[q][q], pq = a[p][q];
+    for (let i = 0; i < n; i++) if (i !== p && i !== q) {
+      const ip = a[i][p], iq = a[i][q];
+      a[i][p] = a[p][i] = c * ip - s * iq;
+      a[i][q] = a[q][i] = s * ip + c * iq;
+    }
+    a[p][p] = c*c*pp - 2*s*c*pq + s*s*qq;
+    a[q][q] = s*s*pp + 2*s*c*pq + c*c*qq;
+    a[p][q] = a[q][p] = 0;
+  }
+  return a.map((r, i) => r[i]).sort((x, y) => x - y);
+}
+function covariance(vols, correlations) {
+  const n = vols.length;
+  if (correlations.length !== n || correlations.some(r => r.length !== n)) throw Error('Die Korrelationsmatrix hat eine falsche Größe.');
+  if (vols.some(v => !Number.isFinite(v) || v <= 0)) throw Error('Volatilitäten müssen positiv sein.');
+  for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) {
+    const r = correlations[i][j];
+    if (!Number.isFinite(r) || Math.abs(r) > 1 || Math.abs(r - correlations[j][i]) > 1e-10 || (i === j && r !== 1)) throw Error('Die Korrelationsmatrix muss symmetrisch sein, mit 1 auf der Diagonale und Einträgen von −1 bis 1.');
+  }
+  const eig = eigenvalues(correlations);
+  if (eig[0] < -1e-9) throw Error('Diese Korrelationen sind gemeinsam unmöglich: Die Matrix ist nicht positiv semidefinit. Bitte die Korrelationen anpassen.');
+  return {matrix: correlations.map((r, i) => r.map((x, j) => x * vols[i] * vols[j])), eigenvalues: eig};
+}
+function project(v, caps, total) {
+  let w = v.map((x, i) => clamp(x, 0, caps[i]));
+  if (sum(w) <= total) return w;
+  let lo = Math.min(...v.map((x, i) => x - caps[i])), hi = Math.max(...v);
+  for (let k = 0; k < 70; k++) {
+    const t = (lo + hi) / 2;
+    if (sum(v.map((x, i) => clamp(x - t, 0, caps[i]))) > total) lo = t; else hi = t;
+  }
+  return v.map((x, i) => clamp(x - hi, 0, caps[i]));
+}
+function variance(w, sigma) { return dot(w, sigma.map(r => dot(r, w))); }
+function solvePortfolio(alpha, sigma, caps, total = 1) {
+  const n = alpha.length;
+  if (alpha.some(x => !Number.isFinite(x)) || caps.some(x => !Number.isFinite(x) || x < 0 || x > 1) || total < 0 || total > 1) throw Error('Ungültige Portfolioeingaben.');
+  const L = Math.max(...sigma.map(r => sum(r.map(Math.abs))));
+  if (!(L > 0)) throw Error('Die Kovarianzmatrix enthält keine positive Varianz.');
+  let w = Array(n).fill(0), y = [...w], t = 1, gap = Infinity, iteration = 0;
+  const objective = v => dot(alpha, v) - .5 * variance(v, sigma);
+  let best = [...w], bestValue = objective(w);
+  for (; iteration < 20000; iteration++) {
+    const grad = alpha.map((a, i) => a - dot(sigma[i], y));
+    const next = project(y.map((x, i) => x + grad[i] / L), caps, total);
+    const value = objective(next);
+    if (value >= bestValue) { best = [...next]; bestValue = value; }
+    if (iteration % 10 === 0) {
+      const g = alpha.map((a, i) => a - dot(sigma[i], best));
+      let left = total, upper = 0;
+      for (const i of Array.from({length: n}, (_, i) => i).sort((a, b) => g[b] - g[a])) {
+        if (g[i] <= 0) break;
+        const x = Math.min(caps[i], left); upper += g[i] * x; left -= x;
+      }
+      gap = Math.max(0, upper - dot(g, best));
+      if (gap < 1e-10) break;
+    }
+    const nt = (1 + Math.sqrt(1 + 4*t*t)) / 2;
+    y = next.map((x, i) => x + (t - 1) / nt * (x - w[i]));
+    w = next; t = nt;
+  }
+  return {weights: best, gap, iterations: iteration + 1, objective: bestValue};
+}
+function rng(seed) {
+  let a = seed >>> 0;
+  return () => { a += 0x6D2B79F5; let t = a; t = Math.imul(t ^ t >>> 15, t | 1); t ^= t + Math.imul(t ^ t >>> 7, t | 61); return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+}
+function quantile(a, q) {
+  const b = [...a].sort((x, y) => x - y), h = (b.length - 1) * q, i = Math.floor(h);
+  if (b[i] === -Infinity || b[i] === Infinity) return b[i];
+  return b[i] + (b[Math.min(i + 1, b.length - 1)] - b[i]) * (h - i);
+}
+function simulateBinary({p, gain, loss, cash, cost, weights, periods = 200, paths = 1500, threshold = .3, seed = 42}) {
+  if (!(p >= 0 && p <= 1) || !Number.isInteger(periods) || periods < 1 || periods > 500) throw Error('Ungültige Simulationsparameter.');
+  const random = rng(seed), n = weights.length;
+  const logs = weights.map(() => new Float64Array(paths)), peaks = weights.map(() => new Float64Array(paths)), drawdowns = weights.map(() => new Float64Array(paths));
+  const series = weights.map(() => [{x: 0, low: 0, mid: 0, high: 0}]);
+  const step = Math.max(1, Math.floor(periods / 100));
+  for (let t = 1; t <= periods; t++) {
+    for (let j = 0; j < paths; j++) {
+      const r = random() < p ? gain : -loss;
+      for (let k = 0; k < n; k++) {
+        const f = weights[k], factor = 1 + cash + f * (r - cost - cash);
+        logs[k][j] += factor > 0 ? Math.log(factor) : -Infinity;
+        peaks[k][j] = Math.max(peaks[k][j], logs[k][j]);
+        drawdowns[k][j] = Math.max(drawdowns[k][j], 1 - Math.exp(logs[k][j] - peaks[k][j]));
+      }
+    }
+    if (t % step === 0 || t === periods) for (let k = 0; k < n; k++) series[k].push({x:t, low:quantile(logs[k], .1), mid:quantile(logs[k], .5), high:quantile(logs[k], .9)});
+  }
+  const stats = weights.map((f, k) => ({f, median:quantile(logs[k], .5), low:quantile(logs[k], .1), high:quantile(logs[k], .9), belowStart:sum(Array.from(logs[k], x => x < 0 ? 1 : 0))/paths, drawdownProbability:sum(Array.from(drawdowns[k], x => x >= threshold ? 1 : 0))/paths, drawdown90:quantile(drawdowns[k], .9), ruin:sum(Array.from(logs[k], x => x === -Infinity ? 1 : 0))/paths}));
+  return {series, stats, paths, seed};
+}
+
+
+const $ = id => document.getElementById(id);
+const number = (x, digits = 2) => Number.isFinite(x) ? x.toLocaleString('de-DE', {minimumFractionDigits:digits, maximumFractionDigits:digits}) : x === -Infinity ? '−∞' : 'nicht definiert';
+const pct = (x, digits = 2) => number(100 * x, digits) + ' %';
+const euro = x => x.toLocaleString('de-DE', {style:'currency', currency:'EUR', maximumFractionDigits:0});
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'}[c]));
+const C = {teal:'#087e82', blue:'#3468ca', red:'#ba3b45', grey:'#72889b', amber:'#a6610b'};
+let current = 'binary', binaryContext = null, resizeTimer, simulationRevision = 0;
+const chartStates = new Map();
+function readInput(el) {
+  if (!el || el.value.trim() === '' || !Number.isFinite(Number(el.value))) throw Error('Bitte alle Zahlenfelder vollständig ausfüllen.');
+  const x = Number(el.value);
+  if ((el.min !== '' && x < Number(el.min)) || (el.max !== '' && x > Number(el.max))) throw Error('Ein Wert liegt außerhalb des erlaubten Bereichs: ' + (el.getAttribute('aria-label') || el.closest('label')?.childNodes[0]?.textContent?.trim() || el.id) + '.');
+  return x;
+}
+const read = (id, percent = false) => readInput($(id)) / (percent ? 100 : 1);
+function shared() { return {capital:read('capital'), fraction:read('fraction')}; }
+function status(prefix, error) {
+  $(prefix + '-error').hidden = !error;
+  $(prefix + '-error').textContent = error?.message || '';
+  $(prefix + '-results').hidden = !!error;
+}
+function metric(label, value, sub, accent = false) {
+  return `<div class="metric${accent ? ' accent' : ''}"><div class="metric-label">${label}</div><div class="metric-value">${value}</div><div class="metric-sub">${sub}</div></div>`;
+}
+function stat(label, value) { return `<div class="stat"><span>${label}</span><strong>${value}</strong></div>`; }
+function samples(a, b, n, fn) { return Array.from({length:n + 1}, (_, i) => { const x = a + (b-a)*i/n; return {x, y:fn(x)}; }); }
+function growthSamples(rows, cash, cost) {
+  // Der Endpunkt kurz vor der Ruinschwelle wird nicht als endlicher Ruinwert ausgegeben.
+  const maxSafe = Math.min(1, ...rows.filter(s => s.p > 0 && s.r-cost-cash < 0).map(s => (1+cash)/(cash+cost-s.r)));
+  const hi = Number.isFinite(logGrowth(maxSafe, rows, cash, cost)) ? maxSafe : maxSafe * .995;
+  return samples(0, hi, 180, f => logGrowth(f, rows, cash, cost));
+}
+function chart(id, options) {
+  chartStates.set(id, options);
+  const container = $(id);
+  if (!container || container.closest('[hidden]')) return;
+  const width = Math.max(260, container.clientWidth), height = width < 450 ? 265 : 290;
+  const margin = {l:69, r:18, t:18, b:60}, pw = width-margin.l-margin.r, ph = height-margin.t-margin.b;
+  const all = options.series.flatMap(s => s.points).filter(d => Number.isFinite(d.x) && Number.isFinite(d.y));
+  if (!all.length) {container.innerHTML = '<p class="helper">Für diese Parameter gibt es keine endlichen Diagrammwerte.</p>'; return;}
+  let xmin = options.xDomain?.[0] ?? Math.min(...all.map(d => d.x)), xmax = options.xDomain?.[1] ?? Math.max(...all.map(d => d.x));
+  const yvals = all.map(d => d.y);
+  if (options.band) for (const d of options.band) {if (Number.isFinite(d.low)) yvals.push(d.low); if (Number.isFinite(d.high)) yvals.push(d.high);}
+  let ymin = Math.min(...yvals, ...(options.includeZero === false ? [] : [0])), ymax = Math.max(...yvals, ...(options.includeZero === false ? [] : [0]));
+  if (xmin === xmax) xmax = xmin + 1;
+  if (ymin === ymax) {ymin -= .01; ymax += .01;}
+  const pad = (ymax-ymin)*.07; ymin -= pad; ymax += pad;
+  const sx = x => margin.l + (x-xmin)/(xmax-xmin)*pw;
+  const sy = y => margin.t + ph - (y-ymin)/(ymax-ymin)*ph;
+  const path = points => {let p = '', valid = false; for (const d of points) {if (!Number.isFinite(d.y)) {valid = false;continue;} p += `${valid?'L':'M'}${sx(d.x).toFixed(2)},${sy(d.y).toFixed(2)} `;valid = true;}return p;};
+  const xf = options.xFormat || (x=>pct(x,0)), yf = options.yFormat || (y=>pct(y,1));
+  const legend = options.series.map(s=>`<span class="legend-item"><i class="swatch" style="background:${s.color}"></i>${esc(s.name)}</span>`).join('') + (options.band ? '<span class="legend-item"><i class="swatch" style="background:#a9d9d7;height:9px"></i>Plan: 10.–90. Perzentil</span>' : '');
+  let svg = `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="${esc(options.title)}"><title>${esc(options.title)}</title><defs><clipPath id="clip-${id}"><rect x="${margin.l}" y="${margin.t}" width="${pw}" height="${ph}"/></clipPath></defs>`;
+  for (let k=0; k<=4; k++) { const y = ymin+(ymax-ymin)*k/4;svg += `<line x1="${margin.l}" x2="${width-margin.r}" y1="${sy(y)}" y2="${sy(y)}" stroke="#e4ebf0"/><text class="axis" text-anchor="end" x="${margin.l-10}" y="${sy(y)+4}">${esc(yf(y))}</text>`; }
+  const nticks = width < 450 ? 3 : 5;
+  for (let k=0; k<=nticks; k++) {const x=xmin+(xmax-xmin)*k/nticks;svg+=`<text class="axis" text-anchor="${k===0?'start':k===nticks?'end':'middle'}" x="${sx(x)}" y="${height-37}">${esc(xf(x))}</text>`;}
+  svg += `<rect x="${margin.l}" y="${margin.t}" width="${pw}" height="${ph}" fill="none" stroke="#cddae3"/><text class="axis-title" text-anchor="middle" x="${margin.l+pw/2}" y="${height-10}">${esc(options.xLabel)}</text><text class="axis-title" text-anchor="middle" transform="translate(15 ${margin.t+ph/2}) rotate(-90)">${esc(options.yLabel)}</text><g clip-path="url(#clip-${id})">`;
+  if (options.band) {
+    const band = options.band.filter(d=>Number.isFinite(d.low)&&Number.isFinite(d.high));
+    if (band.length) {const upper=band.map(d=>({x:d.x,y:d.high})), lower=[...band].reverse().map(d=>({x:d.x,y:d.low}));svg+=`<path d="${path(upper)} ${path(lower).replace(/^M/,'L')} Z" fill="#c8e8e5" opacity=".65"/>`;}
+  }
+  if (ymin<=0&&ymax>=0) svg+=`<line x1="${margin.l}" x2="${width-margin.r}" y1="${sy(0)}" y2="${sy(0)}" stroke="#aebfce" stroke-dasharray="4 4"/>`;
+  for (const s of options.series) svg+=`<path d="${path(s.points)}" fill="none" stroke="${s.color}" stroke-width="2.5" ${s.dashed?'stroke-dasharray="6 4"':''}/>`;
+  for (const m of options.markers || []) if (Number.isFinite(m.y) && m.x>=xmin && m.x<=xmax) svg+=`<line x1="${sx(m.x)}" x2="${sx(m.x)}" y1="${sy(m.y)}" y2="${margin.t+ph}" stroke="${m.color}" stroke-dasharray="3 4" opacity=".7"/><circle cx="${sx(m.x)}" cy="${sy(m.y)}" r="5" fill="${m.color}" stroke="#fff" stroke-width="2"><title>${esc(m.name)}: ${esc(xf(m.x))}, ${esc(yf(m.y))}</title></circle>`;
+  svg += `</g><line class="hover-guide" x1="0" x2="0" y1="${margin.t}" y2="${margin.t+ph}" stroke="#829bac" visibility="hidden"/><g class="hover-dots"></g><rect class="hover-area" x="${margin.l}" y="${margin.t}" width="${pw}" height="${ph}" fill="transparent"/></svg>`;
+  container.innerHTML = `<div class="chart-legend">${legend}</div>${svg}<div class="chart-readout">${esc(options.defaultReadout || 'Mit Maus oder Finger Werte im Diagramm erkunden.')}</div>`;
+  const graphic=container.querySelector('svg'), area=container.querySelector('.hover-area'), guide=container.querySelector('.hover-guide'), dots=container.querySelector('.hover-dots'), output=container.querySelector('.chart-readout');
+  function inspect(event) {
+    const bounds=graphic.getBoundingClientRect(), px=clamp((event.clientX-bounds.left)*width/bounds.width,margin.l,width-margin.r), x=xmin+(px-margin.l)/pw*(xmax-xmin);
+    guide.setAttribute('x1',px);guide.setAttribute('x2',px);guide.setAttribute('visibility','visible');
+    const values=[];let circles='';
+    for (const s of options.series) {
+      const pts=s.points;let i=0;while(i<pts.length-2&&pts[i+1].x<x)i++;
+      const a=pts[i],b=pts[Math.min(i+1,pts.length-1)], u=b.x===a.x?0:clamp((x-a.x)/(b.x-a.x),0,1), y=a.y+(b.y-a.y)*u;
+      values.push(`${s.name}: ${yf(y)}`);
+      if(Number.isFinite(y))circles+=`<circle cx="${px}" cy="${sy(y)}" r="4" fill="${s.color}" stroke="#fff" stroke-width="1.5"/>`;
+    }
+    dots.innerHTML=circles;output.textContent=`${xf(x)} · ${values.join(' · ')}`;
+  }
+  area.addEventListener('pointermove',inspect);area.addEventListener('pointerdown',inspect);
+}
+
+function binaryInputs() {
+  const common=shared(), p=read('b-p',true), gain=read('b-gain',true), loss=read('b-loss',true), haircut=read('b-haircut',true), cash=read('b-cash',true),cost=read('b-cost',true);
+  const conservativeP=Math.max(0,p-haircut), rows=[{p,r:gain},{p:1-p,r:-loss}], conservativeRows=[{p:conservativeP,r:gain},{p:1-conservativeP,r:-loss}];
+  return {...common,p,gain,loss,haircut,cash,cost,conservativeP,rows,conservativeRows,cap:read('b-cap',true),budget:read('b-budget',true),stress:read('b-stress',true),price:read('b-price')};
+}
+function renderBinary() {
+  try {
+    const v=binaryInputs(), r=singleSizing(v);binaryContext={v,r};status('b');$('sensitivity-panel').hidden=false;
+    $('b-metrics').innerHTML=metric('Full Kelly · 0–100 %',pct(r.full),'mit geschätztem p')+metric('Reduziertes Kelly',pct(r.fractional),`λ × Kelly bei p = ${pct(v.conservativeP,1)}`)+metric('Geplante Position',pct(r.planned),euro(v.capital*r.planned),true);
+    const shares=Math.floor((v.capital*r.planned)/v.price), stressEuro=v.capital*r.stressLoss, modelLoss=r.planned*(v.loss+v.cost);
+    $('b-breakdown').innerHTML='<div class="breakdown">'+stat('Investiertes Kapital',euro(v.capital*r.planned))+stat('Ganze Aktien',number(shares,0)+' Stück')+stat('Verlustfall, ohne Cash-Zins',pct(modelLoss))+stat('Stressfall, ohne Cash-Zins',euro(stressEuro)+' / '+pct(r.stressLoss))+stat('Erwartete Depotrendite / Periode',pct(r.arithmetic,3))+stat('Geometrisches Wachstum / Periode',pct(Math.expm1(r.growth),3))+'</div>';
+    const u=v.gain-v.cost-v.cash,d=v.loss+v.cost+v.cash, breakeven=d/(u+d),raw=rawBinary(v.p,v.gain,v.loss,v.cash,v.cost);
+    $('b-edge').textContent=u<=0?'Kein Vorteil gegenüber Cash':`Break-even p: ${pct(breakeven,1)}`;
+    const limits=[];
+    if(r.planned===0)limits.push('Kein positiver Einsatz nach den gewählten Annahmen und Grenzen.');
+    else {
+      if(Math.abs(r.planned-r.fractional)<1e-9)limits.push('Das reduzierte Kelly bestimmt die Größe.');
+      if(Math.abs(r.planned-v.cap)<1e-9)limits.push('Die Positionsobergrenze greift.');
+      if(Math.abs(r.planned-r.stressCap)<1e-9)limits.push('Das Stressbudget greift.');
+    }
+    if(raw!==null&&(raw>1||raw<0))limits.push(`Die formale innere Kelly-Lösung beträgt ${pct(raw)}; die App erlaubt 0–100 % und berücksichtigt die Log-Domäne.`);
+    limits.push(`Effektiver Stress: −${pct(r.effectiveStress,1)} auf die Aktie, zuzüglich Kosten. ${number(shares,0)} Aktien entsprechen ${euro(shares*v.price)}; Kennzahlen verwenden den Zielanteil vor Stückrundung.`);
+    if(v.haircut>0)limits.push(`Geometrisches Wachstum unter dem vorsichtigen p: ${pct(Math.expm1(r.conservativeGrowth),3)} pro Periode.`);
+    $('b-note').textContent=limits.join(' ');
+    drawBinaryGrowth();
+    const lo=Math.max(0,v.p-.15),hi=Math.min(1,v.p+.15);
+    chart('sensitivity-chart',{title:'Kelly-Gewicht in Abhängigkeit von der angenommenen Gewinnwahrscheinlichkeit',xLabel:'Angenommene Gewinnwahrscheinlichkeit p (%)',yLabel:'Anteil am Depot (%)',series:[{name:'Full Kelly · 0–100 %',color:C.blue,points:samples(lo,hi,80,p=>optimalSingle([{p,r:v.gain},{p:1-p,r:-v.loss}],v.cash,v.cost))},{name:'Geplante Position',color:C.teal,points:samples(lo,hi,80,p=>singleSizing({...v,rows:[{p,r:v.gain},{p:1-p,r:-v.loss}],conservativeRows:[{p:Math.max(0,p-v.haircut),r:v.gain},{p:1-Math.max(0,p-v.haircut),r:-v.loss}]}).planned)}],markers:[{x:v.p,y:r.planned,color:C.teal,name:'Aktuelle Planung'}],defaultReadout:`Bei p = ${pct(v.p,1)}: Full Kelly ${pct(r.full)}, geplant ${pct(r.planned)}.`});
+  } catch(error) {binaryContext=null;status('b',error);$('sensitivity-panel').hidden=true;}
+}
+function drawBinaryGrowth() {
+  if(!binaryContext)return;
+  const {v,r}=binaryContext, probe=read('probe',true), pg=logGrowth(probe,v.rows,v.cash,v.cost);
+  $('probe-value').textContent=pct(probe,1);
+  $('probe-detail').textContent=`Log-Wachstum g = ${number(pg,6)}; geometrisch ${pct(Math.expm1(pg),3)} pro Periode. ${Number.isFinite(pg)?'':'Mindestens ein möglicher Ausgang vernichtet das gesamte Depot oder mehr.'}`;
+  const series=[{name:'g(f) bei geschätztem p',color:C.blue,points:growthSamples(v.rows,v.cash,v.cost)}];
+  if(v.haircut>0)series.push({name:'g(f) bei vorsichtigem p',color:C.grey,dashed:true,points:growthSamples(v.conservativeRows,v.cash,v.cost)});
+  chart('growth-chart',{title:'Erwartetes logarithmisches Wachstum in Abhängigkeit vom Positionsgewicht',xDomain:[0,1],xLabel:'Investierter Depotanteil f (%)',yLabel:'Log-Wachstum × 100 / Periode',series,markers:[{x:r.full,y:logGrowth(r.full,v.rows,v.cash,v.cost),name:'Full Kelly',color:C.blue},{x:r.planned,y:r.growth,name:'Plan',color:C.teal},{x:probe,y:pg,name:'Testposition',color:C.red}],defaultReadout:`Blau: Full Kelly ${pct(r.full)} · Grün: Plan ${pct(r.planned)} · Rot: Testposition ${pct(probe)}.`});
+}
+function invalidateSimulation(){ simulationRevision++;$('sim-results').hidden=true;$('sim-status').hidden=false;$('sim-status').textContent='Parameter geändert. Simulation neu berechnen, damit sie zu deinen aktuellen Annahmen passt.'; }
+function runSimulation(){
+  try {
+    const v=binaryInputs(),r=singleSizing(v),p=read('sim-p',true),periods=read('sim-periods'),threshold=read('sim-dd',true);
+    if(!Number.isInteger(periods))throw Error('Die Anzahl der Perioden muss eine ganze Zahl sein.');
+    const revision=simulationRevision;
+    $('sim-error').hidden=true;$('simulate').disabled=true;$('simulate').textContent='Berechnet …';
+    // Ein Rendering-Zyklus vor der synchronen, begrenzten Rechnung.
+    setTimeout(()=>{
+      try {
+        if(revision!==simulationRevision)return;
+        const sim=simulateBinary({...v,p,periods,threshold,weights:[r.full,r.fractional,r.planned]});
+        $('sim-results').hidden=false;$('sim-status').hidden=false;
+        $('sim-status').textContent=`${number(sim.paths,0)} Pfade mit tatsächlichem p = ${pct(p,1)} über ${periods} Perioden. Gleiche Ausgänge für alle drei Strategien; Start ${euro(v.capital)}. `+(p!==v.p?`Die Positionsgrößen basieren weiterhin auf geschätztem p = ${pct(v.p,1)}. `:'')+(sim.stats.some(s=>s.ruin>0)?'Ruinpfade werden in der logarithmischen Grafik nicht als endliche Werte dargestellt. Die Häufigkeiten unten enthalten sie.':'');
+        const multiple = x => x===-Infinity?'0×': x>14?'e^'+number(x,1)+'×':number(Math.exp(x),Math.exp(x)<10?2:0)+'×';
+        chart('sim-chart',{title:'Simulierte Depotentwicklung mit Medianen und Perzentilband der geplanten Position',xLabel:'Perioden',yLabel:'Depot / Startwert (log. Achse)',xFormat:x=>number(x,0),yFormat:multiple,includeZero:true,series:[{name:'Full Kelly: Median',color:C.blue,points:sim.series[0].map(d=>({x:d.x,y:d.mid}))},{name:'Reduziertes Kelly: Median',color:C.grey,dashed:true,points:sim.series[1].map(d=>({x:d.x,y:d.mid}))},{name:'Plan: Median',color:C.teal,points:sim.series[2].map(d=>({x:d.x,y:d.mid}))}],band:sim.series[2],defaultReadout:'Ein höherer Median kann mit erheblich höheren zwischenzeitlichen Verlusten einhergehen.'});
+        const labels=['Full Kelly','Reduziertes Kelly','Plan'];
+        const wealth=x=>x===-Infinity?'0 €':x>500?'e^'+number(x+Math.log(v.capital),1)+' €':euro(v.capital*Math.exp(x));
+        $('sim-table').innerHTML=`<table><thead><tr><th>Strategie</th><th>Depotanteil</th><th>Median am Ende</th><th>Endwert &lt; Start</th><th>Max. Drawdown ≥ ${pct(threshold,0)}</th><th>90%-Quantil max. Drawdown</th><th>Ruin</th></tr></thead><tbody>${sim.stats.map((s,i)=>`<tr><td>${labels[i]}</td><td>${pct(s.f)}</td><td>${wealth(s.median)}</td><td>${pct(s.belowStart,1)}</td><td>${pct(s.drawdownProbability,1)}</td><td>${pct(s.drawdown90,1)}</td><td>${pct(s.ruin,1)}</td></tr>`).join('')}</tbody></table>`;
+      }catch(error){$('sim-error').hidden=false;$('sim-error').textContent=error.message;$('sim-results').hidden=true;}
+      finally{$('simulate').disabled=false;$('simulate').textContent='Simulation berechnen';}
+    },20);
+  }catch(error){$('sim-error').hidden=false;$('sim-error').textContent=error.message;$('sim-results').hidden=true;}
+}
+
+let scenarioData=[{name:'Optimistisch',p:'20',r:'40'},{name:'Basis',p:'45',r:'12'},{name:'Schwach',p:'25',r:'-15'},{name:'Crash',p:'10',r:'-50'}];
+function writeScenarioRows(){
+  $('scenario-rows').innerHTML=scenarioData.map((s,i)=>`<tr><td><input aria-label="Name Szenario ${i+1}" data-s-name value="${esc(s.name)}" maxlength="30"></td><td><input aria-label="Wahrscheinlichkeit Szenario ${i+1} in Prozent" data-s-p type="number" min="0" max="100" step="0.1" value="${esc(s.p)}"></td><td><input aria-label="Rendite Szenario ${i+1} in Prozent" data-s-r type="number" min="-100" max="1000" step="0.1" value="${esc(s.r)}"></td><td><button class="remove" type="button" data-remove-s="${i}" aria-label="Szenario ${i+1} entfernen" ${scenarioData.length<=2?'disabled':''}>×</button></td></tr>`).join('');$('add-scenario').disabled=scenarioData.length>=10;
+}
+function captureScenarios(){scenarioData=Array.from($('scenario-rows').rows,row=>({name:row.querySelector('[data-s-name]').value,p:row.querySelector('[data-s-p]').value,r:row.querySelector('[data-s-r]').value}));}
+function renderScenarios(){
+  try{
+    captureScenarios();const names=scenarioData.map(s=>s.name);
+    const rows=Array.from($('scenario-rows').rows,row=>({p:readInput(row.querySelector('[data-s-p]'))/100,r:readInput(row.querySelector('[data-s-r]'))/100}));
+    $('s-total').textContent='Summe: '+pct(sum(rows.map(s=>s.p)),1);
+    const v={...shared(),rows,cash:read('s-cash',true),cost:read('s-cost',true),cap:read('s-cap',true),budget:read('s-budget',true),stress:read('s-stress',true)},r=singleSizing(v);
+    status('s');$('s-metrics').innerHTML=metric('Full Kelly · 0–100 %',pct(r.full),'mit allen Szenarien')+metric('Reduziertes Kelly',pct(r.fractional),'λ × Full Kelly')+metric('Geplante Position',pct(r.planned),euro(v.capital*r.planned),true);
+    $('s-breakdown').innerHTML=`<div class="breakdown">${stat('Erwartete Depotrendite / Periode',pct(r.arithmetic,3))}${stat('Geometrisches Wachstum / Periode',pct(Math.expm1(r.growth),3))}${stat('Stressverlust im Depot',pct(r.stressLoss))}${stat('Stressverlust in €',euro(v.capital*r.stressLoss))}</div><div class="table-wrap"><table><thead><tr><th>Szenario</th><th>p</th><th>Depotrendite inkl. Cash/Kosten</th><th>Depot danach</th></tr></thead><tbody>${rows.map((s,i)=>{const ret=v.cash+r.planned*(s.r-v.cost-v.cash);return `<tr><td>${esc(names[i])}</td><td>${pct(s.p,1)}</td><td>${pct(ret)}</td><td>${euro(v.capital*(1+ret))}</td></tr>`;}).join('')}</tbody></table></div>`;
+    $('s-note').textContent=`Effektiver Stress: −${pct(r.effectiveStress,1)} auf die Aktie, zuzüglich Kosten und ohne Zinsgutschrift auf Cash. Die Szenarien sind diskrete Annahmen; nicht erfasste Extremverluste sind im Kelly-Optimum nicht enthalten. Auch ein Szenario mit p = 0 wird für die Stressgrenze berücksichtigt, aber nicht für den Erwartungswert.`;
+    chart('scenario-chart',{title:'Erwartetes logarithmisches Wachstum aus der eingegebenen Szenarienverteilung',xDomain:[0,1],xLabel:'Investierter Depotanteil f (%)',yLabel:'Log-Wachstum × 100 / Periode',series:[{name:'g(f) über alle Szenarien',color:C.blue,points:growthSamples(rows,v.cash,v.cost)}],markers:[{name:'Full Kelly',x:r.full,y:logGrowth(r.full,rows,v.cash,v.cost),color:C.blue},{name:'Plan',x:r.planned,y:r.growth,color:C.teal}],defaultReadout:`Full Kelly: ${pct(r.full)} · Geplant: ${pct(r.planned)}.`});
+  }catch(error){status('s',error);if(error.message.includes('Zahlenfelder'))$('s-total').textContent='Eingabe unvollständig';}
+}
+
+let assets=[{name:'Aktie A',mu:'8',vol:'25',cap:'40'},{name:'Aktie B',mu:'7',vol:'18',cap:'40'},{name:'Aktie C',mu:'5',vol:'12',cap:'40'}];
+let correlations=[['1','0.7','0.2'],['0.7','1','0.1'],['0.2','0.1','1']];
+function capturePortfolio(){
+  assets=Array.from($('asset-rows').rows,row=>({name:row.querySelector('[data-a-name]').value,mu:row.querySelector('[data-a-mu]').value,vol:row.querySelector('[data-a-vol]').value,cap:row.querySelector('[data-a-cap]').value}));
+  document.querySelectorAll('[data-corr]').forEach(el=>{const [i,j]=el.dataset.corr.split(',').map(Number);correlations[i][j]=correlations[j][i]=el.value;});
+}
+function writePortfolioRows(){
+  $('asset-rows').innerHTML=assets.map((a,i)=>`<tr><td><input data-a-name aria-label="Name Anlage ${i+1}" maxlength="30" value="${esc(a.name)}"></td><td><input data-a-mu aria-label="Renditerate Anlage ${i+1} in Prozent pro Jahr" type="number" min="-100" max="200" step="0.1" value="${esc(a.mu)}"></td><td><input data-a-vol aria-label="Volatilität Anlage ${i+1} in Prozent pro Jahr" type="number" min="0.1" max="300" step="0.1" value="${esc(a.vol)}"></td><td><input data-a-cap aria-label="Maximales Gewicht Anlage ${i+1} in Prozent" type="number" min="0" max="100" step="1" value="${esc(a.cap)}"></td><td><button type="button" class="remove" data-remove-a="${i}" aria-label="Anlage ${i+1} entfernen" ${assets.length<=2?'disabled':''}>×</button></td></tr>`).join('');
+  writeCorrelations();$('add-asset').disabled=assets.length>=6;
+}
+function writeCorrelations(){
+  $('correlation-table').innerHTML=`<table class="correlation-table"><thead><tr><th>ρ</th>${assets.map((a,i)=>`<th title="${esc(a.name)}">${i+1}</th>`).join('')}</tr></thead><tbody>${assets.map((a,i)=>`<tr><th>${i+1} · <span data-corr-name="${i}">${esc(a.name)}</span></th>${assets.map((b,j)=>i<j?`<td><input data-corr="${i},${j}" aria-label="Korrelation Anlage ${i+1} und ${j+1}" type="number" min="-1" max="1" step="0.05" value="${esc(correlations[i][j])}"></td>`:`<td class="mirror" ${i>j?`data-mirror="${j},${i}"`:''}>${i===j?'1':esc(correlations[i][j])}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+}
+function renderPortfolio(){
+  try{
+    capturePortfolio();const common=shared();
+    const inputs=Array.from($('asset-rows').rows,row=>({mu:readInput(row.querySelector('[data-a-mu]'))/100,vol:readInput(row.querySelector('[data-a-vol]'))/100,cap:readInput(row.querySelector('[data-a-cap]'))/100}));
+    const corr=correlations.map((r,i)=>r.map((x,j)=>{if(x.trim()==='')throw Error('Bitte die Korrelationsmatrix vollständig ausfüllen.');return Number(x);}));
+    document.querySelectorAll('[data-corr]').forEach(el=>readInput(el));
+    const vols=inputs.map(a=>a.vol), cov=covariance(vols,corr),cash=read('p-cash',true),cost=read('p-cost',true),shrink=read('p-shrink',true),cap=read('p-cap',true);
+    const alpha=inputs.map(a=>(a.mu-cost-cash)*(1-shrink)),sol=solvePortfolio(alpha,cov.matrix,inputs.map(a=>a.cap),cap),w=sol.weights.map(x=>x*common.fraction);
+    const v=Math.max(0,variance(w,cov.matrix)),g=cash+dot(alpha,w)-v/2,expected=cash+dot(alpha,w),cashWeight=clamp(1-sum(w),0,1);
+    status('p');$('p-stress-panel').hidden=false;
+    $('matrix-note').textContent=cov.eigenvalues[0]<1e-6?'Gültig, aber (nahezu) singulär: Die genaue Aufteilung kann instabil oder nicht eindeutig sein.':'Die Matrix ist mathematisch konsistent. Das bestätigt nicht die Güte deiner Korrelationsschätzungen.';
+    $('p-metrics').innerHTML=metric('Investierter Depotanteil',pct(sum(w)),euro(common.capital*sum(w)),true)+metric('Volatilität p. a.',pct(Math.sqrt(v)),'unter Modellannahmen')+metric('Log-Wachstumsrate p. a.',pct(g),'× 100; inkl. Cash-Rate');
+    const weights=[...w,cashWeight],names=[...assets.map(a=>a.name),'Cash'];
+    $('allocation-bars').innerHTML=weights.map((x,i)=>`<div class="alloc-row${i===w.length?' cash':''}"><span>${esc(names[i])}</span><div class="alloc-track"><div class="alloc-fill" style="width:${100*x}%"></div></div><strong>${pct(x,1)}</strong></div>`).join('');
+    $('p-table').innerHTML=`<table><thead><tr><th>Anlage</th><th>Optimum unter Grenzen</th><th>Plan nach λ</th><th>Betrag</th></tr></thead><tbody>${names.map((name,i)=>`<tr><td>${esc(name)}</td><td>${pct(i===w.length?1-sum(sol.weights):sol.weights[i])}</td><td>${pct(weights[i])}</td><td>${euro(common.capital*weights[i])}</td></tr>`).join('')}</tbody></table>`;
+    const qualification=sol.gap<1e-7?'Numerisch konvergiert.':'Näherung: Die Optimierung hat ihre Genauigkeitsgrenze noch nicht erreicht; die Gewichte können ungenau sein.';
+    $('p-note').textContent=`Gemeinsam optimiert unter allen Gewichtsgrenzen; danach mit λ = ${number(common.fraction,2)} multipliziert. Erwartete arithmetische Renditerate nach Abschlag: ${pct(expected)} p. a.; geometrische Jahresrate exp(g) − 1: ${pct(Math.expm1(g))}. ${qualification} Für das quadratische Modell liegt der mögliche verbleibende Zielfunktionsgewinn höchstens bei ${number(sol.gap,10)} pro Jahr. Es wird keine harte Verlust- oder Drawdown-Grenze durchgesetzt.`;
+    chart('correlation-chart',{title:'Volatilität der geplanten festen Gewichte bei steigenden Korrelationen',xLabel:'Verschiebung in Richtung vollständigen Gleichlaufs (%)',yLabel:'Volatilität p. a. (%)',includeZero:false,series:[{name:'Volatilität deiner Planung',color:C.teal,points:samples(0,1,80,t=>Math.sqrt(Math.max(0,variance(w,corr.map((row,i)=>row.map((r,j)=>((1-t)*r+t)*vols[i]*vols[j]))))))}],defaultReadout:`Heute angenommene Matrix: ${pct(Math.sqrt(v))} Volatilität p. a. · Bei vollständigem Gleichlauf: ${pct(dot(w,vols))}.`});
+  }catch(error){status('p',error);$('p-stress-panel').hidden=true;$('matrix-note').textContent='';}
+}
+
+function selectTab(tab){
+  current=tab;
+  document.querySelectorAll('[data-tab]').forEach(button=>{if(button.dataset.tab===tab)button.setAttribute('aria-current','page');else button.removeAttribute('aria-current');});
+  document.querySelectorAll('.view').forEach(view=>view.hidden=view.id!=='view-'+tab);
+  $('global-controls').hidden=tab==='learn';renderCurrent();
+}
+function renderCurrent(){if(current==='binary')renderBinary();else if(current==='scenario')renderScenarios();else if(current==='portfolio')renderPortfolio();}
+document.querySelectorAll('[data-tab]').forEach(button=>button.addEventListener('click',()=>selectTab(button.dataset.tab)));
+$('show-method').addEventListener('click',()=>{selectTab('learn');$('view-learn').scrollIntoView({behavior:'auto',block:'start'});});
+$('probe').addEventListener('input',drawBinaryGrowth);
+$('simulate').addEventListener('click',runSimulation);
+$('add-scenario').addEventListener('click',()=>{captureScenarios();if(scenarioData.length>=10)return;scenarioData.push({name:'Neues Szenario',p:'0',r:'-100'});writeScenarioRows();renderScenarios();});
+$('scenario-rows').addEventListener('click',event=>{const button=event.target.closest('[data-remove-s]');if(!button)return;captureScenarios();if(scenarioData.length<=2)return;scenarioData.splice(Number(button.dataset.removeS),1);writeScenarioRows();renderScenarios();});
+$('add-asset').addEventListener('click',()=>{capturePortfolio();if(assets.length>=6)return;const n=assets.length;assets.push({name:'Anlage '+(n+1),mu:'6',vol:'20',cap:'25'});correlations.forEach(row=>row.push('0'));correlations.push(Array.from({length:n+1},(_,i)=>i===n?'1':'0'));writePortfolioRows();renderPortfolio();});
+$('asset-rows').addEventListener('click',event=>{const button=event.target.closest('[data-remove-a]');if(!button)return;capturePortfolio();if(assets.length<=2)return;const i=Number(button.dataset.removeA);assets.splice(i,1);correlations.splice(i,1);correlations.forEach(row=>row.splice(i,1));writePortfolioRows();renderPortfolio();});
+document.addEventListener('input',event=>{
+  const el=event.target;if(!(el instanceof HTMLInputElement))return;
+  if(el.id==='probe')return;
+  if(el.id.startsWith('sim-')){invalidateSimulation();return;}
+  if(el.dataset.corr){const mirror=document.querySelector(`[data-mirror="${el.dataset.corr}"]`);if(mirror)mirror.textContent=el.value;}
+  if(el.hasAttribute('data-a-name')){const row=el.closest('tr'),i=Array.from($('asset-rows').rows).indexOf(row);const name=document.querySelector(`[data-corr-name="${i}"]`);if(name)name.textContent=el.value;}
+  renderCurrent();if(current==='binary'||el.id==='capital')invalidateSimulation();
+});
+$('fraction').addEventListener('change',()=>{renderCurrent();invalidateSimulation();});
+window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(()=>{for(const [id,options] of chartStates)if(!$(id).closest('[hidden]'))chart(id,options);},120);});
+writeScenarioRows();writePortfolioRows();renderCurrent();
+
+</script>
+</body></html>

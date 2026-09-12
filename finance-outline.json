@@ -1,0 +1,77 @@
+[
+ {"id":"start","title":"Einstieg & Finanzsprache","english":"Foundations","kind":"Ergänzung","groups":[
+  ["Orientierung",["Finanzsystem, Kapitalmärkte und Marktteilnehmer","Anlageklassen, Instrumente und Investmentprozess","Bilanz, Cashflow und Rendite: die gemeinsame Sprache"]],
+  ["Arbeitsgrundlagen",["Prozentrechnung, Basispunkte und Größenordnungen","Finanzrechner, Cashflow-Zeitstrahl und Vorzeichen","Englisch-deutsches Finanzglossar und Formelsprache"]]
+ ]},
+ {"id":"ethics","title":"Ethik & professionelle Standards","english":"Ethical and Professional Standards","kind":"Kernbereich","groups":[
+  ["Berufliche Verantwortung",["Code of Ethics und ethische Entscheidungsfindung","Professionalität, Unabhängigkeit und Objektivität","Marktintegrität: Insiderinformationen und Manipulation","Pflichten gegenüber Kunden: Sorgfalt, Fairness und Eignung"]],
+  ["Standards anwenden",["Pflichten gegenüber Arbeitgebern und Aufsichtspflichten","Analyse, Empfehlungen, Kommunikation und Dokumentation","Interessenkonflikte, Vergütungen und Transaktionsvorrang","Verantwortung als CFA-Kandidat und Mitglied"]],
+  ["Organisation & Berichterstattung",["Asset Manager Code","GIPS: Grundlagen und faire Performancedarstellung","Ethische Fallentscheidungen und Grenzfälle"]]
+ ]},
+ {"id":"quant","title":"Quantitative Methoden","english":"Quantitative Methods","kind":"Kernbereich","groups":[
+  ["Geld über die Zeit",["Zeitwert des Geldes, Barwert und Endwert","Verzinsungsarten, Annuitäten und ewige Renten","Renditemaße: arithmetisch, geometrisch und logarithmisch","Zeit- und geldgewichtete Renditen"]],
+  ["Unsicherheit & Daten",["Lage, Streuung, Schiefe und Kurtosis von Renditen","Wahrscheinlichkeit, Bayes und Erwartungswerte","Verteilungen, Stichproben und Schätzunsicherheit","Konfidenzintervalle und Hypothesentests"]],
+  ["Modelle & Anwendungen",["Einfache und multiple Regression","Modelldiagnostik und Regressionsfehler","Zeitreihen, Stationarität und Prognosen","Monte-Carlo-Simulation, Bootstrap und Backtesting","Optimierung unter Nebenbedingungen","Finanzdaten, Machine Learning, KI und Sprachmodelle"]]
+ ]},
+ {"id":"economics","title":"Volkswirtschaft & globale Märkte","english":"Economics","kind":"Kernbereich","groups":[
+  ["Unternehmen & Märkte",["Angebot, Nachfrage und Elastizitäten","Kosten, Produktion und Gewinnmaximierung","Wettbewerb, Monopol und Marktstrukturen"]],
+  ["Konjunktur & Politik",["Wirtschaftsleistung, Wachstum und Produktivität","Konjunkturzyklen und Wirtschaftsindikatoren","Inflation, Arbeitsmarkt und Zinsniveau","Geldpolitik, Zentralbanken und Transmission","Fiskalpolitik, Staatshaushalt und Verschuldung"]],
+  ["Internationale Verflechtungen",["Handel, Zahlungsbilanz und Kapitalströme","Wechselkurse, Notierungen und Währungssysteme","Kaufkraft- und Zinsparität","Geopolitik, Regulierung und Investitionsrisiken"]]
+ ]},
+ {"id":"statements","title":"Rechnungslegung & Bilanzanalyse","english":"Financial Statement Analysis","kind":"Kernbereich","groups":[
+  ["Abschlüsse lesen",["Bilanz, Gewinn- und Verlustrechnung, Kapitalflussrechnung","Zusammenspiel der Abschlüsse und Anhangangaben","IFRS und US GAAP: relevante Unterschiede","Umsatzrealisierung, Aufwendungen und Ergebnisabgrenzung"]],
+  ["Bilanzpositionen verstehen",["Vorräte, Bewertungsverfahren und Abschreibungen","Sachanlagen, immaterielle Werte und Wertminderung","Leasing, Schulden und außerbilanzielle Verpflichtungen","Ertragsteuern und latente Steuern","Pensionen und aktienbasierte Vergütung","Beteiligungen, Unternehmenszusammenschlüsse und Konsolidierung","Fremdwährungsumrechnung und internationale Geschäfte"]],
+  ["Qualität & Analyse",["Kennzahlen, DuPont-Analyse und Vergleichbarkeit","Cashflow-Qualität, Ergebnisqualität und Warnsignale","Analyse von Banken und Versicherungen","Abschlussprognosen und integriertes Finanzmodell","Nachhaltigkeitsfaktoren in der Finanzanalyse"]]
+ ]},
+ {"id":"corporate","title":"Unternehmensfinanzierung","english":"Corporate Issuers / Corporate Finance","kind":"Kernbereich","groups":[
+  ["Unternehmen steuern",["Rechtsformen, Eigentümer und Stakeholder","Corporate Governance und Interessenkonflikte","Geschäftsmodelle, Strategie und Unternehmensrisiken"]],
+  ["Kapital einsetzen",["Investitionsrechnung: NPV und IRR","Reale Optionen und Investitionsentscheidungen","Kapitalkosten, Eigenkapitalkosten und WACC","Kapitalstruktur und operative sowie finanzielle Hebel"]],
+  ["Finanzierung gestalten",["Working Capital und Liquiditätsmanagement","Dividenden und Aktienrückkäufe","Fusionen, Übernahmen und Restrukturierungen"]]
+ ]},
+ {"id":"equity","title":"Aktien & Unternehmensbewertung","english":"Equity Investments","kind":"Kernbereich","groups":[
+  ["Aktienmärkte",["Aktienarten, Aktionärsrechte und Handelsplätze","Marktorganisation, Orders und Handelsmechanismen","Indizes, Indexkonstruktion und Markteffizienz"]],
+  ["Unternehmen analysieren",["Branchenanalyse und Wettbewerbsposition","Umsatz, Margen und Wachstum modellieren","Eigenkapitalrenditeanforderung und Faktoransätze","Investmentthese, Katalysatoren und Research-Bericht"]],
+  ["Wert bestimmen",["Dividendenmodelle und mehrstufiges Wachstum","Free Cashflow: FCFF und FCFE","Multiplikatoren und Vergleichsunternehmen","Residualgewinn- und substanzorientierte Bewertung","Private Unternehmen und Bewertungsunsicherheit"]]
+ ]},
+ {"id":"bonds","title":"Anleihen & Zinsmärkte","english":"Fixed Income","kind":"Kernbereich","groups":[
+  ["Instrumente & Cashflows",["Anleihemerkmale, Covenants und Emittenten","Staats-, Unternehmens- und Geldmarktpapiere","Kupons, Tilgung, Stückzinsen und Preisnotierung","Emissionsmärkte, Handel und Liquidität"]],
+  ["Bewertung & Zinsen",["Barwertbewertung und Renditemaße","Spot-, Par- und Forward-Kurven","Zinsstrukturtheorien und Zinsmodelle","Duration, DV01, Konvexität und Key-Rate-Risiko","Zinsszenarien und Gesamtrendite"]],
+  ["Kredit & Strukturen",["Ausfallwahrscheinlichkeit, Verlustquote und Recovery","Kreditanalyse, Ratings und Credit Spreads","Besicherte Finanzierung und Repo","Verbriefung: ABS, MBS und Zahlungswasserfälle","Vorzeitige Tilgung, Extension und negative Konvexität","Anleihen mit Optionen und optionsbereinigte Spreads"]]
+ ]},
+ {"id":"derivatives","title":"Derivate & Absicherung","english":"Derivatives and Risk Management","kind":"Kernbereich","groups":[
+  ["Grundlagen & Termingeschäfte",["Derivatemärkte, Clearing, Sicherheiten und Gegenparteien","Arbitragefreiheit, Replikation und Cost of Carry","Forwards: Preis und laufender Vertragswert","Futures, Margin, Basisrisiko und Hedge Ratio"]],
+  ["Swaps & Optionen",["Zins-, Währungs- und Equity Swaps","Optionsauszahlungen und Put-Call-Parität","Binomialmodell und risikoneutrale Bewertung","Black-Scholes-Merton und Modellannahmen","Greeks, implizite Volatilität und Volatilitätsstruktur"]],
+  ["Strategien",["Optionskombinationen und asymmetrische Absicherung","Kreditderivate und Credit Default Swaps","Währungs-, Zins- und Aktienrisiken absichern"]]
+ ]},
+ {"id":"alternatives","title":"Alternative Anlagen","english":"Alternative Investments","kind":"Kernbereich","groups":[
+  ["Strukturen & Bewertung",["Anlagezugang, Fondsstrukturen und Liquiditätsbindung","Gebühren, Carried Interest und Renditemessung","Bewertung, Due Diligence und Datenverzerrungen"]],
+  ["Private & reale Anlagen",["Private Equity und Venture Capital","Private Credit und Distressed Debt","Immobilien, REITs und Immobilienbewertung","Infrastruktur, Land- und Forstwirtschaft"]],
+  ["Weitere Anlageformen",["Rohstoffe, Terminkurven und Rollrendite","Hedgefondsstrategien und Risikofaktoren","Digitale Vermögenswerte und Tokenisierung","Diversifikationsnutzen und Nachhaltigkeitsrisiken"]]
+ ]},
+ {"id":"portfolio","title":"Portfoliotheorie & Anlageprozess","english":"Portfolio Management / Portfolio Construction","kind":"Kernbereich","groups":[
+  ["Risiko & Rendite",["Korrelation, Diversifikation und Portfoliovarianz","Nutzen, Risikoaversion und optimale Portfolios","Effiziente Grenze und Kapitalmarktlinie","CAPM, Beta und Wertpapiermarktlinie","Multifaktormodelle und Arbitrage Pricing Theory"]],
+  ["Mandat & Umsetzung",["Investment Policy Statement und Anlageziele","Risikotragfähigkeit, Anlagehorizont und Restriktionen","Strategische und taktische Asset Allocation","Fonds, ETFs und aktive versus passive Umsetzung","Rebalancing, Transaktionskosten und Liquidität"]],
+  ["Verhalten & Kontrolle",["Behavioral Finance: kognitive und emotionale Verzerrungen","Risikomanagement, VaR und Expected Shortfall","Stress- und Szenarioanalysen","Performancekennzahlen, Benchmarks und Nachhaltigkeitsziele"]]
+ ]},
+ {"id":"advanced","title":"Portfoliosteuerung & Erfolgskontrolle","english":"Level III Common Core – Vertiefung","kind":"Level III Kern","groups":[
+  ["Allokation & Konstruktion",["Kapitalmarkterwartungen und Prognoseunsicherheit","Asset Allocation mit realen Restriktionen","Asset-Liability-Management und zielbasierte Anlage","Portfolios für private und institutionelle Anleger"]],
+  ["Risiken steuern",["Integration von Aktien, Anleihen und Alternativen","Währungsmanagement im Gesamtportfolio","Overlay-Strategien mit Optionen, Futures und Swaps","Liquiditäts-, Konzentrations- und Extremrisiken"]],
+  ["Erfolg beurteilen",["Performance Attribution: Allokation, Selektion und Faktoren","Performance Appraisal und Aussagekraft von Track Records","Managerauswahl, Monitoring und Mandatswechsel","GIPS: Composites, Berechnung und Präsentation"]]
+ ]},
+ {"id":"path-portfolio","title":"Spezialisierung: Portfolio Management","english":"Level III Pathway · Portfolio Management","kind":"Wahlpfad","groups":[
+  ["Aktien & Anleihen",["Indexstrategien und aktives Aktienmanagement","Aktives Zins- und Kreditportfoliomanagement","Immunisierung und verpflichtungsorientierte Anleihestrategien"]],
+  ["Institutionelle Umsetzung",["Institutionelle Mandate und besondere Verpflichtungen","Handelsstrategie, Ausführung und Implementation Shortfall","Portfolio-Fallstudien und begründete Handlungsempfehlungen"]]
+ ]},
+ {"id":"path-private","title":"Spezialisierung: Private Markets","english":"Level III Pathway · Private Markets","kind":"Wahlpfad","groups":[
+  ["Investmentzyklus",["Deal Sourcing, Screening und Due Diligence","Bewertung, Finanzierung und Transaktionsstruktur","Wertsteigerungsplan, Monitoring und Exit"]],
+  ["Fonds & Strategien",["Fondsverträge, Kapitalabrufe und Ausschüttungen","Buyout-, Venture-, Private-Debt- und Real-Asset-Strategien","Fondsperformance, Wertbeiträge und Interessenausrichtung"]]
+ ]},
+ {"id":"path-wealth","title":"Spezialisierung: Private Wealth","english":"Level III Pathway · Private Wealth","kind":"Wahlpfad","groups":[
+  ["Mandanten & Vermögensplanung",["Wealth-Management-Geschäftsmodelle und Beratung","Kundenprofil, Familiendynamik und Family Governance","Lebenszyklus, Ziele, Liquidität und Ruhestandsplanung"]],
+  ["Vermögen erhalten & übertragen",["Steuerbewusste Allokation und grenzüberschreitende Vermögen","Unternehmervermögen, konzentrierte Positionen und Absicherung","Nachfolge, Vermögenstransfer und Philanthropie"]]
+ ]},
+ {"id":"practice","title":"Praxis & Prüfungstraining","english":"Practical Skills & Exam Preparation","kind":"Ergänzung","groups":[
+  ["Praktische Fähigkeiten",["Excel, Finanzmodelle und Plausibilitätsprüfungen","Python, Datenbereinigung und Finanzanalysen","Equity Research, Makroanalyse und Due-Diligence-Prozess","Ergebnisse visualisieren und Investmententscheidungen kommunizieren"]],
+  ["Prüfungsvorbereitung",["Formeltraining, Finanzrechner und Einheitenkontrolle","Multiple Choice und vernetzte Fallvignetten","Schriftliche Antworten: begründen, vergleichen, empfehlen","Gemischte Fallstudien, Probeklausuren und Fehleranalyse"]]
+ ]}
+]

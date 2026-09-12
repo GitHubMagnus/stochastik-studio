@@ -1,0 +1,13 @@
+{
+  "name": "stochastik-studio",
+  "private": true,
+  "scripts": {
+    "start": "node .server.js",
+    "test": "node --test tests/math.test.cjs tests/kelly-math.test.cjs tests/finance-content.test.cjs tests/finance-models.test.cjs tests/finance-textbook.test.cjs tests/finance-deep.test.cjs tests/server.test.cjs",
+    "test:browser": "node --test tests/browser.test.cjs"
+  },
+  "devDependencies": {
+    "katex": "^0.18.6",
+    "playwright": "^1.55.0"
+  }
+}
