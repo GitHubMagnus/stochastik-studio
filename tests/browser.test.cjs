@@ -185,6 +185,81 @@ test('module navigation, learning order and Kelly integration preserve state',as
  assert.equal(await page.locator('.module-link').evaluate(e=>{const r=e.getBoundingClientRect();return r.top>=0&&r.bottom<=innerHeight;}),true);
  await page.screenshot({path:'test-results/studio-learning-path.png'});
 });
+test('all 1034 exercises expose inputs, separate hints and solutions, valid links and usable mobile math',async t=>{
+ const page=await open(t);await page.goto(url+'/#lesson-bonds-08');
+ const audit=await page.evaluate(async()=>{
+  const failures=[];let exercises=0,formulaPanels=0;
+  for(const l of FinanceStudy.lessons){
+   FinanceStudy.render('lesson-'+l.id);await new Promise(requestAnimationFrame);
+   const root=document.getElementById('study-question'),cards=[...root.querySelectorAll('.question-card')];
+   if(cards.length!==l.questions.length)failures.push(l.id+': missing exercises');
+   cards.forEach((card,i)=>{
+    const q=l.questions[i];exercises++;
+    const hint=card.querySelector('.question-hint'),solution=card.querySelector('.question-solution');
+    if(hint.open||solution.open)failures.push(q.id+': premature disclosure');
+    if(!card.querySelector('h3').textContent.trim())failures.push(q.id+': missing prompt');
+    hint.open=true;if(solution.open)failures.push(q.id+': hint revealed answer');hint.open=false;
+    solution.open=true;
+    if(solution.querySelectorAll('.question-steps > li').length!==q.steps.length)failures.push(q.id+': missing steps');
+    const m=solution.querySelectorAll('.study-equation math').length;formulaPanels+=m;
+    if(m!==q.steps.filter(s=>s.mathml).length)failures.push(q.id+': missing formula');
+    if(!document.getElementById('study-'+q.focus))failures.push(q.id+': explanation anchor missing');
+    if(q.givenTable&&card.querySelectorAll('.question-givens tbody tr').length!==q.givenTable.rows.length)failures.push(q.id+': inputs missing');
+    for(const a of card.querySelectorAll('.term-link'))if(!FinanceStudy.resolveGlossary(a.hash.slice(1)))failures.push(q.id+': bad definition');
+    solution.open=false;
+   });
+  }
+  return {exercises,formulaPanels,failures};
+ });
+ assert.equal(audit.exercises,1034);assert.equal(audit.formulaPanels,544);assert.deepEqual(audit.failures,[]);t.diagnostic(JSON.stringify(audit));
+ await page.setViewportSize({width:390,height:844});
+ const mobile=await page.evaluate(async()=>{
+  const failures=[];
+  for(const l of FinanceStudy.lessons){
+   FinanceStudy.render('lesson-'+l.id);document.querySelectorAll('#study-question details').forEach(d=>d.open=true);await new Promise(requestAnimationFrame);
+   if(document.documentElement.scrollWidth>innerWidth+1)failures.push(l.id+': page overflow with open answers');
+   for(const c of document.querySelectorAll('.question-card'))if(c.getBoundingClientRect().width>innerWidth)failures.push(c.id+': card overflow');
+  }
+  return failures;
+ });
+ assert.deepEqual(mobile,[]);
+ await page.goto(url+'/#lesson-bonds-08~question-07');await page.waitForFunction(()=>document.activeElement.id==='study-question-07');
+ await page.locator('#study-question-07 .question-solution > summary').click();
+ fs.mkdirSync('test-results',{recursive:true});await page.locator('#study-question-07').screenshot({path:'test-results/duration-exercise-mobile.png'});
+});
+
+test('exercise filter, keyboard disclosure, direct links and self-assessment survive navigation and reload',async t=>{
+ const page=await open(t);await page.goto(url+'/#lesson-bonds-08~question');
+ assert.equal(await page.locator('.question-card').count(),14);
+ await page.locator('#question-filter').selectOption('Grundlagen');assert.equal(await page.locator('.question-card:visible').count(),2);
+ await page.evaluate(()=>{location.hash='lesson-bonds-08~question-07';});await page.waitForFunction(()=>document.activeElement.id==='study-question-07');
+ assert.equal(await page.locator('#question-filter').inputValue(),'');assert.equal(await page.locator('#study-question-07').isVisible(),true);
+ const hint=page.locator('#study-question-07 .question-hint'),solution=page.locator('#study-question-07 .question-solution');
+ await hint.locator('summary').focus();await page.keyboard.press('Enter');assert.equal(await hint.getAttribute('open'),'');assert.equal(await solution.getAttribute('open'),null);
+ await solution.locator('summary').click();assert.equal(await solution.locator('.study-equation math').count(),3);
+ const check=page.locator('[data-question-check="bonds-08-07"]');await check.check();assert.match(await page.locator('#question-progress').innerText(),/1 von 14/);
+ await page.reload();assert.equal(await check.isChecked(),true);assert.equal(await solution.getAttribute('open'),null);
+ await page.goto(url+'/#lesson-equity-08~question');assert.match(await page.locator('#question-progress').innerText(),/0 von 6/);
+ await page.goto(url+'/#lesson-bonds-08~question-07');assert.equal(await check.isChecked(),true);await check.uncheck();
+ await hint.locator('summary').click();await solution.locator('summary').click();await page.locator('#questions-close').click();assert.equal(await page.locator('#study-question details[open]').count(),0);
+ await page.locator('#question-filter').selectOption('Anwendung');assert.equal(await page.locator('.question-card:visible').count(),2);
+ await page.locator('#question-filter').selectOption('Vertiefung');assert.equal(await page.locator('.question-card:visible').count(),10);
+ await page.locator('#question-filter').selectOption('');
+ await page.locator('#study-question-08 .question-solution > summary').click();await page.locator('#study-question-08').screenshot({path:'test-results/duration-exercise-desktop.png'});
+ await page.locator('#study-question-08 .question-backlink a').click();await page.waitForFunction(()=>document.activeElement.id==='study-derivation-8');
+ const {pathToFileURL}=require('node:url');await page.goto(pathToFileURL(require('node:path').resolve('index.html')).href+'#lesson-bonds-08~question-11');
+ await page.locator('#study-question-11 .question-solution > summary').click();assert.equal(await page.locator('#study-question-11 .study-equation math').count(),3);
+});
+
+test('exercise practice remains usable with damaged or unavailable browser storage',async t=>{
+ const page=await open(t);await page.goto(url+'/#lesson-bonds-08~question');
+ await page.evaluate(()=>localStorage.setItem('studio-finance-exercises-v1','invalid json'));await page.reload();
+ assert.match(await page.locator('#question-progress').innerText(),/0 von 14/);
+ await page.addInitScript(()=>Object.defineProperty(window,'localStorage',{get(){throw new DOMException('Storage unavailable','SecurityError');}}));
+ await page.reload();await page.locator('[data-question-check="bonds-08-01"]').check();assert.match(await page.locator('#question-progress').innerText(),/1 von 14/);
+ await page.locator('#study-question-01 .question-solution > summary').click();assert.equal(await page.locator('#study-question-01 .question-solution').getAttribute('open'),'');
+});
+
 test('Finance overview exposes all chapters, filters and sidebar navigation',async t=>{
  const page=await open(t);await page.goto(url);
  await page.locator('.finance-card').click();

@@ -55,15 +55,16 @@ window.FinanceStudy=(()=>{
     ${details('Vertiefung: Warum gilt das – und wo sind die Grenzen?',lesson.depth,'study-depth')}
     ${lesson.lab?'<section class="study-lab study-section" id="study-lab" tabindex="-1"></section>':''}
     ${paragraph('Typischer Denkfehler',lesson.pitfall,'study-pitfall')}
-    <section class="study-section" id="study-question" tabindex="-1"><h2>Verständnis prüfen</h2><p>${esc(lesson.question)}</p>${details('Lösung und Begründung anzeigen',lesson.answer,'study-answer')}</section>
+    ${questionContent(lesson)}
     <section class="study-section"><h2>Verbindungen zu anderen Kapiteln</h2><ul class="study-related">${related||'<li>Nutze die Kapitelübersicht für den weiteren Lernweg.</li>'}</ul></section>
     <details class="study-details"><summary>CFA-Einordnung und Quellen</summary><p>Bezugsjahr: <strong>2026</strong>. Die Levelhinweise ordnen die behandelten Konzepte didaktisch ein. Bei mehreren Levels reichen sie von Grundlagen bis zur Anwendung; nicht jeder Absatz ist auf jedem genannten Level ein eigenes Prüfungslernziel. Die offiziellen Lernziele und der gewählte Level-III-Pfad bestimmen den Prüfungsumfang. Die Kapitel sind eigenständige Erläuterungen, keine offiziellen CFA-Lernmodule.</p><ul>${lesson.sources.map(s=>`<li><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a></li>`).join('')}</ul><p>Für spätere Prüfungen: <a href="https://www.cfainstitute.org/about/press-room/2026/cfa-institute-announces-updates-to-cfa-program-curriculum" target="_blank" rel="noopener">Curriculumänderungen für 2027</a>. Beispiele sind fiktiv; Steuersätze in Rechenmodellen stellen kein bestimmtes Steuerrecht dar.</p></details>
     <nav class="study-next" aria-label="Kapitel wechseln">${index>0?link(lessons[index-1].id,'← '+lessons[index-1].title):'<span></span>'}${index<lessons.length-1?link(lessons[index+1].id,lessons[index+1].title+' →'):'<a href="#finance">Zur Kapitelübersicht →</a>'}</nav>`;
    if(lesson.lab)mountLab(lesson.lab);
+   mountQuestions(lesson);
   }
   requestAnimationFrame(()=>{
    const target=focus&&document.getElementById('study-'+focus);
-   if(target){target.scrollIntoView({block:'start'});target.focus({preventScroll:true});}
+   if(target){if(target.matches('.question-card[hidden]')){const filter=document.getElementById('question-filter');filter.value='';filter.dispatchEvent(new Event('change'));}target.scrollIntoView({block:'start'});target.focus({preventScroll:true});}
    else document.getElementById('main-content').scrollIntoView({block:'start'});
   });
  }

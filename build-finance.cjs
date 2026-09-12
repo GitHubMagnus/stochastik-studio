@@ -5,6 +5,7 @@ const canonicalFormulas=require('./finance-formulas.cjs');
 const workedEquations=require('./finance-worked-equations.cjs');
 const deepFigures=require('./finance-deep-figures.cjs');
 const comparisonMath=require('./finance-comparison-math.cjs');
+const {compileQuestions}=require('./finance-questions.cjs');
 const readings={
  economics:[['OpenStax · Elastizität','https://openstax.org/books/principles-economics-3e/pages/5-1-price-elasticity-of-demand-and-price-elasticity-of-supply'],['OpenStax · Produktivität und Wachstum','https://openstax.org/books/principles-economics-3e/pages/20-2-labor-productivity-and-economic-growth']],
  corporate:[['NYU Stern · Corporate Finance · Lehrmaterialien','https://pages.stern.nyu.edu/~adamodar/New_Home_Page/AppldCF/solns/ch9sol.htm']],
@@ -63,7 +64,11 @@ for(const block of plan){
   const tex=canonicalFormulas[block.id]?.[i-1];
   if(tex===undefined)throw Error(id+': kanonische Formel fehlt');
   const formulaMathML=tex?financeMath.renderLatex(tex):null;
-  lessons.push({...lesson,example:textbook.example,textbook,deep,formulaTex:tex,formulaMathML,id,title,group,block:block.id,blockTitle:block.title,kind:block.kind,scope,sources});
+  const compiled={...lesson,example:textbook.example,textbook,deep,formulaTex:tex,formulaMathML,id,title,group,block:block.id,blockTitle:block.title,kind:block.kind,scope,sources};
+  const questionBlock=require('./finance-questions/'+block.id+'.cjs');
+  if(questionBlock.length!==content.length)throw Error(block.id+': Zahl der Aufgabenbanken stimmt nicht');
+  compiled.questions=compileQuestions(compiled,questionBlock[i-1]);
+  lessons.push(compiled);
  }
  if(content.length!==i)throw Error('Kapitelzahl stimmt nicht: '+block.id);
 }
@@ -74,7 +79,7 @@ for(const l of lessons)for(const [ref] of l.deep?.links||[])if(!targets.has(ref)
 const slug=s=>s.toLocaleLowerCase('de').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/ß/g,'ss').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
 const escapeReg=s=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
 const glossary=[],usedIds=new Set(),usedLabels=new Map();
-const searchable=l=>[l.title,l.intuition,l.logic,l.math,l.example,l.depth,l.pitfall,l.question,l.answer,l.textbook.heading,...l.textbook.explanation,...l.textbook.steps.flatMap(s=>[s.calculation,s.why]),l.textbook.applications,l.textbook.limitations,l.textbook.connections,...(l.deep?.sections||[]).flatMap(s=>[s.title,...s.paragraphs]),...(l.deep?.comparisons||[]).flatMap(c=>[c.intro,...c.paragraphs,...c.rows.flat()])].join(' ');
+const searchable=l=>[l.title,l.intuition,l.logic,l.math,l.example,l.depth,l.pitfall,l.question,l.answer,...l.questions.flatMap(q=>[q.prompt,q.context||'',...q.steps.map(s=>s.text)]),l.textbook.heading,...l.textbook.explanation,...l.textbook.steps.flatMap(s=>[s.calculation,s.why]),l.textbook.applications,l.textbook.limitations,l.textbook.connections,...(l.deep?.sections||[]).flatMap(s=>[s.title,...s.paragraphs]),...(l.deep?.comparisons||[]).flatMap(c=>[c.intro,...c.paragraphs,...c.rows.flat()])].join(' ');
 for(const source of glossarySource){
  const id=slug(source.term);if(!id||usedIds.has(id))throw Error('Doppelter/ungültiger Wörterbuchschlüssel: '+source.term);usedIds.add(id);
  if(!targets.has(source.lesson))throw Error(source.term+': ungültiges Hauptkapitel '+source.lesson);
@@ -101,7 +106,7 @@ const body=`<!-- FINANCE PAGE START -->
 <div class="kicker">Finance / Lernen und Verstehen</div><h1>Finance Studio.</h1><p class="lede">${lessons.length} Kapitel von der Finanzsprache bis zur begründeten Portfolioentscheidung. Öffne ein Thema und verbinde Theorie, Intuition und Rechenweg.</p>
 <div class="finance-plan-note"><strong>Dein CFA-orientierter Lernweg · Bezugsjahr 2026</strong><p>Die Levelhinweise stehen in jedem Kapitel. Level I legt Grundlagen, Level II vertieft Analyse, Level III verbindet Entscheidungen im Portfolio. Die drei Level-III-Wahlpfade sind Alternativen. Eigene didaktische Kapitel, keine wortgetreue Liste offizieller Lernmodule.</p></div>
 <div class="finance-summary"><span><b>10</b> Kernbereiche</span><span><b>${plan.length}</b> Themenblöcke</span><span><b>${lessons.length}</b> Lernkapitel</span><a href="#glossary">Fachwörterbuch öffnen → <small>${glossary.length} Definitionen mit Kapitelverweisen</small></a><a href="#kelly" data-open="kelly">Kelly Studio öffnen → <small>Positionsgrößen und Portfolios erkunden</small></a></div>
-<p class="planned-format"><strong>In jedem Kapitel:</strong> Intuition · ausführliche Erklärung · Herleitungen · gezielte Vergleiche · Formel / Prinzip · erläuterte Lösungsschritte · Anwendungen · Grenzen · aufklappbare Vertiefung · Kontrollfrage · Querverweise. ${Object.keys(models).length} interaktive Modelle vertiefen geeignete Zusammenhänge.</p>
+<p class="planned-format"><strong>In jedem Kapitel:</strong> Intuition · ausführliche Erklärung · Herleitungen · gezielte Vergleiche · Formel / Prinzip · erläuterte Lösungsschritte · Anwendungen · Grenzen · aufklappbare Vertiefung · mindestens sechs Übungsaufgaben mit begründeten Lösungen · Querverweise. ${Object.keys(models).length} interaktive Modelle vertiefen geeignete Zusammenhänge.</p>
 <div class="finance-controls"><label for="finance-search">Thema oder Fachbegriff suchen<input type="search" id="finance-search" placeholder="z. B. Duration, Bilanz, Ethik, Private Wealth"></label><label for="finance-filter">Bereich<select id="finance-filter"><option value="">Alle Bereiche</option>${['Kernbereich','Level III Kern','Wahlpfad','Ergänzung'].map(k=>`<option>${k}</option>`).join('')}</select></label><button class="btn ghost" type="button" id="finance-expand">Alle aufklappen</button><button class="btn ghost" type="button" id="finance-collapse">Alle zuklappen</button></div>
 <p id="finance-results" role="status" aria-live="polite">${plan.length} Themenblöcke · ${lessons.length} Unterthemen</p>
 <div id="finance-outline">${plan.map((t,i)=>`<details class="finance-topic" id="finance-${t.id}" data-kind="${t.kind}"><summary><span class="finance-number">${String(i).padStart(2,'0')}</span><span class="finance-topic-title"><strong>${escape(t.title)}</strong><small>${escape(t.english)}</small></span><span class="finance-badge">${t.kind}</span><span class="finance-count">${lessons.filter(l=>l.block===t.id).length} Kapitel</span></summary><div class="finance-subgroups">${t.groups.map(([name])=>`<div class="finance-subgroup"><h2>${escape(name)}</h2><ul>${lessons.filter(l=>l.block===t.id&&l.group===name).map(l=>`<li><a href="#lesson-${l.id}">${escape(l.title)}<small>CFA ${l.levels.map(n=>'Level '+n).join(' · ')}${l.lab?' · Interaktives Modell':''}</small></a></li>`).join('')}</ul></div>`).join('')}</div><p class="finance-topic-status">Kapitel anklicken · Vertiefungen und Lösungen bei Bedarf aufklappen</p></details>`).join('\n')}</div>
@@ -112,9 +117,9 @@ const body=`<!-- FINANCE PAGE START -->
 <script type="application/json" id="finance-glossary-data">${JSON.stringify(glossary).replaceAll('<','\\u003c')}</script>
 <!-- FINANCE PAGE END -->`;
 html=html.replace(/<!-- FINANCE PAGE START -->[\s\S]*?<!-- FINANCE PAGE END -->/,()=>body);
-const css='/* FINANCE STUDY CSS START */\n'+fs.readFileSync('finance-study.css','utf8')+'\n'+fs.readFileSync('finance-textbook.css','utf8')+'\n/* FINANCE STUDY CSS END */';
+const css='/* FINANCE STUDY CSS START */\n'+fs.readFileSync('finance-study.css','utf8')+'\n'+fs.readFileSync('finance-textbook.css','utf8')+'\n'+fs.readFileSync('finance-questions.css','utf8')+'\n/* FINANCE STUDY CSS END */';
 if(html.includes('/* FINANCE STUDY CSS START */'))html=html.replace(/\/\* FINANCE STUDY CSS START \*\/[\s\S]*?\/\* FINANCE STUDY CSS END \*\//,()=>css);else html=html.replace('</style>',()=>css+'\n</style>');
-const ui=fs.readFileSync('finance-ui.js','utf8').replace('/* DEEP HELPERS */',()=>fs.readFileSync('finance-deep-ui.js','utf8'));
+const ui=fs.readFileSync('finance-ui.js','utf8').replace('/* DEEP HELPERS */',()=>fs.readFileSync('finance-deep-ui.js','utf8')+'\n'+fs.readFileSync('finance-questions-ui.js','utf8'));
 const js='/* FINANCE STUDY JS START */\n'+fs.readFileSync('finance-models.cjs','utf8')+'\n'+ui+'\n/* FINANCE STUDY JS END */';
 if(html.includes('/* FINANCE STUDY JS START */'))html=html.replace(/\/\* FINANCE STUDY JS START \*\/[\s\S]*?\/\* FINANCE STUDY JS END \*\//,()=>js);else html=html.replace('/* ================================================= Router */',()=>js+'\n/* ================================================= Router */');
 html=html.replace(/<a class="module-card finance-card"[\s\S]*?<\/a>/,`<a class="module-card finance-card" href="#finance" data-open="finance"><span class="kicker">Finance</span><span class="module-symbol" aria-hidden="true">f*</span><h2>Finance Studio</h2><p>${lessons.length} Lernkapitel mit Theorie, Intuition, Beispielen und interaktiven Modellen – von Ethik bis zur Portfoliosteuerung.</p><span class="card-action">Finance lernen →</span></a>`);
@@ -128,4 +133,4 @@ if(kellyRendered!==Object.keys(kellyFormulas).length)throw Error(`Kelly-Formelza
 const kellyMathCss='<style id="kelly-math-css">.formula{overflow:auto;white-space:normal}.formula .katex,.formula math{display:block;min-width:max-content;text-align:center}.formula math{font-family:"Cambria Math","STIX Two Math","Times New Roman",serif;font-size:1.08em;margin:auto}</style>';
 if(kellyHtml.includes('<style id="kelly-math-css">'))kellyHtml=kellyHtml.replace(/<style id="kelly-math-css">[\s\S]*?<\/style>/,kellyMathCss);else kellyHtml=kellyHtml.replace('</head>',kellyMathCss+'\n</head>');
 fs.writeFileSync('kelly-studio.html',kellyHtml);
-fs.writeFileSync('index.html',html);console.log(JSON.stringify({blocks:plan.length,lessons:lessons.length,models:Object.keys(models).length,interactiveLessons:lessons.filter(l=>l.lab).length,glossary:glossary.length,financeMath:lessons.filter(l=>l.formulaTex).length,derivationSections:lessons.reduce((n,l)=>n+l.deep.sections.length,0),comparisons:lessons.reduce((n,l)=>n+l.deep.comparisons.length,0),workedMath:lessons.reduce((n,l)=>n+l.textbook.steps.filter(s=>s.mathml).length,0),kellyMath:kellyRendered}));
+fs.writeFileSync('index.html',html);console.log(JSON.stringify({blocks:plan.length,lessons:lessons.length,models:Object.keys(models).length,interactiveLessons:lessons.filter(l=>l.lab).length,glossary:glossary.length,financeMath:lessons.filter(l=>l.formulaTex).length,derivationSections:lessons.reduce((n,l)=>n+l.deep.sections.length,0),comparisons:lessons.reduce((n,l)=>n+l.deep.comparisons.length,0),workedMath:lessons.reduce((n,l)=>n+l.textbook.steps.filter(s=>s.mathml).length,0),questions:lessons.reduce((n,l)=>n+l.questions.length,0),kellyMath:kellyRendered}));
