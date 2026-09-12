@@ -1,0 +1,115 @@
+const R=require('./schema.cjs');
+module.exports=[
+R('Barwert und Endwert sind dieselbe Zahlung zu zwei Zeitpunkten',`Der Zeitwert entsteht aus der Möglichkeit, verfügbares Kapital zwischenzeitlich einzusetzen. Der Barwert ist der Betrag, der heute bei einer festgelegten Verzinsung denselben späteren Betrag erzeugen würde. Er ist damit ein Vergleichswert, kein zusätzlicher Zahlungsstrom.
+
+Die Formel entsteht durch wiederholtes Multiplizieren: Nach einer Periode ist aus PV der Betrag PV × (1+r) geworden; nach zwei Perioden wird auch der erste Zins verzinst. Abzinsung löst diese Gleichung rückwärts. Bei unterschiedlichen Periodenzinsen wird durch das Produkt der jeweiligen Wachstumsfaktoren geteilt. Ein Risikoaufschlag erhöht den Diskontsatz, weil ein unsicherer Anspruch einen niedrigeren heutigen Preis benötigt, um eine höhere erwartete Rendite zu bieten.`,
+'Eine Zahlung von 1.500 € wird in zwei Jahren erwartet. Als Vergleichszins gelten effektiv 5 % jährlich.',[
+'Wachstumsfaktor über zwei Jahre: 1,05 × 1,05 = 1,1025.|Zinseszins erzeugt 10,25 % Wachstum; eine einfache Addition ergäbe nur 10 %.',
+'Barwert: 1.500/1,1025 = 1.360,54 €.|Genau dieser heutige Betrag wächst unter der Annahme auf 1.500 €.',
+'Bei 8 %: 1.500/1,08² = 1.286,01 €.|Eine höhere Renditeanforderung senkt den heutigen Wert um 74,53 €, weil dieselbe spätere Zahlung nun mehr Wachstum kompensieren muss.'
+],'Barwerte verbinden Kreditvergleich, Unternehmensbewertung, Rentenplanung und die Bewertung von Anleihecashflows.','Ein konstanter Satz vereinfacht die Zinsstruktur. Unsichere Zahlungen benötigen konsistente Risikobehandlung; nominale Beträge und reale Zinssätze dürfen nicht vermischt werden.','Anleihen sind Bündel einzelner Barwerte. NPV zieht von dieser Summe die Anfangsinvestition ab.'),
+R('Gleichmäßige Zahlungen als geometrische Reihe',`Eine Annuität ist eine endliche Folge gleicher periodischer Zahlungen. Ihre Barwerte bilden eine geometrische Reihe, weil jeder weitere Betrag durch einen zusätzlichen Faktor 1+r geteilt wird. Die Rentenformel fasst diese Summe zusammen. Bei r = 0 bleibt einfach Anzahl mal Zahlung.
+
+Die ewige Rente setzt unendlich viele Zahlungen voraus. Ihr endlicher Barwert entsteht nur, wenn die Diskontierung hinreichend stark ist; bei konstanten Zahlungen ist r positiv, bei Wachstum muss r größer als g sein. Eine vorschüssige Rente verschiebt jede Zahlung eine Periode nach vorne und multipliziert den nachschüssigen Barwert deshalb mit 1+r.`,
+'Drei Zahlungen von je 100 € erfolgen am Jahresende. Der Zins beträgt 5 %.',[
+'Einzelbarwerte: 100/1,05 = 95,24; 100/1,05² = 90,70; 100/1,05³ = 86,38 €.|Jeder zusätzliche Zeitraum verringert den heutigen Wert derselben Zahlung.',
+'Summe: 95,24 + 90,70 + 86,38 = 272,32 €.|Die Rentenformel 100 × [1−1,05⁻³]/0,05 liefert denselben Wert.',
+'Vorschüssig: 272,32 × 1,05 = 285,94 €.|Die Zahlungstermine liegen jetzt bei 0, 1 und 2 Jahren. Früheres Geld ist bei positivem Zins mehr wert.'
+],'Anwendbar auf gleichmäßige Kreditraten, Sparpläne und vereinfachte Pensionen. Effektivzinsumrechnung erlaubt den Vergleich unterschiedlicher Gutschriftfrequenzen.','Unregelmäßige Raten müssen einzeln bewertet werden. Eine endliche Lebensdauer darf nicht ohne Begründung durch eine ewige Rente ersetzt werden.','Gordon erweitert die ewige Rente um Wachstum; Leasingbewertung verwendet den Barwert vertraglicher Raten.'),
+R('Durchschnittsrendite und tatsächliches Wachstum unterscheiden',`Das arithmetische Mittel beantwortet, wie hoch die durchschnittliche Einzelperiodenrendite in der Stichprobe war. Das geometrische Mittel fragt nach einer konstanten Rate, die denselben Endwert erzeugt. Es wird aus dem Produkt der Wachstumsfaktoren berechnet. Bei Schwankungen ist es höchstens so groß wie das arithmetische Mittel.
+
+Logarithmische Renditen sind der natürliche Logarithmus eines Wachstumsfaktors. Sie addieren sich über Zeit und erleichtern Modellierung. Einfache Renditen addieren sich dagegen mit passenden Gewichten über Anlagen innerhalb einer Periode. Diese beiden Aggregationsregeln sind nicht austauschbar.`,
+'Eine Anlage verdient im ersten Jahr 50 % und verliert im zweiten Jahr 20 %. Startwert 100 €.',[
+'Arithmetisches Mittel: (50 % − 20 %)/2 = 15 %.|Das ist der Durchschnitt der beiden Jahresraten, keine konstante Wachstumsrate des Vermögens.',
+'Endwert: 100 × 1,50 × 0,80 = 120 €; geometrisch: √1,20 − 1 = 9,54 % jährlich.|Zwei Jahre mit jeweils 9,54 % erzeugen denselben Endwert.',
+'Logsumme: ln(1,50)+ln(0,80)=ln(1,20)=0,18232.|Division durch zwei und Rücktransformation mit exp ergibt erneut 9,54 %.'
+],'Geometrische Mittel beschreiben langfristige Vermögensentwicklung; arithmetische Mittel werden unter geeigneten Annahmen zur Einzelperiodenschätzung verwendet.','Logrendite ist bei Totalverlust nicht endlich. Historische Mittelwerte sind Schätzungen, keine zugesagten künftigen Renditen.','Kelly maximiert erwartetes Logwachstum. Der Zusammenhang zwischen Volatilität und Wachstum erklärt, warum Verluste den Zinseszins bremsen.'),
+R('Wer entscheidet über den Zeitpunkt des investierten Geldes?',`TWR misst die verkettete Anlageperformance unabhängig von externen Ein- und Auszahlungen, sofern die Teilperioden korrekt abgegrenzt werden. Sie eignet sich zur Managerbeurteilung, wenn der Kunde die Mittelzuflüsse steuert. MWR berücksichtigt Betrag und Zeitpunkt jedes Cashflows und beschreibt damit die Erfahrung des eingesetzten Kapitals.
+
+Eine hohe Rendite vor einer großen Einzahlung kann für TWR stark, für den tatsächlichen Anlegerertrag aber wenig bedeuten. Umgekehrt trifft ein Verlust nach einer großen Einzahlung besonders viel Kapital. Der interne Zinsfuß ist die Rate, welche alle tatsächlichen Zahlungen auf einen Kapitalwert von null bringt.`,
+'100 € wachsen im ersten Jahr auf 110 €. Dann werden weitere 100 € eingezahlt. Im zweiten Jahr verliert das gesamte Portfolio 10 %.',[
+'Vor dem zweiten Jahr: 110 + 100 = 210 €; Endwert: 210 × 0,90 = 189 €.|Die zweite Rendite wirkt auf mehr Kapital als die erste.',
+'TWR: 1,10 × 0,90 − 1 = −1 % über beide Jahre.|Die externe Einzahlung wird aus der Renditeverkettung herausgehalten.',
+'MWR löst −100−100/(1+r)+189/(1+r)²=0; r ≈ −3,71 % jährlich.|Das eingesetzte Geld war stärker dem schlechten Jahr ausgesetzt. Die annualisierte TWR wäre √0,99−1 ≈ −0,50 % und damit deutlich weniger negativ.'
+],'TWR dient häufig dem Managervergleich, MWR der persönlichen Investitionserfahrung und geschlossenen Fonds.','Mehrfache Vorzeichenwechsel können mehrere interne Zinsfüße erzeugen. Näherungen ohne genaue Zwischenbewertungen können die TWR verzerren.','GIPS behandelt konsistente Performancedarstellung; Private Markets nutzt IRR ergänzend zu Multiples.'),
+R('Eine Renditeverteilung hat mehr als einen Mittelpunkt',`Mittelwert und Median beschreiben Lage. Varianz misst die durchschnittliche quadrierte Entfernung vom Mittelwert; Standardabweichung bringt sie in Renditeeinheiten zurück. Weil positive und negative Abweichungen quadriert werden, zählt beides als Streuung.
+
+Schiefe beschreibt Asymmetrie: Einzelne extreme Verluste erzeugen Linksschiefe. Kurtosis beschreibt Aspekte der Gewichtsverteilung, insbesondere starke Randereignisse relativ zur Normalverteilung; sie ist nicht bloß die Höhe des Gipfels. Zwei Anlagen können denselben Mittelwert und dieselbe Volatilität besitzen, aber sehr unterschiedliche Crashrisiken.`,
+'Drei beobachtete Jahresrenditen lauten −10 %, 0 % und +10 %.',[
+'Mittelwert: (−0,10+0+0,10)/3 = 0.|Die positiven und negativen Abweichungen heben sich beim Mittel auf.',
+'Quadrierte Abweichungen: 0,01 + 0 + 0,01 = 0,02; Stichprobenvarianz: 0,02/(3−1)=0,01.|Ein Freiheitsgrad wird durch Schätzung des Mittelwerts verbraucht.',
+'Standardabweichung: √0,01 = 0,10 = 10 %.|Das Ergebnis besitzt wieder dieselbe Einheit wie Rendite, während die Varianz quadrierte Renditeeinheiten hat.'
+],'Verteilungskennzahlen helfen beim Risikovergleich und der Auswahl geeigneter Simulationsmodelle.','Drei Beobachtungen erlauben keine verlässliche Einschätzung extremer Verluste. Ausreißer, Regimewechsel und geglättete Preise können Schätzungen dominieren.','VaR und Expected Shortfall betrachten Verlustbereiche; Diversifikation benötigt zusätzlich gemeinsame Kovarianzen.'),
+R('Mit neuer Information Wahrscheinlichkeiten aktualisieren',`Der Erwartungswert ist die Summe möglicher Ergebnisse, jeweils gewichtet mit ihrer Wahrscheinlichkeit. Er beschreibt einen langfristigen Durchschnitt vergleichbarer Wiederholungen; er muss kein tatsächlich möglicher Einzelwert sein. Wahrscheinlichkeiten müssen sich über ein vollständiges System gegenseitig ausschließender Szenarien zu eins summieren.
+
+Bayes kehrt eine bedingte Wahrscheinlichkeit um. Ein Signal kann bei Ausfällen häufig auftreten und trotzdem nach Auftreten meist keinen Ausfall bedeuten, wenn Ausfälle zuvor selten waren. Der Nenner zählt daher alle Wege zum beobachteten Signal: richtige Warnungen und Fehlalarme.`,
+'Bei 1.000 Firmen fallen voraussichtlich 20 aus. Ein Warnsignal erkennt 80 % der Ausfälle und erscheint bei 10 % der nicht ausfallenden Firmen.',[
+'Echte Warnungen: 20 × 0,80 = 16.|Die Trefferquote wird auf die kleine Gruppe tatsächlicher Ausfälle angewendet.',
+'Fehlwarnungen: 980 × 0,10 = 98; insgesamt 114 Warnungen.|Die große gesunde Gruppe kann trotz niedriger Fehlalarmrate viele Warnungen produzieren.',
+'Ausfallwahrscheinlichkeit bei Warnung: 16/114 = 14,04 %.|Das Signal erhöht die Ausgangswahrscheinlichkeit von 2 %, macht einen Ausfall aber keineswegs sicher.'
+],'Anwendbar auf Kreditwarnungen, Betrugserkennung, Researchsignale und die Aktualisierung von Szenarien.','Die Rechnung braucht passende bedingte Raten und eine realistische Ausgangshäufigkeit. Veränderte Populationen können die Kalibrierung zerstören.','Das Stochastik-Kapitel zu Bayes visualisiert dieselbe Zählung; Kreditanalyse verbindet aktualisierte PD mit LGD und EAD.'),
+R('Streuung der Daten ist nicht Unsicherheit des Mittelwerts',`Eine Stichprobe schwankt von Beobachtung zu Beobachtung. Zusätzlich würde eine neue Stichprobe einen anderen geschätzten Mittelwert liefern. Standardabweichung misst die erste Streuung; Standardfehler die zweite. Bei unabhängigen identisch verteilten Beobachtungen mit endlicher Varianz sinkt der Standardfehler mit der Quadratwurzel des Stichprobenumfangs.
+
+Der zentrale Grenzwertsatz erklärt, warum viele Mittelwerte näherungsweise normalverteilt sind, obwohl die Einzelwerte es nicht sind. Er behauptet nicht, dass die Renditen selbst normal werden. Die effektive Informationsmenge kann bei Autokorrelation deutlich kleiner sein als die Zeilenzahl.`,
+'100 unabhängige Renditebeobachtungen haben Stichprobenmittel 6 % und Standardabweichung 20 %.',[
+'Standardfehler: 20 %/√100 = 2 Prozentpunkte.|Der Mittelwert ist präziser geschätzt als eine einzelne künftige Rendite vorhergesagt werden kann.',
+'Für 400 vergleichbare Beobachtungen: 20 %/√400 = 1 Prozentpunkt.|Viermal so viele Daten halbieren unter den Annahmen die Schätzunsicherheit.',
+'Einzelrenditen können weiterhin etwa 20 % streuen.|Mehr Daten reduzieren Wissenunsicherheit über den Mittelwert, nicht automatisch das wirtschaftliche Anlagerisiko.'
+],'Wichtig für Renditeschätzung, Tests und Monte-Carlo-Genauigkeit.','Abhängige Daten, unendliche Varianz oder Strukturbrüche begrenzen die einfache Wurzelregel. Eine längere Historie kann wirtschaftlich weniger vergleichbar sein.','Konfidenzintervalle multiplizieren den Standardfehler mit einem kritischen Wert; Prognoseintervalle müssen zusätzliche Ergebnisstreuung enthalten.'),
+R('Ein Test vergleicht Beobachtung mit einem Nullmodell',`Ein Hypothesentest fragt, ob die Daten unter einer ausdrücklich formulierten Nullhypothese ungewöhnlich wären. Der p-Wert ist eine Wahrscheinlichkeit für mindestens so extreme Daten unter diesem Modell. Er ist nicht die Wahrscheinlichkeit, dass die Nullhypothese wahr ist.
+
+Das Signifikanzniveau begrenzt langfristig die Ablehnungsrate bei wahrer Nullhypothese, soweit Modell und Verfahren stimmen. Ein Konfidenzintervall ist eine zugehörige Menge nicht verworfener Parameterwerte. Statistische Signifikanz unterscheidet sich von wirtschaftlicher Bedeutung: Ein kleiner, präzise gemessener Vorteil kann nach Kosten verschwinden.`,
+'Aus 25 unabhängigen normalverteilten Beobachtungen ergeben sich 4 % Mittelwert und 10 % Standardabweichung. Getestet wird ein wahrer Mittelwert von null, zweiseitig auf 5 %-Niveau.',[
+'Standardfehler: 10 %/√25 = 2 Prozentpunkte.|Er skaliert die Unsicherheit der Mittelwertschätzung.',
+'t = (4 %−0)/2 % = 2; Freiheitsgrade 24, kritischer Wert etwa 2,064.|Der beobachtete Mittelwert liegt zwei Standardfehler von null entfernt, knapp unter der Ablehnungsschwelle.',
+'Intervall: 4 % ± 2,064 × 2 % = [−0,128 %; 8,128 %].|Null bleibt enthalten. Nichtverwerfen beweist keine Nullrendite; die Daten sind für die gewählte Entscheidung nicht eindeutig genug.'
+],'Tests helfen bei Alpha-Schätzung, Modellvergleich und Hypothesen über Mittelwerte.','Mehrfachtests, selektive Veröffentlichung und nicht unabhängige Daten erhöhen falsche Entdeckungen. Ein nachträglich gewählter Test benötigt besondere Vorsicht.','Alpha verwendet dieselbe Logik: Ein positiver Schätzwert allein beweist kein Können.'),
+R('Regression zerlegt systematische Zusammenhänge und Restfehler',`Eine lineare Regression beschreibt den bedingten Durchschnitt einer Zielgröße durch erklärende Variablen. OLS wählt Koeffizienten so, dass die Summe quadrierter Residuen minimal wird. Die Steigung gibt an, wie stark sich der modellierte Zielwert bei einer Einheit mehr des Regressors verändert.
+
+Bei mehreren Regressoren gilt diese Interpretation unter Konstanthaltung der anderen Modellvariablen. Das ist keine automatische Kausalaussage: Ausgelassene Ursachen oder Rückwirkungen können die Koeffizienten verzerren. Ein hohes R² sagt, dass das Modell in der Stichprobe viel Streuung erklärt; es sagt nicht, dass die Beziehung außerhalb der Stichprobe stabil bleibt.`,
+'Für x = 1, 2, 3 werden y = 2, 3, 5 beobachtet. Gesucht ist die einfache OLS-Gerade.',[
+'Mittelwerte: x̄=2 und ȳ=10/3.|Zentrieren trennt Lage und gemeinsame Bewegung.',
+'Kreuzproduktsumme = 3; Quadratsumme von x = 2; Steigung b=3/2=1,5.|Die Steigung ist gemeinsame Abweichung relativ zur Streuung des Erklärers.',
+'Achsenabschnitt a=10/3−1,5×2=1/3; Prognosen 1,833, 3,333 und 4,833.|Die Gerade geht durch den Datenmittelpunkt; die Residuen ergeben zusammen null.'
+],'Regression schätzt Marktbeta, Kostenfunktionen und Renditefaktoren.','Extrapolation weit außerhalb beobachteter x-Werte ist riskant. Kausalität verlangt zusätzliche Annahmen über Entstehung und Auswahl der Daten.','CAPM-Beta ist eine Regressionssteigung; Alpha ist bei Überschussrenditen der Interzept eines passenden Faktormodells.'),
+R('Modellfehler haben unterschiedliche Folgen',`Heteroskedastizität bedeutet, dass die Fehlerstreuung mit den Erklärern variiert. Autokorrelation verbindet Fehler über die Zeit. Beides kann klassische Standardfehler unzuverlässig machen. Bei ansonsten exogenen Regressoren müssen die OLS-Koeffizienten dadurch nicht verzerrt sein.
+
+Multikollinearität bedeutet starke Ähnlichkeit der Regressoren: Ihre individuellen Beiträge sind schwer zu trennen. Endogenität ist grundsätzlicher; ein Regressor hängt mit dem nicht erklärten Fehler zusammen. Robuste Standardfehler reparieren die Unsicherheitsrechnung, aber nicht eine solche Verzerrung. Diagnose muss deshalb fragen, welcher Mechanismus verletzt ist.`,
+'Eine Regression liefert einen Steigungswert von 0,8. Der klassische Standardfehler beträgt 0,2, ein sachgerecht berechneter robuster Standardfehler 0,5.',[
+'Klassischer t-Wert: 0,8/0,2 = 4.|Unter den einfachen Fehlerannahmen erscheint die Schätzung relativ präzise.',
+'Robuster t-Wert: 0,8/0,5 = 1,6.|Nach Berücksichtigung der ungleichen Streuung ist die statistische Evidenz deutlich schwächer.',
+'Der Koeffizient bleibt 0,8; seine Interpretation wird vorsichtiger.|Die robuste Rechnung ändert hier Unsicherheit, nicht den geschätzten Zusammenhang und nicht mögliche Kausalitätsprobleme.'
+],'Residualdiagramme, Zeitmuster und Einflussdiagnostik sollten jede Regressionsauswertung begleiten.','Robuste Verfahren benötigen selbst passende Bedingungen und ausreichend Daten. Perfekte Multikollinearität verhindert eindeutige Koeffizienten.','Instrumentvariablen behandeln bestimmte Endogenitätsprobleme; Logit verwendet für binäre Ziele eine andere Funktionsform.'),
+R('Zeitreihenmodelle erklären, wie lange ein Schock nachwirkt',`Ein AR(1)-Modell beschreibt den aktuellen Wert durch eine Konstante, einen Anteil des Vorperiodenwerts und einen neuen Schock. Bei absolutem Koeffizienten kleiner eins nimmt der Einfluss alter Schocks geometrisch ab. Bei eins entsteht ein Random Walk, in dem ein Schock dauerhaft das Niveau verändert.
+
+Stationarität heißt hier, dass Mittelwert, Varianz und zeitabhängige Kovarianzstruktur stabil sind. Ein Trend oder Strukturbruch verletzt diese einfache Beschreibung. ARCH- und GARCH-Modelle erweitern den Blick auf zeitlich veränderliche bedingte Varianz: Ruhige und turbulente Phasen können sich abwechseln, obwohl der durchschnittliche Ertrag kaum prognostizierbar bleibt.`,
+'Ein Prozess folgt xₜ = 2 + 0,8xₜ₋₁ + εₜ mit erwarteten neuen Schocks von null. Aktueller Wert: 20.',[
+'Langfristiger Mittelwert: 2/(1−0,8)=10.|Im Gleichgewicht ist der erwartete nächste Wert gleich dem aktuellen Mittelwert.',
+'Prognose nächste Periode: 2+0,8×20=18; danach 2+0,8×18=16,4.|Die Abweichung vom Mittelwert schrumpft jeweils auf 80 %.',
+'Ein einmaliger zusätzlicher Schock von 5 wirkt nach drei Perioden noch mit 5×0,8³=2,56.|Die Wirkung verschwindet allmählich, während neue Schocks die tatsächliche Entwicklung weiter beeinflussen.'
+],'Nützlich für Zins-, Inflations- und Geschäftsprognosen sowie Stresspfade.','Hohe Persistenz ist schwer von Nichtstationarität zu unterscheiden. Ein gut passendes historisches Modell kann nach einem Regimewechsel versagen.','Prognoseunsicherheit wächst mit dem Horizont; Monte Carlo kombiniert die systematische Dynamik mit neuen Zufallsschocks.'),
+R('Simulation beantwortet eine Frage unter einem Datenmodell',`Monte Carlo erzeugt viele künstliche Pfade aus festgelegten Verteilungen und Abhängigkeiten. Für jeden Pfad wird die gesuchte Größe berechnet; anschließend werden Mittelwerte, Quantile oder Verlustraten zusammengefasst. Mehr Pfade verringern numerischen Zufall, nicht den Fehler des zugrunde liegenden Modells.
+
+Bootstrap zieht neue Stichproben aus vorhandenen Daten. Bei Zeitabhängigkeit können Blöcke sinnvoll sein, damit lokale Muster erhalten bleiben. Backtesting vergleicht vorher definierte Modelle mit später beobachteten Ergebnissen. Ein glaubwürdiger Backtest verwendet nur Informationen, die zum damaligen Entscheidungszeitpunkt verfügbar waren.`,
+'In einer Simulation ist der mittlere Endwert 120 €. Die Standardabweichung der simulierten Endwerte beträgt 30 €, zunächst bei 900 unabhängigen Pfaden.',[
+'Monte-Carlo-Standardfehler des Mittelwerts: 30/√900 = 1 €.|Die Zahl misst Unsicherheit durch die endliche Pfadzahl.',
+'Bei 3.600 Pfaden: 30/√3.600 = 0,50 €.|Viermal mehr Rechenarbeit halbiert ungefähr diesen numerischen Fehler.',
+'Die Streuung eines einzelnen Endwerts bleibt etwa 30 €.|Das Anlegerergebnis wird durch mehr simulierte Pfade nicht sicherer. Ein falsches Ausfallmodell bleibt ebenfalls falsch.'
+],'Simulation eignet sich für komplexe Auszahlungen, Ruhestandsplanung und Pfadrisiken; Bootstrap für Schätzunsicherheit.','Seltene Ereignisse und instabile Abhängigkeiten benötigen besondere Behandlung. Datenleckage und Survivorship Bias können historische Strategien künstlich erfolgreich machen.','Die Standardfehlerregel stammt aus Stichprobentheorie; Stressszenarien ergänzen Ereignisse, die in historischen Daten fehlen.'),
+R('Optimierung stellt eine präzise Frage an unsichere Eingaben',`Eine Optimierung braucht Zielfunktion, Entscheidungsvariablen und Nebenbedingungen. Im Portfolio sind die Variablen Gewichte. Eine Mittelwert-Varianz-Zielfunktion belohnt erwartete Rendite und bestraft Varianz entsprechend der Risikoaversion. Vollinvestition, Leerverkaufsverbote und Konzentrationsgrenzen bestimmen den zulässigen Bereich.
+
+Nebenbedingungen sind keine kosmetischen Einstellungen. Ein beschränktes Optimum kann auf einer Grenze liegen, obwohl die unbeschränkte erste Ableitung dort nicht null ist. Das nachträgliche Abschneiden negativer Gewichte und anschließende Normieren löst im Allgemeinen ein anderes Problem als die gemeinsame Optimierung.`,
+'Eine riskante Anlage bietet 8 % erwartete Rendite, Cash 3 %. Volatilität 20 %, Risikoaversion A=4. Geplant ist ein Anteil y.',[
+'Überschussrendite: 0,08−0,03=0,05; Varianz: 0,20²=0,04.|Die Zielfunktion verwendet Varianz und nicht die Standardabweichung.',
+'Unbeschränktes Optimum: y=0,05/(4×0,04)=0,3125.|Mehr Risikoaversion oder Varianz reduziert den optimalen Anteil.',
+'Bei einer Positionsgrenze von 25 % gilt y=0,25.|Die Beschränkung bindet; der verbleibende Anteil von 75 % liegt in Cash.'
+],'Wird für Asset Allocation, Hedging und Risikobudgets eingesetzt.','Optimierer nutzen Schätzfehler oft aggressiv aus. Sensitivität, Plausibilität und robuste Restriktionen sind wichtiger als viele Nachkommastellen.','Die effiziente Grenze zeigt optimale Kombinationen; Kelly verwendet eine andere, logarithmische Zielfunktion.'),
+R('Vorhersageleistung muss an unbekannten Daten bestehen',`Machine Learning passt Regeln an Trainingsdaten an. Die relevante Frage ist, ob die Regeln bei neuen Fällen nützen. Trainings-, Validierungs- und Testdaten erfüllen deshalb unterschiedliche Aufgaben: Parameter lernen, Modelle auswählen und die endgültige Leistung schätzen. Bei Finanzdaten muss die zeitliche Reihenfolge erhalten bleiben.
+
+Ein Sprachmodell kann Texte strukturieren und Hypothesen vorschlagen, aber auch Quellen oder Zahlen erfinden. Datenherkunft, Versionsstand, Datenschutz und menschliche Prüfung sind Bestandteil des Analyseprozesses. Auch ein korrekt programmierter Algorithmus kann ökonomisch ungeeignet sein, etwa wenn sein Ziel Fehlerquadrate minimiert, die Entscheidung aber große Verluste vermeiden soll.`,
+'Ein Renditemodell prognostiziert 2 %, 4 % und 6 %. Tatsächlich treten 1 %, 5 % und 3 % ein.',[
+'Prognosefehler in Prozentpunkten: 1, −1 und 3.|Alle Vergleiche benötigen gleiche Zeiträume und eine einheitliche Netto- oder Bruttobasis.',
+'MSE: (1²+1²+3²)/3 = 11/3 = 3,667 quadrierte Prozentpunkte.|Der große dritte Fehler zählt wegen des Quadrierens besonders stark.',
+'Leistung mit einer einfachen Referenzprognose und anschließend nach Handelskosten vergleichen.|Ein kleinerer Testfehler erzeugt nicht automatisch eine profitable Strategie.'
+],'Nützlich für Kreditklassifikation, Textauswertung, Prognosen und Datenqualitätskontrollen.','Überanpassung, Datenleckage und instabile Beziehungen sind zentrale Grenzen. Ein wiederholt zur Modellauswahl genutzter Testdatensatz ist kein unangetasteter Test mehr.','Regression liefert die Basismodelle; Backtesting prüft zeitliche Umsetzung; Ethik verlangt eine nachvollziehbare Grundlage.')
+];
