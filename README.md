@@ -4,6 +4,7 @@ Ein lokal und offline nutzbarer Lernbereich im gemeinsamen Kelly-Studio-Design.
 
 - **Statistik → Stochastik-Studio:** 33 interaktive Kapitel von Wahrscheinlichkeit bis Regression und stochastischen Prozessen.
 - **Finance → Finance Studio:** 171 Kapitel in 16 Themenblöcken. Alle Kapitel enthalten zusätzliche Herleitungen oder begründete Fallanalysen, gezielte Vergleiche, Anwendungen, Grenzen, Querverweise, Kontrollfragen und CFA-Levelhinweise.
+- **Verständnis prüfen:** 1.034 Aufgaben, mindestens sechs in jedem Finance-Kapitel und 14 bei Duration. Grundverständnis, Herleitung oder Begründung, Rechen- oder Fallaufgabe, Vergleich, Transfer und Fehlersuche besitzen getrennte Hinweise und ausführliche Lösungen. Aufgabenangaben und Ergebnistabellen sind getrennt. Die Lösungen enthalten 544 gesetzte Formeltafeln und 90 gesetzte Inline-Formeln, einschließlich bewusst wiederverwendeter Kapitelrechnungen.
 - **Vertiefungen:** 361 zusätzliche Erklärabschnitte, 175 Vergleichstabellen, insgesamt 519 erläuterte Lösungsschritte, 740 Kapitelverbindungen und neun Erklärungsgrafiken. Wichtige Zusammenhänge wie Duration, Cashflowbewertung, CAPM und Optionsreplikation erhalten mehrere aufeinander aufbauende Herleitungen.
 - **Mathematische Notation:** 156 zentrale mathematische Formeltafeln, 219 Formeltafeln in Herleitungen und 383 numerische Lösungsschritte werden ausdrücklich in LaTeX verfasst und als MathML eingebettet. Auch Formeln in Vergleichstabellen und alle neun Kelly-Formeltafeln sind gesetzt. Qualitative Entscheidungsfragen werden als Prosa dargestellt. Es gibt keine automatische Umwandlung von Wörtern in vermeintliche Gleichungen.
 - **Fachwörterbuch:** 490 alphabetisch sortierte Definitionen mit 1.047 Begriffen und Aliasen; automatische Verlinkung aus den Lerntexten und Rückverweise auf erklärende Kapitel.
@@ -17,10 +18,14 @@ Alternativ `node .server.js` starten und [Finance Studio](http://127.0.0.1:8477/
 
 - [Duration: Herleitungen und Vergleiche](http://127.0.0.1:8477/#lesson-bonds-08~derivations)
 - [Duration-Rechner](http://127.0.0.1:8477/#lesson-bonds-08~lab)
+- [Die 14 Duration-Aufgaben](http://127.0.0.1:8477/#lesson-bonds-08~question)
+- [Aufgabe zum Laufzeitvergleich](http://127.0.0.1:8477/#lesson-bonds-08~question-08)
 - [Alpha und Beta](http://127.0.0.1:8477/#lesson-portfolio-04~derivations)
 - [Fachwörterbuch](http://127.0.0.1:8477/#glossary)
 
 Kapiteladressen verwenden `#lesson-<id>`. Abschnittsverweise sind beispielsweise `~explanation`, `~formula`, `~derivations`, `~derivation-2`, `~comparison-0`, `~example` oder `~lab`. Browser-Zurück/Vorwärts und Tastaturfokus werden unterstützt. Der lokale Server liefert ausschließlich die beiden App-Dokumente aus.
+
+Der Fragenbereich ist über `~question` erreichbar, einzelne Aufgaben über `~question-01` usw. Der Filter unterscheidet Grundlagen, Anwendung und Vertiefung. Ein Hinweis öffnet nicht die Lösung. Die Markierung „Selbstständig gelöst und verstanden“ ist eine Selbsteinschätzung, keine automatische Benotung; sie wird bei verfügbarem lokalem Browserspeicher über Kapitelwechsel und Neuladen erhalten. Die Aufgaben bleiben auch ohne verfügbaren Speicher bedienbar.
 
 ## Modelle und Lernumfang
 
@@ -33,6 +38,9 @@ Die CFA-Einordnung bezieht sich auf **2026**. Kapitel verbinden Grundlagen und V
 - `finance-outline.json`: Themenstruktur und Titel.
 - `finance-content/` und `finance-textbook/`: Grundtexte, erklärte Beispiele, Anwendungen und Grenzen.
 - `finance-deep/`: individuelle Herleitungen und kontrollierte Vergleiche für alle 171 Kapitel.
+- `finance-questions/`: kapitelspezifische Aufgabenstellungen, neue Transferfälle, Fehlersuche und zusätzliche Duration-Aufgaben. Herleitungen und bereits erklärte Rechenwege werden gezielt als Lösungen wiederverwendet.
+- `finance-questions.cjs`, `finance-questions-givens.cjs`, `finance-questions-supplements.cjs`, `finance-questions-math.cjs`: Zusammenstellung, ausdrücklich ausgewählte Aufgabeneingaben, ergänzende Rechenwege und explizite mathematische Notation.
+- `finance-questions-ui.js` und `finance-questions.css`: Aufgabenfilter, getrennte Hinweise/Lösungen, Direktlinks und lokale Selbsteinschätzung.
 - `finance-formulas.cjs`, `finance-worked-equations.cjs`, `finance-textbook-math.cjs`, `finance-comparison-math.cjs`: explizite symbolische Formeln.
 - `finance-math.cjs`: KaTeX ausschließlich beim Build; im ausgelieferten HTML wird natives MathML verwendet.
 - `finance-deep-figures.cjs` und `finance-textbook-figures.cjs`: datenbasierte SVG-Erklärungsgrafiken mit Beschriftung und Textalternative.
