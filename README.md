@@ -1,6 +1,10 @@
 # Studio · Statistik & Finance
 
-Ein lokal und offline nutzbarer Lernbereich im gemeinsamen Kelly-Studio-Design.
+Ein online, lokal und offline nutzbarer Lernbereich im gemeinsamen Kelly-Studio-Design.
+
+**[Website öffnen → Studio · Statistik & Finance](https://githubmagnus.github.io/stochastik-studio/)**
+
+Direkt im Browser nutzbar, ohne Download oder Installation.
 
 - **Statistik → Stochastik-Studio:** 33 interaktive Kapitel von Wahrscheinlichkeit bis Regression und stochastischen Prozessen.
 - **Finance → Finance Studio:** 171 Kapitel in 16 Themenblöcken. Alle Kapitel enthalten zusätzliche Herleitungen oder begründete Fallanalysen, gezielte Vergleiche, Anwendungen, Grenzen, Querverweise, Kontrollfragen und CFA-Levelhinweise.
@@ -12,16 +16,23 @@ Ein lokal und offline nutzbarer Lernbereich im gemeinsamen Kelly-Studio-Design.
 
 ## Öffnen
 
-[index.html](index.html) direkt im Browser öffnen; `kelly-studio.html` muss daneben liegen. Inhalte, Styles, Formeln und Modelle sind eingebettet. Nur externe Quellenlinks benötigen Internet.
+Die veröffentlichte Website ist über [GitHub Pages](https://githubmagnus.github.io/stochastik-studio/) erreichbar. Direkte Einstiege:
 
-Alternativ `node .server.js` starten und [Finance Studio](http://127.0.0.1:8477/#finance) öffnen. Direkte Einstiege:
+- [Finance Studio](https://githubmagnus.github.io/stochastik-studio/#finance)
+- [Kelly Studio](https://githubmagnus.github.io/stochastik-studio/#kelly)
+- [Stochastik-Studio](https://githubmagnus.github.io/stochastik-studio/#stochastik)
+- [Duration: Herleitungen und Vergleiche](https://githubmagnus.github.io/stochastik-studio/#lesson-bonds-08~derivations)
+- [Duration-Rechner](https://githubmagnus.github.io/stochastik-studio/#lesson-bonds-08~lab)
+- [Die 14 Duration-Aufgaben](https://githubmagnus.github.io/stochastik-studio/#lesson-bonds-08~question)
+- [Aufgabe zum Laufzeitvergleich](https://githubmagnus.github.io/stochastik-studio/#lesson-bonds-08~question-08)
+- [Alpha und Beta](https://githubmagnus.github.io/stochastik-studio/#lesson-portfolio-04~derivations)
+- [Fachwörterbuch](https://githubmagnus.github.io/stochastik-studio/#glossary)
 
-- [Duration: Herleitungen und Vergleiche](http://127.0.0.1:8477/#lesson-bonds-08~derivations)
-- [Duration-Rechner](http://127.0.0.1:8477/#lesson-bonds-08~lab)
-- [Die 14 Duration-Aufgaben](http://127.0.0.1:8477/#lesson-bonds-08~question)
-- [Aufgabe zum Laufzeitvergleich](http://127.0.0.1:8477/#lesson-bonds-08~question-08)
-- [Alpha und Beta](http://127.0.0.1:8477/#lesson-portfolio-04~derivations)
-- [Fachwörterbuch](http://127.0.0.1:8477/#glossary)
+Offline: Das Projekt herunterladen und `index.html` direkt im Browser öffnen; `kelly-studio.html` muss daneben liegen. Inhalte, Styles, Formeln und Modelle sind eingebettet. Nur externe Quellenlinks benötigen Internet. Alternativ `node .server.js` starten und [das lokale Studio](http://127.0.0.1:8477/) öffnen.
+
+### Veröffentlichung auf GitHub Pages
+
+GitHub Pages veröffentlicht den Stammordner `/` des Branches `main` unter der oben verlinkten Adresse. `.nojekyll` kennzeichnet die Dateien als fertige statische Website. Änderungen werden nach einem Push auf `main` automatisch veröffentlicht; die Veröffentlichung kann einige Minuten dauern. Bei Änderungen an Lerntexten oder Modulen zuvor `node build-finance.cjs` ausführen und die aktualisierten HTML-Dateien mit einchecken. Der Website-Link steht auch rechts im GitHub-Repository unter **About**.
 
 Kapiteladressen verwenden `#lesson-<id>`. Abschnittsverweise sind beispielsweise `~explanation`, `~formula`, `~derivations`, `~derivation-2`, `~comparison-0`, `~example` oder `~lab`. Browser-Zurück/Vorwärts und Tastaturfokus werden unterstützt. Der lokale Server liefert ausschließlich die beiden App-Dokumente aus.
 
