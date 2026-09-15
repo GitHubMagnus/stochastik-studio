@@ -1,6 +1,14 @@
-# Abschlussprüfung · 12. September 2026
+# Abschlussprüfung · 12. September 2026, ergänzt am 15. September 2026
 
 Geprüfter Stand: `C:\Users\magnu\Studio\stochastik-studio`. Die Anwendung enthält Statistik, Finance Studio und Kelly Studio.
+
+## Website über GitHub Pages · 15. September 2026
+
+Die Anwendung ist unter [Studio · Statistik & Finance](https://githubmagnus.github.io/stochastik-studio/) erreichbar. GitHub Pages veröffentlicht `main` aus dem Stammordner. Die README enthält einen hervorgehobenen Website-Link und öffentliche Direktlinks zu den Modulen, Kapiteln und Aufgaben. `.nojekyll` verhindert eine zusätzliche Jekyll-Verarbeitung der fertigen Website.
+
+Beim Online-Abruf lieferten beide App-Dokumente HTTP 200 und stimmten bytegenau mit dem zuvor veröffentlichten lokalen Stand überein. Die Prüfung im Browser umfasste Modulnavigation, die Finance-Übersicht mit 171 Kapiteln, Suche, die 14 Duration-Aufgaben mit Direktlinks, getrennte Hinweise und Lösungen, gesetzte Formeln, Speicherung der Selbsteinschätzung, den Duration-Rechner, das Wörterbuch und den eingebetteten Kelly-Rechner unter dem GitHub-Unterpfad.
+
+Dabei wurde ein horizontaler Überlauf langer Themenüberschriften in der mobilen Finance-Übersicht gefunden und behoben: Auf schmalen Bildschirmen stehen Bereich und Kapitelzahl jetzt unter dem Titel. Nach dem Build bestanden der vorhandene Browsertest zur Finance-Übersicht und die lokale Funktionsprüfung einschließlich sechs Einstiegsseiten bei 390 Pixel Breite ohne Seitenüberlauf, JavaScript-Fehler oder fehlgeschlagene Netzwerkanfragen. Die mathematischen Inhalte wurden bei dieser Veröffentlichung nicht geändert. Die nachfolgend beschriebenen vollständigen Testsuiten stammen vom 12. September.
 
 ## Ausgebaute Lehrmaterialien
 
@@ -46,7 +54,7 @@ Die Tests bestätigen die genannten Struktur-, Rechen- und Bedienprüfungen. Sie
 
 Die CFA-Levelhinweise beziehen sich auf **2026** und unterscheiden Grundlagen, Vertiefung und die alternativen Level-III-Wahlpfade. Die 171 Kapitel decken die vereinbarte Themenübersicht ab; sie sind keine vollständige Wiedergabe jedes offiziellen Learning Outcome. Modellannahmen und Einschränkungen werden in den jeweiligen Kapiteln erläutert. Steuerbeispiele verwenden fiktive konstante Modellsteuersätze.
 
-Geprüft wurde der lokale Stand mit Edge einschließlich der beschriebenen mobilen Ansichten. Screenshots liegen im nicht versionierten Ordner `test-results/`. Der GitHub-Upload veröffentlicht den Quellstand; er ist kein gesondert geprüfter Website-Hostingdienst.
+Die vollständige Inhalts- und Modellprüfung erfolgte lokal mit Edge einschließlich der beschriebenen mobilen Ansichten. Die ergänzende Prüfung der öffentlichen Website ist oben separat beschrieben. Screenshots und der zusätzliche Funktionsbericht liegen im nicht versionierten Ordner `test-results/`.
 
 ## Fachliche Primärquellen
 
