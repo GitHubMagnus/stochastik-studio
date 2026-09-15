@@ -6,12 +6,13 @@ Ein online, lokal und offline nutzbarer Lernbereich im gemeinsamen Kelly-Studio-
 
 Direkt im Browser nutzbar, ohne Download oder Installation.
 
+- **Lehrbuchgrafiken:** 43 neu berechnete Abbildungen in 36 Kapiteln, zusätzlich zu den neun bestehenden Erklärungsgrafiken. Alle zwölf VWL-Kapitel erhalten neue Grafiken; in der Portfoliotheorie gibt es 14 neue Abbildungen in zwölf Kapiteln. Ein eigener Kapitelsprung **Grafiken** führt zu Achsen, Legenden, Lesehilfen, aufklappbaren Modellgleichungen und Annahmen, Quellen und Querverweisen. Alle Grafiken funktionieren offline; auf kleinen Bildschirmen lässt sich ausschließlich der Grafikbereich seitlich verschieben.
 - **Statistik → Stochastik-Studio:** 33 interaktive Kapitel von Wahrscheinlichkeit bis Regression und stochastischen Prozessen.
 - **Finance → Finance Studio:** 171 Kapitel in 16 Themenblöcken. Alle Kapitel enthalten zusätzliche Herleitungen oder begründete Fallanalysen, gezielte Vergleiche, Anwendungen, Grenzen, Querverweise, Kontrollfragen und CFA-Levelhinweise.
 - **Verständnis prüfen:** 1.034 Aufgaben, mindestens sechs in jedem Finance-Kapitel und 14 bei Duration. Grundverständnis, Herleitung oder Begründung, Rechen- oder Fallaufgabe, Vergleich, Transfer und Fehlersuche besitzen getrennte Hinweise und ausführliche Lösungen. Aufgabenangaben und Ergebnistabellen sind getrennt. Die Lösungen enthalten 544 gesetzte Formeltafeln und 90 gesetzte Inline-Formeln, einschließlich bewusst wiederverwendeter Kapitelrechnungen.
 - **Vertiefungen:** 361 zusätzliche Erklärabschnitte, 175 Vergleichstabellen, insgesamt 519 erläuterte Lösungsschritte, 740 Kapitelverbindungen und neun Erklärungsgrafiken. Wichtige Zusammenhänge wie Duration, Cashflowbewertung, CAPM und Optionsreplikation erhalten mehrere aufeinander aufbauende Herleitungen.
 - **Mathematische Notation:** 156 zentrale mathematische Formeltafeln, 219 Formeltafeln in Herleitungen und 383 numerische Lösungsschritte werden ausdrücklich in LaTeX verfasst und als MathML eingebettet. Auch Formeln in Vergleichstabellen und alle neun Kelly-Formeltafeln sind gesetzt. Qualitative Entscheidungsfragen werden als Prosa dargestellt. Es gibt keine automatische Umwandlung von Wörtern in vermeintliche Gleichungen.
-- **Fachwörterbuch:** 490 alphabetisch sortierte Definitionen mit 1.047 Begriffen und Aliasen; automatische Verlinkung aus den Lerntexten und Rückverweise auf erklärende Kapitel.
+- **Fachwörterbuch:** 506 alphabetisch sortierte Definitionen mit 1.086 Begriffen und Aliasen; automatische Verlinkung aus den Lerntexten und Rückverweise auf erklärende Kapitel.
 - **Kelly Studio:** Einzelpositionen, Szenarien, Portfoliooptimierung, Simulation und Herleitung. Der Zustand bleibt beim Modulwechsel erhalten.
 
 ## Öffnen
@@ -27,6 +28,17 @@ Die veröffentlichte Website ist über [GitHub Pages](https://githubmagnus.githu
 - [Aufgabe zum Laufzeitvergleich](https://githubmagnus.github.io/stochastik-studio/#lesson-bonds-08~question-08)
 - [Alpha und Beta](https://githubmagnus.github.io/stochastik-studio/#lesson-portfolio-04~derivations)
 - [Fachwörterbuch](https://githubmagnus.github.io/stochastik-studio/#glossary)
+
+Beispiele für die neuen Lehrbuchgrafiken:
+
+- [Effiziente Grenze, Minimumvarianz und Tangentialportfolio](https://githubmagnus.github.io/stochastik-studio/#lesson-portfolio-03~figures)
+- [Indifferenzkurven und optimale Kapitalallokation](https://githubmagnus.github.io/stochastik-studio/#lesson-portfolio-02~figures)
+- [CAPM: SML und Beta-Regression](https://githubmagnus.github.io/stochastik-studio/#lesson-portfolio-04~figures)
+- [VaR und Expected Shortfall](https://githubmagnus.github.io/stochastik-studio/#lesson-portfolio-12~figures)
+- [Angebot, Nachfrage und Elastizität](https://githubmagnus.github.io/stochastik-studio/#lesson-economics-01~figures)
+- [AD-AS: Nachfrage- und Angebotsschocks](https://githubmagnus.github.io/stochastik-studio/#lesson-economics-05~figures)
+- [Monopol und Wohlfahrtsverlust](https://githubmagnus.github.io/stochastik-studio/#lesson-economics-03~figures)
+- [Optionsauszahlungen und Gewinn nach Prämie](https://githubmagnus.github.io/stochastik-studio/#lesson-derivatives-06~figures)
 
 Offline: Das Projekt herunterladen und `index.html` direkt im Browser öffnen; `kelly-studio.html` muss daneben liegen. Inhalte, Styles, Formeln und Modelle sind eingebettet. Nur externe Quellenlinks benötigen Internet. Alternativ `node .server.js` starten und [das lokale Studio](http://127.0.0.1:8477/) öffnen.
 
@@ -55,6 +67,9 @@ Die CFA-Einordnung bezieht sich auf **2026**. Kapitel verbinden Grundlagen und V
 - `finance-formulas.cjs`, `finance-worked-equations.cjs`, `finance-textbook-math.cjs`, `finance-comparison-math.cjs`: explizite symbolische Formeln.
 - `finance-math.cjs`: KaTeX ausschließlich beim Build; im ausgelieferten HTML wird natives MathML verwendet.
 - `finance-deep-figures.cjs` und `finance-textbook-figures.cjs`: datenbasierte SVG-Erklärungsgrafiken mit Beschriftung und Textalternative.
+- `finance-illustrations/` und `finance-illustrations.cjs`: 43 zusätzliche Modellgrafiken mit berechneten Kurven, Gleichgewichten, Wahrscheinlichkeits- und Wohlfahrtsflächen. Das gemeinsame SVG-Modul berechnet Koordinaten aus den Modelldaten und erzeugt Textalternativen; mathematische Zusammenhänge werden unabhängig getestet.
+- `finance-illustrations-ui.js` und `finance-illustrations.css`: Grafikabschnitte, Legenden, Direktlinks, Lesehilfen und aufklappbare Grundlagen. Einzelne Abbildungen sind über `#lesson-<id>~figure-<grafik-id>` erreichbar; `~figures` öffnet den gesamten Grafikabschnitt.
+- `finance-glossary-illustrations.cjs`: 16 neue Definitionen zu den zusätzlichen Abbildungen, darunter AD, SRAS, LRAS, Phillipskurven, CAL, Indifferenzkurven und Durchschnittskosten.
 - `finance-models.cjs`: reine, testbare Rechenmodelle.
 - `finance-glossary*.cjs`: Definitionen, Synonyme und vertiefte Wörterbucheinträge.
 - `finance-ui.js`, `finance-deep-ui.js` und CSS-Dateien: Lernansicht und Navigation.
@@ -66,3 +81,5 @@ Die CFA-Einordnung bezieht sich auf **2026**. Kapitel verbinden Grundlagen und V
 `npm.cmd test` führt die mathematischen, strukturellen und Serverprüfungen aus. `npm.cmd run test:browser` prüft die Anwendung mit Playwright. Nach `npm.cmd install` entweder `npx.cmd playwright install chromium` verwenden oder für installiertes Edge in PowerShell `$env:BROWSER_CHANNEL='msedge'` setzen.
 
 Die Prüfungen umfassen alle Kapitel, Modelle, Eingabegrenzen, Offline-Aufruf, Querverweise und Mobilbreite von 390 Pixeln. Zusätzlich werden Duration und Konvexität gegen numerische Ableitungen und ausgewählte veröffentlichte Rechnungen unabhängig überprüft. Screenshots liegen unter dem nicht versionierten Ordner `test-results/`. Ergebnisse und Grenzen sind im [Prüfbericht](PRUEFBERICHT.md) dokumentiert.
+
+`tests/finance-illustrations.test.cjs` prüft unter anderem Tangential- und Minimumvarianzbedingungen, Kostenableitungen, Wohlfahrtsflächen, VaR/ES durch numerische Integration, Kapitalwertnullstellen, Zinskurvenidentitäten, Optionsgrenzen und Immunisierung. `tests/illustrations.browser.test.cjs` durchläuft alle 43 neuen Grafiken, prüft abgeschnittene oder überlappende Punktbeschriftungen, Formeln, Quellen, Direktlinks und mobile Bedienung. Mit `STUDIO_TEST_URL` lässt sich diese Grafikprüfung auch auf die veröffentlichte Website richten.

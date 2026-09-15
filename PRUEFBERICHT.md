@@ -1,6 +1,20 @@
-# Abschlussprüfung · 12. September 2026, ergänzt am 15. September 2026
+# Prüfbericht · Stand 15. September 2026
 
 Geprüfter Stand: `C:\Users\magnu\Studio\stochastik-studio`. Die Anwendung enthält Statistik, Finance Studio und Kelly Studio.
+
+## Lehrbuchgrafiken · 15. September 2026
+
+Neu sind **43 berechnete Lehrbuchgrafiken in 36 Kapiteln**. Zusammen mit den neun vorhandenen Erklärungsgrafiken enthält der Lernbereich jetzt **52 statische Abbildungen**; die interaktiven Modelle bleiben zusätzlich verfügbar. Alle zwölf VWL-Kapitel enthalten neue Grafiken, zusammen 15. In zwölf Kapiteln der Portfoliotheorie sind 14 neue Abbildungen hinzugekommen. Weitere 14 behandeln quantitative Grundlagen, Investitionsrechnung, operativen Hebel, Zinskurven, Derivate, Rohstoffe und Asset-Liability-Management.
+
+Die VWL-Abbildungen zeigen Nachfrageverschiebungen, Punktelastizitäten, konsistente Grenz- und Durchschnittskosten, Monopol und Wohlfahrtsverlust, Kapitalvertiefung, AD-AS-Schocks, erwartungsabhängige Phillipskurven, den klassischen Geldmarkt, das Keynesianische Kreuz, Schuldenquoten, komparativen Vorteil, Devisennachfrage, gedeckte Zinsparität und Zölle. Die Portfolio-Abbildungen unterscheiden unter anderem Korrelation und Diversifikation, Nutzen und Risikoaversion, Minimumvarianz- und Tangentialportfolio, CAL/CML und SML, Beta-Regression, Horizont- und Gebühreneffekte, Restriktionen, Rebalancing, Verlustaversion, VaR/ES, Korrelationsstress und Sharpe-Vergleiche.
+
+Jede neue Abbildung besitzt einen Kapitelsprung über **Grafiken**, einen eigenen Direktlink, eine Kernaussage, beschriftete Achsen, eine Legende und eine Lesehilfe. Die Formeln werden ausdrücklich in LaTeX verfasst und als MathML eingebettet. Modellannahmen, Grenzen, Quellen und Kapitelverbindungen sind aufklappbar. Die SVG-Koordinaten stammen aus den beschriebenen Modellen; es werden keine fremden Lehrbuchabbildungen kopiert. Die neuen Begriffe ergänzen das Wörterbuch um 16 Einträge auf **506 Definitionen und 1.086 Begriffe beziehungsweise Aliase**. Auch Grafiktexte werden im Wörterbuch-Fundstellenindex berücksichtigt.
+
+**Aktueller vollständiger Prüflauf: 68 Testfälle bestanden – 46 Rechen-, Struktur- und Servertests sowie 22 Browsertests.** Damit wurden auch sämtliche bisherigen Module, 171 Finance-Kapitel, 1.034 Aufgaben, 33 Stochastik-Kapitel und Kelly Studio nach der Integration erneut geprüft. Der Finance-Durchlauf erfasst jetzt 6.857 Bedienaktionen und 10.521 verlinkte Begriffsvorkommen.
+
+Die neuen Rechentests überprüfen Tangential- und Minimumvarianzbedingungen unabhängig durch Ableitungen und Vergleichsraster, Grenzkosten durch Ableitungen der Gesamtkosten, Wohlfahrtsflächen geometrisch, VaR/ES und Fehlerwahrscheinlichkeiten durch numerische Integration sowie Kapitalwertnullstellen, Zinskurvenidentitäten, Optionsauszahlungen, Binomialbewertung und Immunisierung. Ein eigener Browsertest durchläuft **alle 43 Abbildungen** und kontrolliert SVG-Beschriftungsgrenzen, überlappende Punktbeschriftungen, aufklappbare Formeln und Quellen, Direktlinks und Tastaturbedienung. Alle 43 Grafiken bleiben bei 390 Pixel Bildschirmbreite innerhalb horizontal verschiebbarer Grafikbereiche; die Seite selbst läuft nicht über. Repräsentative Portfolio-, Kosten-, Monopol-, AD-AS-, Wahrscheinlichkeits- und Binomialgrafiken wurden zusätzlich visuell geprüft. Screenshots liegen in `test-results/illustrations/`.
+
+Die numerische Prüfung bestätigt die angegebenen Modellrechnungen und geometrischen Beziehungen. Sie ist keine empirische Bestätigung der Modellannahmen. Unterschiede wie erwartete gegenüber realisierten Renditen, Preisniveau gegenüber Inflationsrate, CML gegenüber SML und VaR gegenüber ES werden ausdrücklich erläutert. Die folgenden Abschnitte dokumentieren außerdem den vorherigen Hosting- und Lehrmaterialstand.
 
 ## Website über GitHub Pages · 15. September 2026
 
@@ -10,7 +24,7 @@ Beim Online-Abruf lieferten beide App-Dokumente HTTP 200 und stimmten bytegenau 
 
 Dabei wurde ein horizontaler Überlauf langer Themenüberschriften in der mobilen Finance-Übersicht gefunden und behoben: Auf schmalen Bildschirmen stehen Bereich und Kapitelzahl jetzt unter dem Titel. Nach dem Build bestanden der vorhandene Browsertest zur Finance-Übersicht und die lokale Funktionsprüfung einschließlich sechs Einstiegsseiten bei 390 Pixel Breite ohne Seitenüberlauf, JavaScript-Fehler oder fehlgeschlagene Netzwerkanfragen. Die mathematischen Inhalte wurden bei dieser Veröffentlichung nicht geändert. Die nachfolgend beschriebenen vollständigen Testsuiten stammen vom 12. September.
 
-## Ausgebaute Lehrmaterialien
+## Bestehende Lehrmaterialien · Prüfung vom 12. September 2026
 
 Alle **171 Finance-Kapitel in 16 Themenblöcken** enthalten individuell verfasste Vertiefungen. Hinzugekommen sind **361 Erklär- und Herleitungsabschnitte** sowie **175 Vergleichstabellen**. Die Kapitel verbinden Intuition, mathematische oder sachliche Begründung, erläuterte Beispiele, Anwendungen, Voraussetzungen und Grenzen. Aufklappbare Ergänzungen und Abschnittsverweise halten die Lernansicht übersichtlich. Die Kapitelbeispiele enthalten **519 begründete Lösungsschritte**; hinzu kommen **740 thematische Kapitelverbindungen** und **neun zusätzliche Erklärungsgrafiken**.
 
@@ -26,7 +40,7 @@ Das Fachwörterbuch enthält **490 Definitionen** mit **1.047 eindeutigen Begrif
 
 **34 interaktive Finance-Modelle** sind in **58 Kapiteln** eingebunden. Die bestehenden **33 Stochastik-Kapitel** und Kelly Studio bleiben integriert. Texte, Modelle, Grafiken und Formeln funktionieren auch beim direkten Öffnen von `index.html`; nur externe Quellen benötigen Internet.
 
-## Testergebnis
+## Basisprüfung vom 12. September 2026
 
 **58 Testfälle bestanden: 37 Rechen-, Struktur- und Servertests sowie 21 Browsertests.** Beide vollständigen Testsuiten wurden nach Einbindung der Aufgabenbanken erfolgreich ausgeführt.
 
