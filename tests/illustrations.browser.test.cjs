@@ -58,6 +58,6 @@ test('all 43 illustrations: SVG bounds, formulas, source details, mobile scrolli
  const region=page.locator('.illustration-scroll');await region.focus();await page.keyboard.press('ArrowRight');
  await page.waitForFunction(()=>document.querySelector('.illustration-scroll').scrollLeft>0);
  await page.screenshot({path:'test-results/illustrations/mobile-frontier.png'});
- await page.locator('.illustration-method summary').click();assert.equal(await page.locator('.illustration-method').getAttribute('open'),'');
+ await page.locator('.illustration-method > summary').click();assert.equal(await page.locator('.illustration-method').getAttribute('open'),'');
  assert.deepEqual(errors,[]);t.diagnostic(JSON.stringify({mobile,errors}));
 });

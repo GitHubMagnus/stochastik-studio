@@ -1,6 +1,20 @@
-# Prüfbericht · Stand 15. September 2026
+# Prüfbericht · Stand 16. September 2026
 
 Geprüfter Stand: `C:\Users\magnu\Studio\stochastik-studio`. Die Anwendung enthält Statistik, Finance Studio und Kelly Studio.
+
+## Formel- und Symbolerklärungen · 16. September 2026
+
+Alle **171 Finance-Kapitel** wurden anhand ihrer tatsächlich eingebetteten Formeln durchgearbeitet. **948 unterschiedliche Kombinationen aus Kapitel und Formel** werden durch **1.299 kapitelspezifisch ausgewählte Definitionseinträge** ergänzt. Darin enthalten sind Hauptformeln, Herleitungen, durchgerechnete Beispiele, Formelzellen in Vergleichstabellen, Grafikgleichungen sowie Anzeige- und Inline-Formeln der Übungsaufgaben. Wiederverwendete Formeln erhalten an jeder Fundstelle eine eigene erreichbare Symbolhilfe. Rein qualitative Kapitel behalten ihren sachlichen Entscheidungsrahmen.
+
+Die Hauptformeln besitzen eine sichtbare Lesart und zunächst geöffnete Symboltabelle. Weitere Symbolhilfen sind direkt bei der jeweiligen Formel aufklappbar. Die Definitionen beschreiben Grundgrößen, Varianten mit Indizes, Einheiten und die im jeweiligen Abschnitt geltende Konvention. Rechenzeichen und Operatoren werden in einer zusätzlichen Leseregel-Hilfe erläutert. Begriffe sind mit dem bestehenden Fachwörterbuch verlinkt; auch die neuen Erläuterungen gehen in dessen Fundstellenindex ein.
+
+Im Zeitreihenkapitel sind insbesondere beobachtete Werte und Prognosen, Achsenabschnitt, AR-Koeffizient, Innovation, stationärer Mittelwert, Innovationsvarianz, bedingter Erwartungswert und Prognosehorizont erklärt. Die Lesart zeigt, warum der Achsenabschnitt nicht der langfristige Mittelwert ist. Die AR(1)-Prognose- und Varianzbeziehungen sind mit den Voraussetzungen eingeordnet; Quellen führen zu *Forecasting: Principles and Practice* und zum CFA-Abschnitt über Zeitreihen.
+
+Zusätzlich besitzen alle **33 ursprünglichen Stochastik-Kapitel** lokale Symbolhilfen; **112 Formel- beziehungsweise Tabellenstellen** werden im Browser geprüft. Alle **neun Kelly-Formeltafeln** besitzen eine eigene Lesart und Symboltabelle. Beispiele für ausdrücklich unterschiedenes Vokabular sind Korrelation gegenüber Options-Rho, Innovationspersistenz gegenüber Normaldichte, Inflation gegenüber Kreiszahl, Unternehmens-Eigenkapital gegenüber Gewinn je Aktie und Money Duration gegenüber DV01.
+
+Die neue automatische Prüfung verlangt passende Definitionen für die in den Finance-Formeln erkannten Grundsymbole und prüft die aktuelle Einbettung. Ein Test fügt absichtlich ein unbekanntes Symbol ein und verlangt einen Buildfehler. Indizes und wirtschaftliche Bedeutung sind redaktionell zugeordnet: Die Zeichenprüfung ist **kein automatischer Beweis der fachlichen Richtigkeit sämtlicher Texte**. Die AR(1)-Beispielprognose und die endliche Prognosevarianz werden zusätzlich unabhängig nachgerechnet.
+
+**74 Tests bestanden: 50 Rechen-, Struktur- und Servertests sowie 24 Browsertests.** Die vollständigen Suites wurden mit `npm.cmd test` und `npm.cmd run test:browser` unter Microsoft Edge ausgeführt. Die neue Browserprüfung kontrolliert 1.527 Finance-MathML-Fundstellen je Ansichtsbreite einschließlich der ergänzenden Inline-Lesart, 1.443 zugeordnete Symbolhilfen, Tastaturbedienung und zunächst geöffnete Hauptdefinitionen. Alle Kapitel passen auch bei 390 Pixeln ohne horizontalen Seitenüberlauf; breite Formeln bleiben innerhalb ihres Containers scrollbar. Zusätzlich werden alle 33 Stochastik-Kapitel, ihre 112 Hilfestellen und neun Kelly-Hilfen geprüft. Die vorhandenen Rechen-, Modul-, Aufgaben-, Grafik-, Offline- und Navigationstests bestehen ebenfalls. Ansichten des Zeitreihenkapitels und von Kelly wurden visuell geprüft.
 
 ## Lehrbuchgrafiken · 15. September 2026
 
