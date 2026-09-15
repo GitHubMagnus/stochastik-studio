@@ -1,0 +1,17 @@
+.formula-reading{max-width:78ch;line-height:1.75;margin:14px 0 18px}
+.formula-notation{margin:10px 0 20px;border:1px solid #cbdedb;border-radius:9px;background:#f5faf8;overflow:hidden}
+.formula-notation>summary{padding:11px 14px;cursor:pointer;font-size:.9rem;font-weight:650;color:#214d47}
+.formula-notation>summary:focus-visible,.notation-conventions>summary:focus-visible{outline:3px solid #268c7b;outline-offset:-3px}
+.formula-notation>p{padding:0 14px;font-size:.9rem}
+.formula-symbols{margin:0;padding:0 14px 12px;font-size:.92rem;line-height:1.65}
+.formula-symbols>div{display:grid;grid-template-columns:minmax(120px,27%) minmax(0,1fr);gap:14px;padding:10px 0;border-top:1px solid #dce8e3}
+.formula-symbols dt{font-weight:500;overflow-x:auto;min-width:0;padding:3px 2px}
+.formula-symbols dd{margin:0;overflow-wrap:anywhere;min-width:0}
+.formula-symbols .katex{font-size:1.02em}
+.formula-symbols math{font-family:"Cambria Math","STIX Two Math","Times New Roman",serif;font-size:1.05em}
+.notation-conventions{margin:0 14px 12px;font-size:.85rem}
+.notation-conventions>summary{cursor:pointer;color:#50665e;padding:6px 0}
+.notation-conventions ul{padding-left:20px;line-height:1.6}
+.notation-conventions li+li{margin-top:8px}
+.question-card .formula-notation{background:#f8faf9}
+@media(max-width:600px){.formula-symbols>div{grid-template-columns:1fr;gap:5px}.formula-symbols{font-size:.9rem}.formula-notation>summary{font-size:.86rem}.formula-reading{line-height:1.65}}

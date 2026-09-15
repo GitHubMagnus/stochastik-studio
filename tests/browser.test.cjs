@@ -235,13 +235,13 @@ test('exercise filter, keyboard disclosure, direct links and self-assessment sur
  await page.evaluate(()=>{location.hash='lesson-bonds-08~question-07';});await page.waitForFunction(()=>document.activeElement.id==='study-question-07');
  assert.equal(await page.locator('#question-filter').inputValue(),'');assert.equal(await page.locator('#study-question-07').isVisible(),true);
  const hint=page.locator('#study-question-07 .question-hint'),solution=page.locator('#study-question-07 .question-solution');
- await hint.locator('summary').focus();await page.keyboard.press('Enter');assert.equal(await hint.getAttribute('open'),'');assert.equal(await solution.getAttribute('open'),null);
- await solution.locator('summary').click();assert.equal(await solution.locator('.study-equation math').count(),3);
+ await hint.locator(':scope > summary').focus();await page.keyboard.press('Enter');assert.equal(await hint.getAttribute('open'),'');assert.equal(await solution.getAttribute('open'),null);
+ await solution.locator(':scope > summary').click();assert.equal(await solution.locator('.study-equation math').count(),3);
  const check=page.locator('[data-question-check="bonds-08-07"]');await check.check();assert.match(await page.locator('#question-progress').innerText(),/1 von 14/);
  await page.reload();assert.equal(await check.isChecked(),true);assert.equal(await solution.getAttribute('open'),null);
  await page.goto(url+'/#lesson-equity-08~question');assert.match(await page.locator('#question-progress').innerText(),/0 von 6/);
  await page.goto(url+'/#lesson-bonds-08~question-07');assert.equal(await check.isChecked(),true);await check.uncheck();
- await hint.locator('summary').click();await solution.locator('summary').click();await page.locator('#questions-close').click();assert.equal(await page.locator('#study-question details[open]').count(),0);
+ await hint.locator(':scope > summary').click();await solution.locator(':scope > summary').click();await page.locator('#questions-close').click();assert.equal(await page.locator('#study-question details[open]').count(),0);
  await page.locator('#question-filter').selectOption('Anwendung');assert.equal(await page.locator('.question-card:visible').count(),2);
  await page.locator('#question-filter').selectOption('Vertiefung');assert.equal(await page.locator('.question-card:visible').count(),10);
  await page.locator('#question-filter').selectOption('');

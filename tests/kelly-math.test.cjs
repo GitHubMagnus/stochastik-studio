@@ -13,7 +13,9 @@ test('every Kelly formula panel contains offline MathML generated from curated L
  const keys=[...html.matchAll(/class="formula" data-math="([^"]+)"/g)].map(m=>m[1]);
  assert.deepEqual(keys.sort(),Object.keys(formulas).sort());
  assert.equal((html.match(/<math xmlns="http:\/\/www\.w3\.org\/1998\/Math\/MathML" display="block">/g)||[]).length,Object.keys(formulas).length);
- assert.equal((html.match(/encoding="application\/x-tex"/g)||[]).length,Object.keys(formulas).length);
+ const panels=[...html.matchAll(/<(div|p) class="formula" data-math="([^"]+)">([\s\S]*?)<\/\1>/g)];
+ assert.equal(panels.length,9);for(const panel of panels)assert.match(panel[3],/encoding="application\/x-tex"/);
+ assert.equal((html.match(/class="formula-notation kelly-notation"/g)||[]).length,9);
 });
 
 test('binary Kelly agrees with analytic optimum including cash and costs',()=>{

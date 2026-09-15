@@ -6,6 +6,8 @@ const workedEquations=require('./finance-worked-equations.cjs');
 const deepFigures=require('./finance-deep-figures.cjs');
 const comparisonMath=require('./finance-comparison-math.cjs');
 const {compileQuestions}=require('./finance-questions.cjs');
+const {compileNotation}=require('./finance-notation.cjs');
+const notationBuild=require('./build-notation.cjs');
 const illustrationSource=require('./finance-illustrations.cjs'),{compile:compileIllustration}=require('./finance-illustrations/chart.cjs');
 const readings={
  economics:[['OpenStax · Elastizität','https://openstax.org/books/principles-economics-3e/pages/5-1-price-elasticity-of-demand-and-price-elasticity-of-supply'],['OpenStax · Produktivität und Wachstum','https://openstax.org/books/principles-economics-3e/pages/20-2-labor-productivity-and-economic-growth']],
@@ -70,6 +72,8 @@ for(const block of plan){
   const questionBlock=require('./finance-questions/'+block.id+'.cjs');
   if(questionBlock.length!==content.length)throw Error(block.id+': Zahl der Aufgabenbanken stimmt nicht');
   compiled.questions=compileQuestions(compiled,questionBlock[i-1]);
+  compiled.notation=compileNotation(compiled);
+  if(id==='quant-11')compiled.sources.push({title:'Hyndman & Athanasopoulos · Forecasting: Principles and Practice · Autoregressive models',url:'https://otexts.com/fpp3/AR.html'},{title:'CFA Institute · Time-Series Analysis',url:'https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/time-series-analysis'});
   lessons.push(compiled);
  }
  if(content.length!==i)throw Error('Kapitelzahl stimmt nicht: '+block.id);
@@ -83,7 +87,7 @@ for(const l of lessons)for(const [ref] of l.deep?.links||[])if(!targets.has(ref)
 const slug=s=>s.toLocaleLowerCase('de').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/ß/g,'ss').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
 const escapeReg=s=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
 const glossary=[],usedIds=new Set(),usedLabels=new Map();
-const searchable=l=>[l.title,l.intuition,l.logic,l.math,...l.illustrations.flatMap(f=>[f.title,f.takeaway,f.read,f.assumptions]),l.example,l.depth,l.pitfall,l.question,l.answer,...l.questions.flatMap(q=>[q.prompt,q.context||'',...q.steps.map(s=>s.text)]),l.textbook.heading,...l.textbook.explanation,...l.textbook.steps.flatMap(s=>[s.calculation,s.why]),l.textbook.applications,l.textbook.limitations,l.textbook.connections,...(l.deep?.sections||[]).flatMap(s=>[s.title,...s.paragraphs]),...(l.deep?.comparisons||[]).flatMap(c=>[c.intro,...c.paragraphs,...c.rows.flat()])].join(' ');
+const searchable=l=>[l.notation.reading,...l.notation.entries.map(e=>e.meaning),l.title,l.intuition,l.logic,l.math,...l.illustrations.flatMap(f=>[f.title,f.takeaway,f.read,f.assumptions]),l.example,l.depth,l.pitfall,l.question,l.answer,...l.questions.flatMap(q=>[q.prompt,q.context||'',...q.steps.map(s=>s.text)]),l.textbook.heading,...l.textbook.explanation,...l.textbook.steps.flatMap(s=>[s.calculation,s.why]),l.textbook.applications,l.textbook.limitations,l.textbook.connections,...(l.deep?.sections||[]).flatMap(s=>[s.title,...s.paragraphs]),...(l.deep?.comparisons||[]).flatMap(c=>[c.intro,...c.paragraphs,...c.rows.flat()])].join(' ');
 for(const source of glossarySource){
  const id=slug(source.term);if(!id||usedIds.has(id))throw Error('Doppelter/ungültiger Wörterbuchschlüssel: '+source.term);usedIds.add(id);
  if(!targets.has(source.lesson))throw Error(source.term+': ungültiges Hauptkapitel '+source.lesson);
@@ -121,20 +125,23 @@ const body=`<!-- FINANCE PAGE START -->
 <script type="application/json" id="finance-glossary-data">${JSON.stringify(glossary).replaceAll('<','\\u003c')}</script>
 <!-- FINANCE PAGE END -->`;
 html=html.replace(/<!-- FINANCE PAGE START -->[\s\S]*?<!-- FINANCE PAGE END -->/,()=>body);
-const css='/* FINANCE STUDY CSS START */\n'+fs.readFileSync('finance-study.css','utf8')+'\n'+fs.readFileSync('finance-textbook.css','utf8')+'\n'+fs.readFileSync('finance-questions.css','utf8')+'\n'+fs.readFileSync('finance-illustrations.css','utf8')+'\n/* FINANCE STUDY CSS END */';
+const css='/* FINANCE STUDY CSS START */\n'+fs.readFileSync('finance-study.css','utf8')+'\n'+fs.readFileSync('finance-textbook.css','utf8')+'\n'+fs.readFileSync('finance-questions.css','utf8')+'\n'+fs.readFileSync('finance-illustrations.css','utf8')+'\n'+fs.readFileSync('finance-notation.css','utf8')+'\n/* FINANCE STUDY CSS END */';
 if(html.includes('/* FINANCE STUDY CSS START */'))html=html.replace(/\/\* FINANCE STUDY CSS START \*\/[\s\S]*?\/\* FINANCE STUDY CSS END \*\//,()=>css);else html=html.replace('</style>',()=>css+'\n</style>');
-const ui=fs.readFileSync('finance-ui.js','utf8').replace('/* DEEP HELPERS */',()=>fs.readFileSync('finance-deep-ui.js','utf8')+'\n'+fs.readFileSync('finance-questions-ui.js','utf8')+'\n'+fs.readFileSync('finance-illustrations-ui.js','utf8'));
+const ui=fs.readFileSync('finance-ui.js','utf8').replace('/* DEEP HELPERS */',()=>fs.readFileSync('finance-deep-ui.js','utf8')+'\n'+fs.readFileSync('finance-questions-ui.js','utf8')+'\n'+fs.readFileSync('finance-illustrations-ui.js','utf8')+'\n'+fs.readFileSync('finance-notation-ui.js','utf8'));
 const js='/* FINANCE STUDY JS START */\n'+fs.readFileSync('finance-models.cjs','utf8')+'\n'+ui+'\n/* FINANCE STUDY JS END */';
 if(html.includes('/* FINANCE STUDY JS START */'))html=html.replace(/\/\* FINANCE STUDY JS START \*\/[\s\S]*?\/\* FINANCE STUDY JS END \*\//,()=>js);else html=html.replace('/* ================================================= Router */',()=>js+'\n/* ================================================= Router */');
 html=html.replace(/<a class="module-card finance-card"[\s\S]*?<\/a>/,`<a class="module-card finance-card" href="#finance" data-open="finance"><span class="kicker">Finance</span><span class="module-symbol" aria-hidden="true">f*</span><h2>Finance Studio</h2><p>${lessons.length} Lernkapitel mit Theorie, Intuition, Beispielen und interaktiven Modellen – von Ethik bis zur Portfoliosteuerung.</p><span class="card-action">Finance lernen →</span></a>`);
 html=html.replaceAll('umfassenden Finance-Themenplan','umfassenden Finance-Lernbereich');
 const kellyFormulas=require('./kelly-formulas.cjs');
-let kellyHtml=fs.readFileSync('kelly-studio.html','utf8'),kellyRendered=0;
+let kellyHtml=fs.readFileSync('kelly-studio.html','utf8').replace(/<!-- KELLY NOTATION START -->[\s\S]*?<!-- KELLY NOTATION END -->/g,''),kellyRendered=0;
 kellyHtml=kellyHtml.replace(/(<(div|p) class="formula" data-math="([^"]+)">)[\s\S]*?(<\/\2>)/g,(all,open,tag,key,close)=>{
- const latex=kellyFormulas[key];if(!latex)throw Error('Kelly-LaTeX fehlt: '+key);kellyRendered++;return open+financeMath.renderLatex(latex)+close;
+ const latex=kellyFormulas[key];if(!latex)throw Error('Kelly-LaTeX fehlt: '+key);kellyRendered++;return open+financeMath.renderLatex(latex)+close+notationBuild.kellyHelp(key);
 });
 if(kellyRendered!==Object.keys(kellyFormulas).length)throw Error(`Kelly-Formelzahl stimmt nicht: ${kellyRendered}/${Object.keys(kellyFormulas).length}`);
 const kellyMathCss='<style id="kelly-math-css">.formula{overflow:auto;white-space:normal}.formula .katex,.formula math{display:block;min-width:max-content;text-align:center}.formula math{font-family:"Cambria Math","STIX Two Math","Times New Roman",serif;font-size:1.08em;margin:auto}</style>';
 if(kellyHtml.includes('<style id="kelly-math-css">'))kellyHtml=kellyHtml.replace(/<style id="kelly-math-css">[\s\S]*?<\/style>/,kellyMathCss);else kellyHtml=kellyHtml.replace('</head>',kellyMathCss+'\n</head>');
+const notationCss='<style id="kelly-notation-css">'+fs.readFileSync('finance-notation.css','utf8')+'</style>';
+kellyHtml=kellyHtml.includes('<style id="kelly-notation-css">')?kellyHtml.replace(/<style id="kelly-notation-css">[\s\S]*?<\/style>/,()=>notationCss):kellyHtml.replace('</head>',()=>notationCss+'\n</head>');
+html=notationBuild.statistics(html);
 fs.writeFileSync('kelly-studio.html',kellyHtml);
 fs.writeFileSync('index.html',html);console.log(JSON.stringify({blocks:plan.length,lessons:lessons.length,models:Object.keys(models).length,interactiveLessons:lessons.filter(l=>l.lab).length,glossary:glossary.length,financeMath:lessons.filter(l=>l.formulaTex).length,derivationSections:lessons.reduce((n,l)=>n+l.deep.sections.length,0),comparisons:lessons.reduce((n,l)=>n+l.deep.comparisons.length,0),workedMath:lessons.reduce((n,l)=>n+l.textbook.steps.filter(s=>s.mathml).length,0),questions:lessons.reduce((n,l)=>n+l.questions.length,0),illustrations:lessons.reduce((n,l)=>n+l.illustrations.length,0),kellyMath:kellyRendered}));
