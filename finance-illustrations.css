@@ -1,0 +1,22 @@
+.illustration-section{border-top:4px solid #087f82}
+.illustration-section>p{color:#466273}
+.illustration-map{display:flex;flex-wrap:wrap;gap:8px 18px;margin:18px 0 30px}
+.illustration-map a{font-size:.84rem;line-height:1.6}
+.learning-figure{margin:28px 0 0;padding:0 0 30px;border-bottom:1px solid #d6e4ea;scroll-margin-top:22px}
+.learning-figure:last-child{border-bottom:0;padding-bottom:0}
+.learning-figure h3{margin:0 0 12px;font-size:1.13rem;line-height:1.5;color:#10394d}
+.learning-figure .illustration-takeaway{border-left:3px solid #087f82;background:#ecf7f6;padding:12px 15px;margin:0 0 20px;font-weight:550;font-size:.92rem;line-height:1.7}
+.illustration-scroll{overflow-x:auto;max-width:100%;border:1px solid #dce8ed;border-radius:8px;background:#fff;scrollbar-color:#729ba8 #edf4f7}
+.illustration-scroll svg{display:block;min-width:640px;width:100%;height:auto}
+.illustration-scroll:focus-visible,.learning-figure:focus{outline:2px solid #087f82;outline-offset:4px}
+.illustration-legend{display:flex;gap:10px 24px;flex-wrap:wrap;padding:0;margin:14px 0 20px;list-style:none}
+.illustration-legend li{display:flex;align-items:center;gap:9px;color:#36586b;font-size:.79rem;line-height:1.5}
+.illustration-legend li>span{width:27px;flex-shrink:0;border-top-width:3px}
+.learning-figure figcaption{font-size:.92rem;line-height:1.8;color:#36586b}
+.illustration-method .study-equation{margin:12px 0 20px;font-size:1rem}
+.illustration-method ul{padding-left:22px;font-size:.82rem;line-height:1.7;margin:10px 0 16px}
+.illustration-method .illustration-origin{font-size:.8rem;margin-top:16px;color:#547284}
+.illustration-permalink{font-size:.78rem}
+.illustration-scroll-hint{display:none}
+@media(max-width:700px){.learning-figure .illustration-scroll-hint{display:block;font-size:.73rem;color:#547284;margin-top:8px;line-height:1.5}}
+@media(max-width:700px){.illustration-map{display:grid;gap:9px}.learning-figure h3{font-size:1.02rem}.illustration-legend{display:grid;gap:8px}.illustration-method{padding:13px}.learning-figure .illustration-takeaway{padding:10px 12px}}

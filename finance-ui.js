@@ -44,10 +44,11 @@ window.FinanceStudy=(()=>{
     <div class="kicker">Kapitel ${index+1} / ${lessons.length}</div><h1>${esc(lesson.title)}</h1>
     <div class="study-badges">${lesson.levels.map(n=>`<span>CFA Level ${n}</span>`).join('')}<span>${esc(lesson.kind)}</span></div>
     <p class="study-scope">${glossaryText(lesson.scope)}</p>
-    <nav class="study-jumps" aria-label="Im Kapitel"><a href="#lesson-${lesson.id}~explanation">Ausführliche Erklärung</a><a href="#lesson-${lesson.id}~formula">Formel / Prinzip</a><a href="#lesson-${lesson.id}~derivations">Herleitungen und Vergleiche</a><a href="#lesson-${lesson.id}~example">Rechenweg / Fallbeispiel</a>${lesson.lab?`<a href="#lesson-${lesson.id}~lab">Interaktiv erkunden</a>`:''}<a href="#lesson-${lesson.id}~applications">Anwendungen</a><a href="#lesson-${lesson.id}~limitations">Grenzen</a><a href="#lesson-${lesson.id}~question">Verständnis prüfen</a><a href="#glossary">Fachwörterbuch</a></nav>
+    <nav class="study-jumps" aria-label="Im Kapitel"><a href="#lesson-${lesson.id}~explanation">Ausführliche Erklärung</a>${lesson.illustrations.length?`<a href="#lesson-${lesson.id}~figures">Grafiken</a>`:''}<a href="#lesson-${lesson.id}~formula">Formel / Prinzip</a><a href="#lesson-${lesson.id}~derivations">Herleitungen und Vergleiche</a><a href="#lesson-${lesson.id}~example">Rechenweg / Fallbeispiel</a>${lesson.lab?`<a href="#lesson-${lesson.id}~lab">Interaktiv erkunden</a>`:''}<a href="#lesson-${lesson.id}~applications">Anwendungen</a><a href="#lesson-${lesson.id}~limitations">Grenzen</a><a href="#lesson-${lesson.id}~question">Verständnis prüfen</a><a href="#glossary">Fachwörterbuch</a></nav>
     ${paragraph('Die Intuition',lesson.intuition,'study-intuition')}
     ${paragraph('Theorie und Logik',lesson.logic)}
     ${textbookSection(lesson.textbook)}
+    ${illustrationContent(lesson)}
     <section class="study-section" id="study-formula" tabindex="-1"><h2>${lesson.formulaTex?'Mathematischer Ausgangspunkt':'Entscheidungsrahmen'}</h2>${lesson.formulaTex?`<div class="study-equation">${lesson.formulaMathML}</div><details class="study-details study-formula-source"><summary>LaTeX-Quelltext</summary><code>${esc(lesson.formulaTex)}</code></details>`:`<p>${glossaryText(lesson.logic)}</p>`}${details('Definitionen, Einheiten und Voraussetzungen',lesson.math)}</section>
     ${deepContent(lesson)}
     ${workedExample(lesson)}
