@@ -8,7 +8,7 @@ const mark=(x,y,label,extra={})=>({x,y,label,...extra});
 const normalPDF=(x,mu=0,sigma=1)=>Math.exp(-.5*((x-mu)/sigma)**2)/(sigma*Math.sqrt(2*Math.PI));
 const root=(f,a,b)=>{if(f(a)*f(b)>0)throw Error('Root is not bracketed');for(let i=0;i<100;i++){const m=(a+b)/2;if(f(a)*f(m)<=0)b=m;else a=m;}return(a+b)/2;};
 function render(f){
- const p=f.plot,W=800,L=86,R=26,T=28,B=77,H=p.square?W-L-R+T+B:440;
+ const p=f.plot,W=p.square?600:800,L=86,R=26,T=28,B=77,H=p.square?W-L-R+T+B:440;
  const x=v=>L+(v-p.x[0])/(p.x[1]-p.x[0])*(W-L-R);
  const y=v=>H-B-(v-p.y[0])/(p.y[1]-p.y[0])*(H-T-B);
  const xy=([a,b])=>`${x(a).toFixed(3)},${y(b).toFixed(3)}`;
@@ -27,7 +27,7 @@ function render(f){
  const guides=(p.marks||[]).filter(m=>m.guides).map(m=>`<path d="M${L} ${y(m.y)}H${x(m.x)}V${H-B}" fill="none" stroke="#8ba1af" stroke-dasharray="3 5"/>`).join('');
  const arrows=(p.arrows||[]).map(a=>`<path d="${path(a)}" fill="none" stroke="#466273" stroke-width="2" marker-end="url(#${f.id}-arrow)"/>`).join('');
  const marks=(p.marks||[]).map(m=>`<circle cx="${x(m.x)}" cy="${y(m.y)}" r="4.5" fill="${m.color||'#143e50'}" stroke="white" stroke-width="1.5"/><text class="illustration-point-label" x="${x(m.x)+(m.dx??10)}" y="${y(m.y)+(m.dy??-12)}" text-anchor="${m.anchor||'start'}" font-weight="650" style="paint-order:stroke;stroke:#fff;stroke-width:5;stroke-linejoin:round">${esc(m.label)}</text>`).join('');
- return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" role="img" aria-labelledby="${f.id}-title ${f.id}-desc"><title id="${f.id}-title">${esc(f.title)}</title><desc id="${f.id}-desc">${esc(f.takeaway+' '+f.read)}</desc><defs><clipPath id="${f.id}-clip"><rect x="${L}" y="${T}" width="${W-L-R}" height="${H-T-B}"/></clipPath><marker id="${f.id}-arrow" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0 0L7 3L0 6Z" fill="#466273"/></marker></defs><g fill="#234959" font-family="system-ui,sans-serif" font-size="14">${grid}<g clip-path="url(#${f.id}-clip)">${areas}${zero}${guides}${lines}${arrows}</g><path d="M${L} ${T}V${H-B}H${W-R}" fill="none" stroke="#648292" stroke-width="1.5"/>${marks}<text x="${(L+W-R)/2}" y="${H-15}" text-anchor="middle" font-size="16">${esc(p.xLabel)}</text><text transform="translate(22 ${(T+H-B)/2}) rotate(-90)" text-anchor="middle" font-size="16">${esc(p.yLabel)}</text></g></svg>`;
+ return `<svg xmlns="http://www.w3.org/2000/svg" data-chart-shape="${p.square?'square':'wide'}" viewBox="0 0 ${W} ${H}" role="img" aria-labelledby="${f.id}-title ${f.id}-desc"><title id="${f.id}-title">${esc(f.title)}</title><desc id="${f.id}-desc">${esc(f.takeaway+' '+f.read)}</desc><defs><clipPath id="${f.id}-clip"><rect x="${L}" y="${T}" width="${W-L-R}" height="${H-T-B}"/></clipPath><marker id="${f.id}-arrow" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0 0L7 3L0 6Z" fill="#466273"/></marker></defs><g fill="#234959" font-family="system-ui,sans-serif" font-size="14">${grid}<g clip-path="url(#${f.id}-clip)">${areas}${zero}${guides}${lines}${arrows}</g><path d="M${L} ${T}V${H-B}H${W-R}" fill="none" stroke="#648292" stroke-width="1.5"/>${marks}<text x="${(L+W-R)/2}" y="${H-15}" text-anchor="middle" font-size="16">${esc(p.xLabel)}</text><text transform="translate(22 ${(T+H-B)/2}) rotate(-90)" text-anchor="middle" font-size="16">${esc(p.yLabel)}</text></g></svg>`;
 }
 function compile(f,math){
  if(!/^[a-z0-9-]+$/.test(f.id)||!f.title||!f.takeaway||!f.read||!f.assumptions||!f.tex||!f.sources?.length)throw Error('Incomplete illustration: '+f.id);
