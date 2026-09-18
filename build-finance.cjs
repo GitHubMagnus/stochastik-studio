@@ -1,4 +1,5 @@
 const fs=require('node:fs');process.chdir(__dirname);
+const cfaData=require('./finance-cfa/compile.cjs').compile({release:process.argv.includes('--release-cfa')});
 const plan=require('./finance-outline.json'),{models}=require('./finance-models.cjs'),glossarySource=require('./finance-glossary.cjs'),financeMath=require('./finance-math.cjs');
 const glossaryNotes=require('./finance-glossary-notes.cjs'),textbookFigures=require('./finance-textbook-figures.cjs'),textbookMath=require('./finance-textbook-math.cjs');
 const canonicalFormulas=require('./finance-formulas.cjs');
@@ -101,18 +102,23 @@ for(const source of glossarySource){
  const found=lessons.filter(l=>re.test(searchable(l))).map(l=>l.id);
  if(!found.includes(source.lesson))found.unshift(source.lesson);
  const note=glossaryNotes[source.term]||null;
+ if(source.cfa){
+  const unit=cfaData.units.find(u=>u.id===source.cfa.unit);
+  if(!unit||!unit.sections.some(s=>s.id===source.cfa.section))throw Error(source.term+': ungültiger CFA-Vertiefungsverweis');
+ }
  if(note)for(const ref of note.links)if(!targets.has(ref))throw Error(source.term+': ungültiger Vertiefungsverweis '+ref);
  glossary.push({...source,id,note,lessons:[...new Set(found)]});
 }
 glossary.sort((a,b)=>a.term.localeCompare(b.term,'de',{sensitivity:'base'}));
 const nav=`<!-- FINANCE NAV START -->
-<details id="finance-plan-nav"><summary>Finance Studio <small>${lessons.length} Kapitel</small></summary><a href="#finance" data-open="finance" class="module-overview">Alle Themen im Überblick</a><a href="#glossary" class="module-overview glossary-nav-link">Fachwörterbuch <small>${glossary.length} Begriffe</small></a><div class="finance-nav-topics">${plan.map((t,i)=>`<a href="#finance" data-finance-target="${t.id}">${String(i).padStart(2,'0')} · ${escape(t.title)}</a>`).join('\n')}</div></details>
+<details id="finance-plan-nav"><summary>Finance Studio <small>${lessons.length} Kapitel</small></summary><a href="#finance" data-open="finance" class="module-overview">Alle Themen im Überblick</a><a href="#cfa" class="module-overview cfa-nav-link">CFA Level I 2027</a><a href="#glossary" class="module-overview glossary-nav-link">Fachwörterbuch <small>${glossary.length} Begriffe</small></a><div class="finance-nav-topics">${plan.map((t,i)=>`<a href="#finance" data-finance-target="${t.id}">${String(i).padStart(2,'0')} · ${escape(t.title)}</a>`).join('\n')}</div></details>
 <!-- FINANCE NAV END -->`;
 html=html.replace(/<!-- FINANCE NAV START -->[\s\S]*?<!-- FINANCE NAV END -->/,nav);
 const body=`<!-- FINANCE PAGE START -->
 <section class="viewpage" id="page-finance">
 <div class="kicker">Finance / Lernen und Verstehen</div><h1>Finance Studio.</h1><p class="lede">${lessons.length} Kapitel von der Finanzsprache bis zur begründeten Portfolioentscheidung. Öffne ein Thema und verbinde Theorie, Intuition und Rechenweg.</p>
 <div class="finance-plan-note"><strong>Dein CFA-orientierter Lernweg · Bezugsjahr 2026</strong><p>Die Levelhinweise stehen in jedem Kapitel. Level I legt Grundlagen, Level II vertieft Analyse, Level III verbindet Entscheidungen im Portfolio. Die drei Level-III-Wahlpfade sind Alternativen. Eigene didaktische Kapitel, keine wortgetreue Liste offizieller Lernmodule.</p></div>
+<p class="finance-plan-note"><a href="#cfa"><strong>CFA Level I 2027</strong></a> · Lernzielabgleich, vertiefte Lerneinheiten, Training und Probeklausuren.</p>
 <div class="finance-summary"><span><b>10</b> Kernbereiche</span><span><b>${plan.length}</b> Themenblöcke</span><span><b>${lessons.length}</b> Lernkapitel</span><a href="#glossary">Fachwörterbuch öffnen → <small>${glossary.length} Definitionen mit Kapitelverweisen</small></a><a href="#kelly" data-open="kelly">Kelly Studio öffnen → <small>Positionsgrößen und Portfolios erkunden</small></a></div>
 <p class="planned-format"><strong>In jedem Kapitel:</strong> Intuition · ausführliche Erklärung · Herleitungen · gezielte Vergleiche · Formel / Prinzip · erläuterte Lösungsschritte · Anwendungen · Grenzen · aufklappbare Vertiefung · mindestens sechs Übungsaufgaben mit begründeten Lösungen · Querverweise. ${Object.keys(models).length} interaktive Modelle vertiefen geeignete Zusammenhänge. ${Object.values(illustrationSource).flat().length} berechnete Lehrbuchgrafiken ergänzen insbesondere Portfoliotheorie und VWL.</p>
 <div class="finance-controls"><label for="finance-search">Thema oder Fachbegriff suchen<input type="search" id="finance-search" placeholder="z. B. Duration, Bilanz, Ethik, Private Wealth"></label><label for="finance-filter">Bereich<select id="finance-filter"><option value="">Alle Bereiche</option>${['Kernbereich','Level III Kern','Wahlpfad','Ergänzung'].map(k=>`<option>${k}</option>`).join('')}</select></label><button class="btn ghost" type="button" id="finance-expand">Alle aufklappen</button><button class="btn ghost" type="button" id="finance-collapse">Alle zuklappen</button></div>
@@ -121,14 +127,16 @@ const body=`<!-- FINANCE PAGE START -->
 <p id="finance-empty" hidden>Keine passenden Themen. Versuche einen anderen Suchbegriff oder wähle „Alle Bereiche“.</p>
 <details class="finance-sources"><summary>Curriculum, Quellen und Lernumfang</summary><p>Die Inhalte erläutern alle ${lessons.length} Themen dieser Übersicht. Sie sind eigenständige Lehr- und Nachschlagematerialien, keine vollständige Wiedergabe aller offiziellen Learning Outcomes oder ein Ersatz für das prüfungsjahrspezifische Curriculum. Grundlage sind die offiziellen <a href="${sourceFor(1).url}" target="_blank" rel="noopener">Level-I-</a>, <a href="${sourceFor(2).url}" target="_blank" rel="noopener">Level-II-</a> und <a href="${sourceFor(3).url}" target="_blank" rel="noopener">Level-III-Outlines 2026</a>. <a href="https://www.cfainstitute.org/about/press-room/2026/cfa-institute-announces-updates-to-cfa-program-curriculum" target="_blank" rel="noopener">Für 2027 gibt es Änderungen</a>. Kelly sowie Praxis- und Rechnerkapitel ergänzen den Lernweg.</p></details>
 </section><section class="viewpage" id="page-finance-lesson" aria-label="Finance-Lernkapitel"></section><section class="viewpage" id="page-glossary" aria-label="Finance-Fachwörterbuch"></section>
+<section class="viewpage" id="page-cfa" aria-label="CFA Level I 2027"></section>
+<script type="application/json" id="cfa-data">${JSON.stringify(cfaData).replaceAll('<','\\u003c')}</script>
 <script type="application/json" id="finance-data">${JSON.stringify(lessons).replaceAll('<','\\u003c')}</script>
 <script type="application/json" id="finance-glossary-data">${JSON.stringify(glossary).replaceAll('<','\\u003c')}</script>
 <!-- FINANCE PAGE END -->`;
 html=html.replace(/<!-- FINANCE PAGE START -->[\s\S]*?<!-- FINANCE PAGE END -->/,()=>body);
-const css='/* FINANCE STUDY CSS START */\n'+fs.readFileSync('finance-study.css','utf8')+'\n'+fs.readFileSync('finance-textbook.css','utf8')+'\n'+fs.readFileSync('finance-questions.css','utf8')+'\n'+fs.readFileSync('finance-illustrations.css','utf8')+'\n'+fs.readFileSync('finance-notation.css','utf8')+'\n/* FINANCE STUDY CSS END */';
+const css='/* FINANCE STUDY CSS START */\n'+fs.readFileSync('finance-study.css','utf8')+'\n'+fs.readFileSync('finance-textbook.css','utf8')+'\n'+fs.readFileSync('finance-questions.css','utf8')+'\n'+fs.readFileSync('finance-illustrations.css','utf8')+'\n'+fs.readFileSync('finance-notation.css','utf8')+'\n'+fs.readFileSync('finance-cfa/style.css','utf8')+'\n/* FINANCE STUDY CSS END */';
 if(html.includes('/* FINANCE STUDY CSS START */'))html=html.replace(/\/\* FINANCE STUDY CSS START \*\/[\s\S]*?\/\* FINANCE STUDY CSS END \*\//,()=>css);else html=html.replace('</style>',()=>css+'\n</style>');
 const ui=fs.readFileSync('finance-ui.js','utf8').replace('/* DEEP HELPERS */',()=>fs.readFileSync('finance-deep-ui.js','utf8')+'\n'+fs.readFileSync('finance-questions-ui.js','utf8')+'\n'+fs.readFileSync('finance-illustrations-ui.js','utf8')+'\n'+fs.readFileSync('finance-notation-ui.js','utf8'));
-const js='/* FINANCE STUDY JS START */\n'+fs.readFileSync('finance-models.cjs','utf8')+'\n'+ui+'\n/* FINANCE STUDY JS END */';
+const js='/* FINANCE STUDY JS START */\n'+fs.readFileSync('finance-models.cjs','utf8')+'\n'+ui+'\n'+fs.readFileSync('finance-cfa/engine.cjs','utf8')+'\n'+fs.readFileSync('finance-cfa/ui.js','utf8')+'\n/* FINANCE STUDY JS END */';
 if(html.includes('/* FINANCE STUDY JS START */'))html=html.replace(/\/\* FINANCE STUDY JS START \*\/[\s\S]*?\/\* FINANCE STUDY JS END \*\//,()=>js);else html=html.replace('/* ================================================= Router */',()=>js+'\n/* ================================================= Router */');
 html=html.replace(/<a class="module-card finance-card"[\s\S]*?<\/a>/,`<a class="module-card finance-card" href="#finance" data-open="finance"><span class="kicker">Finance</span><span class="module-symbol" aria-hidden="true">f*</span><h2>Finance Studio</h2><p>${lessons.length} Lernkapitel mit Theorie, Intuition, Beispielen und interaktiven Modellen – von Ethik bis zur Portfoliosteuerung.</p><span class="card-action">Finance lernen →</span></a>`);
 html=html.replaceAll('umfassenden Finance-Themenplan','umfassenden Finance-Lernbereich');

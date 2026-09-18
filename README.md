@@ -13,14 +13,47 @@ Direkt im Browser nutzbar, ohne Download oder Installation.
 - **Verständnis prüfen:** 1.034 Aufgaben, mindestens sechs in jedem Finance-Kapitel und 14 bei Duration. Grundverständnis, Herleitung oder Begründung, Rechen- oder Fallaufgabe, Vergleich, Transfer und Fehlersuche besitzen getrennte Hinweise und ausführliche Lösungen. Aufgabenangaben und Ergebnistabellen sind getrennt. Die Lösungen enthalten 544 gesetzte Formeltafeln und 90 gesetzte Inline-Formeln, einschließlich bewusst wiederverwendeter Kapitelrechnungen.
 - **Vertiefungen:** 361 zusätzliche Erklärabschnitte, 175 Vergleichstabellen, insgesamt 519 erläuterte Lösungsschritte, 740 Kapitelverbindungen und neun Erklärungsgrafiken. Wichtige Zusammenhänge wie Duration, Cashflowbewertung, CAPM und Optionsreplikation erhalten mehrere aufeinander aufbauende Herleitungen.
 - **Mathematische Notation:** 156 zentrale mathematische Formeltafeln, 219 Formeltafeln in Herleitungen und 383 numerische Lösungsschritte werden ausdrücklich in LaTeX verfasst und als MathML eingebettet. Auch Formeln in Vergleichstabellen und alle neun Kelly-Formeltafeln sind gesetzt. Qualitative Entscheidungsfragen werden als Prosa dargestellt. Es gibt keine automatische Umwandlung von Wörtern in vermeintliche Gleichungen.
-- **Fachwörterbuch:** 506 alphabetisch sortierte Definitionen mit 1.086 Begriffen und Aliasen; automatische Verlinkung aus den Lerntexten und Rückverweise auf erklärende Kapitel.
+- **Fachwörterbuch:** 580 alphabetisch sortierte Definitionen mit 1.241 Begriffen und Aliasen; automatische Verlinkung aus den Lerntexten und Rückverweise auf erklärende Kapitel. 117 kuratierte Einträge besitzen zusätzlich einen präzisen Rückverweis in den neuen CFA-Lernpfad.
 - **Kelly Studio:** Einzelpositionen, Szenarien, Portfoliooptimierung, Simulation und Herleitung. Der Zustand bleibt beim Modulwechsel erhalten.
+
+## CFA Level I 2027: laufende Überarbeitung
+
+Der neue Bereich unter **Finance → CFA Level I 2027** führt 102 offizielle Module
+mit 340 einzeln zugeordneten Lernzielreferenzen. Der aktuelle Arbeitsstand enthält
+20 neu ausgearbeitete Einheiten und 280 eigenständige englische Trainingsfragen
+mit deutschen Lösungen. Alle zehn Ethics-Module sind neu bearbeitet; weitere
+Vertiefungen behandeln EPS, Kennzahlen, Leasing/Vergütung, Rendite-/Indexvergleiche,
+Renditekonventionen, Zeitwert, Renditestatistik, Wahrscheinlichkeitsverteilungen,
+Bayes und Portfoliomathematik. Zehn zusätzliche berechnete Grafiken erläutern
+die neuen Zusammenhänge.
+Direkte Abschnittsverweise verbinden die Einheiten und passende Wörterbuchdefinitionen.
+
+66 Lernzielreferenzen sind aktuell sowohl neuen Erklärungen als auch Trainingsfragen
+zugeordnet. Dies ist **kein Nachweis vollständiger CFA-Vorbereitung**. Offene
+Einheiten sind sichtbar; die fachliche Endprüfung läuft. Zwei getrennte Probeklausuren
+haben bisher je 44 von 180 Fragen und bleiben gesperrt. Der implementierte Ablauf
+mit zwei Sitzungen zu je 135 Minuten wird mit gesonderten künstlichen Testdaten
+geprüft, die nicht als echte Lernfragen veröffentlicht werden.
+
+Training, Antwortbegründungen und Fehlerjournal funktionieren offline. Zahlenantworten
+werden geordnet; Textantworten erhalten eine stabile Reihenfolge ohne mechanisch
+wiederkehrende Antwortbuchstaben. Lange Formeln und Tabellen zeigen bei tatsächlichem
+Überlauf einen Verschiebehinweis und sind per Tastatur scrollbar. Der lokale
+Browserspeicher hält Antworten und Selbsteinschätzungen; unveränderte Fragen bleiben
+bei Materialergänzungen erhalten. CFA-Ergebnisse sind keine empirische persönliche
+Bestehensprognose. Bewertungsmaßstab, Befunde und verbleibende Arbeiten stehen im
+[Qualitätsplan](CFA-QUALITY-PLAN.md).
+
+Der veröffentlichte GitHub-Pages-Stand enthält diese Ergänzungen erst nach dem
+zugehörigen Push und der erfolgreichen Veröffentlichung.
 
 ## Öffnen
 
 Die veröffentlichte Website ist über [GitHub Pages](https://githubmagnus.github.io/stochastik-studio/) erreichbar. Direkte Einstiege:
 
 - [Finance Studio](https://githubmagnus.github.io/stochastik-studio/#finance)
+- [CFA Level I 2027: Lernpfad und Training](https://githubmagnus.github.io/stochastik-studio/#cfa)
+- [Neue Portfoliotheorie: Herleitung und Grafiken](https://githubmagnus.github.io/stochastik-studio/#cfa~learn-portfolio-math)
 - [Kelly Studio](https://githubmagnus.github.io/stochastik-studio/#kelly)
 - [Stochastik-Studio](https://githubmagnus.github.io/stochastik-studio/#stochastik)
 - [Duration: Herleitungen und Vergleiche](https://githubmagnus.github.io/stochastik-studio/#lesson-bonds-08~derivations)
@@ -55,9 +88,14 @@ Der Fragenbereich ist über `~question` erreichbar, einzelne Aufgaben über `~qu
 
 34 interaktive Modelle werden in 58 Kapiteln eingesetzt. Der Anleihenrechner zeigt Preis, Macaulay und Modified Duration, DV01, Konvexität und den Vergleich zwischen exaktem Zinsschock, linearer und quadratischer Näherung. Kupon, Rendite, Laufzeit, Zahlungsfrequenz und Schock lassen sich getrennt verändern. Alle Modelle nennen ihre Annahmen und Einheiten.
 
-Die CFA-Einordnung bezieht sich auf **2026**. Kapitel verbinden Grundlagen und Vertiefungen über mehrere Levels; die drei Level-III-Wahlpfade sind Alternativen. Das eigenständige Lehrmaterial folgt der vereinbarten Themenübersicht und bildet nicht jedes offizielle Learning Outcome oder Pflichtmodul vollständig ab. Für eine konkrete Prüfung ist deren jahresspezifisches Curriculum maßgeblich. Quellen zu CFA Institute, OpenStax, IFRS und den NYU-Lehrmaterialien sind im Lernbereich verlinkt.
+Die bisherigen 171 Kapitel verwenden eine **2026-Einordnung** und verbinden Grundlagen und Vertiefungen über mehrere Levels; die drei Level-III-Wahlpfade sind Alternativen. Der separate neue Lernpfad gleicht gezielt **Level I 2027** ab. Alte Kapitel werden nicht allein durch einen Link als vollständig auf 2027 aktualisiert gewertet. Das eigenständige Lehrmaterial bildet noch nicht jedes offizielle Learning Outcome oder Pflichtmodul vollständig ab. Für eine konkrete Prüfung ist deren jahresspezifisches Curriculum maßgeblich. Quellen zu CFA Institute, OpenStax, IFRS und den NYU-Lehrmaterialien sind im Lernbereich verlinkt.
 
 ## Bearbeiten und bauen
+
+- `finance-cfa/curriculum.cjs`: einzeln geprüfter 2027-Katalog mit eigenen kurzen Lernzielbezeichnungen und offiziellen Quellenverweisen.
+- `finance-cfa/units/`, `questions/`, `glossary.cjs`, `connections.cjs`: neue Lehrtexte, unabhängige Fragen, Definitionen und präzise Kapitelverbindungen.
+- `finance-cfa/compile.cjs`, `engine.cjs`, `ui.js`, `style.css`: Validierung, Bewertungs- und Sitzungslogik sowie Offline-Lernoberfläche.
+- `node build-finance.cjs --release-cfa`: zusätzliche Freigabeprüfung; sie muss beim aktuellen unvollständigen Arbeitsstand scheitern. Normales Bauen veröffentlicht den offen gekennzeichneten Zwischenstand.
 
 - `finance-outline.json`: Themenstruktur und Titel.
 - `finance-content/` und `finance-textbook/`: Grundtexte, erklärte Beispiele, Anwendungen und Grenzen.
@@ -81,6 +119,11 @@ Die CFA-Einordnung bezieht sich auf **2026**. Kapitel verbinden Grundlagen und V
 `node build-finance.cjs` prüft Vollständigkeit, Verweise, Formelsyntax und Tabellenstruktur und bettet das Ergebnis in `index.html` ein. `node tests/deep-inventory.cjs` zählt die tatsächlich eingebetteten Inhalte.
 
 ## Prüfen
+
+`npm.cmd run test:cfa` prüft zusätzlich den neuen Lernpfad, unabhängige
+Rechenkontrollen, Fragenverweise, Speicherung, Trainingsfeedback, Offlinebetrieb
+und den zweigeteilten Klausurablauf. Die technischen Prüfungen beweisen weder
+die Richtigkeit jeder Prosaaussage noch eine individuelle Bestehenswahrscheinlichkeit.
 
 `npm.cmd test` führt die mathematischen, strukturellen und Serverprüfungen aus. `npm.cmd run test:browser` prüft die Anwendung mit Playwright. Nach `npm.cmd install` entweder `npx.cmd playwright install chromium` verwenden oder für installiertes Edge in PowerShell `$env:BROWSER_CHANNEL='msedge'` setzen.
 

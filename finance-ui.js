@@ -26,6 +26,13 @@ window.FinanceStudy=(()=>{
  const glossaryNote=g=>g.note?'<details class="study-details glossary-note"><summary>'+esc(g.note.title)+'</summary>'+g.note.paragraphs.map(p=>'<p>'+glossaryText(p)+'</p>').join('')+'<ul>'+g.note.links.map(id=>'<li>'+link(id,byId[id].title)+'</li>').join('')+'</ul></details>':'';
  const workedExample=l=>l.textbook?`<section class="study-section study-example" id="study-example" tabindex="-1"><h2>Durchgerechnetes Beispiel – Schritt für Schritt</h2><p>${glossaryText(l.example)}</p>${l.textbook.figure?`<figure class="textbook-figure">${l.textbook.figure.svg}<figcaption>${esc(l.textbook.figure.caption)}</figcaption></figure>`:''}<ol class="textbook-steps">${l.textbook.steps.map(s=>`<li>${s.mathml?`${s.calculation.includes(':')?`<div class="textbook-calculation">${glossaryText(s.calculation.slice(0,s.calculation.indexOf(':')))}</div>`:''}<div class="study-equation textbook-step-equation">${s.mathml}</div>`:`<div class="textbook-calculation">${glossaryText(s.calculation)}</div>`}<p><strong>Warum dieser Schritt?</strong> ${glossaryText(s.why)}</p></li>`).join('')}</ol></section>`:paragraph('Ein Beispiel mit Rechenweg',l.example,'study-example');
  let active=null;
+ const cfaGlossaryLink=g=>{
+  if(!g.cfa)return '';
+  const unit=window.FinanceCFA?.data.units.find(u=>u.id===g.cfa.unit);
+  if(!unit)return '';
+  const section=unit.sections.find(s=>s.id===g.cfa.section);
+  return '<p class="glossary-cfa"><strong>CFA Level I 2027:</strong> <a href="#cfa~learn-'+esc(unit.id)+'~'+esc(g.cfa.section)+'">'+esc(section?.title||unit.title)+'</a></p>';
+ };
  function resolve(route){return byId[route.replace(/^lesson-/,'').split('~')[0]];}
  function render(route){
   const lesson=resolve(route);if(!lesson)return;
@@ -33,6 +40,7 @@ window.FinanceStudy=(()=>{
   if(active!==lesson.id){
    active=lesson.id;
    const index=lessons.indexOf(lesson);
+   const cfaUnits=window.FinanceCFA?.data.units.filter(u=>u.lessons.includes(lesson.id))||[];
    const related=lesson.links.map(id=>{
     const l=byId[id];
     if(l)return `<li>${link(id,l.title)} <small>${link(id,'Formel / Prinzip','formula')}</small></li>`;
@@ -48,6 +56,7 @@ window.FinanceStudy=(()=>{
     ${paragraph('Die Intuition',lesson.intuition,'study-intuition')}
     ${paragraph('Theorie und Logik',lesson.logic)}
     ${textbookSection(lesson.textbook)}
+    ${cfaUnits.length?`<section class="study-section"><h2>CFA Level I 2027: ausführlich weiterlernen</h2><p>Hier findest du weitere Herleitungen, vollständige Fälle und eigenständige Prüfungsfragen.</p><ul>${cfaUnits.map(u=>`<li><a href="#cfa~learn-${u.id}">${esc(u.title)}</a></li>`).join('')}</ul></section>`:''}
     ${illustrationContent(lesson)}
     <section class="study-section" id="study-formula" tabindex="-1"><h2>${lesson.formulaTex?'Mathematischer Ausgangspunkt':'Entscheidungsrahmen'}</h2>${lesson.formulaTex?`<div class="study-equation">${lesson.formulaMathML}</div><details class="study-details study-formula-source"><summary>LaTeX-Quelltext</summary><code>${esc(lesson.formulaTex)}</code></details>`:`<p>${glossaryText(lesson.logic)}</p>`}${details('Definitionen, Einheiten und Voraussetzungen',lesson.math)}</section>
     ${deepContent(lesson)}
@@ -85,7 +94,7 @@ window.FinanceStudy=(()=>{
    page.dataset.letter='';
    page.innerHTML=`<nav class="study-breadcrumb" aria-label="Lernpfad"><a href="#finance">Finance Studio</a><span>/ Fachwörterbuch</span></nav><div class="kicker">Finance / Dictionary</div><h1>Fachwörterbuch.</h1><p class="lede">${glossary.length} kurze Definitionen für Fach- und Fremdwörter aus dem Lernbereich. Jeder Eintrag führt zum erklärenden Kapitel und zu weiteren Fundstellen.</p><div class="glossary-controls"><label for="glossary-search">Begriff oder Erklärung suchen<input id="glossary-search" type="search" placeholder="z. B. Duration, Barwert, Cashflow"></label><label for="glossary-category">Bereich<select id="glossary-category"><option value="">Alle Bereiche</option>${categories.map(c=>`<option>${esc(c)}</option>`).join('')}</select></label></div><div class="glossary-letters" aria-label="Anfangsbuchstabe"><button type="button" class="active" data-letter="">Alle</button>${letters.map(l=>`<button type="button" data-letter="${esc(l)}">${esc(l)}</button>`).join('')}</div><p id="glossary-results" role="status" aria-live="polite"></p><div class="glossary-grid">${glossary.map(g=>{
     const main=byId[g.lesson],others=g.lessons.filter(id=>id!==g.lesson);
-    return `<article class="glossary-entry" id="glossary-${g.id}" tabindex="-1" data-category="${esc(g.category)}" data-letter="${esc(g.term[0].toLocaleUpperCase('de'))}" data-search="${esc([g.term,...g.aliases,g.definition,g.category,...(g.note?.paragraphs||[])].join(' ').toLocaleLowerCase('de'))}"><div class="glossary-entry-head"><h2>${esc(g.term)}</h2><span>${esc(g.category)}</span></div>${g.aliases.length?`<p class="glossary-aliases"><strong>Auch:</strong> ${g.aliases.map(esc).join(' · ')}</p>`:''}<p>${esc(g.definition)}</p>${glossaryNote(g)}<p class="glossary-main"><strong>Ausführlicher im Kapitel:</strong> ${link(g.lesson,main.title)}</p>${others.length?`<details class="study-details glossary-occurrences"><summary>${others.length} weitere Fundstelle${others.length===1?'':'n'} in den Lernkapiteln</summary><ul>${others.map(id=>`<li>${link(id,byId[id].title)}</li>`).join('')}</ul></details>`:''}</article>`;
+    return `<article class="glossary-entry" id="glossary-${g.id}" tabindex="-1" data-category="${esc(g.category)}" data-letter="${esc(g.term[0].toLocaleUpperCase('de'))}" data-search="${esc([g.term,...g.aliases,g.definition,g.category,...(g.note?.paragraphs||[])].join(' ').toLocaleLowerCase('de'))}"><div class="glossary-entry-head"><h2>${esc(g.term)}</h2><span>${esc(g.category)}</span></div>${g.aliases.length?`<p class="glossary-aliases"><strong>Auch:</strong> ${g.aliases.map(esc).join(' · ')}</p>`:''}<p>${esc(g.definition)}</p>${glossaryNote(g)}${cfaGlossaryLink(g)}<p class="glossary-main"><strong>Ausführlicher im Kapitel:</strong> ${link(g.lesson,main.title)}</p>${others.length?`<details class="study-details glossary-occurrences"><summary>${others.length} weitere Fundstelle${others.length===1?'':'n'} in den Lernkapiteln</summary><ul>${others.map(id=>`<li>${link(id,byId[id].title)}</li>`).join('')}</ul></details>`:''}</article>`;
    }).join('')}</div><p id="glossary-empty" hidden>Kein passender Begriff. Ändere Suche, Bereich oder Anfangsbuchstaben.</p>`;
    const search=page.querySelector('#glossary-search'),category=page.querySelector('#glossary-category');
    glossaryFilter=()=>{
