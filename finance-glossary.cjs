@@ -1,6 +1,7 @@
 // Eigenständig formulierte Kurzdefinitionen für den Finance-Lernbereich.
 const E=(term,category,definition,lesson,aliases='')=>({term,category,definition,lesson,aliases:aliases?aliases.split('|'):[]});
-const extra=[...require('./finance-glossary-extra.cjs'),...require('./finance-glossary-illustrations.cjs')];
+const cfaEntries=require('./finance-cfa/glossary.cjs');
+const extra=[...require('./finance-glossary-extra.cjs'),...require('./finance-glossary-illustrations.cjs'),...cfaEntries];
 module.exports=[
 // Grundlagen und Märkte
 E('Aktie','Grundlagen','Anteil am Eigenkapital eines Unternehmens mit einem nachrangigen Anspruch auf dessen Wert und Ausschüttungen.','start-02','Aktien'),
@@ -491,4 +492,10 @@ for(const entry of extra){
  if(existing){for(const a of [entry.term,...entry.aliases])if(!labels.has(a.toLocaleLowerCase('de'))){existing.aliases.push(a);labels.add(a.toLocaleLowerCase('de'));}continue;}
  if(labels.has(entry.term.toLocaleLowerCase('de')))continue;
  const aliases=entry.aliases.filter(a=>!labels.has(a.toLocaleLowerCase('de')));module.exports.push({...entry,aliases});for(const s of [entry.term,...aliases])labels.add(s.toLocaleLowerCase('de'));
+}
+for(const entry of cfaEntries){
+ const target=module.exports.find(e=>[e.term,...e.aliases].some(label=>key(label)===key(entry.term)));
+ if(!target)throw Error('CFA-Wörterbucheintrag fehlt: '+entry.term);
+ target.definition=entry.definition;
+ target.cfa=entry.cfa;
 }
