@@ -51,6 +51,11 @@ test('every authored 2027 unit renders without overflow and new glossary terms r
  await page.locator('#glossary-quick-ratio a[href="#cfa~learn-ratios~liquidity"]').click();
  await page.waitForFunction(()=>document.activeElement.id==='cfa-section-liquidity');
  assert.equal(await page.locator('#page-cfa').isVisible(),true);
+ await page.goto(url+'/#cfa~learn-data-science~text-ai');
+ await page.locator('#cfa-section-text-ai a.term-link').filter({hasText:/^Texttokenisierung$/}).click();
+ await page.waitForFunction(()=>document.activeElement.id==='glossary-texttokenisierung');
+ await page.locator('#glossary-texttokenisierung a[href="#cfa~learn-data-science~text-ai"]').click();
+ await page.waitForFunction(()=>document.activeElement.id==='cfa-section-text-ai');
  await page.goto(url+'/#cfa~learn-ethics-cases');
  await page.locator('.cfa-related a[href="#cfa~learn-standard-iii~fair-dealing"]').click();
  await page.waitForFunction(()=>document.activeElement.id==='cfa-section-fair-dealing');

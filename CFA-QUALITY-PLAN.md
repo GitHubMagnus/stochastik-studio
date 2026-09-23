@@ -97,7 +97,7 @@ CFA-Fragen ausgegeben. Praktische Pflichtmodule des CFA Institute bleiben separa
   Zinsparität, Diagrammkoordinaten, Minimumvarianz und die Momente der Mischungsgrafik.
   Antwortreihenfolgen enthalten keine einfache wiederkehrende Autorenfolge mehr.
 - 18.09.2026, weiterer Ausbau: Verteilungsmodelle, gemeinsame und bedingte Momente,
-  totale Varianz/Kovarianz und Bayes ergänzt. Aktueller Stand: **20 Einheiten,
+  totale Varianz/Kovarianz und Bayes ergänzt. Zwischenstand: **20 Einheiten,
   66/340 Lernzielreferenzen, 280 Trainingsfragen und je 44 reservierte Klausurfragen**.
   Der Quant-Bereich enthält damit sieben von elf neuen Einheiten. Insgesamt zehn
   zusätzliche Abbildungen und 117 kuratierte Wörterbucheinträge mit Abschnittslinks;
@@ -113,7 +113,38 @@ CFA-Fragen ausgegeben. Praktische Pflichtmodule des CFA Institute bleiben separa
   Sichtprüfung: kompakte Portfolio- und Verteilungsgrafiken, mobile MathML-Formeln.
   Lange Formeln und Tabellen erhalten nur bei tatsächlichem Überlauf einen Hinweis
   und Tastaturfokus; Abschnittssprünge berücksichtigen die eingefügten Hinweise.
-- Noch offen: übrige 82 Lerneinheiten, vollständige semantische Lernzielprüfung,
-  weitere Rechnerpraxis, restliche 136 Fragen je Klausur, vollständige redaktionelle
+- 23.09.2026, Abschluss des ersten Quant-Ausbaus: **24 neue Einheiten,
+  77/340 Lernzielreferenzen mit Erklärungen und Training, 366 Trainingsfragen
+  und je 50 reservierte Klausurfragen**. Alle elf Quant-Module sind mit ihren
+  insgesamt 30 Lernzielreferenzen strukturell zugeordnet. Die neuen Kapitel
+  behandeln Inferenz, Regression, Simulation und Datenwissenschaft in 49 Abschnitten.
+  Sie enthalten 86 zusätzliche Trainingsfragen und sieben neue berechnete Grafiken.
+  Beide Klausurpools besitzen nun ihre geplanten 22 Quant-Fragen; die Klausuren
+  insgesamt bleiben unvollständig und gesperrt.
+- Fachliche Gegenprüfungen: Spearman-p-Wert über alle 120 Rangpermutationen;
+  Mann-Whitney über die 20 Gruppenzuordnungen; t-Wahrscheinlichkeit zusätzlich
+  durch unabhängige numerische Integration; OLS, ANOVA, Alpha-/Beta-Tests und
+  Prognosebänder aus den Rohdaten; alle 27 Bootstrap-Ziehungen; historische
+  Portfolioverluste, GBM-Quantile, Schockkorrelationen und Klassifikationskosten.
+  Die neuen Zahlenantworten werden unabhängig nachgerechnet. Mehrere Trainingsfälle
+  verwenden andere Angaben als die durchgerechneten Lehrbeispiele.
+- Redaktionelle Nachprüfung: Populationsfehler und Residuen, n−1 und n−2,
+  Mittelwert- und Einzelprognoseintervalle, Preisquantile und Pfadgrenzen sowie
+  numerische Simulationsunsicherheit und Modellrisiko ausdrücklich getrennt.
+  Die Nullhypothese und Austauschbarkeitsvoraussetzungen des exakten Spearman-
+  Permutationstests wurden präzisiert. Standard Error of Estimate ist sowohl
+  dem ANOVA- als auch dem Prognose-Lernziel zugeordnet.
+- Aktueller Technikstand: **73 Kernprüfungen und 30 CFA-Prüfungen bestanden**.
+  Alle 24 Einheiten rendern im Browser ohne Seitenüberlauf; Offlinebetrieb,
+  Training, Speicherung und Klausurablauf mit gesonderten Testdaten sind geprüft.
+  Die durch neue Begriffsdefinitionen berührten alten Wörterbuch- und mobilen
+  Lehrbuchprüfungen wurden zusätzlich bestanden. Sieben neue Grafiken und eine
+  mobile Formelansicht mit geöffneter Symbolhilfe wurden visuell kontrolliert.
+  Insgesamt enthält der CFA-Lernpfad 17 Grafiken und 194 kuratierte Begriffsverweise;
+  das gesamte Wörterbuch umfasst 640 Definitionen und 1.364 Begriffe/Aliase.
+  Texttokenisierung in NLP und Tokenisierung von Vermögenswerten erhalten getrennte
+  Begriffe und Rückverweise; die Bedeutung wird nicht global überschrieben.
+- Noch offen: übrige 78 Lerneinheiten, vollständige semantische Lernzielprüfung,
+  weitere Rechnerpraxis, restliche 130 Fragen je Klausur, vollständige redaktionelle
   Prüfung und Endaudit. **Die Zielwerte 90/100 und 80/100 sind noch nicht
   nachgewiesen.** Bestandene Technikprüfungen ersetzen diese Arbeiten nicht.
