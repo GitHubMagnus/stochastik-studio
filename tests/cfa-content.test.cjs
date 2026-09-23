@@ -91,7 +91,23 @@ test('published MCQ numerical answers agree with separately computed results',()
   'sim-12':50*Math.exp(.04*2),'sim-13':.6,'sim-14':12/Math.sqrt(3600),'sim-15':3**2,
   'sim-a1':100*Math.exp(.05-.3**2/2),
   'data-09':1940/2000*100,'data-10':42/139*100,'data-11':36/60*100,
-  'data-12':8*50+70*2,'data-14':(.2-1)**2
+  'data-12':8*50+70*2,'data-14':(.2-1)**2,
+  'ms-01':300-210-70,'ms-05':(18+6*3+3**2)/3,'ms-06':12-4*2+2**2,
+  'ms-11':90-3*((90-18)/6),'ms-12':-1/(-4)*100,'ms-15':24-24,
+  'ms-17':(120-30)/3,'ms-21':[50,20,15,15].reduce((s,v)=>s+v*v,0),
+  'ms-22':20**2-12**2-8**2,'ms-a1':(12-9)*10,'ms-a2':150-2*(2*(150-30)/(3*2)),
+  'ms-b1':20/(1-1/3),
+  'cyc-03':(98-105)/105*100,'cyc-04':330/1.2,'cyc-05':(1.005**4-1)*100,
+  'cyc-06':3*114-3*110,'cyc-08':240/80,'cyc-10':190/(190-160),
+  'cyc-11':190-5*(190-160),'cyc-12':2+4,'cyc-13':100*(.4+.5*.3),
+  'cyc-b1':(30-(120*.9-90))/30*100,
+  'fis-04':1/(1-.75*.8+.1),'fis-05':-.75*2*(-12),'fis-06':(15-.6*15)/(1-.6),
+  'fis-10':110-104-.04*200,'fis-11':(60*1.06-.02*104)/104*100,
+  'fis-12':(.06-.02)/1.02*.9*100,'fis-13':.9*1.03/1.06*100,'fis-14':84/110*100,
+  'fis-18':2*(8-3),'fis-a1':(106-.02*104)/104*100,'fis-b1':12/(1-.6*.8+.08),
+  'mon-02':90*1.04*1.02,'mon-04':1.2/(.2+.1+.1),'mon-07':(1.06/1.04-1)*100,
+  'mon-09':(3+4+5)/3+.6,'mon-11':150000*(.04-.02),'mon-13':(1.1*.96/1.02-1)*100,
+  'mon-a1':(1.05/1.02-1)*100,'mon-b1':(2+3+4+5)/4+.5
  };
  for(const [id,v] of Object.entries(expected)){
   const q=byId.get(id);const numeric=Number(q.options[q.correct].text.replace(/[€,]/g,'').replace('−','-').match(/-?\d+(?:\.\d+)?/)?.[0]);
@@ -336,9 +352,130 @@ test('classification metrics and costs agree with complete confusion matrices',(
  assert.deepEqual(f.plot.marks.map(p=>[p.x,p.y]),[[cross,cost(a,cross)]]);
 });
 
+test('market structure graphics satisfy costs, welfare, tangency and strategic best responses',()=>{
+ const unit=data.units.find(u=>u.id==='market-structures'),figures=unit.sections.flatMap(s=>s.blocks).filter(b=>b.kind==='figure');
+ const get=suffix=>figures.find(f=>f.id.endsWith(suffix));
+ const close=(a,b,tol=1e-8)=>assert.ok(Math.abs(a-b)<tol,a+' vs '+b);
+ const tc=q=>8+10*q-2*q*q+q*q*q,derivative=(f,q)=>(f(q+1e-5)-f(q-1e-5))/2e-5;
+ const cost=get('cost-thresholds');
+ for(const [j,series] of cost.plot.series.entries())for(const [q,v] of series.points){
+  const expected=j===0?derivative(tc,q):j===1?(tc(q)-tc(0))/q:j===2?tc(q)/q:[9,14][j-3];
+  close(v,expected,1e-7);
+ }
+ close(derivative(q=>(tc(q)-8)/q,1),0);close(derivative(q=>tc(q)/q,2),0);
+ for(const [p,opt] of [[8,0],[9,0],[10,4/3],[14,2],[25,3]]){
+  const profit=q=>p*q-tc(q);
+  for(let j=0;j<=4000;j++)assert.ok(profit(opt)>=profit(j/1000)-1e-9);
+ }
+ close(tc(0),8);close(tc(3),47);close(10*4/3-tc(4/3),-184/27);
+ const monopoly=get('market-power-welfare'),demand=q=>50-2*q,revenue=q=>demand(q)*q;
+ for(const [q,v] of monopoly.plot.series[0].points)close(v,demand(q));
+ for(const [q,v] of monopoly.plot.series[1].points)close(v,derivative(revenue,q),1e-7);
+ for(const [,v] of monopoly.plot.series[2].points)close(v,10);
+ close(derivative(revenue,10),10,1e-7);
+ const triangle=monopoly.plot.areas[0].points;
+ const area=Math.abs(triangle.reduce((s,p,j)=>{const n=triangle[(j+1)%triangle.length];return s+p[0]*n[1]-n[0]*p[1];},0))/2;
+ close(area,100);close(demand(10)*10-(20+10*10),180);
+ const differentiated=get('differentiation-entry'),total=q=>100+10*q+q*q,price=q=>50-3*q;
+ for(const [j,series] of differentiated.plot.series.entries())for(const [q,v] of series.points){
+  const expected=[price(q),derivative(x=>price(x)*x,q),derivative(total,q),total(q)/q][j];
+  close(v,expected,1e-7);
+ }
+ close(price(5),total(5)/5);close(derivative(q=>total(q)/q,5),derivative(price,5),1e-7);
+ close(derivative(q=>total(q)/q,10),0);
+ const cournot=get('cournot-responses'),profit=(q,r)=>(100-q-r-20)*q;
+ for(const [q1,q2] of cournot.plot.series[0].points)close(derivative(q=>profit(q,q2),q1),0,1e-7);
+ for(const [q1,q2] of cournot.plot.series[1].points)close(derivative(q=>profit(q,q1),q2),0,1e-7);
+ const q=80/3;close(cournot.plot.marks[0].x,q);close(cournot.plot.marks[0].y,q);
+ for(let v=0;v<=80;v+=.1)assert.ok(profit(q,q)>=profit(v,q)-1e-9);
+ close(profit(q,q),6400/9);close(profit(40,q),1600/3);
+ const follower=q1=>Math.max(0,(80-q1)/2);
+ for(let v=0;v<=80;v+=.1)assert.ok(profit(40,20)>=profit(v,follower(v))-1e-9);
+ close(profit(40,20),800);close(profit(20,40),400);
+});
+
+test('cycle diagrams and examples preserve stock-flow and balance-sheet identities',()=>{
+ const unit=data.units.find(u=>u.id==='cycles'),figs=unit.sections.flatMap(s=>s.blocks).filter(b=>b.kind==='figure');
+ const cycle=figs.find(f=>f.id.endsWith('cycle-levels')),actual=cycle.plot.series[0].points;
+ for(const [q,y] of cycle.plot.series[1].points)assert.ok(Math.abs(y-100*1.01**q)<1e-10);
+ assert.ok(actual[4][1]>actual[3][1]&&actual[4][1]>actual[5][1]);
+ assert.ok(actual[8][1]<actual[7][1]&&actual[8][1]<actual[9][1]);
+ assert.ok(actual[9][1]>actual[8][1]&&actual[9][1]<100*1.01**9);
+ const output=[100+(120-100),100+(125-120)];
+ assert.deepEqual(output,[120,105]);assert.equal(output[1]-output[0],-15);
+ assert.equal(90+6,96);assert.equal(6/(90+6)*100,6.25);
+ const lev=figs.find(f=>f.id.endsWith('deleveraging'));
+ for(const [j,series] of lev.plot.series.entries())for(const [shock,value] of series.points){
+  const assets=100*(1-shock/100),debt=80,equity=assets-debt;
+  if(j===0)assert.ok(Math.abs(value-equity)<1e-10);
+  else {const afterAssets=assets-value,afterDebt=debt-value;assert.ok(afterDebt>=0);assert.ok(Math.abs(afterAssets-afterDebt-equity)<1e-10);assert.ok(Math.abs(afterAssets/equity-5)<1e-10);}
+ }
+ const gap=(y,p)=>(y/p-1)*100;assert.ok(gap(100,104)<gap(98,100));assert.ok(100/98-1>0);
+ assert.ok(Math.abs((101/100)**4-1-.04060401)<1e-10);
+ assert.ok(Math.abs((101/98-1)*100-3.061224489795918)<1e-10);
+});
+
+test('fiscal multiplier intersections and debt paths reconcile through separate income and currency calculations',()=>{
+ const unit=data.units.find(u=>u.id==='fiscal'),figs=unit.sections.flatMap(s=>s.blocks).filter(b=>b.kind==='figure');
+ const cross=figs.find(f=>f.id.endsWith('spending-cross'));
+ for(const [j,series] of cross.plot.series.entries())for(const [y,ae] of series.points){
+  const expected=j===0?y:(j===1?50:60)+.8*(1-.25)*y-.1*y;
+  assert.ok(Math.abs(ae-expected)<1e-9);
+ }
+ assert.deepEqual(cross.plot.marks.map(m=>[m.x,m.y]),[[100,100],[120,120]]);
+ const seriesSum=(first,ratio)=>Array.from({length:250},(_,t)=>first*ratio**t).reduce((a,b)=>a+b,0);
+ assert.ok(Math.abs(seriesSum(10,.8)-50)<1e-10);
+ assert.ok(Math.abs(seriesSum(10,.8*.75-.1)-20)<1e-10);
+ assert.ok(Math.abs(seriesSum(.8*10,.8*.75-.1)-16)<1e-10);
+ assert.ok(Math.abs(seriesSum(10-.8*10,.8*.75-.1)-4)<1e-10);
+ const debt=figs.find(f=>f.id.endsWith('debt-paths'));
+ for(const [j,i] of [.02,.05,.07].entries()){
+  let debtAmount=80,gdp=100;
+  for(const [t,ratio] of debt.plot.series[j].points){
+   if(t){const interest=debtAmount*i;gdp*=1.03;const surplus=.01*gdp;debtAmount+=interest-surplus;}
+   assert.ok(Math.abs(ratio-debtAmount/gdp*100)<1e-10);
+  }
+ }
+ assert.ok(Math.abs((80+4-1.03)/103*100-80.55339805825243)<1e-10);
+ assert.ok(Math.abs((80+4-1.6)/103-.8)<1e-12);
+ const stable=(.03-.06)/1.06*.8;
+ assert.ok(Math.abs((80*1.03-stable*106)/106-.8)<1e-12);assert.ok(stable<0);
+});
+
+test('monetary diagrams distinguish exact real rates, supply shocks and price-level comparisons',()=>{
+ const unit=data.units.find(u=>u.id==='monetary'),figs=unit.sections.flatMap(s=>s.blocks).filter(b=>b.kind==='figure');
+ const rates=figs.find(f=>f.id.endsWith('real-interest'));
+ for(const [j,i] of [.05,.04].entries())for(const [pi,r] of rates.plot.series[j].points){
+  const nominalPayoff=100*(1+i),futureBasketPrice=1+pi/100;
+  assert.ok(Math.abs(r-(nominalPayoff/futureBasketPrice-100))<1e-10);
+ }
+ assert.ok(rates.plot.marks[1].y>rates.plot.marks[0].y);
+ const adas=figs.find(f=>f.id.endsWith('supply-demand'));
+ for(const [j,series] of adas.plot.series.entries())for(const [y,p] of series.points){
+  const expected=[200-y,50+.5*y,65+.5*y,215-y][j];assert.equal(p,expected);
+ }
+ for(const [j,m] of adas.plot.marks.entries()){
+  assert.equal(m.y,(j===2?215:200)-m.x);
+  assert.equal(m.y,(j===0?50:65)+.5*m.x);
+ }
+ assert.equal(adas.plot.marks[1].x,90);assert.equal(adas.plot.marks[1].y,110);
+ assert.equal(adas.plot.marks[2].x,100);assert.equal(adas.plot.marks[2].y,115);
+ const deposits=100,cash=20,required=10,excess=10;
+ assert.equal((cash+deposits)/(cash+required+excess),3);
+ const nominalGrowth=1.08*.97,realGrowth=1.02,inflation=nominalGrowth/realGrowth-1;
+ assert.ok(Math.abs(realGrowth*(1+inflation)-nominalGrowth)<1e-12);
+ assert.ok(Math.abs(inflation*100-2.7058823529411806)<1e-10);
+ for(const id of ['market-structures','cycles','fiscal','monetary']){
+  const c=data.coverage.find(m=>m.id===id);assert.ok(c.objectives.every(o=>o.sections.length&&o.practice.length));
+  for(const f of data.units.find(u=>u.id===id).sections.flatMap(s=>s.blocks).filter(b=>b.kind==='figure'))
+   for(const s of f.plot.series)for(const [x,y] of s.points){assert.ok(x>=f.plot.x[0]-1e-9&&x<=f.plot.x[1]+1e-9,f.id);assert.ok(y>=f.plot.y[0]-1e-9&&y<=f.plot.y[1]+1e-9,f.id);}
+ }
+});
+
 test('new glossary definitions point to existing precise 2027 sections',()=>{
  const glossary=require('../finance-glossary.cjs'),entries=require('../finance-cfa/glossary.cjs');
  assert.ok(entries.length>=40);
+ assert.equal(new Set(entries.map(g=>g.term.toLocaleLowerCase('de'))).size,entries.length,'a duplicate must not silently replace a precise definition or return link');
  for(const g of glossary.filter(g=>g.cfa)){
   const u=data.units.find(u=>u.id===g.cfa.unit);assert.ok(u?.sections.some(s=>s.id===g.cfa.section),g.term);
  }

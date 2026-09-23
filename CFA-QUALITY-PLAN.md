@@ -144,7 +144,42 @@ CFA-Fragen ausgegeben. Praktische Pflichtmodule des CFA Institute bleiben separa
   das gesamte Wörterbuch umfasst 640 Definitionen und 1.364 Begriffe/Aliase.
   Texttokenisierung in NLP und Tokenisierung von Vermögenswerten erhalten getrennte
   Begriffe und Rückverweise; die Bedeutung wird nicht global überschrieben.
-- Noch offen: übrige 78 Lerneinheiten, vollständige semantische Lernzielprüfung,
-  weitere Rechnerpraxis, restliche 130 Fragen je Klausur, vollständige redaktionelle
+- 24.09.2026, erster VWL-Ausbau: Marktformen, Konjunktur, Fiskalpolitik und
+  Geldpolitik sind in **52 neuen Abschnitten** ausgearbeitet. Ergänzt wurden
+  **80 Trainingsfragen, je acht reservierte Klausurfragen und zehn berechnete
+  Grafiken**. Der neue Gesamtstand beträgt **28 Einheiten, 93/340 Lernzielreferenzen
+  mit Erklärung und Training, 446 Trainingsfragen und je 58 reservierte Fragen**.
+  Vier von acht Economics-Modulen sind neu ausgearbeitet; vollständige Probeklausuren
+  bleiben gesperrt. Die Lernzielzahl bezeichnet weiterhin strukturelle Zuordnung.
+- Fachliche Gegenrechnung: Kostenableitungen und globale Mengenwahl einschließlich
+  Stilllegung, Wohlfahrtsdreieck, Tangentialgleichgewicht, Cournot-Bestantworten
+  und Stackelberg-Anreize. Lagerbeiträge unterscheiden Bestand, Änderung und
+  Änderungsdifferenz. Bilanzabbau bewahrt Eigenkapital unter den angenommenen
+  Verkäufen zum Buchwert. Fiskalische Gleichgewichte werden über die Güterrechnung
+  und geometrische Ausgabenrunden, Schuldenquoten zusätzlich über nominale
+  Schulden- und BIP-Beträge geprüft. Realzinskurven, Geldbasisrelation,
+  Quantitätsgleichung und AD-AS-Schnittpunkte werden unabhängig nachgerechnet.
+  Alle neuen numerischen Multiple-Choice-Antworten sind in der Gegenrechnung erfasst.
+- Redaktionelle Abgrenzungen: Preisniveau versus Inflation; Primärsaldo versus
+  Gesamtsaldo; aktueller versus alter BIP-Nenner; nominales versus reales Wachstum;
+  Zinsinstrument versus Inflationsziel; Reservebestand versus Kreditvergabe;
+  automatische Stabilisierung versus neue politische Entscheidung. Eigene Modelle
+  weisen ihre Annahmen und Grenzen aus. Fiskal- und Geldschöpfungsmultiplikatoren
+  erhalten passende Definitionen statt eines Verweises auf Bewertungsmultiples.
+- Technikstand nach dem VWL-Ausbau: **77 Kernprüfungen und 35 CFA-Prüfungen**,
+  darunter acht Browserprüfungen. Alle 28 Einheiten werden auf Desktop und
+  Mobilbreite geprüft; neue Wörterbuch-Rückwege sowie Training und Lösungsrückverweise
+  aller vier VWL-Einheiten werden tatsächlich angeklickt. Ein Browsertest fand
+  den Fiskalmultiplikator-Begriff zunächst nur in einer geschlossenen Symbolhilfe;
+  die Einleitung erklärt und verlinkt ihn jetzt unmittelbar sichtbar.
+  Die zehn neuen Grafiken und eine mobile Formeltafel wurden visuell kontrolliert.
+  Quadratische Diagramme sind auf 480 Pixel begrenzt und bleiben seitlich scrollbar.
+  Eine ältere doppelte Definition von Standardfehler wurde bereinigt; ihr genauer
+  Rückverweis führt zur Schätzunsicherheit im Inferenzkapitel. Doppelte kuratierte
+  Begriffe dürfen in der Inhaltsprüfung keine Erklärung mehr still überschreiben.
+  Der Lernpfad enthält insgesamt **27 Grafiken und 259 kuratierte Begriffsverweise**;
+  das globale Wörterbuch **692 Definitionen und 1.477 Begriffe/Aliase**.
+- Noch offen: übrige 74 Lerneinheiten, vollständige semantische Lernzielprüfung,
+  weitere Rechnerpraxis, restliche 122 Fragen je Klausur, vollständige redaktionelle
   Prüfung und Endaudit. **Die Zielwerte 90/100 und 80/100 sind noch nicht
   nachgewiesen.** Bestandene Technikprüfungen ersetzen diese Arbeiten nicht.

@@ -56,6 +56,14 @@ test('every authored 2027 unit renders without overflow and new glossary terms r
  await page.waitForFunction(()=>document.activeElement.id==='glossary-texttokenisierung');
  await page.locator('#glossary-texttokenisierung a[href="#cfa~learn-data-science~text-ai"]').click();
  await page.waitForFunction(()=>document.activeElement.id==='cfa-section-text-ai');
+ for(const [unit,section,term] of [['fiscal','multipliers','Fiskalmultiplikator'],['monetary','reserves','Geldschöpfungsmultiplikator'],['cycles','inventories','Lager-Umsatz-Relation']]){
+  await page.goto(url+'/#cfa~learn-'+unit+'~'+section);
+  const termLink=page.locator('#cfa-section-'+section+' a.term-link').filter({hasText:new RegExp('^'+term+'$')}).first();
+  const target=(await termLink.getAttribute('href')).split('~')[1];
+  await termLink.click();await page.waitForFunction(id=>document.activeElement.id==='glossary-'+id,target);
+  await page.locator('#glossary-'+target+' a[href="#cfa~learn-'+unit+'~'+section+'"]').click();
+  await page.waitForFunction(id=>document.activeElement.id==='cfa-section-'+id,section);
+ }
  await page.goto(url+'/#cfa~learn-ethics-cases');
  await page.locator('.cfa-related a[href="#cfa~learn-standard-iii~fair-dealing"]').click();
  await page.waitForFunction(()=>document.activeElement.id==='cfa-section-fair-dealing');
@@ -68,6 +76,20 @@ test('every authored 2027 unit renders without overflow and new glossary terms r
  await page.waitForFunction(()=>document.querySelector('.cfa-figure-plot').scrollLeft>0);
  assert.equal(await page.locator('.cfa-figure-hint').first().isVisible(),true);
 });
+test('economics training gives per-choice reasons and exact chapter return links',async t=>{
+ const page=await open(t);
+ for(const id of ['market-structures','cycles','fiscal','monetary']){
+  await page.goto(url+'/#cfa~learn-'+id);await page.locator('[data-train-unit]').click();
+  assert.equal(await page.locator('.cfa-solution').count(),0);
+  const q=actual.questions.find(q=>q.unit===id&&q.pool==='practice');
+  await page.locator('input[name="cfa-answer"]').nth(q.correct).check();await page.locator('#cfa-check').click();
+  assert.match(await page.locator('.cfa-solution h3').innerText(),/^Richtig/);
+  for(const option of q.options)assert.ok((await page.locator('.cfa-solution').innerText()).includes(option.why));
+  await page.locator('.cfa-solution a[href="#cfa~learn-'+id+'~'+q.section+'"]').click();
+  await page.waitForFunction(section=>document.activeElement.id==='cfa-section-'+section,q.section);
+ }
+});
+
 test('the new learning path, notation and training work from the standalone offline file',async t=>{
  const page=await browser.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));t.after(async()=>{await page.close();assert.deepEqual(errors,[]);});
  await page.route(/^https?:/,r=>r.abort());
