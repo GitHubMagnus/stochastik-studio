@@ -73,7 +73,25 @@ test('published MCQ numerical answers agree with separately computed results',()
   'ds-15':(.07-.1*1.644854)*100,'ds-16':50*Math.exp(.03+.09/2),
   'ds-18':.9*.1/(.9*.1+.2*.9)*100,'ds-20':.75*108+.25*40,
   'ds-a1':.004+.5*.05**2+.5*.05**2,'ds-a2':.75*.2/(.75*.2+.25*.8)*100,
-  'ds-b1':80*Math.exp(.02+.3**2/2),'ds-b2':.25*15**2+.75*5**2
+  'ds-b1':80*Math.exp(.02+.3**2/2),'ds-b2':.25*15**2+.75*5**2,
+  'inf-02':.7*4+.3*12,'inf-04':18/Math.sqrt(36),'inf-05':(2/1)**2,
+  'inf-07':5-2.131*4/Math.sqrt(16),'inf-12':(1-.25)*100,'inf-15':3/(4.5/Math.sqrt(9)),
+  'inf-16':3/Math.sqrt(100/25+16/16),'inf-18':16*.15**2/.12**2,'inf-19':.18**2/.12**2,
+  'inf-20':.4*Math.sqrt(25/.84),'inf-21':1-6*10/(6*(36-1)),'inf-23':2*.5**8*100,
+  'inf-24':(3-1)*(4-1),'inf-25':80*50/200,'inf-26':.02-.05,'inf-27':(1-.99**10)*100,
+  'inf-a1':(9*9+13*16)/22,'inf-b1':2*2.064*5/Math.sqrt(25),
+  'rg-01':7-60/40*2,'rg-02':.6*10/4,'rg-03':8-6.5,'rg-05':(1-20/80)*100,
+  'rg-06':Math.sqrt(90/10),'rg-07':2*1000,'rg-10':3/Math.sqrt(100),'rg-11':(1.3-1)/.2,
+  'rg-12':(-3)**2,'rg-13':(-.8)**2,'rg-14':2+.5*6,'rg-16':3*Math.sqrt(1.1),
+  'rg-18':Math.expm1(.03*2)*100,'rg-19':4*Math.log(1.1),'rg-21':.2+.4+1.2*(2-.2),
+  'rg-22':1.8-1.4*1,'rg-a1':(150-50)/(50/20),'rg-a2':.024/.016,
+  'rg-b1':10+2.12*2*Math.sqrt(1+1/18),
+  'sim-01':-200000*(.75*(-.08)+.25*.03),'sim-03':[-4,-1,2,5,9][Math.ceil(.8*5)-1],
+  'sim-04':9,'sim-07':(-2+4+4)/3,'sim-08':3**3,'sim-11':(.08-.2**2/2)*100,
+  'sim-12':50*Math.exp(.04*2),'sim-13':.6,'sim-14':12/Math.sqrt(3600),'sim-15':3**2,
+  'sim-a1':100*Math.exp(.05-.3**2/2),
+  'data-09':1940/2000*100,'data-10':42/139*100,'data-11':36/60*100,
+  'data-12':8*50+70*2,'data-14':(.2-1)**2
  };
  for(const [id,v] of Object.entries(expected)){
   const q=byId.get(id);const numeric=Number(q.options[q.correct].text.replace(/[€,]/g,'').replace('−','-').match(/-?\d+(?:\.\d+)?/)?.[0]);
@@ -215,6 +233,109 @@ test('joint scenarios, total moments, Bayesian counts and lognormal curve agree 
  assert.ok(Math.abs(mass-1)<1e-10);assert.ok(Math.abs(first-Math.exp(.02))<1e-10);
  assert.ok(Math.abs(second-first**2-Math.exp(.04)*(Math.exp(.04)-1))<1e-10);
 });
+test('inference examples reconcile exact permutations, test statistics and sampling curves',()=>{
+ const permutations=a=>a.length?a.flatMap((x,i)=>permutations(a.filter((_,j)=>i!==j)).map(rest=>[x,...rest])):[[]];
+ const ranks=permutations([1,2,3,4,5]),rho=r=>1-6*r.reduce((s,x,i)=>s+(x-i-1)**2,0)/(5*(25-1));
+ assert.equal(ranks.length,120);assert.equal(ranks.filter(r=>Math.abs(rho(r))>=.8-1e-12).length,16);
+ const assignments=permutations([1,2,3,4,5,6]).map(p=>p.slice(0,3).sort((a,b)=>a-b).join(','));
+ const unique=[...new Set(assignments)].map(s=>s.split(',').map(Number));
+ assert.equal(unique.length,20);assert.equal(unique.filter(r=>[0,9].includes(r.reduce((s,x)=>s+x,0)-6)).length,2);
+ const d=[1,2,0,3,4],mean=d.reduce((s,x)=>s+x,0)/d.length,variance=d.reduce((s,x)=>s+(x-mean)**2,0)/(d.length-1);
+ assert.equal(mean,2);assert.equal(variance,2.5);assert.ok(Math.abs(mean/Math.sqrt(variance/5)-Math.sqrt(8))<1e-12);
+ const table=[[30,20],[10,40]],rows=table.map(r=>r.reduce((s,x)=>s+x,0)),cols=[0,1].map(j=>table.reduce((s,r)=>s+r[j],0)),total=rows.reduce((s,x)=>s+x,0);
+ const stat=table.reduce((s,r,i)=>s+r.reduce((v,o,j)=>{const expected=rows[i]*cols[j]/total;return v+(o-expected)**2/expected;},0),0);
+ assert.ok(Math.abs(stat-50/3)<1e-12);
+ const fs=require('node:fs'),vm=require('node:vm'),script=fs.readFileSync(require('node:path').join(__dirname,'../index.html'),'utf8').split('<script>')[1].split('</script>')[0];
+ const context=vm.createContext({});vm.runInContext(script.slice(0,script.indexOf('/* ================================================= BAYES module'))+script.slice(script.indexOf('const LG='),script.indexOf('/* ================================================= REGINF')),context);
+ const evaluate=s=>vm.runInContext(s,context);
+ assert.ok(Math.abs(evaluate('tInv975(24)')-2.06389856)<1e-7);
+ // Independent Simpson integration after t=sqrt(24)*tan(theta).
+ let gammaRatio=1;for(let k=1;k<=12;k++)gammaRatio*=k-.5;
+ for(let k=1;k<=11;k++)gammaRatio/=k;
+ const start=Math.atan(3/Math.sqrt(24)),steps=10000,h=(Math.PI/2-start)/steps;
+ let area=0;for(let k=0;k<=steps;k++)area+=(k===0||k===steps?1:k%2?4:2)*Math.cos(start+k*h)**23;
+ assert.ok(Math.abs(evaluate('2*tTail(3,24)')-2*gammaRatio*area*h/3)<1e-10);
+ assert.ok(Math.abs(evaluate('2*tTail(3,24)')-.0062)<.00005);
+ assert.ok(Math.abs(evaluate('chiCdf(31.410432844,20)')-.95)<1e-8);
+ const figures=data.units.find(u=>u.id==='inference').sections.flatMap(s=>s.blocks.filter(b=>b.kind==='figure'));
+ const density=(x,m,s)=>Math.exp(-.5*((x-m)/s)**2)/(s*Math.sqrt(2*Math.PI));
+ const sampling=figures.find(f=>f.id.endsWith('-sampling-means'));
+ for(const [i,n] of [4,16,64].entries())for(const [x,y] of sampling.plot.series[i].points)assert.ok(Math.abs(y-density(x,4,12/Math.sqrt(n)))<1e-12);
+ const power=figures.find(f=>f.id.endsWith('-power-overlap'));
+ for(const [i,m] of [0,2].entries())for(const [x,y] of power.plot.series[i].points)assert.ok(Math.abs(y-density(x,m,1))<1e-12);
+ assert.ok(Math.abs(evaluate('1-normCdf(1.644853626951-2,0,1)')-.63876)<.00002);
+});
+
+test('regression coefficients, ANOVA, CAPM and prediction graphics reconcile from raw observations',()=>{
+ const x=[-2,-1,0,1,2],y=[-1,-1.5,1,1.5,5],n=x.length;
+ const average=a=>a.reduce((s,v)=>s+v,0)/a.length,mx=average(x),my=average(y);
+ const sxx=x.reduce((s,v)=>s+(v-mx)**2,0),sxy=x.reduce((s,v,i)=>s+(v-mx)*(y[i]-my),0);
+ const b=sxy/sxx,a=my-b*mx,pred=x.map(v=>a+b*v),res=y.map((v,i)=>v-pred[i]);
+ const sse=res.reduce((s,v)=>s+v*v,0),sst=y.reduce((s,v)=>s+(v-my)**2,0),ssr=pred.reduce((s,v)=>s+(v-my)**2,0);
+ assert.equal(a,1);assert.equal(b,1.5);assert.equal(sse,4);assert.equal(sst,26.5);assert.equal(ssr,22.5);
+ assert.equal(average(res),0);assert.equal(x.reduce((s,v,i)=>s+v*res[i],0),0);
+ assert.equal(sst,ssr+sse);
+ const mse=sse/(n-2),seB=Math.sqrt(mse/sxx),seA=Math.sqrt(mse*(1/n+mx*mx/sxx));
+ assert.ok(b/seB>3.18245);assert.ok((b-1)/seB<3.18245);assert.ok(a/seA<3.18245);
+ assert.ok(Math.abs((b/seB)**2-ssr/mse)<1e-12);
+ assert.ok(Math.abs(sst/(n-1)-(b*b*sxx/(n-1)+sse/(n-1)))<1e-12);
+ const figures=data.units.find(u=>u.id==='regression').sections.flatMap(s=>s.blocks.filter(b=>b.kind==='figure'));
+ const fit=figures.find(f=>f.id.endsWith('-ols-fit'));
+ assert.deepEqual(fit.plot.marks.map(p=>[p.x,p.y]),x.map((v,i)=>[v,y[i]]));
+ for(const [v,p] of fit.plot.series[0].points)assert.equal(p,a+b*v);
+ const bands=figures.find(f=>f.id.endsWith('-prediction-bands')),critical=3.182446305284263;
+ for(const [j,s] of bands.plot.series.entries())for(const [v,p] of s.points){
+  const sign=j===0?0:(j%2?-1:1),future=j>=3?1:0;
+  const expected=a+b*v+sign*critical*Math.sqrt(mse*(future+1/n+(v-mx)**2/sxx));
+  assert.ok(Math.abs(p-expected)<1e-11);
+ }
+ for(let i=0;i<bands.plot.series[0].points.length;i++){
+  const values=bands.plot.series.map(s=>s.points[i][1]);
+  assert.ok(values[3]<values[1]&&values[1]<values[0]&&values[0]<values[2]&&values[2]<values[4]);
+ }
+ const curve=figures.find(f=>f.id.endsWith('-residual-curvature'));
+ const curveY=x.map(v=>v*v),curveMean=average(curveY);
+ assert.deepEqual(curve.plot.series[0].points,x.map((v,i)=>[v,curveY[i]-curveMean]));
+});
+
+test('historical losses, exhaustive bootstrap and simulated-price quantiles match independent calculations',()=>{
+ const assets=[[-.1,.04],[-.04,.02],[.02,.01],[.05,-.01],[.1,-.03]];
+ const loss=assets.map(([a,b])=>-100000*(.6*a+.4*b));
+ for(const [i,target] of [4400,1600,-1600,-2600,-4800].entries())assert.ok(Math.abs(loss[i]-target)<1e-9);
+ const sorted=loss.toSorted((a,b)=>a-b);
+ assert.ok(Math.abs(sorted[Math.ceil(.8*5)-1]-1600)<1e-9);
+ const original=[-2,0,4],means=[];
+ for(const a of original)for(const b of original)for(const c of original)means.push((a+b+c)/3);
+ const mean=means.reduce((s,v)=>s+v,0)/means.length,variance=means.reduce((s,v)=>s+(v-mean)**2,0)/means.length;
+ assert.equal(means.length,27);assert.ok(Math.abs(mean-2/3)<1e-12);assert.ok(Math.abs(variance-56/27)<1e-12);
+ const f=data.units.find(u=>u.id==='simulation').sections.flatMap(s=>s.blocks).find(b=>b.kind==='figure');
+ for(const [i,s] of f.plot.series.entries())for(const [t,p] of s.points){
+  const logMean=Math.log(100)+(.06-.04/2)*t,logSD=.2*Math.sqrt(t);
+  const target=i===0?Math.exp(logMean+.5*logSD**2):Math.exp(logMean+logSD*([0,0,-1.644853626951,1.644853626951][i]));
+  assert.ok(Math.abs(p-target)<1e-10);assert.ok(p>=f.plot.y[0]&&p<=f.plot.y[1]);
+ }
+ for(const rho of [-1,-.6,0,.6,1]){
+  // Four symmetric pairs form an exact finite distribution of independent unit-variance shocks.
+  const scenarios=[[-1,-1],[-1,1],[1,-1],[1,1]].map(([u,v])=>[u,rho*u+Math.sqrt(1-rho*rho)*v]);
+  assert.ok(Math.abs(scenarios.reduce((s,[a,b])=>s+a*b,0)/4-rho)<1e-12);
+  assert.ok(Math.abs(scenarios.reduce((s,[,b])=>s+b*b,0)/4-1)<1e-12);
+ }
+});
+
+test('classification metrics and costs agree with complete confusion matrices',()=>{
+ const a={tp:14,fn:6,fp:49,tn:931},b={tp:18,fn:2,fp:147,tn:833};
+ for(const m of [a,b]){assert.equal(m.tp+m.fn,20);assert.equal(m.fp+m.tn,980);}
+ assert.equal((a.tp+a.tn)/1000,.945);assert.equal((b.tp+b.tn)/1000,.851);
+ assert.ok(Math.abs(a.tp/(a.tp+a.fp)-2/9)<1e-12);
+ assert.equal(a.tp/(a.tp+a.fn),.7);assert.equal(a.fp/(a.fp+a.tn),.05);
+ const cost=(m,c)=>m.fn*c+m.fp,cross=(b.fp-a.fp)/(a.fn-b.fn);
+ assert.equal(cross,24.5);assert.equal(cost(a,100),649);assert.equal(cost(b,100),347);
+ assert.equal(cost(a,cross),cost(b,cross));assert.equal(cost(a,cross),196);
+ const f=data.units.find(u=>u.id==='data-science').sections.flatMap(s=>s.blocks).find(b=>b.kind==='figure');
+ for(const [i,m] of [a,b].entries())for(const [c,v] of f.plot.series[i].points)assert.equal(v,cost(m,c));
+ assert.deepEqual(f.plot.marks.map(p=>[p.x,p.y]),[[cross,cost(a,cross)]]);
+});
+
 test('new glossary definitions point to existing precise 2027 sections',()=>{
  const glossary=require('../finance-glossary.cjs'),entries=require('../finance-cfa/glossary.cjs');
  assert.ok(entries.length>=40);
