@@ -56,7 +56,7 @@ test('every authored 2027 unit renders without overflow and new glossary terms r
  await page.waitForFunction(()=>document.activeElement.id==='glossary-texttokenisierung');
  await page.locator('#glossary-texttokenisierung a[href="#cfa~learn-data-science~text-ai"]').click();
  await page.waitForFunction(()=>document.activeElement.id==='cfa-section-text-ai');
- for(const [unit,section,term] of [['fiscal','multipliers','Fiskalmultiplikator'],['monetary','reserves','Geldschöpfungsmultiplikator'],['cycles','inventories','Lager-Umsatz-Relation']]){
+ for(const [unit,section,term] of [['fiscal','multipliers','Fiskalmultiplikator'],['monetary','reserves','Geldschöpfungsmultiplikator'],['cycles','inventories','Lager-Umsatz-Relation'],['geopolitics','cooperation','Soft Power'],['fx-markets','regimes','Currency Board'],['fx-calculation','covered-parity','gedeckte Zinsparität']]){
   await page.goto(url+'/#cfa~learn-'+unit+'~'+section);
   const termLink=page.locator('#cfa-section-'+section+' a.term-link').filter({hasText:new RegExp('^'+term+'$')}).first();
   const target=(await termLink.getAttribute('href')).split('~')[1];
@@ -78,7 +78,7 @@ test('every authored 2027 unit renders without overflow and new glossary terms r
 });
 test('economics training gives per-choice reasons and exact chapter return links',async t=>{
  const page=await open(t);
- for(const id of ['market-structures','cycles','fiscal','monetary']){
+ for(const id of ['market-structures','cycles','fiscal','monetary','geopolitics','trade','fx-markets','fx-calculation']){
   await page.goto(url+'/#cfa~learn-'+id);await page.locator('[data-train-unit]').click();
   assert.equal(await page.locator('.cfa-solution').count(),0);
   const q=actual.questions.find(q=>q.unit===id&&q.pool==='practice');

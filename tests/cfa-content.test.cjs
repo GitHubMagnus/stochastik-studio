@@ -107,7 +107,26 @@ test('published MCQ numerical answers agree with separately computed results',()
   'fis-18':2*(8-3),'fis-a1':(106-.02*104)/104*100,'fis-b1':12/(1-.6*.8+.08),
   'mon-02':90*1.04*1.02,'mon-04':1.2/(.2+.1+.1),'mon-07':(1.06/1.04-1)*100,
   'mon-09':(3+4+5)/3+.6,'mon-11':150000*(.04-.02),'mon-13':(1.1*.96/1.02-1)*100,
-  'mon-a1':(1.05/1.02-1)*100,'mon-b1':(2+3+4+5)/4+.5
+  'mon-a1':(1.05/1.02-1)*100,'mon-b1':(2+3+4+5)/4+.5,
+  'geo-12':140*2500-90000,'geo-14':3/(40-10)*100,'geo-a1':.15*60-(4+.15*20),
+  'tr-02':12/8,'tr-05':120-2*25-(25-15),'tr-06':25+5,
+  'tr-07':5*(120-2*30-(30-15)),'tr-08':.5*6*(4+8),'tr-09':-420+110+250,
+  'tr-10':(34-26)*15,'tr-13':4*(44-10-(100-2*44)),'tr-14':.5*4*(4+8),
+  'tr-19':130-100,'tr-20':(70+20-82)-20,'tr-21':45,
+  'tr-a1':.5*4*(2*4+3*4),'tr-b1':(60+18-68)-18,
+  'fxm-01':800*1.25,'fxm-02':1/1.6,'fxm-04':(.8/.88-1)*100,
+  'fxm-05':2*80/200,'fxm-06':(1.08/1.03-1)*100,
+  'fxm-08':(Math.sqrt(1.2*.8)-1)*100,'fxm-10':(1.06*.88-1)*100,
+  'fxm-16':200-200*1.05,'fxm-18':((500-150*2.4)/(500-150*2)-1)*100,
+  'fxm-a1':(1.09*1.38/1.5-1)*100,'fxm-b1':(1.04*1.02/1.05-1)*100,
+  'fxc-01':1.15*140,'fxc-02':1.3/1.04,'fxc-03':50000*1.24,'fxc-04':1/1.26,
+  'fxc-05':1.32/1.1,'fxc-06':1.35/1.08,'fxc-08':100000*(1.08/1.35*1.27-1),
+  'fxc-09':1.4*1.06/1.03,'fxc-11':100000*1.02*1.55-150000*1.04,
+  'fxc-12':150000*1.04-100000*1.02*1.48,'fxc-13':.9*1.02/1.01,
+  'fxc-14':1.1*Math.sqrt(1.09/1.04),'fxc-15':1.072-18*.0001,'fxc-16':1.2003+17*.0001,
+  'fxc-17':(1.275/1.25-1)/.5*100,'fxc-18':(1.25/1.275-1)*100,
+  'fxc-20':1.02*1.06/1.02,'fxc-21':80000*1.3,'fxc-a1':148*1.20,
+  'fxc-b1':1.6*(1+.03*.75)/(1+.07*.75)
  };
  for(const [id,v] of Object.entries(expected)){
   const q=byId.get(id);const numeric=Number(q.options[q.correct].text.replace(/[€,]/g,'').replace('−','-').match(/-?\d+(?:\.\d+)?/)?.[0]);
@@ -472,10 +491,132 @@ test('monetary diagrams distinguish exact real rates, supply shocks and price-le
  }
 });
 
+test('geopolitical scenario examples distinguish mean loss, tail severity and fixed mitigation costs',()=>{
+ const unit=data.units.find(u=>u.id==='geopolitics'),fig=unit.sections.flatMap(s=>s.blocks).find(b=>b.kind==='figure');
+ for(const [j,series] of fig.plot.series.entries())for(const [percent,cost] of series.points){
+  const states=j===0?[[percent/100,50],[1-percent/100,0]]:[[percent/100,22],[1-percent/100,2]];
+  assert.ok(Math.abs(cost-states.reduce((v,[p,l])=>v+p*l,0))<1e-12);
+ }
+ const breakEven=fig.plot.marks[0];
+ assert.ok(Math.abs(breakEven.y-breakEven.x/100*50)<1e-12);
+ assert.ok(Math.abs(breakEven.y-(2+breakEven.x/100*20))<1e-12);
+ assert.equal(.02*80,.2*8);assert.ok(80>8);
+ assert.equal(200*3000-150000,450000);
+ const varianceA=.02*80**2-(.02*80)**2,varianceB=.2*8**2-(.2*8)**2;
+ assert.ok(varianceA>varianceB,'equal expected loss does not imply equal dispersion');
+});
+
+test('trade production, tariff areas, quota incidence and subsidy examples reconcile independently',()=>{
+ const unit=data.units.find(u=>u.id==='trade'),figs=unit.sections.flatMap(s=>s.blocks).filter(b=>b.kind==='figure');
+ const frontier=figs.find(f=>f.id.endsWith('world-frontier'));
+ // Maximize cloth over feasible integer wheat allocations to the two countries.
+ const maximumCloth=w=>Math.max(...Array.from({length:121},(_,a)=>{
+  const b=w-a;if(b<0||b>40)return -Infinity;return (120-a)/2+(120-3*b)/4;
+ }));
+ for(const [w,c] of frontier.plot.series[0].points)assert.equal(c,maximumCloth(w));
+ assert.equal(maximumCloth(90),45);assert.ok(maximumCloth(80)>45);
+ const before=[[60,30],[20,15]],production=[[90,15],[0,30]],after=[[66,30],[24,15]];
+ for(const [j,cost] of [[1,2],[3,4]].entries()){
+  assert.equal(before[j][0]*cost[0]+before[j][1]*cost[1],120);
+  assert.equal(production[j][0]*cost[0]+production[j][1]*cost[1],120);
+  assert.ok(after[j][0]*cost[0]+after[j][1]*cost[1]>120);
+ }
+ for(let good=0;good<2;good++)assert.equal(after.reduce((v,a)=>v+a[good],0),production.reduce((v,a)=>v+a[good],0));
+ const demand=p=>100-2*p,supply=p=>p-10;
+ const surplus=p=>({cs:(50-p)*demand(p)/2,ps:(p-10)*supply(p)/2});
+ const old=surplus(20),tariff=surplus(30),revenue=10*(demand(30)-supply(30));
+ assert.deepEqual(old,{cs:900,ps:50});assert.deepEqual(tariff,{cs:400,ps:200});assert.equal(revenue,200);
+ assert.equal(tariff.cs+tariff.ps+revenue-old.cs-old.ps,-150);
+ const area=points=>Math.abs(points.reduce((v,[x,y],i)=>{const [xn,yn]=points[(i+1)%points.length];return v+x*yn-y*xn;},0))/2;
+ const diagram=figs.find(f=>f.id.endsWith('tariff-welfare'));
+ assert.deepEqual(diagram.plot.areas.map(a=>area(a.points)),[50,100,200]);
+ for(const [q,p] of diagram.plot.series[0].points)assert.equal(q,demand(p));
+ for(const [q,p] of diagram.plot.series[1].points)assert.equal(q,supply(p));
+ assert.equal(tariff.cs+tariff.ps-old.cs-old.ps,-350,'foreign quota rent leaves the domestic welfare total');
+ const quotaPrice=110/3;assert.ok(Math.abs(120-2*quotaPrice-(quotaPrice-10)-20)<1e-12);
+ assert.equal(120-2*30-(30-10),40,'tariff allows imports to expand after demand shift');
+ const exportOld=surplus(40),exportNew=surplus(45),subsidy=5*(supply(45)-demand(45));
+ assert.deepEqual(exportOld,{cs:100,ps:450});assert.deepEqual(exportNew,{cs:25,ps:612.5});assert.equal(subsidy,125);
+ assert.equal(exportNew.cs+exportNew.ps-subsidy-exportOld.cs-exportOld.ps,-37.5);
+ assert.equal(surplus(30).ps-surplus(20).ps-10*supply(30),-50,'production subsidy preserves consumer world price');
+ assert.equal((96-90)-16,-10,'lower customer price does not imply a resource saving');
+});
+
+test('FX graph, real exchange rates and trade responses preserve quote direction and units',()=>{
+ const unit=data.units.find(u=>u.id==='fx-markets'),fig=unit.sections.flatMap(s=>s.blocks).find(b=>b.kind==='figure');
+ for(const [foreign,domestic] of fig.plot.series[0].points)assert.ok(Math.abs((1+foreign/100)*(1+domestic/100)-1)<1e-12);
+ for(const [x,y] of fig.plot.series[1].points)assert.equal(x+y,0);
+ assert.ok(Math.abs(1.2*110/126-1-1/21)<1e-12);
+ assert.ok(Math.abs((126/110)*110/126-1)<1e-12);
+ const effective=Math.exp(.6*Math.log(1.1)+.4*Math.log(.95))-1;
+ assert.ok(Math.abs(effective*100-3.7349)<.00005);
+ const effectiveText=unit.sections.find(s=>s.id==='effective-rate').blocks.filter(b=>typeof b==='string').join(' ');
+ assert.match(effectiveText,/3,7349/);
+ const tradeBalance=s=>100*s**.8-100*s*s**(-.7),h=1e-6;
+ const derivative=(tradeBalance(Math.exp(h))-tradeBalance(Math.exp(-h)))/(2*h);
+ assert.ok(Math.abs(derivative-(100*.8-100*(1-.7)))<1e-6);
+ assert.ok(Math.abs(108-110*.93-5.7)<1e-12);
+ assert.equal(300-100*2.4,60);
+ const appreciation=data.questions.find(q=>q.id==='fxm-03');assert.match(appreciation.options[appreciation.correct].text,/appreciated by 10\.00%/);
+});
+
+test('FX executable paths and forward curves reconcile in original currency cash flows',()=>{
+ const unit=data.units.find(u=>u.id==='fx-calculation'),fig=unit.sections.flatMap(s=>s.blocks).find(b=>b.kind==='figure');
+ const rates=[[.04,.02],[.02,.02],[.02,.04]];
+ for(const [j,series] of fig.plot.series.entries())for(const [t,forward] of series.points){
+  const [rd,rf]=rates[j],domesticEnd=120*(1+rd)**t,foreignEnd=100*(1+rf)**t;
+  assert.ok(Math.abs(foreignEnd*forward-domesticEnd)<1e-10,'covered end values must match');
+ }
+ assert.ok(Math.abs(100*1.10/1.12-98.21428571428571)<1e-10);
+ const crossBid=1.25/1.12,crossAsk=1.28/1.10;
+ assert.ok(crossBid<crossAsk);assert.ok(1.15<crossAsk);assert.ok(crossBid<1.18);
+ const usd=1e6*1.1,gbp=usd/1.28,eur=gbp*1.18;
+ assert.equal(gbp,859375);assert.equal(eur-1e6,14062.5);
+ assert.equal(1e6*1.02*1.25-1.2e6*1.04,27000);
+ assert.equal(1.2e6*1.04-1e6*1.02*1.2,24000);
+ const simple=1.2*1.025/1.01,effective=1.2*Math.sqrt(1.05/1.02);
+ assert.ok(Math.abs(simple-1.2178217821782176)<1e-12);
+ assert.ok(Math.abs(effective-1.2175191748701415)<1e-12);assert.ok(simple>effective);
+ const upper=1.201*1.05/1.01,lower=1.199*1.03/1.03;
+ assert.ok(1.21<upper);assert.ok(1.22>lower);
+ for(const futureSpot of [.5,1.1,1.3,2]){
+  const receipt=100000*futureSpot,shortForward=100000*(1.22-futureSpot);
+  assert.ok(Math.abs(receipt+shortForward-122000)<1e-9);
+ }
+});
+
+test('all eight economics modules have explanation and independent practice for every 2027 objective',()=>{
+ const modules=data.modules.filter(m=>m.topic==='economics');assert.equal(modules.length,8);
+ for(const m of modules){
+  const coverage=data.coverage.find(c=>c.id===m.id);
+  assert.ok(coverage.objectives.every(o=>o.sections.length&&o.practice.length),m.id);
+  const u=data.units.find(u=>u.id===m.id);
+  for(const fig of u.sections.flatMap(s=>s.blocks).filter(b=>b.kind==='figure')){
+   for(const series of fig.plot.series)for(const [x,y] of series.points){
+    assert.ok(x>=fig.plot.x[0]-1e-9&&x<=fig.plot.x[1]+1e-9,fig.id);
+    assert.ok(y>=fig.plot.y[0]-1e-9&&y<=fig.plot.y[1]+1e-9,fig.id);
+   }
+  }
+ }
+ for(const pool of ['mock-a','mock-b'])assert.equal(data.questions.filter(q=>q.topic==='economics'&&q.pool===pool).length,12);
+});
+
 test('new glossary definitions point to existing precise 2027 sections',()=>{
  const glossary=require('../finance-glossary.cjs'),entries=require('../finance-cfa/glossary.cjs');
  assert.ok(entries.length>=40);
  assert.equal(new Set(entries.map(g=>g.term.toLocaleLowerCase('de'))).size,entries.length,'a duplicate must not silently replace a precise definition or return link');
+ const normalized=s=>s.toLocaleLowerCase('de').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]/g,'');
+ const labels=new Map();
+ for(const entry of entries){
+  for(const name of [entry.term,...entry.aliases]){
+   const key=normalized(name);
+   assert.ok(!labels.has(key)||labels.get(key)===entry.term,'ambiguous authored alias: '+name);
+   labels.set(key,entry.term);
+  }
+  const merged=glossary.find(g=>[g.term,...g.aliases].some(name=>normalized(name)===normalized(entry.term)));
+  assert.deepEqual(merged?.cfa,entry.cfa,'return link overwritten through alias: '+entry.term);
+  assert.equal(merged?.definition,entry.definition);
+ }
  for(const g of glossary.filter(g=>g.cfa)){
   const u=data.units.find(u=>u.id===g.cfa.unit);assert.ok(u?.sections.some(s=>s.id===g.cfa.section),g.term);
  }
