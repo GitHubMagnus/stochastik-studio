@@ -61,7 +61,13 @@ module.exports={id:'fx-markets',intro:[
    ['Währungsoption','Recht, unter festgelegten Bedingungen zu tauschen, gegen eine Prämie.','Ein Recht mit möglicher Nichtausübung ist nicht dieselbe Verpflichtung wie ein Forward.']
   ],'Konkrete Vertrags-, Margin- und Abwicklungsregeln hängen vom Instrument und Markt ab.'),
   F('1+R_D=(1+R_F)\\frac{S_1}{S_0}','Die heimische Rendite eines ungesicherten ausländischen Investments kombiniert lokale Rendite und Währungsfaktor, sofern sämtliche Rückflüsse am Ende umgerechnet werden und keine Zwischenzahlungen vorliegen.',[['R_D,R_F','Gesamtrendite in heimischer bzw. lokaler Fremdwährung.'],['S_0,S_1','Kurse in D je F bei Kauf und Endumrechnung.']]),
-  'Eine lokale Rendite von 8 % und eine Abwertung der Anlagewährung von 10 % ergeben 1,08 × 0,90 − 1 = −2,8 % in heimischer Währung. Die einfache Summe −2 % übersieht den Kreuzterm. Zwischenzeitliche Cashflows oder eine Absicherung benötigen eine genauer passende Zahlungsrechnung.'
+  'Eine lokale Rendite von 8 % und eine Abwertung der Anlagewährung von 10 % ergeben 1,08 × 0,90 − 1 = −2,8 % in heimischer Währung. Die einfache Summe −2 % übersieht den Kreuzterm. Zwischenzeitliche Cashflows oder eine Absicherung benötigen eine genauer passende Zahlungsrechnung.',
+  F('R_D=\\frac{V_{F,T}S_T+\\sum_{j=1}^{n}C_{F,j}S_{t_j}-V_{F,0}S_0}{V_{F,0}S_0}','Eine einfache Haltedauerrendite bei Zwischenzahlungen: Jeder Fremdwährungszufluss wird bei Eingang zum dann gültigen Kurs umgerechnet und danach unverzinst in D gehalten. Bei Wiederanlage muss dessen Endwert statt des bloßen Umrechnungsbetrags eingesetzt werden.',[['R_D','Haltedauerrendite in D bei den angegebenen Wiederanlageannahmen.'],['V_{F,0},V_{F,T}','Anfänglicher und abschließender Anlagenwert in F, ohne schon ausgeschüttete Beträge.'],['S_0,S_T,S_{t_j}','Kurs in D je F zu Anfang, Ende und jeweiligem Ausschüttungszeitpunkt.'],['C_{F,j},t_j','Zwischenzahlung j in F und ihr Zeitpunkt.'],['j,n','Zahlungsindex und Anzahl Zwischenzahlungen.']]),
+  X('Die Ausschüttung hat ihren eigenen Wechselkurs','Kaufpreis 100 EUR bei 1,20 USD je EUR. Eine Ausschüttung von 6 EUR wird bei 1,10 sofort in USD umgerechnet und unverzinst gehalten. Verkauf am Ende für 104 EUR bei 1,25 USD je EUR.',[
+   'Der ursprüngliche Einsatz beträgt 120 USD. Die Ausschüttung liefert 6,60 USD; der Verkauf liefert 130 USD.',
+   'Gesamter Endbestand: 136,60 USD. Haltedauerrendite: 136,60/120 − 1 ≈ 13,8333 %.',
+   'Würde man fälschlich auch die frühere Ausschüttung zum Endkurs umrechnen, ergäben sich 137,50 USD und rund 14,5833 %. Das unterstellt eine andere Währungshaltung zwischen den Terminen.'
+  ],'Nicht nur Betrag und Endkurs, sondern auch Umtauschzeitpunkt und Wiederanlage bestimmen die heimische Rendite.')
  ]),
  S('regimes','7. Wechselkursregime als Spektrum von Bindung und Flexibilität','b',[
   T(['Regime / Grundform','Charakteristik','Zentraler Zielkonflikt'],[

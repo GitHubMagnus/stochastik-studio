@@ -62,10 +62,10 @@ module.exports=[
  q('20','practice','c','Temporary outflow controls are introduced during an external financing crisis. Which inference is least justified?',[
  ['The controls may reduce some immediate outflow pressure.','Das kann ihr kurzfristiges Ziel sein.'],['The controls may affect investor confidence and future funding costs.','Diese Folgewirkungen sind plausibel.'],['The controls by themselves establish that the underlying solvency problem is resolved.','Eine Transferbeschränkung schafft keine fehlenden realen Rückzahlungsressourcen.']
  ],2,['Liquiditätsdruck, Transfermöglichkeit und Solvenz müssen getrennt geprüft werden.'],'capital-controls'),
- q('a1','mock-a','a','A foreign asset earns 9% locally with no interim distributions. The exchange rate falls from 1.50 to 1.38 home-currency units per foreign unit. The home-currency return is closest to:',[
- ['0.28%.','1,09 × 1,38/1,50 − 1.'],['1.00%.','Das addiert +9 % und −8 % ohne Kreuzterm.'],['18.48%.','Die Währungsbewegung wurde fälschlich positiv gerechnet.']
- ],0,[eq('R_H=1{,}09\\cdot1{,}38/1{,}50-1=0{,}28\\%','Die lokale Rendite wird mit dem Fremdwährungswertfaktor multipliziert.','R_H','Gesamtrendite in Heimatwährung.')],'instruments'),
- q('b1','mock-b','a','For q = S PF/PD, S rises 4%, foreign prices rise 2%, and domestic prices rise 5%. The real exchange-rate change is closest to:',[
- ['1.00%.','Das ist die additive Näherung.'],['1.03%.','1,04 × 1,02/1,05 − 1.'],['−1.02%.','Das invertiert die ausdrücklich vorgegebene Indexrichtung.']
- ],1,[eq('q_1/q_0-1=1{,}04\\cdot1{,}02/1{,}05-1\\approx1{,}0286\\%','Nominalkurs und Preisverhältnisse müssen als Faktoren kombiniert werden.','q_1/q_0-1','Relative reale Kursänderung.')],'real-rate')
+ q('a1','mock-a','a','An asset costs 100 foreign units when the rate is 1.50 home units per foreign unit. A distribution of 5 foreign units is immediately converted at 1.40 and held as non-interest-bearing home cash. The asset is sold for 100 foreign units at a rate of 1.35. The home-currency holding-period return is closest to:',[
+ ['−5.33%.','(100 × 1,35 + 5 × 1,40)/150 − 1.'],['−5.50%.','Das rechnet die frühere Ausschüttung fälschlich zum Endkurs um.'],['−10.00%.','Das lässt die Ausschüttung weg.']
+ ],0,[eq('R_H=\\frac{100\\cdot1{,}35+5\\cdot1{,}40}{100\\cdot1{,}50}-1\\approx-5{,}3333\\%','Der Endbestand ist 142 in Heimatwährung: Verkauf 135 plus bereits umgerechnete Ausschüttung 7.','R_H','Haltedauerrendite in Heimatwährung.')],'instruments'),
+ q('b1','mock-b','a','Define q = S PF/PD with S in domestic units per foreign unit. Over a year q rises 3%, foreign prices rise 4%, and domestic prices rise 2%. The nominal change of the foreign currency against the domestic currency is closest to:',[
+ ['1.00% appreciation.','Das ist die additive Näherung aus 3 − 4 + 2.'],['1.02% appreciation.','1,03 × 1,02/1,04 − 1; S steigt, also wird F in D teurer.'],['5.02% appreciation.','Die relative Preisentwicklung muss aus der realen Änderung herausgerechnet werden.']
+ ],1,[eq('S_1/S_0-1=1{,}03\\cdot1{,}02/1{,}04-1\\approx1{,}0192\\%','Die Aufgabe gibt die reale Änderung vor. Zur nominalen Änderung wird der heimische Preisfaktor multipliziert und der ausländische dividiert.','S_1/S_0-1','Nominale Wertänderung von F in D.')],'real-rate')
 ];

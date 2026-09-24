@@ -73,7 +73,9 @@ module.exports={id:'fx-calculation',intro:[
    'Bei ausdrücklich einfachen Jahreszinsen: F = 1,20 × (1 + 0,05 × 0,5)/(1 + 0,02 × 0,5) = 1,217822 USD je EUR.',
    'Bei effektiven Jahreszinsen lautet die Rechnung dagegen 1,20 × (1,05/1,02)^0,5 ≈ 1,217519 USD je EUR.',
    'Die kleine Differenz ist kein Rechenfehler, sondern folgt aus verschiedenen Aufzinsungsannahmen. Bei Tageszählung sind zudem die zu den jeweiligen Zinssätzen gehörenden Jahresbruchteile zu verwenden.'
-  ],'Eine korrekt aussehende Formel mit unpassenden Zeit- oder Zinsangaben kann einen falschen Terminkurs liefern.')
+  ],'Eine korrekt aussehende Formel mit unpassenden Zeit- oder Zinsangaben kann einen falschen Terminkurs liefern.'),
+  F('i_D=\\frac{(F/S)(1+i_FT)-1}{T}','Bei einfachen Jahreszinsen lässt sich die Paritätsgleichung nach einem impliziten heimischen Jahreszins auflösen: erst den Forward/Spot-Faktor mit dem fremden Aufzinsungsfaktor multiplizieren, dann eins abziehen und durch die Laufzeit teilen.',[['i_D,i_F','Impliziter heimischer bzw. gegebener fremder einfacher Jahreszins.'],['F,S','Termin- und Kassakurs in D je F.'],['T','Gemeinsame Laufzeit als Jahresbruchteil.']]),
+  'Ein auf diese Weise implizierter Zinssatz ist ein relativer Preisvergleich unter den Paritätsannahmen. Er muss nicht dem tatsächlich verfügbaren Kredit- oder Anlagezins entsprechen, wenn unterschiedliche Spreads, Referenzkurven oder Besicherungen verwendet wurden.'
  ]),
  S('points','8. Forward Points und Terminprämien','b',[
   F('F=S+p\\kappa,\\qquad f=F/S-1','Explizit vorzeichenbehaftete Punkte werden mit ihrer angegebenen Einheit in Kurswerte übersetzt. Der relative Aufschlag bezieht sich auf den Kassakurs, nicht auf den Forward.',[['F,S','Termin- und Kassakurs in derselben Preiseinheit.'],['p','Vorzeichenbehaftete Anzahl Forward Points.'],['\\kappa','Angegebene Kurswerteinheit eines Punkts, beispielsweise 0,0001.'],['f','Terminaufschlag der Basiswährung für die betrachtete Laufzeit; negativ bedeutet Abschlag.']]),

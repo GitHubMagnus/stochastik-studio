@@ -77,7 +77,7 @@ module.exports=[
  q('a1','mock-a','a','Quotes are 146/148 JPY per USD and 1.18/1.20 USD per EUR. An importer must buy EUR using JPY. The executable synthetic ask in JPY per EUR is:',[
  ['172.28.','Das ist die synthetische Geldseite aus 146 × 1,18.'],['174.64.','Das verwendet den EUR-Geldkurs, obwohl EUR gekauft werden müssen.'],['177.60.','Für 1 EUR sind 1,20 USD nötig, die jeweils 148 JPY kosten.']
  ],2,[eq('S_{JPY/EUR}^{ask}=148\\cdot1{,}20=177{,}60','Hier werden zwei Kaufwege mit passender Einheitenkürzung multipliziert. Die Notierungen haben keine gemeinsame Preiswährung, die eine Division verlangen würde.','S_{JPY/EUR}^{ask}','Ausführbarer synthetischer Briefkurs in JPY je EUR.')],'cross-rates'),
- q('b1','mock-b','b','Spot is 1.60 domestic units per foreign unit. Simple annualized rates are 3% domestic and 7% foreign. With T = 0.75 years, the covered-parity forward is closest to:',[
- ['1.54019.','Das verwendet volle Jahreszinsen.'],['1.64800.','Das verwendet eine Näherung mit vertauschtem Vorzeichen.'],['1.55439.','1,60 × 1,0225/1,0525.']
- ],2,[eq('F=1{,}60\\frac{1+0{,}03\\cdot0{,}75}{1+0{,}07\\cdot0{,}75}\\approx1{,}55439','Die höher verzinste Fremdwährung notiert hier mit einem Terminabschlag.','F','Neunmonatiger Terminkurs in D je F.')],'tenor')
+ q('b1','mock-b','b','Spot is 1.25 D per F and the six-month forward is 1.26 D per F. The foreign simple annualized rate is 4%, T = 0.5, and covered interest parity holds without spreads. The implied domestic simple annualized rate is closest to:',[
+ ['5.60%.','Das ist nur die Näherung aus Auslandszins plus annualisiertem Forwardaufschlag.'],['5.63%.','[(1,26/1,25) × 1,02 − 1]/0,5.'],['2.82%.','Das ist der implizite Zuwachs für sechs Monate, noch nicht annualisiert.']
+ ],1,[eq('i_D=\\frac{(1{,}26/1{,}25)(1+0{,}04\\cdot0{,}5)-1}{0{,}5}=5{,}632\\%','Der heimische Halbjahres-Aufzinsungsfaktor ist 1,02816. Der einfache Jahreszins ergibt sich durch Division des Zuwachses durch 0,5.','i_D','Impliziter einfacher heimischer Jahreszins.')],'tenor')
 ];

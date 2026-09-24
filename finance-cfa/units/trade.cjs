@@ -77,7 +77,12 @@ module.exports={id:'trade',intro:[
     {points:[[40,20],[60,20],[40,30]],color:'#ba6824',opacity:.2},
     {points:[[20,20],[40,20],[40,30],[20,30]],color:'#087f82',opacity:.13}
    ],marks:[{x:20,y:30,label:'Angebot 20',dx:-8,dy:-13,anchor:'end'},{x:40,y:30,label:'Nachfrage 40',dx:8,dy:-13}]}}),
-  'Ein großes Land kann durch weniger Nachfrage den ausländischen Exportpreis drücken. Ein möglicher Terms-of-Trade-Gewinn muss dann gegen heimische Verzerrungen gerechnet werden. Daraus folgt keine allgemeine Empfehlung: Gegenmaßnahmen, Machtverhältnisse, Vertragsreaktionen und internationale Folgen können die Rechnung ändern.'
+  'Ein großes Land kann durch weniger Nachfrage den ausländischen Exportpreis drücken. Ein möglicher Terms-of-Trade-Gewinn muss dann gegen heimische Verzerrungen gerechnet werden. Daraus folgt keine allgemeine Empfehlung: Gegenmaßnahmen, Machtverhältnisse, Vertragsreaktionen und internationale Folgen können die Rechnung ändern.',
+  X('Weltpreiswirkung in einer anderen, großen Volkswirtschaft','Dieses separate lineare Marktbeispiel beginnt bei Welt- und Inlandspreis 10 mit Konsum 100 und Produktion 40. Nach einem Zoll beträgt der ausländische Preis 9,5 und der Inlandspreis 12; Konsum fällt auf 80 und Produktion steigt auf 50.',[
+   'Importe sinken von 60 auf 30. Der Stückzoll ist die neue Preisdifferenz 12 − 9,5 = 2,5, nicht nur der Inlandspreisanstieg 2. Einnahmen: 2,5 × 30 = 75.',
+   'Konsumenten verlieren bei linearen Kurven 2 × (100 + 80)/2 = 180. Produzenten gewinnen 2 × (40 + 50)/2 = 90. Nationale Summe: −180 + 90 + 75 = −15.',
+   'Gegenrechnung: Der niedrigere ausländische Preis spart auf den verbleibenden 30 Importen 0,5 × 30 = 15. Die heimischen Verzerrungsdreiecke kosten 0,5 × 2 × (20 + 10) = 30. Netto bleiben ebenfalls −15.'
+  ],'Ein Terms-of-Trade-Gewinn kann nationale Verluste mildern oder unter anderen Zahlen übersteigen. Er ist teilweise eine Belastung des Auslands und kein Beweis für einen weltweiten Wohlfahrtsgewinn.')
  ]),
  S('quota','7. Importquote: gleiche Ausgangsmenge, andere Rechte und Anpassung','b',[
   'Eine bindende Importquote begrenzt die erlaubte Importmenge. Im unveränderten Wettbewerbsmarkt erzeugt eine Quote von 20 denselben Inlandspreis 30 wie der Zoll von 10: Bei diesem Preis beträgt die Lücke zwischen Nachfrage 40 und Angebot 20 genau 20.',

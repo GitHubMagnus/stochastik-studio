@@ -212,6 +212,12 @@ CFA-Fragen ausgegeben. Praktische Pflichtmodule des CFA Institute bleiben separa
   Definitionen und Rückverweise nach der Wörterbuchzusammenführung.
   Gesamtstand: **32 CFA-Grafiken, 320 kuratierte Begriffsverweise und global
   749 Definitionen mit 1.589 Begriffen/Aliasen**.
+- Abschließende Aufgabenredaktion: zu nahe Varianten einzelner Trainingsfragen
+  wurden in den reservierten Pools ersetzt. Die Fälle prüfen jetzt zusätzlich
+  große Länder mit Weltpreisreaktion, Ausschüttungen mit eigenem Umtauschzeitpunkt,
+  die Rückrechnung eines Nominalkurses aus einem realen Index und einen aus
+  Kassakurs, Forward und Auslandszins implizierten Finanzierungszins.
+  Passende Herleitungen und anders gelagerte Lehrbeispiele ergänzen die Kapitel.
 - Noch offen: übrige 70 Lerneinheiten, vollständige semantische Lernzielprüfung,
   weitere Rechnerpraxis, restliche 118 Fragen je Klausur, vollständige redaktionelle
   Prüfung und Endaudit. **Die Zielwerte 90/100 und 80/100 sind noch nicht
