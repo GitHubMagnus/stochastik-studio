@@ -179,7 +179,40 @@ CFA-Fragen ausgegeben. Praktische Pflichtmodule des CFA Institute bleiben separa
   Begriffe dürfen in der Inhaltsprüfung keine Erklärung mehr still überschreiben.
   Der Lernpfad enthält insgesamt **27 Grafiken und 259 kuratierte Begriffsverweise**;
   das globale Wörterbuch **692 Definitionen und 1.477 Begriffe/Aliase**.
-- Noch offen: übrige 74 Lerneinheiten, vollständige semantische Lernzielprüfung,
-  weitere Rechnerpraxis, restliche 122 Fragen je Klausur, vollständige redaktionelle
+- 24.09.2026, internationaler VWL-Ausbau: Geopolitik, internationaler Handel,
+  Devisenmärkte und Wechselkursrechnung erhalten **48 weitere Abschnitte,
+  84 Trainingsfragen, je vier reservierte Klausurfragen und fünf Grafiken**.
+  Alle acht Economics-Module besitzen jetzt Erklärung und Training für ihre
+  zugeordneten Lernziele. Gesamtstand: **32 Einheiten, 107/340 strukturell
+  abgedeckte Lernzielreferenzen, 530 Trainingsfragen und je 62 Klausurfragen**.
+  Die Economics-Klausuranteile erreichen je zwölf Fragen; die gesamten Klausuren
+  bleiben wegen fehlender anderer Themen gesperrt.
+- Fachliche Prüfung dieses Ausbaus: Produktionsgrenzen werden durch eine separate
+  Ressourcenoptimierung kontrolliert, Konsumgewinne mit Arbeitsstunden und
+  Gütermengen abgestimmt. Zoll- und Subventionsverluste werden sowohl als
+  Rentenänderungen als auch über die tatsächlichen Grafikflächen nachgerechnet.
+  Quotenrenten im Ausland, Nachfrageänderungen und Handelsumlenkung erhalten
+  getrennte nationale Wohlfahrtsrechnungen. Geopolitische Szenarien unterscheiden
+  erwarteten Verlust, Schwere und sichere Vorsorgekosten. Alle neuen numerischen
+  Antwortschlüssel sind separat nachgerechnet.
+- Devisenprüfung: Kehrwertänderungen, reale und effektive Indizes, Bilanzhebel,
+  Handelsmengenreaktionen, ausführbare Geld-Brief-Runden, beide gedeckten
+  Arbitragerichtungen, unterschiedliche Zinskonventionen und Finanzierungsgrenzen
+  werden unabhängig geprüft. Die Terminkurven müssen bei jedem gezeichneten
+  Laufzeitpunkt dieselben gedeckten Endwerte liefern. Ein Rundungsfehler im
+  geometrischen Währungsindex wurde auf **3,7349 %** korrigiert.
+- Technikstand: **82 Kernprüfungen und 40 CFA-Prüfungen bestanden**, darunter
+  acht Browserprüfungen. Alle 32 Einheiten werden auf Desktop und Mobilbreite
+  gerendert; Training und exakte Lösungsrückverweise aller acht Economics-Module
+  werden angeklickt. Die fünf neuen Grafiken und eine mobile Formelansicht mit
+  Symbolhilfe wurden visuell geprüft. Ein Browserfehler deckte eine über Alias
+  doppelt definierte gedeckte Zinsparität auf; sie ist zu einer Definition mit
+  Rückverweis in die ausführliche Herleitung zusammengeführt. Die Prüfung
+  kontrolliert jetzt auch Alias-Eindeutigkeit sowie tatsächlich erhaltene
+  Definitionen und Rückverweise nach der Wörterbuchzusammenführung.
+  Gesamtstand: **32 CFA-Grafiken, 320 kuratierte Begriffsverweise und global
+  749 Definitionen mit 1.589 Begriffen/Aliasen**.
+- Noch offen: übrige 70 Lerneinheiten, vollständige semantische Lernzielprüfung,
+  weitere Rechnerpraxis, restliche 118 Fragen je Klausur, vollständige redaktionelle
   Prüfung und Endaudit. **Die Zielwerte 90/100 und 80/100 sind noch nicht
   nachgewiesen.** Bestandene Technikprüfungen ersetzen diese Arbeiten nicht.
