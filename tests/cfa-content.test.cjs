@@ -126,7 +126,25 @@ test('published MCQ numerical answers agree with separately computed results',()
   'fxc-14':1.1*Math.sqrt(1.09/1.04),'fxc-15':1.072-18*.0001,'fxc-16':1.2003+17*.0001,
   'fxc-17':(1.275/1.25-1)/.5*100,'fxc-18':(1.25/1.275-1)*100,
   'fxc-20':1.02*1.06/1.02,'fxc-21':80000*1.3,'fxc-a1':148*1.20,
-  'fxc-b1':(1.26/1.25*(1+.04*.5)-1)/.5*100
+  'fxc-b1':(1.26/1.25*(1+.04*.5)-1)/.5*100,
+  'af-06':420+48-12+30-26,'af-14':9,'af-18':84-50*1.2,
+  'bs-02':90-25-15,'bs-04':72*(4/6),'bs-08':380-310,
+  'bs-09':150+48-160,'bs-10':210-.7*250,'bs-12':55-(420-Math.max(385,390)),
+  'bs-16':98*1.05-3,'bs-17':94-(100*1.04-4),'bs-20':190+190*.07-10,
+  'bs-21':121/1.1**2,'bs-24':120/200,'bs-25':320/800*100,
+  'bs-26':180/(240-40)*100,'bs-a1':7,'bs-b1':52-44,
+  'cfp-03':46-38,'cfp-04':65+720-92,'cfp-05':450-20-15,
+  'cfp-06':24+5+2,'cfp-07':36-4,'cfp-08':840-(510+175+18+42),
+  'cfp-09':88+24-6-(12-7-9),'cfp-11':300+35+20-260,'cfp-12':28-110,
+  'cfp-13':90+62-137,'cfp-14':70+30-25-12,'cfp-15':40+75-60-10-3,
+  'cfp-16':600+17-45,'cfp-22':150+30-5-18-32,'cfp-23':86+14,'cfp-25':12,
+  'cfp-a1':900+12-8-50,'cfp-a2':150-40-15,'cfp-b1':420+75-60-25,'cfp-b2':6,
+  'cfl-01':140-100,'cfl-02':156/1200*100,'cfl-03':760/950*100,
+  'cfl-08':240-60+35-80-20,'cfl-09':168+24-7.2-75,'cfl-10':130-85+35-15,
+  'cfl-11':102-15-12,'cfl-12':210-9-95,'cfl-13':180-25-90+5,'cfl-14':150-125,
+  'cfl-16':(800+120)*.1*.75-120*.4,'cfl-18':126/105,'cfl-20':160/16,
+  'cfl-21':168/84,'cfl-22':96/480*100,'cfl-a1':100-(190-120),
+  'cfl-b1':154+28-7-90,'cfl-b2':.16-.16*.25
  };
  for(const [id,v] of Object.entries(expected)){
   const q=byId.get(id);const numeric=Number(q.options[q.correct].text.replace(/[€,]/g,'').replace('−','-').match(/-?\d+(?:\.\d+)?/)?.[0]);
@@ -623,6 +641,102 @@ test('new glossary definitions point to existing precise 2027 sections',()=>{
  }
  for(const g of glossary.filter(g=>g.cfa)){
   const u=data.units.find(u=>u.id===g.cfa.unit);assert.ok(u?.sections.some(s=>s.id===g.cfa.section),g.term);
+ }
+});
+
+test('the complete Lumen case reconciles its published statements to a transaction ledger',()=>{
+ const u=data.units.find(u=>u.id==='cashflow-preparation');
+ const section=id=>u.sections.find(s=>s.id===id).blocks;
+ const number=s=>Number(s.replace(/\./g,'').replace(',','.').replace('−','-'));
+ const balance=section('case-data').find(b=>b.kind==='table');
+ const keys=['cash','ar','inventory','ppe',null,'ap','accrual','tax','debt','capital','retained'];
+ const ledger={};for(const [i,key] of keys.entries())if(key)ledger[key]=number(balance.rows[i][1]);
+ let income=0,cfo=0,cfi=0,cff=0;
+ const post=(entries,pnl=0,pool=null)=>{for(const [key,v] of Object.entries(entries))ledger[key]+=v;income+=pnl;const cash=entries.cash||0;if(pool==='o')cfo+=cash;if(pool==='i')cfi+=cash;if(pool==='f')cff+=cash;};
+ post({ar:1000},1000);post({cash:970,ar:-970},0,'o');
+ post({inventory:610,ap:610});post({inventory:-600},-600);
+ post({cash:-595,ap:-595},0,'o');post({accrual:200},-200);post({cash:-195,accrual:-195},0,'o');
+ post({ppe:-40},-40);post({cash:35,ppe:-25},10,'i');post({cash:-80,ppe:80},0,'i');
+ post({cash:-20},-20,'o');post({tax:45},-45);post({cash:-40,tax:-40},0,'o');
+ post({cash:50,debt:50},0,'f');post({cash:-30,debt:-30},0,'f');post({cash:-25,retained:-25},0,'f');
+ ledger.retained+=income;
+ for(const [i,key] of keys.entries())if(key)assert.equal(ledger[key],number(balance.rows[i][2]),key);
+ const assets=ledger.cash+ledger.ar+ledger.inventory+ledger.ppe;
+ const claims=ledger.ap+ledger.accrual+ledger.tax+ledger.debt+ledger.capital+ledger.retained;
+ assert.equal(assets,claims);assert.equal(assets,number(balance.rows[4][2]));
+ assert.equal(income,number(section('case-data').filter(b=>b.kind==='table')[1].rows.at(-1)[1]));
+ const direct=section('direct').find(b=>b.kind==='table');
+ assert.equal(direct.rows.slice(0,-1).reduce((s,r)=>s+number(r[1]),0),cfo);
+ assert.equal(number(direct.rows.at(-1)[1]),cfo);
+ let running=0;for(const row of section('indirect').find(b=>b.kind==='table').rows){running+=number(row[1]);assert.equal(running,number(row[2]));}
+ assert.equal(running,cfo);
+ const bridge=section('reconcile').find(b=>b.kind==='figure').plot.series[0].points;
+ assert.deepEqual(bridge,[[0,100],[1,100+cfo],[2,100+cfo+cfi],[3,100+cfo+cfi+cff]]);
+ const variants=section('ifrs18-case').find(b=>b.kind==='table');
+ for(const [i,us,ifrs] of [[0,cfo,cfo+20],[1,cfi,cfi],[2,cff,cff-20],[3,cfo+cfi+cff,cfo+cfi+cff]]){
+  assert.equal(number(variants.rows[i][1]),us);assert.equal(number(variants.rows[i][2]),ifrs);
+ }
+ assert.equal(170+40-10-30-10+15+5-40,cfo+20,'IFRS 18 reconciliation starts with operating profit and subtracts actual taxes only once');
+});
+
+test('free cash flows are invariant to interest classification and growth figures reconcile to incremental capital',()=>{
+ const ebit=200,interest=20,tax=.25,dep=40,workingInvestment=30,fixedInvestment=70;
+ const unleveredTax=ebit*tax,actualTax=(ebit-interest)*tax;
+ const beforeInterest=ebit+dep-workingInvestment-actualTax,afterInterest=beforeInterest-interest;
+ const operatingValueCash=ebit-unleveredTax+dep-workingInvestment-fixedInvestment;
+ assert.equal(operatingValueCash,90);assert.equal(afterInterest,145);assert.equal(beforeInterest,165);
+ assert.equal(afterInterest+interest*(1-tax)-fixedInvestment,operatingValueCash);
+ assert.equal(beforeInterest-(unleveredTax-actualTax)-fixedInvestment,operatingValueCash);
+ for(const newDebt of [-10,0,10]){
+  const actualEquityCash=ebit+dep-workingInvestment-actualTax-interest-fixedInvestment+newDebt;
+  assert.equal(afterInterest-fixedInvestment+newDebt,actualEquityCash);
+  assert.equal(beforeInterest-interest-fixedInvestment+newDebt,actualEquityCash);
+  assert.equal(operatingValueCash-interest*(1-tax)+newDebt,actualEquityCash);
+ }
+ const fig=data.units.find(u=>u.id==='cashflow-analysis').sections.flatMap(s=>s.blocks).find(b=>b.kind==='figure');
+ for(const [index,k] of [.05,.4,.8].entries())for(const [growth,value] of fig.plot.series[index].points){
+  const extraSales=1000*growth/100,newSales=1000+extraSales,opIncome=newSales*.12,opTax=opIncome*.25;
+  const investment=extraSales*k;
+  assert.ok(Math.abs(value-(opIncome-opTax-investment))<1e-9);
+  assert.ok(value>=fig.plot.y[0]&&value<=fig.plot.y[1]);
+ }
+ assert.deepEqual(fig.plot.series.map(s=>s.points.find(p=>p[0]===20)[1]),[98,28,-52]);
+ assert.equal((145+20+45)/20,10.5);
+ assert.ok(Math.abs((145+20)/(20+50)-2.357142857142857)<1e-12);
+});
+
+test('balance-sheet examples distinguish expense timing, acquisition residuals, and valuation categories',()=>{
+ const fig=data.units.find(u=>u.id==='balance-sheet').sections.flatMap(s=>s.blocks).find(b=>b.kind==='figure');
+ const totalCost=40+20+60,annualExpense=60/3;
+ for(const [year,cumulative] of fig.plot.series[0].points){
+  const remainingAsset=60-year*annualExpense;
+  assert.equal(cumulative+remainingAsset,totalCost,'cumulative expenses plus unconsumed asset reconcile to cash spent');
+ }
+ assert.ok(fig.plot.series[1].points.every(p=>p[1]===totalCost));
+ const acquiredNetAssets=180,payment=200,share=.8,nciFair=45;
+ const partialNCI=(1-share)*acquiredNetAssets,fullGW=payment+nciFair-acquiredNetAssets,partialGW=payment-share*acquiredNetAssets;
+ assert.equal(fullGW,65);assert.equal(partialGW,56);
+ assert.ok(Math.abs((fullGW-partialGW)-(nciFair-partialNCI))<1e-10,'NCI and goodwill change by the same amount');
+ const carrying=300,goodwill=60,recoverable=Math.max(250,260),loss=carrying-recoverable;
+ assert.equal(goodwill-loss,20);assert.equal(carrying-loss,recoverable);
+ const cost=95,interest=cost*.06,coupon=4,fairValue=92,amortized=cost+interest-coupon;
+ const oci=fairValue-amortized,totalReturn=fairValue+coupon-cost;
+ assert.ok(Math.abs(amortized-96.7)<1e-10);assert.ok(Math.abs(oci+4.7)<1e-10);
+ assert.ok(Math.abs(interest+oci-totalReturn)<1e-10,'FVOCI components equal coupon plus value change');
+ assert.equal(totalReturn,1);
+ let provision=133.1/1.1**3;assert.ok(Math.abs(provision-100)<1e-10);
+ for(const expected of [110,121,133.1]){provision*=1.1;assert.ok(Math.abs(provision-expected)<1e-10);}
+});
+
+test('the four new financial-statement modules cover all sixteen objectives with multiple independent practice questions',()=>{
+ const ids=['analysis-framework','balance-sheet','cashflow-preparation','cashflow-analysis'];
+ const selected=data.coverage.filter(c=>ids.includes(c.id));
+ assert.equal(selected.reduce((n,c)=>n+c.objectives.length,0),16);
+ for(const c of selected)for(const o of c.objectives){assert.ok(o.sections.length,c.id);assert.ok(o.practice.length>=3,o.id);}
+ assert.equal(data.questions.filter(q=>ids.includes(q.unit)&&q.pool==='practice').length,94);
+ for(const pool of ['mock-a','mock-b']){
+  assert.equal(data.questions.filter(q=>ids.includes(q.unit)&&q.pool===pool).length,8);
+  assert.equal(data.questions.filter(q=>q.topic==='statements'&&q.pool===pool).length,14);
  }
 });
 test('unwritten modules remain visible as gaps and cannot pass the release gate',()=>{

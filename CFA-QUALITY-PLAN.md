@@ -218,7 +218,42 @@ CFA-Fragen ausgegeben. Praktische Pflichtmodule des CFA Institute bleiben separa
   die Rückrechnung eines Nominalkurses aus einem realen Index und einen aus
   Kassakurs, Forward und Auslandszins implizierten Finanzierungszins.
   Passende Herleitungen und anders gelagerte Lehrbeispiele ergänzen die Kapitel.
-- Noch offen: übrige 70 Lerneinheiten, vollständige semantische Lernzielprüfung,
-  weitere Rechnerpraxis, restliche 118 Fragen je Klausur, vollständige redaktionelle
+- 24.09.2026, Bilanz- und Cashflowausbau: Analyseprozess, Bilanzanalyse,
+  Cashflowaufstellung und Cashflowanalyse erhalten **53 Abschnitte, 94 Trainingsfragen,
+  je acht reservierte Klausurfragen und drei berechnete Grafiken**. Die 16 zugehörigen
+  Lernzielreferenzen besitzen jeweils mehrere Trainingsfragen. Gesamtstand:
+  **36 Einheiten, 123/340 strukturell abgedeckte Lernzielreferenzen, 624 Trainingsfragen
+  und je 70 Klausurfragen**. Die Abschlussanalyse-Anteile umfassen je 14 Fragen;
+  die vollständigen Klausuren bleiben gesperrt.
+- Fachliche Gegenprüfung: Ein Transaktionsjournal rekonstruiert den vollständigen
+  Lumen-Jahresfall und stimmt alle Bilanzposten, Periodengewinn, direkte Zahlungsarten,
+  laufende indirekte Salden und beide Zinsklassifikationen ab. FCFF und FCFE bleiben
+  bei identischen Zahlungen unter unterschiedlichem Zinsausweis gleich.
+  Die Wachstumsgraphen werden aus zusätzlichem Umsatz, Steuern und tatsächlicher
+  Kapitalbindung separat berechnet. Aktivierung versus Sofortaufwand, vollständiger
+  versus anteiliger Goodwill, Wertminderung, Effektivzins, OCI und diskontierte
+  Verpflichtungen sind unabhängig nachgerechnet. Alle neuen numerischen
+  Antwortschlüssel sind im Gegenrechnungstest enthalten.
+- Redaktionelle Prüfung: Regeln für IFRS 18 werden vom bisherigen IAS-7-Stand
+  unterschieden; besondere Hauptgeschäftstätigkeiten erhalten einen ausdrücklichen
+  Hinweis. Die CFO-zu-FCFF-Brücke nennt Steuerannahmen und verhindert doppeltes
+  Addieren bereits außerhalb CFO gezeigter Zinsen. „Non-cash working capital“
+  schließt Zahlungsmittel aus, nicht etwa alle monetären Forderungen und
+  Verbindlichkeiten. Distraktoren wurden einschließlich ihrer Rechenfehler geprüft;
+  eine falsche Beschreibung eines ausgelassenen Gewinns und zwei unpräzise
+  Cashflow-Erklärungen wurden korrigiert. Die reservierten Fälle umfassen unter
+  anderem mehrere gleichzeitige Forderungsänderungen, unbezahlte Investitionen,
+  Umkehrrechnungen und Darstellungsinvarianz.
+- Technikstand dieses Ausbaus: **86 Kernprüfungen und 45 CFA-Prüfungen bestanden**,
+  darunter neun Browserprüfungen. Alle 36 Einheiten werden auf Desktop und
+  Mobilbreite gerendert; die vier neuen Glossar-Rückwege sowie mehrere Fragen je
+  neuem Kapitel einschließlich Symbolhilfen werden tatsächlich angeklickt.
+  Alle drei neuen Grafiken, eine mobile Formeltafel und die mobile Bilanzansicht
+  wurden visuell geprüft. Zwei zusätzliche Browserprüfungen bestätigen auch
+  Wörterbuch und Abschnittsverweise im bisherigen Lehrbuchbereich.
+  Der Gesamtstand umfasst **35 CFA-Grafiken und 363
+  kuratierte Begriffsverweise; global 779 Definitionen und 1.652 Begriffe/Aliase**.
+- Noch offen: übrige 66 Lerneinheiten, vollständige semantische Lernzielprüfung,
+  weitere Rechnerpraxis, restliche 110 Fragen je Klausur, vollständige redaktionelle
   Prüfung und Endaudit. **Die Zielwerte 90/100 und 80/100 sind noch nicht
   nachgewiesen.** Bestandene Technikprüfungen ersetzen diese Arbeiten nicht.

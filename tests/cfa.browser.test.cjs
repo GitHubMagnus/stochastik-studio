@@ -56,7 +56,7 @@ test('every authored 2027 unit renders without overflow and new glossary terms r
  await page.waitForFunction(()=>document.activeElement.id==='glossary-texttokenisierung');
  await page.locator('#glossary-texttokenisierung a[href="#cfa~learn-data-science~text-ai"]').click();
  await page.waitForFunction(()=>document.activeElement.id==='cfa-section-text-ai');
- for(const [unit,section,term] of [['fiscal','multipliers','Fiskalmultiplikator'],['monetary','reserves','Geldschöpfungsmultiplikator'],['cycles','inventories','Lager-Umsatz-Relation'],['geopolitics','cooperation','Soft Power'],['fx-markets','regimes','Currency Board'],['fx-calculation','covered-parity','gedeckte Zinsparität']]){
+ for(const [unit,section,term] of [['fiscal','multipliers','Fiskalmultiplikator'],['monetary','reserves','Geldschöpfungsmultiplikator'],['cycles','inventories','Lager-Umsatz-Relation'],['geopolitics','cooperation','Soft Power'],['fx-markets','regimes','Currency Board'],['fx-calculation','covered-parity','gedeckte Zinsparität'],['analysis-framework','management','Management Discussion and Analysis'],['balance-sheet','financial-assets','SPPI'],['cashflow-preparation','scope','Zahlungsmitteläquivalente'],['cashflow-analysis','fcfe','Nettokreditaufnahme']]){
   await page.goto(url+'/#cfa~learn-'+unit+'~'+section);
   const termLink=page.locator('#cfa-section-'+section+' a.term-link').filter({hasText:new RegExp('^'+term+'$')}).first();
   const target=(await termLink.getAttribute('href')).split('~')[1];
@@ -87,6 +87,32 @@ test('economics training gives per-choice reasons and exact chapter return links
   for(const option of q.options)assert.ok((await page.locator('.cfa-solution').innerText()).includes(option.why));
   await page.locator('.cfa-solution a[href="#cfa~learn-'+id+'~'+q.section+'"]').click();
   await page.waitForFunction(section=>document.activeElement.id==='cfa-section-'+section,q.section);
+ }
+});
+
+test('financial-statement training preserves formula explanations and returns to the exact worked section',async t=>{
+ const page=await open(t);
+ for(const id of ['analysis-framework','balance-sheet','cashflow-preparation','cashflow-analysis']){
+  await page.goto(url+'/#cfa~learn-'+id);await page.locator('[data-train-unit]').click();
+  const questions=actual.questions.filter(q=>q.unit===id&&q.pool==='practice');
+  for(let i=0;i<3;i++){
+   const q=questions[i];
+   assert.equal(await page.locator('.cfa-solution').count(),0);
+   await page.locator('input[name="cfa-answer"]').nth(q.correct).check();await page.locator('#cfa-check').click();
+   assert.match(await page.locator('.cfa-solution h3').innerText(),/^Richtig/);
+   const text=await page.locator('.cfa-solution').innerText();
+   for(const option of q.options)assert.ok(text.includes(option.why),q.id);
+   if(q.solution.some(b=>b.kind==='formula')){
+    assert.ok(await page.locator('.cfa-solution math').count());
+    await page.locator('.cfa-solution .formula-notation summary').first().click();
+    assert.equal(await page.locator('.cfa-solution .formula-notation').first().getAttribute('open'),'');
+   }
+   if(i<2)await page.locator('#cfa-train-next').click();
+   else{
+    await page.locator('.cfa-solution a[href="#cfa~learn-'+id+'~'+q.section+'"]').click();
+    await page.waitForFunction(section=>document.activeElement.id==='cfa-section-'+section,q.section);
+   }
+  }
  }
 });
 
