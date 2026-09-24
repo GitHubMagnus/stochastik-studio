@@ -113,12 +113,12 @@ test('published MCQ numerical answers agree with separately computed results',()
   'tr-07':5*(120-2*30-(30-15)),'tr-08':.5*6*(4+8),'tr-09':-420+110+250,
   'tr-10':(34-26)*15,'tr-13':4*(44-10-(100-2*44)),'tr-14':.5*4*(4+8),
   'tr-19':130-100,'tr-20':(70+20-82)-20,'tr-21':45,
-  'tr-a1':.5*4*(2*4+3*4),'tr-b1':(60+18-68)-18,
+  'tr-a1':.5*4*(2*4+3*4),'tr-b1':-2*(260+230)/2+2*(160+170)/2+3*(230-170),
   'fxm-01':800*1.25,'fxm-02':1/1.6,'fxm-04':(.8/.88-1)*100,
   'fxm-05':2*80/200,'fxm-06':(1.08/1.03-1)*100,
   'fxm-08':(Math.sqrt(1.2*.8)-1)*100,'fxm-10':(1.06*.88-1)*100,
   'fxm-16':200-200*1.05,'fxm-18':((500-150*2.4)/(500-150*2)-1)*100,
-  'fxm-a1':(1.09*1.38/1.5-1)*100,'fxm-b1':(1.04*1.02/1.05-1)*100,
+  'fxm-a1':((100*1.35+5*1.4)/(100*1.5)-1)*100,'fxm-b1':(1.03*1.02/1.04-1)*100,
   'fxc-01':1.15*140,'fxc-02':1.3/1.04,'fxc-03':50000*1.24,'fxc-04':1/1.26,
   'fxc-05':1.32/1.1,'fxc-06':1.35/1.08,'fxc-08':100000*(1.08/1.35*1.27-1),
   'fxc-09':1.4*1.06/1.03,'fxc-11':100000*1.02*1.55-150000*1.04,
@@ -126,7 +126,7 @@ test('published MCQ numerical answers agree with separately computed results',()
   'fxc-14':1.1*Math.sqrt(1.09/1.04),'fxc-15':1.072-18*.0001,'fxc-16':1.2003+17*.0001,
   'fxc-17':(1.275/1.25-1)/.5*100,'fxc-18':(1.25/1.275-1)*100,
   'fxc-20':1.02*1.06/1.02,'fxc-21':80000*1.3,'fxc-a1':148*1.20,
-  'fxc-b1':1.6*(1+.03*.75)/(1+.07*.75)
+  'fxc-b1':(1.26/1.25*(1+.04*.5)-1)/.5*100
  };
  for(const [id,v] of Object.entries(expected)){
   const q=byId.get(id);const numeric=Number(q.options[q.correct].text.replace(/[€,]/g,'').replace('−','-').match(/-?\d+(?:\.\d+)?/)?.[0]);
@@ -540,6 +540,8 @@ test('trade production, tariff areas, quota incidence and subsidy examples recon
  assert.equal(exportNew.cs+exportNew.ps-subsidy-exportOld.cs-exportOld.ps,-37.5);
  assert.equal(surplus(30).ps-surplus(20).ps-10*supply(30),-50,'production subsidy preserves consumer world price');
  assert.equal((96-90)-16,-10,'lower customer price does not imply a resource saving');
+ assert.equal(-2*(100+80)/2+2*(40+50)/2+2.5*30,-15);
+ assert.equal(.5*30-.5*2*(20+10),-15,'large-country terms-of-trade effect does not ensure a net gain');
 });
 
 test('FX graph, real exchange rates and trade responses preserve quote direction and units',()=>{
@@ -557,6 +559,7 @@ test('FX graph, real exchange rates and trade responses preserve quote direction
  assert.ok(Math.abs(derivative-(100*.8-100*(1-.7)))<1e-6);
  assert.ok(Math.abs(108-110*.93-5.7)<1e-12);
  assert.equal(300-100*2.4,60);
+ assert.ok(Math.abs(((104*1.25+6*1.1)/120-1)*100-13.8333333333333)<1e-10);
  const appreciation=data.questions.find(q=>q.id==='fxm-03');assert.match(appreciation.options[appreciation.correct].text,/appreciated by 10\.00%/);
 });
 
@@ -575,6 +578,7 @@ test('FX executable paths and forward curves reconcile in original currency cash
  assert.equal(1e6*1.02*1.25-1.2e6*1.04,27000);
  assert.equal(1.2e6*1.04-1e6*1.02*1.2,24000);
  const simple=1.2*1.025/1.01,effective=1.2*Math.sqrt(1.05/1.02);
+ assert.ok(Math.abs((100*1.02)*1.26-125*(1+.05632*.5))<1e-10,'implied funding rate equalizes covered maturity proceeds');
  assert.ok(Math.abs(simple-1.2178217821782176)<1e-12);
  assert.ok(Math.abs(effective-1.2175191748701415)<1e-12);assert.ok(simple>effective);
  const upper=1.201*1.05/1.01,lower=1.199*1.03/1.03;
