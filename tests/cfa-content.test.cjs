@@ -144,7 +144,27 @@ test('published MCQ numerical answers agree with separately computed results',()
   'cfl-11':102-15-12,'cfl-12':210-9-95,'cfl-13':180-25-90+5,'cfl-14':150-125,
   'cfl-16':(800+120)*.1*.75-120*.4,'cfl-18':126/105,'cfl-20':160/16,
   'cfl-21':168/84,'cfl-22':96/480*100,'cfl-a1':100-(190-120),
-  'cfl-b1':154+28-7-90,'cfl-b2':.16-.16*.25
+  'cfl-b1':154+28-7-90,'cfl-b2':.16-.16*.25,
+  'inv-01':Math.min(84,98-9-11),'inv-02':Math.min(50,38)+Math.min(50,67),
+  'inv-03':Math.min(90,102)-64,'inv-06':108-18,'inv-07':95,
+  'inv-08':8000*9+72000*8000/12000,'inv-10':50*10,
+  'inv-11':70*(40*15+60*18)/100,'inv-14':10*30+2*20+6*40,
+  'inv-15':(30*12+10*20)/40,'inv-16':640+85,'inv-17':2400-95+120,
+  'inv-18':160*.3,'inv-20':224/160,'inv-a2':(140-100)*.75,'inv-b1':(170-100)-(170-140),
+  'la-01':96+4,'la-05':470000*47000/235000,'la-06':(180-3*20-12)/3,
+  'la-07':160-Math.max(132,140),'la-08':200-150,'la-09':0,
+  'la-11':(240-2*40)-(240-40-50)*4/5,'la-13':(144-104)/4,
+  'la-14':20-12,'la-16':Math.min(85,80-6),'la-17':65-5-(160-110),
+  'la-19':500+120-65-15+8-30,'la-20':(900-360)/90,
+  'la-a1':180-140,'la-a2':650-600+80+30+40+20-50-30,'la-b1':40/4*.75,'la-b2':10,
+  'tax-02':180-12+8-26,'tax-04':(110-80)*.25,'tax-05':45*.2,
+  'tax-06':50,'tax-07':80*.25,'tax-08':45+(18-10)-(12-7),
+  'tax-09':(70-40)*.3,'tax-11':72+8-14,'tax-12':30-18,
+  'tax-13':85*.2,'tax-15':(30+50)*.25,'tax-16':(120-80)*(.3-.2),
+  'tax-18':52/200*100,'tax-19':13.5/90*100,
+  'tax-20':(160+16-8)*.25/160*100,'tax-21':(240*.3+60*.1)/300*100,
+  'tax-24':80-(80-20)*.3,'tax-a1':180-20/.25,
+  'tax-a2':65+35-20-6-((40-6)-(30-10)),'tax-b1':54-8-2+10-6,'tax-b2':(20+50)*.3
  };
  for(const [id,v] of Object.entries(expected)){
   const q=byId.get(id);const numeric=Number(q.options[q.correct].text.replace(/[€,]/g,'').replace('−','-').match(/-?\d+(?:\.\d+)?/)?.[0]);
@@ -736,7 +756,136 @@ test('the four new financial-statement modules cover all sixteen objectives with
  assert.equal(data.questions.filter(q=>ids.includes(q.unit)&&q.pool==='practice').length,94);
  for(const pool of ['mock-a','mock-b']){
   assert.equal(data.questions.filter(q=>ids.includes(q.unit)&&q.pool===pool).length,8);
-  assert.equal(data.questions.filter(q=>q.topic==='statements'&&q.pool===pool).length,14);
+  assert.ok(data.questions.filter(q=>q.topic==='statements'&&q.pool===pool).length>=14);
+ }
+});
+
+test('inventory figures reconcile to item-level cost flows, taxes and lifetime profits',()=>{
+ const u=data.units.find(u=>u.id==='inventory'),figs=u.sections.flatMap(s=>s.blocks).filter(b=>b.kind==='figure');
+ const sum=a=>a.reduce((v,n)=>v+n,0),costs=d=>[10,10+d,10+2*d].flatMap(p=>Array(100).fill(p));
+ const price=figs.find(f=>f.id.endsWith('price-methods'));
+ for(const [index,s] of price.plot.series.entries())for(const [d,value] of s.points){
+  const items=costs(d),sold=index===0?items.slice(0,220):index===2?items.slice(-220):Array(220).fill(sum(items)/items.length);
+  assert.ok(Math.abs(value+sum(sold)-sum(items))<1e-8);
+ }
+ const methods=[[2480,1120],[2640,960],[2800,800]];
+ const netIncomes=[],cashflows=[];
+ for(const [cogs,inventory] of methods){
+  assert.equal(cogs+inventory,3600);
+  const profit=4400-cogs,tax=profit*.25,ni=profit-tax,cash=4400-2600-tax;
+  assert.equal(cash,ni-(inventory-1000));
+  netIncomes.push(ni);cashflows.push(cash);
+ }
+ assert.deepEqual(netIncomes,[1440,1320,1200]);assert.deepEqual(cashflows,[1320,1360,1400]);
+ // Each sale is consumed from the layers that exist at that point in time.
+ const transact=(method)=>{
+  let items=Array(10).fill(10),expense=0;
+  for(const [type,n,unitCost] of [['buy',10,14],['sell',12],['buy',10,18],['sell',8]]){
+   if(type==='buy'){items.push(...Array(n).fill(unitCost));if(method==='moving')items=Array(items.length).fill(sum(items)/items.length);}
+   else expense+=sum(method==='lifo'?items.splice(-n):items.splice(0,n));
+  }return [expense,sum(items)];
+ };
+ for(const [method,expected] of [['fifo',[240,180]],['lifo',[304,116]],['moving',[800/3,460/3]]]){
+  const actual=transact(method);actual.forEach((v,i)=>assert.ok(Math.abs(v-expected[i])<1e-9));
+  assert.ok(Math.abs(sum(actual)-420)<1e-9);
+ }
+ const recovery=figs.find(f=>f.id.endsWith('write-down-reversal'));
+ const nrv=[100,70,85,110],cost=100;
+ for(const [system,series] of recovery.plot.series.entries()){
+  let carrying=cost,cumulative=0;
+  for(const [t,value] of series.points){
+   const next=system===0?Math.min(cost,nrv[t]):Math.min(carrying,nrv[t]);
+   cumulative+=next-carrying;carrying=next;assert.equal(value,carrying);
+  }
+  assert.equal(cumulative+120-carrying,20,'lifetime profit is independent of recognition timing');
+ }
+ assert.equal(250*14-(100*14+100*10+50*5),850);
+ assert.ok(630/175>600/190,'write-down alone can increase turnover');
+ const adjusted=[1120,960,800].map(v=>Math.min(v,880));
+ assert.deepEqual(adjusted,[880,880,800]);
+ assert.deepEqual(adjusted.map(v=>4400-(3600-v)),[1680,1680,1600]);
+});
+
+test('long-lived asset schedules reconcile gross balances, cash, impairment and subsequent depreciation',()=>{
+ const u=data.units.find(u=>u.id==='long-assets'),number=s=>Number(s.replace(/\./g,'').replace(',','.').replace('−','-'));
+ const roll=u.sections.find(s=>s.id==='roll-forward').blocks.find(b=>b.kind==='table').rows;
+ for(const row of roll)assert.equal(number(row[1])-number(row[2])-number(row[3]),number(row[4]),row[0]);
+ for(let col=1;col<=4;col++)assert.equal(roll.slice(0,-1).reduce((v,r)=>v+number(r[col]),0),number(roll.at(-1)[col]));
+ const pv=cf=>[1,2,3].reduce((v,t)=>v+cf/1.1**t,0);
+ const comp=u.sections.find(s=>s.id==='us-impairment').blocks.find(b=>b.kind==='table').rows;
+ for(const [col,cf,fv] of [[1,40,90],[2,30,70]]){
+  assert.ok(Math.abs(number(comp[2][col])-pv(cf))<.00005);
+  assert.ok(Math.abs(number(comp[4][col])-Math.max(0,110-Math.max(pv(cf),fv)))<.00005);
+  assert.equal(number(comp[5][col]),3*cf<110?110-fv:0);
+ }
+ const fig=u.sections.find(s=>s.id==='reversal').blocks.find(b=>b.kind==='figure');
+ // Follow the actual posted impairment, depreciation and reversal entries over all years.
+ for(const [system,series] of fig.plot.series.entries()){
+  let book=150;const points=[[0,book]],without=system===2,ifrs=system===0;
+  for(let year=1;year<=5;year++){
+   book-=book/(6-year);points.push([year,book]);
+   if(year===1&&!without){book-=30;points.push([year,book]);}
+   if(year===2&&ifrs){book=Math.min(110,150-2*30);points.push([year,book]);}
+  }
+  assert.deepEqual(series.points,points);
+ }
+ const additive={cash:-112,ppe:114,liability:6,income:-4};
+ assert.equal(additive.cash+additive.ppe-additive.liability,additive.income);
+ assert.equal(650-(600-80-30-40-20)-50-30,140);
+ assert.equal((144-104)/4,10);
+ assert.equal((900-360)/90+360/90,900/90);
+ assert.equal(Math.max(0,80-90)/4,0,'a residual value above carrying value does not create negative depreciation');
+ const answer=id=>data.questions.find(q=>q.id===id).options[data.questions.find(q=>q.id===id).correct].text;
+ assert.match(answer('la-b2'),/10 million in profit or loss and €20 million in OCI/);
+});
+
+test('tax examples reconcile every year to tax bases, expense and cash rather than end-balance shortcuts',()=>{
+ const u=data.units.find(u=>u.id==='income-taxes'),section=u.sections.find(s=>s.id==='depreciation');
+ const rows=section.blocks.find(b=>b.kind==='table').rows,fig=section.blocks.find(b=>b.kind==='figure');
+ const number=s=>Number(s.replace(/\./g,'').replace(',','.').replace('−','-'));
+ let book=120,basis=120,dtl=0,totalCash=0,totalExpense=0;
+ for(let t=0;t<3;t++){
+  const bookDep=40,taxDep=[60,40,20][t],pbt=100-bookDep,taxable=100-taxDep,cash=taxable*.25;
+  book-=bookDep;basis-=taxDep;
+  const closing=(book-basis)*.25,delta=closing-dtl,expense=cash+delta;
+  const values=[bookDep,taxDep,pbt,taxable,cash,book,basis,closing,delta,expense,pbt-expense];
+  values.forEach((v,i)=>assert.equal(number(rows[i][t+1]),v,rows[i][0]+' year '+(t+1)));
+  assert.deepEqual(fig.plot.series.map(s=>s.points[t]),[[t+1,cash],[t+1,expense]]);
+  totalCash+=cash;totalExpense+=expense;dtl=closing;
+ }
+ assert.equal(book,0);assert.equal(basis,0);assert.equal(dtl,0);assert.equal(totalCash,totalExpense);assert.equal(totalExpense,45);
+ let warranty=0,dta=0,warrantyCashTax=0,warrantyExpense=0;
+ for(const [pbt,accrual,payment] of [[100,12,0],[100,0,12]]){
+  warranty+=accrual-payment;
+  const current=(pbt+accrual-payment)*.25,newDta=warranty*.25;
+  const expense=current-(newDta-dta);assert.equal(expense,25);
+  warrantyCashTax+=current;warrantyExpense+=expense;dta=newDta;
+ }
+ assert.equal(dta,0);assert.equal(warrantyCashTax,warrantyExpense);
+ const pbt=200,exempt=20,fine=10,extraTaxDep=30,taxable=pbt-exempt+fine-extraTaxDep,current=taxable*.25,expense=current+extraTaxDep*.25,cash=current+8-12;
+ const recon=u.sections.find(s=>s.id==='reconciliation').blocks.find(b=>b.kind==='table').rows;
+ [taxable,current,7.5,expense,cash,expense/pbt*100,cash/pbt*100].forEach((v,i)=>assert.equal(number(recon[i][2].replace(' %','')),v));
+ assert.equal(40-40*.3,28,'OCI revaluation after its associated deferred tax');
+ assert.equal(150-(150-0)*.3,105,'acquisition asset contributes its after-tax identifiable amount');
+ assert.equal(65+(35-20-6)-((40-6)-(30-10)),60,'P&L bridge excludes OCI and uses net DTA changes');
+ for(const [id,kind] of [['tax-04','liability'],['tax-05','asset']]){
+  const q=data.questions.find(q=>q.id===id);assert.match(q.options[q.correct].text,new RegExp(kind+'$'));
+ }
+});
+
+test('inventory, long-term assets and income taxes cover all ten objectives and preserve figure bounds',()=>{
+ const ids=['inventory','long-assets','income-taxes'],selected=data.coverage.filter(c=>ids.includes(c.id));
+ assert.equal(selected.reduce((n,c)=>n+c.objectives.length,0),10);
+ for(const c of selected)for(const o of c.objectives){assert.ok(o.sections.length,c.id);assert.ok(o.practice.length>=3,o.id);}
+ assert.equal(data.questions.filter(q=>ids.includes(q.unit)&&q.pool==='practice').length,76);
+ for(const pool of ['mock-a','mock-b']){
+  assert.equal(data.questions.filter(q=>ids.includes(q.unit)&&q.pool===pool).length,6);
+  assert.ok(data.questions.filter(q=>q.topic==='statements'&&q.pool===pool).length<=22);
+ }
+ for(const u of data.units.filter(u=>ids.includes(u.id)))for(const f of u.sections.flatMap(s=>s.blocks).filter(b=>b.kind==='figure')){
+  for(const series of f.plot.series)for(const [x,y] of series.points){
+   assert.ok(x>=f.plot.x[0]&&x<=f.plot.x[1],f.id);assert.ok(y>=f.plot.y[0]&&y<=f.plot.y[1],f.id);
+  }
  }
 });
 test('unwritten modules remain visible as gaps and cannot pass the release gate',()=>{

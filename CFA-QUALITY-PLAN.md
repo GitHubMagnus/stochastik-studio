@@ -257,3 +257,44 @@ CFA-Fragen ausgegeben. Praktische Pflichtmodule des CFA Institute bleiben separa
   weitere Rechnerpraxis, restliche 110 Fragen je Klausur, vollständige redaktionelle
   Prüfung und Endaudit. **Die Zielwerte 90/100 und 80/100 sind noch nicht
   nachgewiesen.** Bestandene Technikprüfungen ersetzen diese Arbeiten nicht.
+- 25.09.2026, Vorräte, langfristige Vermögenswerte und Ertragsteuern:
+  **45 neue Abschnitte, 76 Trainingsfragen, je sechs reservierte Klausurfragen,
+  vier berechnete Grafiken und 37 präzise Wörterbuchverweise**. Die zehn zugehörigen
+  Lernzielreferenzen besitzen jeweils mehrere unabhängige Trainingsaufgaben.
+  Gesamtstand: **39 Einheiten, 133/340 strukturell abgedeckte Lernzielreferenzen,
+  700 Trainingsfragen und je 76 Klausurfragen**. Die Abschlussanalyse stellt
+  je 20 Klausurfragen; beide vollständigen Prüfungen bleiben gesperrt.
+- Fachliche Prüfung: FIFO, laufendes und periodisches LIFO sowie gleitender und
+  periodischer Durchschnitt werden aus den tatsächlichen Kostenlagen rekonstruiert.
+  Der Methodenvergleich stimmt auf verfügbare Warenkosten, Gewinn und tatsächliche
+  Zahlungen ab. Abwertungen und Zuschreibungen führen über die gesamte Lebensdauer
+  zum selben wirtschaftlichen Gesamterfolg. IFRS-NRV und US-LIFO-Market-Test sind
+  ausdrücklich getrennt; notwendige Verkaufskosten werden nicht auf bloße
+  inkrementelle Einzelverkaufskosten verengt.
+- Anlagenfälle: IFRS-Nutzungswert wird unabhängig diskontiert; der US-Test trennt
+  undiskontierte Entscheidungsgröße und Fair-Value-Verlustmessung. Abschreibung,
+  Verlust und begrenzte Erholung werden als mehrjähriger Buchungsverlauf geprüft.
+  Der Anlagenspiegel stimmt sowohl jede Zeile als auch Brutto-, Korrektur- und
+  Nettospalten ab. Nicht bezahlte Investitionen und Leasingzugänge sind von
+  Investitionszahlungen getrennt. Ein über den Buchwert gestiegener Restwert
+  erzeugt keine negative Abschreibung.
+- Steuerfälle: Eine dreijährige Abschreibungsüberleitung kontrolliert jede
+  veröffentlichte Tabellenzelle gegen Buchwert, Steuerbasis, laufende Steuer,
+  DTL-Bewegung und Gesamtaufwand. Der Garantiefall prüft die entgegengesetzte
+  DTA-Richtung über Entstehung und Umkehr. Permanente Unterschiede, tatsächliche
+  Zahlungsabgrenzung, Nutzbarkeit von Verlusten, Satzwechsel sowie OCI- und
+  Erwerbseffekte bleiben gesondert. Numerische Antwortschlüssel sind unabhängig
+  gegengerechnet; ungenaue Distraktoren wurden durch konkret erklärbare
+  Vorzeichen-, Bestands-/Strom- oder Methodenfehler ersetzt.
+- Technikstand: **90 Kernprüfungen und 49 CFA-Prüfungen bestanden**, darunter
+  neun Browserprüfungen. Zwei zusätzliche Prüfungen bestätigen Wörterbuch und
+  mobile Kapitelverweise im bisherigen Lernbereich. Alle 39 Einheiten werden auf
+  Desktop und Mobilbreite gerendert; die drei neuen Begriffs-Rückwege sowie je
+  drei Trainingsfragen der neuen Kapitel werden tatsächlich bedient. Vier neue
+  Grafiken, eine mobile Formeltafel und die mobile Steuertabelle wurden visuell
+  geprüft. Gesamtstand: **39 CFA-Grafiken, 400 kuratierte Wörterbuchverweise,
+  global 809 Definitionen und 1.716 Begriffe/Aliase**.
+- Noch offen: **63 Lerneinheiten, 207 noch nicht strukturell abgedeckte
+  Lernzielreferenzen und 104 Fragen je vollständiger Klausur**, außerdem
+  semantische Endprüfung, weitere Rechnerpraxis und redaktioneller Gesamtaudit.
+  Die Zielwerte **90/100 und 80/100 bleiben nicht nachgewiesen**.

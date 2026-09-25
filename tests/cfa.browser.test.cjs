@@ -56,7 +56,7 @@ test('every authored 2027 unit renders without overflow and new glossary terms r
  await page.waitForFunction(()=>document.activeElement.id==='glossary-texttokenisierung');
  await page.locator('#glossary-texttokenisierung a[href="#cfa~learn-data-science~text-ai"]').click();
  await page.waitForFunction(()=>document.activeElement.id==='cfa-section-text-ai');
- for(const [unit,section,term] of [['fiscal','multipliers','Fiskalmultiplikator'],['monetary','reserves','Geldschöpfungsmultiplikator'],['cycles','inventories','Lager-Umsatz-Relation'],['geopolitics','cooperation','Soft Power'],['fx-markets','regimes','Currency Board'],['fx-calculation','covered-parity','gedeckte Zinsparität'],['analysis-framework','management','Management Discussion and Analysis'],['balance-sheet','financial-assets','SPPI'],['cashflow-preparation','scope','Zahlungsmitteläquivalente'],['cashflow-analysis','fcfe','Nettokreditaufnahme']]){
+ for(const [unit,section,term] of [['fiscal','multipliers','Fiskalmultiplikator'],['monetary','reserves','Geldschöpfungsmultiplikator'],['cycles','inventories','Lager-Umsatz-Relation'],['geopolitics','cooperation','Soft Power'],['fx-markets','regimes','Currency Board'],['fx-calculation','covered-parity','gedeckte Zinsparität'],['analysis-framework','management','Management Discussion and Analysis'],['balance-sheet','financial-assets','SPPI'],['cashflow-preparation','scope','Zahlungsmitteläquivalente'],['cashflow-analysis','fcfe','Nettokreditaufnahme'],['inventory','cost-flows','FIFO'],['long-assets','us-impairment','Recoverability Test'],['income-taxes','valuation-allowance','Valuation Allowance']]){
   await page.goto(url+'/#cfa~learn-'+unit+'~'+section);
   const termLink=page.locator('#cfa-section-'+section+' a.term-link').filter({hasText:new RegExp('^'+term+'$')}).first();
   const target=(await termLink.getAttribute('href')).split('~')[1];
@@ -92,7 +92,7 @@ test('economics training gives per-choice reasons and exact chapter return links
 
 test('financial-statement training preserves formula explanations and returns to the exact worked section',async t=>{
  const page=await open(t);
- for(const id of ['analysis-framework','balance-sheet','cashflow-preparation','cashflow-analysis']){
+ for(const id of ['analysis-framework','balance-sheet','cashflow-preparation','cashflow-analysis','inventory','long-assets','income-taxes']){
   await page.goto(url+'/#cfa~learn-'+id);await page.locator('[data-train-unit]').click();
   const questions=actual.questions.filter(q=>q.unit===id&&q.pool==='practice');
   for(let i=0;i<3;i++){
