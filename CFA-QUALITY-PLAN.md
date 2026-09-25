@@ -332,3 +332,60 @@ CFA-Fragen ausgegeben. Praktische Pflichtmodule des CFA Institute bleiben separa
   Lernzielzuordnungen und 103 Fragen je vollständiger Klausur**. Die fachliche
   Endprüfung und der Gesamtaudit bleiben ausstehend; **90/100 und 80/100
   sind weiterhin nicht belegt**.
+
+### Integrierte Finanzplanung und vertiefte FSA-Übungen, 25.09.2026
+
+- Das Prognosemodul umfasst **21 Abschnitte, 32 Trainingsfragen und je eine
+  reservierte Frage pro Klausur**. Ein eigener vollständiger Atlas-Fall führt
+  von Umsatz-, Kosten- und Investitionstreibern durch Gewinnrechnung, direkte
+  und indirekte Cashflowrechnung bis zur abgestimmten Endbilanz. Ein
+  Transaktionsjournal kontrolliert sämtliche Endbestände unabhängig.
+- Die Erklärung trennt Durchschnittsforderungen von Endforderungen,
+  Finanzierungsbedarf von tatsächlich verfügbarem Kredit, bilanziellen
+  Gleichlauf von operativer Durchführbarkeit und Sensitivität von Szenarien.
+  Zinszirkularität wird algebraisch und iterativ kontrolliert. Porters Kräfte,
+  Inflation, Prognoseverzerrungen und die Wahl des Detailhorizonts sind mit
+  konkreten Modellannahmen verbunden.
+- Zwei berechnete Grafiken zeigen den Übergang zu notwendiger Kreditaufnahme
+  und den Zusammenhang zwischen Wachstum, Reinvestition, Kapitalrendite und
+  Fortführungswert. Die Finanzierungsgrafik enthält den exakten Knickpunkt;
+  die Wertkurven werden gegen lange diskontierte Zahlungsfolgen geprüft.
+  Das konstante erste Folgejahresergebnis des Kurvenvergleichs wird ausdrücklich
+  genannt, damit die Interpretation bei geänderten Wachstumsraten stimmt.
+- Die Durchsicht älterer FSA-Übungen fand unzureichende Breite: Gewinnrechnung
+  hatte zwölf Trainingsfragen, Kennzahlen zehn. Sie besitzen nun **30 bzw. 32**,
+  mit mindestens vier Aufgaben je Lernziel. Hinzu kamen **drei bzw. vier
+  Erklärabschnitte**: Kostenfortschritt und Schätzänderung, Periodenabgrenzung,
+  aufgegebene Aktivitäten, verschiedene Kapitalrenditen, vollständige
+  DuPont-Veränderungsbrücke, Branchenfälle und exakte Prognosekonventionen.
+  Die Fragen prüfen unterschiedliche Entscheidungen und Fehlvorstellungen,
+  statt lediglich Zahlen bestehender Fragen auszutauschen.
+- Die neuen Rechenfälle werden separat geprüft: Aufwand und verbleibender
+  Bilanzposten, mehrjährige Ergebnisverlagerung, EPS-Zeitgewichtung, unterschiedliche
+  DuPont-Reihenfolgen, Bankmarge vor Kreditkosten, Prämienbasis der Combined Ratio
+  und aus der DSO-Definition tatsächlich folgender Endbestand. Primärquellen
+  umfassen CFA-Lernziele, IFRS-Standards, Harvard/Porter, NYU/Damodaran,
+  Federal Reserve und NAIC. Die Klausurreserve bleibt vom Training getrennt.
+- Alle **zwölf FSA-Module mit 53 Lernzielreferenzen** haben jetzt neue Texte und
+  unabhängiges Training. Dieser Bereich umfasst **166 Abschnitte und 308
+  Trainingsfragen**. Das ist strukturelle Abdeckung; es ersetzt den noch
+  ausstehenden vollständigen fachlichen Abschlussaudit nicht.
+- Gesamtstand: **41 Einheiten, 146/340 strukturelle Lernzielreferenzen,
+  804 Trainingsfragen, je 78 Klausurfragen und 42 CFA-Grafiken**.
+  **431 kuratierte Wörterbuchverweise** führen in konkrete Abschnitte;
+  das Gesamtwörterbuch enthält **836 Definitionen und 1.768 Begriffe/Aliase**.
+  Ein doppelter nur in Großschreibung abweichender Alias wurde beim Build
+  erkannt, entfernt und in die frühe Validierung aufgenommen.
+- Prüfung: **97 Kernprüfungen, 56 CFA-Prüfungen einschließlich neun Browserfällen
+  und zwei ergänzende bisherige Browserprüfungen**. Im Browser werden alle
+  41 Einheiten auf Desktop- und Mobilbreite gerendert, das vollständige Training
+  der beiden erweiterten Altmodule bedient und neue Wörterbuch-Rückwege geprüft.
+  Beide Grafiken, die DuPont-Tabelle und mobile Formeln mit Symbolhilfe wurden
+  zusätzlich visuell geprüft. Tabellenzellen vermeiden unnötige Wortzerlegung;
+  die erklärende Beschriftung steht außerhalb des horizontalen Scrollbereichs
+  und bleibt mit der Tabelle zugänglich verknüpft. Breite Inhalte behalten
+  ihre Tastatur- und Verschiebehinweise.
+- Nächster Kernbereich: die **sieben Corporate-Issuers-Module**. Insgesamt fehlen
+  **61 Einheiten, 194 strukturelle Lernzielzuordnungen und 102 Fragen je Klausur**.
+  Es gibt weiterhin keine vollständige echte Probeklausur. Der Material- und
+  Prüfungsaudit ist nicht abgeschlossen; **90/100 und 80/100 bleiben unbelegt**.

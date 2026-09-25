@@ -168,7 +168,23 @@ test('published MCQ numerical answers agree with separately computed results',()
   'rq-02':140-45,'rq-03':65-1000*.09,'rq-08':18,'rq-10':150-40,
   'rq-17':72+(12-8)*.75,'rq-21':96-60,'rq-22':48-12,'rq-23':30-18+9,
   'rq-24':100*(10+900/100)-100*(10+900/150),
-  'rq-29':365*132/880,'rq-30':(120-72)/600*100,'rq-a1':78-10*.75-30*.8,'rq-b1':150-30
+  'rq-29':365*132/880,'rq-30':(120-72)/600*100,'rq-a1':78-10*.75-30*.8,'rq-b1':150-30,
+  'fm-01':(175-40+15)/1250*100,'fm-02':(1.08*.97-1)*100,
+  'fm-03':(12600*.08/(12000*.07)-1)*100,'fm-04':220*(80-45)-3000-1000,
+  'fm-05':35+140/7/2,'fm-06':104-80+75-60-59+50,'fm-07':900+70-95,
+  'fm-08':500+75-60+50-59,'fm-09':90+25-30,'fm-10':50+85-70-30,
+  'fm-11':300+90-30,'fm-12':25+12,'fm-13':60/(1-.5*.1*.8),
+  'fm-24':(104-70*1.12)/104*100,'fm-26':(1.09/1.04-1)*100,
+  'fm-27':30/90*100,'fm-30':150*.04/.16,'fm-31':114/(.09-.03),
+  'fm-a1':25-(30+160+40-((2*(1460*45/365)-120)-120+35-20)-95-20),
+  'fm-b1':120*(1-.04/.1)/(.1-.04),
+  'is-13':12*.3-1.2,'is-14':5000,'is-17':2000-80*10,'is-18':32000+8000,
+  'is-19':90/3,'is-20':36000-6*3000,'is-21':68+12,'is-24':1.2e6/400000,
+  'is-25':(2e6+60000-15000)/(1e6+100000),'is-29':40/800*100,'is-30':(.9/.8-1)*100,
+  'ra-14':30+50-65,'ra-15':(90-10)/400*100,'ra-16':80/500*100,'ra-17':150/50,
+  'ra-18':600/(200-100),'ra-19':840/210,'ra-23':( .06*1.4*2.5-.06*1.4*2)*100,
+  'ra-24':140/4000*100,'ra-25':470/500*100,'ra-28':1200*.15-30-150*.25,
+  'ra-31':2*(730*40/365)-60
  };
  for(const [id,v] of Object.entries(expected)){
   const q=byId.get(id);const numeric=Number(q.options[q.correct].text.replace(/[€,]/g,'').replace('−','-').match(/-?\d+(?:\.\d+)?/)?.[0]);
@@ -654,6 +670,8 @@ test('new glossary definitions point to existing precise 2027 sections',()=>{
  const normalized=s=>s.toLocaleLowerCase('de').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]/g,'');
  const labels=new Map();
  for(const entry of entries){
+  const names=[entry.term,...entry.aliases].map(name=>name.toLocaleLowerCase('de'));
+  assert.equal(new Set(names).size,names.length,'redundant case-insensitive alias: '+entry.term);
   for(const name of [entry.term,...entry.aliases]){
    const key=normalized(name);
    assert.ok(!labels.has(key)||labels.get(key)===entry.term,'ambiguous authored alias: '+name);
@@ -927,6 +945,156 @@ test('reporting-quality cases preserve cost-flow identities, lifetime expense an
  assert.equal(coverage.objectives.length,8);
  for(const o of coverage.objectives){assert.ok(o.sections.length);assert.ok(o.practice.length>=3,o.id);}
  for(const pool of ['mock-a','mock-b'])assert.equal(data.questions.filter(q=>q.unit==='reporting-quality'&&q.pool===pool).length,1);
+});
+
+test('Atlas pro-forma statements reconcile independently through a transaction ledger',()=>{
+ const u=data.units.find(u=>u.id==='forecasting'),section=id=>u.sections.find(s=>s.id===id).blocks;
+ const number=s=>Number(s.replace(/\./g,'').replace(',','.').replace('−','-'));
+ const initial=section('atlas-inputs').find(b=>b.kind==='table').rows,final=section('atlas-balance').find(b=>b.kind==='table').rows;
+ const keys=['cash','ar','inventory','ppe','ap','debt','equity'],ledger={};
+ keys.forEach((k,i)=>ledger[k]=number(initial[i][i<4?1:2]));
+ let profit=0,cfo=0,cfi=0,cff=0;
+ const post=(entries,pnl=0,pool)=>{for(const [k,v] of Object.entries(entries))ledger[k]+=v;profit+=pnl;const cash=entries.cash||0;if(pool==='o')cfo+=cash;if(pool==='i')cfi+=cash;if(pool==='f')cff+=cash;};
+ post({ar:1100},1100);post({cash:1090,ar:-1090},0,'o');
+ post({inventory:672,ap:672});post({inventory:-660},-660);post({cash:-664,ap:-664},0,'o');
+ post({cash:-220},-220,'o');post({ppe:-45},-45);post({cash:-70,ppe:70},0,'i');
+ post({cash:-10},-10,'o');post({cash:-41.25},-41.25,'o');
+ post({cash:-40,equity:-40},0,'f');ledger.equity+=profit;
+ keys.forEach((k,i)=>assert.equal(ledger[k],number(final[i][i<4?1:2]),k));
+ const assets=ledger.cash+ledger.ar+ledger.inventory+ledger.ppe,claims=ledger.ap+ledger.debt+ledger.equity;
+ assert.equal(assets,claims);assert.equal(assets,number(final.at(-1)[1]));assert.equal(assets,661.75);
+ assert.equal(ledger.cash,50+cfo+cfi+cff);assert.equal(cfo,154.75);
+ const pnl=section('atlas-income').find(b=>b.kind==='table').rows;
+ const values=[1100,-660,-220,-45,175,-10,165,-41.25,123.75];
+ pnl.forEach((row,i)=>assert.equal(number(row[2]),values[i],row[0]));
+ assert.equal(number(pnl.at(-1)[2]),profit);
+ const direct=section('atlas-cash').find(b=>b.kind==='table').rows;
+ assert.equal([0,2,3,4,5].reduce((v,i)=>v+number(direct[i][2]),0),cfo);
+ assert.equal(number(direct.at(-1)[2]),cfo);
+ assert.equal(40+70/7*.5,45);
+});
+
+test('financing sensitivity and scenarios agree with direct collections and constrained funding',()=>{
+ const u=data.units.find(u=>u.id==='forecasting'),fig=u.sections.find(s=>s.id==='funding-figure').blocks.find(b=>b.kind==='figure');
+ const direct=r=>{
+  const ar=1100*r,receipts=1100+100-ar,purchases=660+132-120,supplierPaid=purchases+80-88;
+  const cfo=receipts-supplierPaid-220-10-41.25,pre=50+cfo-70-40,newDebt=Math.max(0,30-pre);
+  const balance={cash:pre+newDebt,ar,inventory:132,ppe:325,ap:88,debt:200+newDebt,equity:373.75};
+  assert.ok(Math.abs(balance.cash+balance.ar+balance.inventory+balance.ppe-balance.ap-balance.debt-balance.equity)<1e-9);
+  return [pre,pre+newDebt,newDebt];
+ };
+ for(const [i,series] of fig.plot.series.entries())for(const [p,value] of series.points){
+  assert.ok(Math.abs(value-direct(p/100)[i])<1e-9);
+  assert.ok(value>=fig.plot.y[0]&&value<=fig.plot.y[1]);
+ }
+ assert.deepEqual(direct(.1),[94.75,94.75,0]);
+ assert.deepEqual(direct(.2),[-15.25,30,45.25]);
+ assert.equal(.5*direct(.05)[2]+.5*direct(.25)[2],50.125);assert.equal(direct(.15)[2],0);
+ const boundary=(204.75-30)/1100;assert.ok(Math.abs(direct(boundary)[0]-30)<1e-9);
+ for(const series of fig.plot.series)assert.ok(series.points.some(([p])=>Math.abs(p-boundary*100)<1e-10),'SVG must contain the exact funding kink');
+ let debt=40;for(let i=0;i<25;i++)debt=40+debt*.5*.08*.75;
+ assert.ok(Math.abs(debt-41.23711340206186)<1e-10);
+ assert.ok(Math.abs(debt-debt*.5*.08*.75-40)<1e-10);
+ const meanAR=1460*45/365,closingAR=2*meanAR-120;
+ assert.equal(closingAR,240);assert.equal(160+40-(closingAR-120+35-20),65);
+ assert.equal(30+65-95-20+45,25);
+});
+
+test('growth, capital needs and terminal figures agree with discounted cash-flow sequences',()=>{
+ const u=data.units.find(u=>u.id==='forecasting'),fig=u.sections.find(s=>s.id==='continuing').blocks.find(b=>b.kind==='figure');
+ assert.ok(Math.abs(1000*1.06*1.04-1102.4)<1e-9);
+ assert.equal(10500*.09,945);assert.ok(Math.abs((945/800-1)*100-18.125)<1e-12);
+ assert.equal(110*(100-60)-2000-500,1900);
+ assert.equal(105-66,39);assert.ok(Math.abs(39/105*100-37.14285714285714)<1e-12);
+ assert.equal(103*(1-.03/.12),77.25);assert.equal(103*(1-.03/.06),51.5);
+ assert.ok(Math.abs(77.25/(.08-.03)-1545)<1e-9);
+ for(const [i,roc] of [.12,.08,.06].entries())for(const [pct,value] of fig.plot.series[i].points){
+  const g=pct/100;let nopat=100,pv=0;
+  // Sum the actual projected cash-flow sequence, after funding every year's new capital.
+  for(let year=1;year<=1500;year++){
+   const reinvestment=nopat*g/roc;
+   pv+=(nopat-reinvestment)/1.08**year;nopat*=1+g;
+  }
+  assert.ok(Math.abs(pv-value)<1e-8);
+  assert.ok(value>=fig.plot.y[0]&&value<=fig.plot.y[1]);
+  if(i===1)assert.ok(Math.abs(value-1250)<1e-9);
+ }
+ const answer=data.questions.find(q=>q.id==='fm-30');
+ assert.match(answer.options[answer.correct].text,/37.50 million and €112.50 million/);
+});
+
+test('all twelve financial-statement modules now have explanations and independent practice for every 2027 objective',()=>{
+ const modules=data.modules.filter(m=>m.topic==='statements');assert.equal(modules.length,12);
+ for(const m of modules){
+  const c=data.coverage.find(c=>c.id===m.id);
+  for(const o of c.objectives){assert.ok(o.sections.length,m.id);assert.ok(o.practice.length,o.id);}
+ }
+ const model=data.coverage.find(c=>c.id==='forecasting');
+ assert.equal(model.objectives.length,5);
+ for(const o of model.objectives)assert.ok(o.practice.length>=4,o.id);
+ for(const pool of ['mock-a','mock-b'])assert.equal(data.questions.filter(q=>q.topic==='statements'&&q.pool===pool).length,22);
+});
+
+test('income recognition extensions reconcile progress, matched expense and continuing earnings',()=>{
+ const unit=data.units.find(u=>u.id==='income-statement');
+ const section=id=>unit.sections.find(s=>s.id===id);
+ const expenses=section('expense-patterns').blocks.find(b=>b.kind==='table');
+ const costs=[60,100*8,30],consumed=[60*3/12,75*8,30],cash=[60,800,9];
+ const parse=s=>Number(s.match(/\d+/)[0]);
+ expenses.rows.forEach((row,i)=>{
+  assert.equal(Number(row[1]),cash[i]);assert.equal(parse(row[2]),consumed[i]);
+  assert.equal(parse(row[3]),i===2?consumed[i]-cash[i]:costs[i]-consumed[i]);
+ });
+ const example=section('expense-patterns').blocks.find(b=>b.kind==='example');
+ const schedule=example.steps.find(b=>b.kind==='table');
+ let book=150,cumulativeDifference=0;
+ for(let year=0;year<3;year++){
+  const expense=year===0?150:0,dep=50;book-=dep;cumulativeDifference+=expense-dep;
+  assert.equal(Number(schedule.rows[year][1]),expense);assert.equal(Number(schedule.rows[year][2]),dep);
+  assert.equal(Number(schedule.rows[year][3].replace('−','-')),expense-dep);assert.equal(cumulativeDifference,book);
+ }
+ assert.equal(book,0);assert.equal(cumulativeDifference,0);
+ const oldCum=20*4/16,newCum=20*10/18,current=newCum-oldCum;
+ assert.ok(Math.abs(current-6.111111111111111)<1e-12);assert.ok(Math.abs(current-6-1/9)<1e-12);
+ assert.equal(20*10/16-oldCum,7.5);assert.equal(100-30,70);assert.equal(90-(-10),100);
+ const answer=id=>{const q=data.questions.find(q=>q.id===id);return q.options[q.correct].text;};
+ assert.match(answer('is-16'),/identical/);assert.match(answer('is-19'),/30 lower/);
+ assert.match(answer('is-27'),/remains 10%/);assert.equal((400-260-100)/400,(500-350-100)/500);
+ assert.equal((120-20)*.75/600,.125);assert.equal((120-60)*.75/600,.075);
+});
+
+test('ratio extensions reconcile capital bases, exact DuPont steps and balance conventions',()=>{
+ const unit=data.units.find(u=>u.id==='ratios');
+ const ex=id=>unit.sections.find(s=>s.id===id).blocks.find(b=>b.kind==='example');
+ const table=ex('additional-ratios').steps.find(b=>b.kind==='table');
+ const numerators=[900,900,900,70,120,120,70,70-10],denominators=[600,225,240-90,600,600,150+300,300,250];
+ table.rows.forEach((row,i)=>{
+  assert.equal(Number(row[1]),numerators[i]);assert.equal(Number(row[2]),denominators[i]);
+  const value=Number(row[3].replace(' %','').replace(',','.'));
+  assert.ok(Math.abs(value-numerators[i]/denominators[i]*(i>=3?100:1))<.0051);
+ });
+ const bridge=ex('ratio-bridge').steps.find(b=>b.kind==='table');
+ const vals=[.05*1.5*2,.06*1.5*2,.06*1.4*2,.06*1.4*2.5];
+ bridge.rows.forEach((row,i)=>{
+  assert.ok(Math.abs(Number(row[4].replace(' %','').replace(',','.'))-vals[i]*100)<1e-12);
+  if(i)assert.ok(Math.abs(Number(row[5].replace(' Prozentpunkte','').replace('−','-').replace(',','.'))-(vals[i]-vals[i-1])*100)<1e-12);
+ });
+ // Independently compare all six replacement orders: contributions vary, total is fixed.
+ for(const order of [[0,1,2],[0,2,1],[1,0,2],[1,2,0],[2,0,1],[2,1,0]]){
+  const factors=[.05,1.5,2],end=[.06,1.4,2.5];let changes=0;
+  for(const i of order){const before=factors.reduce((a,b)=>a*b);factors[i]=end[i];changes+=factors.reduce((a,b)=>a*b)-before;}
+  assert.ok(Math.abs(changes-.06)<1e-12);
+ }
+ // Start from the ending balance, then recover the stated DSO, rather than repeat its inverse formula.
+ assert.equal(((90+150)/2)/1095*365,40);assert.equal(1095+90-150,1035);
+ assert.equal(150-90,60);assert.equal(((60+100)/2)/730*365,40);
+ assert.equal(100-40-10,50);assert.equal(140-50-45,45);assert.equal(800-520-200,80);
+ assert.equal(100*.9*1200-28000,80000);
+ const insurer=data.questions.find(q=>q.id==='ra-25');assert.equal(insurer.options[insurer.correct].text,'94% and 30.');
+ for(const id of ['income-statement','ratios']){
+  const objectives=data.coverage.find(c=>c.id===id).objectives;
+  for(const o of objectives)assert.ok(o.practice.length>=4,o.id+': only '+o.practice.length+' questions');
+ }
 });
 
 test('unwritten modules remain visible as gaps and cannot pass the release gate',()=>{

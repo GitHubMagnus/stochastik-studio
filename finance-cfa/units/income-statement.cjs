@@ -114,9 +114,56 @@ module.exports={
    ['EBIT','200','216','20 % / 18 %']
   ],'Wachstum kann einen absoluten Gewinn erhöhen und gleichzeitig die Marge senken.'),
   'Der Umsatz steigt um 20 %, EBIT nur um 8 %. Die Bruttomarge verliert fünf Prozentpunkte, während die übrigen operativen Kosten relativ zum Umsatz um drei Prozentpunkte sinken. Netto bleibt die operative Marge zwei Prozentpunkte niedriger. Diese Brücke lenkt die weitere Untersuchung auf Einkaufspreise, Produktmix, Verkaufspreise und Skaleneffekte. EPS allein hätte diese Ursachen nicht offengelegt.'
+ ]),
+ S('revenue-estimates','8. Umsatzfälle: Fortschritt, Unsicherheit und Kontrolle','a',[
+  'Drei getrennte Prüfungen verhindern typische Verwechslungen: Welche Leistung wird übertragen? Welcher Betrag steht dem Anbieter voraussichtlich zu? Welcher Teil gehört in diese Periode? Ein Kunde kann bereits zahlen, obwohl noch keine Leistung erbracht wurde; umgekehrt kann Leistung erbracht sein, bevor eine Rechnung fällig wird. Die vertraglichen Bedingungen bestimmen auch, ob eine Forderung oder ein Vertragsvermögenswert vorliegt.',
+  'Bei einer über einen Zeitraum erfüllten Leistungsverpflichtung muss die Fortschrittsmessung die Leistung sachgerecht abbilden. Kostenfortschritt ist kein universeller Automatismus: unproduktive Verschwendung oder noch nicht eingebaute wesentliche Materialien können Anpassungen erfordern. Die folgenden Zahlen setzen geeignete anrechenbare Kosten und erfüllte Voraussetzungen für die Erfassung über die Zeit voraus.',
+  F('R_t=TP\\frac{C_{cum,t}}{\\widehat C_{total,t}}-R_{cum,t-1}','Aus dem kumulierten Leistungsfortschritt folgt kumulierter Umsatz. Bereits erfasster Umsatz wird für die aktuelle Periodenzahl abgezogen.',[['R_t','Umsatz ausschließlich der aktuellen Periode.'],['TP','Hier fester Transaktionspreis des gesamten Vertrags.'],['C_{cum,t}','Bis zum aktuellen Stichtag angefallene, für die Fortschrittsmessung geeignete Kosten.'],['\\widehat C_{total,t}','Aktuelle Schätzung aller geeigneten Kosten bis zur vollständigen Erfüllung.'],['R_{cum,t-1}','In früheren Perioden bereits erfasster kumulierter Umsatz.']]),
+  X('Eine neue Kostenschätzung ändert den aktuellen Umsatz','Ein geeigneter Vertrag hat einen Preis von 20 Mio. €. Bis Ende Jahr 1 sind 4 Mio. anrechenbare Kosten angefallen; insgesamt werden 16 Mio. erwartet. Ende Jahr 2 sind kumuliert 10 Mio. angefallen; die neue Gesamtprognose beträgt 18 Mio. €.',[
+   F('R_1=20\\frac4{16}=5,\\qquad R_2=20\\frac{10}{18}-5\\approx6{,}1111','Jahr 2 enthält den Fortschritt nach aktueller Schätzung abzüglich der bereits erfassten 5 Mio.',[['R_1,R_2','Umsatz der einzelnen Jahre in Mio. Euro.']]),
+   'Ohne die neue Kostenschätzung wären im zweiten Jahr 7,5 Mio. Umsatz entstanden. Die Kostensteigerung senkt den ausgewiesenen Fortschritt und den erwarteten Gesamtgewinn. Jahr 1 wird bei einer echten neuen Schätzung nicht nachträglich zu einem damaligen Rechenfehler erklärt.',
+   'Die tatsächlichen Kosten von Jahr 2 betragen 6 Mio. €. Der vereinfachte Periodengewinn ist daher rund 0,1111 Mio. statt 1,5 Mio. unter der alten Kostenerwartung. Zahlung und Rechnungsstellung wurden für diese Leistungsrechnung noch nicht benötigt.'
+  ],'Ein Analyst muss den geschätzten Nenner prüfen. Eine unrealistisch niedrige Gesamtkostenprognose kann Umsatz und Gewinn zu früh erscheinen lassen.'),
+  T(['Fall','Entscheidende Abgrenzung','Folge für die Analyse'],[
+   ['Variable Vergütung','Unter IFRS darf der einbezogene Betrag bei Auflösung der Unsicherheit höchstwahrscheinlich keine wesentliche Umsatzkorrektur nach unten auslösen.','Eine rechnerische Bonus-Erwartung ist nicht automatisch vollständig erfassbar.'],
+   ['Konsignation','Physische Auslieferung an einen Händler kann bei weiterbestehender Kontrolle des Lieferanten noch kein Verkauf sein.','Warenstandort, Kontrolle und unbedingte Zahlungspflicht getrennt untersuchen.'],
+   ['Prinzipal oder Agent','Kontrolle über die versprochene Leistung vor der Übertragung entscheidet über die Rolle; bloßes Inkasso genügt nicht.','Bruttoumsatz und Nettogebühr ergeben unterschiedliche Margenbasen.']
+  ],'Konkrete Vertragsrechte gehen einem pauschalen Schluss aus Lieferung oder Zahlung vor.'),
+  'Ein höherer Umsatz kann aus mehr Leistung, einer neuen Schätzung oder einer anderen Darstellung stammen. Für die Prognose sollte jede dieser Ursachen getrennt dokumentiert werden; die bloße Wiederholung der Wachstumsrate vermischt sie.'
+ ]),
+ S('expense-patterns','9. Aufwand: Verbrauch, Vorauszahlung und spätere Erfüllung','b',[
+  'Der zeitliche Ablauf kann in drei Richtungen verlaufen. Bei sofort verbrauchter Arbeit fallen Leistung und Aufwand in dieselbe Periode. Bei einer Vorauszahlung liegt die Zahlung vor dem Verbrauch. Bei einer bereits entstandenen, später zu erfüllenden Verpflichtung liegt der Aufwand vor der Zahlung. Alle drei können dasselbe Bankkonto berühren, aber verschiedene Jahresgewinne erzeugen.',
+  T(['Eigener Fall, ohne Steuer','Zahlung im aktuellen Jahr','Aufwand im aktuellen Jahr','Verbleibender Bilanzposten'],[
+   ['60 für zwölf Monate Versicherung ab 1. Oktober','60','15 für drei verbrauchte Monate','Vorauszahlung 45'],
+   ['100 Waren zu je 8 gekauft; 75 verkauft','800','600 Umsatzkosten','Vorräte 200'],
+   ['Gewährleistung: erwartete Gesamtkosten 30, bisher erfüllt 9','9','30','Rückstellung 21']
+  ],'Geldeinheiten sind in allen Zeilen gleich. Anfangsbestände und andere Bewegungen sind null; alle Ansatzvoraussetzungen seien erfüllt.'),
+  'Im Gewährleistungsfall sichert die Zusage nur die vertragliche Beschaffenheit der verkauften Ware ab. Eine zusätzlich verkaufte eigenständige Servicegarantie kann dagegen eine separate Leistungsverpflichtung mit späterem Umsatz sein. „Garantie“ im Alltag ist deshalb noch keine vollständige Bilanzierungsanweisung.',
+  F('L_1=L_0+W-P,\\qquad W=L_1-L_0+P','Die Verpflichtung wächst mit dem Aufwand und sinkt mit ihrer Erfüllung; weitere Schätzänderungen sind hier nicht vorhanden.',[['L_0,L_1','Gewährleistungsrückstellung zu Beginn und Ende.'],['W','Neu erfasster Gewährleistungsaufwand.'],['P','Auszahlungen zur Erfüllung der Gewährleistung.']]),
+  'Für viele ähnliche Gewährleistungsverpflichtungen werden erwartete Kosten auf Grundlage plausibler Schadenshäufigkeiten und Reparaturkosten geschätzt. Diese müssen an neue Informationen angepasst werden. Ein außergewöhnlich geringer Aufwand bei steigenden Schäden kann den Gewinn zunächst verbessern und spätere Perioden belasten.',
+  X('Aktivierung über mehrere Jahre beurteilen','Eine isolierte Ausgabe von 150 wird entweder bei Entstehung verbraucht oder erfüllt im Vergleichsfall die Aktivierungsvoraussetzungen und wird über drei Jahre ohne Restwert abgeschrieben. Vollständige Jahre, keine neuen Ausgaben, keine Steuern.',[
+   T(['Jahr','Sofortaufwand','Abschreibung bei Aktivierung','Gewinnvorsprung der Aktivierung'],[['1','150','50','100'],['2','0','50','−50'],['3','0','50','−50'],['Summe','150','150','0']],'Die anfängliche Verbesserung kehrt sich in den Folgejahren um.'),
+   'Nach Jahr 1 ist das Vermögen der aktivierenden Variante um 100 höher, nach Jahr 2 um 50, nach Jahr 3 besteht keine Differenz mehr. Die aufsummierten Gewinndifferenzen erklären jeweils genau den verbleibenden Buchwertunterschied.'
+  ],'Wer nur Jahr 1 untersucht, verwechselt die Verteilung eines Aufwands mit dessen Vermeidung. Bei regelmäßig neuen Investitionen überlagern sich mehrere solche Zeitpläne.')
+ ]),
+ S('discontinued-bridge','10. Gesamtergebnis zur künftigen Ertragsbasis überleiten','c e',[
+  'Ein als aufgegeben klassifizierter wesentlicher Geschäftsbereich kann ein positives oder negatives Ergebnis zum aktuellen Konzerngewinn beitragen, obwohl er künftig nicht mehr zum verbleibenden Geschäft gehört. Ein beliebiger kleiner Anlagenverkauf reicht für diese formelle Klassifikation nicht. Der analysierte Abschluss und seine Anhangangaben liefern die einschlägige Abgrenzung.',
+  F('NI=NI_c+NI_d,\\qquad NI_c=NI-NI_d','Beide Teilbeträge müssen dieselbe Steuerbasis besitzen; ein Nachsteuerbetrag wird nicht nochmals versteuert.',[['NI','Gesamtergebnis nach Steuern.'],['NI_c','Ergebnis fortgeführter Aktivitäten nach Steuern.'],['NI_d','Ergebnis aufgegebener Aktivitäten nach Steuern; bei Verlust negativ.']]),
+  X('Weniger berichteter Gewinn, mehr Ertrag im verbleibenden Geschäft','Jahr 1: Gesamtergebnis 100, darin 30 Nachsteuergewinn eines später aufgegebenen Bereichs. Jahr 2: Gesamtergebnis 90, darin 10 Nachsteuerverlust aus aufgegebenen Aktivitäten. Keine weiteren Anpassungen.',[
+   F('NI_{c,1}=100-30=70,\\qquad NI_{c,2}=90-(-10)=100','Das Vorzeichen des entfernten Beitrags ist entscheidend.',[['NI_{c,1},NI_{c,2}','Ergebnis fortgeführter Aktivitäten in Jahr 1 und Jahr 2.']]),
+   'Der Gesamtgewinn fällt um 10 %. Das fortgeführte Ergebnis steigt dagegen von 70 auf 100, also rund 42,86 %. Ein Prognosemodell, das den Gesamtgewinn um weitere 10 % reduziert, übernimmt hier den falschen Vergleich.',
+   'Trotzdem ist 100 noch kein bewiesener nachhaltiger Gewinn. Im fortgeführten Geschäft könnten andere Einmaleffekte, neue Finanzierungskosten oder wegfallende konzerninterne Leistungen enthalten sein.'
+  ],'Die Überleitung trennt erst den Unternehmensumfang und anschließend die Wiederkehr einzelner Effekte. Zwei getrennte Analyseschritte verhindern doppelte Bereinigungen.'),
+  'Verknüpfe diese Rechnung mit der Analyse der Berichtsqualität und dem normalisierten Ausgangsjahr im Prognosekapitel. Berichtigt man zuerst einen Fehler, muss jede nachfolgende Bereinigung vom korrigierten Wert ausgehen.'
  ])
  ],
+ related:[{unit:'reporting-quality',section:'combined',label:'Fehlerkorrektur und analytische Bereinigung verbinden'},{unit:'forecasting',section:'historical-base',label:'Ein normalisiertes Ausgangsjahr für die Prognose'},{unit:'ratios',section:'dupont',label:'Von Ergebnisstufen zur Eigenkapitalrendite'}],
  sources:[
+  {title:'IFRS Foundation: IFRS 5 – aufgegebene Geschäftsbereiche',url:'https://www.ifrs.org/issued-standards/list-of-standards/ifrs-5-non-current-assets-held-for-sale-and-discontinued-operations/'},
+  {title:'IFRS Foundation: IFRS 15 – Umsatz aus Kundenverträgen',url:'https://www.ifrs.org/issued-standards/list-of-standards/ifrs-15-revenue-from-contracts-with-customers/'},
+  {title:'IFRS Foundation: IFRS 15, insbesondere Fortschritt, variable Vergütung und Konsignation',url:'https://www.ifrs.org/content/dam/ifrs/publications/pdf-standards/english/2022/issued/part-a/ifrs-15-revenue-from-contracts-with-customers.pdf'},
+  {title:'IFRS Foundation: IAS 37 – Gewährleistungsrückstellungen',url:'https://www.ifrs.org/issued-standards/list-of-standards/ias-37-provisions-contingent-liabilities-and-contingent-assets/'},
+  {title:'IFRS Foundation: IAS 8 – Schätzungsänderungen und Fehlerkorrektur',url:'https://www.ifrs.org/issued-standards/list-of-standards/ias-8-basis-of-preparation-of-financial-statements/'},
   {title:'IFRS Foundation: IAS 33 – Earnings per Share',url:'https://www.ifrs.org/issued-standards/list-of-standards/ias-33-earnings-per-share/'},
   {title:'CFA Institute: Analyzing Income Statements – Lerngebiet und Analysefragen',url:'https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/analyzing-income-statements'}
  ],
