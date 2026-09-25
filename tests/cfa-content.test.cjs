@@ -164,7 +164,11 @@ test('published MCQ numerical answers agree with separately computed results',()
   'tax-18':52/200*100,'tax-19':13.5/90*100,
   'tax-20':(160+16-8)*.25/160*100,'tax-21':(240*.3+60*.1)/300*100,
   'tax-24':80-(80-20)*.3,'tax-a1':180-20/.25,
-  'tax-a2':65+35-20-6-((40-6)-(30-10)),'tax-b1':54-8-2+10-6,'tax-b2':(20+50)*.3
+  'tax-a2':65+35-20-6-((40-6)-(30-10)),'tax-b1':54-8-2+10-6,'tax-b2':(20+50)*.3,
+  'rq-02':140-45,'rq-03':65-1000*.09,'rq-08':18,'rq-10':150-40,
+  'rq-17':72+(12-8)*.75,'rq-21':96-60,'rq-22':48-12,'rq-23':30-18+9,
+  'rq-24':100*(10+900/100)-100*(10+900/150),
+  'rq-29':365*132/880,'rq-30':(120-72)/600*100,'rq-a1':78-10*.75-30*.8,'rq-b1':150-30
  };
  for(const [id,v] of Object.entries(expected)){
   const q=byId.get(id);const numeric=Number(q.options[q.correct].text.replace(/[€,]/g,'').replace('−','-').match(/-?\d+(?:\.\d+)?/)?.[0]);
@@ -888,6 +892,43 @@ test('inventory, long-term assets and income taxes cover all ten objectives and 
   }
  }
 });
+test('reporting-quality cases preserve cost-flow identities, lifetime expense and cash totals',()=>{
+ const u=data.units.find(u=>u.id==='reporting-quality'),fig=u.sections.find(s=>s.id==='production').blocks.find(b=>b.kind==='figure');
+ for(const [index,series] of fig.plot.series.entries())for(const [produced,y] of series.points){
+  const inventoryUnits=produced-100,costPaid=produced*10+1000,inventory=inventoryUnits*costPaid/produced,cogs=costPaid-inventory;
+  const profit=3000-cogs,cash=3000-costPaid;
+  assert.ok(Math.abs(y-[profit,cash][index])<1e-9);
+  assert.ok(Math.abs(profit-cash-inventory)<1e-9);
+  assert.ok(y>=fig.plot.y[0]&&y<=fig.plot.y[1]);
+ }
+ assert.equal(100-.08*2000,-60);
+ assert.equal(100-25+15,100-10,'unsupported reserve shifts expense instead of changing lifetime profit');
+ assert.equal(120+60,90+90);
+ const reported=60,management=reported+(16+12+20)*.75,balanced=reported+(16+20-24)*.75;
+ assert.equal(management,96);assert.equal(balanced,69);assert.equal(management-balanced,(12+24)*.75);
+ const receipts=[1000+80-100,1200+100-240];assert.deepEqual(receipts,[980,1060]);
+ assert.ok(Math.abs((receipts[1]/receipts[0]-1)*100-8.16326530612245)<1e-12);
+ assert.equal(48-120+72,0,'premature uncollected sale and inventory expense do not create cash');
+ const expenses={correct:[60,0,0],wrong:[20,20,20]};
+ assert.equal(expenses.correct.reduce((a,b)=>a+b),expenses.wrong.reduce((a,b)=>a+b));
+ assert.equal(60-20,40);assert.equal(40+20,60,'income plus depreciation explains the full CFO classification error');
+ assert.equal(35-20+10,25);assert.equal(15-20+10,5);
+ const correctedProfit=180-(120-72)-(60-20)-20,recurring=correctedProfit-40;
+ assert.equal(correctedProfit,72);assert.equal(recurring,32);assert.equal(correctedProfit*.75,54);assert.equal(recurring*.75,24);
+ const statutory=78-20*.7-10*.75,analytical=statutory+20*.7-30*.8;
+ assert.equal(statutory,56.5);assert.equal(analytical,46.5);
+ const reportedCash=[150,-90,20],correctedCash=[120,-60,20],normalized=120-20;
+ assert.equal(reportedCash.reduce((a,b)=>a+b),correctedCash.reduce((a,b)=>a+b));assert.equal(normalized,100);
+ const answer=id=>{const q=data.questions.find(q=>q.id===id);return q.options[q.correct].text;};
+ assert.match(answer('rq-22'),/36 million and €48 million/);
+ assert.match(answer('rq-24'),/300 higher profit and €500 lower CFO/);
+ assert.match(answer('rq-b1'),/120 million and €100 million/);
+ const coverage=data.coverage.find(c=>c.id==='reporting-quality');
+ assert.equal(coverage.objectives.length,8);
+ for(const o of coverage.objectives){assert.ok(o.sections.length);assert.ok(o.practice.length>=3,o.id);}
+ for(const pool of ['mock-a','mock-b'])assert.equal(data.questions.filter(q=>q.unit==='reporting-quality'&&q.pool===pool).length,1);
+});
+
 test('unwritten modules remain visible as gaps and cannot pass the release gate',()=>{
  if(!data.release&&data.units.length<data.modules.length)assert.throws(()=>compile({release:true}),/Fragen|Lernziele|Prüfung/);
  const eps=data.coverage.find(m=>m.id==='income-statement');

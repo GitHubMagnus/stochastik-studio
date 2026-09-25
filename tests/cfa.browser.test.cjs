@@ -64,6 +64,12 @@ test('every authored 2027 unit renders without overflow and new glossary terms r
   await page.locator('#glossary-'+target+' a[href="#cfa~learn-'+unit+'~'+section+'"]').click();
   await page.waitForFunction(id=>document.activeElement.id==='cfa-section-'+id,section);
  }
+ await page.goto(url+'/#cfa~learn-reporting-quality~smoothing');
+ const qualityTerm=page.locator('#cfa-section-smoothing a.term-link').filter({hasText:/^Earnings Smoothing$/}).first();
+ const qualityTarget=(await qualityTerm.getAttribute('href')).split('~')[1];
+ await qualityTerm.click();await page.waitForFunction(id=>document.activeElement.id==='glossary-'+id,qualityTarget);
+ await page.locator('#glossary-'+qualityTarget+' a[href="#cfa~learn-reporting-quality~smoothing"]').click();
+ await page.waitForFunction(()=>document.activeElement.id==='cfa-section-smoothing');
  await page.goto(url+'/#cfa~learn-ethics-cases');
  await page.locator('.cfa-related a[href="#cfa~learn-standard-iii~fair-dealing"]').click();
  await page.waitForFunction(()=>document.activeElement.id==='cfa-section-fair-dealing');
@@ -92,7 +98,7 @@ test('economics training gives per-choice reasons and exact chapter return links
 
 test('financial-statement training preserves formula explanations and returns to the exact worked section',async t=>{
  const page=await open(t);
- for(const id of ['analysis-framework','balance-sheet','cashflow-preparation','cashflow-analysis','inventory','long-assets','income-taxes']){
+ for(const id of ['analysis-framework','balance-sheet','cashflow-preparation','cashflow-analysis','inventory','long-assets','income-taxes','reporting-quality']){
   await page.goto(url+'/#cfa~learn-'+id);await page.locator('[data-train-unit]').click();
   const questions=actual.questions.filter(q=>q.unit===id&&q.pool==='practice');
   for(let i=0;i<3;i++){
