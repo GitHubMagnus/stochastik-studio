@@ -298,3 +298,37 @@ CFA-Fragen ausgegeben. Praktische Pflichtmodule des CFA Institute bleiben separa
   Lernzielreferenzen und 104 Fragen je vollständiger Klausur**, außerdem
   semantische Endprüfung, weitere Rechnerpraxis und redaktioneller Gesamtaudit.
   Die Zielwerte **90/100 und 80/100 bleiben nicht nachgewiesen**.
+- 25.09.2026, Berichtsqualität: **17 Abschnitte, 32 unabhängige Trainingsfragen,
+  je eine reservierte Klausurfrage, eine berechnete Grafik und elf kuratierte
+  Begriffsdefinitionen** ergänzen alle acht Lernzielreferenzen. Das Kapitel
+  trennt Berichtsqualität von wirtschaftlicher Ergebnisqualität, Vorsicht von
+  absichtlicher Verzerrung sowie Fehlerkorrektur von analytischer Normalisierung.
+  Die Fälle verbinden Umsatz, Forderungen, Vorräte, Reserven, Aktivierung,
+  Gewinn, Kapitalbedarf und Cashflowkategorien.
+- Gegenprüfung: Der Produktionsvergleich wird aus bezahlten Gesamtkosten,
+  verbleibenden Mengen, Kostenverteilung und tatsächlichem Absatz nachgerechnet.
+  Die Differenz von Bruttogewinn und CFO entspricht für jeden Grafikpunkt dem
+  neuen Lagerbuchwert. Mehrperiodige Glättung und falsche Aktivierung erhalten
+  ihren gesamten Aufwand, verändern aber dessen zeitliche Verteilung.
+  Fehlbuchungen werden samt Gegenposten korrigiert. Bereinigte Gewinne
+  berücksichtigen beide Vorzeichen und konkrete Steuersätze. Reservierte Fragen
+  verlangen eine Rückrechnung aus bereits bereinigtem Gewinn mit verschiedenen
+  Steuerwirkungen beziehungsweise die Trennung von Cashflowklassifikation
+  und zusätzlicher Normalisierung für die Prognose.
+- Quellenprüfung: Abgrenzungen des CFA-Lernziels, Neutralität und Vorsicht des
+  IFRS-Rahmenkonzepts, PCAOB-Prüfungsgrenzen, SEC-Non-GAAP-Interpretationen
+  und die IFRS-18-Angaben zu qualifizierenden Managementkennzahlen wurden
+  mit Primärquellen abgeglichen. Ein Warnsignal wird nicht als bewiesene
+  Manipulation behandelt; ein korrekter Bericht kann schlechte Ergebnisse zeigen.
+- Technikstand: **91 Kernprüfungen, 50 CFA-Prüfungen und zwei ergänzende
+  bisherige Browserprüfungen bestanden**. Alle 40 Einheiten werden auf Desktop
+  und Mobilbreite gerendert; das neue Training und der Wörterbuch-Rückweg wurden
+  bedient. Die Produktionsgrafik und mobile Lösung mit Symbolhilfe wurden
+  visuell geprüft. Gesamtstand: **40 Einheiten, 141/340 strukturelle
+  Lernzielreferenzen, 732 Trainingsfragen, je 77 Klausurfragen, 40 CFA-Grafiken,
+  411 präzise Wörterbuchverweise; global 819 Definitionen und 1.737 Begriffe/Aliase**.
+- Nächste Lücke innerhalb FSA: das integrierte Abschluss- und Prognosemodell.
+  Insgesamt fehlen weiterhin **62 Lerneinheiten, 199 strukturelle
+  Lernzielzuordnungen und 103 Fragen je vollständiger Klausur**. Die fachliche
+  Endprüfung und der Gesamtaudit bleiben ausstehend; **90/100 und 80/100
+  sind weiterhin nicht belegt**.
