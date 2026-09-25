@@ -70,6 +70,14 @@ test('every authored 2027 unit renders without overflow and new glossary terms r
  await qualityTerm.click();await page.waitForFunction(id=>document.activeElement.id==='glossary-'+id,qualityTarget);
  await page.locator('#glossary-'+qualityTarget+' a[href="#cfa~learn-reporting-quality~smoothing"]').click();
  await page.waitForFunction(()=>document.activeElement.id==='cfa-section-smoothing');
+ for(const [unit,section,term] of [['forecasting','biases','Outside View'],['income-statement','revenue-estimates','Konsignation'],['ratios','industry-cases','Combined Ratio']]){
+  await page.goto(url+'/#cfa~learn-'+unit+'~'+section);
+  const link=page.locator('#cfa-section-'+section+' a.term-link').filter({hasText:new RegExp('^'+term+'$')}).first();
+  const target=(await link.getAttribute('href')).split('~')[1];await link.click();
+  await page.waitForFunction(id=>document.activeElement.id==='glossary-'+id,target);
+  await page.locator('#glossary-'+target+' a[href="#cfa~learn-'+unit+'~'+section+'"]').click();
+  await page.waitForFunction(id=>document.activeElement.id==='cfa-section-'+id,section);
+ }
  await page.goto(url+'/#cfa~learn-ethics-cases');
  await page.locator('.cfa-related a[href="#cfa~learn-standard-iii~fair-dealing"]').click();
  await page.waitForFunction(()=>document.activeElement.id==='cfa-section-fair-dealing');
@@ -98,10 +106,11 @@ test('economics training gives per-choice reasons and exact chapter return links
 
 test('financial-statement training preserves formula explanations and returns to the exact worked section',async t=>{
  const page=await open(t);
- for(const id of ['analysis-framework','balance-sheet','cashflow-preparation','cashflow-analysis','inventory','long-assets','income-taxes','reporting-quality']){
+ for(const id of ['analysis-framework','income-statement','ratios','balance-sheet','cashflow-preparation','cashflow-analysis','inventory','long-assets','income-taxes','reporting-quality','forecasting']){
   await page.goto(url+'/#cfa~learn-'+id);await page.locator('[data-train-unit]').click();
   const questions=actual.questions.filter(q=>q.unit===id&&q.pool==='practice');
-  for(let i=0;i<3;i++){
+  const count=['income-statement','ratios'].includes(id)?questions.length:3;
+  for(let i=0;i<count;i++){
    const q=questions[i];
    assert.equal(await page.locator('.cfa-solution').count(),0);
    await page.locator('input[name="cfa-answer"]').nth(q.correct).check();await page.locator('#cfa-check').click();
@@ -113,7 +122,7 @@ test('financial-statement training preserves formula explanations and returns to
     await page.locator('.cfa-solution .formula-notation summary').first().click();
     assert.equal(await page.locator('.cfa-solution .formula-notation').first().getAttribute('open'),'');
    }
-   if(i<2)await page.locator('#cfa-train-next').click();
+   if(i<count-1)await page.locator('#cfa-train-next').click();
    else{
     await page.locator('.cfa-solution a[href="#cfa~learn-'+id+'~'+q.section+'"]').click();
     await page.waitForFunction(section=>document.activeElement.id==='cfa-section-'+section,q.section);
@@ -142,12 +151,18 @@ test('long formulas and tables expose scroll hints and remain keyboard accessibl
  await page.waitForFunction(()=>document.querySelector('#cfa-section-growing-cashflows .study-equation').scrollLeft>0);
  await page.goto(url+'/#cfa~learn-return-statistics~dispersion');
  const table=page.locator('#cfa-section-dispersion .cfa-table').first();
+ const captionId=await table.locator('table').getAttribute('aria-labelledby');
+ assert.ok(captionId);
+ const caption=page.locator('#'+captionId);
+ assert.ok((await caption.innerText()).length>20);
+ assert.equal(await caption.evaluate(el=>el.scrollWidth<=el.clientWidth+1),true);
  await page.waitForFunction(()=>document.querySelector('#cfa-section-dispersion .cfa-table')?.getAttribute('tabindex')==='0');
  assert.equal(await table.locator('+ .cfa-scroll-hint').isVisible(),true);
  const sectionY=await page.locator('#cfa-section-dispersion').evaluate(el=>el.getBoundingClientRect().top);
  assert.ok(sectionY>=0&&sectionY<50,'new scroll hints must not shift the targeted section out of view');
  await table.focus();await page.keyboard.press('ArrowRight');
  await page.waitForFunction(()=>document.querySelector('#cfa-section-dispersion .cfa-table').scrollLeft>0);
+ assert.equal(await caption.evaluate(el=>Math.abs(el.getBoundingClientRect().left-el.parentElement.getBoundingClientRect().left)<1),true,'caption remains outside horizontal scrolling');
  await page.setViewportSize({width:1440,height:900});
  await page.waitForFunction(()=>!document.querySelector('#cfa-section-dispersion .cfa-table').hasAttribute('tabindex'));
  assert.equal(await table.locator('+ .cfa-scroll-hint').isVisible(),false);
