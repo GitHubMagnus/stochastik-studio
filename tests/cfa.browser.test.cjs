@@ -70,7 +70,7 @@ test('every authored 2027 unit renders without overflow and new glossary terms r
  await qualityTerm.click();await page.waitForFunction(id=>document.activeElement.id==='glossary-'+id,qualityTarget);
  await page.locator('#glossary-'+qualityTarget+' a[href="#cfa~learn-reporting-quality~smoothing"]').click();
  await page.waitForFunction(()=>document.activeElement.id==='cfa-section-smoothing');
- for(const [unit,section,term] of [['forecasting','biases','Outside View'],['income-statement','revenue-estimates','Konsignation'],['ratios','industry-cases','Combined Ratio'],['issuer-forms','primary-secondary','Pre-Money-Bewertung']]){
+ for(const [unit,section,term] of [['forecasting','biases','Outside View'],['income-statement','revenue-estimates','Konsignation'],['ratios','industry-cases','Combined Ratio'],['issuer-forms','primary-secondary','Pre-Money-Bewertung'],['stakeholders','debt-overhang','Debt Overhang'],['stakeholders','measurement','Greenwashing']]){
   await page.goto(url+'/#cfa~learn-'+unit+'~'+section);
   const link=page.locator('#cfa-section-'+section+' a.term-link').filter({hasText:new RegExp('^'+term+'$')}).first();
   const target=(await link.getAttribute('href')).split('~')[1];await link.click();

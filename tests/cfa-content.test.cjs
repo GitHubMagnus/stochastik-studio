@@ -188,7 +188,12 @@ test('published MCQ numerical answers agree with separately computed results',()
   'org-05':Math.min(35,20),'org-07':(200+800*.3)/1000*100,'org-08':160/4*.2,
   'org-12':1500000/2350000*100,'org-13':600000/1200000*100,'org-14':0,
   'org-21':(800000*15-600000)/1e6,'org-22':150-90+40-10,'org-24':(50/40-1)*100,
-  'org-b1':1500000/(1500000+1250000)*100
+  'org-b1':1500000/(1500000+1250000)*100,
+  'stk-03':0,'stk-04':24/40*100,'stk-05':(108*.96+60*.04)-100,
+  'stk-08':105-100-10,'stk-21':80000*20*.7*.75,'stk-22':(.12-.05)*20-.6,
+  'stk-23':-3.5+[1,2,3,4].reduce((v,t)=>v+1.35/1.08**t,0),'stk-25':50*4000+250000-350000,
+  'stk-28':((165000/250)/(150000/200)-1)*100,'stk-a1':100-(.6*70+.4*100),
+  'stk-b1':-2+[1,2,3,4].reduce((v,t)=>v+.7/1.08**t,0)
  };
  for(const [id,v] of Object.entries(expected)){
   const q=byId.get(id);const numeric=Number(q.options[q.correct].text.replace(/[€,]/g,'').replace('−','-').match(/-?\d+(?:\.\d+)?/)?.[0]);
@@ -1157,6 +1162,77 @@ test('issuer tax, liability, leverage and voting examples preserve their distinc
  assert.equal(founderShares*10+otherShares,openingVotes+issuedVotes-lostConversionVotes);
  const answer=id=>{const q=data.questions.find(q=>q.id===id);return q.options[q.correct].text;};
  assert.match(answer('org-13'),/€6 million/);assert.match(answer('org-a1'),/equity can remain privately held/);
+});
+
+test('stakeholder payout examples conserve claims and expose transfers separately from total value',()=>{
+ const u=data.units.find(u=>u.id==='stakeholders'),section=id=>u.sections.find(s=>s.id===id);
+ const table=section('waterfall').blocks.find(b=>b.kind==='table');
+ for(const row of table.rows){
+  const [v,d,b,e,loss]=row.map(Number);
+  assert.equal(b+e,v);assert.equal(b+loss,d);assert.ok(e>=0&&b>=0&&b<=d);
+  assert.equal(b,Math.min(v,d));
+ }
+ const figure=section('waterfall').blocks.find(b=>b.kind==='figure');
+ const interpolate=(points,x)=>{
+  for(let i=1;i<points.length;i++){const [a,b]=points[i-1],[c,d]=points[i];if(x>=a&&x<=c)return b+(d-b)*(x-a)/(c-a);}
+  throw Error('point outside curve');
+ };
+ // Test not only authored knots: each intermediate claim must reconcile to the distributable estate.
+ for(let v=0;v<=160;v++){
+  const payments=figure.plot.series.map(s=>interpolate(s.points,v));
+  const priority=Math.min(v,80),remaining=v-priority;
+  assert.equal(payments[0],priority);assert.equal(payments[1],remaining);assert.equal(payments[2],v);
+ }
+ const risk=section('risk-shifting').blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table');
+ const strategies=[[[100,1]],[[50,.5],[150,.5]],[[40,.5],[150,.5]]];
+ risk.rows.forEach((row,i)=>{
+  const expected=[0,0,0];
+  for(const [estate,p] of strategies[i]){
+   const debt=Math.min(estate,80),equity=estate-debt;
+   expected[0]+=estate*p;expected[1]+=debt*p;expected[2]+=equity*p;
+  }
+  assert.deepEqual(row.slice(2).map(Number),expected);assert.equal(expected[1]+expected[2],expected[0]);
+ });
+ const before=risk.rows[0].slice(2).map(Number),after=risk.rows[2].slice(2).map(Number);
+ assert.equal(after[0]-before[0],-5);assert.equal(after[1]-before[1],-20);assert.equal(after[2]-before[2],15);
+ const overhang=section('debt-overhang').blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table');
+ assert.deepEqual(overhang.rows.map(r=>r.slice(1).map(Number)),[[70,95],[70,90],[0,5],[0,15]]);
+ const incrementalProject=95-70-15,creditorGain=90-70,ownerGain=5-15;
+ assert.equal(incrementalProject,10);assert.equal(creditorGain+ownerGain,incrementalProject);assert.ok(ownerGain<0);
+ for(const letter of ['a','b','c'])assert.ok(data.coverage.find(c=>c.id===u.id).objectives.find(o=>o.id===u.id+'-'+letter).practice.length>=8);
+});
+
+test('stakeholder ESG cases reconcile units, pass-through, tax, intensity and discounted investment curves',()=>{
+ const u=data.units.find(u=>u.id==='stakeholders'),section=id=>u.sections.find(s=>s.id===id);
+ const parse=s=>Number(s.replace(' €','').replace('−','-').replace(',','.'));
+ const table=section('transition-investment').blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table');
+ const pv=price=>[1,2,3,4].reduce((v,t)=>v+(20000*price-20000*price*.25)/1.08**t,0)/1e6;
+ for(const row of table.rows){
+  const [price,cf,discounted,npv]=row.map(parse);
+  assert.ok(Math.abs(cf-20000*price*.75/1e6)<1e-12);
+  assert.ok(Math.abs(discounted-pv(price))<.00051);
+  assert.ok(Math.abs(npv-(pv(price)-3.5))<.00051);
+ }
+ const fig=section('transition-investment').blocks.find(b=>b.kind==='figure');
+ for(const [price,npv] of fig.plot.series[0].points){
+  assert.ok(Math.abs(npv-(pv(price)-3.5))<1e-12);assert.ok(npv>=fig.plot.y[0]&&npv<=fig.plot.y[1]);
+ }
+ const root=fig.plot.marks[0].x;
+ assert.ok(Math.abs(pv(root)-3.5)<1e-12);assert.ok(Math.abs(root-70.45)<.005);
+ assert.ok(pv(root-.01)-3.5<0&&pv(root+.01)-3.5>0);
+ // Reconcile tax from the separate revenue and cost lines, not just the compact net formula.
+ const cost=100000*80-100000*50,revenue=cost*.4,taxSaving=(cost-revenue)*.25;
+ assert.equal(cost-revenue-taxSaving,1350000);
+ assert.equal(cost-cost*.25,2250000);
+ assert.ok(Math.abs((.1*30-.04*30)-.8-1)<1e-12);
+ assert.equal((200*5000-120*5000)+300000-600000,100000);
+ const oldIntensity=100000/100,newIntensity=110000/125;
+ assert.equal(oldIntensity,1000);assert.equal(newIntensity,880);
+ assert.ok(Math.abs((newIntensity-oldIntensity)/oldIntensity*100+12)<1e-12);
+ assert.equal((110000-100000)/100000*100,10);
+ const a=data.questions.find(q=>q.id==='stk-a1');assert.equal(a.options[a.correct].text,'18');
+ const total=.6*70+.4*180,debt=.6*70+.4*100,equity=total-debt;
+ assert.equal(total,114);assert.equal(debt,82);assert.equal(equity,32);assert.equal((debt-100)+(equity-20),total-120);
 });
 
 test('unwritten modules remain visible as gaps and cannot pass the release gate',()=>{
