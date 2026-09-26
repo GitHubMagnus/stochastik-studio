@@ -429,3 +429,45 @@ CFA-Fragen ausgegeben. Praktische Pflichtmodule des CFA Institute bleiben separa
   Ansprüche und Interessengruppen sowie Unternehmensführung und Kontrolle.
   Keine vollständige echte Probeklausur und noch keine Abnahme der Zielwerte
   **90/100 bzw. 80/100**.
+
+### Corporate Issuers: Ansprüche, Stakeholder und ESG, 26.09.2026
+
+- Zweites Corporate-Modul mit **16 Abschnitten, 32 Trainingsfragen und je einer
+  zusätzlichen reservierten Klausurfrage**. Die drei Lernziele haben jeweils
+  mindestens acht eigenständige Übungszuordnungen. Gläubigeranspruch,
+  Residualanspruch, Emittentenperspektive und konkrete Rangklasse werden getrennt.
+- Die Fälle zeigen, weshalb unveränderter erwarteter Unternehmensbetrag keine
+  unveränderte Verteilung garantiert. Risikoübertragung kann Eigentümer auf
+  Kosten alter Gläubiger begünstigen; ein eigenes Debt-Overhang-Beispiel erklärt,
+  weshalb sogar ein Projekt mit positivem Kapitalwert unterbleiben kann.
+  Endauszahlungen und ihre Erwartungswerte werden ausdrücklich von heutigen
+  Marktpreisen unterschieden. Verträge und ihre Flexibilitätskosten ergänzen
+  die Analyse, ohne weltweit einheitliche Insolvenzregeln zu behaupten.
+- ESG wird über wirtschaftliche Wirkungsketten erklärt. Eigene Fälle behandeln
+  Weitergabe eines CO₂-Kostenschocks, Steuerwirkungen, Schadenswahrscheinlichkeiten,
+  Personalmaßnahmen und vierjährige Investitionszahlungen. Absolute Emissionen
+  und Intensitäten werden getrennt; Methodikwechsel, Datenlücken und doppelte
+  Belastung in Bewertungsrechnungen sind ausdrücklich thematisiert.
+- Zwei neue Grafiken zeigen den Knick der Gläubiger-/Aktionärszahlungen und den
+  Preis, ab dem eine Emissionssenkung einen positiven finanziellen Kapitalwert
+  besitzt. Gegenrechnungen prüfen Tabellen, die Zwischenwerte der Auszahlungskurven,
+  sämtliche Investitionspunkte, die Nulldurchgangsschwelle und die Verteilung
+  des Projektüberschusses. Eigene Rechnungen kontrollieren alle numerischen
+  Antwortoptionen, die als richtig ausgewählt werden.
+- **101 Kernprüfungen und 61 CFA-Prüfungen einschließlich zehn Browserfällen**
+  bestanden. Das Corporate-Training wird mit sämtlichen 58 Fragen bedient;
+  Lösungen bleiben vorher verborgen, sämtliche Antwortbegründungen und
+  Rückverweise werden geprüft. Alle 43 Einheiten werden auf Desktop- und
+  Mobilbreite gerendert. Neue Glossarrückwege, beide Grafiken, Vergleichstabelle,
+  mobile Formelhilfen und mobile Tabellen wurden zusätzlich geprüft. Zwei
+  ergänzende Browserprüfungen kontrollieren das bestehende Wörterbuch und
+  die bisherigen Lehrbuchverweise ebenfalls erfolgreich.
+- Gesamtstand: **43 Einheiten, 152/340 strukturelle Lernzielreferenzen,
+  862 Trainingsfragen, je 80 reservierte Klausurfragen und 45 CFA-Grafiken**.
+  **469 kuratierte Wörterbuchverweise**, insgesamt **868 Definitionen mit
+  1.831 Begriffen/Aliasen**. Vorhandene Kurzdefinitionen zu Stakeholdern,
+  ESG, Recovery Rate und Greenwashing wurden durch präzisere Einträge ersetzt.
+- Weiter offen: **59 Einheiten, 188 strukturelle Lernzielzuordnungen und
+  100 Fragen je vollständiger Klausur**. Nächster Corporate-Bereich ist
+  Unternehmensführung und Kontrolle. Die Klausuren bleiben gesperrt;
+  Gesamtaudit und Zielabnahme **90/100 bzw. 80/100** sind weiterhin offen.

@@ -137,6 +137,8 @@ module.exports={id:'issuer-forms',intro:[
   'Eine vollständige Beurteilung benennt schließlich den Rechtsträger, die persönliche Haftung, die Steuerbasis, den Empfänger neuer Finanzierungsmittel, sämtliche Eigentümer- und Stimmrechte sowie die spätere Verkaufsmöglichkeit. Wenn eine Information fehlt, wird ihre Wirkung als offene Annahme kenntlich gemacht. Erst danach ist ein Vergleich von Rendite, Risiko und Kontrolle belastbar.'
  ])
 ],related:[
+ {unit:'stakeholders',section:'waterfall',label:'Eigentümer- und Gläubigerzahlungen aus derselben Vermögensbasis ableiten'},
+ {unit:'stakeholders',section:'risk-shifting',label:'Warum Interessen trotz gleicher Firma auseinandergehen können'},
  {unit:'balance-sheet',section:'measurement',label:'Rechtliche Ansprüche und Bilanzwerte auseinanderhalten'},
  {unit:'income-statement',section:'basic-eps',label:'Aktienzahl und Ergebnis je Aktie zeitlich richtig zuordnen'},
  {unit:'forecasting',section:'funding',label:'Kapitalbedarf bis zur Finanzierung verfolgen'},
