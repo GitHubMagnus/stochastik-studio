@@ -389,3 +389,43 @@ CFA-Fragen ausgegeben. Praktische Pflichtmodule des CFA Institute bleiben separa
   **61 Einheiten, 194 strukturelle Lernzielzuordnungen und 102 Fragen je Klausur**.
   Es gibt weiterhin keine vollständige echte Probeklausur. Der Material- und
   Prüfungsaudit ist nicht abgeschlossen; **90/100 und 80/100 bleiben unbelegt**.
+
+### Corporate Issuers: Unternehmensformen und Eigentum, 26.09.2026
+
+- Erstes Corporate-Modul mit **14 Abschnitten, 26 Trainingsfragen und je einer
+  reservierten Klausurfrage** ausgearbeitet. Alle drei zugeordneten Lernziele
+  besitzen mehrere eigenständige Übungen. Rechtsform, Haftung, steuerliche
+  Klassifikation, Eigentümerschaft und Börsenstatus werden getrennt erklärt.
+- Die Primärquellenprüfung verhindert zwei pauschale Fehlaussagen: Eine private
+  Gesellschaft ist nicht zwingend steuerlich transparent; eine Direktnotierung
+  kann unter passenden Regeln auch eine neue Aktienausgabe umfassen. Konkrete
+  US- und UK-Beispiele sind als solche gekennzeichnet. Persönliche Garantie,
+  Partnerhaftung und die Haftung hinter einer Partnergesellschaft werden
+  nicht mit dem Verlust des investierten Eigenkapitals verwechselt.
+- Eigene Rechenfälle verbinden mehrstufige Steuer, Gewinnzurechnung ohne
+  Ausschüttung, unterschiedliche Stimmrechte, fair bepreiste Kapitalerhöhung,
+  Aktienausgabe unter Wert, gemischtes IPO, SPAC-Rückgaben und Erwerbshebel.
+  Tabellen stimmen Käuferzahlungen auf Emittentenerlös, Verkäufererlös und
+  Kosten ab. Eine Grafik zeigt die Veränderung der Beteiligungsquote und
+  ihren Unterschied zur Vermögenswirkung einer fairen Ausgabe.
+- Unabhängige Rechnungen kontrollieren die vollständige Beteiligungstabelle,
+  jeden Kurvenpunkt, die wertgleiche Übertragung bei unterbewerteter Ausgabe,
+  alle Haftungs- und Erwerbsszenarien, Steuerstufen und die Kombination aus
+  Aktienausgabe, Verkauf und Stimmrechtsumwandlung. Das gesamte neue Training
+  wurde im Browser mit verborgener Lösung, Antwortbegründungen, Formelhilfe
+  und präzisen Kapitelrückwegen bedient. Grafik, Beteiligungstabelle und
+  mobile Steuer- und IPO-Beispiele wurden visuell geprüft.
+- Technikstand: **99 Kernprüfungen, 59 CFA-Prüfungen einschließlich zehn
+  Browserfällen sowie zwei ergänzende bisherige Browserprüfungen bestanden**.
+  Der Bereich bleibt als Arbeitsstand markiert; technische und numerische
+  Prüfungen ersetzen den fachlichen Gesamtaudit nicht.
+- Neuer Gesamtstand: **42 Einheiten, 149/340 strukturelle Lernzielreferenzen,
+  830 Trainingsfragen, je 79 reservierte Klausurfragen und 43 CFA-Grafiken**.
+  **451 kuratierte Verweise**, insgesamt **854 Wörterbuchdefinitionen mit
+  1.802 Begriffen/Aliasen**. Die Bedeutungen von General Partner und Limited
+  Partner wurden über den bloßen Fondsbezug hinaus präzisiert.
+- Weiter offen: **60 Einheiten, 191 strukturelle Lernzielzuordnungen und
+  101 Fragen je vollständiger Klausur**. Nächste Corporate-Module sind
+  Ansprüche und Interessengruppen sowie Unternehmensführung und Kontrolle.
+  Keine vollständige echte Probeklausur und noch keine Abnahme der Zielwerte
+  **90/100 bzw. 80/100**.

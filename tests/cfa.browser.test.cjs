@@ -70,7 +70,7 @@ test('every authored 2027 unit renders without overflow and new glossary terms r
  await qualityTerm.click();await page.waitForFunction(id=>document.activeElement.id==='glossary-'+id,qualityTarget);
  await page.locator('#glossary-'+qualityTarget+' a[href="#cfa~learn-reporting-quality~smoothing"]').click();
  await page.waitForFunction(()=>document.activeElement.id==='cfa-section-smoothing');
- for(const [unit,section,term] of [['forecasting','biases','Outside View'],['income-statement','revenue-estimates','Konsignation'],['ratios','industry-cases','Combined Ratio']]){
+ for(const [unit,section,term] of [['forecasting','biases','Outside View'],['income-statement','revenue-estimates','Konsignation'],['ratios','industry-cases','Combined Ratio'],['issuer-forms','primary-secondary','Pre-Money-Bewertung']]){
   await page.goto(url+'/#cfa~learn-'+unit+'~'+section);
   const link=page.locator('#cfa-section-'+section+' a.term-link').filter({hasText:new RegExp('^'+term+'$')}).first();
   const target=(await link.getAttribute('href')).split('~')[1];await link.click();
@@ -126,6 +126,32 @@ test('financial-statement training preserves formula explanations and returns to
    else{
     await page.locator('.cfa-solution a[href="#cfa~learn-'+id+'~'+q.section+'"]').click();
     await page.waitForFunction(section=>document.activeElement.id==='cfa-section-'+section,q.section);
+   }
+  }
+ }
+});
+
+test('corporate issuer training explains each choice and links back to the precise chapter section',async t=>{
+ const page=await open(t);
+ for(const unit of actual.units.filter(u=>u.topic==='corporate')){
+  await page.goto(url+'/#cfa~learn-'+unit.id);await page.locator('[data-train-unit]').click();
+  const qs=actual.questions.filter(q=>q.unit===unit.id&&q.pool==='practice');
+  for(const [i,q] of qs.entries()){
+   assert.equal(await page.locator('#cfa-question-title').innerText(),q.stem);
+   assert.equal(await page.locator('.cfa-solution').count(),0);
+   await page.locator('input[name="cfa-answer"]').nth(q.correct).check();await page.locator('#cfa-check').click();
+   assert.match(await page.locator('.cfa-solution h3').innerText(),/^Richtig/);
+   const solution=await page.locator('.cfa-solution').innerText();
+   for(const o of q.options)assert.ok(solution.includes(o.why),q.id);
+   assert.equal(await page.locator('.cfa-solution a[href="#cfa~learn-'+unit.id+'~'+q.section+'"]').count(),1);
+   if(q.solution.some(b=>b.kind==='formula')){
+    await page.locator('.cfa-solution .formula-notation summary').first().click();
+    assert.equal(await page.locator('.cfa-solution .formula-notation').first().getAttribute('open'),'');
+   }
+   if(i<qs.length-1)await page.locator('#cfa-train-next').click();
+   else{
+    await page.locator('.cfa-solution a[href="#cfa~learn-'+unit.id+'~'+q.section+'"]').click();
+    await page.waitForFunction(id=>document.activeElement.id==='cfa-section-'+id,q.section);
    }
   }
  }
