@@ -184,7 +184,11 @@ test('published MCQ numerical answers agree with separately computed results',()
   'ra-14':30+50-65,'ra-15':(90-10)/400*100,'ra-16':80/500*100,'ra-17':150/50,
   'ra-18':600/(200-100),'ra-19':840/210,'ra-23':( .06*1.4*2.5-.06*1.4*2)*100,
   'ra-24':140/4000*100,'ra-25':470/500*100,'ra-28':1200*.15-30-150*.25,
-  'ra-31':2*(730*40/365)-60
+  'ra-31':2*(730*40/365)-60,
+  'org-05':Math.min(35,20),'org-07':(200+800*.3)/1000*100,'org-08':160/4*.2,
+  'org-12':1500000/2350000*100,'org-13':600000/1200000*100,'org-14':0,
+  'org-21':(800000*15-600000)/1e6,'org-22':150-90+40-10,'org-24':(50/40-1)*100,
+  'org-b1':1500000/(1500000+1250000)*100
  };
  for(const [id,v] of Object.entries(expected)){
   const q=byId.get(id);const numeric=Number(q.options[q.correct].text.replace(/[€,]/g,'').replace('−','-').match(/-?\d+(?:\.\d+)?/)?.[0]);
@@ -1095,6 +1099,64 @@ test('ratio extensions reconcile capital bases, exact DuPont steps and balance c
   const objectives=data.coverage.find(c=>c.id===id).objectives;
   for(const o of objectives)assert.ok(o.practice.length>=4,o.id+': only '+o.practice.length+' questions');
  }
+});
+
+test('issuer ownership tables and curves reconcile to investor cash and share registers',()=>{
+ const u=data.units.find(u=>u.id==='issuer-forms');
+ const section=id=>u.sections.find(s=>s.id===id);
+ const example=section('primary-secondary').blocks.find(b=>b.kind==='example');
+ const table=example.steps.find(b=>b.kind==='table');
+ const before=[900000,300000,0],after=[900000,300000,400000];
+ const parse=s=>Number(s.replaceAll('.','').replace(' %','').replace(',','.'));
+ const total=after.reduce((a,b)=>a+b),value=12e6+4e6,price=value/total;
+ assert.equal(total,1600000);assert.equal(price,10);
+ table.rows.slice(0,3).forEach((row,i)=>{
+  assert.equal(parse(row[1]),before[i]);assert.equal(parse(row[2]),after[i]);
+  assert.equal(parse(row[3]),after[i]/total*100);assert.equal(parse(row[4]),after[i]*price/1e6);
+ });
+ assert.equal(parse(table.rows[3][1]),before.reduce((a,b)=>a+b));assert.equal(parse(table.rows[3][2]),total);
+ assert.equal(parse(table.rows[3][3]),100);assert.equal(parse(table.rows[3][4]),value/1e6);
+ const fig=section('ownership-figure').blocks.find(b=>b.kind==='figure');
+ for(const [cash,weight] of fig.plot.series[0].points){
+  const newShares=cash*1e6/10,allShares=1200000+newShares,ownValue=900000*(12e6+cash*1e6)/allShares;
+  assert.ok(Math.abs(weight-900000/allShares*100)<1e-10);assert.equal(ownValue,9e6);
+  assert.ok(weight>=fig.plot.y[0]&&weight<=fig.plot.y[1]);
+ }
+ assert.ok(fig.plot.series[0].points.some(([x,y])=>x===6&&Math.abs(y-50)<1e-10));
+ assert.deepEqual(fig.plot.series[1].points,[[0,50],[12,50]]);
+ const cheapNew=4e6/5,cheapPrice=16e6/(1200000+cheapNew),oldLoss=12e6-1200000*cheapPrice,newGain=cheapNew*cheapPrice-4e6;
+ assert.equal(cheapPrice,8);assert.equal(oldLoss,2.4e6);assert.equal(oldLoss,newGain);assert.equal(900000*cheapPrice,7.2e6);
+ const buyerCash=(.5e6+.2e6)*20,companyNet=.5e6*20-.6e6,seller=.2e6*20;
+ assert.equal(buyerCash,companyNet+seller+.6e6);assert.equal(companyNet,9.4e6);assert.equal(seller,4e6);
+ assert.equal((1.4e6-.2e6)/(2e6+.5e6),.48);assert.equal(.7e6/2.5e6,.28);
+ const combined=Object.fromEntries(['a','b','c'].map(letter=>[letter,data.questions.filter(q=>q.unit===u.id&&q.pool==='practice'&&q.objectives.includes(u.id+'-'+letter)).length]));
+ for(const [letter,n] of Object.entries(combined))assert.ok(n>=5,'issuer-forms-'+letter+' has only '+n+' questions');
+});
+
+test('issuer tax, liability, leverage and voting examples preserve their distinct claim bases',()=>{
+ const u=data.units.find(u=>u.id==='issuer-forms'),section=id=>u.sections.find(s=>s.id===id);
+ const liability=section('liability').blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table');
+ assert.deepEqual(liability.rows.map(r=>r.slice(1).map(Number)),[[70,30,0],[70,0,30]]);
+ for(const row of liability.rows)assert.equal(Number(row[1])+Number(row[2])+Number(row[3]),100);
+ const taxCompany=250,dividend=1000-taxCompany,taxOwner=dividend*.2;
+ assert.equal(dividend-taxOwner,600);assert.equal((taxCompany+taxOwner)/1000,.4);assert.equal(1000-350,650);
+ assert.equal(100*.6*.3,18);assert.ok(Math.abs(2e6/2.8e6*100-71.42857142857143)<1e-10);
+ const leverage=section('going-private').blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table');
+ for(const row of leverage.rows){
+  const v=Number(row[0]),unlevered=Number(row[1]),levered=Number(row[3]);
+  assert.equal(unlevered,v);assert.equal(levered+60,v);
+  const pct=s=>Number(s.replace(' %','').replace('−','-'));
+  assert.ok(Math.abs(pct(row[2])-(unlevered-100)/100*100)<1e-12);
+  assert.ok(Math.abs(pct(row[4])-(levered-40)/40*100)<1e-12);
+ }
+ assert.equal(200-120+50-15,115);
+ // Independently reconcile votes lost on conversion with the end register.
+ const openingVotes=200000*10+800000,issuedVotes=400000,lostConversionVotes=50000*9;
+ const founderShares=200000-50000,otherShares=800000+400000+50000;
+ assert.equal(founderShares+otherShares,1400000);
+ assert.equal(founderShares*10+otherShares,openingVotes+issuedVotes-lostConversionVotes);
+ const answer=id=>{const q=data.questions.find(q=>q.id===id);return q.options[q.correct].text;};
+ assert.match(answer('org-13'),/€6 million/);assert.match(answer('org-a1'),/equity can remain privately held/);
 });
 
 test('unwritten modules remain visible as gaps and cannot pass the release gate',()=>{
