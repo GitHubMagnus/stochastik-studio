@@ -193,7 +193,11 @@ test('published MCQ numerical answers agree with separately computed results',()
   'stk-08':105-100-10,'stk-21':80000*20*.7*.75,'stk-22':(.12-.05)*20-.6,
   'stk-23':-3.5+[1,2,3,4].reduce((v,t)=>v+1.35/1.08**t,0),'stk-25':50*4000+250000-350000,
   'stk-28':((165000/250)/(150000/200)-1)*100,'stk-a1':100-(.6*70+.4*100),
-  'stk-b1':-2+[1,2,3,4].reduce((v,t)=>v+.7/1.08**t,0)
+  'stk-b1':-2+[1,2,3,4].reduce((v,t)=>v+.7/1.08**t,0),
+  'gov-03':200000-.03*4000000,'gov-05':.3+.1+.9,'gov-15':.5*10000*30,
+  'gov-16':.05*(18000000-10000000),'gov-19':3-3*.7,'gov-21':40*5,
+  'gov-25':(130-10)/32,'gov-26':(96-12)/28,'gov-29':(.06-.02)*15-.4,
+  'gov-a1':1.6*(1-.25),'gov-b2':(.8+.2+1.4)-(1.1+.3+.7)
  };
  for(const [id,v] of Object.entries(expected)){
   const q=byId.get(id);const numeric=Number(q.options[q.correct].text.replace(/[€,]/g,'').replace('−','-').match(/-?\d+(?:\.\d+)?/)?.[0]);
@@ -1233,6 +1237,77 @@ test('stakeholder ESG cases reconcile units, pass-through, tax, intensity and di
  const a=data.questions.find(q=>q.id==='stk-a1');assert.equal(a.options[a.correct].text,'18');
  const total=.6*70+.4*180,debt=.6*70+.4*100,equity=total-debt;
  assert.equal(total,114);assert.equal(debt,82);assert.equal(equity,32);assert.equal((debt-100)+(equity-20),total-120);
+});
+
+test('governance control costs reconcile the table, graph, derivative and remaining risk',()=>{
+ const u=data.units.find(u=>u.id==='governance'),section=id=>u.sections.find(s=>s.id===id);
+ const ex=section('agency-costs').blocks.find(b=>b.kind==='example'),table=ex.steps.find(b=>b.kind==='table');
+ for(const row of table.rows){
+  const [m,b,l,total]=row.map(s=>Number(s.replace(',','.')));
+  assert.equal(b,.5);assert.equal((1+m)*l,12);assert.equal(m+b+l,total);
+ }
+ const figure=section('agency-costs').blocks.find(b=>b.kind==='figure'),series=figure.plot.series;
+ for(const [m,v] of series[0].points)assert.ok(Math.abs(v-m-.5)<1e-12);
+ for(const [m,v] of series[1].points)assert.ok(Math.abs(v*(1+m)-12)<1e-12);
+ for(const [m,total] of series[2].points){
+  const residual=total-m-.5;assert.ok(Math.abs(residual*(1+m)-12)<1e-12);
+  assert.ok(total>=figure.plot.y[0]&&total<=figure.plot.y[1]);
+ }
+ const {x:opt,y:min}=figure.plot.marks[0];
+ assert.ok(Math.abs(12/(1+opt)**2-1)<1e-12);
+ assert.ok(series[2].points.some(([x,y])=>x===opt&&Math.abs(y-min)<1e-12));
+ assert.ok(series[2].points.every(([,v])=>v>=min-1e-12));
+ assert.ok(1-12/(1+opt-.001)**2<0);assert.ok(1-12/(1+opt+.001)**2>0);
+ assert.ok(Math.abs(min-6.428203230275509)<1e-12);
+ const benefit=10*.08-10*.03-.4;assert.ok(Math.abs(benefit-.1)<1e-12);
+ const answer=id=>{const q=data.questions.find(q=>q.id===id);return q.options[q.correct].text;};
+ assert.match(answer('gov-06'),/^B has lower total modeled costs by 0.2/);
+ assert.ok(Math.abs((.5+.2+2)-(1.2+.2+1.1)-.2)<1e-12);
+ assert.ok(Math.abs((.8+.2+1.4)-(1.1+.3+.7)-.3)<1e-12);
+});
+
+test('governance compensation, minority rights and covenant cases reconcile their economic bases',()=>{
+ const u=data.units.find(u=>u.id==='governance'),section=id=>u.sections.find(s=>s.id===id);
+ const table=section('equity-pay').blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table');
+ const number=s=>Number(s.replace(/[. €]/g,'').replace(',','.'));
+ const terminal=[60,30,90],shares=2000,options=10000,strike=50;
+ table.rows.slice(0,3).forEach((row,i)=>{
+  const p=terminal[i];assert.equal(number(row[1]),p);assert.equal(number(row[2]),p*shares);
+  assert.equal(number(row[3]),p<=strike?0:(p-strike)*options);
+ });
+ const averaged=[(30+90)/2,(30*shares+90*shares)/2,(0+(90-strike)*options)/2];
+ assert.deepEqual(table.rows[3].slice(1).map(number),averaged);
+ assert.equal(averaged[1],60*shares);assert.equal(averaged[2],2*(60-strike)*options);
+ const profit=9.8,shift=1,threshold=10,bonusRate=.05;
+ const oldBonus=Math.min(.5,Math.max(0,profit-threshold)*bonusRate);
+ const newBonus=Math.min(.5,Math.max(0,profit+shift-threshold)*bonusRate);
+ assert.equal(oldBonus,0);assert.ok(Math.abs(newBonus-.04)<1e-12);
+ assert.ok(Math.abs(shift-1.3-(newBonus-oldBonus)+.34)<1e-12);
+ const controllerLoss=.6*2,otherLoss=.4*2,sellerGain=2;
+ assert.equal(controllerLoss+otherLoss,sellerGain);assert.equal(sellerGain-controllerLoss,otherLoss);
+ // Exhaust all possible allocations of the majority's 210 integer cumulative votes to three rivals.
+ const minorityVotes=90,totalMajorityVotes=210;
+ for(let a=0;a<=totalMajorityVotes;a++)for(let b=0;b<=totalMajorityVotes-a;b++){
+  const rivals=[a,b,totalMajorityVotes-a-b];
+  assert.ok(rivals.filter(v=>v>=minorityVotes).length<3,'even adverse ties cannot exclude the minority candidate');
+ }
+ const initialNet=120-20,stressEbitda=30;
+ assert.equal(initialNet,100);assert.equal((120-20)-(20-20),initialNet);
+ assert.ok(initialNet/40<=3);assert.ok(initialNet/stressEbitda>3);
+ assert.equal((90-5)-(10-5),80);assert.ok(80/30>2.5);
+ const mock=data.questions.find(q=>q.id==='gov-a2');assert.match(mock.options[mock.correct].text,/does not restore compliance/);
+ for(const letter of ['a','b','c'])assert.ok(data.coverage.find(c=>c.id===u.id).objectives.find(o=>o.id===u.id+'-'+letter).practice.length>=8);
+});
+
+test('agency conflict and agency costs remain separate dictionary concepts with correct return links',()=>{
+ const glossary=require('../finance-glossary.cjs');
+ const resolve=label=>glossary.find(e=>[e.term,...e.aliases].some(s=>s.toLowerCase()===label.toLowerCase()));
+ const conflict=resolve('Agency-Konflikt'),costs=resolve('Agency Costs');
+ assert.equal(conflict.term,'Agency-Konflikt');assert.equal(costs.term,'Agency-Kosten');assert.notEqual(conflict,costs);
+ assert.deepEqual(conflict.cfa,{unit:'governance',section:'conflict-map'});
+ assert.deepEqual(costs.cfa,{unit:'governance',section:'agency-costs'});
+ assert.match(costs.definition,/Monitoring/);assert.match(costs.definition,/Bonding/);
+ assert.match(resolve('Clawback').definition,/Carry/);assert.match(resolve('Clawback').definition,/Führungskräften/);
 });
 
 test('unwritten modules remain visible as gaps and cannot pass the release gate',()=>{

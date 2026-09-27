@@ -471,3 +471,45 @@ CFA-Fragen ausgegeben. Praktische Pflichtmodule des CFA Institute bleiben separa
   100 Fragen je vollständiger Klausur**. Nächster Corporate-Bereich ist
   Unternehmensführung und Kontrolle. Die Klausuren bleiben gesperrt;
   Gesamtaudit und Zielabnahme **90/100 bzw. 80/100** sind weiterhin offen.
+
+### Corporate Governance: Anreize und wirksame Kontrolle, 27.09.2026
+
+- Drittes Corporate-Modul mit **16 Abschnitten, 32 Trainingsfragen und je zwei
+  zusätzlichen reservierten Klausurfragen**. Jede der drei Lernzielreferenzen
+  hat mindestens acht Übungszuordnungen. Delegation, Informationsasymmetrie,
+  private Vorteile sowie Eigentümer-, Minderheiten- und Gläubigerkonflikte
+  werden auf konkrete Entscheidungs- und Kontrollmechanismen zurückgeführt.
+- Die Kurzdefinition im bisherigen Wörterbuch setzte Agency Costs mit dem
+  Agency-Konflikt gleich. Diese Zuordnung wurde korrigiert. Konflikt und
+  Kosten sind getrennte Einträge mit eigenen Abschnittsverweisen. Monitoring,
+  Bonding und verbleibender Verlust werden erklärt und in einem ausdrücklich
+  hypothetischen Modell summiert. Eine Grafik und ihre mathematische Ableitung
+  zeigen, weshalb zusätzliche Kontrolle ein inneres Kostenminimum besitzen kann.
+  Gesetzliche Pflichtkontrollen werden von diesem freiwilligen Vergleich getrennt.
+- Eigene Zahlenfälle vergleichen Aktien- und Optionsauszahlungen, kurzfristigen
+  Bonus und mehrjährige Wartungszahlungen, private Mehrheitsvorteile und
+  Minderheitsverluste sowie kumulierte Stimmen. Für den Wahlfall werden sämtliche
+  ganzzahligen Verteilungen der Gegenstimmen geprüft, einschließlich nachteiliger
+  Gleichstände. Covenantfälle verfolgen Schuld und anrechenbaren Cash auf beiden
+  Seiten einer Tilgung und erklären, weshalb die Nettoschuld dabei konstant bleibt.
+- Board-Struktur, Unabhängigkeit, Ausschüsse, operative Kontrolle, interne
+  Revision und externe Prüfung werden mit ihren unterschiedlichen Aufgaben
+  und Grenzen erläutert. Offenlegung ist kein Fairnessnachweis; formale
+  Unabhängigkeit oder eine hohe Richtlinienzahl allein belegen keine Wirksamkeit.
+  Ein integrierter Fall verbindet Warnsignale mit geeigneter Untersuchung,
+  Zuständigkeit, Abhilfe und deren unabhängiger Nachverfolgung.
+- **104 Kernprüfungen, 64 CFA-Prüfungen einschließlich zehn Browserfällen und
+  zwei ergänzende bisherige Browserprüfungen bestanden**. Der Corporate-Durchlauf
+  bedient alle 90 Trainingsfragen der drei Module, kontrolliert sämtliche
+  Antwortbegründungen und die genauen Lösungsrückverweise. Alle 44 Einheiten
+  passen auf Desktop- und Mobilbreite. Grafik, Auszahlungstabelle, mobile
+  Formeln mit ausgeklappter Symbolhilfe und Wahlbeispiel wurden visuell geprüft.
+- Gesamtstand: **44 Einheiten, 155/340 strukturelle Lernzielreferenzen,
+  894 Trainingsfragen, je 82 reservierte Klausurfragen und 46 CFA-Grafiken**.
+  **491 kuratierte Rückverweise**, insgesamt **886 Wörterbuchdefinitionen mit
+  1.857 Begriffen/Aliasen**. Clawback umfasst jetzt sowohl Führungskräftevergütung
+  als auch den bereits erläuterten Carry-Kontext.
+- Weiter offen: **58 Einheiten, 185 strukturelle Lernzielzuordnungen und
+  98 Fragen je vollständiger Klausur**. Als Nächstes folgen Working Capital
+  und Liquidität, Kapitalallokation, Kapitalstruktur und Geschäftsmodelle.
+  Release, vollständiger fachlicher Audit und die Zielbewertungen bleiben offen.
