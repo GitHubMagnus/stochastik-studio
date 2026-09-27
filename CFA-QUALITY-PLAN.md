@@ -561,3 +561,53 @@ CFA-Fragen ausgegeben. Praktische Pflichtmodule des CFA Institute bleiben separa
   96 Fragen je vollständiger Klausur**. Nächste Corporate-Themen sind
   Kapitalallokation, Kapitalstruktur und Geschäftsmodelle. Klausurfreigabe,
   fachlicher Gesamtaudit und die Zielbewertungen **90/100 und 80/100** bleiben offen.
+
+### Kapitalinvestitionen und Kapitalallokation, 28.09.2026
+
+- Fünftes Corporate-Modul mit **22 Abschnitten, 40 Trainingsfragen und je zwei
+  zusätzlichen reservierten Klausurfragen**. Die vier 2027-Lernzielreferenzen
+  besitzen 6, 21, 24 beziehungsweise 8 Trainingszuordnungen. Projektarten,
+  Entscheidungsprozess und Nachprüfung werden mit konkreten Alternativen erklärt.
+- Ein eigener vierjähriger Maschinenfall leitet NOPAT, Abschreibungsvorteil,
+  operative Zahlungen, Betriebskapital und steuerbereinigten Verkaufserlös her.
+  Die vollständige Zahlungsreihe wird tabellarisch abgestimmt, auf heutige Werte
+  abgezinst und numerisch zum internen Zinsfuß gelöst. Eine dokumentierte
+  BA-II-Plus-Eingabefolge erklärt Vorzeichen, Wiederholungen und Perioden.
+- Größen- und Zeitvergleiche zeigen, weshalb die höchste IRR nicht immer den
+  größten Wertbeitrag liefert. Eine Grafik zeigt kreuzende Kapitalwertkurven;
+  eine zweite die zwei Nullpunkte einer Zahlungsreihe mit späterer Auszahlung.
+  Für erhaltene Finanzierung wird die umgekehrte Zinspräferenz erläutert.
+  IRR als Nullpunkt und eine zusätzliche Wiederanlage-/Endvermögensinterpretation
+  werden ausdrücklich unterschieden.
+- ROIC verwendet einen offengelegten Ergebnis- und Kapitalbegriff. Eigene Fälle
+  zeigen sinkenden Durchschnitts-ROIC bei zusätzlicher Wertschaffung und steigende
+  Buchrendite allein durch Abschreibung. Eine separate Herleitung mit
+  Anfangskapital stimmt den Barwert wirtschaftlicher Periodenüberschüsse mit dem
+  Kapitalwert ab. Diese Konvention wird nicht unbemerkt mit Durchschnittskapital
+  vermischt. Ein Budgetfall prüft sämtliche Kombinationen unteilbarer Projekte.
+- Realoptionen behandeln Abwarten, Erweiterung, Abbruch und Betriebsflexibilität.
+  Die Zahlenfälle verwenden ausdrücklich vorgegebene risikoneutrale Gewichte und
+  passende Diskontierung. Zustandsabhängige Wahl, Ausübungsausgabe und heutige
+  Bereitstellungskosten werden getrennt. Die dritte Grafik stellt Ausübungswert
+  und verpflichtende Investition gegenüber; heutiger Optionspreis und späterer
+  Ausübungswert bleiben auseinandergehalten. Doppelzählung bereits modellierter
+  Flexibilität und Grenzen nicht handelbarer Projekte sind erläutert.
+- **113 Kernprüfungen, 73 CFA-Prüfungen einschließlich zehn Browserfällen und
+  drei ergänzende Browserprüfungen bestanden**. Unabhängige Rechnungen kontrollieren
+  Zahlungsstromkomponenten, Steuerbasis, alle numerischen richtigen Antworten,
+  Barwerttabellen, IRR-Nullpunkte, Kurvenwerte, ROIC-Brücken, Budgetkombinationen
+  und Optionszahlungen. Der Corporate-Durchlauf bedient alle **162 Trainingsfragen**
+  der fünf Module mit Einzelbegründungen und Lösungsrückwegen. Alle 46 Einheiten
+  werden auf Desktop- und Mobilbreite gerendert; neue Wörterbuchrückwege werden
+  geprüft. Drei Grafiken, vollständige Projekttabelle, mobile Formelhilfe und
+  mobile Eingabetabelle des Finanzrechners wurden visuell kontrolliert.
+- Das Wörterbuch präzisiert NPV, IRR, ROIC, NOPAT und Realoptionen.
+  Hurdle Rate umfasst sowohl Projektbewertung als auch die bisherige
+  Private-Markets-Bedeutung. Kapitalallokation bleibt von der Capital Allocation
+  Line der Portfoliotheorie getrennt. Gesamtstand: **528 kuratierte Rückverweise,
+  916 Definitionen mit 1.917 Begriffen/Aliasen**.
+- Gesamtstand: **46 Einheiten, 162/340 strukturelle Lernzielreferenzen,
+  966 Trainingsfragen, je 86 reservierte Klausurfragen und 51 CFA-Grafiken**.
+  Weiter offen: **56 Einheiten, 178 Lernzielzuordnungen und 94 Fragen je
+  vollständiger Klausur**. Es folgen Kapitalstruktur und Geschäftsmodelle.
+  Freigabe, vollständiger fachlicher Audit und die Zielbewertungen bleiben offen.
