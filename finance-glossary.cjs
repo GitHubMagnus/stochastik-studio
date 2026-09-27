@@ -170,7 +170,7 @@ E('ESG','Nachhaltigkeit','Sammelbegriff für Umwelt-, Sozial- und Unternehmensf�
 // Unternehmensfinanzierung und Aktienbewertung
 E('Corporate Governance','Unternehmensfinanzierung','Strukturen und Prozesse zur Leitung, Kontrolle und Rechenschaft eines Unternehmens.','corporate-02','Unternehmensführung'),
 E('Stakeholder','Unternehmensfinanzierung','Partei, die vom Unternehmen betroffen ist oder Ansprüche und Interessen daran hat.','corporate-02','Stakeholdern'),
-E('Agency-Konflikt','Unternehmensfinanzierung','Interessengegensatz zwischen Auftraggebern und Entscheidungsträgern mit eigenen Anreizen.','corporate-02','Agency Costs|Agency-Kosten'),
+E('Agency-Konflikt','Unternehmensfinanzierung','Interessengegensatz zwischen Auftraggebern und Entscheidungsträgern mit eigenen Anreizen. Die daraus entstehenden Agency-Kosten sind eine gesonderte Größe.','corporate-02','Agency Conflict'),
 E('Geschäftsmodell','Unternehmensfinanzierung','System, mit dem ein Unternehmen Kundennutzen erzeugt, Erlöse erzielt und Kosten trägt.','corporate-03'),
 E('Net Present Value','Bewertung','Barwert aller erwarteten Cashflows einschließlich Anfangsinvestition; positiver Wert schafft nach Annahmen Mehrwert.','corporate-04','NPV|Kapitalwert'),
 E('Realoption','Bewertung','Wertvolle unternehmerische Flexibilität, ein Projekt später zu erweitern, verschieben oder beenden.','corporate-05','Real Option|Realoptionen'),
