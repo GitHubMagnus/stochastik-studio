@@ -205,7 +205,15 @@ test('published MCQ numerical answers agree with separately computed results',()
   'wc-15':(60-20)/(100-20),'wc-17':5-(12+20-37),'wc-22':20000*.08+1400-4000,
   'wc-23':540000*40/360-500000*30/360,'wc-24':1/99*365/30*100,
   'wc-25':1000-49000*.1*30/365,'wc-26':200000*.7,'wc-28':((50000+2500-5000)/(50000-500-5000)-1)*100,
-  'wc-a1':365*(150/1825+160/2920-120/2190),'wc-b1':-4+9-7,'wc-b2':3/97*360/30*100
+  'wc-a1':365*(150/1825+160/2920-120/2190),'wc-b1':-4+9-7,'wc-b2':3/97*360/30*100,
+  'ca-08':180000,'ca-09':(90000-30000)*.75,'ca-10':12000,'ca-11':(300-80)*.75+80,
+  'ca-12':245-40-15,'ca-13':80-(80-50)*.3,'ca-14':-600-40-60+30,
+  'ca-15':-500+[1,2,3].reduce((s,t)=>s+220/1.08**t,0)+40/1.08**3,
+  'ca-16':(275/250-1)*100,'ca-21':(160/130-1)*100,'ca-22':-100+260/1.3-168/1.3**2,
+  'ca-24':80*.75/450*100,'ca-27':70-500*.1,'ca-30':(1.06*1.03-1)*100,
+  'ca-33':(.4*50+.6*0)/1.05-3,'ca-34':.6*20/1.1,'ca-39':[1,2,3].reduce((s,t)=>s+40*.75/1.1**t,0),
+  'ca-a1':-440+[1,2,3].reduce((s,t)=>s+(160*.75+100)/1.1**t,0)+(40+80+(100-80)*.25)/1.1**3,
+  'ca-b1':72*.75/(250+350-100)*100
  };
  for(const [id,v] of Object.entries(expected)){
   const q=byId.get(id);const numeric=Number(q.options[q.correct].text.replace(/[€,]/g,'').replace('−','-').match(/-?\d+(?:\.\d+)?/)?.[0]);
@@ -1413,6 +1421,122 @@ test('working capital definitions and both DPO spellings resolve without conflic
  for(const [label,section] of [['Factoring','factoring'],['Skonto','trade-discount'],['Compensating Balance','funding-cost'],['Overtrading','sensitivity']]){
   assert.deepEqual(matches(label)[0].cfa,{unit:'working-capital',section});
  }
+});
+
+test('capital allocation project ledger reconciles earnings, taxes, terminal recovery, NPV and IRR',()=>{
+ const u=data.units.find(u=>u.id==='capital-allocation'),section=id=>u.sections.find(s=>s.id===id);
+ const num=s=>Number(s.replace(/[. €]/g,'').replace('−','-').replace(',','.'));
+ const example=section('project-case').blocks.find(b=>b.kind==='example'),table=example.steps.find(b=>b.kind==='table');
+ const dep=1000/4,ebit=1000-650-dep,tax=ebit*.25,operating=1000-650-tax,sale=100-(100-0)*.25;
+ const rows=table.rows.map(r=>r.slice(1).map(num));
+ assert.deepEqual(rows[0],[0,...Array(4).fill(operating)]);
+ assert.deepEqual(rows[1],[-1000,0,0,0,0]);assert.deepEqual(rows[2],[-100,0,0,0,100]);assert.deepEqual(rows[3],[0,0,0,0,sale]);
+ const cash=Array.from({length:5},(_,t)=>rows.slice(0,4).reduce((s,row)=>s+row[t],0));
+ assert.deepEqual(rows[4],cash);assert.deepEqual(cash,[-1100,325,325,325,500]);
+ const npv=r=>cash.reduce((s,c,t)=>s+c/(1+r)**t,0);
+ const pvTable=section('npv').blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table');
+ pvTable.rows.forEach((row,t)=>{
+  assert.equal(num(row[1]),cash[t]);assert.ok(Math.abs(num(row[2])-1/1.1**t)<.00000051);
+  assert.ok(Math.abs(num(row[3])-cash[t]/1.1**t)<.0051);
+ });
+ assert.ok(Math.abs(npv(.1)-49.73362475240748)<1e-9);
+ assert.ok(npv(.1)>0&&npv(.12)<0);
+ let lo=.1,hi=.12;for(let i=0;i<70;i++){const r=(lo+hi)/2;if(npv(r)>0)lo=r;else hi=r;}
+ const irr=(lo+hi)/2;assert.ok(Math.abs(irr-.11933616090853316)<1e-12);assert.ok(Math.abs(npv(irr))<1e-9);
+ assert.match(JSON.stringify(section('irr')),/11\{,\}9336/);
+ const lower=cash.map((c,t)=>c-(t>0?50*.75:0));
+ const decline=npv(.1)-lower.reduce((s,c,t)=>s+c/1.1**t,0);
+ assert.ok(Math.abs(decline-118.87)<.005);assert.ok(npv(.1)-decline<0);
+ assert.match(JSON.stringify(section('calculator')),/F01: 3/);assert.match(JSON.stringify(section('calculator')),/F02: 1/);
+ const objectives=data.coverage.find(c=>c.id===u.id).objectives;
+ for(const o of objectives){assert.ok(o.practice.length>=6,o.id);assert.ok(o.sections.length>=2,o.id);}
+});
+
+test('capital allocation crossover and multiple-IRR graphs agree with independently discounted payments',()=>{
+ const u=data.units.find(u=>u.id==='capital-allocation'),section=id=>u.sections.find(s=>s.id===id);
+ const fig=section('timing').blocks.find(b=>b.kind==='figure');
+ for(const [x,y] of fig.plot.series[0].points)assert.ok(Math.abs((y+100)*(1+x/100)-125)<1e-9);
+ for(const [x,y] of fig.plot.series[1].points)assert.ok(Math.abs((y+100)*(1+x/100)**2-150)<1e-9);
+ const cross=fig.plot.marks[0];assert.equal(cross.x,20);assert.ok(Math.abs(cross.y+100-125/1.2)<1e-9);assert.ok(Math.abs(cross.y+100-150/1.2**2)<1e-9);
+ const rows=section('timing').blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table').rows;
+ rows.forEach(row=>{
+  const r=parseFloat(row[0])/100,a=Number(row[1].replace(',','.')),b=Number(row[2].replace('−','-').replace(',','.'));
+  assert.ok(Math.abs(a-(-100+125/(1+r)))<.0051);assert.ok(Math.abs(b-(-100+150/(1+r)**2))<.0051);
+ });
+ const multiple=section('multiple-irr').blocks.find(b=>b.kind==='figure');
+ for(const [x,y] of multiple.plot.series[0].points){
+  const v=1+x/100;
+  assert.ok(Math.abs(y*v*v-(-100*v*v+230*v-132))<1e-10);
+  assert.ok(y>=multiple.plot.y[0]&&y<=multiple.plot.y[1]);
+ }
+ for(const mark of multiple.plot.marks)assert.ok(Math.abs(-100*(1+mark.x/100)**2+230*(1+mark.x/100)-132)<1e-10);
+ const value=r=>-100+230/(1+r)-132/(1+r)**2;
+ assert.ok(value(.05)<0&&value(.15)>0&&value(.25)<0);
+ assert.ok(100-110/1.12>0,'financing IRR below the comparable rate is beneficial');
+});
+
+test('capital allocation ROIC bridges and indivisible budget choices preserve absolute value',()=>{
+ const u=data.units.find(u=>u.id==='capital-allocation'),section=id=>u.sections.find(s=>s.id===id);
+ const profit=(84-24)*.75,avgCapital=(100+180+120+200)/2;
+ assert.equal(profit,45);assert.equal(avgCapital,300);assert.equal(profit/avgCapital,.15);
+ const netIncome=(60-14)*.75;assert.equal(netIncome+14*.75,profit);
+ assert.equal((45+12)/(300+100),.1425);assert.equal((45+12)-.1*(300+100),17);
+ assert.equal(12/.1-100,20);
+ const table=section('book-capital').blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table');
+ const beginning=[100,50],cash=[60,60],income=[10,10],ending=[50,0];let epPV=0;
+ table.rows.forEach((row,i)=>{
+  const cells=row.map(s=>parseFloat(s));
+  assert.deepEqual(cells,[i+1,beginning[i],cash[i],50,income[i],100*income[i]/beginning[i]]);
+  assert.equal(cash[i],income[i]-(ending[i]-beginning[i]));
+  epPV+=(income[i]-.1*beginning[i])/1.1**(i+1);
+ });
+ assert.ok(Math.abs(epPV-(-100+60/1.1+60/1.1**2))<1e-12);
+ const budgetTable=section('rationing').blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table');
+ const projects=budgetTable.rows.map(r=>({name:r[0],cost:Number(r[1]),value:Number(r[2]),pi:Number(r[3].replace(',','.'))}));
+ projects.forEach(p=>assert.ok(Math.abs(p.pi-(p.cost+p.value)/p.cost)<1e-12));
+ const feasible=[];
+ for(let mask=0;mask<8;mask++){
+  const subset=projects.filter((_,i)=>mask&(1<<i)),cost=subset.reduce((s,p)=>s+p.cost,0),value=subset.reduce((s,p)=>s+p.value,0);
+  if(cost<=100)feasible.push({names:subset.map(p=>p.name),value});
+ }
+ feasible.sort((a,b)=>b.value-a.value);assert.deepEqual(feasible[0],{names:['B','C'],value:48});
+ const q=data.questions.find(q=>q.id==='ca-29');assert.equal(q.options[q.correct].text,'B and C.');
+ assert.equal(60+60,120);assert.equal(28+29,57);assert.ok(70+60>120);
+});
+
+test('capital allocation option payoffs exercise by state and avoid counting continuation twice',()=>{
+ const u=data.units.find(u=>u.id==='capital-allocation'),section=id=>u.sections.find(s=>s.id===id);
+ const payoff=section('delay').blocks.find(b=>b.kind==='figure').plot;
+ for(const [v,y] of payoff.series[0].points)assert.equal(y,v-100);
+ for(const [v,y] of payoff.series[1].points)assert.equal(y,v<100?0:v-100);
+ const states=[{v:160,q:.5},{v:60,q:.5}];
+ const forced=states.reduce((s,a)=>s+a.q*(a.v-100),0)/1.1;
+ const right=states.reduce((s,a)=>s+a.q*Math.max(a.v-100,0),0)/1.1;
+ const now=states.reduce((s,a)=>s+a.q*a.v,0)/1.1-90;
+ assert.ok(Math.abs(now-10)<1e-12);assert.ok(right>forced);
+ assert.ok(Math.abs(right-5-22.27)<.005);assert.ok(Math.abs(right-now-17.27)<.005);
+ const table=section('delay').blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table');
+ assert.deepEqual(table.rows.map(r=>r.slice(1).map(s=>Number(s.replace('−','-')))),[[160,60,60],[60,-40,0]]);
+ const expansion=(.5*40+.5*0)/1.1;
+ assert.ok(Math.abs(-5+expansion-8-5.18)<.005);
+ const base=(180+40)/2/1.1,flex=(180+70)/2/1.1,increment=flex-base;
+ assert.ok(Math.abs(increment-13.64)<.005);assert.ok(Math.abs(increment-4-9.64)<.005);
+ assert.match(JSON.stringify(section('expand-abandon')),/13\{,\}64/);
+ // An option's value differs from the incremental flexibility when every state would be exercised.
+ const allGood=[140,180],fixed=allGood.reduce((s,v)=>s+(v-100)/2,0),optional=allGood.reduce((s,v)=>s+Math.max(v-100,0)/2,0);
+ assert.equal(fixed,optional);assert.ok(optional>0);
+ const q=data.questions.find(q=>q.id==='ca-35');assert.match(q.options[q.correct].text,/double counts/);
+});
+
+test('capital-allocation dictionary definitions distinguish value, return and both hurdle contexts',()=>{
+ const glossary=require('../finance-glossary.cjs'),resolve=term=>glossary.find(g=>[g.term,...g.aliases].includes(term));
+ for(const [label,section] of [['NPV','npv'],['IRR','irr'],['ROIC','roic'],['Realoption','options-map'],['Hurdle Rate','discount-consistency'],['Profitability Index','rationing']]){
+  assert.deepEqual(resolve(label).cfa,{unit:'capital-allocation',section});
+ }
+ assert.match(resolve('Hurdle Rate').definition,/Carry/);assert.match(resolve('Hurdle Rate').definition,/Projektbewertung/);
+ assert.match(resolve('ROIC').definition,/Buchkapitalrendite/);assert.match(resolve('IRR').definition,/mehrere Lösungen/);
+ assert.match(resolve('Tax Shield').definition,/Abschreibungen/);
+ assert.notEqual(resolve('Capital Allocation'),resolve('Capital Allocation Line'));
 });
 
 test('unwritten modules remain visible as gaps and cannot pass the release gate',()=>{
