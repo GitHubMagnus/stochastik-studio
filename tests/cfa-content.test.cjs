@@ -197,7 +197,15 @@ test('published MCQ numerical answers agree with separately computed results',()
   'gov-03':200000-.03*4000000,'gov-05':.3+.1+.9,'gov-15':.5*10000*30,
   'gov-16':.05*(18000000-10000000),'gov-19':3-3*.7,'gov-21':40*5,
   'gov-25':(130-10)/32,'gov-26':(96-12)/28,'gov-29':(.06-.02)*15-.4,
-  'gov-a1':1.6*(1-.25),'gov-b2':(.8+.2+1.4)-(1.1+.3+.7)
+  'gov-a1':1.6*(1-.25),'gov-b2':(.8+.2+1.4)-(1.1+.3+.7),
+  'wc-01':250-140,'wc-02':60+75-45,'wc-03':80-30,
+  'wc-04':365*(90/1095+120/1460-60/730),'wc-05':85/(990+110-80)*360,
+  'wc-06':90/720*360,'wc-09':40*250+25*400-30*250,'wc-10':500*(32-25),
+  'wc-11':18000*.2,'wc-12':20000*.06,'wc-13':(40+20+90)/100,'wc-14':180000/3000,
+  'wc-15':(60-20)/(100-20),'wc-17':5-(12+20-37),'wc-22':20000*.08+1400-4000,
+  'wc-23':540000*40/360-500000*30/360,'wc-24':1/99*365/30*100,
+  'wc-25':1000-49000*.1*30/365,'wc-26':200000*.7,'wc-28':((50000+2500-5000)/(50000-500-5000)-1)*100,
+  'wc-a1':365*(150/1825+160/2920-120/2190),'wc-b1':-4+9-7,'wc-b2':3/97*360/30*100
  };
  for(const [id,v] of Object.entries(expected)){
   const q=byId.get(id);const numeric=Number(q.options[q.correct].text.replace(/[€,]/g,'').replace('−','-').match(/-?\d+(?:\.\d+)?/)?.[0]);
@@ -1308,6 +1316,103 @@ test('agency conflict and agency costs remain separate dictionary concepts with 
  assert.deepEqual(costs.cfa,{unit:'governance',section:'agency-costs'});
  assert.match(costs.definition,/Monitoring/);assert.match(costs.definition,/Bonding/);
  assert.match(resolve('Clawback').definition,/Carry/);assert.match(resolve('Clawback').definition,/Führungskräften/);
+});
+
+test('working capital cash timeline, ledger and sensitivity curves reconcile on their own bases',()=>{
+ const u=data.units.find(u=>u.id==='working-capital'),section=id=>u.sections.find(s=>s.id===id);
+ const number=s=>Number(s.replace(/[. €]/g,'').replace('−','-').replace(',','.'));
+ const ledger=section('cash-timeline').blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table');
+ const expected=[[100,0,100,0,0],[100,0,0,0,-100],[0,130,0,30,-100],[0,0,0,30,30]];
+ assert.deepEqual(ledger.rows.map(r=>r.slice(1).map(number)),expected);
+ for(const [inventory,ar,ap,profit,cash] of expected)assert.equal(inventory+ar+cash-ap,profit);
+ const plot=section('cash-timeline').blocks.find(b=>b.kind==='figure').plot;
+ const [points]=plot.series.map(s=>s.points);
+ for(let i=1;i<points.length;i++){
+  const [x,y]=points[i],[prevX,prevY]=points[i-1];
+  if(x===prevX){assert.equal(y-prevY,x===20?-100:130);}else assert.equal(y,prevY,'cash changes only at payment dates');
+ }
+ const jumpDays=points.filter((p,i)=>i&&p[0]===points[i-1][0]).map(p=>p[0]);
+ assert.deepEqual(jumpDays,[20,75]);assert.equal(jumpDays[1]-jumpDays[0],55);
+ assert.equal(points.at(-1)[1],130-100);
+ const amount=section('cash-amount').blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table');
+ assert.deepEqual(amount.rows.map(r=>number(r[2])),[50*200,30*300,40*200,50*200+30*300-40*200]);
+ const curves=section('sensitivity').blocks.find(b=>b.kind==='figure').plot.series;
+ const baseline={dio:50,dso:30,dpo:40};
+ for(const [i,curve] of curves.entries())for(const [delta,value] of curve.points){
+  const state={...baseline};state[['dso','dio','dpo'][i]]+=delta;
+  const inventory=state.dio*200,receivables=state.dso*300,payables=state.dpo*200;
+  assert.equal(value,inventory+receivables-payables);
+ }
+ assert.equal(200*45+300*25-200*45,7500);
+ assert.equal(11000-7500,200*5+300*5+200*5);
+ const prose=JSON.stringify(section('decision').blocks);assert.match(prose,/3500|3\.500/);assert.match(prose,/7500/);
+ for(const objective of data.coverage.find(c=>c.id===u.id).objectives){assert.ok(objective.practice.length>=10);assert.ok(objective.sections.length>=3);}
+});
+
+test('working capital liquidity table, payment quotient and peak funding respect timing',()=>{
+ const u=data.units.find(u=>u.id==='working-capital'),section=id=>u.sections.find(s=>s.id===id);
+ const ratios=section('liquidity-ratios').blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table');
+ assert.deepEqual(ratios.rows.map(r=>parseFloat(r[2].replace(',','.'))),[200/100,(30+20+50)/100,(30+20)/100,(30+20+50)/2]);
+ const rows=section('ratio-traps').blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table').rows;
+ assert.equal(Number(rows[0][2]),200-40);assert.equal(Number(rows[1][2]),100-40);
+ assert.equal(Number(rows[3][1]),Number(rows[3][2]));assert.equal(Number(rows[4][2]),60-40);
+ for(const assets of [60,100,200])for(const paid of [1,20,40]){
+  const before=assets/100,after=(assets-paid)/(100-paid);
+  assert.ok(Math.abs(after-before-paid*(assets-100)/(100*(100-paid)))<1e-12);
+  assert.equal(Math.sign(after-before),Math.sign(assets-100));
+ }
+ const plan=receipts=>{
+  let cash=20,debt=0;const result=[];
+  for(let i=0;i<receipts.length;i++){
+   const opening=cash,payment=[70,60,65][i],before=opening+receipts[i]-payment;
+   let financing=before<10?10-before:-Math.min(debt,before-10);
+   cash=before+financing;debt+=financing;
+   result.push([i+1,opening,receipts[i],payment,before,financing,cash,debt]);
+  }return result;
+ };
+ const baseline=plan([40,80,50]),stress=plan([20,100,50]);
+ const table=section('cash-budget').blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table');
+ assert.deepEqual(table.rows.map(r=>r.map(s=>Number(s.replace('−','-')))),baseline);
+ assert.equal(Math.max(...baseline.map(r=>r[7])),20);assert.equal(Math.max(...stress.map(r=>r[7])),40);
+ assert.equal(baseline.at(-1)[7],15);assert.equal(stress.at(-1)[7],15);
+ assert.equal(stress[0][4]+30,0);assert.equal(10-(stress[0][4]+30),10,'ten is a buffer shortfall, not necessarily an unpaid invoice');
+});
+
+test('working capital discount, factoring and credit-policy examples reconcile complete cash amounts',()=>{
+ const u=data.units.find(u=>u.id==='working-capital'),section=id=>JSON.stringify(u.sections.find(s=>s.id===id));
+ const delayedPayment=100000,earlyPayment=delayedPayment*.98,days=30;
+ const periodCost=delayedPayment/earlyPayment-1,annualSimple=periodCost*365/days,annualEffective=(1+periodCost)**(365/days)-1;
+ assert.ok(Math.abs(annualSimple*100-24.83)<.005);assert.ok(Math.abs(annualEffective*100-27.86)<.005);
+ const bankRepayment=earlyPayment*(1+.08*days/365),saving=delayedPayment-bankRepayment;
+ assert.ok(Math.abs(saving-1355.62)<.005);assert.match(section('trade-discount'),/1355\{,\}62/);
+ const invoice=100000,advance=invoice*.8,fee=invoice*.01,interest=advance*.09*60/365;
+ const final=invoice-advance-fee-interest;
+ assert.ok(Math.abs(final-17816.44)<.005);assert.ok(Math.abs(advance+final-97816.44)<.005);
+ assert.ok(Math.abs(invoice-(advance+final)-fee-interest)<1e-9);
+ assert.match(section('factoring'),/17816\{,\}44/);assert.match(section('factoring'),/97\.816,44/);
+ const usable=100000-1000-10000,repayment=100000+6000-10000;
+ const irr=repayment/usable-1;assert.ok(Math.abs(irr*100-7.87)<.005);
+ assert.ok(Math.abs(usable-repayment/(1+irr))<1e-9);
+ assert.match(section('funding-cost'),/89000/);assert.match(section('funding-cost'),/96000/);
+ const oldAR=360000/360*30,newAR=396000/360*45,addedMargin=(396000-360000)*.25;
+ const extraFunding=(newAR-oldAR)*.1,extraContribution=addedMargin-3000-1000-extraFunding;
+ assert.equal(oldAR,30000);assert.equal(newAR,49500);assert.equal(extraFunding,1950);assert.equal(extraContribution,3050);
+ assert.match(section('credit-policy'),/3050/);
+});
+
+test('working capital definitions and both DPO spellings resolve without conflicting dictionary entries',()=>{
+ const glossary=require('../finance-glossary.cjs');
+ const matches=label=>glossary.filter(e=>[e.term,...e.aliases].some(s=>s.toLowerCase()===label.toLowerCase()));
+ for(const label of ['DPO','Days Payable Outstanding','Days Payables Outstanding']){
+  const entries=matches(label);assert.equal(entries.length,1,label);assert.equal(entries[0].term,'Days Payables Outstanding');
+  assert.match(entries[0].definition,/Krediteinkäufe/);assert.match(entries[0].definition,/verkürzen/);
+ }
+ const nwc=matches('NWC')[0],owc=matches('OWC')[0];
+ assert.ok(nwc&&owc);assert.notEqual(nwc,owc);assert.match(nwc.definition,/Finanzschulden/);assert.match(owc.definition,/ausgeschlossen/);
+ assert.deepEqual(nwc.cfa,{unit:'working-capital',section:'definitions'});
+ for(const [label,section] of [['Factoring','factoring'],['Skonto','trade-discount'],['Compensating Balance','funding-cost'],['Overtrading','sensitivity']]){
+  assert.deepEqual(matches(label)[0].cfa,{unit:'working-capital',section});
+ }
 });
 
 test('unwritten modules remain visible as gaps and cannot pass the release gate',()=>{

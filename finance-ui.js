@@ -4,6 +4,9 @@ window.FinanceStudy=(()=>{
  const byId=Object.fromEntries(lessons.map(l=>[l.id,l]));
  const glossary=JSON.parse(document.getElementById('finance-glossary-data').textContent);
  const glossaryById=Object.fromEntries(glossary.map(g=>[g.id,g]));
+ // Keep bookmarks to a former term working when that term becomes an alias.
+ const glossarySlug=s=>s.toLocaleLowerCase('de').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/ß/g,'ss').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+ const glossaryAliasById=new Map(glossary.flatMap(g=>g.aliases.map(alias=>[glossarySlug(alias),g])));
  const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const escapeReg=s=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
  const labelMap=new Map(glossary.flatMap(g=>[g.term,...g.aliases].map(label=>[label.toLocaleLowerCase('de'),g])));
@@ -83,7 +86,8 @@ window.FinanceStudy=(()=>{
  function resolveGlossary(route){
   if(route==='glossary')return {overview:true};
   if(!route.startsWith('glossary~'))return null;
-  return glossaryById[route.slice('glossary~'.length)]||null;
+  const id=route.slice('glossary~'.length);
+  return glossaryById[id]||glossaryAliasById.get(id)||null;
  }
  function renderGlossary(route){
   const selected=resolveGlossary(route),page=document.getElementById('page-glossary');

@@ -431,6 +431,22 @@ test('Finance deep links, formula links, answers, navigation and offline models 
  await page.screenshot({path:'test-results/finance-simulation.png'});
 });
 
+test('Finance dictionary preserves consolidated-term bookmarks and canonical destinations',async t=>{
+ const page=await open(t);
+ for(const name of ['days-payable-outstanding','days-payables-outstanding','dpo']){
+  await page.goto(url+'/#glossary~'+name);
+  await page.waitForFunction(()=>document.activeElement.id==='glossary-days-payables-outstanding');
+  assert.equal(await page.locator('#glossary-days-payables-outstanding h2').innerText(),'Days Payables Outstanding');
+  assert.match(await page.locator('#glossary-days-payables-outstanding').innerText(),/Krediteinkäufe/);
+ }
+ await page.locator('#glossary-days-payables-outstanding a[href="#cfa~learn-ratios~activity"]').click();
+ await page.waitForFunction(()=>document.activeElement.id==='cfa-section-activity');
+ const canonical=await page.evaluate(()=>{
+  const definitions=JSON.parse(document.getElementById('finance-glossary-data').textContent);
+  return definitions.every(g=>FinanceStudy.resolveGlossary('glossary~'+g.id)?.id===g.id);
+ });assert.equal(canonical,true);
+});
+
 test('Finance dictionary links technical terms in lessons and resolves every configured definition',async t=>{
  const page=await open(t);await page.goto(url+'/#lesson-bonds-08');
  const termLinks=page.locator('#page-finance-lesson .term-link');assert.ok(await termLinks.count()>10);
