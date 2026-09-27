@@ -513,3 +513,51 @@ CFA-Fragen ausgegeben. Praktische Pflichtmodule des CFA Institute bleiben separa
   98 Fragen je vollständiger Klausur**. Als Nächstes folgen Working Capital
   und Liquidität, Kapitalallokation, Kapitalstruktur und Geschäftsmodelle.
   Release, vollständiger fachlicher Audit und die Zielbewertungen bleiben offen.
+
+### Working Capital und Liquidität: Dauer, Betrag und Zahlungstermin, 27.09.2026
+
+- Viertes Corporate-Modul mit **18 Abschnitten, 32 Trainingsfragen und je zwei
+  zusätzlichen reservierten Klausurfragen**. Die drei 2027-Lernzielreferenzen
+  haben je mindestens 13 Übungszuordnungen. Bilanzielles Nettoumlaufvermögen,
+  operative Kapitalbindung und tatsächliche Finanzierungslücke werden getrennt.
+- Zwei berechnete Grafiken zeigen den Zahlungsablauf eines Geschäfts und die
+  unterschiedlichen Euroeffekte gleicher Änderungen von DIO, DSO und DPO.
+  Bestands-/Stromabgrenzung, Kreditumsatz, Krediteinkäufe, Saisonalität, negativer
+  CCC und Grenzen von Vergleichswerten sind ausdrücklich erläutert.
+- Eigene Rechnungen erklären Wachstum und Kapitalbindung, einmalige Freisetzung
+  gegenüber jährlicher Zinsersparnis, Current/Quick/Cash Ratio und Defensive
+  Interval. Eine algebraische Herleitung zeigt, weshalb Kassenverwendung eine
+  Current Ratio über eins erhöht und eine Quote unter eins weiter senkt.
+- Der periodische Liquiditätsplan trennt Endschuld und maximale Inanspruchnahme.
+  Ein verschobener Zahlungseingang verdoppelt den Spitzenbedarf bei unveränderten
+  Gesamtsummen. Eine Lücke zum gewünschten Mindestpuffer wird ausdrücklich nicht
+  automatisch als unbezahlte Verpflichtung bezeichnet.
+- Kundenkredit, Bestandssteuerung, Skonto, Factoring und kurzfristige Finanzierung
+  werden mit vollständigen eigenen Zahlenfällen verglichen. Rabattverzicht wird
+  einfach und effektiv annualisiert; ein Kredit mit Gebühr und gebundenem
+  Guthaben wird über seine beiden nutzbaren Nettozahlungen bewertet.
+  Investitionspolitik, Finanzierungsfristen, Dauerbedarf und Saisonspitzen
+  sind getrennte Entscheidungsebenen. Kreditbedingungen und operative
+  Nebenwirkungen verhindern eine bloße Optimierung der Tageskennzahl.
+- Das Wörterbuch unterscheidet NWC und OWC. Die bisherigen Schreibweisen
+  Days Payable Outstanding und Days Payables Outstanding führen jetzt auf
+  denselben präzisierten Eintrag. Aliasauflösung erhält ältere Direktlinks;
+  vorhandene kanonische Ziele haben weiterhin Vorrang.
+- **108 Kernprüfungen und 68 CFA-Prüfungen einschließlich zehn Browserfällen
+  bestanden**. Die Gegenrechnungen stimmen Ledger, Zeitachse, Sensitivitäten,
+  Finanzierungsspitzen, Gebühren, Skonto und sämtliche numerischen richtigen
+  Antworten ab. Der Corporate-Browserdurchlauf bedient alle **122 Trainingsfragen**
+  mit Antwortbegründungen, Symbolhilfen und genauen Abschnittsrückwegen.
+  Alle 45 Einheiten werden auf Desktop- und Mobilbreite geprüft. Beide Grafiken,
+  Liquiditätstabelle, mobile Symbollisten und Skontorechnung wurden visuell geprüft.
+  Nach Ergänzung der Aliasauflösung bestehen außerdem drei ergänzende
+  Browserprüfungen für Wörterbuch und bestehende Lehrbuchverweise sowie der
+  erneut ausgeführte Darstellungs- und Rückverweistest aller CFA-Einheiten.
+- Gesamtstand: **45 Einheiten, 158/340 strukturelle Lernzielreferenzen,
+  926 Trainingsfragen, je 84 reservierte Klausurfragen und 48 CFA-Grafiken**.
+  **509 kuratierte Rückverweise**, insgesamt **902 Wörterbuchdefinitionen mit
+  1.890 Begriffen/Aliasen**.
+- Weiter offen: **57 Einheiten, 182 strukturelle Lernzielzuordnungen und
+  96 Fragen je vollständiger Klausur**. Nächste Corporate-Themen sind
+  Kapitalallokation, Kapitalstruktur und Geschäftsmodelle. Klausurfreigabe,
+  fachlicher Gesamtaudit und die Zielbewertungen **90/100 und 80/100** bleiben offen.
