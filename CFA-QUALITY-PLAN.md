@@ -611,3 +611,57 @@ CFA-Fragen ausgegeben. Praktische Pflichtmodule des CFA Institute bleiben separa
   Weiter offen: **56 Einheiten, 178 Lernzielzuordnungen und 94 Fragen je
   vollständiger Klausur**. Es folgen Kapitalstruktur und Geschäftsmodelle.
   Freigabe, vollständiger fachlicher Audit und die Zielbewertungen bleiben offen.
+
+### 28.09.2026: Kapitalstruktur und Kapitalkosten
+
+- Capital Structure ist für die vier Lernziele des offiziellen Level-I-Outlines
+  2027 ausgearbeitet: **22 Abschnitte, 15 ausführliche Rechenfälle, 39 Formeltafeln
+  mit Symbolhilfen, zwölf Tabellen und drei berechnete Grafiken**. Dazu kommen
+  **40 eigenständige englische Trainingsfragen** mit deutschen Rechenwegen und
+  Einzelbegründungen sowie **je drei neue reservierte Klausurfragen**.
+- WACC wird aus den Kapitalbeiträgen hergeleitet. Markt- und Buchgewichte,
+  D/E und D/V, Vorzugskapital, historische Kupons, aktuelle Renditen und tatsächlich
+  nutzbare Zinssteuerentlastung werden getrennt. Einbehaltene Gewinne besitzen
+  Opportunitätskosten. Ein Finanzierungsplan verbindet aktuelle Werte, zusätzlichen
+  Mittelbedarf und Zielquote; die einzelne Zahlungsquelle bestimmt nicht allein
+  die Projekt-Hurdle-Rate.
+- Modigliani–Miller ohne Steuern wird mit einer zustandsweisen Replikation in
+  beiden Richtungen erklärt. Die Renditerechnung zeigt stärkere Ausschläge des
+  verschuldeten Eigenkapitals bei unverändertem Gesamtwert. Proposition II folgt
+  algebraisch aus dem gewichteten Anspruch auf dieselben Vermögenswerte.
+- Das Unternehmenssteuermodell verbindet Zinssteuerzahlungen, ihren Barwert,
+  Unternehmenswert und Eigenkapitalkosten. Auch Proposition II mit Steuern wird
+  aus Cashflow und Wertgleichung hergeleitet. Drei unabhängige Bewertungswege
+  stimmen einen vollständigen ewigen Zahlungsfall ab. Ein befristeter Kredit
+  zeigt, warum Steuersatz mal Schulden nicht allgemein den Steuerbarwert ergibt.
+  Doppelte Erfassung desselben Steuervorteils wird ausdrücklich ausgeschlossen.
+- Weitere Fälle behandeln direkte und indirekte Krisenkosten, marginale gegenüber
+  gesamten Trade-off-Effekten, operative Fixkosten und Zinsdeckung, Finanzierungs-
+  rangfolge und Flexibilität. Eine als Vertiefung bezeichnete Beta-Überleitung
+  trennt Geschäftsrisiko vom Finanzierungshebel und nennt ihre Grenzen.
+  Die drei Grafiken verwenden offengelegte eigene Modellwerte; das dargestellte
+  Wertmaximum ist keine empirisch geschätzte optimale Finanzierungsquote.
+- **118 Kernprüfungen, 78 CFA-Prüfungen einschließlich zehn Browserfällen und
+  vier ergänzende Browserprüfungen bestanden.** Gegenrechnungen prüfen alle
+  numerischen richtigen Antworten des neuen Pools, Kapitalbeiträge, Zahlungs-
+  replikation, Renditen, Steuertabelle, Bewertungsbrücke, befristeten Steuerwert,
+  Trade-off-Tabellen und Kurven, Beta-Punkte sowie operative Zinssensitivität.
+  Der Corporate-Trainingsdurchlauf bedient alle **202 Trainingsfragen** der sechs
+  Module einschließlich Antwortgründen, Formelhilfen und genauen Rückwegen.
+  Alle 47 Einheiten werden auf Desktop- und Mobilbreite gerendert. Ein doppelter
+  Alias wurde durch die Inhaltsprüfung gefunden und bereinigt. Nach der Sichtung
+  wurden zwei Grafikbeschriftungen von den Kurven abgerückt; die sechs gezielten
+  Zahlen- und Inhaltsprüfungen bestanden anschließend erneut.
+- Das Wörterbuch ergänzt beziehungsweise präzisiert **23 kuratierte Begriffe**,
+  unter anderem WACC, Eigenkapitalkosten, MM, Zinssteuervorteil, Zielstruktur,
+  Krisenkosten, APV und Asset-Beta. Der allgemeine Tax-Shield-Begriff umfasst
+  weiterhin auch Abschreibungen. Kapitalallokation verweist jetzt zusätzlich auf
+  die Herleitung der passenden Kapitalkosten und auf die Bewertungsbrücke.
+  Gesamtstand: **551 kuratierte Rückverweise, 933 Definitionen mit 1.953
+  Begriffen/Aliasen**.
+- Gesamtstand: **47 Einheiten, 166/340 strukturelle Lernzielreferenzen,
+  1.006 Trainingsfragen, je 89 reservierte Klausurfragen und 54 CFA-Grafiken**.
+  Weiter offen: **55 Einheiten, 174 Lernzielzuordnungen und 91 Fragen je
+  vollständiger Klausur**. Als Nächstes folgen Geschäftsmodelle; damit wird der
+  bisherige Corporate-Issuers-Block vervollständigt. Vollständige fachliche
+  Freigabe und die Zielbewertungen 90/100 beziehungsweise 80/100 bleiben offen.

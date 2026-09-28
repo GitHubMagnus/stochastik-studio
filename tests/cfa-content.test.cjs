@@ -213,7 +213,21 @@ test('published MCQ numerical answers agree with separately computed results',()
   'ca-24':80*.75/450*100,'ca-27':70-500*.1,'ca-30':(1.06*1.03-1)*100,
   'ca-33':(.4*50+.6*0)/1.05-3,'ca-34':.6*20/1.1,'ca-39':[1,2,3].reduce((s,t)=>s+40*.75/1.1**t,0),
   'ca-a1':-440+[1,2,3].reduce((s,t)=>s+(160*.75+100)/1.1**t,0)+(40+80+(100-80)*.25)/1.1**3,
-  'ca-b1':72*.75/(250+350-100)*100
+  'ca-b1':72*.75/(250+350-100)*100,
+  'cs-01':25*16,'cs-02':.75/1.75*100,'cs-03':.4/.6,
+  'cs-04':(600*.12+400*.06*.75)/1000*100,
+  'cs-05':(500*.1+100*.07+400*.05*.7)/1000*100,
+  'cs-06':(105/97-1)*100,'cs-07':7*.7,'cs-08':(3/60+.04)*100,'cs-09':4.5/75*100,
+  'cs-11':(.25*.048+.75*.1)*100,'cs-12':(400*.12+200*.06*.75)/600*100,
+  'cs-16':.35*(300+700+500)-300,'cs-19':(300*.9*.4-80)/7,
+  'cs-21':900-300,'cs-22':(9-3)*.8+9,'cs-24':.1*60-3*1.05,
+  'cs-26':350*.06*.3,'cs-27':800+200*.3,'cs-28':12+(12-6)*.75*.5,
+  'cs-29':12*(1-.25*.4),'cs-31':3/1.1+3/1.1**2,'cs-33':(.12-.04)*100/1.04,
+  'cs-34':900+100-40,'cs-38':1.4/(1+.8*.5)*(1+.8),
+  'cs-a1':(240*.07*.7+60*.08+20*30*.12)/(240+60+20*30)*100,
+  'cs-a2':(120-300*.06*.75)/(120/.12+.25*300-300)*100,
+  'cs-b1':(.8*.05*.8+.11)/1.8*100,
+  'cs-b2':(1200*.1-480*.04)/(1200-480)*100
  };
  for(const [id,v] of Object.entries(expected)){
   const q=byId.get(id);const numeric=Number(q.options[q.correct].text.replace(/[€,]/g,'').replace('−','-').match(/-?\d+(?:\.\d+)?/)?.[0]);
@@ -1537,6 +1551,115 @@ test('capital-allocation dictionary definitions distinguish value, return and bo
  assert.match(resolve('ROIC').definition,/Buchkapitalrendite/);assert.match(resolve('IRR').definition,/mehrere Lösungen/);
  assert.match(resolve('Tax Shield').definition,/Abschreibungen/);
  assert.notEqual(resolve('Capital Allocation'),resolve('Capital Allocation Line'));
+});
+
+test('capital structure WACC contributions use market weights and the tax adjustment exactly once',()=>{
+ const u=data.units.find(u=>u.id==='capital-structure'),section=id=>u.sections.find(s=>s.id===id);
+ const num=s=>Number(s.replace(/ Prozentpunkte| %/g,'').replace(/\./g,'').replace(',','.'));
+ const table=section('weight-case').blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table');
+ const values=[10*30,50,150],costs=[.11,.08,.06*(1-.25)],total=values.reduce((s,v)=>s+v,0);
+ let contribution=0;
+ table.rows.forEach((r,i)=>{
+  assert.equal(num(r[1]),values[i]);assert.equal(num(r[2]),values[i]/total*100);
+  const c=values[i]/total*costs[i]*100;assert.ok(Math.abs(num(r[4])-c)<1e-10);contribution+=c;
+ });
+ assert.equal(total,500);assert.ok(Math.abs(contribution-8.75)<1e-12);
+ const bookCost=(120*.11+50*.08+150*.06*.75)/(120+50+150);
+ assert.ok(Math.abs(bookCost*100-7.484375)<1e-12);assert.ok(contribution>bookCost*100);
+ const debtTarget=.4*(1000+200),newDebt=debtTarget-300,newEquity=200-newDebt;
+ assert.equal(newDebt,180);assert.equal(newEquity,20);assert.equal((300+newDebt)/(1000+200),.4);
+ const coverage=data.coverage.find(m=>m.id===u.id).objectives;
+ coverage.forEach(o=>{assert.ok(o.sections.length>=2,o.id);assert.ok(o.practice.length>=6,o.id);});
+ const qs=data.questions.filter(q=>q.unit===u.id);
+ assert.equal(qs.filter(q=>q.pool==='practice').length,40);
+ for(const pool of ['mock-a','mock-b'])assert.equal(qs.filter(q=>q.pool===pool).length,3);
+});
+
+test('capital structure MM replication matches every state and its plotted costs preserve asset return',()=>{
+ const u=data.units.find(u=>u.id==='capital-structure'),section=id=>u.sections.find(s=>s.id===id);
+ const num=s=>Number(s.replace('−','-').replace(' %','').replace(',','.'));
+ const table=section('replication').blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table');
+ const assets=table.rows[0].slice(1).map(num),debt=40,repayment=debt*1.05,equity=100-debt;
+ assets.forEach((cash,i)=>{
+  assert.equal(num(table.rows[1][i+1]),repayment);
+  assert.equal(num(table.rows[2][i+1]),cash-repayment);
+  const leveraged=.1*(cash-repayment),homemade=.1*cash-4*1.05;
+  assert.ok(Math.abs(num(table.rows[3][i+1])-leveraged)<1e-12);
+  assert.ok(Math.abs(leveraged-homemade)<1e-12);
+  assert.ok(Math.abs(.06*cash-(.06*(cash-repayment)+2.4*1.05))<1e-12);
+ });
+ const rU=assets.map(c=>c/100-1),rE=assets.map(c=>(c-repayment)/equity-1);
+ const means=[rU,rE].map(rs=>rs.reduce((s,x)=>s+x)/rs.length);
+ const returns=section('leverage-earnings').blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table');
+ returns.rows.forEach((r,i)=>[...([rU,rE][i]),means[i]].forEach((v,j)=>assert.ok(Math.abs(num(r[j+1])-v*100)<.0051)));
+ const sd=rs=>{const m=rs.reduce((a,b)=>a+b)/rs.length;return Math.sqrt(rs.reduce((s,r)=>s+(r-m)**2,0)/rs.length);};
+ assert.ok(Math.abs(sd(rU)-.4)<1e-12);assert.ok(Math.abs(sd(rE)-2/3)<1e-12);
+ assert.ok(Math.abs(.6*means[1]+.4*.05-means[0])<1e-12);
+ const fig=section('mm-no-tax').blocks.find(b=>b.kind==='figure');
+ for(const [ratio,cost] of fig.plot.series[0].points){
+  const e=100,d=ratio*e,requiredAssetDollars=(d+e)*.1;
+  assert.ok(Math.abs(cost/100*e+d*.04-requiredAssetDollars)<1e-10);
+ }
+ for(const [x,y] of fig.plot.series[1].points)assert.equal(y,10);
+ for(const [x,y] of fig.plot.series[2].points)assert.equal(y,4);
+ const rows=section('mm-no-tax').blocks.find(b=>b.kind==='table').rows;
+ rows.forEach(r=>{const ratio=num(r[0]);assert.ok(Math.abs(num(r[1])-ratio/(1+ratio)*100)<.0051);assert.equal(num(r[2]),10+6*ratio);assert.equal(num(r[3]),10);});
+});
+
+test('capital structure tax tables and three valuation routes agree without a duplicated shield',()=>{
+ const u=data.units.find(u=>u.id==='capital-structure'),section=id=>u.sections.find(s=>s.id===id);
+ const table=section('tax-shield').blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table');
+ const num=s=>Number(s.replace(',','.')),ebit=100,tax=.25,debt=200,kd=.05,ku=.1;
+ [0,debt].forEach((d,i)=>{
+  const interest=d*kd,ebt=ebit-interest,taxes=ebt*tax,equityCash=ebt-taxes;
+  const rows=[ebit,interest,ebt,taxes,equityCash,interest,equityCash+interest];
+  table.rows.forEach((r,j)=>assert.equal(num(r[i+1]),rows[j]));
+ });
+ const cf=ebit*(1-tax),annualShield=debt*kd*tax,shield=annualShield/kd,vu=cf/ku,vl=vu+shield,e=vl-debt;
+ const fcfe=(ebit-debt*kd)*(1-tax),ke=fcfe/e,wacc=(e*ke+debt*kd*(1-tax))/vl;
+ assert.equal(shield,50);assert.equal(vl,800);assert.equal(e,600);
+ assert.equal(ke,.1125);assert.equal(wacc,.09375);assert.equal(cf/wacc,vl);assert.equal(fcfe/ke,e);
+ assert.ok(Math.abs(ku+(ku-kd)*(1-tax)*debt/e-ke)<1e-12);
+ assert.ok(Math.abs(ku*(1-tax*debt/vl)-wacc)<1e-12);
+ const finite=[1,2,3].reduce((s,t)=>s+annualShield/(1+kd)**t,0);
+ assert.ok(Math.abs(finite-6.808120073)<1e-8);assert.ok(finite<shield);
+ assert.match(JSON.stringify(section('finite-shield')),/6\{,\}8081/);
+ assert.match(JSON.stringify(section('valuation-bridge')),/nochmals den Tax Shield/);
+});
+
+test('capital structure trade-off and beta figures reconcile with tables and separate business risk',()=>{
+ const u=data.units.find(u=>u.id==='capital-structure'),section=id=>u.sections.find(s=>s.id===id);
+ const num=s=>Number(s.replace(/\./g,'').replace(',','.'));
+ const table=section('tradeoff').blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table');
+ table.rows.forEach(r=>{const [d,benefit,cost,total]=r.map(num);assert.equal(benefit,d*.25);assert.equal(cost,d*d/4000);assert.equal(total,1000+benefit-cost);});
+ const graph=section('tradeoff').blocks.find(b=>b.kind==='figure').plot;
+ for(const [d,v] of graph.series[0].points)assert.equal(v,1000+d/4);
+ for(const [d,v] of graph.series[1].points)assert.ok(Math.abs(v-(1062.5-(d-500)**2/4000))<1e-10);
+ const maximum=graph.series[1].points.reduce((a,b)=>a[1]>b[1]?a:b);
+ assert.deepEqual(maximum,[500,1062.5]);assert.equal(graph.marks[0].x,maximum[0]);assert.equal(graph.marks[0].y,maximum[1]);
+ assert.ok(Math.abs(maximum[0]/maximum[1]*100-47.0588235294)<1e-9);
+ assert.ok(500/4>500**2/4000,'equal marginal effects do not imply equal total values');
+ const beta=section('beta').blocks.find(b=>b.kind==='figure').plot;
+ const unlevered=1.3/(1+.75*.5);
+ for(const [ratio,equityBeta] of beta.series[0].points)assert.ok(Math.abs(equityBeta/(1+.75*ratio)-unlevered)<1e-12);
+ for(const m of beta.marks)assert.ok(Math.abs(m.y-unlevered*(1+.75*m.x))<1e-12);
+ assert.ok(Math.abs((.03+.05*unlevered*(1+.75))*100-11.2727272727)<1e-9);
+ const coverageTable=section('drivers').blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table');
+ const expected=[[200*.5-60,200*.2],[160*.5-60,160*.2],[4,4],[2,3.2]];
+ coverageTable.rows.forEach((r,i)=>r.slice(1).forEach((cell,j)=>assert.ok(Math.abs(num(cell)-expected[i][j])<1e-12)));
+});
+
+test('capital structure glossary preserves canonical terms and precise model limitations',()=>{
+ const glossary=require('../finance-glossary.cjs'),resolve=term=>glossary.find(g=>[g.term,...g.aliases].includes(term));
+ for(const [label,section] of [['WACC','wacc'],['Cost of Equity','equity-cost'],['Modigliani-Miller','mm-assumptions'],['Homemade Leverage','replication'],['Target Capital Structure','target'],['Financial Distress','distress'],['APV','finite-shield'],['Asset-Beta','beta']]){
+  assert.deepEqual(resolve(label).cfa,{unit:'capital-structure',section});
+ }
+ assert.match(resolve('WACC').definition,/tatsächlich nutzbaren/);
+ assert.match(resolve('Eigenkapitalkosten').definition,/einbehaltenen Gewinnen/);
+ assert.match(resolve('Trade-off-Theorie').definition,/marginale/);
+ assert.match(resolve('Asset-Beta').definition,/Schuldenrisiko/);
+ assert.match(resolve('Tax Shield').definition,/Abschreibungen/);
+ assert.notEqual(resolve('Tax Shield'),resolve('Zinssteuervorteil'),'general tax shields include depreciation, whereas interest is a specific application');
 });
 
 test('unwritten modules remain visible as gaps and cannot pass the release gate',()=>{
