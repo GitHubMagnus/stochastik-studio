@@ -498,4 +498,5 @@ for(const entry of cfaEntries){
  if(!target)throw Error('CFA-Wörterbucheintrag fehlt: '+entry.term);
  target.definition=entry.definition;
  target.cfa=entry.cfa;
+ if(entry.contextualAliases)target.contextualAliases=entry.contextualAliases;
 }

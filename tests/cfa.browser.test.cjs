@@ -58,7 +58,7 @@ test('every authored 2027 unit renders without overflow and new glossary terms r
  await page.waitForFunction(()=>document.activeElement.id==='cfa-section-text-ai');
  for(const [unit,section,term] of [['fiscal','multipliers','Fiskalmultiplikator'],['monetary','reserves','Geldschöpfungsmultiplikator'],['cycles','inventories','Lager-Umsatz-Relation'],['geopolitics','cooperation','Soft Power'],['fx-markets','regimes','Currency Board'],['fx-calculation','covered-parity','gedeckte Zinsparität'],['analysis-framework','management','Management Discussion and Analysis'],['balance-sheet','financial-assets','SPPI'],['cashflow-preparation','scope','Zahlungsmitteläquivalente'],['cashflow-analysis','fcfe','Nettokreditaufnahme'],['inventory','cost-flows','FIFO'],['long-assets','us-impairment','Recoverability Test'],['income-taxes','valuation-allowance','Valuation Allowance']]){
   await page.goto(url+'/#cfa~learn-'+unit+'~'+section);
-  const termLink=page.locator('#cfa-section-'+section+' a.term-link').filter({hasText:new RegExp('^'+term+'$')}).first();
+  const termLink=page.locator('#cfa-section-'+section+' a.term-link:visible').filter({hasText:new RegExp('^'+term+'$')}).first();
   const target=(await termLink.getAttribute('href')).split('~')[1];
   await termLink.click();await page.waitForFunction(id=>document.activeElement.id==='glossary-'+id,target);
   await page.locator('#glossary-'+target+' a[href="#cfa~learn-'+unit+'~'+section+'"]').click();
@@ -70,9 +70,9 @@ test('every authored 2027 unit renders without overflow and new glossary terms r
  await qualityTerm.click();await page.waitForFunction(id=>document.activeElement.id==='glossary-'+id,qualityTarget);
  await page.locator('#glossary-'+qualityTarget+' a[href="#cfa~learn-reporting-quality~smoothing"]').click();
  await page.waitForFunction(()=>document.activeElement.id==='cfa-section-smoothing');
- for(const [unit,section,term] of [['forecasting','biases','Outside View'],['income-statement','revenue-estimates','Konsignation'],['ratios','industry-cases','Combined Ratio'],['issuer-forms','primary-secondary','Pre-Money-Bewertung'],['stakeholders','debt-overhang','Debt Overhang'],['stakeholders','measurement','Greenwashing'],['governance','agency-costs','Agency-Kosten'],['governance','shareholder-rights','Cumulative Voting'],['working-capital','definitions','Working Capital'],['working-capital','sensitivity','Overtrading'],['working-capital','trade-discount','Skonto'],['capital-allocation','discount-consistency','Hurdle Rate'],['capital-allocation','options-map','Realoption'],['capital-structure','wacc','WACC'],['capital-structure','mm-assumptions','Modigliani-Miller-Theorem'],['capital-structure','target','Target Capital Structure'],['capital-structure','distress','Financial Distress']]){
+ for(const [unit,section,term] of [['forecasting','biases','Outside View'],['income-statement','revenue-estimates','Konsignation'],['ratios','industry-cases','Combined Ratio'],['issuer-forms','primary-secondary','Pre-Money-Bewertung'],['stakeholders','debt-overhang','Debt Overhang'],['stakeholders','measurement','Greenwashing'],['governance','agency-costs','Agency-Kosten'],['governance','shareholder-rights','Cumulative Voting'],['working-capital','definitions','Working Capital'],['working-capital','sensitivity','Overtrading'],['working-capital','trade-discount','Skonto'],['capital-allocation','discount-consistency','Hurdle Rate'],['capital-allocation','options-map','Realoption'],['capital-structure','wacc','WACC'],['capital-structure','mm-assumptions','Modigliani-Miller-Theorem'],['capital-structure','target','Target Capital Structure'],['capital-structure','distress','Financial Distress'],['business-models','value','Value Proposition'],['business-models','lifetime','Customer Acquisition Cost'],['business-models','platforms','Take Rate'],['business-models','networks','Multi-Homing']]){
   await page.goto(url+'/#cfa~learn-'+unit+'~'+section);
-  const link=page.locator('#cfa-section-'+section+' a.term-link').filter({hasText:new RegExp('^'+term+'$')}).first();
+  const link=page.locator('#cfa-section-'+section+' a.term-link:visible').filter({hasText:new RegExp('^'+term+'$')}).first();
   const target=(await link.getAttribute('href')).split('~')[1];await link.click();
   await page.waitForFunction(id=>document.activeElement.id==='glossary-'+id,target);
   await page.locator('#glossary-'+target+' a[href="#cfa~learn-'+unit+'~'+section+'"]').click();
@@ -90,6 +90,35 @@ test('every authored 2027 unit renders without overflow and new glossary terms r
  await page.waitForFunction(()=>document.querySelector('.cfa-figure-plot').scrollLeft>0);
  assert.equal(await page.locator('.cfa-figure-hint').first().isVisible(),true);
 });
+test('ambiguous GMV links retain their chapter meaning in learning, training and the error journal',async t=>{
+ const page=await open(t,'cfa~learn-business-models~platforms');
+ const commerce='#glossary~gross-merchandise-value',portfolio='#glossary~global-minimum-variance-portfolio';
+ const links=page.locator('#cfa-section-platforms a.term-link').filter({hasText:/^GMV$/});
+ assert.ok(await links.count()>1);
+ for(const link of await links.all())assert.equal(await link.getAttribute('href'),commerce);
+ await page.locator('#cfa-section-platforms a.term-link:visible').filter({hasText:/^GMV$/}).first().click();
+ await page.waitForFunction(()=>document.activeElement.id==='glossary-gross-merchandise-value');
+ assert.match(await page.locator('#glossary-gross-merchandise-value').innerText(),/GMV/);
+ await page.locator('#glossary-gross-merchandise-value a[href="#cfa~learn-business-models~platforms"]').click();
+ await page.waitForFunction(()=>document.activeElement.id==='cfa-section-platforms');
+ // Default and legacy alias bookmarks must keep their established portfolio meaning.
+ assert.ok((await page.evaluate(()=>FinanceStudy.glossaryText('GMV','portfolio-math'))).includes(portfolio));
+ assert.ok((await page.evaluate(()=>FinanceStudy.glossaryText('GMV'))).includes(portfolio));
+ await page.goto(url+'/#glossary~gmv');
+ await page.waitForFunction(()=>document.activeElement.id==='glossary-global-minimum-variance-portfolio');
+ await page.goto(url+'/#cfa~learn-portfolio-math~minimum-variance');
+ assert.ok(await page.locator('#cfa-section-minimum-variance a[href="'+portfolio+'"]').count());
+ await page.goto(url+'/#cfa~learn-business-models');await page.locator('[data-train-unit]').click();
+ const qs=actual.questions.filter(q=>q.unit==='business-models'&&q.pool==='practice'),q=qs.find(q=>q.id==='biz-31');
+ for(let i=0;i<qs.indexOf(q);i++)await page.locator('#cfa-train-next').click();
+ await page.locator('input[name="cfa-answer"]').nth((q.correct+1)%3).check();await page.locator('#cfa-check').click();
+ const solutionLink=page.locator('.cfa-solution a.term-link').filter({hasText:/^GMV$/});
+ assert.equal(await solutionLink.first().getAttribute('href'),commerce);
+ await page.goto(url+'/#cfa~learn-portfolio-math');await page.goto(url+'/#cfa~journal');
+ await page.locator('#page-cfa .cfa-module summary').first().click();
+ assert.equal(await page.locator('.cfa-solution a.term-link').filter({hasText:/^GMV$/}).first().getAttribute('href'),commerce);
+});
+
 test('economics training gives per-choice reasons and exact chapter return links',async t=>{
  const page=await open(t);
  for(const id of ['market-structures','cycles','fiscal','monetary','geopolitics','trade','fx-markets','fx-calculation']){

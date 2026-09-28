@@ -87,11 +87,20 @@ for(const l of lessons)for(const ref of l.links)if(!targets.has(ref))throw Error
 for(const l of lessons)for(const [ref] of l.deep?.links||[])if(!targets.has(ref))throw Error(l.id+': ungültiger Vertiefungsverweis '+ref);
 const slug=s=>s.toLocaleLowerCase('de').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/ß/g,'ss').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
 const escapeReg=s=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
-const glossary=[],usedIds=new Set(),usedLabels=new Map();
+const glossary=[],usedIds=new Set(),usedLabels=new Map(),usedContextLabels=new Map();
 const searchable=l=>[l.notation.reading,...l.notation.entries.map(e=>e.meaning),l.title,l.intuition,l.logic,l.math,...l.illustrations.flatMap(f=>[f.title,f.takeaway,f.read,f.assumptions]),l.example,l.depth,l.pitfall,l.question,l.answer,...l.questions.flatMap(q=>[q.prompt,q.context||'',...q.steps.map(s=>s.text)]),l.textbook.heading,...l.textbook.explanation,...l.textbook.steps.flatMap(s=>[s.calculation,s.why]),l.textbook.applications,l.textbook.limitations,l.textbook.connections,...(l.deep?.sections||[]).flatMap(s=>[s.title,...s.paragraphs]),...(l.deep?.comparisons||[]).flatMap(c=>[c.intro,...c.paragraphs,...c.rows.flat()])].join(' ');
 for(const source of glossarySource){
  const id=slug(source.term);if(!id||usedIds.has(id))throw Error('Doppelter/ungültiger Wörterbuchschlüssel: '+source.term);usedIds.add(id);
  if(!targets.has(source.lesson))throw Error(source.term+': ungültiges Hauptkapitel '+source.lesson);
+ for(const alias of source.contextualAliases||[]){
+  if(!alias.label?.trim()||!alias.units?.length)throw Error(source.term+': ungültiger kontextbezogener Alias');
+  for(const unit of alias.units){
+   if(!cfaData.units.some(u=>u.id===unit))throw Error(source.term+': unbekannter Alias-Kontext '+unit);
+   const key=unit+'~'+alias.label.toLocaleLowerCase('de');
+   if(usedContextLabels.has(key))throw Error('Mehrdeutiger kontextbezogener Wörterbuchbegriff: '+key);
+   usedContextLabels.set(key,source.term);
+  }
+ }
  for(const label of [source.term,...source.aliases]){
   const key=label.toLocaleLowerCase('de');
   if(usedLabels.has(key))throw Error(`Mehrdeutiger Wörterbuchbegriff „${label}“ bei ${source.term} und ${usedLabels.get(key)}`);

@@ -227,7 +227,14 @@ test('published MCQ numerical answers agree with separately computed results',()
   'cs-a1':(240*.07*.7+60*.08+20*30*.12)/(240+60+20*30)*100,
   'cs-a2':(120-300*.06*.75)/(120/.12+.25*300-300)*100,
   'cs-b1':(.8*.05*.8+.11)/1.8*100,
-  'cs-b2':(1200*.1-480*.04)/(1200-480)*100
+  'cs-b2':(1200*.1-480*.04)/(1200-480)*100,
+  'biz-03':150-60,'biz-06':(180000-60000)/(36-24),'biz-08':((80-50)/(72-50)-1)*100,
+  'biz-09':90000/(75-45),'biz-14':60*1200/12+40*150,'biz-16':64/800*100,
+  'biz-17':(80000-8000-4000)/80000*100,'biz-18':(60000-6000-3000+15000)/60000*100,
+  'biz-20':15/(1.02-.9)-80,'biz-21':(1-.95)*100,
+  'biz-23':500*(18-4)-4500*.4-4000,'biz-25':2e6*.75/1000*8,
+  'biz-26':Math.ceil(24*1.2/6),'biz-27':120-90,
+  'biz-28':-500+240/1.1+(240+50)/1.1**2,'biz-30':6*800000*.05,'biz-31':6e6*(.1-.03)-300000
  };
  for(const [id,v] of Object.entries(expected)){
   const q=byId.get(id);const numeric=Number(q.options[q.correct].text.replace(/[€,]/g,'').replace('−','-').match(/-?\d+(?:\.\d+)?/)?.[0]);
@@ -711,7 +718,7 @@ test('new glossary definitions point to existing precise 2027 sections',()=>{
  assert.ok(entries.length>=40);
  assert.equal(new Set(entries.map(g=>g.term.toLocaleLowerCase('de'))).size,entries.length,'a duplicate must not silently replace a precise definition or return link');
  const normalized=s=>s.toLocaleLowerCase('de').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]/g,'');
- const labels=new Map();
+ const labels=new Map(),contextLabels=new Set();
  for(const entry of entries){
   const names=[entry.term,...entry.aliases].map(name=>name.toLocaleLowerCase('de'));
   assert.equal(new Set(names).size,names.length,'redundant case-insensitive alias: '+entry.term);
@@ -723,6 +730,15 @@ test('new glossary definitions point to existing precise 2027 sections',()=>{
   const merged=glossary.find(g=>[g.term,...g.aliases].some(name=>normalized(name)===normalized(entry.term)));
   assert.deepEqual(merged?.cfa,entry.cfa,'return link overwritten through alias: '+entry.term);
   assert.equal(merged?.definition,entry.definition);
+  assert.deepEqual(merged?.contextualAliases,entry.contextualAliases);
+  for(const alias of entry.contextualAliases||[]){
+   assert.ok(alias.label.trim()&&alias.units.length);
+   for(const unit of alias.units){
+    assert.ok(data.units.some(u=>u.id===unit),'unknown glossary alias context: '+unit);
+    const key=unit+'~'+normalized(alias.label);
+    assert.ok(!contextLabels.has(key),'ambiguous context alias: '+key);contextLabels.add(key);
+   }
+  }
  }
  for(const g of glossary.filter(g=>g.cfa)){
   const u=data.units.find(u=>u.id===g.cfa.unit);assert.ok(u?.sections.some(s=>s.id===g.cfa.section),g.term);
@@ -1660,6 +1676,116 @@ test('capital structure glossary preserves canonical terms and precise model lim
  assert.match(resolve('Asset-Beta').definition,/Schuldenrisiko/);
  assert.match(resolve('Tax Shield').definition,/Abschreibungen/);
  assert.notEqual(resolve('Tax Shield'),resolve('Zinssteuervorteil'),'general tax shields include depreciation, whereas interest is a specific application');
+});
+
+test('business model surplus and channel figures reconcile with resource costs and the comparison threshold',()=>{
+ const u=data.units.find(u=>u.id==='business-models'),section=id=>u.sections.find(s=>s.id===id);
+ const num=s=>Number(s.replace(/\./g,'').replace(',','.').replace('−','-'));
+ const table=id=>section(id).blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table');
+ const surplus=table('value');
+ [80,90].forEach((price,i)=>{
+  const expected=[120-price,price-50,120-50];
+  surplus.rows.forEach((r,j)=>assert.equal(num(r[i+1]),expected[j]));
+ });
+ const profit=(q,direct)=>direct?100*q-40*q-10*q-240000:70*q-40*q-60000;
+ const channel=table('channels');
+ channel.rows.forEach(r=>{const q=num(r[0]);assert.equal(num(r[1]),profit(q,true));assert.equal(num(r[2]),profit(q,false));});
+ const fig=section('channels').blocks.find(b=>b.kind==='figure').plot;
+ fig.series.forEach((s,i)=>s.points.forEach(([q,y])=>assert.equal(y*1000,profit(q,i===0))));
+ const cross=fig.marks[0];assert.equal(profit(cross.x,true),profit(cross.x,false));assert.equal(cross.y*1000,profit(cross.x,true));
+ assert.ok(profit(6000,true)<profit(6000,false));assert.ok(profit(12000,true)>profit(12000,false));
+ assert.equal(profit(4800,true),0);assert.equal(profit(2000,false),0);
+ const oldProfit=10000*(100-50)-300000,newQ=(oldProfit+300000)/(90-50);
+ assert.equal(newQ,12500);assert.equal(newQ*(90-50)-300000,oldProfit);
+ assert.ok((1e6/90)*(90-50)-300000<oldProfit,'revenue preservation is not profit preservation');
+});
+
+test('business model retention separates the unchanged starting cohort from newly acquired customers',()=>{
+ const u=data.units.find(u=>u.id==='business-models'),section=u.sections.find(s=>s.id==='retention');
+ const start=Array.from({length:1000},(_,id)=>({id,old:50,current:id<80?0:id<180?30:id<380?80:50}));
+ const sum=(xs,key)=>xs.reduce((s,x)=>s+x[key],0),revenue=sum(start,'old'),retained=start.filter(x=>x.current>0);
+ const newCustomers=Array.from({length:200},(_,i)=>({id:1000+i,old:0,current:50}));
+ const gross=start.reduce((s,c)=>s+Math.min(c.old,c.current),0),net=sum(start,'current'),all=sum([...start,...newCustomers],'current');
+ assert.equal(revenue,50000);assert.equal(gross,44000);assert.equal(net,50000);assert.equal(all,60000);
+ const table=section.blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table');
+ const parse=s=>(s.match(/\d[\d.]*(?:,\d+)?/g)||[]).map(x=>Number(x.replace(/\./g,'').replace(',','.')));
+ const rows=[[retained.length,start.length,retained.length/start.length*100],[gross,revenue,gross/revenue*100],[net,revenue,net/revenue*100],[all],[retained.length+newCustomers.length],[all*12]];
+ table.rows.forEach((r,i)=>assert.deepEqual(parse(r[1]),rows[i]));
+ const annual=Math.pow(.95,12)*100;assert.ok(Math.abs(annual-54.04)<.0051);
+ assert.match(section.blocks.find(b=>b.kind==='formula'&&b.tex.includes('R_{12}')).tex,/r\^\{12\}/);
+ assert.ok(net/revenue<all/revenue,'new acquisition must not enter existing-cohort NRR');
+});
+
+test('business model customer values and payback curves match explicit monthly survival cash flows',()=>{
+ const u=data.units.find(u=>u.id==='business-models'),section=id=>u.sections.find(s=>s.id===id);
+ const num=s=>Number(s.replace(' %','').replace(',','.').replace('−','-'));
+ const cashPV=(r,n,discount=.01)=>{let alive=1,value=0;for(let t=1;t<=n;t++){value+=20*alive/(1+discount)**t;alive*=r;}return value;};
+ const table=section('lifetime').blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table');
+ table.rows.forEach(row=>{
+  const churn=num(row[0])/100,r=num(row[1])/100,computed=cashPV(r,2500);
+  assert.ok(Math.abs(r+churn-1)<1e-12);assert.ok(Math.abs(num(row[2])-computed)<.0051);assert.ok(Math.abs(num(row[3])-(computed-250))<.0051);
+ });
+ const fig=section('payback').blocks.find(b=>b.kind==='figure').plot;
+ fig.series.forEach((s,i)=>s.points.forEach(([n,v])=>assert.ok(Math.abs(v-(cashPV([.98,.95,.9][i],n)-250))<1e-9)));
+ const firstCross=fig.series[1].points.find(([n,v])=>v>=0);assert.equal(firstCross[0],23);assert.ok(Math.abs(fig.marks[0].y-firstCross[1])<1e-10);assert.equal(fig.marks[0].x,23);
+ assert.ok(cashPV(.95,19,0)<250&&cashPV(.95,20,0)>=250);
+ assert.ok(cashPV(.95,22)<250&&cashPV(.95,23)>=250);
+ assert.ok(cashPV(.9,2500)<250);assert.ok(Math.abs(cashPV(.95,12)-173.4859529465)<1e-8);
+ assert.ok(Math.abs(cashPV(.95,1)-20/1.01)<1e-12,'first payment has no extra retention factor');
+ for(const s of fig.series)for(const [,v] of s.points)assert.ok(v>=fig.y[0]&&v<=fig.y[1]);
+ const noDiscount=Array.from({length:10},(_,i)=>20*.9**i).reduce((a,b)=>a+b,0);
+ assert.ok(noDiscount<200);assert.ok(Math.abs(noDiscount-200*(1-.9**10))<1e-12);
+});
+
+test('business model freemium tables and conversion figure charge for both user groups',()=>{
+ const u=data.units.find(u=>u.id==='business-models'),section=u.sections.find(s=>s.id==='freemium');
+ const num=s=>Number(s.replace(' %','').replace(/\./g,'').replace(',','.').replace('−','-'));
+ const table=section.blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table');
+ const profit=f=>{const paid=10000*f,free=10000-paid;return paid*20-paid*4-free*.2-8000;};
+ table.rows.forEach(r=>{
+  const f=num(r[0])/100,paid=10000*f,free=10000-paid;
+  assert.deepEqual(r.slice(1).map(num),[paid,paid*20,free*.2,profit(f)]);
+ });
+ const fig=section.blocks.find(b=>b.kind==='figure').plot;
+ fig.series[0].points.forEach(([x,y])=>assert.ok(Math.abs(y-profit(x/100))<1e-10));
+ assert.ok(Math.abs(profit(fig.marks[0].x/100))<1e-9);assert.equal(fig.marks[0].y,0);
+ assert.equal(profit(.05),-1900);assert.equal(profit(.08),2960);assert.equal(profit(.1),6200);
+ assert.equal(10e6*.8/1000*4,32000);
+ assert.ok(-30+6*5/1.1<0&&-30+7*5/1.1>0,'nominal refill recovery does not cover the time value');
+});
+
+test('business model transaction fees, franchise flows and asset cash values preserve their distinct bases',()=>{
+ const u=data.units.find(u=>u.id==='business-models'),section=id=>u.sections.find(s=>s.id===id);
+ const num=s=>Number(s.replace(/\./g,'').replace(',','.'));
+ const table=section('platforms').blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table');
+ [[10e6,.08],[14e6,.06]].forEach(([gmv,rate],i)=>{
+  const expected=[gmv,gmv*rate,gmv*.025,400000,gmv*rate-gmv*.025-400000];
+  table.rows.forEach((r,j)=>assert.ok(Math.abs(num(r[i+1])-expected[j])<1e-8));
+ });
+ const required=(400000+150000)/(.06-.025);assert.ok(Math.abs(required-15714285.7142857)<1e-6);assert.ok(required>14e6);
+ const fee=1e6*.06,franchisor=fee-20000,franchisee=1e6-650000-250000-fee;
+ assert.equal(fee,60000);assert.equal(franchisor,40000);assert.equal(franchisee,40000);
+ const leasePV=[300,300,300,400].reduce((s,c,i)=>s+c/1.1**(i+1),0)-1000;
+ assert.ok(Math.abs(leasePV-19.2609794413)<1e-8);assert.ok(leasePV-100/1.1**4<0);
+ assert.match(JSON.stringify(section('assets')),/19\{,\}26/);
+ const principal=9000-8000-600,agent=1000-600;assert.equal(principal,agent);assert.ok(principal/9000<agent/1000);
+ const q=data.questions.find(q=>q.id==='biz-b1');assert.match(q.options[q.correct].text,/operating profits are equal/);
+});
+
+test('business model glossary links distinguish metrics and all corporate modules fill their own mock allocation',()=>{
+ const glossary=require('../finance-glossary.cjs'),resolve=term=>glossary.find(g=>[g.term,...g.aliases].includes(term));
+ for(const [label,section] of [['Geschäftsmodell','map'],['Value Proposition','value'],['MRR','recurring'],['ARR','recurring'],['NRR','retention'],['CAC','lifetime'],['Freemium','freemium'],['Gross Merchandise Value','platforms'],['Take Rate','platforms'],['Multi-Homing','networks']])assert.deepEqual(resolve(label).cfa,{unit:'business-models',section});
+ assert.notEqual(resolve('Cash Conversion Ratio'),resolve('Konversionsrate'));
+ assert.match(resolve('NRR').definition,/ohne neue Akquisition/);assert.match(resolve('ARR').definition,/Stichtagskennzahl/);
+ assert.match(resolve('CLV').definition,/Erste Zahlung/);assert.match(resolve('Netzwerkeffekt').definition,/Skaleneffekt/);
+ const modules=data.modules.filter(m=>m.topic==='corporate');assert.equal(modules.length,7);
+ modules.forEach(m=>assert.ok(data.units.some(u=>u.id===m.id),m.id));
+ const coverage=data.coverage.find(m=>m.id==='business-models');coverage.objectives.forEach(o=>{assert.ok(o.sections.length>=2,o.id);assert.ok(o.practice.length>=6,o.id);});
+ const bank=data.questions.filter(q=>q.unit==='business-models');assert.equal(bank.filter(q=>q.pool==='practice').length,36);
+ for(const pool of ['mock-a','mock-b']){
+  assert.equal(bank.filter(q=>q.pool===pool).length,1);
+  assert.equal(data.questions.filter(q=>q.topic==='corporate'&&q.pool===pool).length,require('../finance-cfa/engine.cjs').blueprint.corporate);
+ }
 });
 
 test('unwritten modules remain visible as gaps and cannot pass the release gate',()=>{
