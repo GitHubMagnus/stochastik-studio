@@ -5,7 +5,7 @@ window.FinanceCFA=(()=>{
  const modules=new Map(D.modules.map(m=>[m.id,m])),units=new Map(D.units.map(u=>[u.id,u])),questions=new Map(D.questions.map(q=>[q.id,q]));
  const root=document.getElementById('page-cfa'),key='studio-cfa-2027-v1';
  const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
- const prose=s=>window.FinanceStudy.glossaryText(s);
+ const prose=(s,unit)=>window.FinanceStudy.glossaryText(s,unit);
  const format=n=>n.toLocaleString('de-DE',{maximumFractionDigits:1});
  const label=t=>D.topics.find(x=>x.id===t)?.title||t;
  let scrollFrame=null;
@@ -47,16 +47,17 @@ window.FinanceCFA=(()=>{
    '<nav class="cfa-tabs" aria-label="CFA-Lernbereich"><a href="#cfa">Lernpfad</a><a href="#cfa~practice">Training</a><a href="#cfa~exam">Probeklausuren</a><a href="#cfa~journal">Fehlerjournal</a></nav><p id="cfa-storage" class="cfa-notice" role="status" '+(storageOK?'hidden':'')+'>Der Browserspeicher ist nicht verfügbar oder enthielt ungültige Daten. Du kannst weiterarbeiten; sichere wichtige Ergebnisse vor dem Schließen.</p>';
  }
  let tableSerial=0;
- function blocks(items){
+ function blocks(items,unit){
+  const prose=s=>window.FinanceStudy.glossaryText(s,unit);
   return items.map(b=>{
    if(typeof b==='string')return '<p>'+prose(b)+'</p>';
-   if(b.kind==='figure')return '<figure class="cfa-figure"><figcaption><strong>'+esc(b.title)+'</strong><p>'+prose(b.caption)+'</p></figcaption><div class="cfa-figure-plot" role="region" tabindex="0" aria-label="Seitlich verschiebbare Grafik">'+b.svg+'</div><p class="cfa-figure-hint" aria-hidden="true">&#8596; Die Grafik ist seitlich verschiebbar.</p><ul class="cfa-figure-legend">'+b.legend.map(s=>'<li><span style="border-top:3px '+(s.dash?'dashed':'solid')+' '+s.color+'"></span>'+esc(s.name)+'</li>').join('')+'</ul><p>'+prose(b.reading)+'</p><details class="study-details"><summary>Werte der Abbildung</summary>'+blocks([{kind:'table',caption:'Gezeichnete Werte nach Datenreihe',headers:['Reihe',b.plot.xLabel,b.plot.yLabel],rows:b.plot.series.flatMap(s=>s.points.map(p=>[s.name,format(p[0]),format(p[1])]))}])+'</details></figure>';
+   if(b.kind==='figure')return '<figure class="cfa-figure"><figcaption><strong>'+esc(b.title)+'</strong><p>'+prose(b.caption)+'</p></figcaption><div class="cfa-figure-plot" role="region" tabindex="0" aria-label="Seitlich verschiebbare Grafik">'+b.svg+'</div><p class="cfa-figure-hint" aria-hidden="true">&#8596; Die Grafik ist seitlich verschiebbar.</p><ul class="cfa-figure-legend">'+b.legend.map(s=>'<li><span style="border-top:3px '+(s.dash?'dashed':'solid')+' '+s.color+'"></span>'+esc(s.name)+'</li>').join('')+'</ul><p>'+prose(b.reading)+'</p><details class="study-details"><summary>Werte der Abbildung</summary>'+blocks([{kind:'table',caption:'Gezeichnete Werte nach Datenreihe',headers:['Reihe',b.plot.xLabel,b.plot.yLabel],rows:b.plot.series.flatMap(s=>s.points.map(p=>[s.name,format(p[0]),format(p[1])]))}],unit)+'</details></figure>';
    if(b.kind==='formula')return '<div class="cfa-formula"><div class="study-equation">'+b.mathml+'</div><p>'+prose(b.reading)+'</p><details class="formula-notation"><summary>Symbole und Einheiten</summary><dl class="formula-symbols">'+b.symbols.map(s=>'<div><dt>'+s.mathml+'</dt><dd>'+prose(s.meaning)+'</dd></div>').join('')+'</dl></details></div>';
    if(b.kind==='table'){
     const captionId='cfa-table-caption-'+(++tableSerial);
     return '<figure class="cfa-table-block"><figcaption id="'+captionId+'">'+esc(b.caption)+'</figcaption><div class="cfa-table"><table aria-labelledby="'+captionId+'"><thead><tr>'+b.headers.map(h=>'<th scope="col">'+esc(h)+'</th>').join('')+'</tr></thead><tbody>'+b.rows.map(row=>'<tr>'+row.map(cell=>'<td>'+prose(cell)+'</td>').join('')+'</tr>').join('')+'</tbody></table></div></figure>';
    }
-   if(b.kind==='example')return '<section class="cfa-example"><h3>'+esc(b.title)+'</h3><p><strong>Gegeben:</strong> '+prose(b.given)+'</p><ol>'+b.steps.map(step=>'<li>'+blocks([step])+'</li>').join('')+'</ol><p class="cfa-takeaway">'+prose(b.conclusion)+'</p></section>';
+   if(b.kind==='example')return '<section class="cfa-example"><h3>'+esc(b.title)+'</h3><p><strong>Gegeben:</strong> '+prose(b.given)+'</p><ol>'+b.steps.map(step=>'<li>'+blocks([step],unit)+'</li>').join('')+'</ol><p class="cfa-takeaway">'+prose(b.conclusion)+'</p></section>';
    return '';
   }).join('');
  }
@@ -78,8 +79,8 @@ window.FinanceCFA=(()=>{
  function learn(id,focus){
   const m=modules.get(id),u=units.get(id);
   root.innerHTML=header(m.title,label(m.topic)+' · CFA Level I 2027')+(u?
-   '<nav class="study-jumps" aria-label="In dieser Lerneinheit">'+u.sections.map(s=>'<a href="#cfa~learn-'+id+'~'+s.id+'">'+esc(s.title)+'</a>').join('')+'</nav><div class="cfa-intro">'+u.intro.map(p=>'<p>'+prose(p)+'</p>').join('')+'</div>'+
-   u.sections.map(s=>'<section class="study-section cfa-section" id="cfa-section-'+s.id+'" tabindex="-1"><h2>'+esc(s.title)+'</h2><p class="cfa-objective">Lernzielbezug: '+s.objectives.map(l=>l.toUpperCase()).join(', ')+'</p>'+blocks(s.blocks)+'</section>').join('')+
+   '<nav class="study-jumps" aria-label="In dieser Lerneinheit">'+u.sections.map(s=>'<a href="#cfa~learn-'+id+'~'+s.id+'">'+esc(s.title)+'</a>').join('')+'</nav><div class="cfa-intro">'+u.intro.map(p=>'<p>'+prose(p,u.id)+'</p>').join('')+'</div>'+
+   u.sections.map(s=>'<section class="study-section cfa-section" id="cfa-section-'+s.id+'" tabindex="-1"><h2>'+esc(s.title)+'</h2><p class="cfa-objective">Lernzielbezug: '+s.objectives.map(l=>l.toUpperCase()).join(', ')+'</p>'+blocks(s.blocks,u.id)+'</section>').join('')+
    (u.related?.length?'<nav class="study-section cfa-related" aria-label="Zusammenhänge vertiefen"><h2>Zusammenhänge vertiefen</h2><ul>'+u.related.map(r=>'<li><a href="#cfa~learn-'+r.unit+'~'+r.section+'">'+esc(r.label)+'</a></li>').join('')+'</ul></nav>':'')+
    '<section class="study-section"><h2>Jetzt selbst anwenden</h2><p>Die Aufgaben verwenden neue Zahlen und Situationen. Löse sie vor dem Öffnen der Begründung.</p><button class="btn" data-train-unit="'+id+'">Aufgaben zu dieser Einheit starten</button></section><details class="study-details"><summary>Quellen und Einordnung</summary><p>Eigenständige Erklärungen und konstruierte Beispiele. Der Lernzielabgleich bezieht sich auf 2027; fachliche Grundlagenquellen können aus früheren unverändert relevanten Ausgaben stammen.</p><ul>'+[...u.sources,{title:'CFA Institute: zugehöriger Abschnitt im Outline 2027',url:m.source}].map(s=>'<li><a href="'+esc(s.url)+'" target="_blank" rel="noopener">'+esc(s.title)+'</a></li>').join('')+'</ul></details>':
    '<p class="cfa-notice">Diese Vertiefung wird noch ausgearbeitet.</p>')+
@@ -93,12 +94,12 @@ window.FinanceCFA=(()=>{
  }
  function questionHTML(q,selected,{revealed=false,confidence='',examMode=false}={}){
   return '<article class="cfa-question"><p class="kicker" lang="en">'+esc(label(q.topic))+'</p><h2 id="cfa-question-title" tabindex="-1" lang="en">'+esc(q.stem)+'</h2>'+
-   (q.given?blocks(q.given):'')+'<fieldset class="cfa-choices" '+(revealed?'disabled':'')+'><legend class="sr-only">Antwort auswählen</legend>'+q.options.map((o,i)=>'<label class="'+(revealed?(i===q.correct?'correct':i===selected?'incorrect':''):'')+'"><input type="radio" name="cfa-answer" value="'+i+'" '+(selected===i?'checked':'')+'><span lang="en"><b>'+String.fromCharCode(65+i)+'.</b> '+esc(o.text)+'</span></label>').join('')+'</fieldset>'+
+   (q.given?blocks(q.given,q.unit):'')+'<fieldset class="cfa-choices" '+(revealed?'disabled':'')+'><legend class="sr-only">Antwort auswählen</legend>'+q.options.map((o,i)=>'<label class="'+(revealed?(i===q.correct?'correct':i===selected?'incorrect':''):'')+'"><input type="radio" name="cfa-answer" value="'+i+'" '+(selected===i?'checked':'')+'><span lang="en"><b>'+String.fromCharCode(65+i)+'.</b> '+esc(o.text)+'</span></label>').join('')+'</fieldset>'+
    confidenceHTML(q.id,confidence,revealed)+
    (revealed?solutionHTML(q,selected):examMode?'':'<button class="btn" id="cfa-check">Antwort prüfen</button><p id="cfa-answer-required" role="alert" hidden>Wähle zunächst eine Antwort aus.</p>')+'</article>';
  }
  function solutionHTML(q,selected){
-  return '<section class="cfa-solution"><h3>'+(selected===q.correct?'Richtig.':selected===null?'Nicht beantwortet.':'Noch nicht richtig.')+' Antwort '+String.fromCharCode(65+q.correct)+'</h3>'+blocks(q.solution)+'<h4>Warum passen die anderen Antworten nicht?</h4><ul>'+q.options.map((o,i)=>'<li><strong>'+String.fromCharCode(65+i)+':</strong> '+prose(o.why)+'</li>').join('')+'</ul><p><a href="#cfa~learn-'+q.unit+'~'+q.section+'">Zusammenhang und Rechenweg nacharbeiten →</a></p></section>';
+  return '<section class="cfa-solution"><h3>'+(selected===q.correct?'Richtig.':selected===null?'Nicht beantwortet.':'Noch nicht richtig.')+' Antwort '+String.fromCharCode(65+q.correct)+'</h3>'+blocks(q.solution,q.unit)+'<h4>Warum passen die anderen Antworten nicht?</h4><ul>'+q.options.map((o,i)=>'<li><strong>'+String.fromCharCode(65+i)+':</strong> '+prose(o.why,q.unit)+'</li>').join('')+'</ul><p><a href="#cfa~learn-'+q.unit+'~'+q.section+'">Zusammenhang und Rechenweg nacharbeiten →</a></p></section>';
  }
  function startTraining(ids){if(!ids.length)return;training={ids,position:0,answers:{},confidence:{},revealed:[]};save();}
  function trainingView(){

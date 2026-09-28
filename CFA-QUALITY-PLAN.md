@@ -665,3 +665,60 @@ CFA-Fragen ausgegeben. Praktische Pflichtmodule des CFA Institute bleiben separa
   vollständiger Klausur**. Als Nächstes folgen Geschäftsmodelle; damit wird der
   bisherige Corporate-Issuers-Block vervollständigt. Vollständige fachliche
   Freigabe und die Zielbewertungen 90/100 beziehungsweise 80/100 bleiben offen.
+
+### 28.09.2026: Geschäftsmodelle und kontextbezogene Wörterbuchlinks
+
+- Business Models ist für die beiden beschreibenden Lernziele des offiziellen
+  Level-I-Outlines 2027 ausgearbeitet: **22 Abschnitte, zwölf ausführliche Fälle,
+  23 Formeltafeln mit Symbolhilfen, 16 Tabellen und drei berechnete Grafiken**.
+  Dazu kommen **36 eigenständige englische Trainingsfragen** mit deutschen
+  Rechenwegen und Einzelbegründungen sowie **je eine reservierte Klausurfrage**.
+  Kundenwert und weitere Kennzahlenherleitungen sind ausdrücklich zusätzliche
+  Vertiefungen und werden nicht als zusätzliche offizielle Rechenlernziele ausgegeben.
+- Kundennutzen, Wertabschöpfung, Nutzer/Käufer/Zahler, Wertschöpfungskette,
+  Vertriebskanäle und Preisgestaltung werden miteinander verbunden. Ein kontrollierter
+  Kanalvergleich unterscheidet Stückbeitrag, eigene Gewinnschwelle und die Menge,
+  bei der zwei Vertriebswege denselben Gewinn liefern. Ein Rabattfall trennt die
+  für stabilen Umsatz und die für stabilen Gewinn erforderliche Zusatzmenge.
+- MRR und ARR werden von Zahlungen, bilanziertem Umsatz und Prognosen getrennt.
+  Ein vollständiger Kundenfall stimmt Anfangskohorte, Kündigungen, Vertragsänderungen,
+  Expansion und Neukunden ab. GRR, NRR und Kundenbindung verwenden ihre jeweiligen
+  Nenner. Die Kundenwertreihe erklärt ausdrücklich erste Zahlung, Bindung,
+  Diskontierung und die noch nicht enthaltenen Kosten. Endliche Rückflüsse zeigen,
+  warum positiver langfristiger Kundenwert hohen Anfangsfinanzierungsbedarf zulässt.
+- Weitere Fälle behandeln kostenlose Nutzer im Freemium-Modell, Werbung,
+  Geräte-/Verbrauchsgutbeiträge, Bundling, Restwertrisiko bei Vermietung,
+  Lizenzierung und Franchising. Plattformvolumen, Gebühren und Gewinn werden
+  getrennt; ein Beispiel zeigt steigendes Volumen und Umsatz bei fallendem Gewinn.
+  Principal/Agent folgt der wirtschaftlichen Kontrolle nach IFRS 15.
+  Netzwerk- und Skaleneffekte, Multi-Homing und hybride Modelle erhalten
+  Gegenbeispiele, Grenzen und Verbindungen zu Prognose und Finanzierung.
+- **124 Kernprüfungen bestanden.** Von den **85 CFA-Prüfungen** bestanden im
+  ersten Durchlauf 83; zwei Browserfälle wählten noch unsichtbare Wörterbuchlinks
+  in geschlossenen Symbolhilfen. Nach Korrektur der Auswahl auf sichtbare Textlinks
+  bestanden beide gezielten Wiederholungen. Zusätzlich bestanden **vier bestehende
+  Browserprüfungen**. Der Corporate-Durchlauf bediente alle **238 Trainingsfragen**
+  mit Begründungen, Formelhilfen und Rückwegen. Alle 48 Einheiten wurden auf
+  Desktop- und Mobilbreite gerendert; Offlinebetrieb und Klausurablauf wurden geprüft.
+- Unabhängige Gegenrechnungen kontrollieren Zahlenantworten, Kundenbewegungen,
+  geometrische Zahlungsreihen durch explizite monatliche Cashflows, Rückflussmonate,
+  Gebührenbasen, Franchise-Zahlungen und Tabellen-/Kurvenwerte. Acht gezielte
+  Inhaltsprüfungen bestanden nach den Anpassungen erneut. Grafiken und mobile
+  Formel-/Tabellendarstellung wurden visuell geprüft; Beschriftungen wurden
+  von den Kurven abgerückt.
+- Das Wörterbuch ergänzt beziehungsweise präzisiert **39 kuratierte Einträge**.
+  Ein echter Alias-Konflikt bei GMV wird über den Kapitelkontext gelöst:
+  Handelsvolumen in Geschäftsmodellen, Minimumvarianzportfolio in der
+  Portfoliotheorie. Diese Zuordnung gilt auch für verschachtelte Beispiele,
+  Trainingslösungen und das Fehlerjournal. Alte Portfolio-Lesezeichen bleiben
+  erhalten; der neue Eintrag ist über GMV auffindbar. Gesamtstand: **590 kuratierte
+  Rückverweise, 971 Definitionen und 2.032 globale Begriffe/Aliase** zuzüglich der
+  kontextbezogenen Zweitbedeutung von GMV.
+- Gesamtstand: **48 Einheiten, 168/340 strukturelle Lernzielreferenzen,
+  1.042 Trainingsfragen, je 90 reservierte Klausurfragen und 57 CFA-Grafiken**.
+  Alle sieben Corporate-Issuers-Module enthalten zusammen **130 Abschnitte**.
+  Die Themenquoten der ersten Klausursitzung sind befüllt; vollständige Klausuren
+  bleiben gesperrt. Offen sind **54 Einheiten, 172 Lernzielzuordnungen und 90
+  Fragen je vollständiger Klausur**, anschließend der abschließende fachliche
+  Audit. Als Nächstes folgen die noch offenen Equity-Module. Die Zielwerte
+  90/100 und 80/100 bleiben bis zur belegten Gesamtabnahme offen.
