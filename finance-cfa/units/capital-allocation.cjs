@@ -186,6 +186,8 @@ module.exports={id:'capital-allocation',intro:[
   'Für CFA-Fragen hilft zuerst die Art der verlangten Antwort: Klassifikation, geeignete Methode, konkrete Rechnung oder Vergleich einer Einschränkung. Vor einer Zahlenrechnung werden Perspektive, Vorzeichen, Steuerbasis, Perioden und Kapitalabgrenzung festgelegt. Bei Realoptionen wird zuerst die spätere Handlungsregel formuliert und erst danach ein Wert berechnet.'
  ])
 ],related:[
+ {unit:'capital-structure',section:'project-rate',label:'WACC, Projektfinanzierung und passende Renditeforderung'},
+ {unit:'capital-structure',section:'valuation-bridge',label:'Steuervorteil und Kapitalkosten ohne Doppelzählung verbinden'},
  {unit:'tvm',section:'single-cashflow',label:'Warum Abzinsen heutige Vergleichbarkeit herstellt'},
  {unit:'tvm',section:'additivity',label:'Zahlungsströme und ihre Barwerte addieren'},
  {unit:'working-capital',section:'cash-amount',label:'Operative Kapitalbindung in Euro rekonstruieren'},
