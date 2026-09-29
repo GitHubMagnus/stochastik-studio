@@ -829,3 +829,59 @@ CFA-Fragen ausgegeben. Praktische Pflichtmodule des CFA Institute bleiben separa
   Offen bleiben **52 Einheiten, 168 Lernzielzuordnungen und 86 Fragen je vollständiger
   Klausur** sowie der fachliche Gesamtaudit. Als Nächstes folgt Aktienemission
   und Aktienhandel. Die Zielwerte 90/100 und 80/100 sind noch nicht nachgewiesen.
+
+### 29.09.2026 – Aktienemission, Handel, Liquidität und Indexarten
+
+- „Equity Issuance and Trading“ ergänzt **21 Abschnitte, 15 eigene Beispiele,
+  elf Tabellen, 25 erläuterte Formeltafeln, drei berechnete Grafiken und
+  40 Trainingsfragen**. Alle vier offiziellen Lernziele sind Erklärungen und
+  Übungen zugeordnet; jedes besitzt außerdem zwei reservierte Klausurzuordnungen.
+- Gemischte Angebote trennen neue Aktien, Altaktionärsverkäufe, Kosten und
+  Nettoerlöse. Angebotspreis, Zuteilung und späterer Börsenkauf erzeugen im
+  Vergleich unterschiedliche Renditen. Firm Commitment, Best Efforts und
+  zulässige Direct Listings mit Kapitalaufnahme werden anhand von Primärquellen
+  abgegrenzt. SEC-Registrierung wird nicht als Anlageempfehlung dargestellt.
+- Notierungsstatus, Handelsplatz, Vermittlerrolle und Transparenz bleiben
+  unterschiedliche Dimensionen. Die ausdrücklich US-bezogenen FINRA-Beispiele
+  unterscheiden außerbörsliche Geschäfte in notierten Aktien von unnotierten
+  OTC-Aktien. Dark Pools werden weder mit fehlender Regulierung noch mit
+  fehlenden Transaktionsmeldungen gleichgesetzt.
+- Ein vollständig definiertes Orderbuch verbindet Kaufmenge, Limitgrenze,
+  Ausführungspreis und Kosten relativ zum Mittelpunkt. Weitere Rechnungen
+  unterscheiden absolute und relative Spreads, einmal gezähltes Aktienvolumen,
+  Geldumsatz, Mittelwert und Median, Float und doppelt ausgeschlossene Bestände.
+  Die modellierte Ausführungsdauer benennt Teilnahme- und Volumenannahmen
+  ausdrücklich und wird nicht als Liquiditätsgarantie ausgegeben.
+- Ein gemeinsamer Drei-Aktien-Fall erklärt Preis-, Marktwert-, Float- und
+  Gleichgewichtung. Gesonderte Formeltafeln zeigen alle gewichteten Rechnungen;
+  Tabellen erläutern die Beitragsunterschiede. Ein Splitfall erhält das
+  Indexniveau mittels Divisor und zeigt zugleich veränderte künftige Preisgewichte.
+  Rebalancing, Mitgliederwechsel, Brutto-/Nettoausschüttung und Währungsrendite
+  werden mit der praktischen Nachbildung verbunden.
+- Je **zwei neue reservierte Klausurfragen** verbinden die Lernziele: etwa einen
+  reinen Altaktionärsverkauf mit späterer ATS-Ausführung, neue Aktien und neu
+  investierbare Gründerbestände sowie Änderungen von Floatgewichten ohne
+  Preisänderung. Sie bleiben vom Trainingspool getrennt.
+- **137 Kerntests, 98 CFA-Prüfungen und vier ergänzende Browserprüfungen bestanden.**
+  Die unabhängigen Kontrollen rechnen Orderbücher in ganzzahligen Cent je Aktie,
+  summieren getrennte Emissionserlöse und Bestandslisten, vergleichen tägliche
+  Preis-Mengen-Produkte und rekonstruieren Indexrenditen aus konkreten Portfolios.
+  Grafikkurven, Splits, Grenzmengen und numerische Aufgabenlösungen stimmen überein.
+  Eine anfängliche zu enge Wortlautprüfung einer korrekten Definition wurde
+  entfernt; die fachliche Aussage benötigte keine Korrektur.
+- Der Browser prüft alle **51 Einheiten** auf Desktop- und Mobilbreite sowie
+  alle **342 Corporate- und Equity-Trainingsfragen** mit Rückmeldungen,
+  Formelhilfen und Abschnittsrückwegen. Fünf zusätzliche Wörterbuchrückwege,
+  Offlinebetrieb und Klausurablauf sind eingeschlossen. Drei Grafiken,
+  Emissionsabrechnung, mobile Symbolhilfe und mobile Indexvergleichstabelle
+  wurden anhand gerenderter Bilder visuell geprüft.
+- **30 zusätzliche kuratierte Wörterbucheinträge** erläutern neue Begriffe
+  beziehungsweise ersetzen knappe allgemeine Definitionen mit präzisen Rückwegen.
+  Sechs davon vertiefen bereits vorhandene globale Begriffe. Gesamtstand:
+  **664 kuratierte Rückverweise, 1.037 Definitionen und 2.174 Begriffe/Aliase**.
+- Gesamtstand: **51 Einheiten, 176/340 strukturelle Lernzielreferenzen,
+  1.146 Trainingsfragen, je 96 reservierte Klausurfragen und 66 CFA-Grafiken**.
+  Offen bleiben **51 Einheiten, 164 Lernzielzuordnungen und 84 Fragen je
+  vollständiger Klausur**, anschließend der fachliche Gesamtaudit. Als Nächstes
+  folgen Ausschüttungen, Rückkäufe, Splits und Aktiengesamtrendite. Die Zielwerte
+  90/100 und 80/100 sind weiterhin nicht als erreicht belegt.
