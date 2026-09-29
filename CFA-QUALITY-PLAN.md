@@ -780,3 +780,52 @@ CFA-Fragen ausgegeben. Praktische Pflichtmodule des CFA Institute bleiben separa
   Klausur**, anschließend die fachliche Gesamtabnahme. Als Nächstes folgen
   Aktienklassen, Rechtsordnungen und der Abstimmungsprozess. Die Zielwerte
   90/100 beziehungsweise 80/100 sind weiterhin nicht als erreicht belegt.
+
+### 29.09.2026 – Stimmrechte, Rechtsordnungen und Abstimmungsprozess
+
+- Das zweite Equity-Modul ergänzt **21 Abschnitte, 13 erläuterte Beispiele,
+  elf Tabellen, elf Formeltafeln, drei berechnete Grafiken und 32 Trainingsfragen**.
+  Beide offiziellen Lernziele von „Equity Jurisdictions, Classes, and the Voting
+  Process“ sind Erklärungen, Übungen und reservierten Fragen zugeordnet.
+- Die Rechtsbeispiele sind anhand des offiziellen 2027-Lernzielkatalogs,
+  des Delaware-Gesetzestexts, § 12 AktG, SEC-Investor.gov, der OECD-Prinzipien
+  und CFA Standard III(A) abgegrenzt. Kapitalanteil, Stimmgewicht, Teilnahme,
+  Quorum, Mehrheitsnenner und Klassenrechte bleiben getrennte Größen.
+  Die frühere pauschale Vorstellung, Deutschland schließe Mehrstimmrechtsaktien
+  aus, wird ausdrücklich vermieden. Hypothetische Zählregeln sind als solche benannt.
+- Cumulative Voting wird bis zur ohne Gleichstand garantierenden Aktienzahl
+  hergeleitet. Der Vergleich mit Straight Voting und gestaffelten Wahlen erklärt,
+  warum tatsächlich offene Sitze entscheidend sind. Der verbundene Abschlussfall
+  verändert jeweils nur eine Annahme: Umwandlung von Mehrstimmrechten oder
+  erhöhte Zustimmungsschwelle. Alle Formeln besitzen Lesart und Symboldefinitionen.
+- Die Rollen von Geschäftsleitung, Board, Asset Owner, Asset Manager,
+  Stimmrechtsberater, Intermediär und Auszählungsstelle werden mit Entscheidung,
+  Beratung, Übermittlung und Nachweis verbunden. Kundeninteresse, Delegation,
+  Konflikte und begründete Kosten-Nutzen-Ausnahmen werden getrennt behandelt.
+- Je **zwei weitere Fragen** sind für Mock A und Mock B reserviert. Die Fälle
+  prüfen unter anderem verkaufte Mehrstimmrechtsaktien mit automatischer
+  Umwandlung, begrenzte Klassenrechte, ungeprüfte Managementfolge und Broker
+  Non-Votes. Die letzte redaktionelle Prüfung ersetzte reine Zahlenvarianten
+  durch andere Anwendungssituationen. Training und Klausurpools bleiben getrennt.
+- **132 Kerntests, 93 CFA-Prüfungen und vier ergänzende Browserprüfungen bestanden.**
+  Numerische Kontrollen verwenden eigene Stimmenregister und vollständige
+  gegnerische Verteilungen in kleinen kumulativen Wahlen. Sie prüfen Grafikkurven,
+  Gleichstandsgrenzen, Quoren, Klassenmehrheiten, Nenner und geänderte Stimmrechte.
+  Nach den letzten beiden Klausurfragen wurden alle Kerntests nochmals bestanden.
+- Der vollständige Browserdurchlauf rendert alle **50 Einheiten** bei Desktop-
+  und Mobilbreite und bedient alle **302 Corporate- und Equity-Trainingsfragen**.
+  Fünf neue Wörterbuchrückwege, Offlinebetrieb, Speicherverhalten und Klausurablauf
+  sind eingeschlossen. Drei Grafiken, kumulative Vergleichstabelle, mobile
+  Symbolhilfe und mobile Mehrheitstabelle wurden visuell geprüft. Die diskreten
+  Sitzanzahlen erhielten anschließend ausdrücklich markierte und beschriftete
+  Punkte; fokussierte Tests und erneute Sichtprüfung bestanden.
+- **20 neue Wörterbucheinträge** verlinken präzise zurück: unter anderem Quorum,
+  Enthaltung, Broker Non-Vote, Wahlregeln, Stichtag und institutionelle Rollen.
+  Bestehende allgemeine Governance-Verweise bleiben erhalten; wechselseitige
+  Kapitelverbindungen führen zur neuen Vertiefung. Gesamtstand: **634 kuratierte
+  Rückverweise, 1.013 Definitionen und 2.128 globale Begriffe/Aliase**.
+- Gesamtstand: **50 Einheiten, 172/340 strukturelle Lernzielreferenzen,
+  1.106 Trainingsfragen, je 94 reservierte Klausurfragen und 63 CFA-Grafiken**.
+  Offen bleiben **52 Einheiten, 168 Lernzielzuordnungen und 86 Fragen je vollständiger
+  Klausur** sowie der fachliche Gesamtaudit. Als Nächstes folgt Aktienemission
+  und Aktienhandel. Die Zielwerte 90/100 und 80/100 sind noch nicht nachgewiesen.

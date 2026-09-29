@@ -239,7 +239,11 @@ test('published MCQ numerical answers agree with separately computed results',()
   'eqf-08':(.05*80)/64*100,'eqf-09':38000-4*2000*50*.08,'eqf-12':40000+.1*(200000-40000),
   'eqf-13':5*18,'eqf-14':90-85,'eqf-15':80,'eqf-16':100+.25*(360-100),'eqf-17':120/.3,
   'eqf-19':(5+100-104)/104*100,'eqf-20':9/.075,'eqf-21':(1-.05/.06)*100,
-  'eqf-23':150/220*100,'eqf-28':(1.8**.25-1)*100,'eqf-30':3*24*1.2
+  'eqf-23':150/220*100,'eqf-28':(1.8**.25-1)*100,'eqf-30':3*24*1.2,
+  'vote-03':96/180*100,'vote-06':30/65*100,'vote-07':20/60*100,
+  'vote-10':420/800*100,'vote-11':601,'vote-12':300/550*100,
+  'vote-15':25,'vote-17':34,'vote-30':115/150*100,'vote-32':120,
+  'vote-a1':120/208*100
  };
  for(const [id,v] of Object.entries(expected)){
   const q=byId.get(id);const numeric=Number(q.options[q.correct].text.replace(/[€,]/g,'').replace('−','-').match(/-?\d+(?:\.\d+)?/)?.[0]);
@@ -1858,6 +1862,88 @@ test('equity instrument valuation comparisons reconcile conversion, discounting,
  assert.ok(Math.abs((1.6**.2-1)*100-9.8560543306)<1e-8);
  const usd0=2*30*1.1,usd1=2*30;assert.equal(usd0,66);assert.equal(usd1,60);assert.ok(Math.abs((usd1/usd0-1)*100+9.0909090909)<1e-8);
  const voting=20*10/(80+20*10),economic=20/100;assert.ok(voting>2/3&&economic<1/3);
+});
+
+test('voting graphs reconcile weighted ownership and turnout against explicit vote ledgers',()=>{
+ const u=data.units.find(u=>u.id==='voting'),section=id=>u.sections.find(s=>s.id===id);
+ const leverage=section('leverage').blocks.find(b=>b.kind==='figure').plot;
+ for(const [i,series]of leverage.series.entries()){
+  const multiplier=[1,5,10][i];let previous=-1;
+  for(const [capital,published]of series.points){
+   const shares=Array.from({length:100},(_,j)=>({block:j<capital,votes:j<capital?multiplier:1}));
+   const total=shares.reduce((s,x)=>s+x.votes,0),block=shares.filter(x=>x.block).reduce((s,x)=>s+x.votes,0);
+   assert.ok(Math.abs(published-block/total*100)<1e-10);assert.ok(published>=previous);previous=published;
+  }
+ }
+ const turnout=section('turnout').blocks.find(b=>b.kind==='figure').plot.series[0];
+ for(const [participation,published]of turnout.points){
+  const always=200,others=8*participation;assert.ok(Math.abs(published-always/(always+others)*100)<1e-10);
+ }
+ assert.equal(turnout.points.find(([x])=>x===25)[1],50);
+ assert.ok(Math.abs(leverage.series[2].points.find(([x])=>x===10)[1]-100/190*100)<1e-10);
+ const original=Array.from({length:100},(_,i)=>({founder:i<20,votes:i<20?10:1}));
+ for(let i=0;i<8;i++){original[i].founder=false;original[i].votes=1;}
+ assert.equal(original.reduce((n,x)=>n+x.votes,0),208);
+ assert.equal(original.filter(x=>x.founder).reduce((n,x)=>n+x.votes,0),120);
+});
+
+test('voting cumulative seat guarantee matches all opposing allocations in small elections and published thresholds',()=>{
+ // Enumerate complete distributions of opposing votes. A tie can displace the
+ // block, so the candidate is guaranteed only if no allocation ties all d rivals.
+ const canExclude=(remaining,seats,target)=>{
+  if(seats===1)return remaining>=target;
+  for(let first=0;first<=remaining;first++)if(first>=target&&canExclude(remaining-first,seats-1,target))return true;
+  return false;
+ };
+ for(let total=2;total<=16;total++)for(let seats=1;seats<=4;seats++){
+  let firstGuaranteed;
+  for(let owned=1;owned<=total;owned++)if(!canExclude((total-owned)*seats,seats,owned*seats)){firstGuaranteed=owned;break;}
+  assert.equal(firstGuaranteed,Math.floor(total/(seats+1))+1);
+ }
+ const u=data.units.find(u=>u.id==='voting');
+ const points=u.sections.find(s=>s.id==='staggered').blocks.find(b=>b.kind==='figure').plot.series[0].points;
+ for(const [seats,required]of points){
+  // Worst-case opponents split their entire vote budget as evenly as possible.
+  const worst=shares=>Array.from({length:seats},()=>100-shares);
+  assert.ok(worst(required).some(v=>v<required*seats));
+  assert.ok(worst(required-1).every(v=>v>=(required-1)*seats));
+ }
+ const table=u.sections.find(s=>s.id==='cumulative').blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table');
+ for(const [owned,block,others]of table.rows){assert.equal(Number(block),3*Number(owned));assert.equal(Number(others),3*(100-Number(owned)));}
+ assert.equal(canExclude(225,3,75),true);assert.equal(canExclude(222,3,78),false);
+});
+
+test('voting examples keep quorum, approval bases, class consent and conversion separate',()=>{
+ const u=data.units.find(u=>u.id==='voting'),example=id=>u.sections.find(s=>s.id===id).blocks.find(b=>b.kind==='example');
+ const percentages=example('denominators').steps.find(b=>b.kind==='table').rows.map(r=>Number(r[2].replace(' %','').replace(',','.')));
+ const ledger={for:320,against:280,abstain:100,absent:300},total=Object.values(ledger).reduce((a,b)=>a+b,0);
+ for(const [i,denominator]of [ledger.for+ledger.against,total-ledger.absent,total].entries())assert.ok(Math.abs(percentages[i]-ledger.for/denominator*100)<.0051);
+ assert.deepEqual([600,700,1000].map(n=>ledger.for>n/2),[true,false,false]);
+ const classVotes=[{yes:60,no:20},{yes:8,no:12}];assert.ok(classVotes.reduce((s,x)=>s+x.yes,0)>50);assert.equal(classVotes[1].yes>10,false);
+ const count=weight=>{
+  const yes=15+20*weight,no=35,abstain=10,absent=20;
+  return {yes,no,represented:yes+no+abstain,total:yes+no+abstain+absent};
+ };
+ const before=count(5),after=count(1);assert.deepEqual(before,{yes:115,no:35,represented:160,total:180});
+ assert.deepEqual(after,{yes:35,no:35,represented:80,total:100});
+ assert.ok(before.represented>=before.total/2&&after.represented>=after.total/2);
+ assert.ok(before.yes>before.no);assert.equal(after.yes>after.no,false);
+ assert.equal(before.yes>=before.total*2/3,false);
+ const tex=example('case').steps.filter(b=>b.kind==='formula').map(b=>b.tex).join(' ');
+ for(const value of ['55{,}56','88{,}89','76{,}67'])assert.ok(tex.includes(value));
+});
+
+test('voting glossary preserves distinct roles and both objectives have questions with precise return links',()=>{
+ const glossary=require('../finance-glossary.cjs'),resolve=term=>glossary.find(g=>[g.term,...g.aliases].includes(term));
+ for(const [term,section]of [['Mehrstimmrechte','leverage'],['Quorum','quorum'],['Enthaltung','denominators'],['Broker Non-Vote','nonvotes'],['Plurality Voting','elections'],['Voting Record Date','record'],['VIF','chain'],['Asset Owner','owners'],['Asset Manager','managers'],['Proxy Adviser','advisers']])assert.deepEqual(resolve(term).cfa,{unit:'voting',section});
+ assert.notEqual(resolve('Beneficial Owner'),resolve('Beneficial Ownership'));
+ assert.notEqual(resolve('Cumulative Voting'),resolve('Kumulative Vorzugsdividende'));
+ assert.match(resolve('Broker Non-Vote').definition,/nicht automatisch/);
+ const bank=data.questions.filter(q=>q.unit==='voting');assert.equal(bank.filter(q=>q.pool==='practice').length,32);
+ for(const pool of ['mock-a','mock-b'])assert.equal(bank.filter(q=>q.pool===pool).length,2);
+ const coverage=data.coverage.find(m=>m.id==='voting');assert.equal(coverage.objectives.length,2);
+ for(const o of coverage.objectives){assert.ok(o.sections.length>=8);assert.ok(o.practice.length>=10);assert.ok(o.mockQuestions>=2);}
+ for(const id of ['governance','equity-features'])assert.ok(data.units.find(u=>u.id===id).related.some(r=>r.unit==='voting'));
 });
 
 test('unwritten modules remain visible as gaps and cannot pass the release gate',()=>{
