@@ -722,3 +722,61 @@ CFA-Fragen ausgegeben. Praktische Pflichtmodule des CFA Institute bleiben separa
   Fragen je vollständiger Klausur**, anschließend der abschließende fachliche
   Audit. Als Nächstes folgen die noch offenen Equity-Module. Die Zielwerte
   90/100 und 80/100 bleiben bis zur belegten Gesamtabnahme offen.
+
+### 29.09.2026: Aktieninstrumente und öffentliche/private Beteiligungen
+
+- Equity Instrument Features ist für beide beschreibenden Lernziele des
+  offiziellen Outlines 2027 ausgearbeitet: **20 Abschnitte, 13 eigene Fälle,
+  17 Formeltafeln mit Symbolhilfen, 13 Tabellen und drei berechnete Grafiken**.
+  Dazu kommen **32 neue englische Trainingsfragen mit deutschen Lösungswegen**
+  und Einzelbegründungen sowie **je zwei reservierte Klausurfragen**.
+  Weiterführende Bewertungsrechnungen werden als didaktische Vertiefung eingeordnet.
+- Eigentum am Anteil wird vom Eigentum an einzelnen Gesellschaftsaktiva getrennt.
+  Vollständige Einzahlung, Haftungsbegrenzung, Residualanspruch, Gewinn,
+  Ausschüttungsbeschluss und tatsächliche Zahlung werden erläutert. Ein
+  dreistufiger Verteilungsfall stimmt Gläubiger-, Vorzugs- und Stammzahlungen
+  über unterschiedliche Vermögensmassen ab; die dazugehörige Grafik zeigt
+  Verlusttragung und Beteiligung am zusätzlichen Erfolg.
+- Die Vorzugsanalyse trennt Bezugsbetrag und Marktpreis, kumulative und nicht
+  kumulative Zahlungen, Rückstände und laufende Ansprüche, Zusatzteilnahme,
+  Wandlung, Emittenten-Call und Inhaber-Put. Eigene Beispiele vergleichen
+  Dividendenrendite und Gesamtrendite einschließlich Rückkaufverlust.
+  Eine dritte Grafik erklärt den gekrümmten Zinseffekt auf konstante Zahlungen.
+  Rechtliche Bezeichnung, wirtschaftlicher Rang und IAS-32-Ausweis werden
+  ausdrücklich auseinandergehalten; „kumulativ“ allein entscheidet den Ausweis nicht.
+- Ein privater Exit-Fall vergleicht einen nicht teilnehmenden wandelbaren Vorzug,
+  einen teilnehmenden Vorzug und dieselbe reine Stammquote. Vorzug und alternative
+  Wandlung werden nicht addiert. Die Grafik und der Rundenbewertungsfall erklären,
+  warum die zuletzt bezahlte neue Vorzugsaktie nicht automatisch den Wert älterer
+  Stammaktien festlegt. Die Fälle enthalten keine erfundenen allgemeinen
+  Illiquiditätsabschläge oder garantierten Private-Equity-Prämien.
+- Weitere Fälle behandeln Stimm- gegenüber Kapitalquote, private Platzierung
+  gegenüber Emittentenstatus, PIPE, mögliche private Sekundärverkäufe,
+  Informations- und Übertragungsrechte, Kapitalbindung und verzögerte Bewertungen.
+  ADR-Parität wird mit eindeutigem Aktienverhältnis und Wechselkurs hergeleitet;
+  Dollarhandel beseitigt den Währungseinfluss nicht. US-Platzierungsregeln sind
+  ausdrücklich als US-spezifisch bezeichnet.
+- **128 Kernprüfungen, 89 CFA-Prüfungen einschließlich elf Browserfällen sowie
+  vier ergänzende Browserprüfungen bestanden.** Gegenrechnungen kontrollieren
+  alle numerischen richtigen Antworten, die Zahlungsrangfolge einschließlich
+  sämtlicher Grafiksegmente, Dividendenrückstände, alternative Exit-Verteilungen,
+  Umwandlungswerte und Perpetuitäten durch explizite diskontierte Zahlungen.
+  Eine anfänglich zu strenge Fließkommagleichheit im neuen Test wurde auf eine
+  numerisch angemessene Toleranz korrigiert; die veröffentlichten Werte blieben richtig.
+- Der Browserdurchlauf bedient alle **270 Corporate- und Equity-Trainingsfragen**
+  mit Einzelbegründungen, Formelhilfen und Abschnittsrückwegen. Alle **49 Einheiten**
+  wurden auf Desktop- und Mobilbreite gerendert. Fünf neue Wörterbuchrückwege,
+  Offlinebetrieb, Speicherung und Klausurablauf wurden geprüft. Drei Grafiken,
+  die kumulative Ausschüttungstabelle, mobile Symbolhilfe und mobile
+  Beteiligungsvergleichstabelle wurden visuell kontrolliert.
+- Das Wörterbuch ergänzt **24 kuratierte Einträge** und präzisiert die bestehende
+  Vorzugsaktie mit einem Rückweg zum neuen Instrumentenvergleich. Stammaktie und
+  Venture Capital erhalten ausführlichere Definitionen. Wandlungsverhältnis
+  bleibt von der Kundenkonversionsrate getrennt. Gesamtstand: **614 kuratierte
+  Rückverweise, 993 Definitionen und 2.091 globale Begriffe/Aliase**.
+- Gesamtstand: **49 Einheiten, 170/340 strukturelle Lernzielreferenzen,
+  1.074 Trainingsfragen, je 92 reservierte Klausurfragen und 60 CFA-Grafiken**.
+  Offen: **53 Einheiten, 170 Lernzielzuordnungen und 88 Fragen je vollständiger
+  Klausur**, anschließend die fachliche Gesamtabnahme. Als Nächstes folgen
+  Aktienklassen, Rechtsordnungen und der Abstimmungsprozess. Die Zielwerte
+  90/100 beziehungsweise 80/100 sind weiterhin nicht als erreicht belegt.

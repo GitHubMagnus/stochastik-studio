@@ -13,14 +13,14 @@ Direkt im Browser nutzbar, ohne Download oder Installation.
 - **Verständnis prüfen:** 1.034 Aufgaben, mindestens sechs in jedem Finance-Kapitel und 14 bei Duration. Grundverständnis, Herleitung oder Begründung, Rechen- oder Fallaufgabe, Vergleich, Transfer und Fehlersuche besitzen getrennte Hinweise und ausführliche Lösungen. Aufgabenangaben und Ergebnistabellen sind getrennt. Die Lösungen enthalten 544 gesetzte Formeltafeln und 90 gesetzte Inline-Formeln, einschließlich bewusst wiederverwendeter Kapitelrechnungen.
 - **Vertiefungen:** 361 zusätzliche Erklärabschnitte, 175 Vergleichstabellen, insgesamt 519 erläuterte Lösungsschritte, 740 Kapitelverbindungen und neun Erklärungsgrafiken. Wichtige Zusammenhänge wie Duration, Cashflowbewertung, CAPM und Optionsreplikation erhalten mehrere aufeinander aufbauende Herleitungen.
 - **Mathematische Notation:** 156 zentrale mathematische Formeltafeln, 219 Formeltafeln in Herleitungen und 383 numerische Lösungsschritte werden ausdrücklich in LaTeX verfasst und als MathML eingebettet. Auch Formeln in Vergleichstabellen und alle neun Kelly-Formeltafeln sind gesetzt. Qualitative Entscheidungsfragen werden als Prosa dargestellt. Es gibt keine automatische Umwandlung von Wörtern in vermeintliche Gleichungen.
-- **Fachwörterbuch:** 971 alphabetisch sortierte Definitionen mit 2.032 Begriffen und Aliasen; automatische Verlinkung aus den Lerntexten und Rückverweise auf erklärende Kapitel. 590 kuratierte Einträge besitzen zusätzlich einen präzisen Rückverweis in den neuen CFA-Lernpfad. Mehrdeutige Abkürzungen wie GMV werden abhängig vom Kapitel verlinkt. Direktlinks auf zusammengeführte Begriffe bleiben über deren Alias erhalten.
+- **Fachwörterbuch:** 993 alphabetisch sortierte Definitionen mit 2.091 Begriffen und Aliasen; automatische Verlinkung aus den Lerntexten und Rückverweise auf erklärende Kapitel. 614 kuratierte Einträge besitzen zusätzlich einen präzisen Rückverweis in den neuen CFA-Lernpfad. Mehrdeutige Abkürzungen wie GMV werden abhängig vom Kapitel verlinkt. Direktlinks auf zusammengeführte Begriffe bleiben über deren Alias erhalten.
 - **Kelly Studio:** Einzelpositionen, Szenarien, Portfoliooptimierung, Simulation und Herleitung. Der Zustand bleibt beim Modulwechsel erhalten.
 
 ## CFA Level I 2027: laufende Überarbeitung
 
 Der neue Bereich unter **Finance → CFA Level I 2027** führt 102 offizielle Module
 mit 340 einzeln zugeordneten Lernzielreferenzen. Der aktuelle Arbeitsstand enthält
-48 neu ausgearbeitete Einheiten und 1.042 eigenständige englische Trainingsfragen
+49 neu ausgearbeitete Einheiten und 1.074 eigenständige englische Trainingsfragen
 mit deutschen Lösungen. Alle zehn Ethics-Module und alle elf Quant-Module besitzen
 neue Erklärungen und Übungen. Weitere Vertiefungen behandeln EPS, Kennzahlen und
 Leasing/Vergütung. Der Quant-Bereich enthält jetzt auch ausführliche Testwahl,
@@ -114,18 +114,27 @@ Alle Rechenmodelle nennen ihre Zeit- und Kostenannahmen; vertiefende Kennzahlen
 sind von den offiziellen beschreibenden Lernzielen getrennt. Drei Grafiken zeigen
 Vertriebskosten, Kündigungseffekte und die Gewinnschwelle kostenloser Angebote.
 Damit enthalten alle sieben Corporate-Issuers-Module zusammen 130 Abschnitte
-und 238 Trainingsfragen. Insgesamt 57 zusätzliche berechnete Grafiken erläutern
-die neuen Zusammenhänge.
+und 238 Trainingsfragen.
+Der Aktienbereich beginnt mit 20 Abschnitten zu Eigenkapitalinstrumenten und
+32 Trainingsfragen. Stamm- und Vorzugsansprüche, kumulative Dividenden,
+Zusatzteilnahme, Wandlung und Rückkauf werden durch vollständige Zahlungsfälle
+verglichen. Drei Grafiken zeigen die Rangfolge, alternative Exit-Rechte und den
+Zinseffekt auf konstante Vorzugszahlungen. Weitere Beispiele unterscheiden
+Stimm- und Kapitalquote, öffentliche und private Beteiligungen, Kapitalbindung,
+Rundenbewertung und ADR-Währungsrisiko. Die rechtliche Bezeichnung einer Aktie
+wird von ihrer wirtschaftlichen Wirkung und der IAS-32-Klassifikation getrennt.
+Insgesamt 60 zusätzliche berechnete Grafiken erläutern die neuen Zusammenhänge.
 Direkte Abschnittsverweise verbinden die Einheiten und passende Wörterbuchdefinitionen.
 
-168 Lernzielreferenzen sind aktuell sowohl neuen Erklärungen als auch Trainingsfragen
+170 Lernzielreferenzen sind aktuell sowohl neuen Erklärungen als auch Trainingsfragen
 zugeordnet. Dies ist **kein Nachweis vollständiger CFA-Vorbereitung**. Offene
 Einheiten sind sichtbar; die fachliche Endprüfung läuft. Zwei getrennte Probeklausuren
-haben bisher je 90 von 180 Fragen und bleiben gesperrt. Ihre Ethics- und Quant-Anteile
+haben bisher je 92 von 180 Fragen und bleiben gesperrt. Ihre Ethics- und Quant-Anteile
 sind mit jeweils 22 Fragen pro Thema, ihre Economics-Anteile mit je zwölf und
 ihre Abschlussanalyse-Anteile mit je 22 Fragen angelegt. Corporate Issuers hat
 je zwölf reservierte Fragen. Damit sind die Themenanteile der ersten Sitzung
-angelegt; die 90 Fragen der zweiten Sitzung fehlen noch. Der implementierte Ablauf
+angelegt. Die zweite Sitzung beginnt mit je zwei Aktienfragen; je 88 Fragen
+fehlen noch. Der implementierte Ablauf
 mit zwei Sitzungen zu je 135 Minuten wird mit gesonderten künstlichen Testdaten
 geprüft, die nicht als echte Lernfragen veröffentlicht werden.
 
@@ -148,6 +157,7 @@ Die veröffentlichte Website ist über [GitHub Pages](https://githubmagnus.githu
 - [Finance Studio](https://githubmagnus.github.io/stochastik-studio/#finance)
 - [CFA Level I 2027: Lernpfad und Training](https://githubmagnus.github.io/stochastik-studio/#cfa)
 - [Neue Portfoliotheorie: Herleitung und Grafiken](https://githubmagnus.github.io/stochastik-studio/#cfa~learn-portfolio-math)
+- [Aktien: Ansprüche, Vorzüge und private Beteiligungen](https://githubmagnus.github.io/stochastik-studio/#cfa~learn-equity-features)
 - [Kelly Studio](https://githubmagnus.github.io/stochastik-studio/#kelly)
 - [Stochastik-Studio](https://githubmagnus.github.io/stochastik-studio/#stochastik)
 - [Duration: Herleitungen und Vergleiche](https://githubmagnus.github.io/stochastik-studio/#lesson-bonds-08~derivations)

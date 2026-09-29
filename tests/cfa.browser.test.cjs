@@ -70,7 +70,7 @@ test('every authored 2027 unit renders without overflow and new glossary terms r
  await qualityTerm.click();await page.waitForFunction(id=>document.activeElement.id==='glossary-'+id,qualityTarget);
  await page.locator('#glossary-'+qualityTarget+' a[href="#cfa~learn-reporting-quality~smoothing"]').click();
  await page.waitForFunction(()=>document.activeElement.id==='cfa-section-smoothing');
- for(const [unit,section,term] of [['forecasting','biases','Outside View'],['income-statement','revenue-estimates','Konsignation'],['ratios','industry-cases','Combined Ratio'],['issuer-forms','primary-secondary','Pre-Money-Bewertung'],['stakeholders','debt-overhang','Debt Overhang'],['stakeholders','measurement','Greenwashing'],['governance','agency-costs','Agency-Kosten'],['governance','shareholder-rights','Cumulative Voting'],['working-capital','definitions','Working Capital'],['working-capital','sensitivity','Overtrading'],['working-capital','trade-discount','Skonto'],['capital-allocation','discount-consistency','Hurdle Rate'],['capital-allocation','options-map','Realoption'],['capital-structure','wacc','WACC'],['capital-structure','mm-assumptions','Modigliani-Miller-Theorem'],['capital-structure','target','Target Capital Structure'],['capital-structure','distress','Financial Distress'],['business-models','value','Value Proposition'],['business-models','lifetime','Customer Acquisition Cost'],['business-models','platforms','Take Rate'],['business-models','networks','Multi-Homing']]){
+ for(const [unit,section,term] of [['forecasting','biases','Outside View'],['income-statement','revenue-estimates','Konsignation'],['ratios','industry-cases','Combined Ratio'],['issuer-forms','primary-secondary','Pre-Money-Bewertung'],['stakeholders','debt-overhang','Debt Overhang'],['stakeholders','measurement','Greenwashing'],['governance','agency-costs','Agency-Kosten'],['governance','shareholder-rights','Cumulative Voting'],['working-capital','definitions','Working Capital'],['working-capital','sensitivity','Overtrading'],['working-capital','trade-discount','Skonto'],['capital-allocation','discount-consistency','Hurdle Rate'],['capital-allocation','options-map','Realoption'],['capital-structure','wacc','WACC'],['capital-structure','mm-assumptions','Modigliani-Miller-Theorem'],['capital-structure','target','Target Capital Structure'],['capital-structure','distress','Financial Distress'],['business-models','value','Value Proposition'],['business-models','lifetime','Customer Acquisition Cost'],['business-models','platforms','Take Rate'],['business-models','networks','Multi-Homing'],['equity-features','common','Common Shares'],['equity-features','cumulative','Non-Cumulative Preferred Shares'],['equity-features','conversion','Wandlungswert'],['equity-features','funding','PIPE'],['equity-features','depositary','ADR']]){
   await page.goto(url+'/#cfa~learn-'+unit+'~'+section);
   const link=page.locator('#cfa-section-'+section+' a.term-link:visible').filter({hasText:new RegExp('^'+term+'$')}).first();
   const target=(await link.getAttribute('href')).split('~')[1];await link.click();
@@ -160,9 +160,9 @@ test('financial-statement training preserves formula explanations and returns to
  }
 });
 
-test('corporate issuer training explains each choice and links back to the precise chapter section',async t=>{
+test('corporate and equity training explains each choice and links back to the precise chapter section',async t=>{
  const page=await open(t);
- for(const unit of actual.units.filter(u=>u.topic==='corporate')){
+ for(const unit of actual.units.filter(u=>['corporate','equity'].includes(u.topic))){
   await page.goto(url+'/#cfa~learn-'+unit.id);await page.locator('[data-train-unit]').click();
   const qs=actual.questions.filter(q=>q.unit===unit.id&&q.pool==='practice');
   for(const [i,q] of qs.entries()){
