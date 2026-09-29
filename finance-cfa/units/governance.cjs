@@ -129,6 +129,7 @@ module.exports={id:'governance',intro:[
   'Die Verbindung zu Ethics bleibt zentral: Ein zulässiger formaler Prozess entbindet Beteiligte nicht von ihren beruflichen Pflichten. Zugleich sind Unternehmensorgane, Analysten und Anlageverwalter unterschiedliche Rollen. Die Pflichten einer Rolle dürfen nicht ohne Prüfung auf eine andere übertragen werden.'
  ])
 ],related:[
+ {unit:'voting',section:'cumulative',label:'Kumulative Wahlen, Quoren und Mehrheitsschwellen herleiten'},
  {unit:'stakeholders',section:'risk-shifting',label:'Risikoverlagerung zwischen alten Gläubigern und Aktionären nachrechnen'},
  {unit:'stakeholders',section:'debt-overhang',label:'Warum ein vorteilhaftes Projekt an der Nutzenverteilung scheitern kann'},
  {unit:'issuer-forms',section:'voting',label:'Wirtschaftlichen Anteil und Stimmrechtskontrolle trennen'},

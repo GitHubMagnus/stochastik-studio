@@ -163,6 +163,7 @@ module.exports={id:'equity-features',intro:[
   'Die vereinfachten Modelle dieses Kapitels halten viele Merkmale bewusst konstant. Sie machen den Effekt eines Rechts sichtbar. Eine vollständige Bewertung verlangt zusätzlich Zukunftsszenarien, passende Diskontsätze und konsistente Annahmen über Finanzierung, neue Aktien und das Verhalten der Beteiligten.'
  ])
 ],related:[
+ {unit:'voting',section:'weights',label:'Von Aktienklassen zu Stimmgewicht und Abstimmungsergebnis'},
  {unit:'issuer-forms',section:'liability',label:'Gesellschaftsform und persönliche Haftung unterscheiden'},
  {unit:'stakeholders',section:'waterfall',label:'Rangfolge und Anreize der Anspruchsgruppen vertiefen'},
  {unit:'governance',section:'shareholder-rights',label:'Stimmrechte, Minderheitenschutz und Kontrolle'},
