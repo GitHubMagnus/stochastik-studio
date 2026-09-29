@@ -86,6 +86,14 @@ test('every authored 2027 unit renders without overflow and new glossary terms r
   await page.locator('#glossary-'+target+' a[href="#cfa~learn-voting~'+section+'"]').click();
   await page.waitForFunction(id=>document.activeElement.id==='cfa-section-'+id,section);
  }
+ for(const [section,term]of [['pricing','Bookbuilding'],['venues','Alternative Trading Systems'],['orders','Market Order'],['spread','Quoted Spread'],['volume','Average Daily Volume']]){
+  await page.goto(url+'/#cfa~learn-equity-trading~'+section);
+  const link=page.locator('#cfa-section-'+section+' a.term-link:visible').filter({hasText:new RegExp('^'+term+'$')}).first();
+  const target=(await link.getAttribute('href')).split('~')[1];await link.click();
+  await page.waitForFunction(id=>document.activeElement.id==='glossary-'+id,target);
+  await page.locator('#glossary-'+target+' a[href="#cfa~learn-equity-trading~'+section+'"]').click();
+  await page.waitForFunction(id=>document.activeElement.id==='cfa-section-'+id,section);
+ }
  await page.goto(url+'/#cfa~learn-ethics-cases');
  await page.locator('.cfa-related a[href="#cfa~learn-standard-iii~fair-dealing"]').click();
  await page.waitForFunction(()=>document.activeElement.id==='cfa-section-fair-dealing');

@@ -243,7 +243,13 @@ test('published MCQ numerical answers agree with separately computed results',()
   'vote-03':96/180*100,'vote-06':30/65*100,'vote-07':20/60*100,
   'vote-10':420/800*100,'vote-11':601,'vote-12':300/550*100,
   'vote-15':25,'vote-17':34,'vote-30':115/150*100,'vote-32':120,
-  'vote-a1':120/208*100
+  'vote-a1':120/208*100,
+  'etr-02':6*25,'etr-03':8*30*.96-3,'etr-04':30+5,'etr-05':3/40*100,'etr-06':(18/20-1)*100,
+  'etr-18':.06/25*10000,'etr-19':50/2,'etr-20':(200*20.02+300*20.05)/500,'etr-21':100+300,
+  'etr-22':150-10-35,'etr-23':60/80*100,'etr-25':(.6+.8+.9+.7+2)/5,'etr-26':(100*10+300*20)/2,
+  'etr-27':2000,'etr-28':900000/(.15*1200000),'etr-31':80,'etr-32':80/200*100,'etr-33':50/200*100,
+  'etr-34':20/100*15+50/100*2-30/100*10,'etr-35':75/100,'etr-39':(78+3-80)/80*100,
+  'etr-40':(1.05*.92-1)*100,'etr-a2':450/650*100,'etr-b1':45/100*100
  };
  for(const [id,v] of Object.entries(expected)){
   const q=byId.get(id);const numeric=Number(q.options[q.correct].text.replace(/[€,]/g,'').replace('−','-').match(/-?\d+(?:\.\d+)?/)?.[0]);
@@ -1944,6 +1950,86 @@ test('voting glossary preserves distinct roles and both objectives have question
  const coverage=data.coverage.find(m=>m.id==='voting');assert.equal(coverage.objectives.length,2);
  for(const o of coverage.objectives){assert.ok(o.sections.length>=8);assert.ok(o.practice.length>=10);assert.ok(o.mockQuestions>=2);}
  for(const id of ['governance','equity-features'])assert.ok(data.units.find(u=>u.id===id).related.some(r=>r.unit==='voting'));
+});
+
+test('equity trading offering ledgers conserve proceeds and distinguish new shares from resales',()=>{
+ const u=data.units.find(u=>u.id==='equity-trading'),s=id=>u.sections.find(s=>s.id===id);
+ const grossNew=10*20,grossOld=5*20,feesNew=grossNew*.05+2,feesOld=grossOld*.05;
+ const table=s('offering').blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table');
+ assert.deepEqual(table.rows.at(-1).slice(1).map(Number),[grossNew-feesNew,grossOld-feesOld]);
+ assert.equal(grossNew-feesNew+grossOld-feesOld+feesNew+feesOld,300);
+ assert.equal(40+10,50);assert.equal(4/(40+10)*100,8);
+ const tradingCash=[-50010,49990,10,10,0];assert.equal(tradingCash.reduce((a,b)=>a+b,0),0);
+ const resaleReturn=(24-25)/25,offerReturn=(24-20)/20;assert.equal(resaleReturn,-.04);assert.equal(offerReturn,.2);
+ const offeringText=JSON.stringify(s('offering'));for(const number of ['188','95','50'])assert.ok(offeringText.includes(number));
+});
+
+test('equity trading order-book costs and figure points match an explicit share-by-share fill',()=>{
+ const u=data.units.find(u=>u.id==='equity-trading'),depth=u.sections.find(s=>s.id==='depth');
+ // Integer cents prevent cancellation and implement fills independently of the authored helper.
+ const asks=[...Array(100).fill(5002),...Array(300).fill(5005),...Array(600).fill(5010)];
+ const fill=q=>asks.slice(0,q).reduce((sum,cents)=>sum+cents,0)/100;
+ const number=s=>Number(s.replace(/\./g,'').replace(',','.'));
+ const rows=depth.blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table').rows;
+ for(const row of rows){const [q,total,average,cost]=row.map(number);assert.equal(total,fill(q));assert.ok(Math.abs(average-fill(q)/q)<1e-10);assert.equal(cost,fill(q)-50*q);}
+ const graph=depth.blocks.find(b=>b.kind==='figure').plot;
+ for(const [q,p]of graph.series[0].points)assert.ok(Math.abs(p-fill(q)/q)<1e-10);
+ for(const m of graph.marks)assert.ok(Math.abs(m.y-fill(m.x)/m.x)<1e-10);
+ assert.equal(asks.filter(p=>p<=5005).length,400);
+ const spread=(5002-4998)/5000;assert.equal(spread*10000,8);
+ assert.equal(asks[0]-5000,2);assert.equal(asks[0]-4998,4);
+ const cheaper=[...Array(200).fill(2002),...Array(400).fill(2005)];assert.equal(cheaper.slice(0,500).reduce((a,b)=>a+b,0)/50000,20.038);
+});
+
+test('equity trading float, volume and capacity reconcile distinct stocks and daily executions',()=>{
+ const u=data.units.find(u=>u.id==='equity-trading'),section=id=>u.sections.find(s=>s.id===id);
+ const issued=Array.from({length:120},(_,id)=>({treasury:id<10,strategic:id>=10&&id<40,locked:id>=40&&id<50}));
+ const outstanding=issued.filter(x=>!x.treasury),floating=outstanding.filter(x=>!x.strategic&&!x.locked);
+ assert.equal(outstanding.length,110);assert.equal(floating.length,70);assert.equal(floating.length*25,1750);
+ assert.equal(outstanding.filter(x=>!x.strategic).length,80);
+ const volumes=[.8,1,1.2,.9,3.1],prices=[10,11,10,12,10];
+ const total=volumes.reduce((a,b)=>a+b,0),value=volumes.reduce((a,v,i)=>a+v*prices[i],0);
+ assert.equal(total/5,1.4);assert.ok(Math.abs(value/5-14.56)<1e-12);
+ assert.notEqual(value/5,(total/5)*(prices.reduce((a,b)=>a+b,0)/5));
+ const tex=section('volume').blocks.find(b=>b.kind==='example').steps.filter(b=>b.kind==='formula').map(b=>b.tex).join(' ');assert.match(tex,/14\{,\}56/);
+ const graph=section('capacity').blocks.find(b=>b.kind==='figure').plot;
+ for(const [volume,days]of graph.series[0].points)assert.ok(Math.abs(volume*1e6*.1*days-700000)<1e-8);
+ for(const m of graph.marks)assert.ok(Math.abs(m.x*1e6*.1*m.y-700000)<1e-8);
+ const table=section('case').blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table').rows;
+ assert.deepEqual(table[0].slice(1).map(Number),[60,70]);assert.deepEqual(table[1].slice(1).map(Number),[20,30]);
+ assert.equal(1e6/(.2*5e5),10);assert.equal((30+10+5)/(90+10),.45);
+});
+
+test('equity trading index weights, returns and split continuity agree with explicit portfolios',()=>{
+ const u=data.units.find(u=>u.id==='equity-trading'),section=id=>u.sections.find(s=>s.id===id);
+ const p=[100,20,10],shares=[1,10,10],floats=[.2,.9,.8],end=[110,20,9];
+ const notionals=[p,p.map((x,i)=>x*shares[i]),p.map((x,i)=>x*shares[i]*floats[i]),[1,1,1]];
+ const weights=notionals.map(ns=>ns.map(x=>x/ns.reduce((a,b)=>a+b,0)));
+ const ex=section('comparison').blocks.find(b=>b.kind==='example'),tables=ex.steps.filter(b=>b.kind==='table');
+ const pct=s=>Number(s.replace(' %','').replace('−','-').replace(',','.'));
+ for(let j=0;j<4;j++)for(let i=0;i<3;i++)assert.ok(Math.abs(pct(tables[0].rows[j+2][i+1])-weights[j][i]*100)<.0051);
+ const portfolioReturn=(w,prices)=>{const units=w.map((capital,i)=>capital/p[i]);return units.reduce((sum,q,i)=>sum+q*prices[i],0)-1;};
+ for(let j=0;j<4;j++)assert.ok(Math.abs(pct(tables[1].rows[j].at(-1))-portfolioReturn(weights[j],end)*100)<.0051);
+ const plot=section('comparison').blocks.find(b=>b.kind==='figure').plot;
+ for(const [j,line]of plot.series.entries())for(let r=-20;r<=20;r++){
+  const [left,right]=line.points,interpolated=left[1]+(right[1]-left[1])*(r-left[0])/(right[0]-left[0]);
+  assert.ok(Math.abs(interpolated-portfolioReturn(weights[j],[100*(1+r/100),20,9])*100)<1e-10);
+ }
+ const before=p.reduce((a,b)=>a+b,0)/1.3,newPrices=[20,20,10],divisor=newPrices.reduce((a,b)=>a+b,0)/before;
+ assert.equal(before,100);assert.equal(divisor,.5);assert.equal((20+22+10)/divisor,104);
+ assert.equal(100*1,20*5);assert.equal(120+100,110+110);
+ assert.equal((98+4-100)/100,.02);assert.equal((98+3-100)/100,.01);
+ assert.ok(Math.abs((1.02*.9-1)*100+8.2)<1e-10);
+});
+
+test('equity trading definitions and practice cover all four objectives with reserved mock allocations',()=>{
+ const glossary=require('../finance-glossary.cjs'),resolve=t=>glossary.find(g=>[g.term,...g.aliases].includes(t));
+ for(const [term,section]of [['Bookbuilding','pricing'],['Firm Commitment','underwriting'],['ATS','venues'],['Dark Pool','transparency'],['Quoted Spread','spread'],['Market Order','orders'],['Market Depth','depth'],['Float Ratio','float'],['ADV','volume'],['Rebalancing','rebalancing'],['Net Total Return Index','return-types']])assert.deepEqual(resolve(term).cfa,{unit:'equity-trading',section});
+ assert.notEqual(resolve('ADV'),resolve('ADTV'));assert.notEqual(resolve('Free Float'),resolve('Float Ratio'));
+ const bank=data.questions.filter(q=>q.unit==='equity-trading');assert.equal(bank.filter(q=>q.pool==='practice').length,40);
+ for(const pool of ['mock-a','mock-b'])assert.equal(bank.filter(q=>q.pool===pool).length,2);
+ const coverage=data.coverage.find(m=>m.id==='equity-trading');assert.equal(coverage.objectives.length,4);
+ for(const o of coverage.objectives){assert.ok(o.sections.length>=4,o.id);assert.ok(o.practice.length>=8,o.id);assert.ok(o.mockQuestions>=2,o.id);}
 });
 
 test('unwritten modules remain visible as gaps and cannot pass the release gate',()=>{
