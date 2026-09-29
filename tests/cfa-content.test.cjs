@@ -234,7 +234,12 @@ test('published MCQ numerical answers agree with separately computed results',()
   'biz-20':15/(1.02-.9)-80,'biz-21':(1-.95)*100,
   'biz-23':500*(18-4)-4500*.4-4000,'biz-25':2e6*.75/1000*8,
   'biz-26':Math.ceil(24*1.2/6),'biz-27':120-90,
-  'biz-28':-500+240/1.1+(240+50)/1.1**2,'biz-30':6*800000*.05,'biz-31':6e6*(.1-.03)-300000
+  'biz-28':-500+240/1.1+(240+50)/1.1**2,'biz-30':6*800000*.05,'biz-31':6e6*(.1-.03)-300000,
+  'eqf-04':25000/(1200000-200000)*100,'eqf-05':90-65,'eqf-06':160-90-20,
+  'eqf-08':(.05*80)/64*100,'eqf-09':38000-4*2000*50*.08,'eqf-12':40000+.1*(200000-40000),
+  'eqf-13':5*18,'eqf-14':90-85,'eqf-15':80,'eqf-16':100+.25*(360-100),'eqf-17':120/.3,
+  'eqf-19':(5+100-104)/104*100,'eqf-20':9/.075,'eqf-21':(1-.05/.06)*100,
+  'eqf-23':150/220*100,'eqf-28':(1.8**.25-1)*100,'eqf-30':3*24*1.2
  };
  for(const [id,v] of Object.entries(expected)){
   const q=byId.get(id);const numeric=Number(q.options[q.correct].text.replace(/[€,]/g,'').replace('−','-').match(/-?\d+(?:\.\d+)?/)?.[0]);
@@ -1786,6 +1791,73 @@ test('business model glossary links distinguish metrics and all corporate module
   assert.equal(bank.filter(q=>q.pool===pool).length,1);
   assert.equal(data.questions.filter(q=>q.topic==='corporate'&&q.pool===pool).length,require('../finance-cfa/engine.cjs').blueprint.corporate);
  }
+});
+
+test('equity instrument waterfall conserves the estate and respects ranking in tables and graph segments',()=>{
+ const u=data.units.find(u=>u.id==='equity-features'),s=u.sections.find(s=>s.id==='waterfall');
+ const distribute=estate=>{const out=[];let remaining=estate;for(const claim of [60,20,Infinity]){const paid=Math.min(remaining,claim);out.push(paid);remaining-=paid;}return out;};
+ const table=s.blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table');
+ for(const row of table.rows)assert.deepEqual(row.map(Number).slice(1),distribute(Number(row[0])));
+ const graph=s.blocks.find(b=>b.kind==='figure').plot;
+ const interpolate=(points,x)=>{const j=points.findIndex((p,i)=>i&&p[0]>=x),a=points[j-1],b=points[j];return a[1]+(b[1]-a[1])*(x-a[0])/(b[0]-a[0]);};
+ for(let estate=0;estate<=160;estate+=.5){
+  const values=graph.series.map(series=>interpolate(series.points,estate));
+  assert.deepEqual(values,distribute(estate));assert.ok(Math.abs(values.reduce((a,b)=>a+b,0)-estate)<1e-10);
+ }
+ const risk=u.sections.find(s=>s.id==='risk').blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table');
+ const number=x=>Number(x.replace('−','-').replace(' %',''));
+ for(const row of risk.rows){const estate=number(row[0]),common=distribute(estate)[2];assert.ok(Math.abs(number(row[1])-(estate/100-1)*100)<1e-10);assert.equal(number(row[2]),common);assert.equal(number(row[3]),(common/20-1)*100);}
+});
+
+test('equity instrument dividend cases distinguish arrears, current claims and participation in the remaining pool',()=>{
+ const u=data.units.find(u=>u.id==='equity-features'),section=id=>u.sections.find(s=>s.id===id);
+ const num=x=>Number(x.replace(/\./g,'').replace(',','.'));
+ const annual=10000*100*.06,rows=section('cumulative').blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table').rows;
+ for(const [i,years]of [[0,3],[1,1]]){
+  const prior=(years-1)*annual,current=annual,preferred=prior+current;
+  assert.deepEqual(rows[i].slice(1).map(num),[prior,current,preferred,200000-preferred]);
+ }
+ let arrears=0;for(const available of [0,0,150000]){arrears+=annual;const paid=Math.min(available,arrears);arrears-=paid;assert.equal(available-paid,0);}assert.equal(arrears,30000);
+ const total=300000,base=60000,rest=total-base,participating=base+.2*rest;
+ assert.equal(participating,108000);assert.equal(total-participating,192000);
+ const formula=section('participation').blocks.find(b=>b.kind==='example').steps[0];assert.match(formula.tex,/108000/);assert.match(formula.tex,/192000/);
+ const dividend=10000/1000000*500000;assert.equal(dividend,5000);
+});
+
+test('equity instrument exit alternatives match exhaustive choices and avoid double counting proceeds',()=>{
+ const u=data.units.find(u=>u.id==='equity-features'),s=u.sections.find(s=>s.id==='exit');
+ const pay=total=>{
+  const preferred=total<100?total:100,conversion=total/4;
+  const choices=[{investor:preferred,others:total-preferred},{investor:conversion,others:total-conversion}];
+  const best=choices.sort((a,b)=>b.investor-a.investor)[0];
+  const remainder=total-preferred,participating={investor:preferred+remainder/4,others:remainder*3/4};
+  assert.equal(best.investor+best.others,total);assert.equal(participating.investor+participating.others,total);
+  return [best.investor,participating.investor,conversion];
+ };
+ const table=s.blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table');
+ for(const row of table.rows)assert.deepEqual(row.slice(1).map(Number),pay(Number(row[0])));
+ const graph=s.blocks.find(b=>b.kind==='figure').plot;
+ for(const [i,series]of graph.series.entries())for(const [x,y]of series.points)assert.equal(y,pay(x)[i]);
+ assert.deepEqual(pay(0),[0,0,0]);assert.deepEqual(pay(100),[100,100,25]);assert.deepEqual(pay(400),[100,175,100]);
+ for(let e=0;e<=1200;e+=5){const [np,p,common]=pay(e);assert.ok(p>=np&&np>=common&&p<=e);}
+ const questions=data.questions.filter(q=>q.unit==='equity-features');assert.equal(questions.filter(q=>q.pool==='practice').length,32);
+ for(const pool of ['mock-a','mock-b'])assert.equal(questions.filter(q=>q.pool===pool).length,2);
+});
+
+test('equity instrument valuation comparisons reconcile conversion, discounting, currency and holding periods',()=>{
+ const u=data.units.find(u=>u.id==='equity-features'),section=id=>u.sections.find(s=>s.id===id);
+ const table=section('conversion').blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table');
+ for(const [price,ratio,value]of table.rows.map(r=>r.map(Number)))assert.equal(value,price*ratio);
+ const pv=k=>Array.from({length:1500},(_,t)=>6/(1+k)**(t+1)).reduce((a,b)=>a+b,0);
+ const rateTable=section('rates').blocks.find(b=>b.kind==='table');
+ for(const row of rateTable.rows){const rate=Number(row[1].replace(' %',''))/100;assert.ok(Math.abs(Number(row[2])-pv(rate))<1e-8);}
+ const graph=section('rates').blocks.find(b=>b.kind==='figure').plot;
+ for(const [rate,price]of graph.series[0].points)assert.ok(Math.abs(price-pv(rate/100))<1e-8);
+ assert.ok(Math.abs((6+105-112)/112*100-(-.892857142857))<1e-9);
+ assert.ok(Math.abs((1.6**(1/3)-1)*100-16.9607095285)<1e-8);
+ assert.ok(Math.abs((1.6**.2-1)*100-9.8560543306)<1e-8);
+ const usd0=2*30*1.1,usd1=2*30;assert.equal(usd0,66);assert.equal(usd1,60);assert.ok(Math.abs((usd1/usd0-1)*100+9.0909090909)<1e-8);
+ const voting=20*10/(80+20*10),economic=20/100;assert.ok(voting>2/3&&economic<1/3);
 });
 
 test('unwritten modules remain visible as gaps and cannot pass the release gate',()=>{
