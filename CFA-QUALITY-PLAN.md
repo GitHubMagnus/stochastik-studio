@@ -885,3 +885,64 @@ CFA-Fragen ausgegeben. Praktische Pflichtmodule des CFA Institute bleiben separa
   vollständiger Klausur**, anschließend der fachliche Gesamtaudit. Als Nächstes
   folgen Ausschüttungen, Rückkäufe, Splits und Aktiengesamtrendite. Die Zielwerte
   90/100 und 80/100 sind weiterhin nicht als erreicht belegt.
+
+### 03.10.2026 – Ausschüttungen und Gesamtrendite geprüft
+
+- „Sources of Equity Returns“ ergänzt **22 Abschnitte, 20 eigene Beispiele,
+  13 Tabellen, 25 erläuterte Formeltafeln, drei berechnete Grafiken und
+  40 Trainingsfragen**. Alle drei offiziellen Lernziele besitzen Erklärungen,
+  mindestens zehn Trainingszuordnungen und mindestens zwei reservierte
+  Klausurzuordnungen. Die Autorenschaft begann am 30.09.; die Prüfung wurde
+  am 03.10. abgeschlossen. Die Einstufung bleibt „draft“ bis zum Gesamtaudit.
+- Aktienwert, Dividendenanspruch und Bargeld werden getrennt fortgeschrieben.
+  Der normale Ex-Tag trennt den Anspruch ab; die spätere Auszahlung ersetzt
+  diesen durch Bargeld. Eine zusätzliche Legacy-Erklärung und ihre Kontrollfrage
+  wurden präzisiert, damit Ex-Tag und Zahlungstag nicht gleichgesetzt werden.
+- Aktuelle SEC-/FINRA-Quellen begründen die ausdrücklich US-bezogene
+  T+1-Chronologie, Geschäftstagsbehandlung und Ausnahmen bei großen
+  Ausschüttungen. Due Bills erklären die Weiterleitung eines zunächst empfangenen
+  Betrags. Registerstichtag und endgültige wirtschaftliche Berechtigung werden
+  nicht pauschal gleichgesetzt; Sonderdividende ist keine weltweite 25%-Definition.
+- Der identische Rückkaufbetrag wird zu drei Preisen verglichen. Die Rechnungen
+  zeigen Aktienzahl, verbleibenden Eigenkapitalwert und den Werttransfer zwischen
+  Verkäufern und verbleibenden Eigentümern. Eine zusätzliche Herleitung bestimmt
+  die Finanzierungskostenschwelle für EPS-Wachstum. Zeitgewichtetes Berichts-EPS
+  wird vom vereinfachten vollständigen Folgeperiodenvergleich unterschieden.
+- Proportionale eigene Stock Dividends, Splits und Reverse Splits werden anhand
+  unveränderter Gesamtwerte gerechnet. Bruchteilsabfindung, Datenbereinigung
+  und Dividendengröße je neuer Aktie sind ausdrücklich berücksichtigt. Eine
+  dokumentierte Gesamtrenditereihe erhält keine doppelt addierte Dividende.
+- Zwei Kursverläufe vergleichen Wiederanlage mit unverzinster Bargeldhaltung.
+  Die zusätzliche Exponierung kann den Anleger besser oder schlechter stellen.
+  Ein gemeinsamer Depotfall zeigt die Folgen eines Teilverkaufs nach
+  Dividendenabtrennung; Steuer- und Gebührenbeispiele verwenden den tatsächlichen
+  Kapitaleinsatz und ausdrücklich abgegrenzte Steuerbasen.
+- Je **zwei reservierte Klausurfragen** bleiben vom Training getrennt. Sie
+  verbinden etwa einen Verwahrereingang mit weitergegebenen Ausschüttungsrechten,
+  eine Stock Dividend mit Rückkäufen anderer Eigentümer oder einen Reverse Split
+  mit einer Zahlung je neuer Aktie. Eine Fehlerdiagnose erkennt die doppelte
+  Erfassung von Anspruch und Zahlung.
+- **142 Kerntests, 103 CFA-Prüfungen und vier ergänzende Browserprüfungen bestanden.**
+  Unabhängige Kontrollen rekonstruieren Aktien- und Bargeldkonten, Rückkauftransfers,
+  Finanzierungskosten, zeitgewichtete Aktienbestände, Wiederanlagepfade und
+  numerische Aufgabenlösungen. Jeder Punkt der neuen Modellkurven stimmt mit
+  separat geführten Vermögensrechnungen überein.
+- Der Browser prüft alle **52 Einheiten** auf Desktop- und Mobilbreite sowie
+  alle **382 Corporate- und Equity-Trainingsfragen**, einschließlich Feedback
+  und Abschnittsrückwegen. Fünf zusätzliche Wörterbuchrückwege, Formelhilfen,
+  Offlinebetrieb und Klausurablauf sind geprüft. Drei Grafiken, vollständiger
+  Depotfall, mobile Symboltabelle und mobile Vermögenstabelle wurden visuell
+  kontrolliert. Ein Zeitlimit beim Aufnehmen eines hohen Beispielelements
+  wurde durch eine erfolgreich geprüfte größere Ansichtsaufnahme gelöst;
+  eine Produktänderung war dafür nicht erforderlich.
+- **23 zusätzliche kuratierte Wörterbucheinträge** ergänzen oder vertiefen
+  Definitionen mit präzisen Rückwegen; vier ersetzen vorhandene globale Begriffe.
+  Gesamtstand: **687 kuratierte Rückverweise, 1.056 Definitionen und
+  2.219 Begriffe/Aliase**.
+- Gesamtstand: **52 Einheiten, 179/340 strukturelle Lernzielreferenzen,
+  1.186 Trainingsfragen, je 98 reservierte Klausurfragen und 69 CFA-Grafiken**.
+  Offen bleiben **50 Einheiten, 161 Lernzielzuordnungen und 82 Fragen je
+  vollständiger Klausur**, danach der fachliche Gesamtaudit. Als Nächstes
+  folgt die Einführung in Aktienbewertung mit Preis, Buchwert, Marktwert,
+  Enterprise Value und geeigneten Bewertungsverfahren. Die Zielwerte
+  **90/100 und 80/100 sind noch nicht nachgewiesen**.

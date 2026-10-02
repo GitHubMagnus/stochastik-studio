@@ -93,7 +93,7 @@ module.exports={id:'returns',intro:[
    'Relativ zum alten Renditeniveau ist das ein Anstieg von 0,3/2,8 ≈ 10,714 %. Diese relative Prozentänderung beantwortet eine andere Frage.',
    'Ein Zinsschock von 30 Basispunkten wird in einer Durationformel als 0,003 eingesetzt, nicht als 0,3 oder 30.'
   ],'Einheiten sind Teil der Formel. Eine richtige Rechnung mit einer falsch eingegebenen Einheit erzeugt ein falsches Ergebnis.')
- ])],related:[{unit:'return-types',section:'annualization',label:'Haltedauern, Jahresrenditen und Zinskonventionen umrechnen'},{unit:'benchmarks',section:'time-weighted',label:'Externe Einzahlungen bei der Performancemessung behandeln'},{unit:'tvm',section:'single-cashflow',label:'Aus Renditeforderungen werden Barwerte'}],
+ ])],related:[{unit:'return-types',section:'annualization',label:'Haltedauern, Jahresrenditen und Zinskonventionen umrechnen'},{unit:'benchmarks',section:'time-weighted',label:'Externe Einzahlungen bei der Performancemessung behandeln'},{unit:'tvm',section:'single-cashflow',label:'Aus Renditeforderungen werden Barwerte'},{unit:'equity-returns',section:'normalization',label:'Aktienrenditen über Splits und Ausschüttungen richtig rechnen'}],
  sources:[
  {title:'CFA Institute: Rates and Returns – wirtschaftliche Grundlagen',url:'https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/rates-and-returns'},
  {title:'OpenStax: Time Value of Money Basics',url:'https://openstax.org/books/principles-finance-2e/pages/7-2-time-value-of-money-tvm-basics'}
