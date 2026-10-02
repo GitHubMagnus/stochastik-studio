@@ -249,7 +249,17 @@ test('published MCQ numerical answers agree with separately computed results',()
   'etr-22':150-10-35,'etr-23':60/80*100,'etr-25':(.6+.8+.9+.7+2)/5,'etr-26':(100*10+300*20)/2,
   'etr-27':2000,'etr-28':900000/(.15*1200000),'etr-31':80,'etr-32':80/200*100,'etr-33':50/200*100,
   'etr-34':20/100*15+50/100*2-30/100*10,'etr-35':75/100,'etr-39':(78+3-80)/80*100,
-  'etr-40':(1.05*.92-1)*100,'etr-a2':450/650*100,'etr-b1':45/100*100
+  'etr-40':(1.05*.92-1)*100,'etr-a2':450/650*100,'etr-b1':45/100*100,
+  'eqr-12':(42+1-40)/40*100,'eqr-13':75-3,'eqr-14':3/60*100,'eqr-15':3/5*100,
+  'eqr-16':1.2/30*100,'eqr-17':24-120/30,'eqr-18':.96/20*100,
+  'eqr-19':(1200-240)/(20-240/60),'eqr-20':(1200-240)/(20-240/80),
+  'eqr-21':(60-120*.05)/(12-120/40),'eqr-22':3/50*100,'eqr-23':90/(20*.5+16*.5),
+  'eqr-26':75/1.25,'eqr-27':(1-1/1.25)*100,'eqr-28':80*1.5,'eqr-29':(2*39/72-1)*100,
+  'eqr-30':800/4,'eqr-31':10*40+28,'eqr-32':(120*43+120-4800)/4800*100,
+  'eqr-34':(38+3-40)/40*100,'eqr-35':(54/50*53/52-1)*100,'eqr-36':110*23,
+  'eqr-37':(100*22+300-2000)/2000*100,'eqr-38':(5400-5+80-5005)/5005*100,
+  'eqr-39':(Math.sqrt(1.21)-1)*100,'eqr-40':(150*24+50*22+200-4000)/4000*100,
+  'eqr-a2':(600*20+300-12000)/12000*100,'eqr-b1':(120*27.4-2880)/2880*100
  };
  for(const [id,v] of Object.entries(expected)){
   const q=byId.get(id);const numeric=Number(q.options[q.correct].text.replace(/[€,]/g,'').replace('−','-').match(/-?\d+(?:\.\d+)?/)?.[0]);
@@ -2030,6 +2040,100 @@ test('equity trading definitions and practice cover all four objectives with res
  for(const pool of ['mock-a','mock-b'])assert.equal(bank.filter(q=>q.pool===pool).length,2);
  const coverage=data.coverage.find(m=>m.id==='equity-trading');assert.equal(coverage.objectives.length,4);
  for(const o of coverage.objectives){assert.ok(o.sections.length>=4,o.id);assert.ok(o.practice.length>=8,o.id);assert.ok(o.mockQuestions>=2,o.id);}
+});
+
+test('equity payout wealth ledgers preserve claims and distinguish share redenomination from return',()=>{
+ const u=data.units.find(u=>u.id==='equity-returns'),s=id=>u.sections.find(s=>s.id===id);
+ const parse=v=>Number(v.replace(/\./g,'').replace(',','.'));
+ const rows=s('wealth').blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table').rows;
+ for(const row of rows){const [equity,claim,cash,total]=row.slice(1).map(parse);assert.equal(equity+claim+cash,total);assert.equal(total,5000);}
+ const fig=s('exprice').blocks.find(b=>b.kind==='figure').plot;
+ for(let d=0;d<=10;d++){
+  const values=fig.series.map(line=>{const [a,b]=line.points;return a[1]+(b[1]-a[1])*(d-a[0])/(b[0]-a[0]);});
+  assert.equal(values[0],100*(50-d));assert.equal(values[1],100*d);assert.equal(values[0]+values[1],values[2]);
+ }
+ const split=s('splits').blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table');
+ assert.deepEqual(split.rows[1].slice(1).map(Number),[40,60]);
+ assert.deepEqual(split.rows[2].slice(1).map(Number),[90,60]);
+ assert.equal(40*90,60*60);assert.equal(6*90,9*60);assert.equal(6*6,9*4);
+ assert.equal(200*55,220*50);assert.notEqual(220*(55*.9),200*55);
+ assert.equal(103*2,20*10+6);assert.equal(107*4,10*40+28);
+ const baseline=60*80,end=120*43,dividend=120;assert.equal((end+dividend-baseline)/baseline,.1);
+});
+
+test('equity repurchase prices reconcile seller transfers and every value-curve point',()=>{
+ const s=data.units.find(u=>u.id==='equity-returns').sections.find(s=>s.id==='buyback-value');
+ const ex=s.blocks.find(b=>b.kind==='example'),rows=ex.steps.find(b=>b.kind==='table').rows;
+ const parse=v=>Number(v.replace(',','.'));
+ for(const row of rows){
+  const [price,bought,remain,value]=row.map(parse),q=200/price,remainingValue=1000-q*price;
+  assert.ok(Math.abs(bought-q)<1e-6);assert.ok(Math.abs(remain-(10-q))<1e-6);
+  assert.ok(Math.abs(value-remainingValue/(10-q))<.000051);
+  // Original owners collectively keep 800 in equity and receive 200 cash.
+  assert.equal(remainingValue+q*price,1000);
+  assert.ok(Math.abs((value-100)*remain-q*(100-price))<.0005);
+ }
+ const plot=s.blocks.find(b=>b.kind==='figure').plot;
+ for(const [price,v]of plot.series[0].points){const bought=200/price;assert.ok(Math.abs(v*(10-bought)+bought*price-1000)<1e-10);}
+ assert.equal(plot.marks[0].x,100);assert.equal(plot.marks[0].y,100);
+ assert.equal(1000*.01,800*.0125);
+});
+
+test('equity repurchase EPS examples include financing costs and weighted reported share counts',()=>{
+ const s=data.units.find(u=>u.id==='equity-returns').sections.find(s=>s.id==='eps');
+ const rows=s.blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table').rows;
+ for(const row of rows){
+  const rate=Number(row[0].replace(' %',''))/100,ni=Number(row[1]),eps=Number(row[2].replace(',','.'));
+  assert.equal(ni,80-rate*200);assert.equal(eps,ni/8);
+  assert.equal(Math.sign(eps-8),Math.sign(.08-rate));
+ }
+ for(const cost of [0,.02,.06,.1])for(const price of [40,80,120]){
+  const ni=60,n=12,budget=120,eps=(ni-budget*cost)/(n-budget/price);
+  assert.equal(Math.sign(eps-ni/n),Math.sign(ni/n/price-cost));
+ }
+ const dailyMonths=[...Array(6).fill(20),...Array(6).fill(16)];assert.equal(90/(dailyMonths.reduce((a,b)=>a+b,0)/12),5);
+});
+
+test('equity dividend reinvestment curves agree with explicit share and cash ledgers',()=>{
+ const u=data.units.find(u=>u.id==='equity-returns'),s=id=>u.sections.find(s=>s.id===id);
+ const simulate=(end,reinvest)=>{
+  let shares=100,cash=0;
+  for(const [price,div]of [[100,10],[end,6]]){cash+=shares*div;if(reinvest){shares+=cash/price;cash=0;}}
+  return shares*end+cash;
+ };
+ assert.equal(simulate(120,true),13860);assert.equal(simulate(120,false),13600);
+ assert.equal(simulate(80,true),9460);assert.equal(simulate(80,false),9600);
+ const plot=s('cash-comparison').blocks.find(b=>b.kind==='figure').plot;
+ for(let price=60;price<=140;price++)for(const [i,line]of plot.series.entries()){
+  const [a,b]=line.points,y=a[1]+(b[1]-a[1])*(price-a[0])/(b[0]-a[0]);
+  assert.ok(Math.abs(y-(simulate(price,i===0)/10000-1)*100)<1e-10);
+ }
+ assert.ok(Math.abs(simulate(94,true)-simulate(94,false))<1e-10);
+ assert.deepEqual(plot.marks.map(m=>[m.x,m.y]),[[94,10]]);
+ const firstShares=100+100*2/52,end=firstShares*(50+3);
+ assert.ok(Math.abs(end/5000-(54/50)*(53/52))<1e-12);
+ assert.ok(Math.abs((Math.sqrt(1.386)-1)*100-17.7285)<.000051);
+ const net=(100*53-10+100*2*.75-(100*50+10))/(100*50+10);
+ assert.ok(Math.abs(net*100-8.5828)<.000051);
+ // Complete strategy: cash never leaves the portfolio after its initial funding.
+ let n=200,cash=0;n*=2;cash+=n*1.5;n-=100;cash+=100*32;
+ assert.equal(n,300);assert.equal(cash,3800);assert.equal(n*35+cash,14300);
+ assert.equal(400*35+600-(n*35+cash),300);
+});
+
+test('equity return definitions and learning objectives link to distinct practice and reserved questions',()=>{
+ const glossary=require('../finance-glossary.cjs'),find=t=>glossary.find(g=>[g.term,...g.aliases].includes(t));
+ for(const [term,section]of [['Declaration Date','dates'],['Dividend Record Date','dates'],['Payment Date','dates'],['Ex-Date','dates'],['Settlement','settlement'],['Due Bill','exceptions'],['Dividend Yield','yield'],['Payout Ratio','yield'],['Share Buyback','repurchases'],['Stock Dividend','stock-dividend'],['Stock Split','splits'],['Reverse Split','reverse'],['Adjusted Close','normalization'],['DRIP','reinvestment'],['Total Return','returns']])assert.deepEqual(find(term).cfa,{unit:'equity-returns',section});
+ assert.notEqual(find('Dividend Record Date'),find('Voting Record Date'));
+ assert.notEqual(find('Dividend Yield'),find('Payout Ratio'));
+ assert.notEqual(find('Stock Dividend'),find('Cash Dividend'));
+ const bank=data.questions.filter(q=>q.unit==='equity-returns');
+ assert.equal(bank.filter(q=>q.pool==='practice').length,40);
+ for(const p of ['mock-a','mock-b'])assert.equal(bank.filter(q=>q.pool===p).length,2);
+ const coverage=data.coverage.find(m=>m.id==='equity-returns');
+ assert.equal(coverage.objectives.length,3);
+ for(const o of coverage.objectives){assert.ok(o.sections.length>=6,o.id);assert.ok(o.practice.length>=10,o.id);assert.ok(o.mockQuestions>=2,o.id);}
+ for(const id of ['returns','income-statement','benchmarks'])assert.ok(data.units.find(u=>u.id===id).related.some(r=>r.unit==='equity-returns'));
 });
 
 test('unwritten modules remain visible as gaps and cannot pass the release gate',()=>{

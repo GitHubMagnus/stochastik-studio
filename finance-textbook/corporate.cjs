@@ -68,7 +68,7 @@ R('Ausschüttungen verteilen Wert und verändern Ansprüche',`Dividenden übertr
 
 Bei einer Dividende verlässt Geld das Unternehmen; der Aktienwert sinkt unter sonst gleichen Bedingungen entsprechend. Ein Rückkauf kann verbleibenden Eigentümern nützen, wenn Aktien günstig erworben werden, oder Wert übertragen, wenn zu teuer gekauft wird. Höheres EPS allein reicht zur Beurteilung nicht.`,
 'Eine Aktie steht bei 50 € und schüttet 2 € aus. Steuern und andere Kursbewegungen fehlen.',[
-'Theoretischer Ex-Dividendenpreis: 50−2=48 €.|Der Unternehmensanspruch enthält nach Auszahlung 2 € weniger Cash.',
+'Theoretischer Ex-Dividendenpreis: 50−2=48 €.|Am Ex-Tag wird das Dividendenrecht aus dem gehandelten Aktienpaket abgetrennt. Die Zahlung kann später erfolgen; dann wird der separate Anspruch durch Bargeld ersetzt.',
 'Anlegervermögen: 48 € Aktie +2 € Cash=50 €.|Die Ausschüttung erzeugt durch sich selbst keinen zusätzlichen Gesamtwert.',
 'Gesamtrendite am Auszahlungstag: (48+2−50)/50=0 %.|Nur den Preisrückgang als Verlust zu berichten würde die Dividende ignorieren.'
 ],'Relevant für Ausschüttungspolitik, Total-Return-Indizes und Renditevergleiche.','Steuern, Informationssignale und Handelsfriktionen beeinflussen reale Ex-Tagespreise. Zahlungsfähigkeit und rechtliche Ausschüttungsgrenzen sind zusätzlich zu beachten.','Dividend Discount Models bewerten künftige Ausschüttungen; Unternehmensbewertung betrachtet verbleibende Investitionsmöglichkeiten.'),
