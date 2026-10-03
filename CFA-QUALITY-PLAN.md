@@ -946,3 +946,77 @@ CFA-Fragen ausgegeben. Praktische Pflichtmodule des CFA Institute bleiben separa
   folgt die Einführung in Aktienbewertung mit Preis, Buchwert, Marktwert,
   Enterprise Value und geeigneten Bewertungsverfahren. Die Zielwerte
   **90/100 und 80/100 sind noch nicht nachgewiesen**.
+
+### 03.10.2026 – Preis, Anspruch und Bewertungsverfahren
+
+- „Introduction to Equity Valuation“ ergänzt **22 Abschnitte, 16 eigene
+  Beispiele, 13 Tabellen, 25 erläuterte Formeltafeln, drei berechnete Grafiken
+  und 40 Trainingsfragen**. Preis und Wert, unterschiedliche Prozentnenner,
+  Buchwert und Rentabilität, Marktkapitalisierung, Enterprise Value,
+  Bewertungsbasis, Modellwahl und Sensitivität werden zusammenhängend erläutert.
+  Alle drei offiziellen Lernziele besitzen Erklärungen und eigene Übungen.
+  Die Einstufung bleibt bis zum Gesamtaudit „draft“.
+- Ein durchgehender Fall führt von vollständigen Marktansprüchen über den
+  operativen Wert zum Stammaktionärswert. Nicht beherrschende Anteile werden aus
+  dem Eigenkapital der betreffenden Tochter abgeleitet; konsolidierte Schulden
+  werden nicht erneut abgezogen. Kasse und separate Beteiligungen werden genau
+  einmal erfasst. DCF, Multiplikator und Vermögenswertverfahren werden auf
+  dieselbe Anspruchsbasis gebracht, bevor ihre unterschiedlichen Ergebnisse
+  interpretiert werden.
+- Weitere kontrollierte Fälle zeigen den Buchwertabschlag bei unzureichendem
+  ROE, die veränderte Eigenkapitalsensitivität bei größerer Verschuldung,
+  Klassen- und Floatabgrenzung, den Verwertungswert und die Bedeutung von
+  Zahlungsterminen. Alle neun Sensitivitätszellen und sämtliche gezeichneten
+  Barwerte werden durch separate Zahlungslisten kontrolliert. Unterschiedliche
+  Modelle mit gemeinsamen Prognosefehlern gelten nicht als unabhängige
+  Bestätigungen.
+- Je **zwei neue reservierte Klausurfragen** verbinden Anspruchsabgrenzung,
+  Modellwahl oder Diskontsatzfehler. Sie bleiben vom Trainingspool getrennt.
+  **19 zusätzliche kuratierte Wörterbucheinträge** ergänzen beziehungsweise
+  vertiefen Begriffe und präzise Rückwege; sechs ersetzen vorhandene globale
+  Definitionen. Bestehende fachliche Rückwege zu Terminal Value und NCI bleiben
+  erhalten. Drei angrenzende Einheiten besitzen zusätzliche Kapitelverbindungen.
+- Die visuelle Prüfung fand einen gemeinsamen SVG-Fehler: Die Kurzangabe
+  „dash: true“ erzeugte einen ungültigen Strichlängenwert. Der Renderer setzt
+  dafür jetzt ein gültiges Muster; ausdrücklich gewählte Muster bleiben erhalten.
+  Dadurch stimmen auch ältere CFA-Vergleichslinien mit ihrer gestrichelten
+  Legende überein. Eine Inhaltsprüfung kontrolliert alle CFA-Linienmuster;
+  Browserprüfungen vergleichen den tatsächlich gerenderten Linienstil mit den
+  Legenden im CFA-Pfad und in allen 43 ergänzenden Lehrbuchgrafiken.
+- **148 Kerntests und 109 CFA-Prüfungen bestanden.** Vier ergänzende
+  Wörterbuch- und Kapitelbrowserprüfungen bestanden vor der Grafikänderung;
+  danach bestand zusätzlich der vollständige Durchlauf aller 43
+  Lehrbuchgrafiken mit Vergleich ihrer tatsächlichen Linienstile.
+  Alle 53 CFA-Einheiten wurden auf Desktop- und Mobilbreite geprüft,
+  sämtliche 422 Corporate- und Equity-Trainingsfragen durchlaufen.
+  Gerenderte Ansichten des neuen Kapitels und der älteren Ausschüttungs-
+  und Rückkaufgrafiken bestätigen die korrigierten gestrichelten Linien.
+- Gesamtstand: **53 Einheiten, 182/340 strukturelle Lernzielreferenzen,
+  1.226 Trainingsfragen, je 100 reservierte Klausurfragen und 72 CFA-Grafiken**.
+  Wörterbuch: **706 kuratierte Rückverweise, 1.069 Definitionen und
+  2.252 Begriffe/Aliase**. Offen bleiben **49 Einheiten, 158 Lernzielzuordnungen
+  und 80 Fragen je vollständiger Klausur**, danach der fachliche Gesamtaudit.
+  Als Nächstes folgen DCF- und Wachstumsmodelle. Die Zielbewertungen bleiben offen.
+
+### Verteilung der noch fehlenden Klausurfragen
+
+Die erste Sitzung besitzt bereits ihre vorgesehenen 90 Aufgaben. Die zweite
+Sitzung benötigt je Klausur noch zwölf Equity-, 22 Fixed-Income-, 13 Derivate-,
+13 Alternative- und 20 Portfolioaufgaben. Weitere Aufgaben werden deshalb nach
+der festen Themenverteilung geplant; zwei Aufgaben pro Einheit wären bei
+unterschiedlichen Modulzahlen nicht konsistent.
+
+- Equity: DCF drei, Multiplikatoren zwei, Abschlussmodell zwei, Branchenanalyse
+  zwei sowie Unternehmensanalyse, Research und Faktoren je eine Aufgabe.
+- Fixed Income: mindestens eine Aufgabe je 19 Einheiten und drei zusätzliche
+  Transferaufgaben zu Preis, Risiko und Spreads.
+- Derivate: mindestens eine Aufgabe je zehn Einheiten und drei zusätzliche
+  Transferaufgaben. Alternative Investments: mindestens eine je sieben
+  Einheiten und sechs zusätzliche Transferaufgaben.
+- Portfolio: je vier Aufgaben zur Risikoauswahl und Preisbildung sowie je drei
+  zu Investmentprozess, IPS, Verhalten und Risikomanagement.
+
+Diese Verteilung gilt für beide getrennten Klausurpools. Einzelne Fragen dürfen
+mehrere zusammengehörige Lernziele prüfen; sämtliche Lernziele müssen unabhängig
+davon eigene Erklärungen und Trainingsaufgaben besitzen. Vollständige Struktur
+und bestandene Technikprüfungen ersetzen die spätere fachliche Abnahme nicht.

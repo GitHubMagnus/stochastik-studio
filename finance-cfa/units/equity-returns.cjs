@@ -192,6 +192,7 @@ module.exports={id:'equity-returns',intro:[
   'Für CFA Level I steht die korrekte Zuordnung von Maßnahme, Anspruch und Rendite im Mittelpunkt. Die vertiefenden Herleitungen helfen, ähnliche Fälle zu unterscheiden, ohne isolierte Merksätze auf unpassende Voraussetzungen anzuwenden.'
  ])
 ],related:[
+ {unit:'valuation-overview',section:'bridge',label:'Vom operativen Wert zum Wert je Stammaktie'},
  {unit:'returns',section:'holding-return',label:'Allgemeine Haltedauerrendite und ihre Bestandteile'},
  {unit:'benchmarks',section:'time-weighted',label:'Externe Geldflüsse und zeitgewichtete Renditen'},
  {unit:'equity-trading',section:'return-types',label:'Kurs-, Brutto- und Netto-Gesamtrenditeindizes'},

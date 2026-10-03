@@ -16,6 +16,11 @@ test('all 43 illustrations: SVG bounds, formulas, source details, mobile scrolli
    FinanceStudy.render('lesson-'+l.id+'~figures');await new Promise(requestAnimationFrame);chapters++;
    for(const f of document.querySelectorAll('.learning-figure')){
     figures++;const svg=f.querySelector('svg'),r=svg.getBoundingClientRect();
+    const legend=[...f.querySelectorAll('.illustration-legend span')];
+    for(const [i,p]of [...svg.querySelectorAll('.illustration-curve')].entries()){
+     const dashed=getComputedStyle(legend[i]).borderTopStyle==='dashed',pattern=getComputedStyle(p).strokeDasharray;
+     if(dashed!==(pattern!=='none'))failures.push(f.id+': graph/legend stroke mismatch '+pattern);
+    }
     for(const e of svg.querySelectorAll('text')){
      if(!e.textContent.trim())continue;const b=e.getBoundingClientRect();
      if(b.left<r.left-1||b.right>r.right+1||b.top<r.top-1||b.bottom>r.bottom+1)failures.push(f.id+': clipped label '+e.textContent);
