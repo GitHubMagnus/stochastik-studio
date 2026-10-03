@@ -17,6 +17,24 @@ test('CFA curriculum search, deep links, notation and original chapter connectio
  for(const width of [390,760,1440]){await page.setViewportSize({width,height:900});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));}
  await page.goto(url+'/#lesson-statements-12');assert.ok(await page.locator('a[href="#cfa~learn-income-statement"]:visible').count()>0);
 });
+test('DCF learning connects to the working Gordon calculator with timing, invalid-growth feedback and an offline route',async t=>{
+ const page=await open(t,'cfa~learn-dcf-equity~sensitivity');
+ const link='.cfa-exploration a[href="#lesson-equity-08~lab"]';
+ await page.locator(link).click();await page.waitForFunction(()=>document.activeElement.id==='study-lab');
+ await page.locator('#lab-d').fill('2.08');await page.locator('#lab-r').fill('10');await page.locator('#lab-g').fill('4');
+ const value=async()=>Number((await page.locator('#lab-metrics strong').first().innerText()).replace(',','.'));
+ assert.ok(Math.abs(await value()-34.6666666667)<.006);
+ await page.locator('#lab-g').fill('6');assert.ok(Math.abs(await value()-52)<.006);
+ await page.locator('#lab-g').fill('10');assert.equal(await page.locator('#lab-error').isVisible(),true);
+ assert.match(await page.locator('#lab-error').innerText(),/kleiner als Diskontsatz/);
+ await page.locator('#lab-reset').click();assert.equal(await page.locator('#lab-error').isVisible(),false);
+ await page.goBack();await page.waitForFunction(()=>document.activeElement.id==='cfa-section-sensitivity');
+ await page.route(/^https?:/,r=>r.abort());
+ const file=require('node:url').pathToFileURL(require('node:path').join(__dirname,'../index.html')).href;
+ await page.goto(file+'#cfa~learn-dcf-equity~sensitivity');await page.locator(link).click();
+ await page.waitForFunction(()=>document.activeElement.id==='study-lab');assert.ok(Math.abs(await value()-50)<.006);
+});
+
 test('training requires an answer, keeps solutions hidden, persists progress and diagnoses confident errors',async t=>{
  const page=await open(t,'cfa~learn-income-statement');
  await page.locator('[data-train-unit]').click();await page.locator('#cfa-check').click();
@@ -113,6 +131,14 @@ test('every authored 2027 unit renders without overflow and new glossary terms r
   const target=(await link.getAttribute('href')).split('~')[1];await link.click();
   await page.waitForFunction(id=>document.activeElement.id==='glossary-'+id,target);
   await page.locator('#glossary-'+target+' a[href="#cfa~learn-valuation-overview~'+section+'"]').click();
+  await page.waitForFunction(id=>document.activeElement.id==='cfa-section-'+id,section);
+ }
+ for(const [section,term]of [['ddm','Dividend Discount Model'],['horizon','Transversalitätsbedingung'],['retention','Einbehaltungsquote'],['residual-charge','Residual Income'],['clean-surplus','Clean-Surplus-Beziehung']]){
+  await page.goto(url+'/#cfa~learn-dcf-equity~'+section);
+  const link=page.locator('#cfa-section-'+section+' a.term-link:visible').filter({hasText:new RegExp('^'+term+'$')}).first();
+  const target=(await link.getAttribute('href')).split('~')[1];await link.click();
+  await page.waitForFunction(id=>document.activeElement.id==='glossary-'+id,target);
+  await page.locator('#glossary-'+target+' a[href="#cfa~learn-dcf-equity~'+section+'"]').click();
   await page.waitForFunction(id=>document.activeElement.id==='cfa-section-'+id,section);
  }
  await page.goto(url+'/#cfa~learn-ethics-cases');

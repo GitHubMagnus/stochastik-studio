@@ -1020,3 +1020,77 @@ Diese Verteilung gilt für beide getrennten Klausurpools. Einzelne Fragen dürfe
 mehrere zusammengehörige Lernziele prüfen; sämtliche Lernziele müssen unabhängig
 davon eigene Erklärungen und Trainingsaufgaben besitzen. Vollständige Struktur
 und bestandene Technikprüfungen ersetzen die spätere fachliche Abnahme nicht.
+
+### 03.10.2026 – DCF, Wachstum und Vorzugsansprüche
+
+- „Discounted Cash Flow and Growth Models“ ergänzt **28 Abschnitte,
+  26 eigene Beispiele, zwölf Tabellen, 58 erläuterte Formeltafeln,
+  vier berechnete Grafiken und 50 Trainingsfragen**. Alle vier offiziellen
+  Lernziele besitzen mindestens fünf erklärende Abschnittszuordnungen,
+  mindestens zehn Trainingszuordnungen und reservierte Klausurzuordnungen.
+  Zusätzliche algebraische Vertiefungen und öffentliche Level-II-Grundlagen
+  werden ausdrücklich von der 2027-Level-I-Lernzielzuordnung unterschieden.
+- Einperiodenrekursion, endlicher Horizont, Transversalitätsbedingung und
+  geometrische Reihe erklären den Übergang zum Gordon-Modell. Vergangene,
+  nächste, letzte Detail- und erste stabile Zahlung werden getrennt.
+  Implizites Wachstum wird sowohl bei bekanntem vergangenen als auch bekanntem
+  kommenden Dividendenbetrag hergeleitet.
+- Gewinn-, Investitions- und Finanzierungskonten stimmen FCFF und FCFE ab.
+  Ein vollständiger ewiger Fall zeigt die gleiche Eigenkapitalbewertung aus
+  FCFE beziehungsweise FCFF abzüglich Schuldmarktwert; Marktwertgewichte
+  bestätigen den passenden WACC. Andere Fälle berücksichtigen zusätzlichen
+  Eigentümereinsatz, veränderte periodische Sätze und die vollständige Brücke
+  von mehrstufigem operativem Wert zum Stammaktienwert.
+- Gewinneinbehaltung wird aus der Buchkapitalfortschreibung hergeleitet.
+  Drei Kapitalrenditen bei demselben Ausgangskapital zeigen, wann mehr Wachstum
+  den Wert erhöht, unverändert lässt oder vermindert. Reinvestition erklärt die
+  zur Wachstumsannahme benötigte Kapitalbindung. Derivate der Wertfunktion
+  werden zusätzlich durch numerische Änderungen kontrolliert.
+- Ein gemeinsamer Unternehmensfall wechselt nach zwei Jahren zu niedrigerem
+  ROE und einer neuen Ausschüttungsquote. Die erste stabile Zahlung wird deshalb
+  neu aufgebaut. Dividenden- und Residualgewinnbewertung ergeben denselben Wert.
+  Die Clean-Surplus-Teleskopsumme erklärt Anfangsbuchwert und den zukünftigen
+  Wert über Buchwert. Ein direkt gebuchter Eigenkapitalverlust zeigt die Gefahr
+  einer unbereinigten Anwendung.
+- Vorzugsfälle trennen Vertragsprozentsatz, Zahlung, Bezugsbetrag und heutigen
+  Wert. Effektive und nominale Jahresquoten, unterjährige Zahlungen sowie
+  endliche Rückzahlung werden gerechnet. Kündigung, freiwillige Wandlung,
+  Rückgabe, Reset und kumulative Rückstände verändern die Rechte; exklusive
+  Alternativen werden nicht als gleichzeitig erhaltene Zahlungen addiert.
+- Je **drei reservierte Klausurfragen** verbinden andere Szenarien und
+  Abgrenzungen, etwa stabile Reinvestition mit mehrstufiger FCFF- und
+  Anspruchsbewertung oder einen Rentabilitätswechsel mit DDM-/RI-Abstimmung.
+  Die Gegenprüfung korrigierte Zahlen im noch unveröffentlichten FCFF-Klausurfall
+  und mehrere numerische Distraktoren. **17 zusätzliche kuratierte
+  Wörterbucheinträge** ergänzen beziehungsweise vertiefen Definitionen;
+  fünf aktualisieren bestehende globale Begriffe. Eine Aliasprüfung fand und
+  behob zunächst einen fehlenden Rückweg der bestehenden englischen
+  Sustainable-Growth-Definition. FCFF und Terminal Value behalten ihre
+  bisherigen präzisen Kapitelziele.
+- Ein direkter Link im Sensitivitätsabschnitt führt zum vorhandenen
+  interaktiven Gordon-Rechner. Das Kapitel erklärt ausdrücklich dessen
+  Eingabe „nächste Dividende“ gegenüber Tabellen mit festgehaltener vergangener
+  Dividende. Der Compiler prüft den Abschnitt und die zugehörige Kapitelverbindung;
+  der Browser prüft berechnete Werte, unzulässiges Wachstum, Zurücksetzen,
+  Rückweg und den Aufruf aus der Offline-Datei.
+- **155 Kerntests, 117 CFA-Prüfungen und vier ergänzende Browserprüfungen
+  bestanden.** Unabhängige Zahlungssummen, Kapital- und Buchwertkonten,
+  endliche Vertragsfolgen, neun Sensitivitätszellen und alle Punkte der vier
+  neuen Grafiken stimmen überein. Eine anfänglich überlange numerische
+  Testreihe für einen endlichen Hochwachstumsfall wurde auf dessen ausdrücklich
+  geprüfte drei Jahresperioden begrenzt; sie hatte den Testrechner überlaufen
+  lassen und zeigte keinen Produktfehler.
+- Alle **54 Einheiten** wurden auf Desktop- und Mobilbreite geprüft, alle
+  **472 Corporate- und Equity-Trainingsfragen** mit Feedback, Symbolhilfe
+  und Abschnittsrückweg durchlaufen. Vier Grafiken, der vollständige
+  DDM-/RI-Vergleich, mobile Symbol- und Buchwerttabellen sowie der Sprung zum
+  Gordon-Rechner wurden zusätzlich anhand gerenderter Bilder geprüft.
+- Gesamtstand: **54 Einheiten, 186/340 strukturelle Lernzielreferenzen,
+  1.276 Trainingsfragen, je 103 reservierte Klausurfragen und 76 CFA-Grafiken**.
+  Wörterbuch: **723 kuratierte Rückverweise, 1.081 Definitionen und
+  2.282 Begriffe/Aliase**. Offen bleiben **48 Einheiten, 154 Lernzielzuordnungen
+  und 77 Fragen je vollständiger Klausur**, danach der fachliche Gesamtaudit.
+  Als Nächstes folgt die relative Aktienbewertung mit Multiplikatoren,
+  fundamentalen Werttreibern, Vergleichsgruppen und zeitlich konsistenten Basen.
+  Alle neuen Einheiten bleiben „draft“; **90/100 und 80/100 sind weiterhin
+  nicht als erreicht belegt**.
