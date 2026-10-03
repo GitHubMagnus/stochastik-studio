@@ -43,6 +43,9 @@ function compile({release=false}={}){
  const byUnit=new Map(units.map(u=>[u.id,u])),connections=require('./connections.cjs');
  for(const u of units){
   u.related=u.related||connections[u.id]||[];
+  for(const e of u.explorations||[]){
+   if(!e.label||e.focus!=='lab'||!u.lessons.includes(e.lesson)||!u.sections.some(s=>s.id===e.section))throw Error(u.id+': ungültiger Verweis zum interaktiven Modell');
+  }
   for(const link of u.related){
    if(!link.label||!byUnit.get(link.unit)?.sections.some(s=>s.id===link.section))throw Error(u.id+': ungültiger Kapitelverweis '+link.unit+'/'+link.section);
   }

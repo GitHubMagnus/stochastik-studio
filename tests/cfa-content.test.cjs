@@ -284,7 +284,22 @@ test('published MCQ numerical answers agree with separately computed results',()
   'val-18':500+180-40,'val-20':.3*(400-100),'val-24':(80-40)/80*100,
   'val-27':6/1.1+98/1.1**2,'val-31':14*5,'val-32':(9*80+30-150)/12,
   'val-35':20+50+30+120-90-10,'val-36':120-20+50-10-15,'val-39':4/.1,
-  'val-a1':4*18+2*12+30+10+8-14-6,'val-b1':(500+20-100-10-.25*(300-40))/5,'val-b2':6/.12
+  'val-a1':4*18+2*12+30+10+8-14-6,'val-b1':(500+20-100-10-.25*(300-40))/5,'val-b2':6/.12,
+  'dcf-04':110/1.1,'dcf-06':120*.75+10-40-15,'dcf-07':45-20*.75+12-7,
+  'dcf-09':60,'dcf-10':(10-2)/(100-40)*100,'dcf-11':2*1.04/.06,'dcf-12':3/.06,
+  'dcf-14':2/(.08+.02),'dcf-15':(.1-2/50)*100,'dcf-16':(.1*50-2)/52*100,
+  'dcf-17':.4*.15*100,'dcf-18':.04/.1*100,'dcf-19':100+15*.4,
+  'dcf-20':9/.04,'dcf-21':6/.06,'dcf-22':3.6/(.1-.024),
+  'dcf-23':.03/.12*100,'dcf-24':72*(1-.03/.12),'dcf-25':54/.07,
+  'dcf-26':2.4/1.1+(2.88+2.88*1.04/.06)/1.1**2,'dcf-27':3*1.02/.06,
+  'dcf-29':2.4/1.1+2.76/1.1**2+3.036/1.1**3+(3.1878+3.1878*1.03/.07)/1.1**4,
+  'dcf-30':112.36*.1*.7,'dcf-31':(40/1.1+(50+54/.07)/1.1**2+20-150-30-20)/10,
+  'dcf-32':-5/1.12+(4+4*1.03/.09)/1.12**2,'dcf-33':20/1.08+30/(1.08*1.1),
+  'dcf-34':12-.08*200,'dcf-35':100+15-9,'dcf-37':100+5/1.1+5.3/1.1**2,
+  'dcf-38':105/1.1,'dcf-39':100+1/.04,'dcf-42':5/.08,'dcf-43':6/.08,
+  'dcf-44':1.5/(1.08**.25-1),'dcf-45':[1,2,3,4,5].reduce((v,t)=>v+5/1.08**t,100/1.08**5),
+  'dcf-46':85/1.05,'dcf-a1':(30/1.09+(42+45/.06)/1.09**2+12-140-25)/8,
+  'dcf-a3':2/.05,'dcf-b1':92/1.1,'dcf-b2':94/1.08,'dcf-b3':80*(1-.04/.1)/.05
  };
  for(const [id,v] of Object.entries(expected)){
   const q=byId.get(id);const numeric=Number(q.options[q.correct].text.replace(/[€,]/g,'').replace('−','-').match(/-?\d+(?:\.\d+)?/)?.[0]);
@@ -2246,6 +2261,128 @@ test('valuation liquidation adjustments and exact glossary returns cover all thr
  const coverage=data.coverage.find(m=>m.id==='valuation-overview');assert.equal(coverage.objectives.length,3);
  for(const o of coverage.objectives){assert.ok(o.sections.length>=10,o.id);assert.ok(o.practice.length>=15,o.id);assert.ok(o.mockQuestions>=2,o.id);}
  for(const id of ['balance-sheet','cashflow-analysis','equity-returns'])assert.ok(data.units.find(u=>u.id===id).related.some(r=>r.unit==='valuation-overview'));
+});
+
+test('DCF claim cash ledgers reconcile FCFF, FCFE, debt and market-weighted rates',()=>{
+ const u=data.units.find(u=>u.id==='dcf-equity'),sec=id=>u.sections.find(s=>s.id===id),near=(a,b,e=1e-8)=>assert.ok(Math.abs(a-b)<e,a+' vs '+b);
+ const tax=.25,operatingTax=120*tax,actualTax=(120-20)*tax;
+ const preFinance=120-operatingTax+10-40-15;
+ const cashForEquity=120-20-actualTax+10-40-15+12-7;
+ assert.equal(preFinance,45);assert.equal(cashForEquity,35);
+ let operatingPV=0,debtPV=0,equityPV=0;
+ for(let year=1;year<=2000;year++){operatingPV+=10/(1.1**year);debtPV+=2/(1.05**year);equityPV+=8/((1+8/60)**year);}
+ near(operatingPV,100);near(debtPV,40);near(equityPV,60);near(operatingPV-debtPV,equityPV);
+ const weighted=(debtPV*.05+equityPV*(8/60))/(debtPV+equityPV);near(weighted,.1);
+ assert.ok(sec('fcff').blocks.some(b=>b.kind==='example'));assert.ok(sec('fcfe').blocks.some(b=>b.kind==='example'));
+ assert.ok(sec('consistent-debt').blocks.some(b=>b.kind==='example'));
+});
+
+test('Gordon growth values, nine sensitivity cells and every plotted value agree with independent dated payment sums',()=>{
+ const u=data.units.find(u=>u.id==='dcf-equity'),s=u.sections.find(s=>s.id==='sensitivity'),num=x=>Number(String(x).replace(',','.'));
+ const ledger=(d0,g,k,n)=>{let payment=d0,discount=1,total=0;for(let year=1;year<=n;year++){payment*=1+g;discount*=1+k;total+=payment/discount;}return total;};
+ // Avoid overflowing discount factors in the long numerical series.
+ const stableLedger=(d0,g,k)=>{let discounted=d0/(1+k)*(1+g),total=0;for(let year=1;year<=4000;year++){total+=discounted;discounted*=(1+g)/(1+k);}return total;};
+ for(const [g,k]of [[.04,.1],[-.02,.08],[0,.1]])assert.ok(Math.abs(stableLedger(2,g,k)-2*(1+g)/(k-g))<1e-10);
+ const table=s.blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table');
+ for(const [i,k]of [.08,.1,.12].entries())for(const [j,g]of [.02,.04,.06].entries())assert.ok(Math.abs(num(table.rows[i][j+1])-stableLedger(2,g,k))<.000051);
+ const plot=s.blocks.find(b=>b.kind==='figure').plot;
+ for(const [g,v]of plot.series[0].points)assert.ok(Math.abs(v-stableLedger(2,g/100,.1))<1e-7);
+ for(const m of plot.marks)assert.ok(Math.abs(m.y-stableLedger(2,m.x/100,.1))<1e-7);
+ // An ordinary finite horizon has no infinite-series convergence restriction.
+ assert.ok(Math.abs(ledger(2,.2,.1,3)-(2.4/1.1+2.88/1.1**2+3.456/1.1**3))<1e-10);
+ const h=1e-6,k=.1,g=.04,v=(x,y)=>2*(1+y)/(x-y);
+ assert.ok(Math.abs((v(k,g+h)-v(k,g-h))/(2*h)-2*(1+k)/(k-g)**2)<1e-5);
+ assert.ok(Math.abs((v(k+h,g)-v(k-h,g))/(2*h)+2*(1+g)/(k-g)**2)<1e-5);
+});
+
+test('retention growth and value are checked through book-capital and distribution accounts rather than the valuation helper',()=>{
+ const u=data.units.find(u=>u.id==='dcf-equity'),sec=id=>u.sections.find(s=>s.id===id),near=(a,b,e=1e-7)=>assert.ok(Math.abs(a-b)<e,a+' vs '+b);
+ const num=x=>Number(String(x).replace(',','.'));
+ const ledger=(roe,b)=>{let book=100,total=0,discount=1;for(let t=1;t<=2500;t++){const income=book*roe,dividend=income*(1-b);book+=income-dividend;discount*=1.1;total+=dividend/discount;}return total;};
+ const growthTable=sec('retention').blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table');let book=100;
+ growthTable.rows.forEach((row,i)=>{const income=book*.15,dividend=income*.6,retained=income-dividend;[i+1,book,income,dividend,retained,book+retained].forEach((v,j)=>near(num(row[j]),v));book+=retained;});
+ const compare=sec('growth-value').blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table');
+ for(const [i,roe]of [.06,.1,.15].entries()){near(num(compare.rows[i][1]),ledger(roe,0));near(num(compare.rows[i][2].replace(' %','')),.4*roe*100);near(num(compare.rows[i][3]),100*roe*.6);near(num(compare.rows[i][4]),ledger(roe,.4),.000051);}
+ const plot=sec('growth-value').blocks.find(b=>b.kind==='figure').plot;
+ for(const [i,roe]of [.15,.1,.06].entries())for(const [b,v]of plot.series[i].points)near(v,ledger(roe,b/100),1e-6);
+ assert.ok(ledger(.15,.4)>ledger(.15,0));near(ledger(.1,.4),ledger(.1,0));assert.ok(ledger(.06,.4)<ledger(.06,0));
+ assert.ok(ledger(.15,.4)-ledger(.15,0)>0);
+});
+
+test('multistage cash flows normalize the first stable payment, retain early funding needs and date every terminal claim',()=>{
+ const u=data.units.find(u=>u.id==='dcf-equity'),sec=id=>u.sections.find(s=>s.id===id),near=(a,b,e=1e-7)=>assert.ok(Math.abs(a-b)<e,a+' vs '+b);
+ const growth=[.2,.15,.1,.05],payments=[];let d=2;
+ for(const g of growth){d*=1+g;payments.push(d);}
+ const table=sec('transition').blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table'),num=x=>Number(String(x).replace(',','.'));
+ payments.forEach((p,i)=>near(p,num(table.rows[i][2])));near(payments.at(-1)*1.03,num(table.rows[4][2]));
+ let transitioned=0,abrupt=0,dp=2,ap=2;
+ for(let year=1;year<=2000;year++){dp*=year<=4?growth[year-1]+1:1.03;ap*=year<=2?1.2:1.04;transitioned+=dp/1.1**year;abrupt+=ap/1.1**year;}
+ near(transitioned,40.95867768595039);near(abrupt,45.81818181818181);
+ const plot=sec('transition').blocks.find(b=>b.kind==='figure').plot;let state=[2,2,2];
+ for(let t=0;t<=8;t++){if(t){state[0]*=t<=2?1.2:1.04;state[1]*=t<=4?growth[t-1]+1:1.03;state[2]*=1.04;}state.forEach((v,i)=>near(plot.series[i].points[t][1],v));}
+ const book2=112.36,income3=book2*.1,div3=income3*.7;near(div3,7.8652);near(div3/.07,book2);
+ // FCFF forecast from independently advanced invested capital, not from a fixed terminal-value cell.
+ let capital=600,operating=40/1.1+50/1.1**2;
+ for(let year=3;year<=2000;year++){const nopat=capital*.12,investment=capital*.03;const fcf=nopat-investment;operating+=fcf/1.1**year;capital+=investment;}
+ near(operating,715.2302243211333);near((operating+20-150-30-20)/10,53.52302243211333);
+ let direct=-5/1.12,payment=4;
+ for(let year=2;year<=2000;year++){direct+=payment/1.12**year;payment*=1.03;}near(direct,35.21825396825396);
+ near(20/1.08+30/(1.08*1.1),43.771043771043765);
+});
+
+test('clean-surplus telescoping, the changed-ROE case and direct-to-equity losses reconcile dividend and residual-income values',()=>{
+ const u=data.units.find(u=>u.id==='dcf-equity'),s=u.sections.find(s=>s.id==='equivalence-case'),num=x=>Number(String(x).replace(',','.'));
+ const near=(a,b,e=1e-8)=>assert.ok(Math.abs(a-b)<e,a+' vs '+b),table=s.blocks.find(b=>b.kind==='table');
+ let book=100,dividendPV=0,riPV=0;const rows=[];
+ for(let t=1;t<=2000;t++){
+  const opening=book,roe=t<=2?.15:.1,b=t<=2?.4:.3,income=opening*roe,dividend=income*(1-b),charge=opening*.1,ri=income-charge;
+  book=opening+income-dividend;dividendPV+=dividend/1.1**t;riPV+=ri/1.1**t;
+  if(t<=3)rows.push([t,opening,roe*100,income,dividend,book,ri]);
+  if(t<=20)near(dividendPV,100+riPV-book/1.1**t,1e-7);
+ }
+ rows.forEach((row,i)=>row.forEach((v,j)=>near(num(table.rows[i][j].replace?.(' %','')??table.rows[i][j]),v)));
+ near(dividendPV,100+riPV);near(dividendPV,108.92561983471076);
+ const lossOpening=100,lossDividend=10,lossClosing=95,cleanIncome=lossClosing-lossOpening+lossDividend,lossRI=cleanIncome-.1*lossOpening;
+ near((lossDividend+lossClosing)/1.1,lossOpening+lossRI/1.1);assert.equal(lossRI,-5);
+ let ri=1,total=100;
+ for(let t=1;t<=2000;t++){total+=ri/1.08**t;ri*=1.04;}near(total,125);
+ // A different four-year case leaves a positive terminal value over book.
+ let terminalBook=100,ddm=0,residual=100;
+ for(let t=1;t<=4;t++){const income=15,dividend=10;ddm+=dividend/1.1**t;residual+=(income-.1*terminalBook)/1.1**t;terminalBook+=income-dividend;}
+ assert.equal(terminalBook,120);ddm+=150/1.1**4;residual+=(150-terminalBook)/1.1**4;near(ddm,residual);
+});
+
+test('preferred values independently reconcile payment frequency, maturity and exclusive exercise alternatives',()=>{
+ const u=data.units.find(u=>u.id==='dcf-equity'),near=(a,b,e=1e-8)=>assert.ok(Math.abs(a-b)<e,a+' vs '+b);
+ let yearly=0,quarterly=0,halfYear=0;
+ for(let p=1;p<=2500;p++){yearly+=5/1.08**p;quarterly+=1.5/1.08**(p/4);halfYear+=2/1.05**p;}
+ near(yearly,62.5);near(quarterly,77.21392829526334);near(halfYear,40);
+ const plot=u.sections.find(s=>s.id==='preferred').blocks.find(b=>b.kind==='figure').plot;
+ for(const [r,v]of plot.series[0].points){let pv=0;for(let year=1;year<=2500;year++)pv+=5/(1+r/100)**year;near(v,pv);}
+ const finite=[5,5,5,5,105].reduce((pv,c,i)=>pv+c/1.08**(i+1),0);near(finite,88.02186988876574);assert.ok(finite>yearly);
+ near(85/1.05,80.95238095238095);assert.ok(85/1.05<5/.05);
+ const alternatives=[70,2*40];assert.equal(Math.max(...alternatives),80);assert.notEqual(Math.max(...alternatives),alternatives.reduce((a,b)=>a+b));
+ near((4+Math.max(70,90))/1.08,87.03703703703704);
+ const byId=new Map(data.questions.map(q=>[q.id,q]));
+ const choice=(id,n)=>byId.get(id).options.find(o=>Number(o.text)===n);
+ assert.match(choice('dcf-26',44.23).why,/D₂ statt D₃/);assert.match(choice('dcf-a1',93.94).why,/ohne Wachstumskapitalbindung/);
+ assert.match(choice('dcf-a3',40.98).why,/effektive Jahresrendite/);
+ near(44.23,2.4/1.1+(2.88+2.88/.06)/1.1**2,.005);
+ near(93.94,(30/1.09+(42+60/.06)/1.09**2+12-140-25)/8,.005);
+ near(40.98,2/(Math.sqrt(1.1)-1),.005);
+});
+
+test('DCF objectives have substantial authored applications, distinct reserved cases and precise glossary return links',()=>{
+ const u=data.units.find(u=>u.id==='dcf-equity'),coverage=data.coverage.find(x=>x.id===u.id),bank=data.questions.filter(q=>q.unit===u.id);
+ assert.equal(u.sections.length,28);assert.equal(u.review.status,'draft');assert.equal(bank.filter(q=>q.pool==='practice').length,50);
+ assert.deepEqual(u.explorations,[{section:'sensitivity',lesson:'equity-08',focus:'lab',label:'Dividende, Wachstum und Renditeforderung im Gordon-Rechner verändern'}]);
+ for(const pool of ['mock-a','mock-b'])assert.equal(bank.filter(q=>q.pool===pool).length,3);
+ for(const o of coverage.objectives){assert.ok(o.sections.length>=5);assert.ok(o.practice.length>=10);assert.ok(o.mockQuestions>=2);}
+ const glossary=require('../finance-glossary.cjs'),resolve=t=>glossary.find(g=>[g.term,...g.aliases].includes(t));
+ for(const [term,section]of [['DDM','ddm'],['Residual Income','residual-charge'],['Clean Surplus','clean-surplus'],['Transversalitätsbedingung','horizon'],['Retention Ratio','retention'],['Sustainable Growth Rate','retention'],['Equity Charge','residual-charge'],['PVGO','growth-value'],['High-Growth Stage','two-stage'],['Growth Fade','transition'],['Stable Growth','limitations'],['Terminal Value Share','two-stage'],['Terminal Normalization','terminal-normalization'],['Continuing Residual Income','continuing-ri'],['Non-Callable Preferred Stock','preferred'],['Fixed-Rate Preferred Stock','preferred']])assert.deepEqual(resolve(term).cfa,{unit:'dcf-equity',section});
+ assert.deepEqual(resolve('FCFF').cfa,{unit:'cashflow-analysis',section:'free-cashflow'});assert.deepEqual(resolve('Terminal Value').cfa,{unit:'tvm',section:'terminal-value'});
+ for(const id of ['valuation-overview','cashflow-analysis','forecasting'])assert.ok(data.units.find(u=>u.id===id).related.some(r=>r.unit==='dcf-equity'));
+ for(const pool of ['mock-a','mock-b'])assert.ok(data.inventory[pool].equity<=require('../finance-cfa/engine.cjs').blueprint.equity,'reserved equity questions must fit the topic weight');
 });
 
 test('unwritten modules remain visible as gaps and cannot pass the release gate',()=>{

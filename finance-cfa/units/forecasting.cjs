@@ -257,6 +257,7 @@ module.exports={id:'forecasting',intro:[
   'Das fertige Modell zeigt Basisszenario, wesentliche Unsicherheiten und konkrete Finanzierungslücken. Es dokumentiert, welche Eingaben aus veröffentlichten Daten stammen und welche eigene Schätzungen sind. Ein späteres Update verändert die betroffenen Ursachen und verfolgt ihre Folgen durch alle Abschlüsse, statt nur die gewünschte Gewinnzeile zu überschreiben.'
  ])
 ],related:[
+ {unit:'dcf-equity',section:'terminal-normalization',label:'Erste stabile Zahlung bei verändertem ROE neu aufbauen'},
  {unit:'reporting-quality',section:'combined',label:'Fehlerkorrektur von Prognosebereinigung unterscheiden'},
  {unit:'cashflow-preparation',section:'indirect',label:'Indirekte Cashflowrechnung herleiten'},
  {unit:'cashflow-analysis',section:'growth',label:'Wachstum und Kapitalbindung vergleichen'},
