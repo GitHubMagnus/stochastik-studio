@@ -1094,3 +1094,83 @@ und bestandene Technikprüfungen ersetzen die spätere fachliche Abnahme nicht.
   fundamentalen Werttreibern, Vergleichsgruppen und zeitlich konsistenten Basen.
   Alle neuen Einheiten bleiben „draft“; **90/100 und 80/100 sind weiterhin
   nicht als erreicht belegt**.
+
+### 03.10.2026 – Relative Aktienbewertung und wirtschaftliche Multiplikatoren
+
+- „Relative Value Equity Valuation Approaches“ besitzt **28 Abschnitte,
+  25 eigene Beispiele, 13 Tabellen, 58 erläuterte Formeltafeln,
+  drei berechnete Grafiken und 48 Trainingsfragen**. Alle vier offiziellen
+  Lernziele haben mindestens 13 Abschnitts- und 18 Trainingszuordnungen.
+  Die Herleitungen sind eigenständig verfasst; ergänzende Level-II-Quellen
+  werden von den maßgeblichen Level-I-Lernzielen 2027 unterschieden.
+- Comparables und Forecasted Fundamentals erhalten getrennte Begründungen.
+  Preis, Gesamtwert und Stückbetrag werden hinsichtlich Kapitalgeber,
+  Konsolidierung, Aktienbasis und Periode abgegrenzt. Ein Split sowie eine
+  zwischenzeitliche Aktienausgabe erklären, wann Kennzahlen gleich bleiben
+  und wann Preis/EPS von Marktwert/Gesamtgewinn abweichen kann.
+- Trailing, TTM, FY1 und NTM werden mit Veröffentlichungsstand,
+  Kalenderanpassung und Saisonalitätsgrenze verbunden. Sondereffekte und
+  Zyklusnormalisierung erhalten eigene vollständige Rechenwege.
+  Gewinnnull und negative Gewinne erklären Grenzen von P/E und E/P.
+- Gerechtfertigtes Forward- und Trailing-P/E entstehen aus derselben
+  Dividendenbewertung. Konsistente Gewinneinbehaltung erklärt die
+  nicht allgemein positive Wachstumswirkung; beide partiellen Ableitungen
+  werden durch numerische Änderungen kontrolliert. Alle Punkte der
+  ROE-/Wachstumsgrafik werden zusätzlich durch unabhängige Buchkapital-,
+  Dividenden- und Residualgewinnkonten bestätigt.
+- P/B wird mit erwarteter Anfangsbuchkapitalrendite und künftigen
+  Überrenditen verbunden. Ein Buchwertabschlag ist im kontrollierten
+  Modell bei ROE unter Eigenkapitalkosten nachvollziehbar. Jeder Punkt
+  der P/B-Grafik wird gegen dieselben unabhängig aufgebauten Konten
+  geprüft. Umsatz-, Cash-Earnings-, CFO- und FCFE-Verhältnisse werden
+  über Margen und tatsächlich verfügbare Mittel unterschieden.
+- Ein steuerfreier Finanzierungsvergleich hält das operative Geschäft
+  fest und verändert Schuld, Zins, Eigenkapitalrest sowie dessen
+  passende Renditeforderung. Ein weiterer Fall hält EBITDA, Gewinn,
+  Wachstum und WACC gleich, verändert aber Kapitalproduktivität und
+  benötigte Investition. Alle Punkte der dritten Grafik stimmen mit
+  einzeln diskontierten operativen Mitteln aus Kapitalwachstum überein.
+- Die vollständige EV-Brücke berücksichtigt Schuld, Vorzüge, fremde
+  Tochteranteile, überschüssige Kasse und separate Anlagen genau einmal.
+  Peer-Auswahl folgt konkreten wirtschaftlichen Treibern. Median,
+  arithmetischer, harmonischer und marktwertgewichteter Gruppenwert
+  werden anhand der tatsächlich erworbenen Gewinnansprüche verglichen.
+  Endmultiplikatoren unterscheiden letzte und erste folgende
+  Gewinnperiode sowie zukünftigen Preis und heutigen Barwert.
+- Je **zwei reservierte Fragen** ergänzen die beiden disjunkten
+  Klausurpools. Andere eigene Fälle verbinden die Anspruchsbrücke
+  mit Forward-Peers, ROE mit sachgerechtem P/B, operative Reinvestition
+  mit einer niedrigeren EBITDA-Quote und Marktwertgewichte mit dem
+  gemeinsamen Gewinnanspruch. Ihre Zahlen werden unabhängig berechnet;
+  wesentliche numerische Distraktoren erhalten eigene Gegenproben.
+- **26 zusätzliche kuratierte Definitionen** ergänzen das Wörterbuch;
+  vier vertiefen bereits bestehende globale Einträge. Zwei bisherige
+  Überblicksverweise führen nun zur vollständigen neuen Erklärung.
+  Beim visuellen Audit fiel „Forward“ im EBITDA-Kontext als falscher
+  Verweis auf einen Terminkontrakt auf. Ein kapitelabhängiger Alias
+  erklärt dort die zukünftige Bewertungsbasis, während Forward P/E,
+  der allgemeine Terminkontrakt und bestehende Direktlinks ihre eigenen
+  Bedeutungen behalten. Lernen, Rückweg und Offline-Aufruf werden geprüft.
+- Drei Grafiken, die vollständige EV-Brücke, die Gewichtungsrechnung
+  und mobile Symbol- sowie Sensitivitätstabellen wurden anhand
+  gerenderter Bilder geprüft. Drei Symbolbeschreibungen wurden dabei
+  sprachlich bereinigt und anschließend erneut geprüft.
+- **163 Kernprüfungen und 126 CFA-Prüfungen bestanden** im abschließenden
+  Stand. Die Browserprüfung durchläuft alle 55 Einheiten auf Desktop
+  und Mobilbreite sowie alle 520 Corporate-/Equity-Trainingsfragen
+  einschließlich Antwortbegründungen, Symbolhilfen und Abschnittsrückweg.
+  Sechs zusätzliche Wörterbuchrundwege und die kontextabhängige
+  Forward-Bedeutung funktionieren; der allgemeine Derivatbegriff
+  bleibt erhalten. Vier ergänzende Prüfungen der bisherigen
+  Finance-Navigation und Wörterbuchoberfläche bestanden ebenfalls.
+- Gesamtstand: **55 Einheiten, 190/340 strukturelle Lernzielreferenzen,
+  1.324 Trainingsfragen, je 105 reservierte Klausurfragen und 79 CFA-Grafiken**.
+  Das Wörterbuch umfasst **749 kuratierte Rückverweise, 1.103 Definitionen
+  und 2.330 Begriffe/Aliase**. Offen bleiben **47 Einheiten, 150
+  Lernzielzuordnungen und 75 Fragen je vollständiger Klausur**; danach
+  folgt der fachliche Gesamtaudit. Die erste Klausursitzung ist strukturell
+  angelegt; beide vollständigen Klausuren bleiben gesperrt.
+  Nächste Einheit: Abschlussprognosen anhand unternehmensgerechter
+  Modelle bis zum Aktienwert auswerten. Sämtliche neuen Einheiten
+  bleiben „draft“; **90/100 und 80/100 sind weiterhin nicht als
+  erreicht belegt**.

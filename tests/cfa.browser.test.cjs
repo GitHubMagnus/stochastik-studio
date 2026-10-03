@@ -141,6 +141,14 @@ test('every authored 2027 unit renders without overflow and new glossary terms r
   await page.locator('#glossary-'+target+' a[href="#cfa~learn-dcf-equity~'+section+'"]').click();
   await page.waitForFunction(id=>document.activeElement.id==='cfa-section-'+id,section);
  }
+ for(const [section,term]of [['periods','Forward P/E'],['calendar','Calendarization'],['pe-negative','Earnings Yield'],['peg','PEG'],['pb','Tangible Book Value'],['pcf','Cash Earnings']]){
+  await page.goto(url+'/#cfa~learn-multiples~'+section);
+  const link=page.locator('#cfa-section-'+section+' a.term-link:visible').filter({hasText:new RegExp('^'+term+'$')}).first();
+  const target=(await link.getAttribute('href')).split('~')[1];await link.click();
+  await page.waitForFunction(id=>document.activeElement.id==='glossary-'+id,target);
+  await page.locator('#glossary-'+target+' a[href="#cfa~learn-multiples~'+section+'"]').click();
+  await page.waitForFunction(id=>document.activeElement.id==='cfa-section-'+id,section);
+ }
  await page.goto(url+'/#cfa~learn-ethics-cases');
  await page.locator('.cfa-related a[href="#cfa~learn-standard-iii~fair-dealing"]').click();
  await page.waitForFunction(()=>document.activeElement.id==='cfa-section-fair-dealing');
@@ -153,6 +161,26 @@ test('every authored 2027 unit renders without overflow and new glossary terms r
  await page.waitForFunction(()=>document.querySelector('.cfa-figure-plot').scrollLeft>0);
  assert.equal(await page.locator('.cfa-figure-hint').first().isVisible(),true);
 });
+test('Forward in equity multiples links to its prospective basis, preserves P/E and derivative meanings, and works offline',async t=>{
+ const page=await open(t,'cfa~learn-multiples~ev-bridge');
+ const basis='#glossary~forward-bewertungsbasis',contract='#glossary~forward',pe='#glossary~forward-p-e';
+ const forward=page.locator('#cfa-section-ev-bridge a.term-link:visible').filter({hasText:/^Forward$/}).first();
+ assert.equal(await forward.getAttribute('href'),basis);await forward.click();
+ await page.waitForFunction(()=>document.activeElement.id==='glossary-forward-bewertungsbasis');
+ await page.locator('#glossary-forward-bewertungsbasis a[href="#cfa~learn-multiples~periods"]').click();
+ await page.waitForFunction(()=>document.activeElement.id==='cfa-section-periods');
+ const priceEarnings=page.locator('#cfa-section-periods a.term-link:visible').filter({hasText:/^Forward P\/E$/}).first();
+ assert.equal(await priceEarnings.getAttribute('href'),pe);
+ assert.ok((await page.evaluate(()=>FinanceStudy.glossaryText('Forward EBITDA','multiples'))).includes(basis));
+ assert.ok((await page.evaluate(()=>FinanceStudy.glossaryText('Forward P/E','multiples'))).includes(pe));
+ assert.ok((await page.evaluate(()=>FinanceStudy.glossaryText('Forward','derivatives-03'))).includes(contract));
+ assert.ok((await page.evaluate(()=>FinanceStudy.glossaryText('Forward'))).includes(contract));
+ await page.route(/^https?:/,r=>r.abort());
+ const file=require('node:url').pathToFileURL(require('node:path').join(__dirname,'../index.html')).href;
+ await page.goto(file+'#cfa~learn-multiples~ev-bridge');
+ assert.equal(await page.locator('#cfa-section-ev-bridge a.term-link:visible').filter({hasText:/^Forward$/}).first().getAttribute('href'),basis);
+});
+
 test('ambiguous GMV links retain their chapter meaning in learning, training and the error journal',async t=>{
  const page=await open(t,'cfa~learn-business-models~platforms');
  const commerce='#glossary~gross-merchandise-value',portfolio='#glossary~global-minimum-variance-portfolio';
