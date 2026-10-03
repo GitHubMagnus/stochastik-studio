@@ -7,6 +7,24 @@ test('CFA lessons and independent questions have local mathematics, sources and 
  for(const u of data.units){for(const s of u.sections)walk(s.blocks);assert.ok(u.sources.every(s=>/^https:\/\//.test(s.url)));}
  for(const q of data.questions)walk(q.solution);
 });
+test('all CFA curve stroke patterns agree with their legends and use valid SVG dash lengths',()=>{
+ let figures=0,dashed=0;
+ const walk=blocks=>{for(const b of blocks){
+  if(typeof b==='string')continue;
+  if(b.kind==='example')walk(b.steps);
+  if(b.kind!=='figure')continue;
+  figures++;const paths=[...b.svg.matchAll(/<path class="illustration-curve"[^>]*>/g)].map(m=>m[0]);
+  assert.equal(paths.length,b.legend.length,b.id);
+  for(const [i,p]of paths.entries()){
+   const dash=p.match(/stroke-dasharray="([^"]+)"/)?.[1];
+   assert.equal(!!dash,b.legend[i].dash,b.id+' / '+b.legend[i].name);
+   if(dash){assert.match(dash,/^\d+(?:\.\d+)?(?:[ ,]+\d+(?:\.\d+)?)*$/);assert.ok(dash.split(/[ ,]+/).every(n=>Number(n)>=0));assert.ok(dash.split(/[ ,]+/).some(n=>Number(n)>0));dashed++;}
+  }
+ }};
+ for(const u of data.units)for(const s of u.sections)walk(s.blocks);
+ assert.ok(figures>=72);assert.ok(dashed>=10);
+});
+
 test('EPS examples independently reconcile share periods, dilution and exclusions',()=>{
  const monthlyShares=[1,1,1,1.4,1.4,1.4,1.4,1.4,1.4,1.2,1.2,1.2].map(n=>n*2);
  const weighted=monthlyShares.reduce((a,b)=>a+b)/12;
@@ -259,7 +277,14 @@ test('published MCQ numerical answers agree with separately computed results',()
   'eqr-34':(38+3-40)/40*100,'eqr-35':(54/50*53/52-1)*100,'eqr-36':110*23,
   'eqr-37':(100*22+300-2000)/2000*100,'eqr-38':(5400-5+80-5005)/5005*100,
   'eqr-39':(Math.sqrt(1.21)-1)*100,'eqr-40':(150*24+50*22+200-4000)/4000*100,
-  'eqr-a2':(600*20+300-12000)/12000*100,'eqr-b1':(120*27.4-2880)/2880*100
+  'eqr-a2':(600*20+300-12000)/12000*100,'eqr-b1':(120*27.4-2880)/2880*100,
+  'val-04':(80-64)/64*100,'val-05':(80-64)/80*100,'val-09':1200-700-50-150,
+  'val-10':300/15,'val-12':200*.04/.08,'val-14':2*12+3*8,
+  'val-16':900+240+60+30-90-40,'val-17':(1200+90+40-240-60-30)/20,
+  'val-18':500+180-40,'val-20':.3*(400-100),'val-24':(80-40)/80*100,
+  'val-27':6/1.1+98/1.1**2,'val-31':14*5,'val-32':(9*80+30-150)/12,
+  'val-35':20+50+30+120-90-10,'val-36':120-20+50-10-15,'val-39':4/.1,
+  'val-a1':4*18+2*12+30+10+8-14-6,'val-b1':(500+20-100-10-.25*(300-40))/5,'val-b2':6/.12
  };
  for(const [id,v] of Object.entries(expected)){
   const q=byId.get(id);const numeric=Number(q.options[q.correct].text.replace(/[€,]/g,'').replace('−','-').match(/-?\d+(?:\.\d+)?/)?.[0]);
@@ -2134,6 +2159,93 @@ test('equity return definitions and learning objectives link to distinct practic
  assert.equal(coverage.objectives.length,3);
  for(const o of coverage.objectives){assert.ok(o.sections.length>=6,o.id);assert.ok(o.practice.length>=10,o.id);assert.ok(o.mockQuestions>=2,o.id);}
  for(const id of ['returns','income-statement','benchmarks'])assert.ok(data.units.find(u=>u.id===id).related.some(r=>r.unit==='equity-returns'));
+});
+
+test('valuation price gaps and book-value profitability cases retain distinct economic denominators',()=>{
+ const u=data.units.find(u=>u.id==='valuation-overview'),s=id=>u.sections.find(s=>s.id===id);
+ const parse=v=>Number(v.replace(' %','').replace(',','.'));
+ const rows=s('book-profitability').blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table').rows;
+ for(const row of rows){
+  const [roe,dividend,value,pb]=row.map(parse);
+  assert.equal(dividend,100*roe/100);assert.equal(value,dividend/.1);assert.equal(pb,value/100);
+  // Independent long payment ledger converges to the no-growth perpetual value.
+  const discounted=Array.from({length:1000},(_,i)=>dividend/1.1**(i+1)).reduce((a,b)=>a+b,0);
+  assert.ok(Math.abs(discounted-value)<1e-10);
+ }
+ const plot=s('book-profitability').blocks.find(b=>b.kind==='figure').plot;
+ for(const [roe,value]of plot.series[0].points)assert.equal(value,(100*roe/100)/.1);
+ assert.deepEqual(plot.marks.map(m=>[m.x,m.y]),[[10,100]]);
+ const margin=(60-48)/60,upside=(60-48)/48;
+ assert.equal(margin,.2);assert.equal(upside,.25);assert.equal(margin/(1-margin),upside);
+ assert.equal(900-400,500);assert.equal(500-20-80,400);assert.equal(400/10,40);
+ assert.equal(5*10+1*15,65);assert.equal(.6*(5*10+1*15),39);
+ assert.ok(80<100&&80>60);
+});
+
+test('valuation bridges reconcile ownership scope and distinguish operating value from common equity',()=>{
+ const u=data.units.find(u=>u.id==='valuation-overview'),s=id=>u.sections.find(s=>s.id===id);
+ const commonMarket=10*60,creditors=160,preferred=40,external=50,nonOperating=[70,30];
+ const ev=commonMarket+creditors+preferred+external-nonOperating.reduce((a,b)=>a+b,0);
+ assert.equal(ev,750);assert.equal(ev+100-creditors-preferred-external,commonMarket);
+ const model=850,commonModel=model+100-creditors-preferred-external;
+ assert.equal(commonModel,700);assert.equal(commonModel-commonMarket,model-ev);
+ const table=s('reconcile').blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table');
+ assert.deepEqual(table.rows.map(r=>Number(r.at(-1))),[commonModel/10,(8*100+100-250)/10,(1000-420-40-50)/10]);
+ // Explicit subsidiary capital claims: externally owned equity is after subsidiary debt.
+ const subOp=300,subDebt=50,subEquity=subOp-subDebt,parentSub=.8*subEquity,externalSub=.2*subEquity;
+ assert.equal(subDebt+parentSub+externalSub,subOp);assert.equal(externalSub,50);
+ assert.notEqual(.2*subOp,externalSub);
+ const holdoutSubEquity=300-40;assert.equal(.25*holdoutSubEquity,65);
+ assert.equal((500+20-100-10-.25*holdoutSubEquity)/5,69);
+ assert.equal(500+50-100,450);assert.notEqual(450+50,450);
+});
+
+test('valuation leverage figure agrees with residual claims across its entire declared range',()=>{
+ const plot=data.units.find(u=>u.id==='valuation-overview').sections.find(s=>s.id==='leverage').blocks.find(b=>b.kind==='figure').plot;
+ for(const [i,line]of plot.series.entries()){
+  const debt=[20,60][i],initialEquity=100-debt;
+  for(let change=-30;change<=30;change++){
+   const value=100*(1+change/100),equity=value-debt;
+   assert.ok(equity>0);
+   const [a,b]=line.points,y=a[1]+(b[1]-a[1])*(change-a[0])/(b[0]-a[0]);
+   assert.ok(Math.abs(y-(equity-initialEquity)/initialEquity*100)<1e-10);
+  }
+ }
+ assert.equal((60-80)/80,-.25);assert.equal((20-40)/40,-.5);
+});
+
+test('valuation present-value matrix and curve agree with a separate dated payment ledger',()=>{
+ const u=data.units.find(u=>u.id==='valuation-overview'),s=id=>u.sections.find(s=>s.id===id);
+ const ledger=(rate,terminal)=>Array.from({length:5},(_,i)=>({year:i+1,payment:10+(i===4?terminal:0)})).reduce((total,p)=>total+p.payment/Math.pow(1+rate,p.year),0);
+ const rows=s('sensitivity').blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table').rows;
+ for(const row of rows){
+  const rate=Number(row[0].replace(' %',''))/100;
+  for(const [i,value]of row.slice(1).entries())assert.ok(Math.abs(Number(value.replace(',','.'))-ledger(rate,[40,50,60][i]))<.000051,row.join(' / '));
+ }
+ const plot=s('sensitivity').blocks.find(b=>b.kind==='figure').plot;
+ for(const [rate,value]of plot.series[0].points)assert.ok(Math.abs(value-ledger(rate/100,50))<1e-10);
+ assert.ok(ledger(.08,50)>70);assert.ok(ledger(.1,50)<70);
+ assert.ok(Math.abs((10/1.1+112/1.1**2)-101.6529)<.000051);
+ assert.ok(Math.abs(50/1.1**5/ledger(.1,50)*100-45.02)<.0051);
+ assert.ok(Math.abs(44/1.1+66/1.1-110/1.1)<1e-12);
+});
+
+test('valuation liquidation adjustments and exact glossary returns cover all three learning objectives',()=>{
+ const reported=[10,40,50,100],realized=[10,36,35,130];
+ assert.equal(reported.reduce((a,b)=>a+b,0)-80,120);
+ assert.equal(realized.reduce((a,b)=>a+b,0)-85-12,114);
+ assert.equal(120-20+50-10-15,125);
+ const glossary=require('../finance-glossary.cjs'),resolve=t=>glossary.find(g=>[g.term,...g.aliases].includes(t));
+ for(const [term,section]of [['Intrinsic Value','price-value'],['Market Price','price-value'],['Margin of Safety','gap'],['Catalyst','uncertainty'],['Book Value of Equity','book'],['BVPS','book'],['Market Cap','market-cap'],['EV','enterprise'],['Equity Value','bridge'],['Control Premium','basis'],['Liquidation Value','assets'],['Asset-Based Valuation','assets'],['SOTP','selection'],['DCF','present-value'],['Multiple','multiples']])assert.deepEqual(resolve(term).cfa,{unit:'valuation-overview',section});
+ // Existing accounting and time-value meanings keep their prior deep links.
+ assert.deepEqual(resolve('NCI').cfa,{unit:'balance-sheet',section:'partial-goodwill'});
+ assert.deepEqual(resolve('Terminal Value').cfa,{unit:'tvm',section:'terminal-value'});
+ const bank=data.questions.filter(q=>q.unit==='valuation-overview');
+ assert.equal(bank.filter(q=>q.pool==='practice').length,40);
+ for(const p of ['mock-a','mock-b'])assert.equal(bank.filter(q=>q.pool===p).length,2);
+ const coverage=data.coverage.find(m=>m.id==='valuation-overview');assert.equal(coverage.objectives.length,3);
+ for(const o of coverage.objectives){assert.ok(o.sections.length>=10,o.id);assert.ok(o.practice.length>=15,o.id);assert.ok(o.mockQuestions>=2,o.id);}
+ for(const id of ['balance-sheet','cashflow-analysis','equity-returns'])assert.ok(data.units.find(u=>u.id===id).related.some(r=>r.unit==='valuation-overview'));
 });
 
 test('unwritten modules remain visible as gaps and cannot pass the release gate',()=>{

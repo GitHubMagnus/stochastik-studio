@@ -22,7 +22,7 @@ function render(f){
  const xt=p.xTicks||ticks(p.x),yt=p.yTicks||ticks(p.y);
  const grid=yt.map(v=>`<path d="M${L} ${y(v)}H${W-R}" stroke="#dbe5eb"/><text x="${L-12}" y="${y(v)+5}" text-anchor="end">${esc(fmt(v))}</text>`).join('')+xt.map(v=>`<path d="M${x(v)} ${H-B}v6" stroke="#648292"/><text x="${x(v)}" y="${H-B+27}" text-anchor="middle">${esc(fmt(v))}</text>`).join('');
  const areas=(p.areas||[]).map(a=>`<path class="illustration-area" d="${path(a.points)} Z" fill="${a.color||colors[1]}" fill-opacity="${a.opacity??.18}" stroke="${a.color||colors[1]}" stroke-width="1"/>`).join('');
- const lines=p.series.map((s,i)=>`<path class="illustration-curve" d="${path(s.points)}" fill="none" stroke="${s.color||colors[i%colors.length]}" stroke-width="${s.width||3}" ${s.dash?`stroke-dasharray="${s.dash}"`:''} stroke-linejoin="round"/>`).join('');
+ const lines=p.series.map((s,i)=>`<path class="illustration-curve" d="${path(s.points)}" fill="none" stroke="${s.color||colors[i%colors.length]}" stroke-width="${s.width||3}" ${s.dash?`stroke-dasharray="${esc(s.dash===true?'7 5':s.dash)}"`:''} stroke-linejoin="round"/>`).join('');
  const zero=p.y[0]<0&&p.y[1]>0?`<path d="M${L} ${y(0)}H${W-R}" stroke="#8ca2af" stroke-width="1.5"/>`:'';
  const guides=(p.marks||[]).filter(m=>m.guides).map(m=>`<path d="M${L} ${y(m.y)}H${x(m.x)}V${H-B}" fill="none" stroke="#8ba1af" stroke-dasharray="3 5"/>`).join('');
  const arrows=(p.arrows||[]).map(a=>`<path d="${path(a)}" fill="none" stroke="#466273" stroke-width="2" marker-end="url(#${f.id}-arrow)"/>`).join('');

@@ -43,6 +43,11 @@ test('every authored 2027 unit renders without overflow and new glossary terms r
   await page.goto(url+'/#cfa~learn-'+unit.id);
   assert.equal(await page.locator('#page-cfa .cfa-section').count(),unit.sections.length,unit.id);
   assert.equal(await page.locator('#page-cfa .cfa-section').evaluateAll(xs=>xs.every(x=>x.textContent.trim().length>100)),true);
+  const strokeFailures=await page.locator('#page-cfa .cfa-figure').evaluateAll(figures=>figures.flatMap(f=>{
+   const paths=[...f.querySelectorAll('.illustration-curve')],legend=[...f.querySelectorAll('.cfa-figure-legend span')];
+   return paths.flatMap((p,i)=>{const dashed=getComputedStyle(legend[i]).borderTopStyle==='dashed',pattern=getComputedStyle(p).strokeDasharray;return dashed===(pattern!=='none')?[]:[f.querySelector('figcaption strong').textContent+': '+pattern];});
+  }));
+  assert.deepEqual(strokeFailures,[],unit.id+' graph/legend stroke mismatch');
   for(const width of [390,1440]){await page.setViewportSize({width,height:900});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),unit.id+' width '+width);}
  }
  await page.goto(url+'/#cfa~learn-ratios~liquidity');
@@ -100,6 +105,14 @@ test('every authored 2027 unit renders without overflow and new glossary terms r
   const target=(await link.getAttribute('href')).split('~')[1];await link.click();
   await page.waitForFunction(id=>document.activeElement.id==='glossary-'+id,target);
   await page.locator('#glossary-'+target+' a[href="#cfa~learn-equity-returns~'+section+'"]').click();
+  await page.waitForFunction(id=>document.activeElement.id==='cfa-section-'+id,section);
+ }
+ for(const [section,term]of [['gap','Margin of Safety'],['uncertainty','Catalyst'],['enterprise','Enterprise Value'],['basis','Going-Concern-Wert'],['selection','Sum of the Parts']]){
+  await page.goto(url+'/#cfa~learn-valuation-overview~'+section);
+  const link=page.locator('#cfa-section-'+section+' a.term-link:visible').filter({hasText:new RegExp('^'+term+'$')}).first();
+  const target=(await link.getAttribute('href')).split('~')[1];await link.click();
+  await page.waitForFunction(id=>document.activeElement.id==='glossary-'+id,target);
+  await page.locator('#glossary-'+target+' a[href="#cfa~learn-valuation-overview~'+section+'"]').click();
   await page.waitForFunction(id=>document.activeElement.id==='cfa-section-'+id,section);
  }
  await page.goto(url+'/#cfa~learn-ethics-cases');
