@@ -181,6 +181,7 @@ module.exports={id:'valuation-overview',intro:[
   'Einzelne ergänzende Rechenmodelle gehen über die rein beschreibenden Formulierungen dieses Einführungsmoduls hinaus. Sie dienen dazu, die wirtschaftlichen Grenzen sichtbar zu machen. Vollständige Wachstums- und Multiplikatorenmodelle werden in eigenen Einheiten weitergeführt.'
  ])
 ],related:[
+ {unit:'multiples',section:'ev-bridge',label:'EV-Multiplikator bis zum Stammaktienwert führen'},
  {unit:'dcf-equity',section:'equivalence-case',label:'DDM und Residualgewinn im selben Unternehmen abstimmen'},
  {unit:'balance-sheet',section:'measurement',label:'Bilanzierungsregeln hinter Buchwert und immateriellen Ressourcen'},
  {unit:'cashflow-analysis',section:'valuation-workflow',label:'FCFF, FCFE und passende Diskontsätze'},

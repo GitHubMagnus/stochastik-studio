@@ -285,6 +285,19 @@ test('published MCQ numerical answers agree with separately computed results',()
   'val-27':6/1.1+98/1.1**2,'val-31':14*5,'val-32':(9*80+30-150)/12,
   'val-35':20+50+30+120-90-10,'val-36':120-20+50-10-15,'val-39':4/.1,
   'val-a1':4*18+2*12+30+10+8-14-6,'val-b1':(500+20-100-10-.25*(300-40))/5,'val-b2':6/.12,
+  'mult-07':72/6,'mult-08':75/(.8+1+1.2+2),'mult-09':.5*4+.5*6,
+  'mult-11':(90-30)/15,'mult-12':16*3,'mult-15':60/(.1*50),'mult-17':-1/50*100,
+  'mult-18':.5*4*1.05/(.1-.05),'mult-19':10*1.04,'mult-21':1/.1,
+  'mult-22':.6/(.12-.03),'mult-23':24/12,'mult-25':45/(360/12),'mult-26':240/160,
+  'mult-27':(.08-.02)/(.1-.02),'mult-28':18*.1,'mult-30':600/(40+10-5),
+  'mult-31':800/(60-25+5),'mult-32':(500+150+20+30-40-10)/100,
+  'mult-33':(8*90+40+10-180-20-30)/10,'mult-35':(500-200)/(50-10),
+  'mult-37':720/(120-30),'mult-38':(120-20)*.75+20-35-10,
+  'mult-39':80*.04/.1,'mult-40':60*(1-.03/.1)/(.09-.03)/100,
+  'mult-43':12,'mult-44':120/(60/10+60/30),'mult-45':(120+360)/(10+20),
+  'mult-47':12*4.4,'mult-48':80/10,'mult-a1':(900+50+20-180-30-40)/12,
+  'mult-a2':(.12-.03)/(.09-.03),'mult-b1':((120-20)*.75*(1-.03/.0625)/(.09-.03)+20-120)/10,
+  'mult-b2':100/(20/8+30/16+50/40),
   'dcf-04':110/1.1,'dcf-06':120*.75+10-40-15,'dcf-07':45-20*.75+12-7,
   'dcf-09':60,'dcf-10':(10-2)/(100-40)*100,'dcf-11':2*1.04/.06,'dcf-12':3/.06,
   'dcf-14':2/(.08+.02),'dcf-15':(.1-2/50)*100,'dcf-16':(.1*50-2)/52*100,
@@ -2251,7 +2264,8 @@ test('valuation liquidation adjustments and exact glossary returns cover all thr
  assert.equal(realized.reduce((a,b)=>a+b,0)-85-12,114);
  assert.equal(120-20+50-10-15,125);
  const glossary=require('../finance-glossary.cjs'),resolve=t=>glossary.find(g=>[g.term,...g.aliases].includes(t));
- for(const [term,section]of [['Intrinsic Value','price-value'],['Market Price','price-value'],['Margin of Safety','gap'],['Catalyst','uncertainty'],['Book Value of Equity','book'],['BVPS','book'],['Market Cap','market-cap'],['EV','enterprise'],['Equity Value','bridge'],['Control Premium','basis'],['Liquidation Value','assets'],['Asset-Based Valuation','assets'],['SOTP','selection'],['DCF','present-value'],['Multiple','multiples']])assert.deepEqual(resolve(term).cfa,{unit:'valuation-overview',section});
+ for(const [term,section]of [['Intrinsic Value','price-value'],['Market Price','price-value'],['Margin of Safety','gap'],['Catalyst','uncertainty'],['Book Value of Equity','book'],['BVPS','book'],['Market Cap','market-cap'],['EV','enterprise'],['Equity Value','bridge'],['Control Premium','basis'],['Liquidation Value','assets'],['Asset-Based Valuation','assets'],['SOTP','selection'],['DCF','present-value']])assert.deepEqual(resolve(term).cfa,{unit:'valuation-overview',section});
+ assert.deepEqual(resolve('Multiple').cfa,{unit:'multiples',section:'scope'});
  // Existing accounting and time-value meanings keep their prior deep links.
  assert.deepEqual(resolve('NCI').cfa,{unit:'balance-sheet',section:'partial-goodwill'});
  assert.deepEqual(resolve('Terminal Value').cfa,{unit:'tvm',section:'terminal-value'});
@@ -2383,6 +2397,152 @@ test('DCF objectives have substantial authored applications, distinct reserved c
  assert.deepEqual(resolve('FCFF').cfa,{unit:'cashflow-analysis',section:'free-cashflow'});assert.deepEqual(resolve('Terminal Value').cfa,{unit:'tvm',section:'terminal-value'});
  for(const id of ['valuation-overview','cashflow-analysis','forecasting'])assert.ok(data.units.find(u=>u.id===id).related.some(r=>r.unit==='dcf-equity'));
  for(const pool of ['mock-a','mock-b'])assert.ok(data.inventory[pool].equity<=require('../finance-cfa/engine.cjs').blueprint.equity,'reserved equity questions must fit the topic weight');
+});
+
+test('justified P/E and P/B graphs reconcile with independent book, dividend and residual-income ledgers',()=>{
+ const u=data.units.find(u=>u.id==='multiples'),near=(a,b,e=1e-8)=>assert.ok(Math.abs(a-b)<e,a+' vs '+b);
+ const figure=id=>u.sections.find(s=>s.id===id).blocks.find(b=>b.kind==='figure');
+ const ledger=(opening,roe,g,k)=>{
+  let book=opening,dividends=0,residual=0;
+  for(let t=1;t<=2000;t++){
+   const before=book,income=roe*before,retained=g*before,dividend=income-retained;
+   book=before+retained;dividends+=dividend/(1+k)**t;residual+=(income-k*before)/(1+k)**t;
+  }
+  near(dividends,opening+residual);return dividends;
+ };
+ for(const series of figure('growth-pe').plot.series)for(const [g,multiple]of series.points){
+  const roe=Number(series.name.match(/\d+/)[0])/100;
+  near(multiple,ledger(1/roe,roe,g/100,.1));
+ }
+ for(const [roe,multiple]of figure('pb-fundamentals').plot.series[0].points)near(multiple,ledger(20,roe/100,.03,.1)/20);
+ const table=u.sections.find(s=>s.id==='pb-fundamentals').blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table'),num=x=>Number(String(x).replace(',','.').replace(' %',''));
+ for(const row of table.rows){
+  const roe=num(row[0])/100,eps=roe*20,retained=.03*20,dividend=eps-retained,value=ledger(20,roe,.03,.1);
+  near(num(row[1]),eps);near(num(row[2])/100,retained/eps);near(num(row[3]),dividend);
+  near(num(row[4]),value/20,.0000006);near(num(row[5]),value,.00006);
+ }
+ // Finite differences check the two stated derivative signs independently.
+ const model=(r,g,k)=>(1-g/r)/(k-g),h=1e-7;
+ for(const roe of [.06,.1,.15])for(const growth of [0,.02,.04]){
+  const derivative=(model(roe,growth+h,.1)-model(roe,growth-h,.1))/(2*h);
+  near(derivative,(roe-.1)/(roe*(.1-growth)**2),1e-5);
+ }
+ const q=.8,g=.03,k=.1;
+ near((q/(k+h-g)-q/(k-h-g))/(2*h),-q/(k-g)**2,1e-5);
+ const oldEPS=5,newEPS=oldEPS*1.04,price=ledger(newEPS/(.04/.4),.04/.4,.04,.1);
+ // Last example has payout 60%, hence ROE 10% at stable growth 4%.
+ near(price,52);near(price/newEPS,10);near(price/oldEPS,10.4);
+});
+
+test('enterprise multiple graph reconciles with operating capital growth, actual investment and discounted FCFF',()=>{
+ const u=data.units.find(u=>u.id==='multiples'),fig=u.sections.find(s=>s.id==='ev-fundamentals').blocks.find(b=>b.kind==='figure');
+ const near=(a,b,e=1e-8)=>assert.ok(Math.abs(a-b)<e,a+' vs '+b);
+ for(const [roic,multiple]of fig.plot.series[0].points){
+  let capital=60/(roic/100),pv=0;
+  for(let year=1;year<=2000;year++){
+   const opening=capital,income=opening*roic/100;
+   capital=opening*1.03;const requiredInvestment=capital-opening,cash=income-requiredInvestment;
+   pv+=cash/1.09**year;
+  }
+  near(multiple,pv/100);
+ }
+ for(const [r,capex,fcff,expectedEV]of [[.15,32,48,800],[.06,50,30,500]]){
+  const opening=60/r,investment=opening*.03;near(investment,capex-20);near(60-investment,fcff);
+  near(((100-20)*.75+20-capex)/(.09-.03),expectedEV);
+ }
+ const currentNoGrowth=60/.09;
+ assert.ok(800>currentNoGrowth);assert.ok(500<currentNoGrowth);
+});
+
+test('the controlled financing table separates equity P/E, equity risk and unchanged operating claims',()=>{
+ const u=data.units.find(u=>u.id==='multiples'),rows=u.sections.find(s=>s.id==='leverage').blocks.find(b=>b.kind==='example').steps.find(b=>b.kind==='table').rows;
+ const num=x=>Number(String(x).replace(',','.')),near=(a,b)=>assert.ok(Math.abs(a-b)<1e-10);
+ for(const row of rows){
+  const [debt,interest,equity,income,pe,evEbit]=row.map(num);
+  near(interest,debt*.05);near(debt+equity,600);near(income+interest,60);near(pe,equity/income);near(evEbit,600/60);
+  const ke=income/equity;near((equity/600)*ke+(debt/600)*.05,.1);
+ }
+ assert.ok(num(rows[2][4])<num(rows[0][4]));assert.ok(num(rows[2][3])/num(rows[2][2])>num(rows[0][3])/num(rows[0][2]));
+});
+
+test('price, reporting, calendar and loss bases have independent arithmetic counterexamples',()=>{
+ const near=(a,b,e=1e-8)=>assert.ok(Math.abs(a-b)<e,a+' vs '+b);
+ // A current issuance makes current cap / total earnings differ from price / weighted-share EPS.
+ const price=50,currentShares=12,weightedShares=10,earnings=40;
+ assert.notEqual(price*currentShares/earnings,price/(earnings/weightedShares));
+ near(price*currentShares/earnings,15);near(price/(earnings/weightedShares),12.5);
+ const normalized=(100-40)/10;near(normalized,6);near(90/normalized,15);near(14*normalized,84);
+ const quarters=[.6,.9,1.1,1.4];near(60/quarters.reduce((a,b)=>a+b),15);near(60/5,12);
+ const futureMonths=[...Array(3).fill(4/12),...Array(9).fill(6/12)];near(futureMonths.reduce((a,b)=>a+b),5.5);
+ near([2,4,6,8].reduce((a,b)=>a+b)/4,5);near(.1*60,6);
+ const losses=[-2,-.5,0,.1],rows=data.units.find(u=>u.id==='multiples').sections.find(s=>s.id==='pe-negative').blocks.find(b=>b.kind==='table').rows;
+ const num=x=>Number(String(x).replace('−','-').replace(',','.').replace(' %',''));
+ for(const [i,eps]of losses.entries()){
+  near(num(rows[i][3])/100,eps/40);
+  if(eps!==0)near(num(rows[i][2]),40/eps);else assert.match(rows[i][2],/Nicht definiert/);
+ }
+ near(800/(60+20),10);near(800/(60+20-10),11.428571428571429);near(800/(60+20-10-30),20);
+});
+
+test('multiple summaries match acquired earnings claims rather than arbitrary averages',()=>{
+ const near=(a,b,e=1e-10)=>assert.ok(Math.abs(a-b)<e,a+' vs '+b);
+ const pe=[10,20,60],capital=[60,60,60],earnings=capital.map((e,i)=>e/pe[i]);
+ near(earnings.reduce((a,b)=>a+b),10);near(capital.reduce((a,b)=>a+b)/earnings.reduce((a,b)=>a+b),18);
+ near(pe.reduce((a,b)=>a+b)/3,30);near([...pe].sort((a,b)=>a-b)[1],20);
+ const amounts=[100,600],profit=[10,20],multiples=amounts.map((e,i)=>e/profit[i]),total=amounts.reduce((a,b)=>a+b);
+ const weights=amounts.map(e=>e/total);
+ near(1/weights.reduce((s,w,i)=>s+w/multiples[i],0),total/profit.reduce((a,b)=>a+b));
+ near(total/profit.reduce((a,b)=>a+b),23.333333333333332);
+ near(weights.reduce((s,w,i)=>s+w*multiples[i],0),27.142857142857142);
+ near(2/multiples.reduce((s,m)=>s+1/m,0),15);
+ // Market value weights are necessary: equal-money and equal-earnings baskets differ.
+ assert.notEqual(total/profit.reduce((a,b)=>a+b),2/multiples.reduce((s,m)=>s+1/m,0));
+});
+
+test('enterprise bridge, sensitivity rows and terminal forward-versus-trailing bases reconcile',()=>{
+ const u=data.units.find(u=>u.id==='multiples'),near=(a,b,e=1e-8)=>assert.ok(Math.abs(a-b)<e,a+' vs '+b);
+ near(480+200+20+30-40-10,680);near(680/80,8.5);
+ const example=u.sections.find(s=>s.id==='integrated').blocks.find(b=>b.kind==='example'),rows=example.steps.find(b=>b.kind==='table').rows;
+ for(const [i,row]of rows.entries()){
+  const op=(i+8)*80,common=op+40+10-200-20-30,number=x=>Number(String(x).replace(',','.'));
+  near(number(row[1]),op);near(number(row[2]),common);near(number(row[3]),common/10);
+ }
+ near((52-48)/48*100,8.333333333333332);near((10*80-200)/10-(8*80-200)/10,16);
+ const terminalForward=14*5.2,terminalTrailing=14.56*5;
+ near(terminalForward,terminalTrailing);
+ const payments=[2,2,2+terminalForward],pv=payments.reduce((s,c,i)=>s+c/1.1**(i+1),0);
+ near(pv,59.6694214876033);near([2,2,72].reduce((s,c,i)=>s+c/1.1**(i+1),0),57.565740045078865);
+ const questions=new Map(data.questions.map(q=>[q.id,q]));
+ const wrong=(id,value)=>questions.get(id).options.find(o=>Number(o.text)===value);
+ near(63.33,(900+50+20-180-30)/12,.005);assert.match(wrong('mult-a1',63.33).why,/Tochteranteile/);
+ near(85,(75*(1-.03/.125)/.06+20-120)/10);assert.match(wrong('mult-b1',85).why,/doppelt so hohem ROIC/);
+ near(26.4,.2*8+.3*16+.5*40);assert.match(wrong('mult-b2',26.4).why,/arithmetische/);
+});
+
+test('relative valuation has substantial coverage, distinct reserved pools and precise dictionary return paths',()=>{
+ const u=data.units.find(u=>u.id==='multiples'),coverage=data.coverage.find(x=>x.id===u.id),bank=data.questions.filter(q=>q.unit===u.id);
+ assert.equal(u.sections.length,28);assert.equal(u.review.status,'draft');assert.equal(bank.filter(q=>q.pool==='practice').length,48);
+ for(const pool of ['mock-a','mock-b'])assert.equal(bank.filter(q=>q.pool===pool).length,2);
+ for(const o of coverage.objectives){assert.ok(o.sections.length>=10);assert.ok(o.practice.length>=15);assert.ok(o.mockQuestions>=2);}
+ const glossary=require('../finance-glossary.cjs'),resolve=t=>glossary.find(g=>[g.term,...g.aliases].includes(t));
+ for(const [term,section]of [['KGV','definitions'],['P/B','pb'],['EV/EBITDA','ebitda'],['Trailing P/E','periods'],['Forward P/E','periods'],['TTM','periods'],['NTM','calendar'],['Calendarization','calendar'],['Look-ahead Bias','calendar'],['Method of Comparables','workflow'],['Method of Forecasted Fundamentals','workflow'],['justified P/E','forward-pe'],['Normalized EPS','normalization'],['E/P','pe-negative'],['PEG','peg'],['Relative P/E','peg'],['P/S','ps'],['EV/Sales','ps'],['EV/EBIT','ebitda'],['Cash Earnings','pcf'],['Tangible Book Value','pb'],['Weighted Harmonic Mean','aggregate'],['Aggregate P/E','aggregate'],['Selection Bias','summary'],['Multiple','scope'],['Peers','peers']])assert.deepEqual(resolve(term).cfa,{unit:'multiples',section});
+ assert.deepEqual(resolve('Harmonic Mean').cfa,{unit:'return-types',section:'harmonic'});
+ assert.deepEqual(resolve('Forward-Bewertungsbasis').contextualAliases,[{label:'Forward',units:['multiples']}]);
+ assert.deepEqual(resolve('FY1').cfa,{unit:'multiples',section:'calendar'});
+ assert.equal(resolve('Forward').lesson,'derivatives-03','the default Forward definition keeps its derivative meaning');
+ assert.deepEqual(resolve('EV').cfa,{unit:'valuation-overview',section:'enterprise'});
+ for(const id of ['valuation-overview','dcf-equity','income-statement'])assert.ok(data.units.find(u=>u.id===id).related.some(r=>r.unit==='multiples'));
+ for(const pool of ['mock-a','mock-b'])assert.ok(data.inventory[pool].equity<=require('../finance-cfa/engine.cjs').blueprint.equity);
+});
+
+test('relative valuation keeps prospective and derivative Forward meanings separate without losing precise P/E aliases',()=>{
+ const glossary=require('../finance-glossary.cjs');
+ const find=term=>glossary.find(g=>g.term===term);
+ const basis=find('Forward-Bewertungsbasis'),contract=find('Forward'),pe=find('Forward P/E');
+ assert.notEqual(basis.term,contract.term);assert.notEqual(pe.term,basis.term);
+ assert.equal(basis.aliases.includes('Forward'),false);assert.equal(contract.aliases.includes('Forward PE'),false);
+ assert.deepEqual(basis.contextualAliases,[{label:'Forward',units:['multiples']}]);
+ assert.deepEqual(pe.cfa,{unit:'multiples',section:'periods'});
 });
 
 test('unwritten modules remain visible as gaps and cannot pass the release gate',()=>{

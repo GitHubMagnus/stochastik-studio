@@ -157,7 +157,7 @@ module.exports={
   'Verknüpfe diese Rechnung mit der Analyse der Berichtsqualität und dem normalisierten Ausgangsjahr im Prognosekapitel. Berichtigt man zuerst einen Fehler, muss jede nachfolgende Bereinigung vom korrigierten Wert ausgehen.'
  ])
  ],
- related:[{unit:'reporting-quality',section:'combined',label:'Fehlerkorrektur und analytische Bereinigung verbinden'},{unit:'forecasting',section:'historical-base',label:'Ein normalisiertes Ausgangsjahr für die Prognose'},{unit:'ratios',section:'dupont',label:'Von Ergebnisstufen zur Eigenkapitalrendite'},{unit:'equity-returns',section:'eps',label:'Warum Rückkäufe EPS ändern, ohne automatisch Wert zu schaffen'}],
+ related:[{unit:'multiples',section:'normalization',label:'Normalisierte Gewinnbasis in der relativen Bewertung'},{unit:'reporting-quality',section:'combined',label:'Fehlerkorrektur und analytische Bereinigung verbinden'},{unit:'forecasting',section:'historical-base',label:'Ein normalisiertes Ausgangsjahr für die Prognose'},{unit:'ratios',section:'dupont',label:'Von Ergebnisstufen zur Eigenkapitalrendite'},{unit:'equity-returns',section:'eps',label:'Warum Rückkäufe EPS ändern, ohne automatisch Wert zu schaffen'}],
  sources:[
   {title:'IFRS Foundation: IFRS 5 – aufgegebene Geschäftsbereiche',url:'https://www.ifrs.org/issued-standards/list-of-standards/ifrs-5-non-current-assets-held-for-sale-and-discontinued-operations/'},
   {title:'IFRS Foundation: IFRS 15 – Umsatz aus Kundenverträgen',url:'https://www.ifrs.org/issued-standards/list-of-standards/ifrs-15-revenue-from-contracts-with-customers/'},
