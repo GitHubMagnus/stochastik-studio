@@ -178,7 +178,7 @@ module.exports={id:'market-structures',intro:[
   ],'Die Modelle liefern strukturierte Gegenfragen und bedingte Rechnungen. Sie ersetzen keine branchenspezifische Untersuchung.'),
   'Ein hoher aktueller Gewinn kann neuen Wettbewerb anziehen. Für eine ewige Wachstumsbewertung ist deshalb entscheidend, ob die zugrunde gelegte Rendite auf neues Kapital trotz Wettbewerb plausibel bleibt. Kostenführerschaft, hohe Nachfrage und echte Eintrittsbarrieren wirken unterschiedlich und sollten in der Bewertung nicht zu einer einzigen optimistischen Wachstumszahl verschmelzen.'
  ])
-],related:[{unit:'income-statement',section:'revenue',label:'Berichteten Umsatz von wirtschaftlicher Ertragskraft unterscheiden'},{unit:'tvm',section:'growing-cashflows',label:'Dauerhafte Wachstumsannahmen und ihren Barwert prüfen'},{unit:'ratios',section:'dupont',label:'Marge, Umschlag und Eigenkapitalrendite gemeinsam analysieren'}],
+],related:[{unit:'industry',section:'five-forces',label:'Konzentration, Konkurrenzkräfte und äußere Einflüsse gemeinsam untersuchen'},{unit:'income-statement',section:'revenue',label:'Berichteten Umsatz von wirtschaftlicher Ertragskraft unterscheiden'},{unit:'tvm',section:'growing-cashflows',label:'Dauerhafte Wachstumsannahmen und ihren Barwert prüfen'},{unit:'ratios',section:'dupont',label:'Marge, Umschlag und Eigenkapitalrendite gemeinsam analysieren'}],
  sources:[
  {title:'CFA Institute: offizieller Lernzielkatalog Level I 2027',url:'https://www.cfainstitute.org/sites/default/files/2027levelitopicoutline_online.pdf#page=5'},
  {title:'CFA Institute: The Firm and Market Structures',url:'https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/firm-market-structures'},
