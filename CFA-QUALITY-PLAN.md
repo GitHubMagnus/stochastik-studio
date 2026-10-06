@@ -1174,3 +1174,79 @@ und bestandene Technikprüfungen ersetzen die spätere fachliche Abnahme nicht.
   Modelle bis zum Aktienwert auswerten. Sämtliche neuen Einheiten
   bleiben „draft“; **90/100 und 80/100 sind weiterhin nicht als
   erreicht belegt**.
+
+## Fortsetzung: Abschlussmodell bis zum Aktienwert, 6. Oktober 2026
+
+- **Financial Statement Forecasting in Equity Valuation** folgt den drei
+  offiziellen Level-I-2027-Lernzielen: Begründung und Konstruktion,
+  unternehmensgerechte Modellwahl sowie Wertschätzung aus Prognoseergebnissen.
+  Die neue Einheit enthält **26 Abschnitte, 18 eigene Beispiele, elf Tabellen,
+  66 erklärte Formeltafeln und drei berechnete Grafiken**. Die strukturelle
+  Zuordnung ist kein Nachweis bereits bestandener fachlicher Endprüfung.
+- Nordlicht verbindet drei vollständige Ergebnis-, Anlagen-, Bestands- und
+  Eigentümerprognosen mit direkten/indirekten Zahlungsrechnungen und
+  Schlussbilanzen. Umsatzwachstum erhöht den ersten Gewinn, kann aber wegen
+  zusätzlicher Anlagen und Bestände die freie Zahlung senken. Ein gezielter
+  Stressfall zeigt trotz Gewinn den erforderlichen Eigentümerbeitrag.
+- Überschusscash wird heute einmal ausgeschüttet; die Prognose beginnt danach
+  mit Cash null und Buchkapital 350. Die spätere Ausschüttungs- und
+  Beitragspolitik ist ausdrücklich definiert. Jahresend-Cash null beweist
+  weder unterjährige Zahlungsfähigkeit noch tatsächlich verfügbare Beiträge.
+- Die stabile Phase beginnt mit neuer Marge und neu aufgebautem Ertrag.
+  **Marginale Rendite neuer Investitionen und Rendite auf das gesamte
+  vorhandene Kapital werden getrennt.** Die Kapitalfortschreibung wird
+  übergeleitet; die alte Anlagenquote wird nicht zugleich beliebig erzwungen.
+  Nullwachstum, Erhaltungsbedarf und nicht beobachtbare marginale Rendite
+  ohne zusätzliche Investition werden erläutert.
+- Der Endwert ist zum Horizont abgegrenzt und passend diskontiert.
+  Anspruchsbrücke, Sonderzahlung, Aktienzahl und mögliche Verwässerung sind
+  eigenständige Schritte. Dividenden und Residual Income ergeben unter den
+  gleichen Annahmen denselben Wert; diese algebraische Übereinstimmung
+  wird ausdrücklich nicht als unabhängige Prognosebestätigung ausgegeben.
+- Modellwahl behandelt Industriebetrieb, Bank, Jungunternehmen,
+  Rohstoff-/Zyklusbetrieb, Immobilien und Konzernsparten. Sensitivität,
+  gemeinsame Szenarien, gewichtete bedingte Werte, Reverse DCF,
+  Informationstermine, Modellgrenzen und konkrete Gegenprüfungen bleiben
+  Teil des Bewertungsprozesses.
+- **40 eigene englische Trainingsfragen und je zwei getrennte reservierte
+  Klausurfragen** enthalten deutsche Rechen- und Auswahlbegründungen sowie
+  exakte Abschnittsrückwege. Lernziel A hat 26 Abschnitte und 38
+  Trainingszuordnungen, B 21 und 14, C 23 und 30; eine Frage kann mehrere
+  Zusammenhänge prüfen. Reservierte Fragen bleiben getrennt vom Training.
+- Der neue Rechner ersetzt im bisherigen FCFF-/FCFE-Kapitel die einfache
+  Einzelzahlungsdemo. **35 Modelle bleiben in 58 bisherigen Kapiteln
+  erreichbar.** Er zeigt Detailergebnis, Abschreibung, Bruttoinvestition,
+  Bestandsbindung, freie Zahlung, Dividende, Beitrag, Buchkapital und
+  gesonderte Endphase. Ungültiges Wachstum wird erklärt; negative freie
+  Zahlungen werden nicht abgeschnitten. Tabellen und Kurve bleiben auf
+  Mobilbreite lokal und per Tastatur verschiebbar.
+- 16 ergänzte/überarbeitete kuratierte Begriffe erhalten präzise CFA-Rückwege.
+  Der vorhandene Reverse-DCF-Begriff wird erweitert statt dupliziert.
+  Verbindungen aus Abschlussmodell, DCF und Multiplikatoren führen zur
+  neuen Bewertungseinheit.
+- Unabhängige Gegenrechnungen prüfen Kundeneinzahlungen, operative Ausgaben,
+  Steuer, Anlagenbewegung und Eigentümerflüsse. Eine Summe von 1.000 stabilen
+  Dividenden und eine Residual-Income-Rechnung bestätigen den Barwert unter
+  gleichen Annahmen. Sämtliche 256 Kontroll-Eckkombinationen liefern
+  konsistente Bestände/Beiträge oder einen begründeten Domänenfehler.
+  Alle Kurvenpunkte, die Sensitivitätstabelle und die Reverse-DCF-Marge
+  werden numerisch gegengeprüft.
+- **171 Kernprüfungen und 129 CFA-Prüfungen bestanden.** Der breite CFA-Lauf
+  prüfte alle 56 Einheiten auf Desktop-/Mobilüberlauf und die 560
+  Corporate-/Equity-Trainingsfragen mit ihren Erklärungen und Rückwegen.
+  Nach Korrektur einer abgeschnittenen Diagrammachse und Verbesserung der
+  mobilen Rechnerkurve wurden die Kernprüfungen sowie zwei gezielte
+  Browserprüfungen erneut erfolgreich ausgeführt. Zwei zusätzliche
+  Browserprüfungen durchliefen nochmals alle 171 bisherigen Finance-Kapitel
+  und 35 Modelle mit 6.914 Bedienhandlungen sowie Abschnitts- und
+  Offline-Navigation. Die neue Einheit und der Rechner wurden visuell
+  auf Desktop und Mobilbreite geprüft.
+- Gesamtstand: **56 Einheiten, 193/340 strukturelle Lernzielreferenzen,
+  1.364 Trainingsfragen, je 107 reservierte Klausurfragen und 82 CFA-Grafiken**.
+  Das Wörterbuch enthält **765 kuratierte Rückverweise, 1.118 Definitionen
+  und 2.363 Begriffe/Aliase**. Offen bleiben **46 Einheiten, 147
+  Lernzielzuordnungen und 73 Fragen je vollständiger Klausur**; anschließend
+  ist der fachliche Gesamtaudit erforderlich. Nächste Einheit: Branche und
+  Wettbewerb mit Marktgröße, Klassifikation, Five Forces und PESTLE.
+  Alle neuen Einheiten bleiben „draft“, die vollständigen Klausuren
+  gesperrt; **90/100 und 80/100 sind weiterhin nicht als erreicht belegt**.

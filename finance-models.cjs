@@ -46,6 +46,44 @@ add('property','Immobilienertrag kapitalisieren','Der Cap Rate verbindet nachhal
 add('frontier','Erreichbare Risiko-Rendite-Kombinationen','Jeder Punkt steht für ein anderes Gewicht zweier Anlagen. Nur nicht dominierte Kombinationen sind effizient.',[field('muA','Erwartete Rendite A (%)',0,15,.5,8),field('muB','Erwartete Rendite B (%)',0,15,.5,4),field('rho','Korrelation',-1,1,.05,0),field('w','Gewicht A (%)',0,100,1,50)],p=>{const vol=w=>Math.sqrt(Math.max(0,w*w*400+(1-w)**2*100+400*w*(1-w)*p.rho));return result([['Erwartete Rendite (%)',p.w/100*p.muA+(1-p.w/100)*p.muB],['Volatilität (%)',vol(p.w/100)]],seq(0,1,w=>w).map(([w])=>[vol(w),w*p.muA+(1-w)*p.muB]),'Portfoliovolatilität (%)','Erwartete Rendite (%)','Volatilität A=20 %, B=10 %, keine Leerverkäufe. Gezeigt ist die gesamte erreichbare Kurve, einschließlich ineffizienter Abschnitte; keine Kapitalmarktlinie.');});
 add('montecarlo','Renditepfade simulieren','Ein Modell erzeugt 200 mögliche Pfade. Eine feste Zufallsfolge macht Parametervergleiche nachvollziehbar.',[field('mu','Erwartete Jahresrendite (%)',-5,15,.5,6),field('vol','Jahresvolatilität (%)',0,40,1,20),field('n','Jahre',1,30,1,10)],p=>{let seed=1947;const random=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return(seed+.5)/4294967296;};const log=Array(200).fill(0),points=[[0,100]],mu=p.mu/100,sigma=p.vol/100;let wealth;for(let t=1;t<=p.n;t++){for(let i=0;i<log.length;i++)log[i]+=Math.log1p(mu)-sigma*sigma/2+sigma*Math.sqrt(-2*Math.log(random()))*Math.cos(2*Math.PI*random());wealth=log.map(x=>100*Math.exp(x)).sort((a,b)=>a-b);points.push([t,(wealth[99]+wealth[100])/2]);}const q=x=>{const i=199*x,k=Math.floor(i);return wealth[k]+(wealth[Math.min(k+1,199)]-wealth[k])*(i-k);};return result([['Endwert · 10%-Quantil',q(.1)],['Endwert · Median',q(.5)],['Endwert · 90%-Quantil',q(.9)]],points,'Jahre','Median des Vermögens (Start 100)','Unabhängige normalverteilte Logrenditen, Erwartungsfaktor 1+μ, konstante Parameter. Die Kurve zeigt nur den simulierten Median; Endquantile stehen darüber. Kein Bootstrap und keine Garantie.');});
 function calculate(id,params){const model=models[id];if(!model)throw Error('Unbekanntes Modell');const p={};for(const f of model.controls){const v=params[f.key];if(v===''||v===null||!Number.isFinite(Number(v))||Number(v)<f.min||Number(v)>f.max)throw Error('Bitte '+f.label+' zwischen '+f.min+' und '+f.max+' eingeben.');p[f.key]=Number(v);if(f.step===1&&!Number.isInteger(p[f.key]))throw Error(f.label+': bitte eine ganze Zahl eingeben.');}const out=model.calc(p);if(out.metrics.some(m=>!Number.isFinite(m[1]))||out.points.some(v=>v.some(n=>!Number.isFinite(n))))throw Error('Für diese Eingaben ist kein endliches Ergebnis definiert.');const marks={dcf:[p.n,0],annuity:[p.n,0],diversification:[p.w,0],capm:[p.beta,0],wacc:[p.e,0],gordon:[p.g,0],fx:[p.fx,0],forward:[p.t,0],bond:[p.y,0],credit:[p.pd,0],waterfall:[p.value,0],option:[p.end,0],bsm:[p.s,0],dupont:[p.lev,0],rebalance:[p.a,0],risk:[p.confidence,0],alm:[p.shock,0],attribution:[p.w,3],execution:[p.end,0],npv:[p.r,0],fxforward:[p.t,0],forwardvalue:[p.forward,0],abs:[p.loss,1],property:[p.cap,0]};if(marks[id])out.marker=[marks[id][0],out.metrics[marks[id][1]][1]];if(id==='frontier')out.marker=[out.metrics[1][1],out.metrics[0][1]];return out;}
-const api={models,calculate,annuity,price,bsm,cdf};
+// Unlevered operating forecast. Initial surplus cash is distributed at t=0.
+// End-year cash is zero: positive free cash is paid, deficits require owners' contributions.
+function forecastValue(p){
+ const growth=p.growth/100,margin=p.margin/100,wc=p.wc/100,k=p.discount/100,g=p.stableGrowth/100,r=p.roic/100;
+ if(g>=k)throw Error('Das langfristige Wachstum muss unter dem passenden Diskontsatz liegen.');
+ if(g>=r)throw Error('Das langfristige Wachstum muss in diesem Ausschüttungsmodell unter der Rendite neuer Investitionen liegen.');
+ let sales=p.sales,ppe=.5*sales,nwc=.2*sales,book=ppe+nwc,pv=0;
+ const years=[];
+ for(let year=1;year<=3;year++){
+  const oldSales=sales,oldPPE=ppe,oldWC=nwc,oldBook=book;
+  sales=oldSales*(1+growth);ppe=.5*sales;nwc=wc*sales;
+  const depreciation=.12*oldPPE,capex=ppe-oldPPE+depreciation,ebit=margin*sales,nopat=.75*ebit,investment=nwc-oldWC,cfo=nopat+depreciation-investment,fcff=cfo-capex;
+  const dividend=Math.max(0,fcff),contribution=Math.max(0,-fcff);
+  book=oldBook+nopat-dividend+contribution;pv+=fcff/(1+k)**year;
+  years.push({year,sales,ppe,nwc,depreciation,capex,ebit,nopat,investment,cfo,fcff,dividend,contribution,book,ar:.5*nwc,inventory:.8*nwc,ap:.3*nwc});
+ }
+ // Marginal return on new stable growth capital, not an imposed ROIC on all old capital.
+ const stableSales=sales*(1+g),stableNOPAT=stableSales*p.stableMargin/100*.75,stableInvestment=stableNOPAT*g/r,stableFCFF=stableNOPAT-stableInvestment,terminal=stableFCFF/(k-g),terminalPV=terminal/(1+k)**3;
+ const operating=pv+terminalPV,common=operating+30,share=common/10;
+ return {years,stableSales,stableNOPAT,stableInvestment,stableFCFF,terminal,terminalPV,operating,common,share};
+}
+add('forecastvalue','Vom Abschlussmodell zum Aktienwert','Drei Prognosejahre verbinden Umsatz, Ergebnis, Kapitalbindung und freie Zahlungen. Danach beginnt eine gesondert normalisierte stabile Phase. Vergleiche besonders Wachstum, Marge und Investitionsbedarf.',[
+ field('sales','Ausgangsumsatz (Mio. €)',300,1500,50,500),
+ field('growth','Umsatzwachstum Jahre 1–3 (%)',-10,15,.5,6),
+ field('margin','EBIT-Marge Jahre 1–3 (%)',8,25,.5,18),
+ field('stableMargin','EBIT-Marge stabile Phase (%)',10,20,.5,14),
+ field('wc','Operatives Working Capital / Umsatz (%)',10,35,1,20),
+ field('roic','Rendite neuer stabiler Investitionen (%)',8,25,.5,12),
+ field('discount','Diskontsatz (%)',4,15,.5,9),
+ field('stableGrowth','Wachstum stabile Phase (%)',0,4,.25,3)
+],p=>{
+ const v=forecastValue(p),upper=Math.max(p.stableGrowth,Math.min(4,p.discount-.5));
+ const out=result([['Operativer Wert (Mio. €)',v.operating],['Stammkapitalwert vor Sonderzahlung (Mio. €)',v.common],['Wert je Aktie vor Sonderzahlung (€)',v.share],['Freier Cashflow Jahr 1 (Mio. €)',v.years[0].fcff]],seq(0,upper,g=>forecastValue({...p,stableGrowth:g}).share),'Stabiles Wachstum (%)','Wert je Aktie (€)','Unverschuldetes Lehrmodell; zehn Millionen gleiche Stammaktien, Steuersatz 25 %. Überschüssige liquide Mittel von 30 Mio. € werden heute ausgeschüttet (3 € je Aktie). Danach Cash am Jahresende null. In der Detailphase: anfänglich Anlagenbuchwert 50 % und operatives Working Capital 20 % des Ausgangsumsatzes; Endanlagen 50 % des jeweiligen Umsatzes, Abschreibung 12 % des Anfangsanlagenbuchwerts, Investitionen am Jahresende. Die gewählte Working-Capital-Quote gilt ab Jahr 1. Positive freie Zahlungen werden ausgeschüttet; negative benötigen proportionale Beiträge derselben Eigentümer ohne neue Aktien. In der stabilen Phase gilt die gewählte Rendite für neue Wachstumsinvestitionen. Die Kurve verändert nur stabiles Wachstum und den dazu passenden Kapitalbedarf. Jahresbilanzen belegen weder unterjährige Zahlungsfähigkeit noch verfügbare Finanzierung.');
+ out.marker=[p.stableGrowth,v.share];
+ out.projection={caption:'Detailphase: alle Beträge in Mio. €, Zahlungen am Jahresende. Buchkapital nach heutiger Sonderzahlung startet bei 70 % des Ausgangsumsatzes.',headers:['Jahr','Umsatz','EBIT','NOPAT = NI','Abschreibung','Capex','Δ Working Capital','FCFF = FCFE','Dividende','Eigentümerbeitrag','Endbuchkapital'],rows:v.years.map(y=>[y.year,y.sales,y.ebit,y.nopat,y.depreciation,y.capex,y.investment,y.fcff,y.dividend,y.contribution,y.book])};
+ out.stable={caption:'Erste normalisierte stabile Periode (Jahr 4); Endwert und sein Barwert separat. Alle Beträge in Mio. €.',headers:['Umsatz Jahr 4','NOPAT Jahr 4','Nettoinvestition Jahr 4','FCFF Jahr 4','Endwert am Ende Jahr 3','Barwert des Endwerts'],rows:[[v.stableSales,v.stableNOPAT,v.stableInvestment,v.stableFCFF,v.terminal,v.terminalPV]]};
+ return out;
+});
+const api={models,calculate,annuity,price,bsm,cdf,forecastValue};
 if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.FinanceModels=api;
 })(globalThis);

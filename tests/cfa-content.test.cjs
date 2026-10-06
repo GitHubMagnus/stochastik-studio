@@ -1,6 +1,19 @@
 const {test}=require('node:test'),assert=require('node:assert/strict');
 const {compile}=require('../finance-cfa/compile.cjs');
 const data=compile();
+test('financial forecast valuation covers its three official objectives, original training and precise glossary connections',()=>{
+ const u=data.units.find(u=>u.id==='valuation-model'),coverage=data.coverage.find(c=>c.id===u.id),q=data.questions.filter(q=>q.unit===u.id);
+ assert.equal(u.sections.length,26);assert.equal(u.review.status,'draft');assert.equal(data.release,false);
+ assert.equal(q.filter(q=>q.pool==='practice').length,40);
+ for(const pool of ['mock-a','mock-b'])assert.equal(q.filter(q=>q.pool===pool).length,2);
+ for(const o of coverage.objectives){assert.ok(o.sections.length>=12);assert.ok(o.practice.length>=10);assert.ok(o.mockQuestions>=2);}
+ assert.deepEqual(u.explorations,[{section:'sensitivity',lesson:'equity-09',focus:'lab',label:'Nordlicht-Modell verändern: Abschlüsse, Investitionen und Aktienwert'}]);
+ const glossary=require('../finance-glossary.cjs'),find=t=>glossary.find(g=>[g.term,...g.aliases].includes(t));
+ for(const [term,section]of [['Abschlussmodell','architecture'],['Marginal Return on New Investment','terminal-capital'],['Operative Nettoinvestition','assets'],['Kapitalintensität','investment-growth'],['Anlagenquote','assets'],['Anlagenjahrgang','assets'],['Kapazitätsprüfung','assets'],['Stabile EBIT-Marge','terminal'],['Endphasenübergang','terminal'],['Eigentümerbeitrag','case-opening'],['Bedingter Fortführungswert','limitations'],['Buchkapital-Roll-forward','balance-check'],['Mengen-Preiseffekt','revenue'],['Reverse DCF','reverse'],['Model Consistency','forecast-controls']])assert.deepEqual(find(term).cfa,{unit:'valuation-model',section});
+ assert.equal(glossary.filter(g=>[g.term,...g.aliases].includes('Reverse DCF')).length,1,'existing reverse-DCF entry is enriched, not duplicated');
+ for(const id of ['forecasting','dcf-equity','multiples'])assert.ok(data.units.find(u=>u.id===id).related.some(r=>r.unit==='valuation-model'));
+ for(const pool of ['mock-a','mock-b'])assert.ok(data.inventory[pool].equity<=require('../finance-cfa/engine.cjs').blueprint.equity);
+});
 test('CFA lessons and independent questions have local mathematics, sources and valid objective links',()=>{
  assert.ok(data.units.length);assert.ok(data.questions.length);
  const walk=blocks=>{for(const b of blocks){if(typeof b==='string')continue;if(b.kind==='formula'){assert.match(b.mathml,/<math/);assert.ok(b.reading.trim());assert.ok(b.symbols.every(s=>s.meaning.trim()&&s.mathml.includes('<math')),b.tex);}if(b.kind==='example')walk(b.steps);}};
@@ -298,6 +311,18 @@ test('published MCQ numerical answers agree with separately computed results',()
   'mult-47':12*4.4,'mult-48':80/10,'mult-a1':(900+50+20-180-30-40)/12,
   'mult-a2':(.12-.03)/(.09-.03),'mult-b1':((120-20)*.75*(1-.03/.0625)/(.09-.03)+20-120)/10,
   'mult-b2':100/(20/8+30/16+50/40),
+  'vmod-02':(1.03*1.04-1)*100,'vmod-03':(60-10)/500*100,
+  'vmod-05':530*.25-100,'vmod-06':250+45-30,'vmod-07':530*.18*.75,
+  'vmod-08':71.55+30-6,'vmod-09':95.55-45,'vmod-10':350+71.55-50.55,
+  'vmod-11':380-30,'vmod-13':40+15-25-5+10,'vmod-14':100*.75+20-30-10,
+  'vmod-15':55-8*.75-4,'vmod-16':595.508*1.03*.14*.75,
+  'vmod-17':64.4041902*.03/.12,'vmod-18':64.4041902*(1-.03/.12),
+  'vmod-20':48.30314265/.06,'vmod-21':805.0523775/1.09**3,
+  'vmod-22':(135.3343477+621.6481465+30)/10,'vmod-24':120-(1100-1000),
+  'vmod-29':71.55-.09*350,'vmod-30':805.0523775-416.8556,
+  'vmod-31':78.6982494-3,'vmod-35':.5*10/.1+.5*10/.06,
+  'vmod-a1':(40/1.09+(44+72*(1-.03/.12)/.06)/1.09**2+20-100)/10,
+  'vmod-b1':660*.15*.8+36-60-(660*.25-120),
   'dcf-04':110/1.1,'dcf-06':120*.75+10-40-15,'dcf-07':45-20*.75+12-7,
   'dcf-09':60,'dcf-10':(10-2)/(100-40)*100,'dcf-11':2*1.04/.06,'dcf-12':3/.06,
   'dcf-14':2/(.08+.02),'dcf-15':(.1-2/50)*100,'dcf-16':(.1*50-2)/52*100,

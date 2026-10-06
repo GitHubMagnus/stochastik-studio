@@ -6,6 +6,59 @@ after(async()=>{await browser.close();await new Promise(r=>server.close(r));});
 async function open(t,route='cfa'){
  const page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[];page.on('pageerror',e=>errors.push(e.message));t.after(async()=>{await page.close();assert.deepEqual(errors,[]);});await page.goto(url+'/#'+route);return page;
 }
+
+test('integrated forecast calculator responds, explains financing deficits and works offline with scrollable tables',async t=>{
+ const page=await open(t,'cfa~learn-valuation-model~sensitivity');
+ const link='.cfa-exploration a[href="#lesson-equity-09~lab"]';
+ await page.locator(link).click();await page.waitForFunction(()=>document.activeElement.id==='study-lab');
+ const metrics=async()=>page.locator('#lab-metrics strong').evaluateAll(es=>es.map(e=>Number(e.textContent.replace(',','.'))));
+ const close=(a,b)=>assert.ok(Math.abs(a-b)<.0001,a+' != '+b);
+ let m=await metrics();close(m[0],756.9824942144152);close(m[2],78.69824942144152);close(m[3],50.55);
+ assert.equal(await page.locator('#lab-projection table').count(),2);
+ assert.equal(await page.locator('#lab-projection table').first().locator('tbody tr').count(),3);
+ await page.locator('[data-range="growth"]').fill('15');m=await metrics();close(m[3],25.125);close(m[2],89.68450342135193);
+ assert.equal(await page.locator('#lab-growth').inputValue(),'15');
+ await page.locator('#lab-margin').fill('8');await page.locator('#lab-wc').fill('35');
+ const first=await page.locator('#lab-projection table').first().locator('tbody tr').first().locator('td').allTextContents();
+ close(Number(first[7].replace(',','.')),-104.25);close(Number(first[8].replace(',','.')),0);close(Number(first[9].replace(',','.')),104.25);
+ await page.locator('#lab-discount').fill('4');await page.locator('#lab-stableGrowth').fill('4');
+ assert.equal(await page.locator('#lab-error').isVisible(),true);assert.match(await page.locator('#lab-error').innerText(),/Wachstum.*Diskontsatz/);
+ assert.equal(await page.locator('#lab-results').isVisible(),false);
+ await page.locator('#lab-reset').click();m=await metrics();close(m[2],78.69824942144152);
+ assert.equal(await page.locator('#lab-error').isVisible(),false);
+ for(const width of [390,760,1440]){
+  await page.setViewportSize({width,height:1000});
+  await page.locator('#lab-reset').click();
+  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'width '+width);
+ }
+ await page.setViewportSize({width:390,height:1000});await page.locator('#lab-reset').click();
+ const plot=page.locator('#lab-chart');
+ await page.waitForFunction(()=>!document.querySelector('.study-model-plot-hint').hidden);
+ assert.ok(await plot.evaluate(e=>e.scrollWidth>e.clientWidth));await plot.focus();await page.keyboard.press('ArrowRight');
+ await page.waitForFunction(()=>document.querySelector('#lab-chart').scrollLeft>0);
+ const wrap=page.locator('#lab-projection .study-table-wrap').first();
+ await page.waitForFunction(()=>!document.querySelector('#lab-projection .study-model-table-hint').hidden);
+ assert.ok(await wrap.evaluate(e=>e.scrollWidth>e.clientWidth));await wrap.focus();await page.keyboard.press('ArrowRight');
+ await page.waitForFunction(()=>document.querySelector('#lab-projection .study-table-wrap').scrollLeft>0);
+ await page.goBack();await page.waitForFunction(()=>document.activeElement.id==='cfa-section-sensitivity');
+ await page.route(/^https?:/,r=>r.abort());
+ const file=require('node:url').pathToFileURL(require('node:path').join(__dirname,'../index.html')).href;
+ await page.goto(file+'#cfa~learn-valuation-model~sensitivity');await page.locator(link).click();
+ await page.waitForFunction(()=>document.activeElement.id==='study-lab');m=await metrics();close(m[2],78.69824942144152);
+ await page.locator('#lab-stableMargin').fill('18');m=await metrics();close(m[2],96.4596250354239);
+});
+
+test('forecast valuation terminology returns to exact explanations including existing reverse DCF aliases',async t=>{
+ const page=await open(t);
+ for(const [section,term]of [['architecture','Abschlussprognosemodell'],['assets','Anlagenquote'],['assets','Kapazitätsprüfung'],['terminal-capital','marginale Investitionsrendite'],['reverse','Reverse DCF']]){
+  await page.goto(url+'/#cfa~learn-valuation-model~'+section);
+  const link=page.locator('#cfa-section-'+section+' a.term-link:visible').filter({hasText:new RegExp('^'+term+'$','i')}).first();
+  const target=(await link.getAttribute('href')).split('~')[1];await link.click();
+  await page.waitForFunction(id=>document.activeElement.id==='glossary-'+id,target);
+  await page.locator('#glossary-'+target+' a[href="#cfa~learn-valuation-model~'+section+'"]').click();
+  await page.waitForFunction(id=>document.activeElement.id==='cfa-section-'+id,section);
+ }
+});
 test('CFA curriculum search, deep links, notation and original chapter connections work on mobile',async t=>{
  const page=await open(t);assert.equal(await page.locator('.cfa-module').count(),102);
  await page.locator('#cfa-search').fill('EPS');assert.equal(await page.locator('.cfa-module:visible').count(),1);
