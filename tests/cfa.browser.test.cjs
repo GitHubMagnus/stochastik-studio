@@ -7,6 +7,47 @@ async function open(t,route='cfa'){
  const page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[];page.on('pageerror',e=>errors.push(e.message));t.after(async()=>{await page.close();assert.deepEqual(errors,[]);});await page.goto(url+'/#'+route);return page;
 }
 
+test('industry definitions, symbol disclosures, wide tables and calculated figures work on mobile and offline',async t=>{
+ const page=await open(t,'cfa~learn-industry');
+ assert.equal(await page.locator('#page-cfa .cfa-section').count(),28);
+ assert.equal(await page.locator('#page-cfa .cfa-figure').count(),4);
+ for(const [source,term,targetSection]of [['taxonomies','GICS','taxonomies'],['taxonomies','ICB','taxonomies'],['taxonomies','NAICS','taxonomies'],['potential','Total Addressable Market','potential'],['interactions','Five Forces','five-forces'],['pestle','PESTLE','pestle'],['shares','Wertmäßiger Marktanteil','shares']]){
+  await page.goto(url+'/#cfa~learn-industry~'+source);
+  const link=page.locator('#cfa-section-'+source+' a.term-link').filter({hasText:new RegExp('^'+term+'$','i')}).first();
+  const id=(await link.getAttribute('href')).split('~')[1];await link.click();
+  await page.waitForFunction(id=>document.activeElement.id==='glossary-'+id,id);
+  await page.locator('#glossary-'+id+' a[href="#cfa~learn-industry~'+targetSection+'"]').click();
+  await page.waitForFunction(section=>document.activeElement.id==='cfa-section-'+section,targetSection);
+ }
+ await page.setViewportSize({width:390,height:1000});
+ await page.goto(url+'/#cfa~learn-industry~shares');
+ const formula=page.locator('#cfa-section-shares .cfa-formula').first();
+ await formula.locator('.formula-notation summary').click();
+ assert.equal(await formula.locator('.formula-notation').getAttribute('open'),'');
+ assert.match(await formula.innerText(),/Mengenanteil|mengenmäßiger/);
+ const table=page.locator('#cfa-section-shares .cfa-table').last();
+ await page.waitForFunction(()=>[...document.querySelectorAll('#cfa-section-shares .cfa-table')].at(-1).getAttribute('tabindex')==='0');
+ assert.ok(await table.evaluate(e=>e.scrollWidth>e.clientWidth));
+ await table.focus();await page.keyboard.press('ArrowRight');
+ await page.waitForFunction(()=>[...document.querySelectorAll('#cfa-section-shares .cfa-table')].at(-1).scrollLeft>0);
+ await page.goto(url+'/#cfa~learn-industry~share-limits');
+ const figure=page.locator('#cfa-section-share-limits .cfa-figure-plot');
+ assert.ok(await figure.evaluate(e=>e.scrollWidth>e.clientWidth));
+ await figure.focus();await page.keyboard.press('ArrowRight');
+ await page.waitForFunction(()=>document.querySelector('#cfa-section-share-limits .cfa-figure-plot').scrollLeft>0);
+ assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+ await page.route(/^https?:/,r=>r.abort());
+ const file=require('node:url').pathToFileURL(require('node:path').join(__dirname,'../index.html')).href;
+ await page.goto(file+'#cfa~learn-industry~suppliers');
+ assert.equal(await page.locator('#cfa-section-suppliers .cfa-table tbody tr').count(),4);
+ await page.locator('[data-train-unit]').click();
+ const first=actual.questions.find(q=>q.unit==='industry'&&q.pool==='practice');
+ await page.locator('input[name="cfa-answer"]').nth(first.correct).check();await page.locator('#cfa-check').click();
+ assert.match(await page.locator('.cfa-solution h3').innerText(),/^Richtig/);
+ await page.locator('.cfa-solution a[href="#cfa~learn-industry~'+first.section+'"]').click();
+ await page.waitForFunction(section=>document.activeElement.id==='cfa-section-'+section,first.section);
+});
+
 test('integrated forecast calculator responds, explains financing deficits and works offline with scrollable tables',async t=>{
  const page=await open(t,'cfa~learn-valuation-model~sensitivity');
  const link='.cfa-exploration a[href="#lesson-equity-09~lab"]';

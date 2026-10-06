@@ -1250,3 +1250,77 @@ und bestandene Technikprüfungen ersetzen die spätere fachliche Abnahme nicht.
   Wettbewerb mit Marktgröße, Klassifikation, Five Forces und PESTLE.
   Alle neuen Einheiten bleiben „draft“, die vollständigen Klausuren
   gesperrt; **90/100 und 80/100 sind weiterhin nicht als erreicht belegt**.
+
+### 06.10.2026 – Branche und Wettbewerb ausarbeiten
+
+- **28 Abschnitte, 22 eigene Beispiele, 15 Tabellen, 47 erklärte
+  Formeltafeln und vier berechnete Grafiken** behandeln die vier offiziellen
+  Lernziele von Industry and Competitive Analysis für CFA Level I 2027.
+  Die zusätzliche Strategiezuordnung der öffentlichen Einführung 2026
+  wird nicht als fünftes Lernziel des neuen Katalogs übernommen.
+- Ein durchgehender hypothetischer Nordmarkt verbindet Definition, Marktgröße,
+  Firmenumsatz, Anteile, Margengewichte und Konzentration. Getrennte
+  Preis-, Kosten-, Mengen- und Kapitalfälle werden ausdrücklich als
+  Vergleiche abgegrenzt; Jahresverträge und kleine abrechenbare Teilaufgaben
+  sind verschiedene Einheiten.
+- GICS, ICB und NAICS werden nach Hierarchie, Methode und Erhebungseinheit
+  unterschieden. Ein Hauptcode ist weder die vollständige Konzernexposition
+  noch eine abschließende Marktdefinition. Alternative Produkt-, Modell-,
+  Nachfrage- und Renditegruppen besitzen jeweils eigene Anwendungen und
+  Grenzen. Die Klassifikationszuordnung wird auf tatsächlich passende
+  Abschnitte beschränkt, statt benachbarte Wertrechnungen mitzuzählen.
+- Marktgröße behandelt Quellenumfang, interne Lieferungen,
+  Wertschöpfungsstufen, installierten Bestand und geschätzte Intervalle.
+  Preis-, Mengen-, Mix-, Währungs- und Übernahmeeffekte werden getrennt.
+  Mengen- und Umsatzanteile können wegen relativer Preise voneinander
+  abweichen. Anteils- und Marktwachstum werden multiplikativ verbunden;
+  Prozentpunkte, relative Veränderung und CAGR bleiben unterscheidbar.
+- Die Anteilsfortschreibung zeigt ausdrücklich die Grenze eines
+  vollständigen unveränderten Markts. Die logistische Diffusion ist ein
+  eigenes ergänzendes Lehrmodell mit fester Grenze, keine beobachtete
+  Prognose. Absolute und relative Mengenzunahme sind unterschiedliche Größen.
+- Five Forces und PESTLE erhalten konkrete wirtschaftliche Kanäle,
+  Evidenzfragen, Gegenhypothesen und Prognosefolgen. Preisrivalität,
+  Eintritt, Käuferzahlung, Lieferantenkosten, Kostenweitergabe und
+  Eigenwartung werden gemeinsam mit ihren Mengen- und Kapitalannahmen
+  erklärt. Ein qualitativer Durchschnittsscore erzeugt keine automatische
+  Marge; überlappende PESTLE-Kategorien erzeugen keine zweite identische Zahlung.
+- Branchenmarge und aggregierter Kapitalertrag werden aus passenden
+  Gesamtgrößen gebildet. Verlustauswahl und Restgruppen verändern das
+  Ergebnis. Der stabile Vergleich leitet Anfangskapital, zusätzliche
+  Investition und freie Zahlung aus derselben Umsatz- und Margenbasis ab;
+  Wachstum unter Kapitalkosten kann trotz positiver Erträge Wert mindern.
+- **48 eigene englische Trainingsfragen und je zwei getrennte reservierte
+  Klausurfragen** besitzen deutsche Auswahl- und Rechenbegründungen.
+  Reservierte Fälle kombinieren Klassifikation mit Nachfrageexposition,
+  Käufermacht mit verändertem Umsatz und Zahlungsmittelbedarf,
+  Margengewichte mit Verlustauswahl sowie Technik mit Eintritt,
+  Eigenwartung und externem Marktumfang.
+- Lernziel A hat 28 Abschnitts- und 20 Trainingszuordnungen, B acht und
+  neun, C 25 und 24, D 21 und 23. Diese Verbindungen sind ein
+  Arbeitsnachweis und keine abschließende Qualitätsfreigabe.
+- **31 neue kuratierte Definitionen** verweisen auf präzise Abschnitte.
+  Vorhandene HHI- und CR4-Rückwege bleiben erhalten. Branchenanalyse,
+  Geschäftsmodelle, VWL, Abschlussprognose, Multiplikatoren und
+  Abschlussbewertung besitzen gegenseitige Verbindungen.
+- Unabhängige Rechnungen prüfen alle Nordmarkt-Umsatz- und Ergebniszeilen,
+  Anteile, gewichtete Margen, HHI/CR4, Preis- und Kostenfälle,
+  Forderungsänderungen und Wechselbarwert. Alle **284 Kurvenpunkte**
+  besitzen numerische Gegenprüfungen und liegen innerhalb ihrer Achsen.
+  Die Wertkurven werden zusätzlich aus jeweils 1.000 expliziten
+  Kapitalfortschreibungen und freien Zahlungen abgezinst.
+- **177 Kernprüfungen und 136 CFA-Prüfungen bestanden.** Der umfassende
+  CFA-Lauf durchlief alle 57 Einheiten auf Desktop-/Mobilbreite und die
+  608 Corporate-/Equity-Trainingsfragen mit Erklärungen und Rückwegen.
+  Nach der abschließenden Präzisierung von Abgrenzung, Lernzielzuordnung,
+  Wörterbuchhilfe und reservierten Kombinationen bestanden erneut alle
+  177 Kernprüfungen sowie die gezielte Browserprüfung.
+  Neue Grafiken, Formeln, Tabellen und Beispiele wurden visuell geprüft.
+- Gesamtstand: **57 Einheiten, 197/340 strukturelle Lernzielreferenzen,
+  1.412 Trainingsfragen, je 109 reservierte Klausurfragen und 86 CFA-Grafiken**.
+  Das Wörterbuch enthält **796 kuratierte Rückverweise, 1.149 Definitionen
+  und 2.431 Begriffe/Aliase**. Offen bleiben **45 Einheiten, 143
+  Lernzielreferenzen und 71 Fragen je vollständiger Klausur**, anschließend
+  der fachliche Gesamtaudit. Nächste Einheit: Unternehmen und Werttreiber.
+  Alle neuen Einheiten bleiben „draft“, die vollständigen Klausuren
+  gesperrt; **90/100 und 80/100 sind weiterhin nicht als erreicht belegt**.

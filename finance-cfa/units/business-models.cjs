@@ -181,6 +181,7 @@ module.exports={id:'business-models',intro:[
   'Die Modelle dieses Kapitels sind Analysewerkzeuge. Ihre Zahlenfälle halten bestimmte Größen bewusst konstant, damit eine Ursache sichtbar wird. In einer echten Prognose werden plausible gemeinsame Szenarien verwendet: Preis beeinflusst möglicherweise Bindung und Menge, Wachstum beeinflusst Kosten und Kapitalbedarf, und Finanzierung beeinflusst den möglichen Entwicklungspfad.'
  ])
 ],related:[
+ {unit:'industry',section:'five-forces',label:'Geschäftsmodell innerhalb von Konkurrenz und Marktgrenzen prüfen'},
  {unit:'market-structures',section:'scale',label:'Skaleneffekte und Kapazität von Netzwerkeffekten unterscheiden'},
  {unit:'forecasting',section:'sales-drivers',label:'Umsatz über Preis, Menge und Mix prognostizieren'},
  {unit:'forecasting',section:'cost-drivers',label:'Kosten und ihre wirtschaftlichen Treiber modellieren'},
