@@ -242,6 +242,7 @@ module.exports={id:'dcf-equity',intro:[
   'Die Lösungen der Trainingsfragen bleiben vor der eigenen Antwort verborgen. Zu jeder Antwortalternative gibt es eine Begründung und einen Rückweg zur genauen Erklärung. Die reservierten Klausurfragen verbinden andere eigene Situationen und werden nicht im Kapiteltraining verwendet.'
  ])
 ],explorations:[{section:'sensitivity',lesson:'equity-08',focus:'lab',label:'Dividende, Wachstum und Renditeforderung im Gordon-Rechner verändern'}],related:[
+ {unit:'valuation-model',section:'terminal-capital',label:'Stabile Investitionsrendite mit vorhandenem Kapital abgleichen'},
  {unit:'multiples',section:'growth-pe',label:'Wachstum und Kapitalrendite in gerechtfertigten Multiplikatoren'},
  {unit:'valuation-overview',section:'bridge',label:'Operativen Wert auf Stammaktionärsansprüche überleiten'},
  {unit:'cashflow-analysis',section:'free-cashflow',label:'FCFF aus verschiedenen Abschlussgrößen rekonstruieren'},

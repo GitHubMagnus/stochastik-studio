@@ -237,6 +237,7 @@ module.exports={id:'multiples',intro:[
   'Die zusätzliche Formeltiefe dient dem Verständnis. In CFA Level I 2027 muss vor allem der Prozess beider Bewertungswege, die richtige Multiplikatordefinition, die Peer-Auswahl und die historische oder zukünftige Basis beherrscht werden. Begrenzungen werden nicht auswendig als bloße Liste gelernt: Für jeden Fall wird erklärt, welchen Anspruch, welche Kapitalbindung oder welche Zeitinformation die einfache Quote auslässt.'
  ])
 ],related:[
+ {unit:'valuation-model',section:'alternatives',label:'Multiplikatoren mit vollständiger Abschlussbewertung vergleichen'},
  {unit:'valuation-overview',section:'bridge',label:'Marktwert und Anspruchsbrücke im Gesamtunternehmen'},
  {unit:'dcf-equity',section:'growth-value',label:'Einbehaltung, Kapitalrendite und Wert der Wachstumsgelegenheiten'},
  {unit:'dcf-equity',section:'reinvestment',label:'Operatives Wachstum aus ROIC und Nettoinvestition'},

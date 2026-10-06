@@ -351,7 +351,7 @@ test('Kelly input boundaries recover, dynamic rows and every tab remain usable',
  assert.equal(await page.locator('.formula math[display="block"]').count(),9);
 });
 
-test('all 171 Finance lessons render, cross-links resolve and all 34 models respond',async t=>{
+test('all 171 Finance lessons render, cross-links resolve and all 35 models respond',async t=>{
  const page=await open(t);await page.goto(url+'/#finance');
  const audit=await page.evaluate(async()=>{
   const failures=[];let actions=0,termLinks=0;const labs=new Set();
@@ -406,7 +406,7 @@ test('all 171 Finance lessons render, cross-links resolve and all 34 models resp
   }
   return {chapters:FinanceStudy.lessons.length,models:labs.size,actions,termLinks,failures};
  });
- t.diagnostic(JSON.stringify(audit));assert.equal(audit.chapters,171);assert.equal(audit.models,34);assert.ok(audit.termLinks>1500);assert.deepEqual(audit.failures,[]);
+ t.diagnostic(JSON.stringify(audit));assert.equal(audit.chapters,171);assert.equal(audit.models,35);assert.ok(audit.termLinks>1500);assert.deepEqual(audit.failures,[]);
 });
 
 test('Finance deep links, formula links, answers, navigation and offline models work',async t=>{

@@ -1,6 +1,18 @@
 /* Finance learning UI, embedded by build-finance.cjs. */
 window.FinanceStudy=(()=>{
  const lessons=JSON.parse(document.getElementById('finance-data').textContent);
+ let labScrollFrame=null;
+ function updateLabScrollRegions(){
+  if(labScrollFrame!==null)return;
+  labScrollFrame=requestAnimationFrame(()=>{
+   labScrollFrame=null;
+   for(const wrap of document.querySelectorAll('.study-lab-forecast #lab-chart,#lab-projection .study-table-wrap')){
+    if(wrap.nextElementSibling?.classList.contains('study-model-plot-hint')||wrap.nextElementSibling?.classList.contains('study-model-table-hint'))wrap.nextElementSibling.hidden=!(wrap.clientWidth>0&&wrap.scrollWidth>wrap.clientWidth+1);
+   }
+  });
+ }
+ new ResizeObserver(updateLabScrollRegions).observe(document.getElementById('page-finance-lesson'));
+ window.addEventListener('resize',updateLabScrollRegions);
  const byId=Object.fromEntries(lessons.map(l=>[l.id,l]));
  const glossary=JSON.parse(document.getElementById('finance-glossary-data').textContent);
  const glossaryById=Object.fromEntries(glossary.map(g=>[g.id,g]));
@@ -121,6 +133,7 @@ window.FinanceStudy=(()=>{
  }
  function mountLab(id){
   const model=FinanceModels.models[id],el=document.getElementById('study-lab');
+  el.classList.toggle('study-lab-forecast',id==='forecastvalue');
   el.innerHTML=`<div class="kicker">Interaktives Modell</div><h2>${esc(model.title)}</h2><p>${glossaryText(model.intro)}</p><div class="study-lab-grid"><div class="study-lab-controls">${model.controls.map(f=>`<label for="lab-${f.key}">${glossaryText(f.label)}<div class="study-pair"><input id="lab-${f.key}" data-key="${f.key}" type="number" min="${f.min}" max="${f.max}" step="${f.step}" value="${f.value}"><input aria-label="${esc(f.label)} – Regler" data-range="${f.key}" type="range" min="${f.min}" max="${f.max}" step="${f.step}" value="${f.value}"></div></label>`).join('')}<button class="btn ghost" type="button" id="lab-reset">Ausgangswerte</button></div><div class="study-lab-output"><p id="lab-error" role="alert" hidden></p><div id="lab-results"><div class="study-metrics" id="lab-metrics" aria-live="polite"></div><div id="lab-chart"></div><p id="lab-assumptions" class="study-model-note"></p><details class="study-details"><summary>Kurvenwerte als Tabelle</summary><div class="study-table-wrap" id="lab-table"></div></details></div></div></div>`;
   const update=()=>{
    const params=Object.fromEntries([...el.querySelectorAll('[data-key]')].map(e=>[e.dataset.key,e.value]));
@@ -129,6 +142,16 @@ window.FinanceStudy=(()=>{
     el.querySelector('#lab-error').hidden=true;el.querySelector('#lab-results').hidden=false;
     el.querySelector('#lab-metrics').innerHTML=r.metrics.map(([name,v])=>`<div><span>${esc(name)}</span><strong>${fmt(v,4)}</strong></div>`).join('');
     el.querySelector('#lab-chart').innerHTML=chart(r);
+    if(id==='forecastvalue'){
+     const plot=el.querySelector('#lab-chart');plot.tabIndex=0;plot.setAttribute('role','region');plot.setAttribute('aria-label','Seitlich verschiebbare Bewertungskurve');
+     if(!plot.nextElementSibling.classList.contains('study-model-plot-hint')){
+      const hint=document.createElement('p');hint.className='study-model-plot-hint';hint.hidden=true;hint.textContent='↔ Die Grafik ist seitlich verschiebbar; mit Fokus auch über die Pfeiltasten.';plot.after(hint);
+     }
+    }
+    let projection=el.querySelector('#lab-projection');
+    if(!projection){projection=document.createElement('div');projection.id='lab-projection';el.querySelector('#lab-assumptions').after(projection);}
+    projection.innerHTML=[r.projection,r.stable].filter(Boolean).map(t=>`<figure class="study-model-table"><figcaption>${esc(t.caption)}</figcaption><div class="study-table-wrap" tabindex="0" role="region" aria-label="${esc(t.caption)}"><table aria-label="${esc(t.caption)}"><thead><tr>${t.headers.map(h=>`<th scope="col">${esc(h)}</th>`).join('')}</tr></thead><tbody>${t.rows.map(row=>`<tr>${row.map(v=>`<td>${typeof v==='number'?fmt(v,4):esc(v)}</td>`).join('')}</tr>`).join('')}</tbody></table></div><p class="study-model-table-hint" hidden>↔ Die Tabelle ist seitlich verschiebbar; mit Fokus auch über die Pfeiltasten.</p></figure>`).join('');
+    updateLabScrollRegions();
     el.querySelector('#lab-assumptions').innerHTML=glossaryText(r.note);
     el.querySelector('#lab-table').innerHTML=`<table><thead><tr><th>${esc(r.xLabel)}</th><th>${esc(r.yLabel)}</th></tr></thead><tbody>${r.points.filter((_,i)=>i%Math.max(1,Math.floor(r.points.length/10))===0||i===r.points.length-1).map(([x,y])=>`<tr><td>${fmt(x,3)}</td><td>${fmt(y,4)}</td></tr>`).join('')}</tbody></table>`;
    }catch(e){el.querySelector('#lab-error').hidden=false;el.querySelector('#lab-error').textContent=e.message;el.querySelector('#lab-results').hidden=true;}

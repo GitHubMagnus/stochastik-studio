@@ -16,3 +16,15 @@
   .finance-subgroups{grid-template-columns:minmax(0,1fr)}
 }
 .study-equation{white-space:normal;overflow:auto;overflow-wrap:normal;font-family:"Cambria Math","STIX Two Math","Times New Roman",serif;font-size:1.2rem;padding:20px 17px}.study-equation .katex,.study-equation math{display:block;min-width:max-content;text-align:center}.study-equation math{font-size:1.2em;margin:auto}.study-formula-source code{display:block;margin-top:13px;padding:12px 14px;background:#f3f6f8;border-radius:6px;color:#27485b;white-space:pre-wrap;overflow-wrap:anywhere;font:0.78rem/1.6 ui-monospace,SFMono-Regular,Consolas,monospace}
+.study-lab-output{min-width:0}
+#lab-projection .study-table-wrap{margin:18px 0 5px;max-height:none}
+#lab-projection table{min-width:780px}
+#lab-projection .study-model-table{margin:18px 0}
+#lab-projection figcaption{font-size:.82rem;line-height:1.6;text-align:left;color:#436579;padding:0 0 9px}
+#lab-projection td,#lab-projection th{white-space:nowrap}
+#lab-projection .study-table-wrap:focus-visible{outline:2px solid #087e82;outline-offset:2px}
+.study-model-table-hint{font-size:.75rem!important;color:#526c7c}
+.study-lab-forecast #lab-chart{overflow:auto}
+.study-lab-forecast #lab-chart svg{min-width:550px}
+.study-lab-forecast #lab-chart:focus-visible{outline:2px solid #087e82;outline-offset:2px}
+.study-model-plot-hint{font-size:.75rem!important;color:#526c7c}
