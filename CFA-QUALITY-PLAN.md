@@ -1324,3 +1324,84 @@ und bestandene Technikprüfungen ersetzen die spätere fachliche Abnahme nicht.
   der fachliche Gesamtaudit. Nächste Einheit: Unternehmen und Werttreiber.
   Alle neuen Einheiten bleiben „draft“, die vollständigen Klausuren
   gesperrt; **90/100 und 80/100 sind weiterhin nicht als erreicht belegt**.
+
+### 16.10.2026 – Unternehmen, operative Leistung und Finanzierung verbinden
+
+- **32 Abschnitte, 22 eigene Beispiele, 17 Tabellen, 48 erklärte Formeltafeln und vier
+  berechnete Grafiken** bearbeiten die drei offiziellen Lernziele von Company Analysis:
+  Past, Present, and Future für CFA Level I 2027. Die öffentliche Einführung 2026 wird
+  als ergänzende Grundlage verwendet, nicht als unveränderter Lernzielkatalog.
+- Strategie, Geschäftsmodell und tatsächliche Position werden unterschieden.
+  Kostenführerschaft, Differenzierung und Fokus werden über Kundennutzen, vollständige
+  Kosten, Ressourcen und Kapital beurteilt. Hoher Anteil, Preis oder Buch-ROIC beweisen
+  allein keinen dauerhaften Schutz.
+- Eigene Preis-, Mengen-, Währungs-, Produktmix- und Vertragsfälle erklären
+  Umsatztreiber. Zwei exakte Umsatzbrücken verteilen denselben Kreuzterm
+  unterschiedlich, ohne ihn doppelt zu zählen. Kundenkohorten trennen NRR, GRR, neue
+  Kunden, Konzentration und Zahlungsrisiko.
+- Die Preisableitung verfolgt Menge, Umsatz und variable Kosten bis zum EBIT. Im
+  Kernwerk-Preisfall sinkt Umsatz von 200 auf 199,5, während EBIT von 20 auf 25,5
+  wächst. Getrennte Nachfragekurven mit vorgegebenen Elastizitäten werden ausdrücklich
+  nicht aus diesen zwei Punkten geschätzt.
+- Ergebnisstufen, Kostengrenzen, Normalisierung, Fixkostenbereich und Kapazitätssprung
+  werden erläutert. Operativer, finanzieller und kombinierter Hebel erhalten Definition,
+  Voraussetzungen, mathematische Verbindung und kontrollierte Zahlenvergleiche. Ein
+  höherer Buch-ROE wird von operativer Überlegenheit und erwarteter Aktienrendite
+  getrennt.
+- Die vollständige Kernwerk-Anfangsbilanz stimmt operatives Kapital aus Vermögens- und
+  Finanzierungsseite ab. Das Kapitel verbindet Forderungen, Vorräte, Krediteinkauf und
+  Lieferantenkonto mit direkten Zahlungen. DPO auf Einkauf wird von einer ausdrücklich
+  auf COGS definierten Planquote getrennt.
+- Der Preisfall liefert FCFF 16,675 und FCFE 14,425; nach Dividende acht endet Cash bei
+  36,425 und Buchkapital bei 108,875. Beide Bilanzseiten ergeben 187,875. Direkte
+  Kunden-, Lieferanten-, Steuer- und Eigentümerzahlungen bestätigen dieselbe
+  Jahresgeschichte.
+- Die Wachstumsalternative liefert Umsatz 240 und positiven Nettogewinn 13,5, benötigt
+  aber Anlagen und höhere Bestände. FCFF beträgt −39,25; bei Zielcash zehn und ohne
+  Dividende wird Jahresendfinanzierung 21,5 benötigt. Die Endbilanz schließt bei 220.
+  Zeitpunkt, nächste Zinsen und fehlender Nachweis unterjähriger Zahlungsfähigkeit
+  werden ausdrücklich genannt.
+- **48 eigene englische Trainingsfragen und je eine getrennte reservierte Klausurfrage**
+  besitzen deutsche Auswahlbegründungen und präzise Abschnittsrückwege. Die reservierten
+  Fälle kombinieren Gewinn, Kapitalbedarf, Dividende und Cashziel beziehungsweise
+  zusätzlichen Serviceertrag mit zusätzlichem Anfangsbestand und ökonomischem
+  Periodenertrag.
+- Lernziel A hat 18 Abschnitts- und 16 Trainingszuordnungen, B 26 und 31, C 20 und 26.
+  Verbindungen zu einer Erklärung und einer Frage sind weiterhin ein Arbeitsnachweis,
+  keine vollständige fachliche Freigabe.
+- **26 ergänzte oder überarbeitete kuratierte Begriffe** erhalten präzise Rückwege. DOL,
+  DFL und Net Debt werden erweitert statt dupliziert. Margin of Safety und DTL erhalten
+  im Unternehmenskapitel ihre operative Bedeutung; die allgemeinen Bewertungs- und
+  Steuerdefinitionen bleiben erhalten. Produktmix und FCFE behalten ihre vorhandenen
+  Erklärungswege.
+- Der neue **Kernwerk-Rechner** lädt Preis- und Wachstumsfall per Schaltfläche. Zehn
+  Eingaben verbinden Preis, Menge, Kosten, Bestände, Investition, Dividende und Zielcash
+  mit Ergebnis, freien Zahlungen und Endbilanz. Die Preiskurve hält Menge und übrige
+  Eingaben fest; sie ist keine zusätzliche Nachfrageprognose.
+- Grenzprüfungen erfassen alle **1.024 Eckkombinationen**: 576 ergeben einen zulässigen
+  Modellfall, 448 erhalten einen begründeten Hinweis zu unmöglichen Forderungs-,
+  Vorrats- oder Lieferantenbewegungen. Negative Gewinne, freie Zahlungen und Buchkapital
+  werden nicht abgeschnitten. Verlustfälle und nur teilweise nutzbare Zinssteuerwirkung
+  werden eigens geprüft.
+- Alle **393 Punkte der vier Kapitelgrafiken** werden numerisch gegengeprüft und liegen
+  innerhalb ihrer Achsen. Unabhängige Rechenwege stimmen Produktmengen, Preisbrücken,
+  direkte Zahlungen, beide vollständigen Bilanzen und die Hebelkette ab.
+  Mobil-/Desktopansichten und die neuen Grafiken wurden visuell kontrolliert.
+- **184 Kernprüfungen und 145 CFA-Prüfungen bestanden.** Der umfassende CFA-Lauf
+  durchlief alle 58 Einheiten auf Desktop-/Mobilbreite und die 656
+  Corporate-/Equity-Trainingsfragen mit ihren Auswahlbegründungen, Symbolhilfen und
+  präzisen Rückwegen. Die zusätzliche Prüfung zur nur teilweise verfügbaren
+  Zinssteuerwirkung bestand ebenfalls.
+- Zwei zusätzliche Browserprüfungen durchliefen alle 171 bisherigen Finance-Kapitel und
+  36 Modelle mit 6.987 Bedienhandlungen sowie Abschnitts- und Offline-Navigation. Die
+  zwei neuen gezielten Prüfungen bestätigten beide Kernwerk-Voreinstellungen, Eingaben,
+  Fehlermeldung, Rücksetzung, lokale Tastatur-Verschiebung, Wörterbuchbedeutungen und
+  Offlinebetrieb. 36 Modelle sind in 59 bisherigen Kapiteln erreichbar.
+- Gesamtstand: **58 Einheiten, 200/340 strukturelle Lernzielreferenzen, 1.460
+  Trainingsfragen, je 110 reservierte Klausurfragen und 90 CFA-Grafiken**. Das
+  Wörterbuch enthält **822 kuratierte Rückverweise, 1.172 Definitionen und 2.483
+  Begriffe/Aliase**. Offen bleiben **44 Einheiten, 140 Lernzielreferenzen und 70 Fragen
+  je vollständiger Klausur**, anschließend der fachliche Gesamtaudit. Nächste Einheit:
+  Researchberichte mit Annahmen, Wertbandbreiten und Buy-Side-/Sell-Side-Vergleich. Alle
+  neuen Einheiten bleiben „draft“, vollständige Klausuren gesperrt; **90/100 und 80/100
+  sind weiterhin nicht als erreicht belegt**.

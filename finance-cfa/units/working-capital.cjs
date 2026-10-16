@@ -163,6 +163,7 @@ module.exports={id:'working-capital',intro:[
   'Die Verbindung zur Abschlussanalyse ist unmittelbar: Eine Zunahme operativer Forderungen oder Vorräte bindet unter sonst gleichen Bedingungen Cashflow; eine Zunahme operativer Verbindlichkeiten liefert Finanzierung. Prognosen übersetzen Umsatzannahmen und Tageskennzahlen in künftige Bestände. Bei der Unternehmensbewertung muss schließlich die Veränderung des operativen Kapitals konsistent im freien Cashflow erscheinen.'
  ])
 ],related:[
+ {unit:'company',section:'growth-funding',label:'Betriebskapital im vollständigen Wachstums- und Finanzierungsfall anwenden'},
  {unit:'ratios',section:'activity',label:'Umschlagshäufigkeit, Tageskennzahlen und Vergleichsgrenzen'},
  {unit:'ratios',section:'liquidity',label:'Liquiditätsquoten in der umfassenden Kennzahlenanalyse'},
  {unit:'forecasting',section:'working-capital',label:'Aus Umsatzannahmen und Tagen künftige Bestände planen'},

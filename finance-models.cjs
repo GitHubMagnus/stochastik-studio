@@ -84,6 +84,42 @@ add('forecastvalue','Vom Abschlussmodell zum Aktienwert','Drei Prognosejahre ver
  out.stable={caption:'Erste normalisierte stabile Periode (Jahr 4); Endwert und sein Barwert separat. Alle Beträge in Mio. €.',headers:['Umsatz Jahr 4','NOPAT Jahr 4','Nettoinvestition Jahr 4','FCFF Jahr 4','Endwert am Ende Jahr 3','Barwert des Endwerts'],rows:[[v.stableSales,v.stableNOPAT,v.stableInvestment,v.stableFCFF,v.terminal,v.terminalPV]]};
  return out;
 });
-const api={models,calculate,annuity,price,bsm,cdf,forecastValue};
+function companyPlan(p){
+ const sales=p.price*p.quantity,cost=p.variable*p.quantity,da=15,interest=3;
+ const ebit=sales-cost-p.fixed-da,taxOperating=Math.max(0,ebit)*.25,taxEquity=Math.max(0,ebit-interest)*.25;
+ const nopat=ebit-taxOperating,netIncome=ebit-interest-taxEquity,working=p.ar+p.inventory-p.payables,changeWC=working-30;
+ const customers=sales-(p.ar-20),purchases=cost+(p.inventory-30),suppliers=purchases-(p.payables-20);
+ if(customers<-.000000001)throw Error('Die Endforderungen übersteigen Anfangsforderungen plus Kreditumsatz. Ohne zusätzliche Forderungsbewegung ist dieser Zahlungsplan nicht möglich.');
+ if(purchases<-.000000001)throw Error('Der Endvorrat erfordert negative Einkäufe. Ohne gesonderte Rückgaben oder andere Bestandsbewegungen ist dieser Plan nicht möglich.');
+ if(suppliers<-.000000001)throw Error('Die End-Lieferantenverbindlichkeiten übersteigen Anfangsverbindlichkeiten plus Krediteinkauf. Ohne weitere Finanzierung ist dieser Zahlungsplan nicht möglich.');
+ const cfo=customers-suppliers-p.fixed-interest-taxEquity,fcff=nopat+da-p.capex-changeWC,fcfe=cfo-p.capex;
+ const cashBefore=30+fcfe-p.dividend,borrowing=Math.max(0,p.minimum-cashBefore),cash=cashBefore+borrowing;
+ const debt=60+borrowing,book=100+netIncome-p.dividend,ppe=100+p.capex-da,capital=ppe+working;
+ const assets=cash+p.ar+p.inventory+ppe,liabilities=p.payables+debt+book;
+ return {sales,cost,da,interest,ebit,taxOperating,taxEquity,nopat,netIncome,working,changeWC,customers,purchases,suppliers,cfo,fcff,fcfe,cashBefore,borrowing,cash,debt,book,ppe,capital,assets,liabilities};
+}
+add('companydrivers','Kernwerk: Preis, Gewinn, Kapital und Finanzierung','Starte mit dem durchgerechneten Preisfall. Ändere einzelne Annahmen kontrolliert oder stimme mehrere Eingaben zu einem Szenario ab. Die Tabellen verbinden Ergebnis, tatsächliche Zahlungen und die Jahresendbilanz.',[
+ field('price','Realisierter Preis (Euro je Einheit)',20,200,1,105),
+ field('quantity','Absatz (Millionen Einheiten)',.5,3,.1,1.9),
+ field('variable','Variable Stückkosten (Euro)',20,100,1,60),
+ field('fixed','Fixe zahlungswirksame Kosten (Mio. Euro)',0,100,1,45),
+ field('capex','Capex (Mio. Euro)',0,100,1,18),
+ field('ar','Endforderungen (Mio. Euro)',0,100,.05,19.95),
+ field('inventory','Endvorrat (Mio. Euro)',0,150,.5,28.5),
+ field('payables','End-Lieferantenverbindlichkeiten (Mio. Euro)',0,100,.5,19),
+ field('dividend','Dividende (Mio. Euro)',0,50,1,8),
+ field('minimum','Benötigtes Jahresend-Cash (Mio. Euro)',0,100,1,10)
+],p=>{
+ const v=companyPlan(p),lower=Math.max(20,(p.ar-20)/p.quantity),out=result([['Umsatz (Mio. Euro)',v.sales],['EBIT (Mio. Euro)',v.ebit],['FCFF vor Finanzierung (Mio. Euro)',v.fcff],['Benötigter neuer Jahresendkredit (Mio. Euro)',v.borrowing]],seq(lower,200,price=>companyPlan({...p,price}).fcff),'Preis (Euro je Einheit)','FCFF (Mio. Euro)','Eigene vollständige Anfangsbilanz in Mio. Euro: Cash 30, Forderungen 20, Vorräte 30, Nettoanlagen 100; Lieferantenverbindlichkeiten 20, verzinsliche Schulden 60 und Buch-Eigenkapital 100. Abschreibung 15 und alter Zins 3 bleiben fest. Modellsteuer 25 %; negative steuerliche Ergebnisse erzeugen hier keine sofortige Steuererstattung. Keine übrigen Bestands- oder Ergebnisbewegungen. Alle Verkäufe und Teilekäufe laufen über Forderungs- beziehungsweise Lieferantenkonten; fixe Cashkosten, Zins, Capex, Dividende und Steuer werden bezahlt. Forderungen und Lieferantenverbindlichkeiten dürfen die aus Anfangsbestand und neuen Kreditgeschäften verfügbaren Ansprüche nicht übersteigen; negative Einkäufe werden abgewiesen. Die Kurve beginnt gegebenenfalls erst bei einem mit dem Forderungsendbestand vereinbaren Preis. Der neue Kredit ist nur ein berechneter Jahresendbedarf bei angenommener Auszahlung, keine Finanzierungszusage; er trägt im Jahresplan noch keinen Zins. Unterjährige Liquidität und spätere Zinsen fehlen. Endforderungen, Vorrat und Lieferantenbestand sind unabhängige Eingaben, keine automatisch an Absatz angepassten Prognosen. Die Kurve verändert nur den Preis bei konstant gehaltener Menge und übrigen Eingaben; sie enthält keine geschätzte Nachfrageelastizität. Negative freie Zahlungen und negatives Buchkapital werden sichtbar ausgewiesen.');
+ out.marker=[p.price,v.fcff];
+ out.projection={caption:'Jahresüberleitung in Millionen Euro: Gewinn, operative Bestandsänderung, Anlagenzahlung und zusätzlicher Jahresendkredit werden getrennt erfasst.',headers:['Umsatz','EBIT','NOPAT','Nettogewinn','Δ operatives WC','Capex','FCFF','CFO nach Zins','FCFE vor neuem Kredit','Neuer Kredit'],rows:[[v.sales,v.ebit,v.nopat,v.netIncome,v.changeWC,p.capex,v.fcff,v.cfo,v.fcfe,v.borrowing]]};
+ out.stable={caption:'Direkte Zahlungen und Jahresendbilanz in Millionen Euro. Aktiva und Passiva müssen übereinstimmen; diese Konsistenz beweist weder die Absatzannahme noch verfügbare Finanzierung.',headers:['Kundeneinzahlung','Lieferantenzahlung','Cash Ende','Nettoanlagen Ende','Schulden Ende','Buchkapital Ende','Operatives Kapital Ende','Aktiva','Passiva'],rows:[[v.customers,v.suppliers,v.cash,v.ppe,v.debt,v.book,v.capital,v.assets,v.liabilities]]};
+ return out;
+});
+models.companydrivers.presets=[
+ {label:'Preisfall laden',values:Object.fromEntries(models.companydrivers.controls.map(f=>[f.key,f.value]))},
+ {label:'Wachstumsfall laden',values:{price:100,quantity:2.4,variable:60,fixed:60,capex:40,ar:35,inventory:50,payables:25,dividend:0,minimum:10}}
+];
+const api={models,calculate,annuity,price,bsm,cdf,forecastValue,companyPlan};
 if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.FinanceModels=api;
 })(globalThis);

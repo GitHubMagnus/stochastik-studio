@@ -7,6 +7,48 @@ async function open(t,route='cfa'){
  const page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[];page.on('pageerror',e=>errors.push(e.message));t.after(async()=>{await page.close();assert.deepEqual(errors,[]);});await page.goto(url+'/#'+route);return page;
 }
 
+test('Kernwerk calculator reconciles profit, capital and funding, rejects impossible trade balances and works offline',async t=>{
+ const page=await open(t,'cfa~learn-company~price-capital'),link='.cfa-exploration a[href="#lesson-equity-05~lab"]';
+ await page.locator(link).click();await page.waitForFunction(()=>document.activeElement.id==='study-lab');
+ const metrics=async()=>page.locator('#lab-metrics strong').evaluateAll(es=>es.map(e=>Number(e.textContent.replace(',','.'))));
+ const near=(a,b)=>assert.ok(Math.abs(a-b)<.000051,a+' vs '+b);
+ let m=await metrics();near(m[0],199.5);near(m[1],25.5);near(m[2],16.675);near(m[3],0);
+ const last=async()=>page.locator('#lab-projection table').last().locator('tbody td').allTextContents();
+ let row=await last();near(Number(row[2].replace(',','.')),36.425);near(Number(row[7].replace(',','.')),187.875);near(Number(row[8].replace(',','.')),187.875);
+ await page.locator('[data-model-preset="1"]').click();
+ m=await metrics();near(m[0],240);near(m[1],21);near(m[2],-39.25);near(m[3],21.5);
+ row=await last();near(Number(row[2].replace(',','.')),10);near(Number(row[4].replace(',','.')),81.5);near(Number(row[5].replace(',','.')),113.5);
+ await page.locator('[data-model-preset="0"]').click();m=await metrics();near(m[2],16.675);near(m[3],0);
+ await page.locator('[data-model-preset="1"]').click();
+ await page.locator('#lab-ar').fill('100');await page.locator('#lab-price').fill('20');
+ assert.equal(await page.locator('#lab-error').isVisible(),true);assert.match(await page.locator('#lab-error').innerText(),/Endforderungen/);
+ assert.equal(await page.locator('#lab-results').isVisible(),false);
+ await page.locator('#lab-reset').click();m=await metrics();near(m[2],16.675);assert.equal(await page.locator('#lab-error').isVisible(),false);
+ await page.locator('[data-range="price"]').fill('110');m=await metrics();near(m[0],209);near(m[1],35);
+ await page.locator('#lab-reset').click();
+ for(const width of [390,760,1440]){await page.setViewportSize({width,height:1000});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'width '+width);}
+ await page.setViewportSize({width:390,height:1000});
+ const plot=page.locator('#lab-chart');await plot.focus();await page.keyboard.press('ArrowRight');await page.waitForFunction(()=>document.querySelector('#lab-chart').scrollLeft>0);
+ const wrap=page.locator('#lab-projection .study-table-wrap').first();await wrap.focus();await page.keyboard.press('ArrowRight');await page.waitForFunction(()=>document.querySelector('#lab-projection .study-table-wrap').scrollLeft>0);
+ assert.equal(await page.locator('.study-model-plot-hint').isVisible(),true);
+ assert.equal(await page.locator('.study-model-table-hint').first().isVisible(),true);
+ await page.goBack();await page.waitForFunction(()=>document.activeElement.id==='cfa-section-price-capital');
+ await page.route(/^https?:/,r=>r.abort());
+ const file=require('node:url').pathToFileURL(require('node:path').join(__dirname,'../index.html')).href;
+ await page.goto(file+'#cfa~learn-company~price-capital');await page.locator(link).click();m=await metrics();near(m[2],16.675);
+});
+
+test('company terminology keeps operating and valuation safety margins distinct and returns to exact explanations',async t=>{
+ const page=await open(t);
+ for(const [unit,section,term,targetSection]of [['company','strategy','Kostenführerschaft','strategy'],['company','strategy','Differenzierung','strategy'],['company','advantage','Economic Moat','advantage'],['company','pricing','Preissetzungsmacht','pricing'],['company','operating-leverage','operativer Hebel','operating-leverage'],['company','financial-leverage','DTL','financial-leverage'],['company','breakeven','Margin of Safety','breakeven'],['valuation-overview','gap','Margin of Safety','gap']]){
+  await page.goto(url+'/#cfa~learn-'+unit+'~'+section);
+  const link=page.locator('#cfa-section-'+section+' a.term-link').filter({hasText:new RegExp('^'+term+'$','i')}).first(),id=(await link.getAttribute('href')).split('~')[1];
+  await link.click();await page.waitForFunction(id=>document.activeElement.id==='glossary-'+id,id);
+  await page.locator('#glossary-'+id+' a[href="#cfa~learn-'+unit+'~'+targetSection+'"]').click();
+  await page.waitForFunction(section=>document.activeElement.id==='cfa-section-'+section,targetSection);
+ }
+});
+
 test('industry definitions, symbol disclosures, wide tables and calculated figures work on mobile and offline',async t=>{
  const page=await open(t,'cfa~learn-industry');
  assert.equal(await page.locator('#page-cfa .cfa-section').count(),28);
