@@ -127,7 +127,8 @@ module.exports={id:'portfolio-math',intro:[
   ],'Eine einzelne Aktie muss nicht auf der CML liegen. Gesamtvolatilität und Beta beantworten verschiedene Risikofragen.'),
   'Schätzfehler sind eine praktische Grenze: Optimierung reagiert oft stark auf kleine Änderungen erwarteter Renditen. Korrelationen können in Stressphasen steigen, Liquidität kann verschwinden und Modellvolatilität bildet nicht jede relevante Verlustart ab. Gegenprüfungen mit Stressszenarien, Gewichtsgrenzen und plausiblen Eingabebereichen gehören deshalb zur Anwendung.'
  ])
-],related:[{unit:'return-statistics',section:'covariance',label:'Kovarianz aus historischen Renditepaaren berechnen'},{unit:'return-statistics',section:'shape',label:'Warum Varianz nicht alle Verlustmerkmale erfasst'},{unit:'standard-iii',section:'suitability',label:'Mathematische Optimierung mit Kundenzielen und Eignung verbinden'},{unit:'return-types',section:'leverage',label:'Kreditfinanzierung und Eigenkapitalrendite nachvollziehen'}],
+],related:[
+ {unit:'equity-factors',section:'diversification',label:'Systematisches Risiko und unabhängige Restquellen getrennt rechnen'},{unit:'return-statistics',section:'covariance',label:'Kovarianz aus historischen Renditepaaren berechnen'},{unit:'return-statistics',section:'shape',label:'Warum Varianz nicht alle Verlustmerkmale erfasst'},{unit:'standard-iii',section:'suitability',label:'Mathematische Optimierung mit Kundenzielen und Eignung verbinden'},{unit:'return-types',section:'leverage',label:'Kreditfinanzierung und Eigenkapitalrendite nachvollziehen'}],
  sources:[
  {title:'CFA Institute: Portfolio Risk and Return, Part I',url:'https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/portfolio-risk-return-part-1'},
  {title:'CFA Institute: Portfolio Risk and Return, Part II',url:'https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/portfolio-risk-return-part-2'}

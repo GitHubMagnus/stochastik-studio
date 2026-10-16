@@ -7,6 +7,39 @@ async function open(t,route='cfa'){
  const page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[];page.on('pageerror',e=>errors.push(e.message));t.after(async()=>{await page.close();assert.deepEqual(errors,[]);});await page.goto(url+'/#'+route);return page;
 }
 
+test('equity factor learning opens the matching CAPM model and preserves rates, negative betas and section history offline',async t=>{
+ const page=await open(t,'cfa~learn-equity-factors~capm');
+ await page.locator('.cfa-exploration a[href="#lesson-equity-06~lab"]').click();
+ await page.waitForFunction(()=>document.activeElement.id==='study-lab');
+ const metric=async()=>Number((await page.locator('#lab-metrics strong').first().innerText()).replace(',','.'));
+ assert.equal(await metric(),9);
+ for(const[b,expected]of [[.8,7],[1.6,11],[-.3,1.5],[1.2,9]]){await page.locator('#lab-beta').fill(String(b));assert.ok(Math.abs(await metric()-expected)<.00001);}
+ await page.locator('#lab-premium').fill('6');assert.ok(Math.abs(await metric()-10.2)<.00001);
+ await page.goBack();await page.waitForFunction(()=>document.activeElement.id==='cfa-section-capm');
+ await page.setViewportSize({width:390,height:1000});await page.route(/^https?:/,r=>r.abort());
+ const file=require('node:url').pathToFileURL(require('node:path').join(__dirname,'../index.html')).href;
+ await page.goto(file+'#cfa~learn-equity-factors~ols');
+ const formula=page.locator('#cfa-section-ols .cfa-formula').first();await formula.locator('.formula-notation summary').click();
+ assert.match(await formula.innerText(),/Prozentpunkte pro Monat/);assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+ await page.goto(file+'#cfa~learn-equity-factors~replication');
+ const table=page.locator('#cfa-section-replication .cfa-table').first();
+ await page.waitForFunction(()=>document.querySelector('#cfa-section-replication .cfa-table').getAttribute('tabindex')==='0');
+ await table.focus();await page.keyboard.press('ArrowRight');await page.waitForFunction(()=>document.querySelector('#cfa-section-replication .cfa-table').scrollLeft>0);
+ assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+});
+
+test('equity factor definitions return to their exact model convention without changing established regression alpha',async t=>{
+ const page=await open(t,'cfa~learn-equity-factors');
+ assert.equal(await page.locator('#page-cfa .cfa-section').count(),33);assert.equal(await page.locator('#page-cfa .cfa-figure').count(),4);
+ for(const[section,term,targetUnit,target]of [['co-risk','CAPM','equity-factors','capm'],['market-model','Marktmodell','equity-factors','market-model'],['apt','APT','equity-factors','apt'],['fama-french','SMB','equity-factors','fama-french'],['fama-french','HML','equity-factors','fama-french'],['estimation','Marktproxy','equity-factors','estimation'],['alpha','Alpha','regression','capm']]){
+  await page.goto(url+'/#cfa~learn-equity-factors~'+section);
+  const link=page.locator('#cfa-section-'+section+' a.term-link').filter({hasText:new RegExp('^'+term+'$','i')}).first(),id=(await link.getAttribute('href')).split('~')[1];
+  await link.click();await page.waitForFunction(id=>document.activeElement.id==='glossary-'+id,id);
+  await page.locator('#glossary-'+id+' a[href="#cfa~learn-'+targetUnit+'~'+target+'"]').click();
+  await page.waitForFunction(section=>document.activeElement.id==='cfa-section-'+section,target);
+ }
+});
+
 test('research terminology and legacy finance distinguish model sensitivity from signal detection and return to exact explanations',async t=>{
  const page=await open(t,'cfa~learn-research');
  assert.equal(await page.locator('#page-cfa .cfa-section').count(),28);assert.equal(await page.locator('#page-cfa .cfa-figure').count(),3);

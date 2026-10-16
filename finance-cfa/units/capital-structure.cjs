@@ -189,6 +189,7 @@ module.exports={id:'capital-structure',intro:[
   'Für CFA-Level-I-Aufgaben zuerst Modellwelt und gesuchte Größe markieren: WACC, Eigenkapitalkosten, Gesamtkapitalquote, Verhältnis zu Eigenkapital oder Unternehmenswert. Danach prüfen, ob Werte, Perioden, Steuerfaktoren und Cashflowperspektive zusammenpassen. Eine Formel mit korrekten Symbolen liefert nur dann eine sinnvolle Antwort, wenn diese Vorentscheidung stimmt.'
  ])
 ],related:[
+ {unit:'equity-factors',section:'leverage',label:'Asset-, Schuld- und Eigenkapitalbeta mit konsistenten Ansprüchen vergleichen'},
  {unit:'company',section:'financial-leverage',label:'Gleiche operative Leistung mit verschiedenen Buchrenditen vergleichen'},
  {unit:'equity-features',section:'preferred',label:'Die konkreten Ausschüttungs-, Rang- und Wahlrechte von Vorzugsaktien'},
  {unit:'business-models',section:'financial-profile',label:'Geschäftsmodell, Kapitalbindung und Finanzierungsbedarf zusammen beurteilen'},
