@@ -23,12 +23,16 @@ window.FinanceStudy=(()=>{
  const escapeReg=s=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
  const labelMap=new Map(glossary.flatMap(g=>[g.term,...g.aliases].map(label=>[label.toLocaleLowerCase('de'),g])));
  const contextLabels=new Map(glossary.flatMap(g=>(g.contextualAliases||[]).flatMap(a=>a.units.map(unit=>[unit+'~'+a.label.toLocaleLowerCase('de'),g]))));
+ const legacyContextLabels=new Map(glossary.flatMap(g=>(g.contextualAliases||[]).filter(a=>a.legacyFinance).map(a=>[a.label.toLocaleLowerCase('de'),{entry:g,except:a.exceptLessons||[]}])));
  const allLabels=new Set([...labelMap.keys(),...glossary.flatMap(g=>(g.contextualAliases||[]).map(a=>a.label.toLocaleLowerCase('de')))]);
  const glossaryPattern=new RegExp(`(^|[^\\p{L}\\p{N}])(${[...allLabels].sort((a,b)=>b.length-a.length).map(escapeReg).join('|')})(?=$|[^\\p{L}\\p{N}])`,'giu');
  const glossaryText=(value,unit='')=>{
   const source=String(value);let result='',last=0;
+  // The router renders a clicked lesson before updating its URL fragment.
+  const legacyId=!unit&&document.getElementById('page-finance-lesson').classList.contains('active')?active:'';
   for(const match of source.matchAll(glossaryPattern)){
-   const prefix=match[1],label=match[2],key=label.toLocaleLowerCase('de'),entry=contextLabels.get(unit+'~'+key)||labelMap.get(key);
+   const prefix=match[1],label=match[2],key=label.toLocaleLowerCase('de'),legacy=legacyContextLabels.get(key);
+   const entry=contextLabels.get(unit+'~'+key)||(byId[legacyId]&&legacy&&!legacy.except.includes(legacyId)?legacy.entry:null)||labelMap.get(key);
    result+=esc(source.slice(last,match.index))+esc(prefix)+(entry?`<a class="term-link" href="#glossary~${entry.id}" title="${esc(entry.definition)}" aria-label="${esc(label)}: Definition öffnen">${esc(label)}</a>`:esc(label));
    last=match.index+match[0].length;
   }

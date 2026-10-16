@@ -7,6 +7,57 @@ async function open(t,route='cfa'){
  const page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[];page.on('pageerror',e=>errors.push(e.message));t.after(async()=>{await page.close();assert.deepEqual(errors,[]);});await page.goto(url+'/#'+route);return page;
 }
 
+test('research terminology and legacy finance distinguish model sensitivity from signal detection and return to exact explanations',async t=>{
+ const page=await open(t,'cfa~learn-research');
+ assert.equal(await page.locator('#page-cfa .cfa-section').count(),28);assert.equal(await page.locator('#page-cfa .cfa-figure').count(),3);
+ for(const [source,section,term,target]of [['research','sell-side','Sell-Side-Research','sell-side'],['research','buy-side','Buy-Side-Research','buy-side'],['research','sources','Informationsstichtag','sources'],['research','thesis','Variant Perception','thesis'],['research','sensitivity','Bewertungssensitivität','sensitivity'],['company','cashflow','Sensitivität','sensitivity'],['standard-v','fact-opinion','Sensitivität','sensitivity'],['ratios','forecast-conventions','Sensitivität','sensitivity'],['simulation','validation','Sensitivität','sensitivity']]){
+  await page.goto(url+'/#cfa~learn-'+source+'~'+section);
+  const link=page.locator('#cfa-section-'+section+' a.term-link').filter({hasText:new RegExp('^'+term+'$','i')}).first(),id=(await link.getAttribute('href')).split('~')[1];
+  await link.click();await page.waitForFunction(id=>document.activeElement.id==='glossary-'+id,id);
+  await page.locator('#glossary-'+id+' a[href="#cfa~learn-research~'+target+'"]').click();
+  await page.waitForFunction(section=>document.activeElement.id==='cfa-section-'+section,target);
+ }
+ await page.goto(url+'/#cfa~learn-data-science~pipeline');
+ const cleaningLink=page.locator('#cfa-section-pipeline a.term-link').filter({hasText:/^Sensitivitätsanalyse$/i}),cleaningId=(await cleaningLink.getAttribute('href')).split('~')[1];
+ await cleaningLink.click();await page.waitForFunction(id=>document.activeElement.id==='glossary-'+id,cleaningId);
+ await page.locator('#glossary-'+cleaningId+' a[href="#cfa~learn-forecasting~scenarios"]').click();
+ await page.waitForFunction(()=>document.activeElement.id==='cfa-section-scenarios');
+ for(const [legacy,target,section]of [['quant-09','research','sensitivity'],['quant-06','data-science','classification']]){
+  await page.goto(url+'/#finance');
+  await page.locator('#finance-quant').evaluate(e=>e.open=true);
+  await page.locator('#finance-outline a[href="#lesson-'+legacy+'"]').click();
+  await page.locator('#page-finance-lesson details').evaluateAll(es=>es.forEach(e=>e.open=true));
+  const link=page.locator('#page-finance-lesson a.term-link').filter({hasText:/^Sensitivität$/i}).first(),id=(await link.getAttribute('href')).split('~')[1];
+  await link.click();await page.waitForFunction(id=>document.activeElement.id==='glossary-'+id,id);
+  await page.locator('#glossary-'+id+' a[href="#cfa~learn-'+target+'~'+section+'"]').click();
+  await page.waitForFunction(section=>document.activeElement.id==='cfa-section-'+section,section);
+ }
+});
+
+test('research connects to the separate forecast calculator and keeps new mathematics and tables usable offline on mobile',async t=>{
+ const page=await open(t,'cfa~learn-research~assumption-map');
+ await page.locator('a[href="#cfa~learn-valuation-model~sensitivity"]').click();
+ await page.waitForFunction(()=>document.activeElement.id==='cfa-section-sensitivity');
+ await page.locator('.cfa-exploration a[href="#lesson-equity-09~lab"]').click();
+ const values=async()=>page.locator('#lab-metrics strong').evaluateAll(es=>es.map(e=>Number(e.textContent.replace(',','.'))));
+ let m=await values();assert.ok(Math.abs(m[2]-78.6982494)<.000051);
+ await page.locator('#lab-stableMargin').fill('18');m=await values();assert.ok(Math.abs(m[2]-96.4596250)<.000051);
+ await page.goBack();await page.waitForFunction(()=>document.activeElement.id==='cfa-section-sensitivity');
+ await page.goBack();await page.waitForFunction(()=>document.activeElement.id==='cfa-section-assumption-map');
+ await page.setViewportSize({width:390,height:1000});
+ await page.route(/^https?:/,r=>r.abort());
+ const file=require('node:url').pathToFileURL(require('node:path').join(__dirname,'../index.html')).href;
+ await page.goto(file+'#cfa~learn-research~case');
+ const formula=page.locator('#cfa-section-case .cfa-formula').first();
+ await formula.locator('.formula-notation summary').click();assert.match(await formula.innerText(),/Nachsteuerertrag/);
+ assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+ await page.goto(file+'#cfa~learn-research~scenarios');
+ const table=page.locator('#cfa-section-scenarios .cfa-table').first();
+ await page.waitForFunction(()=>document.querySelector('#cfa-section-scenarios .cfa-table').getAttribute('tabindex')==='0');
+ await table.focus();await page.keyboard.press('ArrowRight');await page.waitForFunction(()=>document.querySelector('#cfa-section-scenarios .cfa-table').scrollLeft>0);
+ assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+});
+
 test('Kernwerk calculator reconciles profit, capital and funding, rejects impossible trade balances and works offline',async t=>{
  const page=await open(t,'cfa~learn-company~price-capital'),link='.cfa-exploration a[href="#lesson-equity-05~lab"]';
  await page.locator(link).click();await page.waitForFunction(()=>document.activeElement.id==='study-lab');

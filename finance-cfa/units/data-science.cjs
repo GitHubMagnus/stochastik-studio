@@ -37,7 +37,7 @@ module.exports={id:'data-science',intro:[
    ['Validierung und Betrieb','Zeitgerechte Testdaten, Kosten, Stabilität, Überwachung und nachvollziehbare Verantwortlichkeiten.']
   ],'Die Zieldefinition kommt vor der Modellwahl. Andernfalls kann ein mathematisch gut gelöstes Problem wirtschaftlich das falsche sein.'),
   'Fehlend bedeutet nicht null. Ein unbekannter Schuldenwert darf nicht automatisch als schuldenfreies Unternehmen codiert werden. Imputation, Ausschluss oder eine zusätzliche Kennzeichnung benötigen eine Begründung und werden nur anhand der Trainingsdaten angepasst.',
-  'Ein extrem hoher Umsatz kann ein Eingabefehler, eine andere Währung oder ein tatsächlich großes Unternehmen sein. Ausreißer pauschal zu entfernen kann gerade die wirtschaftlich interessanten Fälle vernichten. Bereinigungen werden protokolliert und auf Sensitivität geprüft.'
+  'Ein extrem hoher Umsatz kann ein Eingabefehler, eine andere Währung oder ein tatsächlich großes Unternehmen sein. Ausreißer pauschal zu entfernen kann gerade die wirtschaftlich interessanten Fälle vernichten. Bereinigungen werden protokolliert; eine Sensitivitätsanalyse prüft, wie die gewählten Eingriffe die Modellergebnisse verändern.'
  ]),
  S('learning-types','4. Überwachtes, unüberwachtes und bestärkendes Lernen','a',[
   T(['Lernaufgabe','Was die Daten liefern','Passendes Beispiel und Grenze'],[

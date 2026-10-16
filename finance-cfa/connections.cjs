@@ -11,7 +11,7 @@ module.exports={
  'standard-ii':[R('standard-vi','priority','Insiderinformation von vorgezogenen Eigengeschäften unterscheiden'),R('ethics-cases','research-chain','Informationsquelle, Plagiat und Verteilung im selben Fall')],
  'standard-iii':[R('benchmarks','performance-example','Zeit- und geldgewichtete Rendite durchrechnen'),R('standard-iv','gift-boundaries','Bonuszustimmung und faire Kundenbehandlung'),R('ethics-cases','client-instruction','Grenzen einer Kundenanweisung')],
  'standard-iv':[R('standard-vi','referrals','Zusatzvergütung von Vermittlungsvergütung unterscheiden'),R('ethics-cases','departure','Arbeitgeberwechsel und Datenrechte')],
- 'standard-v':[R('standard-iii','performance','Spezielle Anforderungen an Leistungsdarstellungen'),R('ethics-cases','vendor-model','Externe Modelle und fortbestehende Verantwortung')],
+ 'standard-v':[R('standard-iii','performance','Spezielle Anforderungen an Leistungsdarstellungen'),R('ethics-cases','vendor-model','Externe Modelle und fortbestehende Verantwortung'),R('research','facts','Fakten und bedingte Wertschätzung im vollständigen Bericht unterscheiden')],
  'standard-vi':[R('standard-iv','compensation','Wann zusätzlich vorherige schriftliche Zustimmung nötig ist'),R('standard-iii','fair-dealing','Vorrang und Fairness gegenüber Kunden')],
  'standard-vii':[R('code','conduct-program','Zuständigkeiten bei möglichen Regelverstößen'),R('ethics-foundations','professionalism','Qualifikation und verantwortliche Berufsausübung')]
 };

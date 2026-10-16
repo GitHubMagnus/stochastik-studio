@@ -1405,3 +1405,71 @@ und bestandene Technikprüfungen ersetzen die spätere fachliche Abnahme nicht.
   Researchberichte mit Annahmen, Wertbandbreiten und Buy-Side-/Sell-Side-Vergleich. Alle
   neuen Einheiten bleiben „draft“, vollständige Klausuren gesperrt; **90/100 und 80/100
   sind weiterhin nicht als erreicht belegt**.
+
+### 16.10.2026 – Researchberichte, Annahmen und Entscheidungen nachvollziehbar verbinden
+
+- **28 Abschnitte, 15 eigene Beispiele, 18 Tabellen, 22 erklärte Formeltafeln und drei
+  berechnete Grafiken** bearbeiten die drei offiziellen Lernziele für Equity Analyst
+  Research Reports im CFA-Level-I-Outline 2027. Berichtszweck, Quellen, Fakten,
+  Prognose, These, Methode, Risiken, Aktualisierung und Schlussfolgerung werden als
+  zusammenhängende Begründung erläutert. Das eigene Berichtsgerüst ist keine starre
+  offizielle Prüfungsschablone.
+- Sell Side und Buy Side werden nach Empfänger, Kapitalverwendung und Mandat
+  verglichen. Ein Fondsfall rechnet den verbleibenden Positionsspielraum vor. Gleiche
+  Wertschätzung kann zu verschiedenen Portfoliohandlungen führen; keine Rolle beweist
+  allein Objektivität. Offenlegung ersetzt keine tragfähige unabhängige Analyse.
+- Der Mareon-Fall verbindet Historie und Prognose mit Kapitalbedarf, FCFF, operativem
+  Barwert, Schuldansprüchen, separater Kasse und Aktienzahl. Aus kommendem NOPAT 60
+  entstehen nach Reinvestition 15 freie Zahlungen 45 und ein bedingter Aktienwert 68.
+  Sofortige stabile Phase, neue Kapitalrendite und passende operative Renditeforderung
+  werden als eigene Modellannahmen offengelegt.
+- Einzelne Änderungen von Umsatz, Marge, Kapitalrendite und Diskontsatz werden
+  getrennt gerechnet. Eine gemeinsame Annahmenbrücke führt von 68 zu 43,4; ihre
+  Zwischenbeiträge hängen von der Reihenfolge ab. Isolierte Basiswirkungen dürfen
+  nicht unbemerkt addiert werden. Wachstum unter Kapitalkosten wird mit gleichem
+  Anfangsertrag gegen Nullwachstum verglichen.
+- Weitere Fälle unterscheiden heutigen Wert, zukünftiges Kursziel, Ausschüttung,
+  bedingte Gesamtrendite, Upside und wertbezogene Sicherheitsmarge. Neue Aktien
+  benötigen sowohl Zufluss als auch zusätzliche Ansprüche; faire zusätzliche Schulden
+  und ungenutzte Kasse erzeugen im idealisierten Vergleich keinen Eigenkapitalgewinn.
+- Zusammengehörige Szenarien liefern den gewichteten Modellwert 68,182143; das Modell
+  mit durchschnittlichen Inputs liefert 68. Die Gewichte sind vorgegeben und nicht
+  empirisch kalibriert. Reverse DCF findet beim Preis 50 alternativ Marge 12,16 %
+  oder Renditeforderung 10,894737 % unter jeweils anderen festgehaltenen Inputs; der
+  Preis identifiziert nicht zugleich alle tatsächlichen Markterwartungen.
+- **40 eigene englische Trainingsfragen und je eine getrennte reservierte
+  Klausurfrage** besitzen deutsche Begründungen und genaue Abschnittsrückwege.
+  Dreizehn Fragen erhielten anspruchsvollere falsche Antwortmöglichkeiten anhand
+  typischer Analysefehler. Jede Rechenfrage nennt ihre benötigten Annahmen.
+- Lernziel A besitzt 28 Abschnitts- und 26 Trainingszuordnungen, B zwölf und elf,
+  C 21 und 24. Zuordnung bleibt ein Arbeitsnachweis, keine abschließende Freigabe.
+  Unabhängige Rechnungen kontrollieren die Bilanzierungs-/Zahlungszeilen, Brücken,
+  Finanzierung, Szenariowerte und alle **133 Grafikpunkte**, auch durch Abzinsung
+  von jeweils 1.000 expliziten künftigen Jahreszahlungen.
+- **17 neue kuratierte Definitionen** verweisen auf passende Abschnitte; vorhandene
+  Kursziel-, Katalysator-, Reverse-DCF- und Sensitivitätsanalyse-Rückwege bleiben
+  erhalten. Sensitivität erhält in Finanzmodellen die Bedeutung als Modellwirkung;
+  bei Klassifikatoren bleibt Recall maßgeblich. Die Datenbereinigung benennt ihre
+  Ergebnis-Sensitivitätsanalyse ausdrücklich. Sechs bestehende Einheiten verweisen
+  auf das neue Researchkapitel zurück.
+- Die Kontextwahl bei älteren Finance-Kapiteln verwendet das tatsächlich angezeigte
+  Kapitel. Der Router aktualisiert die URL erst nach dem Rendern; allein die bisherige
+  URL würde deshalb beim Anklicken die falsche Definition einbetten. Neue Browserfälle
+  prüfen echte Kapitelklicks, Rückwege, getrennte Bedeutungen, Symbolhilfen,
+  Tastaturverschiebung und Offlinebetrieb. Der verlinkte Nordlicht-Rechner wird
+  ausdrücklich als anderer Fall als Mareons stabiler DCF bezeichnet.
+- **191 Kernprüfungen und 154 CFA-Prüfungen bestanden.** Der abschließende Lauf
+  durchlief alle 59 Einheiten auf Desktop-/Mobilbreite und alle 696
+  Corporate-/Equity-Trainingsfragen mit ihren Auswahlbegründungen, Symbolhilfen und
+  genauen Rückwegen. Zwei ergänzende Browserprüfungen bestätigten alle 171 bisherigen
+  Finance-Kapitel und 36 Modelle mit 6.987 Bedienhandlungen und 16.391 Begriffslinks
+  sowie Navigation und Offlinebetrieb. Die neuen Grafiken, Vergleichstabellen und
+  mobilen Formel-/Tabellenansichten wurden visuell geprüft.
+- Gesamtstand: **59 Einheiten, 203/340 strukturelle Lernzielreferenzen, 1.500
+  Trainingsfragen, je 111 reservierte Klausurfragen und 93 CFA-Grafiken**. Das
+  Wörterbuch enthält **839 kuratierte Rückverweise, 1.189 Definitionen und 2.523
+  Begriffe/Aliase**. Offen bleiben **43 Einheiten, 137 Lernzielreferenzen und 69 Fragen
+  je vollständiger Klausur**, anschließend der fachliche Gesamtaudit. Nächste Einheit:
+  CAPM, Marktmodell und Mehrfaktormodelle. Alle neuen Einheiten bleiben „draft“,
+  vollständige Klausuren gesperrt; **90/100 und 80/100 sind weiterhin nicht als erreicht
+  belegt**.
