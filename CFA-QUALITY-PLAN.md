@@ -1473,3 +1473,76 @@ und bestandene Technikprüfungen ersetzen die spätere fachliche Abnahme nicht.
   CAPM, Marktmodell und Mehrfaktormodelle. Alle neuen Einheiten bleiben „draft“,
   vollständige Klausuren gesperrt; **90/100 und 80/100 sind weiterhin nicht als erreicht
   belegt**.
+
+### 16.10.2026 – CAPM, Marktmodell und mehrere systematische Risiken verbinden
+
+- **33 Abschnitte, 14 eigene Beispiele, zwölf Tabellen, 37 erklärte Formeltafeln und
+  vier berechnete Grafiken** bearbeiten die zwei offiziellen Lernziele zu CAPM,
+  Marktmodell und weiteren Faktoransätzen für CFA Level I 2027. Die klassische
+  CFA-Einführung 2026 dient als ergänzende Theoriequelle, nicht als Ersatz für den
+  aktuellen Lernzielkatalog. Die Fama-French-Implementierungen werden anhand der
+  Originaldefinitionen der Datenbibliothek eingeordnet.
+- Geforderte, eigene prognostizierte und tatsächlich erzielte Rendite werden getrennt.
+  Beta wird aus Kovarianz und Korrelation entwickelt. Kontrollierte Fälle vergleichen
+  gleiche Exposition mit anderer Gesamtvolatilität, negatives und null Beta,
+  SML gegenüber CML und passende Marktprämie gegenüber voller Marktrendite.
+- Die Diversifikationsrechnung hält den gemeinsamen Marktfaktor konstant und verteilt
+  nur unkorrelierte Restvarianz. Alle Kurvenpunkte werden zusätzlich über die
+  vollständige Portfolio-Kovarianzsumme geprüft. Gemeinsame Restquellen, konzentrierte
+  Gewichte und ausgelassene Faktoren begrenzen die einfache Aussage.
+- Sechs eigene Linden-Monatsbeobachtungen tragen dieselbe vollständige Regression:
+  Beta 1,25, Alpha 0,5 Prozentpunkte pro Monat, angepasste Renditen, Residuen,
+  Quadratsummen, R² und Standardfehler. Unabhängige OLS-Gegenrechnung bestätigt
+  Residualsumme null und Orthogonalität in der Stichprobe. Der kleine Datensatz wird
+  ausdrücklich nicht als hinreichende reale Unternehmensschätzung ausgegeben.
+- Roh- und Überschussrendite-Intercept werden bei konstantem risikofreiem Satz
+  übergeleitet. Ein variierender Satz liefert ein numerisches Gegenbeispiel zur
+  unveränderten Steigung. Historischer Intercept wird von zukünftiger jährlicher
+  CAPM-Forderung und dauerhaftem Können getrennt; R² ist keine Erfolgswahrscheinlichkeit.
+- Marktproxy, Schätzfenster, Datenfrequenz, Geschäftsänderung und Finanzierungshebel
+  werden erklärt. Ein risikobehafteter Schuldanspruch bleibt in der Betaüberleitung
+  sichtbar. Anspruchsgewichte und erwartete Zahlungen bestätigen denselben Asset-Kern.
+  Gleiche Dividenden werden unter verschiedenen Betas bewertet; für jeden Punkt wird
+  zusätzlich die Summe von 2.000 einzelnen zukünftigen Dividenden abgezinst.
+- Faktorüberraschungen werden von vollen Faktorrenditen getrennt. Zwei Rechenwege
+  führen vom erwarteten Drei-Faktorertrag 10,6 % zum selben tatsächlichen Ausgang
+  −3,1 %, ohne erwartete Vergütung doppelt zu zählen. Gleiche Marktbetas können
+  verschiedene zusätzliche Expositionen und Renditeforderungen besitzen.
+- APT wird über fehlende Arbitrage und diversifizierbare Restquellen erklärt. Eine
+  ausdrücklich ideale vollständige Replikation sichert alle vorgegebenen gemeinsamen
+  Schocks ab; ein ungesicherter Rest kann ihren Gewinn dagegen umkehren. Nettoanlage
+  null erhält keine erfundene Nettokapitalrendite. Die Theorie schreibt keine feste
+  Faktoranzahl oder eindeutige Liste empirischer Faktoren vor.
+- Makro-, Fundamental- und statistische Faktoren, Charakteristik gegenüber
+  Faktorportfoliorendite, Fama-French-Familien, Kovarianzterme, Portfolioexpositionen,
+  Modellabhängigkeit von Alpha und Umsetzungsgrenzen erhalten eigene Erklärungen.
+  Acht enumerierte Schockzustände bestätigen die korrelierte Zweifaktorvarianz 0,0719.
+- **44 eigene englische Trainingsfragen und je eine getrennte reservierte Klausurfrage**
+  ergänzen deutsche Auswahlbegründungen und genaue Rückwege. Die reservierten Fälle
+  verbinden Regression, zukünftige Eigenkapitalforderung und Dividendenwert sowie
+  marktneutrale Position mit verbleibenden bepreisten Faktoren und Restunsicherheit.
+  Die Aktienanteile beider Klausuren erreichen damit ihre geplanten je 22 Fragen.
+- Lernziel A besitzt 24 Abschnitts- und 30 Trainingszuordnungen, B 18 und 19.
+  Diese Verbindungen sind ein Arbeitsnachweis und keine endgültige Qualitätsfreigabe.
+  **23 ergänzte oder überarbeitete Definitionen** erhalten präzise Rückwege; vorhandene
+  Alpha-, Beta-, CML- und Klassifikationsdefinitionen bleiben erhalten. Fünf bestehende
+  Einheiten verweisen auf die neue Faktor-Einheit zurück.
+- Alle **237 Punkte der vier Grafiken** besitzen unabhängige numerische Gegenprüfungen.
+  Die zwei neuen Browserfälle prüfen den vorhandenen CAPM-Rechner mit denselben
+  Ausgangswerten, mehreren Betas und anderer Marktprämie sowie Wörterbuchrückwege,
+  Formelsymbole, Tastaturverschiebung, Mobilbreite und Offlinebetrieb. Diagramme,
+  Regressionstabelle, Replikationstabelle und mobile Symbolhilfen wurden visuell geprüft.
+- **199 Kernprüfungen und 164 CFA-Prüfungen bestanden.** Der umfassende CFA-Lauf
+  durchlief alle 60 Einheiten auf Desktop-/Mobilbreite und die 740
+  Corporate-/Equity-Trainingsfragen mit ihren Auswahlbegründungen, Formelsymbolen
+  und genauen Rückwegen. Zwei ergänzende Browserprüfungen bestätigten alle 171
+  bisherigen Finance-Kapitel und 36 Modelle mit 6.987 Bedienhandlungen und 16.435
+  Begriffslinks sowie Abschnittsnavigation und Offlinebetrieb.
+- Gesamtstand: **60 Einheiten, 205/340 strukturelle Lernzielreferenzen, 1.544
+  Trainingsfragen, je 112 reservierte Klausurfragen und 97 CFA-Grafiken**. Das
+  Wörterbuch enthält **862 kuratierte Rückverweise, 1.207 Definitionen und 2.569
+  Begriffe/Aliase**. Alle zwölf Aktienmodule besitzen neue Erklärungen und Übungen.
+  Offen bleiben **42 Einheiten, 135 Lernzielreferenzen und 68 Fragen je vollständiger
+  Klausur**, anschließend der fachliche Gesamtaudit. Nächste Einheit: Anleiheverträge
+  und Schutzrechte. Alle neuen Einheiten bleiben „draft“, vollständige Klausuren
+  gesperrt; **90/100 und 80/100 sind weiterhin nicht als erreicht belegt**.

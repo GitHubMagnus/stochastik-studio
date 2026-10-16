@@ -192,6 +192,7 @@ module.exports={id:'research',intro:[
   'Eine belastbare Researchaussage trennt Fakten, Prognosen und Urteil. Sie erklärt den wirtschaftlichen Weg zum Wert und die Bedingungen der Entscheidung. Die verlinkten Kapitel führen zu detaillierten Methoden, Finanzierungsrechnungen und Ethikfällen.'
  ])
 ],related:[
+ {unit:'equity-factors',section:'forecast',label:'Eigenkapitalforderung, Marktmodell und unsicheres Alpha sorgfältig trennen'},
  {unit:'company',section:'integration',label:'Wettbewerbsposition, Preis, Kapital und Finanzierung vollständig analysieren'},
  {unit:'industry',section:'five-forces',label:'Branchenkräfte und relative Firmenposition begründen'},
  {unit:'valuation-model',section:'sensitivity',label:'Separater Nordlicht-Rechner: Annahmen und Wertwirkung verändern'},
