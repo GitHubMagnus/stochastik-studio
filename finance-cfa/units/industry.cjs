@@ -237,6 +237,7 @@ module.exports={id:'industry',intro:[
   'Ein belastbares Branchenurteil benennt Marktgrenzen, Messgrößen, relative Position, Wettbewerbsmechanismen, äußere Entwicklungen und Prognosefolgen. Es nennt Unsicherheit, Datenstand und die Bedingungen seiner Fortgeltung. Die ausführlichen mathematischen Beziehungen, Beispiele und verlinkten Kapitel dienen als Nachschlageweg; jede Formel besitzt ihre Lesart und ausklappbaren Symboldefinitionen.'
  ])
 ],related:[
+ {unit:'company',section:'integration',label:'Branchenkräfte in eine vollständige Unternehmens- und Kapitalanalyse übersetzen'},
  {unit:'market-structures',section:'concentration',label:'Konzentration, Marktform und Marktmacht trennen'},
  {unit:'market-structures',section:'strategic-choices',label:'Strategische Reaktion im Oligopol verstehen'},
  {unit:'market-structures',section:'shutdown',label:'Kurzfristige Kostendeckung von langfristigem Gewinn unterscheiden'},
