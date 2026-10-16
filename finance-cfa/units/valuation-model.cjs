@@ -220,6 +220,7 @@ module.exports={id:'valuation-model',intro:[
   'Die Symbole stehen ausklappbar an jeder Formel. Tabellen, genaue Rechenschritte, der Rechner und die verlinkten Kapitel ergänzen sich: Eine Formel wird erst verstanden, wenn ihre Größen, Zeitpunkte, Anspruchsgrenzen und wirtschaftlichen Voraussetzungen erklärt werden können.'
  ])
 ],explorations:[{section:'sensitivity',lesson:'equity-09',focus:'lab',label:'Nordlicht-Modell verändern: Abschlüsse, Investitionen und Aktienwert'}],related:[
+ {unit:'research',section:'assumption-map',label:'Modellannahmen, Unterschiede und Risiken im Researchbericht erklären'},
  {unit:'company',section:'integration',label:'Unternehmensposition und vollständige Kapitalfolgen als Bewertungsgrundlage beurteilen'},
  {unit:'industry',section:'integrated',label:'Branchen- und Wettbewerbshypothesen mit vollständigem Kapitalbedarf verbinden'},
  {unit:'forecasting',section:'architecture',label:'Integriertes Abschlussmodell ausführlich konstruieren'},
