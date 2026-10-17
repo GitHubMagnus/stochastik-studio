@@ -1814,3 +1814,73 @@ und bestandene Technikprüfungen ersetzen die spätere fachliche Abnahme nicht.
   Auf schmalen Bildschirmen bleiben im Indexrechner Bezeichnung und erster
   Vergleichswert zusammen sichtbar. Diese Prüfungen belegen die getesteten
   Funktionen und Rechnungen, keine vollständige fachliche Freigabe des Lernpfads.
+
+
+## Fortsetzung: Unternehmens- und Bankfinanzierung, 17. Oktober 2026
+
+- **Fixed-Income Markets for Corporate Issuers** folgt den drei tatsächlichen
+  Level-I-2027-Lernzielen zu kurzfristigen Unternehmens-/Institutsquellen, Repo
+  sowie langfristiger Investment-Grade-/High-Yield-Finanzierung. Die neue Einheit
+  enthält **33 Abschnitte, 17 eigene Beispiele, 15 Tabellen, 31 erklärte
+  Formeltafeln und drei berechnete Grafiken**. Bank, CP, Einlagen, Interbankmittel
+  und besicherte Finanzierung werden nach Nettobetrag, Frist, Zugang und Risiken
+  verglichen; nicht jedes Finanzinstitut wird als einlagenannehmende Bank behandelt.
+- Eigene **Cash-, Gebühren- und Rollover-Fälle** stimmen Bruttozufluss, zusätzliche
+  Guthabenbindung, Endfreigabe und nutzbare Mittel ab. Bank-Vertragszins sechs
+  Prozent ergibt im abgegrenzten Gebühren-/Einlagenfall **8,938547 Prozent**
+  einfache Vergleichskosten auf nutzbares Cash. Der eigene CP-Fall liefert
+  **19,73 Mio. netto** und **5,473898 Prozent** einfache Finanzierungskosten.
+  Eine Rollenentscheidung rechnet mitfinanzierte erste Zinsen mit; der zweite
+  Halbjahressatz für Kostengleichheit ist **5,882353 Prozent**, nicht pauschal sechs.
+- **Repo** wird rechtlich und wirtschaftlich mit beiden Cash-/Lieferpfeilen erklärt.
+  Fünf Prozent Haircut auf hundert Mio. ergeben 95 Mio. Cash; das Initial-Margin-
+  Verhältnis auf Cash beträgt **105,263158 Prozent**, die Übersicherungsquote
+  **5,263158 Prozent**. Die ausdrücklich genannte ICMA-Konvention verhindert eine
+  Vermischung mit Derivatemargin. Dreißig Tage vier Prozent ACT/360 erzeugen
+  **0,316667 Mio. Zins** und **95,316667 Mio. Endrückkaufpreis**.
+- In der eigenen **Zwischenmargin ohne Zinsabgrenzung** bleiben Cash-Exposition und
+  ursprüngliche Bestandsmenge fest. Bei Wert 98 und weiter fünf Prozent Haircut
+  fehlen zwei Mio. Sicherheiten zur Quote, obwohl noch kein Anfangscash ungedeckt
+  ist. Bei zehn Prozent verlangtem Haircut fehlen **7,555556 Mio.**. Dies wird von
+  neuer kleinerer Finanzierung, Cashschuldtilgung, Verwertung und tatsächlichem
+  Ausfallverlust getrennt. Wrong-Way Risk, Agenten-/CCP-Rollen, Rechts-/Abwicklungs-
+  und Liquiditätsrisiken sowie eine mögliche Liquiditätsspirale werden erläutert.
+- **IG-/HY-Vergleiche** halten Benchmark- und Spreadbewegungen getrennt. Der eigene
+  Benchmarkrückgang verbilligt neue IG-Pari-Schuld, während HY-Pari-Finanzierung
+  wegen stärkerem Spreadanstieg teurer wird. Bestehende Festkupons bleiben
+  Vertragszahlungen. Ein eigener Zustandsfall trennt **11,111111 Prozent** Promised
+  Yield von **4,444444 Prozent** erwarteter Einjahresrendite. Rang, Sicherheiten,
+  Covenant-Auslöser, Callprämie und Fälligkeitenwand werden mit Grenzen verbunden.
+- **Fünfzig eigene englische Trainingsfragen und je eine neue getrennte reservierte
+  Klausurfrage** enthalten deutsche Gründe je Auswahl und genaue Abschnittsrückwege.
+  Lernziel A hat 18 Abschnitts-/21 Trainingszuordnungen, B 15/25 und C 13/14; beide
+  reservierten Fälle verbinden die drei Lernziele. **34 kuratierte Einträge**
+  ergänzen oder präzisieren Definitionen, 31 kommen global hinzu. Initial Margin,
+  CP, Compensating Balance, Rollover, Collateral und Spread bekommen im neuen
+  Kapitel passende Kontextverweise; bestehende Bedeutungen bleiben erhalten.
+  Fünf bisherige Einheiten erhalten gezielte Rückverweise.
+- Der **Repo-Rechner** hat sechs getrennte Eingaben, vier ladbare Fälle, sechs
+  Kennzahlen, vollständige Cash-/Sicherheitenabstimmungen und eine signierte
+  Szenariokurve. **729 unabhängig gerechnete Ledger-Szenarien einschließlich aller
+  64 Eingabeecken** und **sämtliche 266 Grafikpunkte** stimmen mit ihren Referenzen
+  überein. Zins und Laufzeit beeinflussen den Endrückkaufpreis; die beschriebene
+  Zwischenmargin verwendet gesondert nur Anfangscash. Negativer Lieferbedarf wird
+  sichtbar als vertraglich erlaubter Sicherheitenüberschuss erklärt.
+- Gesamtstand: **64 Einheiten, 215/340 strukturelle Lernzielreferenzen, 1.732
+  Trainingsfragen, je 116 reservierte Klausurfragen und 110 CFA-Grafiken**.
+  Wörterbuch: **1.022 kuratierte Rückverweise, 1.349 Definitionen und 2.922
+  Begriffe/Aliase**. 40 Modelle sind in 63 bisherigen Finance-Kapiteln erreichbar.
+  Offen bleiben **38 Einheiten, 125 Lernzielreferenzen und 64 Fragen je vollständiger
+  Klausur**, anschließend der fachliche Gesamtaudit. Nächste Einheit: Finanzierung
+  öffentlicher Emittenten. Alle neuen Einheiten bleiben draft, vollständige
+  Klausuren gesperrt; **90/100 und 80/100 sind weiterhin nicht als erreicht belegt**.
+
+- Technische Abschlussprüfung: **231 Kernprüfungen und 205 vollständige
+  CFA-Prüfungen bestanden**. Der Browser durchläuft alle 64 neuen Einheiten,
+  740 Corporate-/Aktien- und 188 Anleihe-Trainingsfragen mit ihren Begründungen und
+  Abschnittsrückwegen. Zwei weitere Edge-Browserprüfungen kontrollieren 171
+  bisherige Kapitel, 40 Modelle, 7.144 Aktionen und 16.645 Begriffsverweise ohne
+  Fehler. Die neuen Rechnerfälle, Kontextverweise und Offline-Nutzung sind geprüft;
+  Grafiken, Formeln, Tabellen und signierte Ergebnisse sind zusätzlich auf Desktop
+  und Mobilansicht visuell kontrolliert. Diese Nachweise ersetzen keine vollständige
+  fachliche Freigabe aller Inhalte oder einen Nachweis der gewünschten Gesamtscores.

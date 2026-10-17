@@ -211,6 +211,29 @@ models.bondindex.presets=[
  {label:'Kursrückgang A',values:{nominal:100,open:100,close:90,coupon:3}},
  {label:'Gleiche Einzelrenditen',values:{nominal:100,open:100,close:98,coupon:3}}
 ];
-const api={models,calculate,annuity,price,bsm,cdf,forecastValue,companyPlan,covenantPlan,repaymentSchedule,bondIndexPlan};
+function repoFundingPlan(p){
+ if(![p.size,p.haircut,p.rate,p.days,p.shock,p.marginhaircut].every(Number.isFinite)||p.size<=0||p.haircut<0||p.haircut>=100||p.marginhaircut<0||p.marginhaircut>=100||p.rate<0||p.days<=0||p.shock<=-100)throw Error('Bitte positiven Sicherheitenwert und positive Tage, gültige Haircuts unter 100 % sowie nicht negative Zinsen verwenden.');
+ const cash=p.size*(1-p.haircut/100),interest=cash*p.rate/100*p.days/360,repurchase=cash+interest,current=p.size*(1+p.shock/100),required=cash/(1-p.marginhaircut/100),margin=required-current,uncovered=Math.max(cash-current,0),initialMargin=p.size/cash*100;
+ const out=result([['Anfangscash (Mio.)',cash],['Repo-Zins (Mio.)',interest],['Endrückkaufpreis (Mio.)',repurchase],['Sicherheiten-Lieferbedarf (Mio.)',margin],['Ungedecktes Anfangscash (Mio.)',uncovered],['Initial-Margin-Verhältnis (%)',initialMargin]],seq(-50,20,s=>required-p.size*(1+s/100),70),'Sicherheitenpreisänderung (%)','Signierter Sicherheitenbedarf (Mio.)','Eigener einzelner Festzins-Repo in einer Währung, einfacher ACT/360-Zins; keine Sicherheitenkupons, Gebühren oder Ausfälle. Initialer Haircut bestimmt das ursprüngliche Cash. Der aktuelle Haircut ist eine gesonderte vertraglich erlaubte Marginanforderung. Für die Zwischenmargin bleibt die Cash-Exposition ohne Zinsabgrenzung auf dem ursprünglichen Kreditbetrag. Zusatzsicherheiten werden als Wertpapiere geliefert; negativer Bedarf bedeutet vertraglich erlaubte Freigabe, keine Kreditrückzahlung. Ungedecktes Anfangscash ist eine Momentaufnahme vor Transfer, Kosten und Close-out, kein berechneter Ausfallverlust. Endrückkaufpreis enthält dagegen den gesamten vereinbarten Repo-Zins. Die Kurve vergleicht gleichzeitige Preisszenarien, keinen zeitlichen Kursverlauf.');
+ out.marker=[p.shock,margin];out.repo={cash,interest,repurchase,current,required,margin,uncovered,initialMargin};
+ out.projection={caption:'Cash und Sicherheiten nach Zeit und Bezugsgröße trennen',headers:['Größe','Wert (Mio.)'],rows:[['Anfänglicher Sicherheitenwert',p.size],['Anfänglich erhaltenes Cash',cash],['Nicht durch Repo finanzierter Anfangswert',p.size-cash],['Aktueller Wert des ursprünglichen Bestands',current],['Exposition der Zwischenmargin ohne Zins',cash],['Aktuell geforderter Gesamtwert',required],['Signierter Sicherheiten-Lieferbedarf',margin],['Ungedecktes Anfangscash vor Transfer',uncovered],['Repo-Zins der gesamten Laufzeit',interest],['Endrückkaufpreis',repurchase]]};
+ out.stable={caption:'Cashpfeile bei ordnungsgemäßem Beginn und Ende; Sicherheitenlieferung ist kein Cash',headers:['Cashtermin','Cashnehmer (Mio.)','Cashgeber (Mio.)'],rows:[['Anfang: Cash gegen Wertpapiere',cash,-cash],['Ende: Rückkauf gegen Rücklieferung',-repurchase,repurchase],['Saldo der Cashzahlungen',-interest,interest]]};
+ return out;
+}
+add('repofunding','Repo: Finanzierung, Zins und Sicherheitenbedarf','Verändere jeweils eine Annahme. Der Anfangs-Haircut bestimmt die Kreditgröße; Preisbewegung und aktuelle Haircutanforderung bestimmen später den Sicherheitenbedarf bei festgehaltenem Anfangskredit.',[
+ field('size','Anfangswert Sicherheiten (Mio.)',10,500,1,100),
+ field('haircut','Anfangs-Haircut (%)',0,40,.5,5),
+ field('rate','Repo-Satz (% p.a., ACT/360)',0,15,.25,4),
+ field('days','Laufzeit (Tage)',1,360,1,30),
+ field('shock','Sicherheitenpreisänderung (%)',-50,20,1,-2),
+ field('marginhaircut','Aktuell verlangter Haircut (%)',0,50,.5,5)
+],repoFundingPlan);
+models.repofunding.presets=[
+ {label:'Grundfall laden',values:{size:100,haircut:5,rate:4,days:30,shock:-2,marginhaircut:5}},
+ {label:'Stärkerer Kursrückgang',values:{size:100,haircut:5,rate:4,days:30,shock:-15,marginhaircut:5}},
+ {label:'Nur Haircutanforderung steigt',values:{size:100,haircut:5,rate:4,days:30,shock:-2,marginhaircut:10}},
+ {label:'Sicherheitenüberschuss',values:{size:100,haircut:5,rate:4,days:30,shock:5,marginhaircut:5}}
+];
+const api={models,calculate,annuity,price,bsm,cdf,forecastValue,companyPlan,covenantPlan,repaymentSchedule,bondIndexPlan,repoFundingPlan};
 if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.FinanceModels=api;
 })(globalThis);
