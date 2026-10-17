@@ -129,7 +129,7 @@ module.exports={id:'fx-calculation',intro:[
    ['Interpretation','Beschreibe ich eine Preisrelation, eine Erwartung oder eine riskante Strategie?']
   ],'Diese Reihenfolge verbindet Rechenweg und wirtschaftliche Bedeutung.')
  ])
-],related:[{unit:'fx-markets',section:'quotation',label:'Kursrichtung und Basiswährung festlegen'},{unit:'fx-markets',section:'changes',label:'Kehrwert und asymmetrische Prozentänderungen'},{unit:'tvm',section:'additivity',label:'Gleiche Zahlungsströme und Arbitragefreiheit'},{unit:'fx-markets',section:'instruments',label:'Währungsrendite und Deviseninstrumente'}],
+],related:[{unit:'bond-cashflows',section:'dual-currency',label:'Verschiedene Kupon- und Tilgungswährungen je Zahlung umrechnen'},{unit:'fx-markets',section:'quotation',label:'Kursrichtung und Basiswährung festlegen'},{unit:'fx-markets',section:'changes',label:'Kehrwert und asymmetrische Prozentänderungen'},{unit:'tvm',section:'additivity',label:'Gleiche Zahlungsströme und Arbitragefreiheit'},{unit:'fx-markets',section:'instruments',label:'Währungsrendite und Deviseninstrumente'}],
  sources:[
  {title:'CFA Institute: Lernzielkatalog Level I 2027',url:'https://www.cfainstitute.org/sites/default/files/2027levelitopicoutline_online.pdf#page=7'},
  {title:'CFA Institute: Exchange Rate Calculations',url:'https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/exchange-rate-calculations'},

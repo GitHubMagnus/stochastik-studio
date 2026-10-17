@@ -188,7 +188,7 @@ module.exports={id:'capital-structure',intro:[
   'Der reine MM-Fall erklärt, warum günstige Schulden durch teureres verbleibendes Eigenkapital ausgeglichen werden. Das Steuermodell erklärt, wie zusätzliche verteilbare Zahlungen einen Wertbeitrag schaffen. Die Trade-off-Betrachtung zeigt, warum dieser Vorteil durch Krisenkosten und verlorene Flexibilität begrenzt wird. Die Modelle sind aufeinander aufbauende Antworten auf unterschiedliche Annahmen.',
   'Für CFA-Level-I-Aufgaben zuerst Modellwelt und gesuchte Größe markieren: WACC, Eigenkapitalkosten, Gesamtkapitalquote, Verhältnis zu Eigenkapital oder Unternehmenswert. Danach prüfen, ob Werte, Perioden, Steuerfaktoren und Cashflowperspektive zusammenpassen. Eine Formel mit korrekten Symbolen liefert nur dann eine sinnvolle Antwort, wenn diese Vorentscheidung stimmt.'
  ])
-],related:[
+],related:[{unit:'bond-cashflows',section:'issuer-tax',label:'Emittentenzinsabzug von Anlegersteuer und Tilgung trennen'},
  {unit:'bond-features',section:'funding',label:'Kredit, Cashverwendung und vertraglichen Spielraum gemeinsam prüfen'},
  {unit:'equity-factors',section:'leverage',label:'Asset-, Schuld- und Eigenkapitalbeta mit konsistenten Ansprüchen vergleichen'},
  {unit:'company',section:'financial-leverage',label:'Gleiche operative Leistung mit verschiedenen Buchrenditen vergleichen'},

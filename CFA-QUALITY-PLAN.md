@@ -1639,3 +1639,96 @@ und bestandene Technikprüfungen ersetzen die spätere fachliche Abnahme nicht.
   Die bisherige Finance-Prüfung umfasst alle 171 Kapitel, 37 Modelle, 7.025 Aktionen
   und 16.490 Begriffsverweise. Diese Kontrollen bestätigen Technik und die geprüften
   Gegenrechnungen; sie begründen noch keinen Qualitäts- oder Vorbereitungsscore.
+
+### 17.10.2026 – Zahlungspläne, Optionsentscheidungen und Anleger-Cashflows verbinden
+
+- **36 Abschnitte, zwanzig eigene Beispiele, 19 Tabellen, 38 erklärte Formeltafeln
+  und vier berechnete Grafiken** bearbeiten die zwei offiziellen 2027-Lernziele zu
+  Fixed-Income Cash Flows and Types. Die öffentliche Einführung 2026 ergänzt den
+  Themenrahmen; der 2027-Outline bleibt maßgeblich. SEC, TreasuryDirect und IRS
+  liefern abgegrenzte Primärbeispiele. IFSB-15 vom Dezember 2013 dient ausdrücklich
+  als historische begriffliche Quelle, nicht als weltweit geltende aktuelle Regel.
+- Vier eigene Vierjahrespläne verwenden dasselbe Nominal 1.000 und denselben
+  Vertragszins sechs Prozent: Endfälligkeit, gleiche Tilgung, Annuität und Ballon.
+  Jede Zeile trennt Anfangsschuld, Zins, Tilgung, Gesamtzahlung und Restschuld.
+  Die Zinssummen 240, 150, 154,365969 und 204 folgen unterschiedlichen Zeiträumen
+  gebundenen Kapitals. Diskontiert zum Vertragszins ergeben alle Pläne genau 1.000;
+  weniger undiskontierter Zins ist kein kostenloser Finanzierungsvorteil.
+- Die Annuitätenrate wird aus dem Rentenbarwert hergeleitet und bis zur letzten
+  Restschuld fortgeschrieben. Ungerundete Zwischenwerte und reine Anzeigerundung
+  werden unterschieden. Die WAL von 4, 2,5, 2,572766 beziehungsweise 3,4 Jahren
+  gewichtet nur Tilgung; sie wird weder mit Endlaufzeit noch Duration gleichgesetzt.
+- Zero-Coupon, Zinsaufschub, kapitalisierter PIK-Zins, Sinking Fund und ein eigener
+  Zahlungswasserfall erklären Cashzeitpunkt, Emissions- versus Einzelstückplan und
+  Rangfolge. Die PIK-Schuld steigt bei zweimal acht Prozent von 1.000 auf 1.166,40;
+  kein Cashkupon bedeutet keine Zinsfreiheit.
+- Floater-Reset, Vertrags- und Marktspread, Jahresfraktion und Beobachtungszeitpunkt
+  werden getrennt. Ein eigener Gesamtkupon-Floor ist ausdrücklich etwas anderes
+  als ein Floor nur auf den Referenzsatz. Planmäßiger und ereignisbedingter Step-up,
+  Indexnominal, Produktfloor und verschiedene Zahlungswährungen ergänzen die Fälle.
+  Der tatsächliche TIPS-Endfloor schützt nicht pauschal einen höheren Kaufpreis.
+- Call- und Put-Rechte werden vom richtigen Rechteinhaber betrachtet. Ein eigener
+  sofortiger Call nach Kupon vergleicht Fortsetzung 1.095,673485 mit Ablösung 1.020.
+  Seine Preisbegrenzung gilt unter den benannten Annahmen am Ausübungstermin und
+  wird nicht auf frühere Kurse übertragen. Ein eigener Anleger-Put vergleicht
+  Fortsetzung 912,044441 mit Rückgabe 1.000. Durchsetzbarkeit und Zahlung sind
+  ausdrücklich vorausgesetzt.
+- Die Wiederanlagerechnung bringt beide Call-Alternativen auf denselben Endtermin:
+  1.082,118 aus der Ablösung gegenüber 1.162,40 aus Fortsetzung. Frühere gemeinsame
+  Kupons werden nicht einseitig nochmals gezählt. Wandlung liefert im eigenen
+  Endfall den größeren Wert aus Nominal und Aktienlieferung, nicht deren Summe.
+  Interagierende Call- und Wandlungsrechte werden nicht als unabhängige Optionen
+  unbesehen addiert.
+- Kreditorganisation, gezogene Linie und ungezogener Rahmen, Sukuk-Vermögenszugriff,
+  Domestic-/Foreign-/Eurobond-Klassifikation sowie einzelne Rechtsdimensionen werden
+  unterschieden. EUR-Zahlung ist keine Eurobond-Definition. Eine bestimmte Ausnahme
+  von Registrierung ist keine allgemeine Rechts-, Steuer- oder Weiterverkaufsfreigabe.
+- Eigene Steuerfälle definieren Basis und Zeitpunkt vor der Rechnung: Kupon und
+  Preisgewinn, Quellenabzug und vollständige Anrechnung, jährlicher OID-Zuwachs ohne
+  Cashkupon, Premiumbehandlung, Steueräquivalenz und nutzbarer Emittentenzinsabzug.
+  Die gleiche Zero-Gesamtsteuer 40,848720 hat bei jährlicher Zahlung den Kostenbarwert
+  37,021611, bei Endzahlung 35,286661 zum eigenen Vergleichssatz fünf Prozent.
+  Das sind keine Behauptungen eines konkreten persönlichen oder allgemeinen Steuerrechts.
+- **46 eigene englische Trainingsfragen und je eine getrennte reservierte Klausurfrage**
+  enthalten deutsche Auswahlbegründungen und genaue Rückwege. Lernziel A besitzt
+  27 Abschnitts- und 35 Trainingszuordnungen, B fünfzehn und fünfzehn. Beide reservierten
+  Fälle verbinden Zahlungsstruktur mit ausdrücklich gegebenen Steuer- beziehungsweise
+  Rechtsbedingungen. **48 neue kuratierte Einträge** ergänzen oder schärfen das
+  Wörterbuch; 44 Definitionen kommen global hinzu. Standardoptionen, IFRS-Amortisation
+  und bestehende Aktien-Wandlungsdefinitionen behalten ihre Bedeutung. Fünf ältere
+  Einheiten erhalten genaue Rückverweise.
+- Der neue **Tilgungsrechner** besitzt sechs Eingaben, eine beschriftete native
+  Planauswahl und vier ladbare Fälle. Er zeigt alle Zahlungen und die Restschuld
+  sowie den Vergleich aller vier Pläne. Vertragszins und Marktdiskontsatz lassen
+  sich getrennt ändern. Ein einzelner aktueller Eingabehandler verhindert, dass
+  beim Modellwechsel alte Rechnerhandler weiterrechnen. Die bisherige Auron-
+  Covenant-Anwendung bleibt erhalten; das neue Modell nutzt ein vorher unbesetztes
+  Labor im bisherigen Kapitel bonds-03.
+- Unabhängige Gegenrechnungen lösen die Annuitätenrate alternativ über die
+  Endrestschuld und prüfen alle **128 Eckkombinationen** der Eingaben. Nominalsumme,
+  Zinsbasis, Restschuld, Nullzins, einjähriger Plan, Ballon-Grenzen, Preisbarwert und
+  WAL stimmen ab. Alle **205 Punkte der vier Grafiken** werden unabhängig geprüft.
+  Die Figuren, Formeln, Symbolhilfen und Rechneransichten wurden auf Desktop und
+  Mobilgeräten visuell geprüft. Tabellen passen auf Desktop und sind auf kleinen
+  Ansichten lokal per Tastatur verschiebbar.
+- Gesamtstand: **62 Einheiten, 209/340 strukturelle Lernzielreferenzen, 1.632
+  Trainingsfragen, je 114 reservierte Klausurfragen und 104 CFA-Grafiken**. Das
+  Wörterbuch enthält **946 kuratierte Rückverweise, 1.284 Definitionen und 2.778
+  Begriffe/Aliase**. 38 Modelle sind in 61 bisherigen Finance-Kapiteln erreichbar.
+  Offen bleiben **vierzig Einheiten, 131 Lernzielreferenzen und 66 Fragen je
+  vollständiger Klausur**, anschließend der fachliche Gesamtaudit. Nächste Einheit:
+  Emission, Handel und Indizes der Anleihemärkte. Alle neuen Einheiten bleiben
+  „draft“, vollständige Klausuren gesperrt; **90/100 und 80/100 sind weiterhin
+  nicht als erreicht belegt**.
+- Technische Verifikation: **215 Kernprüfungen und alle 185 Prüfungen der
+  vollständigen CFA-Suite bestanden**. Letztere kontrolliert sämtliche 62 neuen
+  Einheiten sowie unter anderem alle 740 Corporate-/Equity- und 88 Anleihe-
+  Trainingsfragen im Browser. Rechnerauswahl, alle vier Zahlungspläne, ladbare
+  Fälle, Symbolhilfen, genaue Rücknavigation, Kontextbegriffe, mobile Tastatur-
+  verschiebung und Offlinebetrieb sind geprüft. Die zwei bisherigen Finance-
+  Browserprüfungen umfassen **171 Kapitel, 38 Modelle, 7.068 Aktionen und 16.600
+  Begriffsverweise** ohne Fehler. Die abschließend erzeugten Grafiken und
+  Rechneransichten wurden zusätzlich visuell kontrolliert. Ein anfänglich falsches
+  Einlesen deutscher Tausendertrennzeichen im neuen Browserprüfer wurde korrigiert;
+  die angezeigten Produktwerte waren bereits richtig. Die technische Prüfung ist
+  weiterhin kein Beleg einer vollständigen fachlichen Abnahme oder eines Scores.

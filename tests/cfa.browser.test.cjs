@@ -7,6 +7,51 @@ async function open(t,route='cfa'){
  const page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[];page.on('pageerror',e=>errors.push(e.message));t.after(async()=>{await page.close();assert.deepEqual(errors,[]);});await page.goto(url+'/#'+route);return page;
 }
 
+test('repayment calculator switches genuine plan choices, reconciles schedules and preserves offline and return navigation',async t=>{
+ const page=await open(t,'cfa~learn-bond-cashflows~comparison');
+ await page.locator('.cfa-exploration a[href="#lesson-bonds-03~lab"]').click();
+ const metrics=async()=>page.locator('#lab-metrics strong').evaluateAll(xs=>xs.map(x=>Number(x.textContent.replaceAll('.','').replace(',','.'))));
+ const near=(a,b)=>assert.ok(Math.abs(a-b)<.000051,a+' vs '+b),select=page.getByRole('combobox',{name:'Tilgungsplan'});
+ assert.equal(await select.inputValue(),'2');assert.deepEqual(await select.locator('option').allTextContents(),['Endfällig','Gleiche Tilgung','Annuität','Ballon']);
+ let m=await metrics();[288.59149237327324,288.59149237327324,154.36596949309387,2.5727661582182275,1000].forEach((v,i)=>near(m[i],v));
+ for(const[shape,expected]of [['0',[60,1060,240,4,1000]],['1',[310,265,150,2.5,1000]],['3',[160,742,204,3.4,1000]]]){
+  await select.selectOption(shape);m=await metrics();m.forEach((v,i)=>near(v,expected[i]));assert.equal(await page.locator('#lab-projection .study-model-table').first().locator('tbody tr').count(),4);
+ }
+ await page.locator('[data-model-preset="0"]').click();await page.locator('#lab-n').fill('3');
+ const short=await metrics();await page.locator('#lab-n').fill('8');m=await metrics();assert.ok(m[0]<short[0]);assert.ok(m[2]>short[2]);assert.ok(m[3]>short[3]);assert.equal(await page.locator('[data-range="n"]').inputValue(),'8');
+ await page.locator('[data-model-preset="3"]').click();m=await metrics();assert.deepEqual(m,[250,250,0,2.5,1000]);assert.equal(await select.inputValue(),'2');
+ await page.locator('#lab-n').fill('1');for(const shape of ['0','1','2','3']){await select.selectOption(shape);m=await metrics();assert.deepEqual(m,[1000,1000,0,1,1000]);}
+ await page.locator('#lab-n').fill('1.5');assert.equal(await page.locator('#lab-error').isVisible(),true);assert.match(await page.locator('#lab-error').innerText(),/ganze Zahl/);assert.equal(await page.locator('#lab-results').isVisible(),false);
+ await page.locator('#lab-reset').click();assert.equal(await select.inputValue(),'2');assert.equal(await page.locator('#lab-error').isVisible(),false);
+ await page.locator('#lab-discount').fill('9');m=await metrics();near(m[4],934.9555941901901);near(m[2],154.36596949309387);
+ await page.locator('[data-range="rate"]').evaluate(e=>{e.value='0';});await page.locator('[data-range="rate"]').dispatchEvent('input');assert.equal(await page.locator('#lab-rate').inputValue(),'0');near((await metrics())[2],0);
+ await page.locator('#lab-reset').click();
+ for(const width of [390,760,1440]){
+  await page.setViewportSize({width,height:1000});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+  if(width===1440)assert.ok(await page.locator('#lab-projection .study-table-wrap').evaluateAll(xs=>xs.every(x=>x.scrollWidth<=x.clientWidth+1)));
+  if(width===390){const wrap=page.locator('#lab-projection .study-table-wrap').first();assert.ok(await wrap.evaluate(e=>e.scrollWidth>e.clientWidth));await wrap.focus();await page.keyboard.press('ArrowRight');await page.waitForTimeout(150);assert.ok(await wrap.evaluate(e=>e.scrollLeft>0));}
+ }
+ await page.goBack();await page.waitForFunction(()=>document.activeElement.id==='cfa-section-comparison');
+ // Switch models in one document so stale input handlers cannot calculate the wrong model.
+ await page.evaluate(()=>{location.hash='lesson-bonds-01~lab';});await page.locator('#lab-borrow').fill('40');near((await metrics())[0],260);
+ await page.evaluate(()=>{location.hash='lesson-bonds-03~lab';});await page.getByRole('combobox',{name:'Tilgungsplan'}).selectOption('1');assert.deepEqual(await metrics(),[310,265,150,2.5,1000]);
+ const offline=await browser.newPage({viewport:{width:390,height:900}});t.after(()=>offline.close());await offline.context().setOffline(true);await offline.goto(require('node:url').pathToFileURL(require('node:path').join(__dirname,'../index.html')).href+'#lesson-bonds-03~lab');
+ await offline.getByRole('combobox',{name:'Tilgungsplan'}).selectOption('0');assert.equal(await offline.locator('#lab-metrics strong').first().innerText(),'60');await offline.locator('[data-model-preset="2"]').click();assert.equal(await offline.locator('#lab-shape').inputValue(),'3');assert.equal(await offline.locator('#lab-error').isVisible(),false);
+});
+
+test('cash-flow glossary preserves standalone options and accounting meanings while new formulas and tables remain accessible',async t=>{
+ const page=await open(t,'cfa~learn-bond-cashflows~rights');
+ for(const[section,word,target]of [['rights','Call','rights'],['floor-cap','Floor','floor-cap'],['floating','Floater','floating'],['classification','Eurobond','classification'],['withholding','Quellenabzug','withholding'],['oid','Original Issue Discount','oid']]){
+  await page.goto(url+'/#cfa~learn-bond-cashflows~'+section);
+  const a=page.locator('#cfa-section-'+section+' a.term-link').filter({hasText:new RegExp('^'+word+'$','i')}).first(),id=(await a.getAttribute('href')).split('~')[1];await a.click();await page.waitForFunction(id=>document.activeElement.id==='glossary-'+id,id);
+  await page.locator('#glossary-'+id+' a[href="#cfa~learn-bond-cashflows~'+target+'"]').click();await page.waitForFunction(id=>document.activeElement.id==='cfa-section-'+id,target);
+ }
+ await page.goto(url+'/#cfa~learn-balance-sheet~amortisation');const a=page.locator('#cfa-section-amortisation a.term-link').filter({hasText:/^Amortisation$/}).first(),id=(await a.getAttribute('href')).split('~')[1];await a.click();await page.locator('#glossary-'+id+' a[href="#cfa~learn-balance-sheet~amortisation"]').click();await page.waitForFunction(()=>document.activeElement.id==='cfa-section-amortisation');
+ await page.setViewportSize({width:390,height:900});await page.goto(url+'/#cfa~learn-bond-cashflows~annuity-case');
+ const notation=page.locator('#cfa-section-annuity-case .formula-notation').first();await notation.locator('summary').click();assert.equal(await notation.getAttribute('open'),'');assert.ok((await notation.innerText()).includes('Jahresrate'));assert.ok(await notation.locator('math').count());
+ const wrap=page.locator('#cfa-section-annuity-case .cfa-table').first();assert.equal(await wrap.getAttribute('tabindex'),'0');await wrap.focus();await page.keyboard.press('ArrowRight');await page.waitForTimeout(150);assert.ok(await wrap.evaluate(e=>e.scrollLeft>0));assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+});
+
 test('bond contract calculator reconciles all presets, covenant breaches, impossible uses and accessible offline navigation',async t=>{
  const page=await open(t,'cfa~learn-bond-features~funding'),link='.cfa-exploration a[href="#lesson-bonds-01~lab"]';
  await page.locator(link).click();await page.waitForFunction(()=>document.activeElement.id==='study-lab');
