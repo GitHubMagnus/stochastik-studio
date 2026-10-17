@@ -7,6 +7,45 @@ async function open(t,route='cfa'){
  const page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[];page.on('pageerror',e=>errors.push(e.message));t.after(async()=>{await page.close();assert.deepEqual(errors,[]);});await page.goto(url+'/#'+route);return page;
 }
 
+test('bond index calculator separates initial weights, full-price and cash contributions across presets, bounds and offline use',async t=>{
+ const page=await open(t,'cfa~learn-bond-trading~index-case');await page.locator('.cfa-exploration a[href="#lesson-bonds-04~lab"]').click();
+ const metrics=async()=>page.locator('#lab-metrics strong').evaluateAll(xs=>xs.map(x=>Number(x.textContent.replaceAll('.','').replace(',','.').replace('−','-'))));
+ const near=(a,b)=>assert.ok(Math.abs(a-b)<.000051,a+' vs '+b);
+ assert.deepEqual(await metrics(),[50,2,-.5,2,1.5,101.5]);assert.equal(await page.locator('#lab-projection .study-model-table').count(),2);
+ await page.locator('[data-model-preset="1"]').click();assert.deepEqual(await metrics(),[75,2,-.75,2.5,1.75,101.75]);
+ await page.locator('[data-model-preset="2"]').click();assert.deepEqual(await metrics(),[50,-7,-5,2,-3,97]);
+ await page.locator('[data-model-preset="3"]').click();assert.deepEqual(await metrics(),[50,1,-1,2,1,101]);
+ await page.locator('#lab-nominal').fill('300');near((await metrics())[4],1);assert.equal(await page.locator('[data-range="nominal"]').inputValue(),'300');
+ await page.locator('#lab-open').fill('0');assert.equal(await page.locator('#lab-error').isVisible(),true);assert.equal(await page.locator('#lab-results').isVisible(),false);
+ await page.locator('#lab-reset').click();assert.deepEqual(await metrics(),[50,2,-.5,2,1.5,101.5]);assert.equal(await page.locator('#lab-error').isVisible(),false);
+ await page.locator('#lab-close').fill('0');await page.locator('#lab-coupon').fill('0');near((await metrics())[4],-49.5);
+ await page.locator('#lab-reset').click();for(const[key,value]of [['nominal','500'],['open','50'],['close','160'],['coupon','10']])await page.locator('#lab-'+key).fill(value);
+ const m=await metrics();near(m[1],240);near(m[4],(800+100+50+1-350)/350*100);near(m[5],100+m[4]);
+ for(const width of [390,760,1440]){
+  await page.setViewportSize({width,height:1000});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+  if(width===1440)assert.ok(await page.locator('#lab-projection .study-table-wrap').evaluateAll(xs=>xs.every(x=>x.scrollWidth<=x.clientWidth+1)));
+  if(width===390){const table=page.locator('#lab-projection .study-table-wrap').first();assert.ok(await table.evaluate(el=>[...el.querySelectorAll('tbody tr td:nth-child(2)')].every(td=>{const range=document.createRange();range.selectNodeContents(td);return range.getBoundingClientRect().right<=el.getBoundingClientRect().right+1;})),'mobile table shows A values beside row names');await table.focus();await page.keyboard.press('ArrowRight');await page.waitForTimeout(150);assert.ok(await table.evaluate(e=>e.scrollLeft>0));const chart=page.locator('#lab-chart');await chart.focus();await page.keyboard.press('ArrowRight');await page.waitForTimeout(150);assert.ok(await chart.evaluate(e=>e.scrollLeft>0));}
+ }
+ await page.goBack();await page.waitForFunction(()=>document.activeElement.id==='cfa-section-index-case');
+ await page.evaluate(()=>{location.hash='lesson-bonds-03~lab';});await page.getByRole('combobox',{name:'Tilgungsplan'}).selectOption('1');assert.deepEqual(await metrics(),[310,265,150,2.5,1000]);
+ await page.evaluate(()=>{location.hash='lesson-bonds-04~lab';});await page.locator('#lab-close').fill('90');assert.deepEqual(await metrics(),[50,-7,-5,2,-3,97]);
+ const offline=await browser.newPage({viewport:{width:390,height:900}}),errors=[];offline.on('pageerror',e=>errors.push(e.message));t.after(async()=>{await offline.close();assert.deepEqual(errors,[]);});await offline.context().setOffline(true);
+ await offline.goto(require('node:url').pathToFileURL(require('node:path').join(__dirname,'../index.html')).href+'#lesson-bonds-04~lab');await offline.locator('[data-model-preset="1"]').click();assert.equal(await offline.locator('#lab-metrics strong').nth(4).innerText(),'1,75');assert.equal(await offline.locator('#lab-error').isVisible(),false);
+});
+
+test('bond market glossary uses contextual quotes and total return while preserving FX and equity definitions',async t=>{
+ const page=await open(t);
+ for(const[section,word,target]of [['quote','Bid','quote'],['quote','Ask','quote'],['costs','Mid','costs'],['venues','OTC','venues'],['reinvestment','Total Return','return-formula'],['index-case','Gesamtrendite','return-formula'],['replication','Tracking Error','replication'],['liquidity','On-the-run','liquidity'],['rebalancing','Fixing','rebalancing']]){
+  await page.goto(url+'/#cfa~learn-bond-trading~'+section);if(section==='index-case'&&word==='Gesamtrendite')await page.locator('#cfa-section-index-case .formula-notation summary').last().click();const a=page.locator('#cfa-section-'+section+' a.term-link:visible').filter({hasText:new RegExp('^'+word+'$','i')}).first(),id=(await a.getAttribute('href')).split('~')[1];await a.click();await page.waitForFunction(id=>document.activeElement.id==='glossary-'+id,id);
+  await page.locator('#glossary-'+id+' a[href="#cfa~learn-bond-trading~'+target+'"]').click();await page.waitForFunction(id=>document.activeElement.id==='cfa-section-'+id,target);
+ }
+ for(const[unit,section,word]of [['fx-calculation','bid-ask','Bid'],['equity-returns','returns','Gesamtrendite']]){
+  await page.goto(url+'/#cfa~learn-'+unit+'~'+section);if(unit==='equity-returns')await page.locator('#cfa-section-returns .formula-notation summary').first().click();const a=page.locator('#cfa-section-'+section+' a.term-link:visible').filter({hasText:new RegExp('^'+word+'$','i')}).first(),id=(await a.getAttribute('href')).split('~')[1];await a.click();await page.locator('#glossary-'+id+' a[href="#cfa~learn-'+unit+'~'+section+'"]').click();await page.waitForFunction(id=>document.activeElement.id==='cfa-section-'+id,section);
+ }
+ await page.setViewportSize({width:390,height:900});await page.goto(url+'/#cfa~learn-bond-trading~market-value');const notation=page.locator('#cfa-section-market-value .formula-notation').first();await notation.locator('summary').click();assert.equal(await notation.getAttribute('open'),'');assert.match(await notation.innerText(),/Nominal/);
+ await page.goto(url+'/#cfa~learn-bond-trading~index-rules');const table=page.locator('#cfa-section-index-rules .cfa-table').first();await table.focus();await page.keyboard.press('ArrowRight');await page.waitForTimeout(150);assert.ok(await table.evaluate(e=>e.scrollLeft>0));assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+});
+
 test('repayment calculator switches genuine plan choices, reconciles schedules and preserves offline and return navigation',async t=>{
  const page=await open(t,'cfa~learn-bond-cashflows~comparison');
  await page.locator('.cfa-exploration a[href="#lesson-bonds-03~lab"]').click();

@@ -188,6 +188,29 @@ models.repayment.presets=[
  {label:'Ballon laden',values:{shape:3,face:1000,rate:6,n:4,balloon:70,discount:6}},
  {label:'Zinsfrei vergleichen',values:{shape:2,face:1000,rate:0,n:4,balloon:70,discount:0}}
 ];
-const api={models,calculate,annuity,price,bsm,cdf,forecastValue,companyPlan,covenantPlan,repaymentSchedule};
+function bondIndexPlan(p){
+ if(![p.nominal,p.open,p.close,p.coupon].every(Number.isFinite)||p.nominal<=0||p.open<=0||p.close<0||p.coupon<0)throw Error('Bitte positives Nominal und positiven Anfangsvollpreis sowie nicht negative Endpreise und Cashkupons verwenden.');
+ const startA=p.nominal*p.open/100,startB=100,endA=p.nominal*p.close/100,endB=100,cashA=p.nominal*p.coupon/100,cashB=1,start=startA+startB;
+ const weight=startA/start,returnA=(endA+cashA-startA)/startA*100,priceReturn=(endA+endB-start)/start*100,cashReturn=(cashA+cashB)/start*100,total=priceReturn+cashReturn;
+ const atNominal=n=>{const a=n*p.open/100;return ((n*(p.close+p.coupon)/100+101)/(a+100)-1)*100;};
+ const out=result([['Anfangsgewicht A (%)',weight*100],['Gesamtrendite A (%)',returnA],['Vollpreisbeitrag (%-Punkte)',priceReturn],['Cashkuponbeitrag (%-Punkte)',cashReturn],['Index-Gesamtrendite (%)',total],['Indexendstand (Start 100)',100+total]],seq(50,500,atNominal,45),'Für A anfangs erfasstes Nominal (Mio.)','Index-Gesamtrendite (%)','Eigener Zweianleihenindex in einer gemeinsamen Währung, eine festgelegte Beobachtungsperiode, keine Annualisierung. B bleibt fest: Nominal 100 Mio., Anfangs- und Endvollpreis je 100 Punkte und Cashkupon ein Punkt. Vollpreise enthalten Stückzinsen; Kursnotierungen und Cashkupons gelten je 100 Nominal. Während der Periode bleiben die Bestände unverändert. Cashkupons werden am Periodenende bezahlt; keine Tilgung, Kosten, Steuern oder Wiederanlage. Der Cashkuponbeitrag allein ist keine um Stückzinsen bereinigte reine Perioden-Zinsrendite. Die Kurve vergleicht unterschiedliche Anfangszusammensetzungen; zusätzliches Nominal erzeugt keinen Gewinn mitten in einer laufenden Periode. Gezeichnete Preise und Cashzahlungen sind Szenarien, keine Renditeprognosen oder Garantie.');
+ out.marker=[p.nominal,total];out.index={startA,startB,endA,endB,cashA,cashB,start,weight,returnA,priceReturn,cashReturn,total};
+ out.projection={caption:'Zwei Anleihen: Notierung, Marktwert und Cashzahlungen abstimmen',headers:['Größe','Anleihe A','Anleihe B'],rows:[['Erfasstes Nominal (Mio.)',p.nominal,100],['Anfangsvollpreis (je 100)',p.open,100],['Anfangsmarktwert (Mio.)',startA,startB],['Anfangsgewicht (%)',weight*100,(1-weight)*100],['Endvollpreis (je 100)',p.close,100],['Cashkupon (je 100)',p.coupon,1],['Endmarktwert (Mio.)',endA,endB],['Cashkuponzahlung (Mio.)',cashA,cashB],['Gesamtrendite (%)',returnA,1]]};
+ out.stable={caption:'Die Indexrechnung verwendet Anfangsgewichte und vollständige Cashflows',headers:['Abstimmung','Wert'],rows:[['Anfangsmarktwert (Mio.)',start],['Endmarktwert (Mio.)',endA+endB],['Cashkuponzahlungen (Mio.)',cashA+cashB],['Vollpreisbeitrag (%-Punkte)',priceReturn],['Cashkuponbeitrag (%-Punkte)',cashReturn],['Gesamtrendite (%)',total],['Endstand bei Indexstart 100',100+total]]};
+ return out;
+}
+add('bondindex','Anleiheindex: Gewichte und Gesamtrendite','Verändere jeweils nur eine Annahme für Anleihe A. B bleibt als Vergleich unverändert. Anfangsmarktwerte bestimmen die Gewichte; zum Periodenergebnis gehören sowohl Preisänderung als auch tatsächliche Cashzahlungen.',[
+ field('nominal','Anfangsnominal A (Mio.)',50,500,1,100),
+ field('open','Anfangsvollpreis A (je 100)',50,150,.25,100),
+ field('close','Endvollpreis A (je 100)',0,160,.25,99),
+ field('coupon','Cashkupon A (je 100)',0,10,.25,3)
+],bondIndexPlan);
+models.bondindex.presets=[
+ {label:'Grundfall laden',values:{nominal:100,open:100,close:99,coupon:3}},
+ {label:'Mehr Gewicht A',values:{nominal:300,open:100,close:99,coupon:3}},
+ {label:'Kursrückgang A',values:{nominal:100,open:100,close:90,coupon:3}},
+ {label:'Gleiche Einzelrenditen',values:{nominal:100,open:100,close:98,coupon:3}}
+];
+const api={models,calculate,annuity,price,bsm,cdf,forecastValue,companyPlan,covenantPlan,repaymentSchedule,bondIndexPlan};
 if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.FinanceModels=api;
 })(globalThis);

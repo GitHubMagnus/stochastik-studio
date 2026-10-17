@@ -176,7 +176,7 @@ module.exports={id:'equity-trading',intro:[
   'Typische Fehler entstehen durch falsche Nenner und vermischte Zeitpunkte: ausgegebene statt ausstehende Aktien, doppelt abgezogene Sperrbestände, Kalendertage statt Handelstage, Schlusskurs statt tatsächlicher Einstieg und Endgewichte statt Anfangsgewichte. Vor dem Rechnen wird deshalb festgelegt, was genau gemessen werden soll.',
   'Weder Börsennotierung noch hohe Handelsaktivität noch Indexmitgliedschaft ersetzt die Bewertung des zugrunde liegenden Anspruchs. Marktmechanik erklärt, wie Kapital und Anteile übertragen und Preise gemessen werden. Ob der Preis attraktiv ist, verlangt anschließend eine Untersuchung erwarteter Zahlungen, Risiken und Alternativen.'
  ])
-],related:[
+],related:[{unit:'bond-trading',section:'equity-comparison',label:'Primär- und Sekundärmärkte mit Anleihen vergleichen'},
  {unit:'issuer-forms',section:'primary-secondary',label:'Finanzierungszufluss und Eigentümerwechsel vergleichen'},
  {unit:'equity-features',section:'public-private',label:'Öffentliche und private Beteiligungen unterscheiden'},
  {unit:'voting',section:'weights',label:'Aktienzahl von Stimmgewicht trennen'},
