@@ -22,6 +22,14 @@
 #lab-projection .study-model-table{margin:18px 0}
 #lab-projection figcaption{font-size:.82rem;line-height:1.6;text-align:left;color:#436579;padding:0 0 9px}
 #lab-projection td,#lab-projection th{white-space:nowrap}
+.study-lab-covenants #lab-projection table{min-width:620px;table-layout:fixed}
+.study-lab-covenants #lab-projection td,.study-lab-covenants #lab-projection th{white-space:normal}
+.study-lab-covenants #lab-projection .study-model-table:first-child th:nth-child(1){width:30%}
+.study-lab-covenants #lab-projection .study-model-table:first-child th:nth-child(2){width:25%}
+.study-lab-covenants #lab-projection .study-model-table:first-child th:nth-child(3){width:16%}
+.study-lab-covenants #lab-projection .study-model-table:first-child th:nth-child(4){width:29%}
+.study-lab-covenants #lab-projection .study-model-table:nth-child(2) table{min-width:420px}
+.study-lab-covenants #lab-projection .study-model-table:nth-child(2) th:first-child{width:75%}
 #lab-projection .study-table-wrap:focus-visible{outline:2px solid #087e82;outline-offset:2px}
 .study-model-table-hint{font-size:.75rem!important;color:#526c7c}
 .study-lab-forecast #lab-chart{overflow:auto}
