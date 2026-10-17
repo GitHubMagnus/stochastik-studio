@@ -1884,3 +1884,74 @@ und bestandene Technikprüfungen ersetzen die spätere fachliche Abnahme nicht.
   Grafiken, Formeln, Tabellen und signierte Ergebnisse sind zusätzlich auf Desktop
   und Mobilansicht visuell kontrolliert. Diese Nachweise ersetzen keine vollständige
   fachliche Freigabe aller Inhalte oder einen Nachweis der gewünschten Gesamtscores.
+
+
+## Fortsetzung: Finanzierung öffentlicher Emittenten, 17. Oktober 2026
+
+- **Fixed-Income Markets for Government Issuers** folgt den zwei tatsächlichen
+  Level-I-2027-Lernzielen: Finanzierungswege souveräner, nicht souveräner,
+  quasi-staatlicher und supranationaler Emittenten sowie Emission und Handel im
+  Vergleich zu Unternehmensschuld. **31 Abschnitte, 14 eigene Beispiele,
+  13 Tabellen, 22 erklärte Formeltafeln und vier berechnete Grafiken** verbinden
+  Anspruch, Zahlungsquelle, Frist, Währung, Preisfindung und ausführbaren Markt.
+- Ein eigener **Haushalts-Cashplan** trennt acht Mio. Primärdefizit, zwölf Mio.
+  Gesamtdefizit einschließlich Zins, dreißig Mio. Kapitalersatz und drei Mio.
+  Reserveaufstockung: **45 Mio. neuer Netto-Cashbedarf** bei fünfzehn Mio.
+  Pari-Nettozunahme. Bei Preis 99 und 0,3 Mio. Gebühren werden **45,757576 Mio.
+  neues Nominal** benötigt. Schuldenbestand, Bruttoaufnahme, Erhalt einer Reserve
+  und Ausgabeabschlag werden nicht mit derselben Größe bezeichnet.
+- Vier Grafiken zeigen **Brutto-/Nettoaufnahme, Jahresendfälligkeiten,
+  Projekt-Schuldendienstdeckung und stufenförmige Auktionsnachfrage**. Die visuelle
+  Kontrolle veranlasste eine Präzisierung der Fälligkeiten: Tilgung wird jetzt als
+  tatsächlicher Sprung am jeweils angenommenen Jahresende gezeigt. Zwischen den
+  Terminen wird keine fiktive laufende Tilgung interpoliert. Alle **212 gezeichneten
+  Punkte** stimmen mit unabhängigen Cash-, Tabellen- oder Gebotsreferenzen überein.
+- **Eigentum, erwartete Unterstützung und Garantie** bleiben getrennt. Der eigene
+  Teilgarantiefall zahlt auf hundert Mio. Anspruch vierzig vom Schuldner plus
+  dreißig aus der tatsächlich begrenzten Garantie. IBRD-Artikel IV Abschnitt 9
+  belegt ausdrücklich die Grenze zur direkten Regierungsverpflichtung.
+  Callable Capital ist keine bereits freie Kasse; auch Paid-in Capital kann in
+  Vermögenswerten gebunden sein. US-GO-/Revenue-/Conduit-Begriffe werden auf den
+  gelesenen Rechtsraum begrenzt. SEC und MSRB präzisieren reale Zahlungsquelle,
+  Obligor und Vertragsunterlagen; ursprüngliches Official Statement und spätere
+  aktuelle Informationen werden unterschieden.
+- **Der gleiche eigene Auktionsfall** vergibt hundert Mio. Nominal, davon zehn
+  Non-Competitive, und nur zwanzig der fünfzig Mio. des Grenzbieters C. Uniform
+  Price ergibt **99,8 Mio. Cash**, Multiple Price mit eigener NC-Durchschnittsregel
+  **100,211111 Mio.**. Gesamt-Cover **1,5** und Competitive-only-Cover **1,555556**
+  verwenden bewusst verschiedene Universen. Gleichbleibende Gebote sind eine
+  Vergleichsannahme, kein Beweis universell höheren staatlichen Auktionserlöses.
+- Tatsächliche **UK-Regeln vom 1. April 2026** unterscheiden konventionelle
+  Multiple-Price- von indexierten Uniform-Price-Auktionen. Der Debt Management
+  Report 2026–27 nennt neben Auktionen auch staatliche Syndizierungen und Tender.
+  Eine Treasury-Aufstockung und der eigene Cashfall verbinden gleichbleibende
+  Kuponrate, anderes neues Kaufdatum, Vollpreis und zusätzliches Nominal.
+  Bestehende Repo-, Index- und Tilgungsmodelle werden dadurch nicht ersetzt.
+- **46 neue englische Trainingsfragen und je eine getrennte neue reservierte
+  Klausurfrage** erhalten deutsche Gründe zu jeder Auswahl und genaue Rückwege.
+  Lernziel A hat 24 Abschnitts-/30 Trainingszuordnungen, B 15/23; beide reservierten
+  Fälle benötigen beide Lernziele. Der Präfix **gfu-** erhält die bestehenden
+  Governance-IDs gov- unverändert. **39 kuratierte Definitionen** ergänzen oder präzisieren
+  unter anderem GO, DSCR, Conduit, Kapitalzusagen, Auktionen sowie Bills, Notes,
+  Gilts, Local Currency und den allgemeinen Anleiheanspruch. Kontextabhängige
+  Bid-/Ask-/Mid-/Spread-Rückwege behalten die bisherigen Bedeutungen außerhalb
+  des neuen Kapitels. Sechs bestehende Einheiten erhalten gezielte Rückverweise.
+- Gesamtstand: **65 Einheiten, 217/340 strukturelle Lernzielreferenzen, 1.778
+  Trainingsfragen, je 117 reservierte Klausurfragen und 114 CFA-Grafiken**.
+  Wörterbuch: **1.061 kuratierte Rückverweise, 1.387 Definitionen und 3.013
+  Begriffe/Aliase**. Unverändert 40 Modelle in 63 bisherigen Finance-Kapiteln.
+  Offen: **37 Einheiten, 123 Lernzielreferenzen und 63 Fragen je vollständiger
+  Klausur**, danach der fachliche Gesamtaudit. Nächste Einheit: Anleihebewertung
+  auf und zwischen Kuponterminen. Alle neuen Einheiten bleiben draft, vollständige
+  Klausuren gesperrt; **90/100 und 80/100 sind weiterhin nicht als erreicht belegt**.
+
+- Technische Abschlussprüfung dieses Stands: **239 Kernprüfungen und 215
+  vollständige CFA-Prüfungen bestanden**. Der Browser durchläuft alle 65 neuen
+  Einheiten, 740 Corporate-/Aktien- und 234 Anleihe-Trainingsfragen einschließlich
+  ihrer Auswahlbegründungen und Abschnittsrückwege. Zwei weitere Edge-Prüfungen
+  kontrollieren 171 bisherige Kapitel, 40 Modelle, 7.144 Aktionen und 16.799
+  Begriffsverweise ohne Fehler; die Symbolhilfen sind auf Desktop und Mobilansicht
+  geprüft. Die vier neuen Grafiken sind auf sämtlichen 212 Datenpunkten unabhängig
+  nachgerechnet und zusammen mit Formeln, Tabellen und Navigation visuell auf
+  Desktop und Mobilansicht kontrolliert. Dies ersetzt keinen fachlichen Gesamtaudit
+  und belegt noch nicht die gewünschten Gesamtscores.

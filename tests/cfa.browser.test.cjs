@@ -7,6 +7,35 @@ async function open(t,route='cfa'){
  const page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[];page.on('pageerror',e=>errors.push(e.message));t.after(async()=>{await page.close();assert.deepEqual(errors,[]);});await page.goto(url+'/#'+route);return page;
 }
 
+test('government funding exposes exact figure data, local symbols and complete cash tables with accessible mobile and offline navigation',async t=>{
+ const page=await open(t,'cfa~learn-government-funding~gross-net');
+ assert.equal(await page.locator('#page-cfa .cfa-section').count(),31);assert.equal(await page.locator('#page-cfa .cfa-figure').count(),4);
+ assert.ok(await page.locator('#page-cfa .cfa-figure').evaluateAll(xs=>xs.every(e=>e.getBoundingClientRect().width<=641)));
+ assert.ok(await page.locator('#page-cfa .cfa-figure svg').evaluateAll(xs=>xs.every(svg=>{const box=svg.getBoundingClientRect();return [...svg.querySelectorAll('text')].every(t=>{const b=t.getBoundingClientRect();return b.left>=box.left-1&&b.right<=box.right+1;});})));
+ for(const[section,count]of [['gross-net',102],['maturity',18],['project-case',82],['allocation',10]]){
+  const figure=page.locator('#cfa-section-'+section+' .cfa-figure');await figure.locator('details summary').click();assert.equal(await figure.locator('tbody tr').count(),count);await figure.locator('details summary').click();
+ }
+ for(const width of [390,760,1440]){await page.setViewportSize({width,height:1000});await page.goto(url+'/#cfa~learn-government-funding~cash-need');assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));}
+ await page.setViewportSize({width:390,height:900});const notation=page.locator('#cfa-section-cash-need .formula-notation').first();await notation.locator('summary').click();assert.match(await notation.innerText(),/Primärdefizit/);assert.match(await notation.innerText(),/Cashreserve/);
+ await page.goto(url+'/#cfa~learn-government-funding~allocation');const table=page.locator('#cfa-section-allocation .cfa-table').first();await table.focus();await page.keyboard.press('ArrowRight');await page.waitForTimeout(120);assert.ok(await table.evaluate(e=>e.scrollLeft>0));
+ await page.goto(url+'/#cfa~learn-government-funding~workflow');await page.locator('.cfa-related a[href="#cfa~learn-corporate-funding~maturity-wall"]').click();await page.waitForFunction(()=>document.activeElement.id==='cfa-section-maturity-wall');await page.goBack();await page.waitForFunction(()=>document.activeElement.id==='cfa-section-workflow');
+ const offline=await browser.newPage({viewport:{width:390,height:900}}),errors=[];offline.on('pageerror',e=>errors.push(e.message));t.after(async()=>{await offline.close();assert.deepEqual(errors,[]);});await offline.context().setOffline(true);
+ await offline.goto(require('node:url').pathToFileURL(require('node:path').join(__dirname,'../index.html')).href+'#cfa~learn-government-funding');assert.equal(await offline.locator('#page-cfa .cfa-figure').count(),4);
+ await offline.locator('[data-train-unit]').click();const first=actual.questions.find(q=>q.unit==='government-funding'&&q.pool==='practice');assert.equal(await offline.locator('#cfa-question-title').innerText(),first.stem);
+ await offline.locator('input[name="cfa-answer"]').nth(first.correct).check();await offline.locator('#cfa-check').click();assert.match(await offline.locator('.cfa-solution h3').innerText(),/^Richtig/);
+ await offline.locator('.cfa-solution a[href="#cfa~learn-government-funding~map"]').click();await offline.waitForFunction(()=>document.activeElement.id==='cfa-section-map');
+});
+
+test('public funding terms return to exact public, corporate and bond explanations while original fiscal and FX meanings remain available',async t=>{
+ const page=await open(t);
+ for(const[section,word,targetUnit,target]of [['cash-need','Primärdefizit','government-funding','cash-need'],['general-obligation','GO','government-funding','general-obligation'],['supranational','Callable Capital','government-funding','supranational'],['dealers','Primary Dealer','government-funding','dealers'],['formats','Uniform Price','government-funding','formats'],['cover','Bid-to-Cover','government-funding','cover'],['reopening','Reopening','government-funding','reopening'],['comparison','Spread','corporate-funding','yield-parts'],['liquidity','Bid','bond-trading','quote'],['instruments','Bills','government-funding','instruments'],['instruments','Notes','government-funding','instruments'],['instruments','Gilts','government-funding','instruments'],['instruments','Bonds','bond-features','claim'],['currency','Local Currency','government-funding','currency']]){
+  await page.goto(url+'/#cfa~learn-government-funding~'+section);if(section==='cover')await page.locator('#cfa-section-cover .formula-notation summary').first().click();
+  const term=page.locator('#cfa-section-'+section+' a.term-link:visible').filter({hasText:new RegExp('^'+word+'$','i')}).first(),id=(await term.getAttribute('href')).split('~')[1];await term.click();await page.waitForFunction(id=>document.activeElement.id==='glossary-'+id,id);
+  await page.locator('#glossary-'+id+' a[href="#cfa~learn-'+targetUnit+'~'+target+'"]').click();await page.waitForFunction(id=>document.activeElement.id==='cfa-section-'+id,target);
+ }
+ await page.goto(url+'/#cfa~learn-fx-calculation~bid-ask');const fx=page.locator('#cfa-section-bid-ask a.term-link:visible').filter({hasText:/^Bid$/}).first(),fxId=(await fx.getAttribute('href')).split('~')[1];await fx.click();await page.locator('#glossary-'+fxId+' a[href="#cfa~learn-fx-calculation~bid-ask"]').click();await page.waitForFunction(()=>document.activeElement.id==='cfa-section-bid-ask');
+});
+
 test('repo calculator separates principal, interest, signed margin and principal shortfall across presets, bounds and offline use',async t=>{
  const page=await open(t,'cfa~learn-corporate-funding~margin-call');
  await page.locator('.cfa-exploration a[href="#lesson-bonds-02~lab"]').click();
