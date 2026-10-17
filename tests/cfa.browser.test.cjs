@@ -7,6 +7,61 @@ async function open(t,route='cfa'){
  const page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[];page.on('pageerror',e=>errors.push(e.message));t.after(async()=>{await page.close();assert.deepEqual(errors,[]);});await page.goto(url+'/#'+route);return page;
 }
 
+test('bond contract calculator reconciles all presets, covenant breaches, impossible uses and accessible offline navigation',async t=>{
+ const page=await open(t,'cfa~learn-bond-features~funding'),link='.cfa-exploration a[href="#lesson-bonds-01~lab"]';
+ await page.locator(link).click();await page.waitForFunction(()=>document.activeElement.id==='study-lab');
+ const metrics=async()=>page.locator('#lab-metrics strong').evaluateAll(es=>es.map(e=>Number(e.textContent.replace(',','.')))),near=(a,b)=>assert.ok(Math.abs(a-b)<.000051);
+ let m=await metrics();near(m[0],250);near(m[1],15);near(m[2],2.9375);near(m[3],5);near(m[4],80/13.8);
+ await page.locator('[data-model-preset="1"]').click();m=await metrics();near(m[1],45);near(m[2],205/80);near(m[3],35);
+ await page.locator('[data-model-preset="2"]').click();m=await metrics();near(m[2],4.7);near(m[3],-85);near(m[4],50/13.8);
+ const statuses=async()=>page.locator('#lab-projection .study-model-table').first().locator('tbody tr td:last-child').allTextContents();
+ assert.deepEqual(await statuses(),['Rechnerisch verletzt','Rechnerisch verletzt','Erfüllt','Erfüllt']);
+ assert.ok(await page.locator('#lab-projection .study-table-wrap').evaluateAll(es=>es.every(e=>e.scrollWidth<=e.clientWidth+1)),'desktop tables include the complete breach result without horizontal clipping');
+ await page.locator('[data-model-preset="0"]').click();await page.locator('#lab-dividend').fill('16');
+ assert.deepEqual(await statuses(),['Rechnerisch verletzt','Erfüllt','Rechnerisch verletzt','Erfüllt']);
+ await page.locator('#lab-dividend').fill('26');assert.equal(await page.locator('#lab-error').isVisible(),true);assert.match(await page.locator('#lab-error').innerText(),/Zahlungen.*verfügbare/);assert.equal(await page.locator('#lab-results').isVisible(),false);
+ await page.locator('#lab-reset').click();near((await metrics())[3],5);
+ await page.locator('[data-range="borrow"]').fill('40');m=await metrics();near(m[0],260);near(m[1],25);near(m[2],235/80);near(m[4],80/14.4);
+ await page.locator('#lab-reset').click();
+ for(const width of [390,760,1440]){await page.setViewportSize({width,height:1000});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));}
+ await page.setViewportSize({width:390,height:1000});const chart=page.locator('#lab-chart');await chart.focus();await page.keyboard.press('ArrowRight');await page.waitForFunction(()=>document.querySelector('#lab-chart').scrollLeft>0);
+ const table=page.locator('#lab-projection .study-table-wrap').first();await table.focus();await page.keyboard.press('ArrowRight');await page.waitForFunction(()=>document.querySelector('#lab-projection .study-table-wrap').scrollLeft>0);
+ await page.goBack();await page.waitForFunction(()=>document.activeElement.id==='cfa-section-funding');
+ await page.route(/^https?:/,r=>r.abort());const file=require('node:url').pathToFileURL(require('node:path').join(__dirname,'../index.html')).href;
+ await page.goto(file+'#cfa~learn-bond-features~funding');await page.locator(link).click();near((await metrics())[3],5);
+ await page.locator('[data-model-preset="1"]').click();near((await metrics())[1],45);
+});
+
+test('bond contract glossary distinguishes covenant context and keeps mathematics and recovery tables usable on mobile',async t=>{
+ const page=await open(t,'cfa~learn-bond-features');assert.equal(await page.locator('#page-cfa .cfa-section').count(),33);assert.equal(await page.locator('#page-cfa .cfa-figure').count(),3);
+ for(const[unit,section,term,targetUnit,target]of [['bond-features','negative-pledge','Negative Pledge','bond-features','negative-pledge'],['bond-features','indenture','Covenants','bond-features','indenture'],['balance-sheet','maturity-provisions','Covenants','balance-sheet','maturity-provisions'],['bond-features','issuer','Trustee','bond-features','indenture'],['bond-features','maintenance-incurrence','Maintenance Covenant','bond-features','maintenance-incurrence'],['bond-features','definitions','Netto-Leverage','bond-features','definitions'],['bond-features','recovery','Recovery','stakeholders','seniority']]){
+  await page.goto(url+'/#cfa~learn-'+unit+'~'+section);const a=page.locator('#cfa-section-'+section+' a.term-link').filter({hasText:new RegExp('^'+term+'$','i')}).first(),id=(await a.getAttribute('href')).split('~')[1];
+  await a.click();await page.waitForFunction(id=>document.activeElement.id==='glossary-'+id,id);
+  await page.locator('#glossary-'+id+' a[href="#cfa~learn-'+targetUnit+'~'+target+'"]').click();await page.waitForFunction(section=>document.activeElement.id==='cfa-section-'+section,target);
+ }
+ await page.setViewportSize({width:390,height:1000});await page.goto(url+'/#cfa~learn-bond-features~funding');
+ const formula=page.locator('#cfa-section-funding .cfa-formula').first();await formula.locator('.formula-notation summary').click();assert.match(await formula.innerText(),/freies Cash/);
+ assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+ await page.goto(url+'/#cfa~learn-bond-features~recovery');const table=page.locator('#cfa-section-recovery .cfa-table').first();await table.focus();await page.keyboard.press('ArrowRight');await page.waitForFunction(()=>document.querySelector('#cfa-section-recovery .cfa-table').scrollLeft>0);
+ assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+});
+
+test('fixed-income training answers every authored practice question with explained choices, notation and exact chapter returns',async t=>{
+ const page=await open(t);
+ for(const u of actual.units.filter(u=>u.topic==='bonds')){
+  await page.goto(url+'/#cfa~learn-'+u.id);await page.locator('[data-train-unit]').click();
+  const qs=actual.questions.filter(q=>q.unit===u.id&&q.pool==='practice');
+  for(const[i,q]of qs.entries()){
+   assert.equal(await page.locator('#cfa-question-title').innerText(),q.stem);assert.equal(await page.locator('.cfa-solution').count(),0);
+   await page.locator('input[name="cfa-answer"]').nth(q.correct).check();await page.locator('#cfa-check').click();
+   assert.match(await page.locator('.cfa-solution h3').innerText(),/^Richtig/);const text=await page.locator('.cfa-solution').innerText();for(const o of q.options)assert.ok(text.includes(o.why),q.id);
+   const back=page.locator('.cfa-solution a[href="#cfa~learn-'+u.id+'~'+q.section+'"]');assert.equal(await back.count(),1);
+   if(q.solution.some(b=>b.kind==='formula')){await page.locator('.cfa-solution .formula-notation summary').first().click();assert.equal(await page.locator('.cfa-solution .formula-notation').first().getAttribute('open'),'');}
+   if(i<qs.length-1)await page.locator('#cfa-train-next').click();else{await back.click();await page.waitForFunction(id=>document.activeElement.id==='cfa-section-'+id,q.section);}
+  }
+ }
+});
+
 test('equity factor learning opens the matching CAPM model and preserves rates, negative betas and section history offline',async t=>{
  const page=await open(t,'cfa~learn-equity-factors~capm');
  await page.locator('.cfa-exploration a[href="#lesson-equity-06~lab"]').click();

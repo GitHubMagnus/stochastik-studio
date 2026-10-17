@@ -120,6 +120,38 @@ models.companydrivers.presets=[
  {label:'Preisfall laden',values:Object.fromEntries(models.companydrivers.controls.map(f=>[f.key,f.value]))},
  {label:'Wachstumsfall laden',values:{price:100,quantity:2.4,variable:60,fixed:60,capex:40,ar:35,inventory:50,payables:25,dividend:0,minimum:10}}
 ];
-const api={models,calculate,annuity,price,bsm,cdf,forecastValue,companyPlan};
+function covenantPlan(p){
+ if(![p.ebitda,p.borrow,p.use,p.dividend,p.rate].every(Number.isFinite)||p.ebitda<=0||[p.borrow,p.use,p.dividend,p.rate].some(v=>v<0))throw Error('Bitte endliche nicht negative Transaktionswerte und ein positives Vertrags-EBITDA verwenden.');
+ const cash=25+p.borrow-p.use-p.dividend;
+ if(cash<0)throw Error('Die geplanten Zahlungen übersteigen das verfügbare freie Cash einschließlich neuem Kredit.');
+ const debt=220+p.borrow,net=Math.max(0,debt-Math.min(cash,50)),interest=12+p.borrow*p.rate/100;
+ const leverage=net/p.ebitda,headroom=3*p.ebitda-net,coverage=p.ebitda/interest;
+ const rules=[
+  ['Netto-Leverage','höchstens 3 ×',leverage,leverage<=3+1e-10],
+  ['Pro-forma Zinsdeckung','mindestens 4 ×',coverage,coverage>=4-1e-10],
+  ['Freies Cash','mindestens 10 Mio.',cash,cash>=10-1e-10],
+  ['Ausschüttungsbasket','höchstens 20 Mio.',p.dividend,p.dividend<=20+1e-10]
+ ];
+ const maxDividend=Math.max(0,Math.min(100,25+p.borrow-p.use));
+ const points=seq(0,maxDividend,d=>3*p.ebitda-Math.max(0,debt-Math.min(25+p.borrow-p.use-d,50)));
+ const out=result([['Bruttoschuld (Mio.)',debt],['Freies Cash (Mio.)',cash],['Netto-Leverage (×)',leverage],['Leverage-Spielraum (Mio.)',headroom],['Pro-forma Zinsdeckung (×)',coverage]],points,'Geplante Ausschüttung (Mio.)','Leverage-Spielraum (Mio.)','Eigener Auron-Modellvertrag: Anfangsschuld 220, freies Cash 25 und jährliche Zinsbasis 12 Mio. Neue Mittel werden für die eingegebene Zahlung verwendet oder bleiben frei. Nur höchstens 50 Mio. Cash sind für die Nettoquote anrechenbar. EBITDA und annualisierte Zinsbasis sind ausdrücklich Pro-forma-Vertragsgrößen, keine zugesagten künftigen Zahlungen. Spielraum ist weder eine Kreditzusage noch automatisch ein zusätzlich auszahlbarer Bruttokreditbetrag. Ein negativer Spielraum zeigt eine rechnerische Überschreitung; Vertragsfristen und Rechtsfolgen werden gesondert geprüft. Die Kurve hält neue Schulden, Verwendung, EBITDA und Zins fest.');
+ out.marker=[p.dividend,headroom];out.covenants=rules;out.funding={opening:25,borrow:p.borrow,use:p.use,dividend:p.dividend,closing:cash};
+ out.projection={caption:'Auron-Modellvertrag: vier getrennte Prüfungen nach der Transaktion',headers:['Prüfung','Eigene Vertragsgrenze','Rechenwert','Ergebnis'],rows:rules.map(([label,limit,value,pass])=>[label,limit,value,pass?'Erfüllt':'Rechnerisch verletzt'])};
+ out.stable={caption:'Mittelherkunft und Verwendung: freie Beträge in Millionen',headers:['Position','Betrag'],rows:[['Anfängliches freies Cash',25],['Neuer Kredit',p.borrow],['Operative / Investitionszahlung',p.use],['Ausschüttung',p.dividend],['Verbleibendes freies Cash',cash]]};
+ return out;
+}
+add('bondcovenants','Vertragsspielraum, Kredit und Mittelverwendung','Der Auron-Fall verbindet neue Finanzierung mit freiem Cash, Netto-Leverage, Pro-forma Zinsdeckung und Ausschüttungsgrenzen. Alle Grenzen sind eigene hypothetische Vertragsbedingungen.',[
+ field('ebitda','Vertrags-EBITDA (Mio.)',20,140,1,80),
+ field('borrow','Neuer Kredit (Mio.)',0,150,1,30),
+ field('use','Mittelverwendung (Mio.)',0,150,1,30),
+ field('dividend','Ausschüttung (Mio.)',0,100,1,10),
+ field('rate','Neuer Kreditzins (% p. a.)',0,15,.25,6)
+],covenantPlan);
+models.bondcovenants.presets=[
+ {label:'Projektzahlung laden',values:{ebitda:80,borrow:30,use:30,dividend:10,rate:6}},
+ {label:'Cash behalten',values:{ebitda:80,borrow:30,use:0,dividend:10,rate:6}},
+ {label:'Ertragsschock laden',values:{ebitda:50,borrow:30,use:30,dividend:10,rate:6}}
+];
+const api={models,calculate,annuity,price,bsm,cdf,forecastValue,companyPlan,covenantPlan};
 if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.FinanceModels=api;
 })(globalThis);

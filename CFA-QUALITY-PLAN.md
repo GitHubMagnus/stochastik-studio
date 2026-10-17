@@ -1546,3 +1546,96 @@ und bestandene Technikprüfungen ersetzen die spätere fachliche Abnahme nicht.
   Klausur**, anschließend der fachliche Gesamtaudit. Nächste Einheit: Anleiheverträge
   und Schutzrechte. Alle neuen Einheiten bleiben „draft“, vollständige Klausuren
   gesperrt; **90/100 und 80/100 sind weiterhin nicht als erreicht belegt**.
+
+### 17.10.2026 – Anleiheverträge, Mittelverwendung und Schutzrechte zusammen erklären
+
+- **33 Abschnitte, 15 eigene Beispiele, 19 Tabellen, 23 erklärte Formeltafeln und
+  drei berechnete Grafiken** bearbeiten die zwei offiziellen 2027-Lernziele zu
+  Fixed-Income Instrument Features. Eine öffentliche CFA-Einführung 2026 ergänzt
+  die Grundlage; sie ersetzt nicht den 2027-Outline. Das veröffentlichte Seagate-
+  Indenture vom 30. Juni 2025 dient ausdrücklich als historisches Dokumentbeispiel.
+- Der Auron-Steckbrief unterscheidet rechtlichen Schuldner, Garantien, Nominal,
+  Kaufpreis, Kupon, Fälligkeit, Rang, Sicherheit, Optionen und Covenant-Regeln.
+  Hunderttausend Stücke mit je 1.000 Nominal ergeben hundert Mio. Forderungsbasis,
+  aber bei Ausgabe 95 % nur 95 Mio. Mittelzufluss vor Kosten. Zehn Halbjahreskupons
+  zwanzig und die einmalige Endtilgung 1.000 bilden den vollständigen Zahlungsplan.
+- Kuponsatz, Jahreszahlung, laufender Ertrag und tatsächliche Rendite bleiben getrennt.
+  Ursprüngliche Laufzeit fünf, Restlaufzeit drei und sechs verbleibende Kupontermine
+  werden nachvollziehbar verbunden; Duration wird nicht gleichgesetzt. Ein getrennter
+  Floaterfall erklärt Referenzsatz, Spread und Zinsfraktion.
+- Affirmative und Negative Covenants werden nach verlangter oder beschränkter
+  Handlung beurteilt. Maintenance und Incurrence sind eine zusätzliche eigene
+  Unterscheidung nach Auslöser und Prüfzeitpunkt. Positive Formulierung oder ein
+  Grenzwert allein klassifiziert die Klausel nicht zuverlässig.
+- Negative Pledge wird von einem allgemeinen Schuldenverbot und von einer bereits
+  bestellten Sicherheit getrennt. Die CFA-Klarstellung vom 28. Juli 2025 im damaligen
+  Material wird als begriffliche Präzisierung und nicht als behauptetes 2027-Erratum
+  eingeordnet. Ausnahmen, gleichrangige Besicherung und Kombination von Baskets
+  werden anhand ausdrücklich verschiedener eigener Klauseln verglichen.
+- Auron verwendet vertragliche Bruttoschuld 220 und freies Cash 25, getrennt von
+  gesperrtem Cash fünfzehn. Eine Anrechnungsobergrenze fünfzig erzeugt kein weiteres
+  vorhandenes Geld. Ein neuer Kredit dreißig, Verwendung dreißig und Ausschüttung zehn
+  ergeben freies Cash fünfzehn, Nettoschuld 235 und Netto-Leverage 2,9375. Die
+  annualisierte vertragliche Zinsbasis 13,8 ergibt EBITDA-Zinsdeckung rund 5,7971.
+  Das wird ausdrücklich nicht als beliebiger tatsächlicher Rumpfjahreszinsaufwand
+  ausgegeben.
+- Behaltene Kreditmittel führen zu anderem Netto-Leverage als ausgegebene Mittel.
+  Anrechnungsgrenze, maximaler Netto-Leverage, Zinsdeckung, Mindestcash und
+  Ausschüttungsbasket werden gemeinsam geprüft. Ein verbleibender Spielraum ist
+  keine Kreditzusage. Ein Ertragsschock kann mehrere Tests verfehlen, ohne dass schon
+  eine Kuponzahlung ausgeblieben sein muss.
+- Eigene Verteilungsfälle trennen besicherten Zugriff, Bankfehlbetrag, freie Mittel
+  und Nachrang. Bei Sicherheit sechzig und freiem Pool achtzig erhält die Bank
+  73,333333 auf achtzig und die Senior-Note 66,666667 auf hundert. Gesamtdeckung
+  140/220 ist keine Recovery jeder Klasse. Recovery auf Nominal ist außerdem keine
+  vollständige Anlagerendite auf einen früheren Kaufpreis.
+- Eine reine Sicherheitenverlagerung bei konstanten Gesamtmitteln 140 erhöht den
+  Bankrückfluss genau um den Verlust der Note. Es wird kein fehlender neuer
+  Kreditzufluss erfunden. Der getrennte Boreal-Fall verfolgt den Tochterrest zur
+  Holding; ein zusätzlicher unmittelbarer Garantieanspruch verändert die Verteilung
+  unter ausdrücklich genannten Annahmen, ohne doppelte Einziehung.
+- Verstoß, Heilungsfrist, Event of Default, vorzeitige Fälligstellung, Cross-Default,
+  Cross-Acceleration, Waiver und Zustimmung werden getrennt gelesen. Eine eigene
+  75-Prozent-Regel wird nominalgewichtet und einschließlich ihrer Grenzformulierung
+  gerechnet. Zwei Dreiergruppen besitzen dabei 75 % beziehungsweise nur 60 % Gewicht; daraus wird keine allgemeine Rechtsregel für andere Verträge abgeleitet.
+- **42 eigene englische Trainingsfragen und je eine getrennte reservierte Klausurfrage**
+  besitzen deutsche Auswahlbegründungen und genaue Rückwege. Die reservierten Fälle
+  verbinden neue Sicherheiten, Mittelverwendung und zwei Quotentests beziehungsweise
+  einen Holding-Waiver mit der fehlenden Anspruchsgrundlage gegen eine Tochter.
+- Lernziel A besitzt zwanzig Abschnitts- und 22 Trainingszuordnungen, B 27 und dreißig.
+  **36 ergänzte oder überarbeitete kuratierte Begriffe** führen zu präzisen Abschnitten.
+  Covenant und Zinsdeckung erhalten im neuen Kapitel ihre vertragliche Bedeutung;
+  der vorhandene IFRS-Covenant-Rückweg und die Recovery-Definition bleiben erhalten.
+  Fünf bestehende Einheiten erhalten Rückverweise auf das neue Anleihekapitel.
+- Der neue **Auron-Vertragsrechner** besitzt fünf Eingaben und drei ladbare Fälle.
+  Er zeigt Quelle und Verwendung, fünf Kennzahlen, vier getrennte Vertragsprüfungen
+  und die Ausschüttungskurve. Alle 32 Eckkombinationen wurden geprüft: sechzehn
+  ergeben verfügbare Mittel, sechzehn erhalten die begründete Zurückweisung nicht
+  finanzierter Zahlungen. Rechnerische Covenant-Verstöße und negative Spielräume
+  bleiben sichtbar; sie werden nicht abgeschnitten. Auch der Grenzfall ohne
+  verfügbares Ausschüttungscash bleibt endlich.
+- Unabhängige Gegenrechnungen bestätigen alle **310 Punkte der drei Grafiken**,
+  vollständige Forderungs- und Mittelverteilung, Strukturgrenzen, Ausschüttungs- und
+  Kreditkapazität. Breite Tabellen und Formeln sind auf Mobilgeräten lokal mit
+  Tastatur verschiebbar. Die neue Vier-Prüfungen-Tabelle passt auf Desktop vollständig
+  in ihre Ausgabe; andere Modelltabellen bleiben unverändert. Grafiken, Rechnungen,
+  Symbolhilfen und die drei Modellfälle wurden visuell kontrolliert.
+- Gesamtstand: **61 Einheiten, 207/340 strukturelle Lernzielreferenzen, 1.586
+  Trainingsfragen, je 113 reservierte Klausurfragen und 100 CFA-Grafiken**. Das
+  Wörterbuch enthält **898 kuratierte Rückverweise, 1.240 Definitionen und 2.657
+  Begriffe/Aliase**. 37 Modelle sind in sechzig bisherigen Finance-Kapiteln erreichbar.
+  Offen bleiben **41 Einheiten, 133 Lernzielreferenzen und 67 Fragen je vollständiger
+  Klausur**, anschließend der fachliche Gesamtaudit. Nächste Einheit: Zahlungspläne,
+  eingebettete Optionen und rechtliche Einordnung von Anleihen. Alle neuen Einheiten
+  bleiben „draft“, vollständige Klausuren gesperrt; **90/100 und 80/100 sind weiterhin
+  nicht als erreicht belegt**.
+- Technische Verifikation: **207 Kernprüfungen, 175 Prüfungen der vollständigen
+  CFA-Suite und zwei bisherige Finance-Browserprüfungen bestanden**. Die breite
+  CFA-Prüfung beantwortet unter anderem 740 Corporate-/Equity- und 42 Anleihefragen
+  im Browser. Nach der abschließenden sprachlichen Präzisierung wurden die 207
+  Kernprüfungen und vier gezielte Browserprüfungen erneut bestanden. Letztere
+  kontrollieren alle 61 ausgearbeiteten Einheiten auf Darstellung, neue Fragen,
+  Kontextverlinkung, mobile Bedienung und die drei offline nutzbaren Rechnerfälle.
+  Die bisherige Finance-Prüfung umfasst alle 171 Kapitel, 37 Modelle, 7.025 Aktionen
+  und 16.490 Begriffsverweise. Diese Kontrollen bestätigen Technik und die geprüften
+  Gegenrechnungen; sie begründen noch keinen Qualitäts- oder Vorbereitungsscore.
