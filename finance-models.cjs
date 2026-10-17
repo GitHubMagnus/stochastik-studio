@@ -152,6 +152,42 @@ models.bondcovenants.presets=[
  {label:'Cash behalten',values:{ebitda:80,borrow:30,use:0,dividend:10,rate:6}},
  {label:'Ertragsschock laden',values:{ebitda:50,borrow:30,use:30,dividend:10,rate:6}}
 ];
-const api={models,calculate,annuity,price,bsm,cdf,forecastValue,companyPlan,covenantPlan};
+function repaymentSchedule({face,rate,n,shape,balloon=70}){
+ if(![face,rate,n,shape,balloon].every(Number.isFinite)||face<=0||rate<0||!Number.isInteger(n)||n<1||!Number.isInteger(shape)||shape<0||shape>3||balloon<0||balloon>100)throw Error('Bitte positives Nominal, nicht negativen Zins, ganze positive Jahre und einen gültigen Tilgungsplan verwenden.');
+ const r=rate/100,regular=r===0?face/n:face*r/(-Math.expm1(-n*Math.log1p(r)));
+ let balance=face;const rows=[];
+ for(let k=1;k<=n;k++){
+  const opening=balance,interest=opening*r;
+  let principal=shape===0?0:shape===1?face/n:shape===2?regular-interest:n===1?face:face*(1-balloon/100)/(n-1);
+  if(k===n)principal=opening;
+  principal=Math.min(opening,Math.max(0,principal));balance=Math.max(0,opening-principal);
+  rows.push({year:k,opening,interest,principal,payment:interest+principal,closing:balance});
+ }
+ return {rows,interest:rows.reduce((s,r)=>s+r.interest,0),wal:rows.reduce((s,r)=>s+r.year*r.principal/face,0)};
+}
+const repaymentNames=['Endfällig','Gleiche Tilgung','Annuität','Ballon'];
+add('repayment','Tilgungspläne: Zins, Zahlung und verbleibende Schuld','Vergleiche vier Pläne für dieselbe Finanzierung. Die Planart lässt sich auswählen; die Vergleichstabelle rechnet alle vier bei denselben übrigen Eingaben. Alle Zahlungen erfolgen jährlich am Periodenende.',[
+ {...field('shape','Tilgungsplan',0,3,1,2),choices:repaymentNames.map((label,value)=>({value,label}))},
+ field('face','Anfängliches Nominal',100,10000,1,1000),
+ field('rate','Vertragszins (% p. a.)',0,20,.25,6),
+ field('n','Planjahre',1,30,1,4),
+ field('balloon','Ballon: Nominal am Endtermin (%)',0,100,1,70),
+ field('discount','Diskontsatz (% p. a.)',0,20,.25,6)
+],p=>{
+ const selected=repaymentSchedule(p),pv=s=>s.rows.reduce((v,row)=>v+row.payment/(1+p.discount/100)**row.year,0);
+ const points=[[0,p.face]];for(const row of selected.rows)points.push([row.year,row.opening],[row.year,row.closing]);
+ const out=result([['Erste Zahlung',selected.rows[0].payment],['Letzte Zahlung',selected.rows.at(-1).payment],['Zinssumme',selected.interest],['Gewichtete Tilgungszeit (Jahre)',selected.wal],['Barwert zum Diskontsatz',pv(selected)]],points,'Jahre / Zahlungstermin','Ausstehendes Nominal','Ausgewählt: '+repaymentNames[p.shape]+'. Fester Vertragszins auf die jeweilige Anfangsschuld, jährliche Zahlung, keine Gebühren, Steuern, Optionen, Ausfälle oder Wiederanlage. Die Kurve springt am Zahlungstermin; Zins ist nicht zusätzlich getilgtes Nominal. WAL gewichtet nur Tilgung und ist keine Duration. Bei Diskontsatz gleich Vertragszins beträgt der Barwert in allen vier Plänen das anfängliche Nominal. Die Balloneingabe wirkt nur auf den Ballonplan; vor dem Endtermin wird der übrige Nominalanteil gleichmäßig getilgt. Bei einem Jahr fällt das gesamte Nominal am einzigen Termin an. Bei mehr als einem Jahr bedeutet ein Ballon von null vollständige Rückzahlung vor dem letzten Termin.');
+ out.schedule=selected;
+ out.projection={caption:repaymentNames[p.shape]+': vollständiger Zahlungs- und Restschuldplan',headers:['Jahr','Anfangsschuld','Zins','Tilgung','Zahlung','Restschuld'],rows:selected.rows.map(r=>[r.year,r.opening,r.interest,r.principal,r.payment,r.closing])};
+ out.stable={caption:'Gleiche Ausgangsbedingungen: vier Tilgungspläne vergleichen',headers:['Plan','Erste Zahlung','Letzte Zahlung','Zinssumme','WAL (Jahre)','Barwert'],rows:repaymentNames.map((name,shape)=>{const s=repaymentSchedule({...p,shape});return [name,s.rows[0].payment,s.rows.at(-1).payment,s.interest,s.wal,pv(s)];})};
+ return out;
+});
+models.repayment.presets=[
+ {label:'Annuität laden',values:{shape:2,face:1000,rate:6,n:4,balloon:70,discount:6}},
+ {label:'Gleiche Tilgung laden',values:{shape:1,face:1000,rate:6,n:4,balloon:70,discount:6}},
+ {label:'Ballon laden',values:{shape:3,face:1000,rate:6,n:4,balloon:70,discount:6}},
+ {label:'Zinsfrei vergleichen',values:{shape:2,face:1000,rate:0,n:4,balloon:70,discount:0}}
+];
+const api={models,calculate,annuity,price,bsm,cdf,forecastValue,companyPlan,covenantPlan,repaymentSchedule};
 if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.FinanceModels=api;
 })(globalThis);

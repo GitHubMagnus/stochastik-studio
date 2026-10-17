@@ -162,7 +162,7 @@ module.exports={id:'equity-features',intro:[
   'Für Prüfungsfragen ist häufig der entscheidende Unterschied klein: kumulativ oder nicht, Teilnahme am Rest oder Wahl zwischen Alternativen, fester Nennbetrag oder aktueller Preis, öffentliches Unternehmen oder private Platzierung. Markiere diese Bedingungen, bevor du rechnest.',
   'Die vereinfachten Modelle dieses Kapitels halten viele Merkmale bewusst konstant. Sie machen den Effekt eines Rechts sichtbar. Eine vollständige Bewertung verlangt zusätzlich Zukunftsszenarien, passende Diskontsätze und konsistente Annahmen über Finanzierung, neue Aktien und das Verhalten der Beteiligten.'
  ])
-],related:[
+],related:[{unit:'bond-cashflows',section:'conversion',label:'Wandlungswahl und Schuldtilgung am Endtermin gemeinsam prüfen'},
  {unit:'voting',section:'weights',label:'Von Aktienklassen zu Stimmgewicht und Abstimmungsergebnis'},
  {unit:'issuer-forms',section:'liability',label:'Gesellschaftsform und persönliche Haftung unterscheiden'},
  {unit:'stakeholders',section:'waterfall',label:'Rangfolge und Anreize der Anspruchsgruppen vertiefen'},
