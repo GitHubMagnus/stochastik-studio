@@ -7,6 +7,44 @@ async function open(t,route='cfa'){
  const page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[];page.on('pageerror',e=>errors.push(e.message));t.after(async()=>{await page.close();assert.deepEqual(errors,[]);});await page.goto(url+'/#'+route);return page;
 }
 
+test('repo calculator separates principal, interest, signed margin and principal shortfall across presets, bounds and offline use',async t=>{
+ const page=await open(t,'cfa~learn-corporate-funding~margin-call');
+ await page.locator('.cfa-exploration a[href="#lesson-bonds-02~lab"]').click();
+ const metrics=async()=>page.locator('#lab-metrics strong').evaluateAll(xs=>xs.map(x=>Number(x.textContent.replaceAll('.','').replace(',','.').replace('−','-'))));
+ const check=async values=>{const got=await metrics();assert.equal(got.length,6);values.forEach((v,i)=>assert.ok(Math.abs(got[i]-v)<.00006,got[i]+' vs '+v));};
+ await check([95,19/60,95+19/60,2,0,100/95*100]);
+ await page.locator('[data-model-preset="1"]').click();await check([95,19/60,95+19/60,15,10,100/95*100]);
+ await page.locator('[data-model-preset="2"]').click();await check([95,19/60,95+19/60,95/.9-98,0,100/95*100]);
+ await page.locator('[data-model-preset="3"]').click();await check([95,19/60,95+19/60,-5,0,100/95*100]);
+ await page.locator('#lab-rate').fill('0');await check([95,0,95,-5,0,100/95*100]);
+ await page.locator('#lab-size').fill('0');assert.equal(await page.locator('#lab-error').isVisible(),true);assert.equal(await page.locator('#lab-results').isVisible(),false);
+ await page.locator('#lab-reset').click();await check([95,19/60,95+19/60,2,0,100/95*100]);
+ for(const[key,value]of Object.entries({size:500,haircut:40,rate:15,days:360,shock:-50,marginhaircut:50}))await page.locator('#lab-'+key).fill(String(value));
+ await check([300,45,345,350,50,100/.6]);assert.equal(await page.locator('[data-range="shock"]').inputValue(),'-50');
+ await page.locator('[data-model-preset="0"]').click();assert.ok(await page.locator('#lab-projection .study-table-wrap').evaluateAll(xs=>xs.every(e=>e.scrollWidth<=e.clientWidth+1)));
+ for(const width of [390,760,1440]){await page.setViewportSize({width,height:1000});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));}
+ await page.setViewportSize({width:390,height:900});const ledger=page.locator('#lab-projection .study-table-wrap').first();
+ assert.ok(await ledger.evaluate(el=>[...el.querySelectorAll('tbody tr td:nth-child(2)')].every(td=>{const r=document.createRange();r.selectNodeContents(td);return r.getBoundingClientRect().right<=el.getBoundingClientRect().right+1;})));
+ const cashTable=page.locator('#lab-projection .study-table-wrap').last();await cashTable.focus();await page.keyboard.press('ArrowRight');await page.waitForTimeout(100);assert.ok(await cashTable.evaluate(e=>e.scrollLeft>0));
+ await page.locator('#lab-chart').focus();await page.keyboard.press('ArrowRight');await page.waitForTimeout(100);assert.ok(await page.locator('#lab-chart').evaluate(e=>e.scrollLeft>0));
+ await page.goBack();await page.waitForFunction(()=>document.activeElement.id==='cfa-section-margin-call');
+ await page.goto(url+'/#lesson-bonds-04~lab');assert.equal(await page.locator('.study-lab-repofunding').count(),0);await page.locator('#lab-close').fill('90');assert.match(await page.locator('#lab-metrics').innerText(),/−3|-3/);
+ const offline=await browser.newPage({viewport:{width:390,height:900}}),errors=[];offline.on('pageerror',e=>errors.push(e.message));t.after(async()=>{await offline.close();assert.deepEqual(errors,[]);});await offline.context().setOffline(true);
+ await offline.goto(require('node:url').pathToFileURL(require('node:path').join(__dirname,'../index.html')).href+'#lesson-bonds-02~lab');await offline.locator('[data-model-preset="3"]').click();
+ assert.match(await offline.locator('#lab-metrics strong').nth(3).innerText(),/^[−-]5$/);assert.equal(await offline.locator('#lab-error').isVisible(),false);
+});
+
+test('corporate funding terminology preserves contextual repo margin, CP and spread while mobile mathematics remains accessible',async t=>{
+ const page=await open(t);
+ for(const[section,word,target]of [['repo-legs','Repo','repo-legs'],['initial-margin','Initial Margin','initial-margin'],['cp','Commercial Paper','cp'],['bank-cost','Compensating Balance','bank-cost'],['rollover','Rollover','rollover'],['yield-parts','Spread','yield-parts'],['triparty','Tri-Party-Repo','triparty'],['wrong-way','Wrong-Way Risk','wrong-way']]){
+  await page.goto(url+'/#cfa~learn-corporate-funding~'+section);const term=page.locator('#cfa-section-'+section+' a.term-link:visible').filter({hasText:new RegExp('^'+word+'$','i')}).first(),id=(await term.getAttribute('href')).split('~')[1];await term.click();await page.waitForFunction(id=>document.activeElement.id==='glossary-'+id,id);
+  await page.locator('#glossary-'+id+' a[href="#cfa~learn-corporate-funding~'+target+'"]').click();await page.waitForFunction(id=>document.activeElement.id==='cfa-section-'+id,target);
+ }
+ await page.goto(url+'/#cfa~learn-working-capital~funding-cost');const cp=page.locator('#cfa-section-funding-cost a.term-link:visible').filter({hasText:/^Commercial Paper$/}).first(),cpId=(await cp.getAttribute('href')).split('~')[1];await cp.click();await page.locator('#glossary-'+cpId+' a[href="#cfa~learn-working-capital~funding-cost"]').click();await page.waitForFunction(()=>document.activeElement.id==='cfa-section-funding-cost');
+ await page.setViewportSize({width:390,height:900});await page.goto(url+'/#cfa~learn-corporate-funding~margin-call');const notation=page.locator('#cfa-section-margin-call .formula-notation').first();await notation.locator('summary').click();assert.match(await notation.innerText(),/Cash-Exposition/);
+ await page.goto(url+'/#cfa~learn-corporate-funding~yield-shocks');const table=page.locator('#cfa-section-yield-shocks .cfa-table').first();await table.focus();await page.keyboard.press('ArrowRight');await page.waitForTimeout(100);assert.ok(await table.evaluate(e=>e.scrollLeft>0));assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+});
+
 test('bond index calculator separates initial weights, full-price and cash contributions across presets, bounds and offline use',async t=>{
  const page=await open(t,'cfa~learn-bond-trading~index-case');await page.locator('.cfa-exploration a[href="#lesson-bonds-04~lab"]').click();
  const metrics=async()=>page.locator('#lab-metrics strong').evaluateAll(xs=>xs.map(x=>Number(x.textContent.replaceAll('.','').replace(',','.').replace('−','-'))));
