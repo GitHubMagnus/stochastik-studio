@@ -7,6 +7,7 @@ const refs={dcf:[863.837598531476],annuity:[272.324802937048],growth:[5,3.077640
 test('every interactive Finance model matches independent reference values',()=>{
  Object.assign(refs,{npv:[197.813011123],fxforward:[.882692307692],forwardvalue:[4.9],abs:[20,10],property:[2000000],frontier:[6,11.1803398875],forecastvalue:[756.9824942144152,786.9824942144152,78.69824942144152,50.55],companydrivers:[199.5,25.5,16.675,0],bondcovenants:[250,15,2.9375,5,80/13.8]});
  refs.repayment=[288.59149237327324,288.59149237327324,154.36596949309387,2.5727661582182275,1000];
+ refs.bondindex=[50,2,-.5,2,1.5,101.5];
  assert.equal(Object.keys(refs).length+1,Object.keys(M.models).length);
  for(const [id,expected] of Object.entries(refs)){const actual=run(id).metrics;expected.forEach((v,i)=>near(actual[i][1],v,id==='bsm'?1e-5:1e-6));}
 });

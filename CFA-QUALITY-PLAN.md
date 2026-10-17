@@ -1732,3 +1732,85 @@ und bestandene Technikprüfungen ersetzen die spätere fachliche Abnahme nicht.
   Einlesen deutscher Tausendertrennzeichen im neuen Browserprüfer wurde korrigiert;
   die angezeigten Produktwerte waren bereits richtig. Die technische Prüfung ist
   weiterhin kein Beleg einer vollständigen fachlichen Abnahme oder eines Scores.
+
+### 17.10.2026 – Marktsegmente, Anleiheindizes und tatsächliche Handelskosten verbinden
+
+- **35 Abschnitte, zwölf eigene Beispiele, 17 Tabellen, 25 erklärte Formeltafeln
+  und drei berechnete Grafiken** bearbeiten die drei offiziellen 2027-Lernziele zu
+  Fixed-Income Issuance and Trading. Emittententyp, Kreditqualität, Restzeit,
+  Währung, Rechte und Anlegerzweck werden als verschiedene Dimensionen gelesen.
+  Öffentlicher Bezug ersetzt keine tatsächliche Garantie. Ein gleiches Rating
+  beweist keine identische Liquidität oder Kapitalbindung.
+- Ein eigener Verpflichtungsfall trennt hundert Mio. in einem Jahr von einem
+  zehnjährigen Bullet, der am Verpflichtungstermin nur sechs Mio. Kupon liefert.
+  Gleiches Endnominal beseitigt die fehlenden 94 Mio. nicht. Vergleichsindex und
+  Mandat werden nach Währung, Kredit- und Zeitprofil abgeglichen.
+- Ein eigener Indexfilter wird auf sechs Titel angewendet; nur zwei bestehen alle
+  gleichzeitig geltenden Bedingungen. Kurs-Punkte je hundert, Stückzinsen, Nominal,
+  Geldmarktwert und Anfangsgewicht werden anschließend vollständig abgestimmt.
+  Zwei Mio. Nominal bei vollem Preis 99 ergeben 1,98 Mio., nicht 198 Mio.
+- Der Zweianleihenfall liefert zwei und ein Prozent Einzelrendite sowie 1,5 Prozent
+  Korbrendite. Zwei konsistente Zerlegungen bleiben erkennbar: minus 0,5 Prozentpunkte
+  Vollpreis plus zwei Cashkupon oder plus 0,5 Clean-Price-Beitrag plus ein Prozentpunkt
+  stückzinsbereinigter Ertrag. Cashkupon allein ist keine reine Perioden-Zinsrendite.
+- Der isolierte Kupontermin bewahrt vorher 103 Anspruch als nachher hundert Bondwert
+  plus drei Cash; er erzeugt allein null Rendite. Teiltilgung reduziert zugleich
+  das weiter bewertete Nominal. Ein bewusst falscher Endgewichtsvergleich ergibt
+  7,142857 statt der tatsächlichen fünf Prozent. Eine eigene Kappungsregel verteilt
+  das Restgewicht vollständig; ein neutraler Umbau erzeugt keinen künstlichen Gewinn
+  und löscht keine vorangegangenen Verluste.
+- Mehr erfasstes Nominal ist Gewichtung und kein Qualitätsbeweis. Der gleiche
+  Konzentrationsmechanismus erhöht den positiven Grundfall von 1,5 auf 1,75 Prozent,
+  verschlechtert den negativen A-Fall aber von minus drei auf minus fünf Prozent.
+  Preisindex, Cashhaltung, Wiederanlage, lokale Rendite und Währungsumrechnung werden
+  jeweils mit ihrer Konvention verglichen. Vollreplikation, Sampling und tatsächliche
+  Ausführbarkeit bleiben von einer theoretischen Indexreihe getrennt.
+- Primär- und Sekundärgeldfluss, Übernahmeverpflichtung und bloßes Platzierungsbemühen
+  werden unterschieden. Der eigene Emissionsfall erhält 98,2 Mio. netto bei hundert
+  Mio. Nominal. Eine eigene Uniform-Price-Auktion weist hundert Mio. zu, kürzt die
+  Grenzgruppe auf sechzig Prozent und trennt Ergebnisrendite, Kupon und Ausgabepreis.
+  TreasuryDirect ist ein konkretes US-Beispiel, keine allgemeine Auktionsvorschrift.
+- Der Händlerquote 99,10/99,30 mit Stückzinsen 0,75 wird für zwei Mio. Nominal von der
+  richtigen Seite in Kauf 2.001.000 beziehungsweise Verkauf 1.997.000 übersetzt.
+  Der Roundtrip kostet mit zweimal fünfhundert Gebühr fünftausend. Zwei weitere
+  Angebote zeigen, warum der niedrigere Clean Ask nach festen Gebühren teurer sein
+  kann; der Schnittpunkt liegt im eigenen Fall bei drei Mio. Nominal.
+- TRACE-Meldung, indikativer Preis, methodischer Benchmarkpreis und tatsächlich
+  verwendbarer Firm Quote werden getrennt. Die New-York-Fed-Quelle vom 30. Juni 2026
+  wird als abgegrenzte On-/Off-the-run-Untersuchung mit Ausnahmen verwendet. Bei FTSE
+  wird die tatsächlich gelesene Fassung **3.2 September 2026** benannt; das veraltete
+  Suchsnippet mit einer früheren Version wurde nicht als Quelle übernommen.
+- **Fünfzig eigene englische Trainingsfragen und je eine getrennte reservierte
+  Klausurfrage** besitzen deutsche Auswahlbegründungen und genaue Abschnittsrückwege.
+  Lernziel A hat elf Abschnitts- und fünfzehn Trainingszuordnungen, B neunzehn und
+  22, C fünfzehn und neunzehn. Beide reservierten Fragen verbinden die drei Lernziele
+  in neuen Fällen. **42 neue kuratierte Einträge** ergänzen oder präzisieren Begriffe;
+  34 Definitionen kommen global hinzu. Bid, Ask, Mid, OTC und Gesamtrendite erhalten
+  im neuen Kapitel ihre passende Bedeutung, bestehende FX-, Derivate- und
+  Aktienrückwege bleiben erhalten. Sechs bisherige Einheiten erhalten Rückverweise.
+- Der neue **Anleiheindexrechner** verwendet vier Eingaben und vier ladbare Fälle,
+  sechs Kennzahlen, vollständige Wert-/Cash-Tabellen und eine Konzentrationskurve.
+  Anfangsgewichte, unveränderte Bestände, Endcash und fehlende Annualisierung sind
+  ausdrücklich angegeben. Alle **144 unabhängigen Dollar-Ledger-Szenarien** und
+  sämtliche **198 Punkte der drei Grafiken** sind gegengerechnet. Negative Beiträge
+  bleiben sichtbar. Breite Tabellen sind lokal mit Tastatur verschiebbar; auf
+  Mobilgeräten bleibt neben der Bezeichnung schon ein Zahlenwert sichtbar.
+- Gesamtstand: **63 Einheiten, 212/340 strukturelle Lernzielreferenzen, 1.682
+  Trainingsfragen, je 115 reservierte Klausurfragen und 107 CFA-Grafiken**. Das
+  Wörterbuch enthält **988 kuratierte Rückverweise, 1.318 Definitionen und 2.851
+  Begriffe/Aliase**. 39 Modelle sind in 62 bisherigen Finance-Kapiteln erreichbar.
+  Offen bleiben **39 Einheiten, 128 Lernzielreferenzen und 65 Fragen je vollständiger
+  Klausur**, anschließend der fachliche Gesamtaudit. Nächste Einheit: Finanzierungswege
+  von Unternehmen und Finanzinstituten. Alle neuen Einheiten bleiben „draft“,
+  vollständige Klausuren gesperrt; **90/100 und 80/100 sind weiterhin nicht als
+  erreicht belegt**.
+- Technische Abschlussprüfung dieses Stands: **223 Kernprüfungen und 195 vollständige
+  CFA-Prüfungen bestanden**. Der Browser durchläuft alle 63 neuen Einheiten sowie
+  740 Corporate-/Aktien- und 138 Anleihe-Trainingsfragen mit ihren Begründungen und
+  Abschnittsrückwegen. Zwei weitere Browserprüfungen der bisherigen Lernbereiche
+  kontrollieren 171 Kapitel, 39 Modelle, 7.099 Aktionen und 16.630 Begriffsverweise.
+  Die 144 unabhängigen Modellfälle und 198 Grafikpunkte sind rechnerisch geprüft;
+  Grafiken, Formeln und Rechneransichten sind zusätzlich visuell kontrolliert.
+  Auf schmalen Bildschirmen bleiben im Indexrechner Bezeichnung und erster
+  Vergleichswert zusammen sichtbar. Diese Prüfungen belegen die getesteten
+  Funktionen und Rechnungen, keine vollständige fachliche Freigabe des Lernpfads.
