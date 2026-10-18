@@ -265,6 +265,54 @@ models.yieldspread.presets=[
  {label:'Nur Endzahlung',values:{coupon:0,price:Number((100/1.062**3).toFixed(6)),z1:3,z2:4,z3:5}},
  {label:'Höherer Kaufpreis',values:{coupon:5,price:101,z1:3,z2:4,z3:5}}
 ];
-const api={models,calculate,annuity,price,bsm,cdf,forecastValue,companyPlan,covenantPlan,repaymentSchedule,bondIndexPlan,repoFundingPlan,yieldSpreadPlan};
+function floaterPlan(p){
+ const {reference,qm,price:full,years,frequency:m}=p;
+ if(![reference,qm,full,years,m].every(Number.isFinite)||full<=0||!Number.isInteger(years)||years<1||![1,2,4].includes(m)||reference/100+qm/10000<0)throw Error('Bitte positiven Vollpreis, ganze Jahre und gültige Frequenz verwenden. Dieses Modell ohne Floor verlangt einen nicht negativen Gesamtkupon.');
+ const R=reference/100,q=qm/10000,n=years*m,C=100*(R+q)/m;
+ const value=i=>Array.from({length:n},(_,k)=>(C+(k===n-1?100:0))/(1+i)**(k+1)).reduce((a,b)=>a+b,0);
+ let lo=-.99,hi=1;if(value(lo)<full||value(hi)>full)throw Error('Für diese Eingaben liegt die Periodenrendite außerhalb des Suchbereichs.');
+ for(let k=0;k<90;k++){const mid=(lo+hi)/2;if(value(mid)>full)lo=mid;else hi=mid;}
+ const i=(lo+hi)/2,d=m*i-R,low=Math.max(-.99*m-R,d-.02),high=d+.02;
+ const out=result([['Vertragsmarge QM (bp)',qm],['Geforderte DM (bp)',d*10000],['DM minus QM (bp)',(d-q)*10000],['Kupon pro Periode',C],['Preis bei DM gleich QM',value((R+q)/m)],['Gesamtdiskontsatz nominal (%)',m*i*100]],seq(low*10000,high*10000,bp=>value((R+bp/10000)/m),120),'Discount Margin (Basispunkte)','Vollpreis je hundert Nominal','Eigener Floater mit hundert Nominal, endfälliger Tilgung und regulären ganzen Perioden. Bewertung unmittelbar nach Kuponzahlung und Reset; keine Stückzinsen. Sämtliche künftigen Referenzraten werden für diese Rechnung gleich der aktuellen Referenz gesetzt. Das ist eine flache Rechenannahme, keine Zinsprognose. Keine Optionen, Ausfälle, Gebühren, Tages- oder Lockout-Sonderregeln. QM ist Vertragsbestandteil; DM wird unter diesen Annahmen aus dem Preis gelöst. Der Gesamtdiskontsatz ist nominal auf die gewählte Frequenz annualisiert. Ein nicht negativer Kupon wird vorausgesetzt; ein vertraglicher Floor wird nicht stillschweigend eingesetzt. Die Preisskala umfasst die dargestellten DM-Szenarien.');
+ out.marker=[d*10000,full];const ys=out.points.map(p=>p[1]),min=Math.min(...ys),max=Math.max(...ys),pad=Math.max((max-min)*.1,.01);out.yRange=[min-pad,max+pad];
+ out.floater={reference:R,quotedMargin:q,discountMargin:d,periodYield:i,coupon:C,periods:n,frequency:m,price:full};
+ out.projection={caption:'Jeden unterstellten Kupon und die zusätzliche Endtilgung einzeln diskontieren',headers:['Periode','Zeit (Jahre)','Kupon','Tilgung','Gesamtzahlung','Diskontfaktor','Barwert'],rows:Array.from({length:n},(_,k)=>{const cf=C+(k===n-1?100:0),v=(1+i)**-(k+1);return[k+1,(k+1)/m,C,k===n-1?100:0,cf,v,cf*v];})};
+ out.stable={caption:'Preis und nominal annualisierte Margen abstimmen',headers:['Größe','Wert'],rows:[['Voller Kaufpreis',full],['Summe der Barwerte',value(i)],['Perioden-IRR (%)',i*100],['Referenz nominal p. a. (%)',reference],['Gesamtdiskontsatz nominal p. a. (%)',m*i*100],['Discount Margin (bp)',d*10000]]};
+ return out;
+}
+add('floater','Floater: Vertragsmarge, Marktanforderung und Preis','Verändere einen Wert nach dem anderen. Der Kaufpreis bestimmt die gesuchte Discount Margin; künftige Referenzraten werden hier ausdrücklich flach unterstellt. Vergleiche einen Margenschock mit einer Änderung des Referenzzinses bei pari.',[
+ field('reference','Referenz (% nominal p. a.)',-.5,15,.25,4),
+ field('qm','Vertragsmarge QM (bp p. a.)',-100,600,25,100),
+ field('price','Voller Kaufpreis je hundert',90,110,.000001,98.128519),
+ field('years','Verbleibende ganze Jahre',1,10,1,2),
+ {key:'frequency',label:'Reguläre Perioden pro Jahr',min:1,max:4,step:1,value:4,choices:[{value:1,label:'Eine – jährlich'},{value:2,label:'Zwei – halbjährlich'},{value:4,label:'Vier – vierteljährlich'}]}
+],floaterPlan);
+models.floater.presets=[
+ {label:'Margenschock: DM 200 bp',values:{reference:4,qm:100,price:98.128519,years:2,frequency:4}},
+ {label:'Pari nach Reset',values:{reference:4,qm:100,price:100,years:2,frequency:4}},
+ {label:'Höhere Referenz bei pari',values:{reference:6,qm:100,price:100,years:2,frequency:4}},
+ {label:'Negative Referenz, positiver Kupon',values:{reference:-.5,qm:150,price:100,years:2,frequency:4}}
+];
+function moneyYieldPlan(p){
+ if(![p.price,p.days].every(Number.isFinite)||p.price<=0||!Number.isInteger(p.days)||p.days<1||p.days>365)throw Error('Bitte positiven Kaufpreis und eine ganze Laufzeit von einem bis 365 Tagen verwenden.');
+ const P=p.price,D=p.days,F=100,gain=F-P,h=gain/P,discount=gain/F*360/D,a360=h*360/D,a365=h*365/D,effective=Math.expm1(Math.log(F/P)*365/D),semi=2*Math.expm1(Math.log(F/P)*365/(2*D));
+ const out=result([['Haltedauerrendite (%)',h*100],['Diskontsatz, 360 (%)',discount*100],['Add-on, 360 (%)',a360*100],['CFA-Geldmarkt-BEY, 365 (%)',a365*100],['Effektive Jahresrate, 365 (%)',effective*100],['Äquivalente nominale Halbjahresquote (%)',semi*100]],seq(85,105,P=>100*(100-P)/P*365/D,100),'Kaufpreis je hundert Endzahlung','Add-on-Jahresquote, 365 (%)','Eigene einzelne Endzahlung hundert nach der angegebenen Zahl von Tagen. Keine Zwischenzahlungen, Ausfälle, Steuern, Kosten oder Währungsänderungen. Die Haltedauerrendite verwendet den Kaufpreis; die Discount-Quote verwendet den Endbetrag. Add-on-Quoten sind einfach annualisiert. CFA-Geldmarkt-BEY bedeutet hier ausdrücklich Add-on auf 365-Tage-Basis; sie ist keine allgemeine Nachbildung aller Treasury-Investment-Rate-Konventionen. Effektive Jahresrate und äquivalente nominale Halbjahresquote erhalten rechnerisch denselben Jahreswachstumsfaktor. Sie garantieren keine Wiederanlage. Die Kurve verändert nur den Preis bei gleichbleibender Laufzeit.');
+ out.marker=[P,a365*100];
+ out.money={price:P,days:D,redemption:F,gain,hpr:h,discount360:discount,addon360:a360,addon365:a365,effective,semiannual:semi};
+ out.projection={caption:'Dieselben Geldbeträge bei allen Quotierungen beibehalten',headers:['Zahlungsgröße','Betrag / Wert'],rows:[['Kaufpreis heute',P],['Endzahlung nach '+D+' Tagen',F],['Gewinn oder Verlust',gain],['Haltedauerrendite (%)',h*100]]};
+ out.stable={caption:'Nenner und Jahresbasis der sechs Renditemaße vergleichen',headers:['Maß','Ertragsbezug','Tagesbasis','Quote (%)'],rows:[['Haltedauer','Kaufpreis','Keine Annualisierung',h*100],['Diskontsatz','Endbetrag',360,discount*100],['Add-on','Kaufpreis',360,a360*100],['CFA-Geldmarkt-BEY','Kaufpreis',365,a365*100],['Effektiv jährlich','Kapitalfaktor geometrisch',365,effective*100],['Nominal halbjährlich','Äquivalenter Kapitalfaktor',365,semi*100]]};
+ return out;
+}
+add('moneyyield','Geldmarkt: Eine Zahlung, verschiedene Renditequoten','Halte zuerst den Kaufpreis fest und ändere nur die Tage. Danach ändere den Preis bei gleicher Laufzeit. Vergleiche Endbetragsnenner, Kaufpreisnenner und einfache beziehungsweise geometrische Annualisierung.',[
+ field('price','Kaufpreis je hundert Endzahlung',85,105,.000001,98),
+ field('days','Tage bis zur Endzahlung',30,365,1,180)
+],moneyYieldPlan);
+models.moneyyield.presets=[
+ {label:'98 zu hundert in 180 Tagen',values:{price:98,days:180}},
+ {label:'Gleicher Ertrag in 90 Tagen',values:{price:98,days:90}},
+ {label:'Negativer Ertrag',values:{price:101,days:180}},
+ {label:'Genau ein 365-Tage-Jahr',values:{price:98,days:365}}
+];
+const api={models,calculate,annuity,price,bsm,cdf,forecastValue,companyPlan,covenantPlan,repaymentSchedule,bondIndexPlan,repoFundingPlan,yieldSpreadPlan,floaterPlan,moneyYieldPlan};
 if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.FinanceModels=api;
 })(globalThis);

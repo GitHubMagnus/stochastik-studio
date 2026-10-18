@@ -253,6 +253,7 @@ module.exports={id:'bond-cashflows',intro:[
   'Der Rechner verwendet feste sichere Planzahlungen und bildet keine Optionen, Steuern oder Ausfälle ab. Diese Ebenen werden anhand der eigenen Fälle bewusst separat hinzugefügt. Eine genaue Rechnung mit einem unvollständigen Zahlungsplan bleibt eine unvollständige Bewertung.'
  ])
 ],explorations:[{section:'comparison',lesson:'bonds-03',focus:'lab',label:'Vier Tilgungspläne, vollständige Zahlungsreihen und Restschuld verändern'}],related:[
+ {unit:'floating-yields',section:'margins',label:'Vertragliche Floater-Marge und marktgeforderte Discount Margin auseinanderhalten'},
  {"unit":"fixed-yields","section":"call-case","label":"Mehrere Calls, Callpreise und Yield to Worst gemeinsam prüfen"},
  {"unit":"bond-prices","section":"discount","label":"Den festen Zahlungsplan vollständig diskontieren"},{unit:'government-funding',section:'reopening',label:'Aufstockung, Stückzins und weiter bestehende Kuponrate abstimmen'},{unit:'corporate-funding',section:'maturity-wall',label:'Endtilgung als konkrete Fälligkeitenwand analysieren'},{unit:'bond-trading',section:'principal-cash',label:'Tilgung und verbleibenden Nominalbestand in der Rendite abstimmen'},
  {unit:'bond-features',section:'term-sheet',label:'Vertragsmerkmale und tatsächlichen Zahlungsanspruch zuerst identifizieren'},

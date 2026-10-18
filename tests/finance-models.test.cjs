@@ -10,6 +10,8 @@ test('every interactive Finance model matches independent reference values',()=>
  refs.repayment=[288.59149237327324,288.59149237327324,154.36596949309387,2.5727661582182275,1000];
  refs.bondindex=[50,2,-.5,2,1.5,101.5];
  refs.yieldspread=[120.0000101583043,6.132864940976013,4.933948365020491,119.8916575955522,100.18009784293258,-3.2008308429325893];
+ refs.floater=[100,199.99998541495623,99.99998541495624,1.25,100,5.9999998541495625];
+ refs.moneyyield=[2.0408163265306123,4,4.081632653061225,4.138321995464852,4.181730925538857,4.138904597373459];
  assert.equal(Object.keys(refs).length+1,Object.keys(M.models).length);
  for(const [id,expected] of Object.entries(refs)){const actual=run(id).metrics;expected.forEach((v,i)=>near(actual[i][1],v,id==='bsm'?1e-5:1e-6));}
 });

@@ -202,6 +202,7 @@ module.exports={id:'fixed-yields',intro:[
   'Ein abschließender Bericht nennt relevante Alternativszenarien und Grenzen. Das Wort Rendite wird nicht als Sammelbegriff benutzt, wenn unterschiedliche Größen verglichen werden sollen.'
  ])
 ],explorations:[{section:'z-root',lesson:'bonds-11',focus:'lab',label:'Kaufpreis, Kupon und drei Spots verändern; Z und nominalen IRR-Abstand vergleichen'},{section:'calculator',lesson:'bonds-05',focus:'lab',label:'Kuponfrequenz, nominale Jahresrendite und Anleihepreis gemeinsam verändern'}],related:[
+ {unit:'floating-yields',section:'margins',label:'Vertragliche Floater-Marge und marktgeforderte Discount Margin auseinanderhalten'},
  {unit:'return-types',section:'compounding',label:'Renditearten und effektiven Jahresfaktor auf derselben Grundlage vergleichen'},
  {unit:'bond-prices',section:'realized',label:'Cashflow-IRR und tatsächliches Endvermögen mit Wiederanlage vergleichen'},
  {unit:'bond-prices',section:'settlement',label:'Vollpreis und Bruchteilsdiskontierung zwischen Kuponterminen herleiten'},

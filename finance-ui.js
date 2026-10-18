@@ -58,6 +58,8 @@ window.FinanceStudy=(()=>{
  function render(route){
   const lesson=resolve(route);if(!lesson)return;
   const focus=route.split('~')[1];
+  const labIds=[lesson.lab,...(lesson.additionalLabs||[])].filter(Boolean);
+  const selectedLab=focus?.startsWith('lab-')&&labIds.includes(focus.slice(4))?focus.slice(4):lesson.lab;
   if(active!==lesson.id){
    active=lesson.id;
    const index=lessons.indexOf(lesson);
@@ -91,11 +93,19 @@ window.FinanceStudy=(()=>{
     <details class="study-details"><summary>CFA-Einordnung und Quellen</summary><p>Bezugsjahr: <strong>2026</strong>. Die Levelhinweise ordnen die behandelten Konzepte didaktisch ein. Bei mehreren Levels reichen sie von Grundlagen bis zur Anwendung; nicht jeder Absatz ist auf jedem genannten Level ein eigenes Prüfungslernziel. Die offiziellen Lernziele und der gewählte Level-III-Pfad bestimmen den Prüfungsumfang. Die Kapitel sind eigenständige Erläuterungen, keine offiziellen CFA-Lernmodule.</p><ul>${lesson.sources.map(s=>`<li><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a></li>`).join('')}</ul><p>Für spätere Prüfungen: <a href="https://www.cfainstitute.org/about/press-room/2026/cfa-institute-announces-updates-to-cfa-program-curriculum" target="_blank" rel="noopener">Curriculumänderungen für 2027</a>. Beispiele sind fiktiv; Steuersätze in Rechenmodellen stellen kein bestimmtes Steuerrecht dar.</p></details>
     <nav class="study-next" aria-label="Kapitel wechseln">${index>0?link(lessons[index-1].id,'← '+lessons[index-1].title):'<span></span>'}${index<lessons.length-1?link(lessons[index+1].id,lessons[index+1].title+' →'):'<a href="#finance">Zur Kapitelübersicht →</a>'}</nav>`;
    mountNotation(lesson,document.getElementById('page-finance-lesson'));
-   if(lesson.lab)mountLab(lesson.lab);
    mountQuestions(lesson);
   }
+  if(selectedLab&&document.getElementById('study-lab')?.dataset.model!==selectedLab){
+   mountLab(selectedLab);
+   const el=document.getElementById('study-lab');el.dataset.model=selectedLab;
+   if(labIds.length>1){
+    const nav=document.createElement('nav');nav.className='study-lab-switcher';nav.setAttribute('aria-label','Rechner im Kapitel wechseln');
+    nav.innerHTML=labIds.map(id=>'<a href="#lesson-'+esc(lesson.id)+'~'+(id===lesson.lab?'lab':'lab-'+esc(id))+'"'+(id===selectedLab?' aria-current="true"':'')+'>'+esc(FinanceModels.models[id].title)+'</a>').join('');
+    el.querySelector('h2').before(nav);
+   }
+  }
   requestAnimationFrame(()=>{
-   const target=focus&&document.getElementById('study-'+focus);
+   const target=focus&&document.getElementById('study-'+(focus.startsWith('lab-')?'lab':focus));
    if(target){if(target.matches('.question-card[hidden]')){const filter=document.getElementById('question-filter');filter.value='';filter.dispatchEvent(new Event('change'));}target.scrollIntoView({block:'start'});target.focus({preventScroll:true});}
    else document.getElementById('main-content').scrollIntoView({block:'start'});
   });
@@ -137,12 +147,14 @@ window.FinanceStudy=(()=>{
  }
  function mountLab(id){
   const model=FinanceModels.models[id],el=document.getElementById('study-lab');
-  el.classList.toggle('study-lab-forecast',['forecastvalue','companydrivers','bondcovenants','repayment','bondindex','repofunding','yieldspread'].includes(id));
+  el.classList.toggle('study-lab-forecast',['forecastvalue','companydrivers','bondcovenants','repayment','bondindex','repofunding','yieldspread','floater','moneyyield'].includes(id));
   el.classList.toggle('study-lab-covenants',id==='bondcovenants');
   el.classList.toggle('study-lab-repayment',id==='repayment');
   el.classList.toggle('study-lab-bondindex',id==='bondindex');
   el.classList.toggle('study-lab-repofunding',id==='repofunding');
   el.classList.toggle('study-lab-yieldspread',id==='yieldspread');
+  el.classList.toggle('study-lab-floater',id==='floater');
+  el.classList.toggle('study-lab-moneyyield',id==='moneyyield');
   el.innerHTML=`<div class="kicker">Interaktives Modell</div><h2>${esc(model.title)}</h2><p>${glossaryText(model.intro)}</p><div class="study-lab-grid"><div class="study-lab-controls">${model.controls.map(f=>f.choices?`<label for="lab-${f.key}">${glossaryText(f.label)}<select id="lab-${f.key}" data-key="${f.key}">${f.choices.map(o=>`<option value="${o.value}"${o.value===f.value?' selected':''}>${esc(o.label)}</option>`).join('')}</select></label>`:`<label for="lab-${f.key}">${glossaryText(f.label)}<div class="study-pair"><input id="lab-${f.key}" data-key="${f.key}" type="number" min="${f.min}" max="${f.max}" step="${f.step}" value="${f.value}"><input aria-label="${esc(f.label)} – Regler" data-range="${f.key}" type="range" min="${f.min}" max="${f.max}" step="${f.step}" value="${f.value}"></div></label>`).join('')}<button class="btn ghost" type="button" id="lab-reset">Ausgangswerte</button></div><div class="study-lab-output"><p id="lab-error" role="alert" hidden></p><div id="lab-results"><div class="study-metrics" id="lab-metrics" aria-live="polite"></div><div id="lab-chart"></div><p id="lab-assumptions" class="study-model-note"></p><details class="study-details"><summary>Kurvenwerte als Tabelle</summary><div class="study-table-wrap" id="lab-table"></div></details></div></div></div>`;
   const update=()=>{
    const params=Object.fromEntries([...el.querySelectorAll('[data-key]')].map(e=>[e.dataset.key,e.value]));
@@ -151,7 +163,7 @@ window.FinanceStudy=(()=>{
     el.querySelector('#lab-error').hidden=true;el.querySelector('#lab-results').hidden=false;
     el.querySelector('#lab-metrics').innerHTML=r.metrics.map(([name,v])=>`<div><span>${esc(name)}</span><strong>${fmt(v,4)}</strong></div>`).join('');
     el.querySelector('#lab-chart').innerHTML=chart(r);
-    if(['forecastvalue','companydrivers','bondcovenants','repayment','bondindex','repofunding','yieldspread'].includes(id)){
+    if(['forecastvalue','companydrivers','bondcovenants','repayment','bondindex','repofunding','yieldspread','floater','moneyyield'].includes(id)){
      const plot=el.querySelector('#lab-chart');plot.tabIndex=0;plot.setAttribute('role','region');plot.setAttribute('aria-label','Seitlich verschiebbare Modellkurve');
      if(!plot.nextElementSibling.classList.contains('study-model-plot-hint')){
       const hint=document.createElement('p');hint.className='study-model-plot-hint';hint.hidden=true;hint.textContent='↔ Die Grafik ist seitlich verschiebbar; mit Fokus auch über die Pfeiltasten.';plot.after(hint);
