@@ -202,6 +202,7 @@ module.exports={id:'government-funding',intro:[
   'Das Material erklärt Finanzierungsmechanismen und bewusst begrenzte Fälle. Eine vollständige Bewertung konkreter öffentlicher Kreditqualität, tatsächlicher Steueransprüche und einzelner Marktregeln braucht die jeweiligen Daten und Dokumente; eine einfache Zahl oder eine hohe Quote ersetzt diesen weiteren Schritt nicht.'
  ])
 ],related:[
+ {unit:'floating-yields',section:'margins',label:'Vertragliche Floater-Marge und marktgeforderte Discount Margin auseinanderhalten'},
  {"unit":"fixed-yields","section":"g-spread","label":"Staatsvergleich, G-Spread und andere Benchmarks sauber abgrenzen"},
  {"unit":"bond-prices","section":"cash-quote","label":"Vollkurs und Casherlös einschließlich Stückzins abstimmen"},
  {unit:'fiscal',section:'debt-dynamics',label:'Primärsaldo, Zins und Wachstum im mehrperiodigen Schuldenpfad verbinden'},

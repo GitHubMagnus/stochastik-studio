@@ -44,7 +44,9 @@ function compile({release=false}={}){
  for(const u of units){
   u.related=u.related||connections[u.id]||[];
   for(const e of u.explorations||[]){
-   if(!e.label||e.focus!=='lab'||!u.lessons.includes(e.lesson)||!u.sections.some(s=>s.id===e.section))throw Error(u.id+': ungültiger Verweis zum interaktiven Modell');
+   const match=/^([a-z-]+)-(\d+)$/.exec(e.lesson||''),lesson=match&&require('../finance-content/'+match[1]+'.cjs')[Number(match[2])-1];
+   const validFocus=lesson?.lab&&(e.focus==='lab'||(lesson.additionalLabs||[]).some(id=>e.focus==='lab-'+id));
+   if(!e.label||!validFocus||!u.lessons.includes(e.lesson)||!u.sections.some(s=>s.id===e.section))throw Error(u.id+': ungültiger Verweis zum interaktiven Modell');
   }
   for(const link of u.related){
    if(!link.label||!byUnit.get(link.unit)?.sections.some(s=>s.id===link.section))throw Error(u.id+': ungültiger Kapitelverweis '+link.unit+'/'+link.section);

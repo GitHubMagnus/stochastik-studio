@@ -2085,7 +2085,7 @@ und bestandene Technikprüfungen ersetzen die spätere fachliche Abnahme nicht.
   folgt noch kein Nachweis, dass jede prüfungsrelevante Bezeichnung und Variante
   vollständig abgedeckt ist. Dieser Abgleich bleibt Teil des Gesamtaudits.
 
-- Abschlussprüfung dieses Arbeitsstands: **255 Kernprüfungen, 236 CFA-Browserprüfungen
+- Abschlussprüfung dieses Arbeitsstands: **255 Kernprüfungen, 236 CFA-Prüfungen
   und beide bisherigen Browserprüfungen bestanden**. Die Browserprüfung umfasst alle
   67 CFA-Einheiten sowie 740 Corporate-/Equity- und 336 Anleihe-Trainingsfragen;
   die bisherige Finance-Oberfläche besteht mit 171 Kapiteln, 41 Modellen,
@@ -2101,3 +2101,71 @@ und bestandene Technikprüfungen ersetzen die spätere fachliche Abnahme nicht.
   abgeglichen. Alle zehn Themenintervalle stimmen überein; insbesondere gelten
   Ethics 10–15 % und Quantitative Methods 11–14 %. Die abweichenden 2026-Werte
   derselben Seite werden nicht für den 2027-Klausurplan verwendet.
+
+### 18. Oktober 2026: Floater-Margen und Geldmarktrenditen
+
+- Neue Einheit `floating-yields` für die beiden tatsächlichen Lernziele auf Seite
+  20 des offiziellen 2027-Outlines. **30 Abschnitte, neun vollständige Fälle,
+  zehn Tabellen, 27 Formeltafeln mit lokalen Symbolerklärungen und fünf berechnete
+  Grafiken mit 392 Datenpunkten**. Dazu **52 eigene englische Trainingsfragen**
+  mit deutschen Begründungen zu jeder Antwort und je ein getrennter reservierter
+  Fall für Klausur A/B. Lernziel a hat 17 Abschnitts- und 31 Trainingsverweise;
+  Lernziel b hat 17 Abschnitts- und 26 Trainingsverweise. Überschneidende Fragen
+  werden in der Gesamtzahl nur einmal gezählt.
+- Floater: Referenz, feste Quoted Margin und marktgeforderte Discount Margin sind
+  getrennt. Aus Kupon und Diskontierung wird die Pari-Eigenschaft am Reset mit
+  der geometrischen Summe hergeleitet. Derselbe Vertrag wird bei 50/100/200 bp
+  DM bewertet; ein unveränderter Referenzreset wird mit einem Margenschock
+  verglichen. Ein- und zehnjährige Restlaufzeit zeigen den länger wirkenden
+  Vertragsnachteil. Der Text erklärt bereits festgesetzte nächste Kupons,
+  negative Referenz, Gesamtkupon- gegen Index-Floor sowie Cap- und Basisrisiko.
+- Geldmarkt: Kaufpreis und Endbetrag als unterschiedliche Nenner, tatsächliche
+  Tage, 360/365-Basis, einfache und geometrische Annualisierung werden schrittweise
+  hergeleitet. Der identische 98-zu-100-Fall und ein Angebotsvergleich isolieren
+  jede Konventionsänderung. Ein eigener Sekundärmarktkauf, negative Rendite und
+  verschiedene Wiederanlagezinsen verhindern die Gleichsetzung von Vertragsquote
+  und tatsächlichem Anlegerertrag. Die einfache CFA-Geldmarkt-BEY wird ausdrücklich
+  von einer geometrisch äquivalenten nominalen Halbjahresquote und der ergänzenden
+  längeren Treasury-Investment-Rate-Konvention unterschieden. Keine echten aktuellen
+  Auktionsergebnisse oder zusätzliche 2027-Pflichtlernziele werden unterstellt.
+- Zwei neue Rechner `floater` und `moneyyield` sind als benannte zusätzliche Modelle
+  im bisherigen Kapitel `bonds-02` erreichbar. Der bestehende Repo-Rechner und seine
+  bisherigen Adressen bleiben erhalten. Umschaltung, konkrete CFA-Abschnittslinks,
+  gültige Modellzuordnung, Eingabefehler, Rücksetzen und Offline-Nutzung sind
+  geprüft. Die Floaterrechnung setzt die Referenz für alle künftigen Perioden
+  ausdrücklich flach an und zeigt jeden Zahlungsbarwert; sie rechnet weder echte
+  tägliche Indexregeln noch einen nicht angegebenen Floor hinein. Negative
+  Gesamtkupons sind außerhalb dieses vereinfachten Rechners und werden abgelehnt.
+- Unabhängige geschlossene Barwertrechnung kontrolliert **468 gültige Floaterfälle
+  mit 56.628 Modellkurvenpunkten**, einschließlich aller gültigen Eingabeecken;
+  108 Kombinationen mit negativem Gesamtkupon werden ausdrücklich zurückgewiesen.
+  **54 Geldmarktfälle mit 5.454 Kurvenpunkten** prüfen alle Preisrückrechnungen,
+  Vorzeichen, Jahresbasen und geometrischen Faktoridentitäten. Die 392
+  Lehrbuchgrafikpunkte und gedruckten Zahlentabellen sind separat nachgerechnet.
+- **21 weitere kuratierte Einträge**, davon eine Anreicherung des bisherigen
+  Basisrisiko-Eintrags, ergeben zwanzig zusätzliche globale Definitionen.
+  MRR wird im Floaterkontext auf Market Reference Rate verlinkt; die bisherige
+  Monthly-Recurring-Revenue-Definition samt Alias bleibt erhalten. Add-on Pricing
+  bleibt bei Geschäftsmodellen. Fünf ältere Einheiten enthalten passende Rückverweise.
+- Gesamtstand: **68 Einheiten, 224/340 strukturelle Lernzielreferenzen, 1.932
+  Trainingsfragen, je 121 reservierte Klausurfragen und 128 CFA-Grafiken**.
+  **43 Rechner in 64 bisherigen Kapiteln**, Wörterbuch: **1.128 kuratierte
+  Rückverweise, 1.446 Definitionen und 3.161 globale Begriffe/Aliase**; zusätzliche
+  Kontextbezeichnungen sind darin nicht als globale Aliase mitgezählt.
+  Offen: **34 Einheiten, 116 Lernzielreferenzen und 59 Fragen je vollständiger
+  Klausur**, danach der fachliche Gesamtaudit. Neue Einheiten bleiben draft und
+  vollständige Klausuren gesperrt. **90/100 und 80/100 sind nicht als erreicht belegt**.
+- Technischer Abschluss: **263 Kernprüfungen und alle 247 Prüfungen des CFA-Satzes
+  bestanden**. Letzterer besteht aus **206 Quellen-/Inhalts-/Engineprüfungen und
+  41 Browserprüfungen**, die in getrennten vollständigen Aufrufen ausgeführt
+  wurden. Die Zahlen dieser überlappenden Testsätze werden nicht addiert.
+  Der Browserlauf bearbeitet alle 68 Einheiten sowie alle 388 Anleihe- und
+  740 Corporate-/Equity-Trainingsfragen samt Rückverweisen und Formelerklärungen.
+  Drei neue gezielte Browsertests und ein ergänzender MRR-Alias-Test sind ebenfalls
+  bestanden. Der bisherige Finance-Browseraudit besteht mit **171 Kapiteln,
+  43 Modellen, 7.231 Aktionen und 16.800 gültigen Begriffsverweisen**; die
+  Symbolhilfeprüfung kontrolliert 3.054 Formelvorkommen und 2.886 Hilfefelder
+  über Desktop und Mobilansicht. **19 Ansichten wurden visuell geprüft**,
+  einschließlich beider Rechner bei 320 Pixeln. Diese Prüfungen bestätigen
+  den technischen Arbeitsstand und einzelne nachgerechnete Fälle; sie sind
+  keine fachliche Gesamtfreigabe und keine Bestehensprognose.

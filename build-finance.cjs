@@ -41,6 +41,7 @@ for(const block of plan){
   if(block.id==='ethics'||id==='advanced-12')sources.push({title:'CFA Institute · Code and Standards',url:'https://www.cfainstitute.org/standards/professionals/code-ethics-standards'},{title:'GIPS Standards',url:'https://www.gipsstandards.org/standards/'});
   for(const f of ['intuition','logic','formula','math','example','depth','pitfall','question','answer'])if(!lesson[f]?.trim())throw Error(id+': '+f+' fehlt');
   if(lesson.lab&&!models[lesson.lab])throw Error(id+': Modell fehlt');
+  if(lesson.additionalLabs&&(!lesson.lab||new Set([lesson.lab,...lesson.additionalLabs]).size!==1+lesson.additionalLabs.length||lesson.additionalLabs.some(key=>!models[key])))throw Error(id+': zusätzliches Modell fehlt oder ist doppelt');
   const textbook=textbooks[i-1];
   if(!textbook||textbook.explanation.length<2||textbook.steps.length<3||textbook.steps.some(s=>!s.why||!s.calculation))throw Error(id+': unvollständiger Lehrtext');
   for(const f of ['heading','example','applications','limitations','connections'])if(!textbook[f]?.trim())throw Error(id+': Lehrtext '+f+' fehlt');

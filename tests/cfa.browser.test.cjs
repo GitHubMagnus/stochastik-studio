@@ -7,6 +7,57 @@ async function open(t,route='cfa'){
  const page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[];page.on('pageerror',e=>errors.push(e.message));t.after(async()=>{await page.close();assert.deepEqual(errors,[]);});await page.goto(url+'/#'+route);return page;
 }
 
+test('floater and money-market calculators preserve the existing repo route and switch independently with working resets and offline access',async t=>{
+ const page=await open(t,'cfa~learn-floating-yields~frn-workflow');
+ await page.locator('#cfa-section-frn-workflow .cfa-exploration a').click();await page.waitForFunction(()=>document.activeElement.id==='study-lab');
+ const metrics=async()=>page.locator('#lab-metrics strong').evaluateAll(es=>es.map(e=>Number(e.textContent.replaceAll('.','').replace(',','.').replace('−','-'))));
+ assert.equal(await page.locator('#study-lab').getAttribute('data-model'),'floater');assert.equal(await page.locator('.study-lab-controls input[type=number]').count(),4);assert.equal(await page.locator('.study-lab-controls select').count(),1);
+ let m=await metrics();assert.ok(Math.abs(m[1]-200)<.0001);assert.ok(Math.abs(m[3]-1.25)<.0001);assert.equal(await page.locator('#lab-projection .study-model-table').first().locator('tbody tr').count(),8);
+ await page.locator('[data-model-preset="1"]').click();assert.ok(Math.abs((await metrics())[1]-100)<.0001);
+ await page.locator('[data-model-preset="2"]').click();m=await metrics();assert.ok(Math.abs(m[1]-100)<.0001);assert.ok(Math.abs(m[3]-1.75)<.0001);
+ await page.locator('[data-model-preset="3"]').click();m=await metrics();assert.ok(Math.abs(m[1]-150)<.0001);assert.ok(Math.abs(m[3]-.25)<.0001);
+ await page.locator('#lab-qm').fill('-100');assert.equal(await page.locator('#lab-error').isVisible(),true);await page.locator('#lab-reset').click();assert.equal(await page.locator('#lab-error').isVisible(),false);
+ await page.locator('#lab-frequency').selectOption('2');assert.equal(await page.locator('#lab-projection .study-model-table').first().locator('tbody tr').count(),4);assert.ok(Math.abs((await metrics())[3]-2.5)<.0001);
+ await page.locator('[data-range=price]').evaluate(e=>{e.value='100';});await page.locator('[data-range=price]').dispatchEvent('input');assert.equal(await page.locator('#lab-price').inputValue(),'100');assert.ok(Math.abs((await metrics())[1]-100)<.0001);
+ await page.locator('.study-lab-switcher a[href="#lesson-bonds-02~lab-moneyyield"]').click();assert.equal(await page.locator('#study-lab').getAttribute('data-model'),'moneyyield');m=await metrics();assert.ok(Math.abs(m[0]-2.0408163)<.0001);assert.ok(Math.abs(m[3]-4.138322)<.0001);
+ await page.locator('[data-model-preset="1"]').click();m=await metrics();assert.ok(Math.abs(m[0]-2.0408163)<.0001);assert.ok(Math.abs(m[3]-8.276644)<.0001);
+ await page.locator('[data-model-preset="2"]').click();m=await metrics();assert.ok(m.every(x=>x<0));await page.locator('#lab-days').fill('90.5');assert.equal(await page.locator('#lab-error').isVisible(),true);await page.locator('#lab-reset').click();assert.equal(await page.locator('#lab-error').isVisible(),false);
+ await page.locator('.study-lab-switcher a[href="#lesson-bonds-02~lab"]').click();assert.equal(await page.locator('#study-lab').getAttribute('data-model'),'repofunding');assert.equal(await page.locator('.study-lab-controls input[type=number]').count(),6);
+ await page.goto(url+'/#cfa~learn-floating-yields~money-workflow');await page.locator('#cfa-section-money-workflow .cfa-exploration a').click();assert.equal(await page.locator('#study-lab').getAttribute('data-model'),'moneyyield');await page.goBack();await page.waitForFunction(()=>document.activeElement.id==='cfa-section-money-workflow');
+ const off=await browser.newPage({viewport:{width:390,height:900}}),errors=[];off.on('pageerror',e=>errors.push(e.message));t.after(async()=>{await off.close();assert.deepEqual(errors,[]);});await off.context().setOffline(true);
+ await off.goto(require('node:url').pathToFileURL(require('node:path').join(__dirname,'../index.html')).href+'#lesson-bonds-02~lab-floater');assert.equal(await off.locator('#study-lab').getAttribute('data-model'),'floater');await off.locator('.study-lab-switcher a[href="#lesson-bonds-02~lab-moneyyield"]').click();await off.locator('[data-model-preset="3"]').click();assert.match(await off.locator('#lab-metrics strong').first().innerText(),/^2,0408/);
+});
+
+test('floater and money-market textbook graphs and both calculators remain readable and keyboard-scrollable on narrow screens',async t=>{
+ const page=await open(t,'cfa~learn-floating-yields');assert.equal(await page.locator('#page-cfa .cfa-section').count(),30);assert.equal(await page.locator('#page-cfa .cfa-figure').count(),5);
+ for(const[section,count]of [['reset-case',41],['spread-case',83],['base-vs-spread',37],['money-case',162],['maturity-case',69]]){const f=page.locator('#cfa-section-'+section+' .cfa-figure');await f.locator('details summary').click();assert.equal(await f.locator('tbody tr').count(),count);await f.locator('details summary').click();}
+ assert.ok(await page.locator('#page-cfa .cfa-figure').evaluateAll(es=>es.every(e=>e.getBoundingClientRect().width<=641)));
+ assert.ok(await page.locator('#page-cfa .cfa-figure svg').evaluateAll(es=>es.every(svg=>{const b=svg.getBoundingClientRect();return [...svg.querySelectorAll('text')].every(e=>{const r=e.getBoundingClientRect();return r.left>=b.left-1&&r.right<=b.right+1;});})));
+ for(const width of [320,390,1100]){
+  await page.setViewportSize({width,height:900});await page.goto(url+'/#cfa~learn-floating-yields~conversion');const f=page.locator('#cfa-section-conversion .cfa-formula').first();await f.locator('.formula-notation summary').click();assert.ok(await f.locator('.formula-notation').innerText());assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+  for(const id of ['floater','moneyyield']){
+   await page.goto(url+'/#lesson-bonds-02~lab-'+id);assert.equal(await page.locator('#study-lab').getAttribute('data-model'),id);
+   if(id==='floater'){await page.locator('#lab-reference').fill('15');await page.locator('#lab-qm').fill('600');await page.locator('#lab-price').fill('90');await page.locator('#lab-years').fill('10');}
+   else{await page.locator('#lab-price').fill('85');await page.locator('#lab-days').fill('30');}
+   assert.ok(await page.locator('#lab-metrics strong').evaluateAll(es=>es.every(e=>{const r=document.createRange();r.selectNodeContents(e);return r.getClientRects().length===1;})));
+   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+   const compact=page.locator('#lab-projection .study-table-wrap').nth(id==='floater'?1:0);assert.ok(await compact.evaluate(e=>e.scrollWidth<=e.clientWidth+1));
+  }
+ }
+ await page.setViewportSize({width:390,height:900});await page.goto(url+'/#lesson-bonds-02~lab-floater');const table=page.locator('#lab-projection .study-table-wrap').first();await table.focus();await page.keyboard.press('ArrowRight');await page.waitForTimeout(120);assert.ok(await table.evaluate(e=>e.scrollLeft>0));const plot=page.locator('#lab-chart');await plot.focus();await page.keyboard.press('ArrowRight');await page.waitForTimeout(120);assert.ok(await plot.evaluate(e=>e.scrollLeft>0));
+ await page.goto(url+'/#lesson-bonds-02~lab-moneyyield');const wide=page.locator('#lab-projection .study-table-wrap').nth(1);await wide.focus();await page.keyboard.press('ArrowRight');await page.waitForTimeout(120);assert.ok(await wide.evaluate(e=>e.scrollLeft>0));
+});
+
+test('floater margin and money-market glossary links return to precise definitions and preserve earlier meanings',async t=>{
+ const page=await open(t);
+ for(const[section,label,target]of [['coupon','MRR','coupon'],['coupon','Quoted Margin','margins'],['margins','Discount Margin','dm-root'],['bond-equivalent','Bond-Equivalent Yield','bond-equivalent'],['limits','Basisrisiko','limits']]){
+  await page.goto(url+'/#cfa~learn-floating-yields~'+section);const a=page.locator('#cfa-section-'+section+' a.term-link:visible').filter({hasText:new RegExp('^'+label+'$','i')}).first(),id=(await a.getAttribute('href')).split('~')[1];await a.click();await page.locator('#glossary-'+id+' a[href="#cfa~learn-floating-yields~'+target+'"]').click();await page.waitForFunction(target=>document.activeElement.id==='cfa-section-'+target,target);
+ }
+ await page.goto(url+'/#cfa~learn-floating-yields~ranking');const a=page.locator('#cfa-section-ranking a.term-link:visible').filter({hasText:/^Add-on-Satz$/i}).first();assert.ok((await a.getAttribute('href')).includes('add-on-rendite'));
+ await page.goto(url+'/#glossary~add-on-pricing');await page.waitForFunction(()=>document.activeElement.id==='glossary-add-on-pricing');assert.equal(await page.locator('#glossary-add-on-pricing a[href="#cfa~learn-business-models~complements"]').count(),1);
+ await page.goto(url+'/#glossary~mrr');await page.waitForFunction(()=>document.activeElement.id==='glossary-monthly-recurring-revenue');assert.equal(await page.locator('#glossary-monthly-recurring-revenue a[href="#cfa~learn-business-models~recurring"]').count(),1);
+});
+
 test('spot spread calculator reconciles presets, changed inputs, zero-coupon invariance and keyboard tables offline',async t=>{
  const page=await open(t,'cfa~learn-fixed-yields~z-root');await page.locator('#cfa-section-z-root .cfa-exploration a').click();await page.waitForFunction(()=>document.activeElement.id==='study-lab');
  const metrics=async()=>page.locator('#lab-metrics strong').evaluateAll(xs=>xs.map(e=>Number(e.textContent.replaceAll('.','').replace(',','.').replace('−','-'))));

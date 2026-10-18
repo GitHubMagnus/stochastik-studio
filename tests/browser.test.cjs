@@ -351,7 +351,7 @@ test('Kelly input boundaries recover, dynamic rows and every tab remain usable',
  assert.equal(await page.locator('.formula math[display="block"]').count(),9);
 });
 
-test('all 171 Finance lessons render, cross-links resolve and all 41 models respond',async t=>{
+test('all 171 Finance lessons render, cross-links resolve and all 43 models respond',async t=>{
  const page=await open(t);await page.goto(url+'/#finance');
  const audit=await page.evaluate(async()=>{
   const failures=[];let actions=0,termLinks=0;const labs=new Set();
@@ -383,30 +383,32 @@ test('all 171 Finance lessons render, cross-links resolve and all 41 models resp
     if(route.startsWith('lesson-')&&!FinanceStudy.resolve(route))failures.push(l.id+': broken target');
     if(!route.startsWith('lesson-')&&!document.getElementById('page-'+route))failures.push(l.id+': broken stats target');
    }
-   if(l.lab&&!labs.has(l.lab)){
-    labs.add(l.lab);
+   for(const lab of [l.lab,...(l.additionalLabs||[])].filter(Boolean)){
+   if(!labs.has(lab)){
+    labs.add(lab);
+    await navigate('lesson-'+l.id+'~'+(lab===l.lab?'lab':'lab-'+lab));
     for(const el of active.querySelectorAll('[data-key]')){
      const initial=el.value;
      for(const v of [el.min,el.max,'','1e100',initial]){
       el.value=v;el.dispatchEvent(new Event('input',{bubbles:true}));actions++;
       const result=document.getElementById('lab-results');
-      if(!result.hidden&&/NaN|Infinity/.test(result.textContent))failures.push(l.lab+': invalid output');
-      if(!result.hidden&&[...result.querySelectorAll('svg *')].some(e=>[...e.attributes].some(a=>/NaN|Infinity/.test(a.value))))failures.push(l.lab+': invalid chart');
+      if(!result.hidden&&/NaN|Infinity/.test(result.textContent))failures.push(lab+': invalid output');
+      if(!result.hidden&&[...result.querySelectorAll('svg *')].some(e=>[...e.attributes].some(a=>/NaN|Infinity/.test(a.value))))failures.push(lab+': invalid chart');
      }
-     if(!document.getElementById('lab-error').hidden)failures.push(l.lab+': recovery failed');
+     if(!document.getElementById('lab-error').hidden)failures.push(lab+': recovery failed');
     }
     for(const el of active.querySelectorAll('[data-range]')){
      const initial=el.value;el.value=el.min;el.dispatchEvent(new Event('input',{bubbles:true}));
-     if(active.querySelector(`[data-key="${el.dataset.range}"]`).value!==el.value)failures.push(l.lab+': range not paired');
+     if(active.querySelector(`[data-key="${el.dataset.range}"]`).value!==el.value)failures.push(lab+': range not paired');
      el.value=initial;el.dispatchEvent(new Event('input',{bubbles:true}));actions+=2;
     }
     active.querySelector('#lab-reset').click();actions++;
-    if(!document.getElementById('lab-error').hidden)failures.push(l.lab+': reset failed');
-   }
+    if(!document.getElementById('lab-error').hidden)failures.push(lab+': reset failed');
+   }}
   }
   return {chapters:FinanceStudy.lessons.length,models:labs.size,actions,termLinks,failures};
  });
- t.diagnostic(JSON.stringify(audit));assert.equal(audit.chapters,171);assert.equal(audit.models,41);assert.ok(audit.termLinks>1500);assert.deepEqual(audit.failures,[]);
+ t.diagnostic(JSON.stringify(audit));assert.equal(audit.chapters,171);assert.equal(audit.models,43);assert.ok(audit.termLinks>1500);assert.deepEqual(audit.failures,[]);
 });
 
 test('Finance deep links, formula links, answers, navigation and offline models work',async t=>{
