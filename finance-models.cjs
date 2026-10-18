@@ -234,6 +234,37 @@ models.repofunding.presets=[
  {label:'Nur Haircutanforderung steigt',values:{size:100,haircut:5,rate:4,days:30,shock:-2,marginhaircut:10}},
  {label:'Sicherheitenüberschuss',values:{size:100,haircut:5,rate:4,days:30,shock:5,marginhaircut:5}}
 ];
-const api={models,calculate,annuity,price,bsm,cdf,forecastValue,companyPlan,covenantPlan,repaymentSchedule,bondIndexPlan,repoFundingPlan};
+function yieldSpreadPlan(p){
+ if(![p.coupon,p.price,p.z1,p.z2,p.z3].every(Number.isFinite)||p.coupon<0||p.price<=0||Math.min(p.z1,p.z2,p.z3)<=-100)throw Error('Bitte positiven Vollpreis, nicht negativen Kupon und zulässige Spotzinsen verwenden.');
+ const spots=[p.z1,p.z2,p.z3].map(z=>z/100),cashflows=[p.coupon,p.coupon,p.coupon+100];
+ const curvePrice=s=>cashflows.reduce((sum,cf,k)=>sum+cf/(1+spots[k]+s)**(k+1),0);
+ const annualPrice=y=>cashflows.reduce((sum,cf,k)=>sum+cf/(1+y)**(k+1),0);
+ const root=(fn,target,lo,hi)=>{if(fn(lo)<target||fn(hi)>target)throw Error('Für diese Werte ist kein zulässiges Suchintervall vorhanden.');for(let k=0;k<90;k++){const mid=(lo+hi)/2;if(fn(mid)>target)lo=mid;else hi=mid;}return(lo+hi)/2;};
+ const floor=-.99-Math.min(...spots),s=root(curvePrice,p.price,floor,1),reference=curvePrice(0),ytm=root(annualPrice,p.price,-.99,1),referenceYtm=root(annualPrice,reference,-.99,1),nominalSpread=(ytm-referenceYtm)*10000;
+ const lo=Math.max(floor+.000001,s-.01),hi=s+.01;
+ const out=result([['Z-Spread (bp)',s*10000],['Bond-YTM jährlich (%)',ytm*100],['Vergleichs-IRR jährlich (%)',referenceYtm*100],['Nominaler IRR-Abstand (bp)',nominalSpread],['Preis ohne Z-Aufschlag',reference],['Preisabstand zum Referenzwert',p.price-reference]],seq(lo*10000,hi*10000,bp=>curvePrice(bp/10000),120),'Konstanter Z-Spread (Basispunkte)','Vollpreis je hundert Nominal','Eigener dreijähriger Jahreskupon-Bond mit hundert Endtilgung; Bewertung unmittelbar nach Kuponzahlung. Die drei Spots sind effektive Jahresraten. Derselbe Spread wird in Dezimalform zu jedem Spot addiert. Feste Zahlungen ohne Optionen, Ausfall, Steuern oder Kosten; kein echter Kalender. Die Vergleichs-IRR entsteht aus demselben Zahlungsplan zum Preis der Referenzkurve und ist keine beobachtete Staatsquote. Der nominale IRR-Abstand ist nicht allgemein gleich Z. Die Kurve zeigt gleichzeitige Spreadannahmen um den passenden Wert, keinen erwarteten Zeitverlauf. OAS und Callausübung werden nicht berechnet.');
+ out.marker=[s*10000,p.price];
+ const plotted=out.points.map(point=>point[1]),low=Math.min(...plotted),high=Math.max(...plotted),pad=Math.max((high-low)*.1,.01);
+ out.yRange=[low-pad,high+pad];
+ out.note+=' Die Preisskala umfasst den gezeigten Szenariobereich.';
+ out.spread={zSpread:s,ytm,referenceYtm,nominalSpread,reference,price:p.price,cashflows,spots};
+ out.projection={caption:'Jede Zahlung mit ihrem passenden Spot plus konstantem Z-Aufschlag diskontieren',headers:['Jahr','Kupon','Tilgung','Gesamtzahlung','Spot (%)','Spot plus Z (%)','Diskontfaktor','Barwert'],rows:cashflows.map((cf,k)=>{const discount=(1+spots[k]+s)**-(k+1);return[k+1,p.coupon,k===2?100:0,cf,spots[k]*100,(spots[k]+s)*100,discount,cf*discount];})};
+ out.stable={caption:'Preis, Kurvenaufschlag und einzelne Rechenrenditen abstimmen',headers:['Größe','Wert'],rows:[['Voller Kaufpreis',p.price],['Summe der Kurvenbarwerte',curvePrice(s)],['Einzel-YTM-Barwert zum Kaufpreis',annualPrice(ytm)],['Preis der Referenzkurve ohne Z',reference],['Einzel-YTM-Barwert der Referenz',annualPrice(referenceYtm)],['Z-Spread (bp)',s*10000],['Nominaler IRR-Abstand (bp)',nominalSpread]]};
+ return out;
+}
+add('yieldspread','Spotkurve, Z-Spread und Rechenrenditen','Dreijähriger Jahreskupon-Bond mit hundert Endnominal, direkt nach einer Kuponzahlung bewertet. Verändere jeweils nur einen Wert. Der Rechner gleicht denselben festen Zahlungsplan mit einer gesamten Spotkurve ab und vergleicht anschließend die beiden daraus entstehenden einzelnen YTMs.',[
+ field('coupon','Jahreskupon je hundert Nominal',0,15,.25,5),
+ field('price','Voller Kaufpreis je hundert',60,140,.000001,96.979267),
+ field('z1','Einjähriger Spot (% effektiv)',-2,15,.25,3),
+ field('z2','Zweijähriger Spot (% effektiv)',-2,15,.25,4),
+ field('z3','Dreijähriger Spot (% effektiv)',-2,15,.25,5)
+],yieldSpreadPlan);
+models.yieldspread.presets=[
+ {label:'Steile Referenzkurve',values:{coupon:5,price:96.979267,z1:3,z2:4,z3:5}},
+ {label:'Flache Referenzkurve',values:{coupon:5,price:100,z1:4,z2:4,z3:4}},
+ {label:'Nur Endzahlung',values:{coupon:0,price:Number((100/1.062**3).toFixed(6)),z1:3,z2:4,z3:5}},
+ {label:'Höherer Kaufpreis',values:{coupon:5,price:101,z1:3,z2:4,z3:5}}
+];
+const api={models,calculate,annuity,price,bsm,cdf,forecastValue,companyPlan,covenantPlan,repaymentSchedule,bondIndexPlan,repoFundingPlan,yieldSpreadPlan};
 if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.FinanceModels=api;
 })(globalThis);

@@ -49,6 +49,16 @@
 @media(max-width:600px){.study-lab-repofunding #lab-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}}
 #lab-projection .study-table-wrap:focus-visible{outline:2px solid #087e82;outline-offset:2px}
 .study-model-table-hint{font-size:.75rem!important;color:#526c7c}
+.study-lab-yieldspread #lab-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.study-lab-yieldspread #lab-metrics>div{min-width:0}
+.study-lab-yieldspread #lab-projection .study-model-table:nth-child(2) table{min-width:0;table-layout:fixed}
+.study-lab-yieldspread #lab-projection .study-model-table:nth-child(2) td,.study-lab-yieldspread #lab-projection .study-model-table:nth-child(2) th{white-space:normal}
+.study-lab-yieldspread #lab-projection .study-model-table:nth-child(2) th:first-child{width:60%}
+.study-lab-yieldspread #lab-projection .study-model-table:nth-child(2) td:nth-child(2){white-space:nowrap}
+.study-lab-yieldspread label[for=lab-price] .study-pair{grid-template-columns:112px 1fr}
+@media(max-width:1250px){.study-lab-yieldspread #lab-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.study-lab-yieldspread #lab-metrics strong{font-size:1.1rem}}
+@media(max-width:360px){.study-lab-yieldspread #lab-metrics>div:nth-child(1),.study-lab-yieldspread #lab-metrics>div:nth-child(4){grid-column:1/-1}}
 .study-lab-forecast #lab-chart{overflow:auto}
 .study-lab-forecast #lab-chart svg{min-width:550px}
 .study-lab-forecast #lab-chart:focus-visible{outline:2px solid #087e82;outline-offset:2px}
