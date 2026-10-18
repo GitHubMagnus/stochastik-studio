@@ -1955,3 +1955,65 @@ und bestandene Technikprüfungen ersetzen die spätere fachliche Abnahme nicht.
   nachgerechnet und zusammen mit Formeln, Tabellen und Navigation visuell auf
   Desktop und Mobilansicht kontrolliert. Dies ersetzt keinen fachlichen Gesamtaudit
   und belegt noch nicht die gewünschten Gesamtscores.
+
+## Fortsetzung: Anleihepreise auf und zwischen Kuponterminen, 17. Oktober 2026
+
+- **Fixed-Income Bond Valuation: Prices and Yields** folgt den drei tatsächlichen
+  Level-I-2027-Lernzielen. **30 Abschnitte, zehn eigene Beispiele, zwölf Tabellen,
+  28 erklärte Formeltafeln und vier berechnete Grafiken** verbinden Zahlungsanspruch,
+  Periodenrate, Barwert, Preisabgrenzung und Schätzverfahren. Alle Formelzeichen
+  erhalten lokale Bedeutungen und Einheiten.
+- Die Rentenformel wird aus der geometrischen Barwertsumme hergeleitet. Nominal,
+  Jahreskupon, Frequenz und Perioden-YTM bleiben getrennt. Der eigene Halbjahresfall
+  ergibt am Kupontermin **94,757863**; nach 108 von 180 gezählten Tagen ergeben sich
+  **97,014190 Vollpreis, 1,8 Stückzins und 95,214190 Clean Price**. Einzelne Zahlungen
+  und Vortragsrechnung stimmen überein. Reale Kalender-, Stub- und Ex-Kupon-Regeln
+  werden ausdrücklich nicht durch eine universelle Tageszählannahme ersetzt.
+- **Kontrollierte Zinsvergleiche** halten Vertrag und Ausgangsyield fest. Beim
+  Anstieg von vier auf fünf Prozent verliert die Zweijahresanleihe mit zwei Prozent
+  Kupon **1,876840 Prozent**, die Zehnjahresanleihe **8,287851 Prozent**. Bei zehn
+  Jahren und acht Prozent Kupon sind es **7,005533 Prozent**. Ein extremer eigener
+  Niedrigkupon-/Hochyieldfall begrenzt die Behauptung, längere Laufzeit müsse immer
+  empfindlicher sein. Preisableitung, Durationbeziehung und positive Krümmung
+  erklären die Unterschiede; sämtliche **672 Grafikpunkte** sind unabhängig geprüft.
+- Die **Cashflow-IRR** wird von tatsächlicher Endvermögensrendite unterschieden.
+  Die Berechnung einer YTM setzt keine ausgeführte Wiederanlage voraus; die
+  angesammelte Endvermögensrendite hängt dagegen davon ab. Der eigene Pari-Fall
+  endet mit **115,7625** bei Wiederanlage zu fünf Prozent und **115** bei zinsloser
+  Kuponhaltung. Ein gezeichneter echter Kuponsprung erhält Cash plus verbleibenden
+  Bondwert statt eine Ausschüttung als isolierten Vermögensverlust zu behandeln.
+- **Matrix Pricing** beginnt mit vergleichbaren Ansprüchen und konsistenter
+  Renditekonvention. Zwischen zwei und sechs Jahren ergibt das eigene lineare
+  Modell für vier Jahre **4,6 Prozent**, auf den Zielcashflows **99,642085**.
+  Preisinterpolation, Renditeinterpolation, Extrapolation, deterministisches
+  Schätzband und ausführbare Quote bleiben getrennt. Rang, Währung, Optionen,
+  Datenalter und Liquidität begrenzen die Vergleichbarkeit.
+- **50 englische Trainingsfragen und je zwei neue getrennte reservierte
+  Klausurfälle** enthalten deutsche Gründe pro Auswahl und genaue Abschnittslinks.
+  Lernziel A besitzt 22 Abschnitts-/34 Trainingszuordnungen, B 18/28 und C 7/9.
+  **23 kuratierte Wörterbucheinträge** ergänzen oder vertiefen unter anderem YTM,
+  Duration, Konvexität, Kuponberechtigung, Tageszählung und Matrixbewertung.
+  Kontextverweise für Clean Price und Vollpreis führen im neuen Kapitel zu den
+  Herleitungen; bisherige Standardverweise bleiben erhalten. Fünf ältere Einheiten
+  verweisen zurück. Der bestehende Anleiherechner und das Tilgungsmodell bleiben
+  erhalten; die Preisbewertung am Kupontermin ist direkt mit dem Modell verknüpft.
+- Gesamtstand: **66 Einheiten, 220/340 strukturelle Lernzielreferenzen, 1.828
+  Trainingsfragen, je 119 reservierte Klausurfragen und 118 CFA-Grafiken**.
+  Wörterbuch: **1.084 kuratierte Rückverweise, 1.406 Definitionen und 3.052
+  Begriffe/Aliase**. Unverändert 40 Modelle in 63 bisherigen Finance-Kapiteln.
+  Offen: **36 Einheiten, 120 Lernzielreferenzen und 61 Fragen je vollständiger
+  Klausur**, danach der fachliche Gesamtaudit. Nächste Einheit: Renditen und
+  Renditeaufschläge fester Anleihen. Alle neuen Einheiten bleiben draft,
+  vollständige Klausuren gesperrt; **90/100 und 80/100 sind nicht als erreicht belegt**.
+
+- Technische Abschlussprüfung: **247 Kernprüfungen und 225 vollständige
+  CFA-Prüfungen bestanden**. Der Browser kontrolliert alle 66 Einheiten,
+  740 Corporate-/Aktien- und sämtliche 284 Anleihe-Trainingsfragen einschließlich
+  Auswahlgründen, Symbolhilfen und Abschnittsrückwegen. Zwei weitere Edge-Prüfungen
+  durchlaufen 171 bisherige Kapitel, 40 Modelle, 7.144 Aktionen und 16.803
+  Begriffsverweise ohne Fehler. Alle 672 neuen Grafikwerte sind unabhängig
+  nachgerechnet; zehn Ansichten von Grafiken, Beispielen, Formeln und Tabellen
+  wurden auf Desktop und Mobilansicht visuell geprüft. Normale Kuponberechtigung,
+  Bruchteilsdiskontierung und die Grenze des vorhandenen Rechners sind sichtbar
+  benannt. Diese Prüfungen belegen noch keine vollständige fachliche Freigabe
+  oder die gewünschten Gesamtscores.

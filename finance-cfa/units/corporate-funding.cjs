@@ -225,7 +225,8 @@ module.exports={id:'corporate-funding',intro:[
   'Im Repo-Rechner ändere zunächst nur die Sicherheitenpreisbewegung von minus zwei auf minus fünfzehn Prozent. Beobachte Nachschuss und ungedecktes Anfangscash getrennt. Erhöhe danach nur den aktuell verlangten Haircut bei unverändertem Anfangskredit. Schließlich vergleiche einen höheren anfänglichen Haircut: Er verringert den anfänglichen Kreditbetrag und dessen Zins, statt nur einen Aufschlag zur gleichen Finanzierung zu erzeugen.',
   'Die Modellkurve vergleicht gleichzeitige Sicherheitenpreisszenarien, keine Prognose eines zeitlichen Preispfads. Endrückkauf, aktuelle Sicherheitenquote und Zwischenmargin werden bewusst auf unterschiedlichen klar genannten Zeit- und Bemessungsgrundlagen gerechnet. Die Modellgrenzen gehören zur Erklärung und nicht bloß zum Kleingedruckten.'
  ])
-],explorations:[{section:'margin-call',lesson:'bonds-02',focus:'lab',label:'Repo: Cash, Zins, Haircut und zusätzliche Sicherheiten getrennt verändern'}],related:[{unit:'government-funding',section:'maturity',label:'Öffentliche Fälligkeiten und unternehmerische Ersatzfinanzierung verbinden'},
+],explorations:[{section:'margin-call',lesson:'bonds-02',focus:'lab',label:'Repo: Cash, Zins, Haircut und zusätzliche Sicherheiten getrennt verändern'}],related:[
+ {"unit":"bond-prices","section":"par","label":"Kupon, verlangte Rendite und Ausgabepreis gemeinsam prüfen"},{unit:'government-funding',section:'maturity',label:'Öffentliche Fälligkeiten und unternehmerische Ersatzfinanzierung verbinden'},
  {unit:'working-capital',section:'policy',label:'Zahlungsplanung, Reserven und Fristenkongruenz verbinden'},
  {unit:'bond-features',section:'funding',label:'Kreditverwendung und Covenant-Spielräume vollständig abstimmen'},
  {unit:'bond-cashflows',section:'balloon',label:'Endzahlungen und Refinanzierungsvolumen am Tilgungsplan erkennen'},
