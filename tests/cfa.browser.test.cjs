@@ -7,6 +7,27 @@ async function open(t,route='cfa'){
  const page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[];page.on('pageerror',e=>errors.push(e.message));t.after(async()=>{await page.close();assert.deepEqual(errors,[]);});await page.goto(url+'/#'+route);return page;
 }
 
+test('bond valuation exposes all graph values, fractional-period symbols, controlled comparisons and the existing calculator without mobile overflow',async t=>{
+ const page=await open(t,'cfa~learn-bond-prices~coupon-jump');
+ assert.equal(await page.locator('#page-cfa .cfa-section').count(),30);assert.equal(await page.locator('#page-cfa .cfa-figure').count(),4);assert.equal(await page.locator('#page-cfa .cfa-formula').count(),28);
+ for(const[section,count]of [['coupon-jump',204],['inverse',183],['sensitivity',244],['interpolation',41]]){const f=page.locator('#cfa-section-'+section+' .cfa-figure');await f.locator('details summary').click();assert.equal(await f.locator('tbody tr').count(),count);await f.locator('details summary').click();}
+ assert.ok(await page.locator('#page-cfa .cfa-figure').evaluateAll(xs=>xs.every(e=>e.getBoundingClientRect().width<=641)));
+ assert.ok(await page.locator('#page-cfa .cfa-figure svg').evaluateAll(xs=>xs.every(svg=>{const b=svg.getBoundingClientRect();return [...svg.querySelectorAll('text')].every(e=>{const t=e.getBoundingClientRect();return t.left>=b.left-1&&t.right<=b.right+1;});})));
+ for(const width of [390,760,1440]){await page.setViewportSize({width,height:1000});await page.goto(url+'/#cfa~learn-bond-prices~settlement');assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));}
+ await page.setViewportSize({width:390,height:1000});const help=page.locator('#cfa-section-settlement .formula-notation');await help.locator('summary').click();assert.match(await help.innerText(),/Verbleibender Bruchteil/);assert.match(await help.innerText(),/Indikator/);
+ await page.goto(url+'/#cfa~learn-bond-prices~sensitivity');const table=page.locator('#cfa-section-sensitivity .cfa-table').first();await table.focus();await page.keyboard.press('ArrowRight');await page.waitForTimeout(120);assert.ok(await table.evaluate(e=>e.scrollLeft>0));
+ await page.goto(url+'/#cfa~learn-bond-prices~calculator');await page.locator('.cfa-exploration a').click();assert.equal(await page.locator('.study-lab-controls input[type=number]' ).count(),5);await page.goBack();await page.waitForFunction(()=>document.activeElement.id==='cfa-section-calculator');
+ const offline=await browser.newPage({viewport:{width:390,height:900}});t.after(()=>offline.close());await offline.context().setOffline(true);await offline.goto(require('node:url').pathToFileURL(require('node:path').join(__dirname,'../index.html')).href+'#cfa~learn-bond-prices');assert.equal(await offline.locator('#page-cfa .cfa-figure').count(),4);assert.equal(await offline.locator('#page-cfa .cfa-section').count(),30);
+});
+
+test('bond valuation vocabulary resolves full and clean context, yield, duration and matrix concepts to their exact explanations',async t=>{
+ const page=await open(t);
+ for(const[section,word,target]of [['yield','YTM','yield'],['accrual','Clean Price','accrual'],['settlement','Vollpreis','settlement'],['duration-bridge','Modified Duration','duration-bridge'],['matrix-process','Matrix Pricing','matrix-process'],['day-count','Tageszählkonvention','day-count'],['day-count','Ex-Kupon','day-count']]){
+  await page.goto(url+'/#cfa~learn-bond-prices~'+section);if(section==='settlement')await page.locator('#cfa-section-settlement .formula-notation summary').click();const a=page.locator('#cfa-section-'+section+' a.term-link:visible').filter({hasText:new RegExp('^'+word+'$','i')}).first(),id=(await a.getAttribute('href')).split('~')[1];await a.click();await page.locator('#glossary-'+id+' a[href="#cfa~learn-bond-prices~'+target+'"]').click();await page.waitForFunction(id=>document.activeElement.id==='cfa-section-'+id,target);
+ }
+ await page.goto(url+'/#cfa~learn-bond-trading~market-value');const a=page.locator('#cfa-section-market-value a.term-link:visible').filter({hasText:/^Clean Price$/}).first(),id=(await a.getAttribute('href')).split('~')[1];await a.click();await page.locator('#glossary-'+id+' a[href="#cfa~learn-bond-trading~market-value"]').click();await page.waitForFunction(()=>document.activeElement.id==='cfa-section-market-value');
+});
+
 test('government funding exposes exact figure data, local symbols and complete cash tables with accessible mobile and offline navigation',async t=>{
  const page=await open(t,'cfa~learn-government-funding~gross-net');
  assert.equal(await page.locator('#page-cfa .cfa-section').count(),31);assert.equal(await page.locator('#page-cfa .cfa-figure').count(),4);

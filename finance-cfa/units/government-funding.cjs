@@ -202,6 +202,7 @@ module.exports={id:'government-funding',intro:[
   'Das Material erklärt Finanzierungsmechanismen und bewusst begrenzte Fälle. Eine vollständige Bewertung konkreter öffentlicher Kreditqualität, tatsächlicher Steueransprüche und einzelner Marktregeln braucht die jeweiligen Daten und Dokumente; eine einfache Zahl oder eine hohe Quote ersetzt diesen weiteren Schritt nicht.'
  ])
 ],related:[
+ {"unit":"bond-prices","section":"cash-quote","label":"Vollkurs und Casherlös einschließlich Stückzins abstimmen"},
  {unit:'fiscal',section:'debt-dynamics',label:'Primärsaldo, Zins und Wachstum im mehrperiodigen Schuldenpfad verbinden'},
  {unit:'monetary',section:'unconventional',label:'Staatliche Emission von Zentralbankkäufen und Geldpolitik unterscheiden'},
  {unit:'bond-trading',section:'auction',label:'Yield-Gebote und Uniform-Price-Zuteilung im anderen eigenen Auktionsfall vergleichen'},
