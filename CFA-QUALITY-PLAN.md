@@ -2017,3 +2017,87 @@ und bestandene Technikprüfungen ersetzen die spätere fachliche Abnahme nicht.
   Bruchteilsdiskontierung und die Grenze des vorhandenen Rechners sind sichtbar
   benannt. Diese Prüfungen belegen noch keine vollständige fachliche Freigabe
   oder die gewünschten Gesamtscores.
+
+## Fortsetzung: Renditekonventionen und Spreads, 18. Oktober 2026
+
+- **Yield and Yield Spread Measures for Fixed-Rate Bonds** folgt den zwei
+  tatsächlichen Level-I-2027-Lernzielen. **33 Abschnitte, zehn eigene Beispiele,
+  zehn Tabellen, 29 erklärte Formeltafeln und fünf berechnete Grafiken** verbinden
+  Frequenzumrechnung, Szenario-IRR und unterschiedliche Referenzmaße. Die zusätzliche
+  Optionsmodellsicht wird als Vertiefung mit Grenzen statt als weiteres Level-I-LOS
+  bezeichnet. Konkrete Rechts- oder Marktregeln werden nicht aus Namen abgeleitet.
+- **Annualisierung** entsteht aus dem Jahreswachstumsfaktor. Sechs Prozent nominal
+  halbjährlich ergeben **6,09 Prozent effektiv**. Derselbe effektive Sechs-Prozent-
+  Jahresfaktor entspricht dagegen **5,912603 Prozent** nominal halbjährlich und
+  **5,841061 Prozent** nominal monatlich. Negative Sätze, positive Periodenbasis,
+  Wurzelumrechnung und die optionale stetige Schreibweise sind erklärt. Geometrische
+  Endvermögensrendite wird von einfacher Division durch die Jahre getrennt.
+- **Current Yield, YTM und Calls** verwenden ausdrücklich abgegrenzte Preise und
+  Zahlungspläne. Der eigene Kauf zu 110 mit sechs Jahreskupon hat bei fünfjähriger
+  Endtilgung hundert **3,768328 Prozent YTM**. Ein Call nach einem Jahr zu 106
+  ergibt **1,818182 Prozent**, der spätere Call nach zwei Jahren zu hundert nur
+  **0,930132 Prozent**. Die erste Callmöglichkeit ist daher nicht automatisch das
+  Minimum. YTW ist kein Schutz vor Ausfall oder jeder schlechten Wiederanlage;
+  Anlegerput und Emittentencall liegen in verschiedenen Händen.
+- **G-, I- und Swapspread** bekommen getrennte Vergleichsseiten. Bei Bondyield 5,8,
+  Staatsvergleich 4,2 und Swapvergleich 4,5 Prozent ergeben sich **160, 130 und
+  dreißig Basispunkte**. Ein weiterer Fall senkt den gesamten Bondyield zwanzig
+  Basispunkte, obwohl der Spread dreißig steigt. Interpolation, Spreadkurve,
+  Liquidität und mehrere Risikotreiber werden von exakten Ausfallwahrscheinlichkeiten
+  oder sicherer Überrendite unterschieden.
+- **Z-Spread und OAS** verwenden unterschiedliche Modelle. Eigene Spots drei,
+  vier und fünf Prozent plus **120 Basispunkte** bewerten Zahlungen fünf, fünf und
+  105 zu **96,979267**. Geldpunkte Optionswert werden nicht direkt von Basispunkten
+  abgezogen. Bei ausdrücklich vorgegebenen Modellwerten drei ändern sich Z und
+  OAS unterschiedlich; die zugrunde liegende Optionsbewertung wird dabei nicht als
+  hier berechneter Zinsbaum ausgegeben. Alle **704 Lehrbuch-Grafikpunkte** sind
+  unabhängig mit Kapitalfaktoren oder Cashflow-Barwertresiduen geprüft.
+- **52 englische Trainingsfragen und je ein neuer getrennter reservierter
+  Klausurfall** erhalten deutsche Auswahlgründe und genaue Abschnittsrückwege.
+  Lernziel A hat 13 Abschnitts-/zwölf Trainingszuordnungen, B 27/45. Beide
+  reservierten Fälle verbinden beide Lernziele. Eine ältere Anleihefrage nennt
+  jetzt Nominal und Kupon selbstständig, sodass sie auch einzeln verständlich ist.
+- **Der neue Spotkurvenrechner** ergänzt das bisherige Spreadkapitel.
+  Fünf Eingaben und vier ladbare Fälle liefern sechs Kennzahlen, drei Zahlungszeilen
+  und vollständige Preisabstimmungen. **243 unabhängig gerechnete Szenarien mit allen
+  32 Eingabeecken** prüfen außerdem sämtliche **29.403 Modellkurvenpunkte**.
+  Flache Kurve, Nullkupon und parallele Spotverschiebung erklären, wann Z und der
+  nominale IRR-Abstand übereinstimmen oder welche Eingaben keinen Einfluss haben.
+  Insgesamt sind jetzt 41 Modelle in 64 bisherigen Finance-Kapiteln erreichbar.
+- **23 zusätzliche kuratierte Einträge** und eine präzisierte bestehende Begriffsfamilie
+  erklären die Rendite- und Spreadbegriffe. Effektive Jahresrendite, Effective Annual
+  Rate und EAR sind unter dem bestehenden Effektivzins-Eintrag zusammengeführt;
+  die frühere englische Adresse bleibt als Alias erreichbar. Anleihe-Callpreis und
+  bisheriger Aktien-Call-Preis erhalten passende Kontextverweise. Fünf ältere
+  Einheiten verweisen zurück in das neue Kapitel.
+- Gesamtstand: **67 Einheiten, 222/340 strukturelle Lernzielreferenzen, 1.880
+  Trainingsfragen, je 120 reservierte Klausurfragen und 123 CFA-Grafiken**.
+  Wörterbuch: **1.107 kuratierte Rückverweise, 1.426 Definitionen und 3.108
+  Begriffe/Aliase**. Offen: **35 Einheiten, 118 Lernzielreferenzen und sechzig Fragen
+  je vollständiger Klausur**, danach der fachliche Gesamtaudit. Nächste Einheit:
+  Floater und Geldmarktrenditen. Alle neuen Einheiten bleiben draft; vollständige
+  Klausuren gesperrt. **90/100 und 80/100 sind weiterhin nicht als erreicht belegt**.
+
+- Offener Punkt für die fachliche Endfreigabe: Den genauen Umfang zusätzlicher
+  Quotierungsbegriffe wie Street Convention Yield, True Yield, Simple Yield und
+  halbjährlicher Bond-Basis anhand geeigneter 2027-Primärunterlagen abgleichen.
+  Kalendergrenzen und geometrische Annualisierung sind bereits erläutert; daraus
+  folgt noch kein Nachweis, dass jede prüfungsrelevante Bezeichnung und Variante
+  vollständig abgedeckt ist. Dieser Abgleich bleibt Teil des Gesamtaudits.
+
+- Abschlussprüfung dieses Arbeitsstands: **255 Kernprüfungen, 236 CFA-Browserprüfungen
+  und beide bisherigen Browserprüfungen bestanden**. Die Browserprüfung umfasst alle
+  67 CFA-Einheiten sowie 740 Corporate-/Equity- und 336 Anleihe-Trainingsfragen;
+  die bisherige Finance-Oberfläche besteht mit 171 Kapiteln, 41 Modellen,
+  7.182 ausgeführten Aktionen und 16.828 geprüften Begriffsverweisen.
+  Die neue Einheit wurde anhand ihrer 704 Grafikpunkte und das neue Modell anhand
+  von 243 Szenarien mit 29.403 Kurvenpunkten nachgerechnet. Fünfzehn Ansichten
+  wurden visuell geprüft; für das Modell zusätzlich Zahlenumbruch, Preisskala,
+  Tabellen und Tastaturbedienung bei 320, 390 und 1.100 Pixeln kontrolliert.
+  Diese technischen Ergebnisse ersetzen keine fachliche Gesamtfreigabe.
+- Die vorhandenen Themengewichte und Sitzungszuordnungen wurden am 18.10.2026
+  erneut mit der ausdrücklich als **2027** bezeichneten Tabelle auf der
+  [offiziellen Level-I-Prüfungsseite](https://www.cfainstitute.org/programs/cfa-program/candidate-resources/level-i-exam)
+  abgeglichen. Alle zehn Themenintervalle stimmen überein; insbesondere gelten
+  Ethics 10–15 % und Quantitative Methods 11–14 %. Die abweichenden 2026-Werte
+  derselben Seite werden nicht für den 2027-Klausurplan verwendet.

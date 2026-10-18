@@ -210,6 +210,7 @@ module.exports={id:'bond-trading',intro:[
   'Anfangsvollpreis, Nominal, Endpreis und tatsächlicher Cashkupon sind getrennte Eingaben. Die Kurve zeigt eine Familie unterschiedlicher Anfangsportfolios, keinen zeitlichen Vermögenspfad und keine Renditegarantie. Der Rechner bildet keine unterjährige Tilgung, Kosten, Steuern, Währung oder Indexumbauten ab; die weiteren Abschnitte erklären, wie diese Ebenen hinzukommen.'
  ])
 ],explorations:[{section:'index-case',lesson:'bonds-04',focus:'lab',label:'Eigene Indexgewichte, Vollpreise, Cashkupons und Gesamtrendite verändern'}],related:[
+ {"unit":"fixed-yields","section":"current","label":"Current Yield von Vollpreis-IRR und tatsächlichem Ertrag trennen"},
  {"unit":"bond-prices","section":"accrual","label":"Clean Price und Vollwert zwischen Terminen herleiten"},{unit:'government-funding',section:'formats',label:'Gleiche Preisgebote unter Uniform und Multiple Price vergleichen'},{unit:'corporate-funding',section:'comparison',label:'Handelbare Anleihen als tatsächlich lieferbare Repo-Sicherheiten prüfen'},
  {unit:'bond-features',section:'issuer',label:'Den tatsächlich verpflichteten Emittenten vor dem Marktetikett prüfen'},
  {unit:'bond-cashflows',section:'classification',label:'Domestic, Foreign, Eurobond und Währung auseinanderhalten'},

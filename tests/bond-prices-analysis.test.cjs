@@ -9,7 +9,7 @@ test('bond prices address all three actual objectives with disjoint original pra
  const qs=data.questions.filter(q=>q.unit===u.id);assert.equal(qs.length,54);assert.equal(qs.filter(q=>q.pool==='practice').length,50);
  for(const p of ['mock-a','mock-b']){assert.equal(qs.filter(q=>q.pool===p).length,2);assert.ok(data.inventory[p].bonds<=require('../finance-cfa/engine.cjs').blueprint.bonds);}
  for(const o of data.coverage.find(x=>x.id===u.id).objectives){assert.ok(o.sections.length>=7);assert.ok(o.practice.length>=8);assert.ok(o.mockQuestions>=2);}
- assert.equal(require('../finance-content/bonds.cjs')[2].lab,'repayment');assert.equal(require('../finance-content/bonds.cjs')[4].lab,'bond');assert.equal(Object.keys(require('../finance-models.cjs').models).length,40);
+ assert.equal(require('../finance-content/bonds.cjs')[2].lab,'repayment');assert.equal(require('../finance-content/bonds.cjs')[4].lab,'bond');assert.equal(Object.keys(require('../finance-models.cjs').models).length,41);
 });
 test('all 672 plotted values agree with closed-form cash-flow references, matching units and stated assumptions',()=>{
  let count=0;for(const f of u.sections.flatMap(s=>s.blocks).filter(b=>b.kind==='figure'))for(const[i,s]of f.plot.series.entries())for(const[k,[x,y]]of s.points.entries()){
