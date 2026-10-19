@@ -124,6 +124,7 @@ module.exports={id:'tvm',intro:[
   ],'Eine einzige konsequente Periodisierung wählen. Zahl der Zahlungen, Kupon und Zins müssen dieselbe Periode beschreiben.'),
   'Ungleichmäßige Zahlungen passen nicht in eine einzige konstante PMT. Dafür sind einzelne Barwerte oder ein geeignetes Cashflow-Arbeitsblatt nötig. Der Rechner ersetzt weder Zahlungsanalyse noch die Prüfung, ob eine gefundene IRR-Lösung eindeutig ist.'
  ])],related:[
+ {unit:'bond-return',section:'workflow',label:'Kupons, Wiederanlage, Verkauf und Anlagehorizont gemeinsam zur Anleiherendite verbinden'},
  {unit:'yield-curves',section:'discount',label:'Spot-, Par- und Forwardkurven aus denselben Diskontfaktoren vertiefen'},{unit:'bond-cashflows',section:'annuity-derivation',label:'Aus dem Rentenbarwert die vollständige Kreditrate herleiten'},{unit:'returns',section:'rate-roles',label:'Warum ein Diskontsatz eine Renditeforderung ausdrückt'},{unit:'return-types',section:'compounding',label:'Nominale und effektive Raten konsistent umrechnen'},{unit:'benchmarks',section:'money-weighted',label:'IRR als Anlegerergebnis und seine Mehrdeutigkeiten'},{unit:'leases-compensation',section:'lease-measurement',label:'Barwertrechnung für Leasingverbindlichkeiten'}],
  sources:[
  {title:'CFA Institute: Time Value of Money in Finance',url:'https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/time-value-money'},

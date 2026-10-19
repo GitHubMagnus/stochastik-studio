@@ -342,6 +342,42 @@ models.yieldcurve.presets=[
  {label:'Buckel: 3, 6, 4 Prozent',values:{z1:3,z2:6,z3:4,coupon:5}},
  {label:'Negative Spots: −3, −2, −1 Prozent',values:{z1:-3,z2:-2,z3:-1,coupon:5}}
 ];
-const api={models,calculate,annuity,price,bsm,cdf,forecastValue,companyPlan,covenantPlan,repaymentSchedule,bondIndexPlan,repoFundingPlan,yieldSpreadPlan,floaterPlan,moneyYieldPlan,yieldCurvePlan};
+function bondHorizonPlan(p){
+ if(![p.coupon,p.initial,p.after,p.years,p.horizon,p.frequency].every(Number.isFinite)||p.coupon<0||p.initial<=-100||p.after<=-100||!Number.isInteger(p.years)||p.years<1||p.horizon<=0||![1,2].includes(p.frequency))throw Error('Bitte positive Laufzeit und Horizont, nicht negativen Kupon, zulässige Zinsbasis und jährliche oder halbjährliche Zahlungen verwenden.');
+ const m=p.frequency,n=p.years*m,b0=1+p.initial/(100*m),b1=1+p.after/(100*m),H=p.horizon,C=p.coupon/m;
+ const rows=Array.from({length:n},(_,k)=>{const j=k+1,t=j/m,cash=C+(j===n?100:0),pv=cash/b0**j;return{j,t,cash,pv,weight:0,contribution:0};});
+ const P=rows.reduce((s,r)=>s+r.pv,0);let D=0;
+ for(const r of rows){r.weight=r.pv/P;r.contribution=r.t*r.weight;D+=r.contribution;}
+ const wealth=(y,h)=>rows.reduce((s,r)=>s+r.cash*(1+y/(100*m))**(m*h-r.j),0),annual=(y,h)=>Math.expm1(Math.log(wealth(y,h)/P)/h)*100;
+ let couponCash=0,couponInterest=0,sale=0,principal=0,principalInterest=0;
+ for(const r of rows){if(r.t<=H){couponCash+=C;couponInterest+=C*(b1**(m*H-r.j)-1);if(r.j===n){principal=100;principalInterest=100*(b1**(m*H-r.j)-1);}}else sale+=r.cash*b1**(m*H-r.j);}
+ const W=wealth(p.after,H),mark=wealth(p.after,0),exit=sale+principal;
+ const lines=[{name:'Gewählter Horizont: '+H.toLocaleString('de-DE',{maximumFractionDigits:6})+' Jahre',color:'#087e82',points:seq(-2,15,y=>annual(y,H),85)},{name:'Anfängliche Macaulay Duration: '+D.toLocaleString('de-DE',{maximumFractionDigits:6})+' Jahre',color:'#bc670a',dash:true,points:seq(-2,15,y=>annual(y,D),85)},{name:'Endfälligkeit: '+p.years+' Jahre',color:'#6b4ab5',points:seq(-2,15,y=>annual(y,p.years),85)}];
+ const out=result([['Bezahlter Vollpreis je hundert',P],['Marktwert sofort nach Zinsänderung',mark],['Anfängliche Macaulay Duration (Jahre)',D],['Horizont minus Macaulay (Jahre)',H-D],['Endvermögen am Horizont',W],['Realisierte effektive Jahresrendite (%)',annual(p.after,H)],['Zins auf erhaltene Kupons',couponInterest],['Verkaufspreis oder Nominalrückzahlung',exit]],lines[0].points,'Neuer Marktzins (% nominal p. a.)','Effektive Jahresrendite (%)','Eigener Festkuponbond mit hundert Endnominal. Kauf direkt nach Kupontermin; sofortige einmalige Zinsänderung, danach ein einheitlicher konstanter nominaler Satz für Bewertung und Wiederanlage, mit angegebener jährlicher oder halbjährlicher Frequenz. Alle Zahlungen werden auf denselben Horizont gebracht. Vor Fälligkeit: Vollverkaufspreis einschließlich zeitanteiligem Kuponwert im regelmäßigen Potenzmodell. Nach Fälligkeit: auch das zurückgezahlte Nominal wird wiederangelegt. Bruchteile von Perioden verwenden Potenzen; kein tatsächlicher Kalender oder Day Count. Keine Optionen, Ausfälle, Steuern, Gebühren oder Kurvenverformungen. Die anfängliche Macaulay Duration wird mit der Kauf-YTM berechnet und ändert sich beim Verschieben des neuen Zinses nicht. Der passende Horizont neutralisiert nur den ersten Ableitungseffekt am Ausgangszins. Alle drei Linien zeigen verschiedene Szenarien annualisierter Renditen auf denselben historischen Kaufpreis; keine Prognose. Zusammenfallende Horizonte erzeugen deckungsgleiche Linien. Sehr kurze Horizonte können extreme annualisierte Zahlen erzeugen; Mio. und Mrd. kürzen bei Bedarf nur die Achsenbeschriftung.');
+ out.series=lines;out.marker=[p.after,annual(p.after,H)];out.compactYAxis=true;
+ const all=[...lines.flatMap(s=>s.points.map(p=>p[1])),out.marker[1]],lo=Math.min(...all),hi=Math.max(...all),pad=Math.max((hi-lo)*.08,.1);out.yRange=[lo-pad,hi+pad];
+ out.horizon={price:P,mark,macaulay:D,wealth:W,annual:annual(p.after,H)/100,couponCash,couponInterest,sale,principal,principalInterest,capitalGain:exit-P,rows};
+ out.projection={caption:'Anfängliche Zahlungsbarwerte bestimmen die Macaulay Duration in Jahren',headers:['Periode','Jahr','Zahlung','Barwert beim Kauf','Barwertgewicht','Zeitbeitrag (Jahre)'],rows:rows.map(r=>[r.j,r.t,r.cash,r.pv,r.weight,r.contribution])};
+ out.stable={caption:'Endvermögen ohne doppelte Tilgung oder doppelte Kupons abstimmen',headers:['Bestandteil am Horizont','Betrag'],rows:[['Erhaltene Kupons ohne Zins',couponCash],['Zins auf diese Kupons',couponInterest],['Vollverkaufspreis der noch ausstehenden Zahlungen',sale],['Zurückgezahltes Nominal',principal],['Zins auf zurückgezahltes Nominal',principalInterest],['Endvermögen: Summe der fünf Bestandteile',W],['Kapitalgewinn/-verlust: Verkauf oder Tilgung minus Kaufpreis',exit-P]]};
+ return out;
+}
+add('bondhorizon','Anlagehorizont, Wiederanlage und Macaulay Duration','Vergleiche denselben Kauf bei einem kurzen Horizont, bei der anfänglichen Macaulay Duration und bei Fälligkeit. Ändere dann nur den neuen Marktzins. Die unterschiedliche Reaktion entsteht aus dem Verhältnis von Kurs- und Wiederanlageeffekt.',[
+ field('coupon','Jahreskupon je hundert Nominal',0,15,.25,5),
+ field('initial','Kauf-YTM (% nominal p. a.)',-2,15,.25,5),
+ field('after','Neuer Zins (% nominal p. a.)',-2,15,.25,6),
+ field('years','Restlaufzeit beim Kauf (Jahre)',1,30,1,5),
+ field('horizon','Anlagehorizont ab Kauf (Jahre)',.25,30,.000000001,1),
+ field('frequency','Kupons und Verzinsungsperioden pro Jahr',1,2,1,1)
+],bondHorizonPlan);
+models.bondhorizon.presets=[
+ {label:'Kurz: Verkauf nach einem Jahr',values:{horizon:1}},
+ {label:'Horizont gleich Macaulay',values:{horizon:4.54595050416236}},
+ {label:'Halten bis zur Fälligkeit',values:{horizon:5}},
+ {label:'Zwei Jahre über Fälligkeit hinaus',values:{horizon:7}},
+ {label:'Nullkupon bis zur Fälligkeit',values:{coupon:0,horizon:5}},
+ {label:'Halbjährliche Zahlungen',values:{frequency:2,horizon:4.485432764622604}},
+ {label:'Negative Marktzinsen',values:{initial:-1,after:-2,horizon:5}}
+];
+const api={models,calculate,annuity,price,bsm,cdf,forecastValue,companyPlan,covenantPlan,repaymentSchedule,bondIndexPlan,repoFundingPlan,yieldSpreadPlan,floaterPlan,moneyYieldPlan,yieldCurvePlan,bondHorizonPlan};
 if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.FinanceModels=api;
 })(globalThis);

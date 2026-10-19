@@ -2248,3 +2248,82 @@ und bestandene Technikprüfungen ersetzen die spätere fachliche Abnahme nicht.
   und die vier reservierten Lösungskarten auf je Desktop und Mobilgerät.
   Diese Ergebnisse bestätigen den technischen Arbeitsstand und konkrete
   Gegenrechnungen; die fachliche Gesamtfreigabe bleibt ausstehend.
+
+### 19. Oktober 2026: Anlagehorizont, Renditequellen und Macaulay Duration
+
+- Neue Einheit bond-return zu den drei tatsächlichen Lernzielen auf Seite 20
+  des 2027-Outlines. **34 Abschnitte, sieben vollständige Fälle, zwölf Tabellen,
+  25 Formeltafeln mit lokalen Symbolen und vier berechnete Grafiken mit 323 Werten**.
+  Dazu **60 englische Trainingsfragen** mit deutschen Lösungen und Gründen
+  für sämtliche Antwortmöglichkeiten. Je zwei reservierte Transferfragen verbinden
+  getrennte Wiederanlage-/Verkaufszinsen mit historischem Discountpreis,
+  exakte Nullkuponzahlung mit lokaler Kuponabsicherung, amortisierende Zahlungen
+  mit zwei wechselnden Wiederanlagesätzen sowie Halbjahres-Barwertgewichte mit
+  dem Anlagehorizont. Sie sind keine bloßen Zahlenvarianten der Trainingsfragen.
+- Derselbe Fünferkuponbond wird zu hundert gekauft und bei verschiedenen Horizonten
+  verglichen. Ein unmittelbarer Anstieg auf sechs Prozent liefert nach einem Jahr
+  nur **1,534894 %** realisierte Jahresrendite, bei Fälligkeit aber **5,091540 %**
+  wegen höherer Kuponwiederanlage. Bei vier Prozent sinkt die Jahresrendite bis
+  Fälligkeit auf **4,909917 %**. Aktuelle Markt-YTM und Rendite auf den historischen
+  Kaufpreis bleiben getrennt. Entnommene Kupons werden von wiederangelegtem
+  Endvermögen und Cashflow-IRR unterschieden.
+- Macaulay wird aus allen einzelnen Barwertgewichten hergeleitet. Im Hauptfall
+  ergibt sich **4,545950504 Jahre**, bei halbjährlichen Zahlungen und fünf Prozent
+  nominal **4,485432765 Jahre**. Die Ableitung des Endvermögens erklärt das Vorzeichen
+  aus Horizont minus Duration. Matching beseitigt im engen Ein-Zins-Szenario nur
+  den ersten lokalen Effekt; die barwertgewichtete Zeitvarianz erklärt die
+  verbleibende Krümmung. Der sichere Nullkupon am passenden Horizont ist ein
+  besonderer exakter Fall. Nach Fälligkeit benötigt auch er Tilgungswiederanlage.
+- Eigene kontrollierte Vergleiche erklären Kupon, Yield, Frequenz und Laufzeit.
+  Ein sehr langer Discountbond widerlegt den unbedingten Satz, längere Laufzeit
+  bedeute immer höhere Duration: Bei ein Prozent Kupon und zehn Prozent YTM
+  sinkt Macaulay zwischen dreißig und hundert Jahren wieder in Richtung der
+  Perpetuitätsgrenze elf Jahre. WAL, Modified Duration, Pull to par und Roll-down
+  werden sauber abgegrenzt. Spätere oder nicht parallele Zinsbewegungen,
+  Optionen, Kreditrisiko und nötige erneute Portfolioabstimmung begrenzen die
+  einfache Horizontaussage. Rechnerpraxis erläutert P/Y, C/Y, END, Vorzeichen
+  und die getrennte Ermittlung des Kuponendwerts und der Jahresrendite.
+- Neuer Rechner in bonds-09: sechs Eingaben, sieben Fallvorgaben, acht Kennzahlen,
+  drei beschriftete Renditekurven, vollständige Anfangsbarwerte und Endvermögens-
+  abstimmung. Der bestehende Durationrechner in bonds-08 bleibt erreichbar.
+  Alle Kurven vergleichen Jahresrenditen auf denselben Kaufpreis; Rohvermögen
+  verschiedener Laufzeiten wird nicht als gleichartiges Ertragsmaß ausgegeben.
+  Bruchperioden und die einheitliche konstante Zinsannahme sind ausdrücklich
+  erklärt. Extreme Annualisierung bleibt endlich; große Achsenwerte werden
+  lesbar abgekürzt, während vollständige Zahlen in Tabellen stehen.
+- **224 unabhängige Szenarien mit allen Eingabeecken** kontrollieren
+  **57.792 Kurvenwerte**, Kuponcash und -zins, Verkauf, Tilgung und Tilgungszins.
+  Unabhängige Rentenformeln und numerische Ableitungen prüfen außerdem Duration,
+  Horizontsensitivität und Krümmung. Alle 323 Buchgrafikwerte und die numerischen
+  Antworten einschließlich Distraktorrechnung werden getrennt nachgerechnet.
+- 14 neue globale Definitionen und die vertiefte bestehende Macaulay-Definition
+  ergänzen genaue Abschnittsverweise. Sechs vorhandene Einheiten verweisen zurück.
+  Gesamtstand: **70 Einheiten, 230/340 strukturelle Lernzielreferenzen,
+  2.052 Trainingsfragen, je 125 reservierte Fragen und 138 CFA-Grafiken**.
+  **45 Rechner in 66 bisherigen Finance-Kapiteln**; Wörterbuch:
+  **1.162 kuratierte Rückverweise, 1.479 Definitionen, 3.242 Begriffe/Aliase**.
+  Offen bleiben **32 Einheiten, 110 Lernzielreferenzen und 55 Fragen je Klausur**,
+  außerdem der fachliche Gesamtaudit einschließlich semantischer Unabhängigkeit
+  aller reservierten Fragen. Entwurfsstatus und Klausursperre bleiben bestehen.
+  **Die Zielwerte 90/100 und 80/100 sind weiterhin nicht als erreicht belegt.**
+- Technische Prüfung dieses Builds: **282 Kernprüfungen**, alle **45 bisherigen
+  CFA-Browsertests**, **vier neue gezielte Browsertests** und **drei bestehende
+  Finance-Browserprüfungen** bestanden. Die 45 CFA-Tests prüfen unter anderem
+  alle 70 Einheiten, sämtliche 508 Anleihe- und 740 Corporate-/Equity-
+  Trainingsfragen sowie Klausurablauf und Speicherung. Die vier neuen Tests
+  prüfen den Horizontrechner online/offline, mobile Grenzen, Kurventabellen,
+  Formelsymbole, Wörterbuch-Rückwege und die vier tatsächlichen reservierten
+  Fälle auf Desktop und Mobilgerät in einer isolierten Renderer-Fixture.
+  Zwei anfängliche Fehler dieser neuen Test-Fixture – ein verdeckter Begriff
+  und ein fehlender Seitenreload nach dem Austausch der Testdaten – wurden
+  in den Tests korrigiert; anschließend bestehen alle vier. Der vollständige
+  bestehende CFA-Testsatz bestand bereits auf demselben unveränderten
+  Anwendungsbuild. Diese getrennten Läufe werden nicht als ein einzelner
+  fehlerfreier Gesamtlauf ausgegeben.
+- Der bisherige Finance-Audit umfasst **171 Kapitel, 45 Modelle, 7.307 Aktionen
+  und 16.920 gültige Begriffsverweise**, sämtliche Wörterbucheinträge und
+  die Symbolhilfe für 3.054 Formelvorkommen beziehungsweise 2.886 Hilfefelder
+  über zwei Bildschirmbreiten. **26 Ansichten wurden visuell geprüft**:
+  18 Buch-/Modellansichten sowie vier reservierte Lösungskarten auf je zwei
+  Bildschirmbreiten. Dies belegt konkrete technische und numerische Kontrollen;
+  es ersetzt nicht den ausstehenden fachlichen Gesamtaudit.
