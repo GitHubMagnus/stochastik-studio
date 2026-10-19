@@ -13,14 +13,14 @@ Direkt im Browser nutzbar, ohne Download oder Installation.
 - **Verständnis prüfen:** 1.034 Aufgaben, mindestens sechs in jedem Finance-Kapitel und 14 bei Duration. Grundverständnis, Herleitung oder Begründung, Rechen- oder Fallaufgabe, Vergleich, Transfer und Fehlersuche besitzen getrennte Hinweise und ausführliche Lösungen. Aufgabenangaben und Ergebnistabellen sind getrennt. Die Lösungen enthalten 544 gesetzte Formeltafeln und 90 gesetzte Inline-Formeln, einschließlich bewusst wiederverwendeter Kapitelrechnungen.
 - **Vertiefungen:** 361 zusätzliche Erklärabschnitte, 175 Vergleichstabellen, insgesamt 519 erläuterte Lösungsschritte, 740 Kapitelverbindungen und neun Erklärungsgrafiken. Wichtige Zusammenhänge wie Duration, Cashflowbewertung, CAPM und Optionsreplikation erhalten mehrere aufeinander aufbauende Herleitungen.
 - **Mathematische Notation:** 156 zentrale mathematische Formeltafeln, 219 Formeltafeln in Herleitungen und 383 numerische Lösungsschritte werden ausdrücklich in LaTeX verfasst und als MathML eingebettet. Auch Formeln in Vergleichstabellen und alle neun Kelly-Formeltafeln sind gesetzt. Qualitative Entscheidungsfragen werden als Prosa dargestellt. Es gibt keine automatische Umwandlung von Wörtern in vermeintliche Gleichungen.
-- **Fachwörterbuch:** 1.446 alphabetisch sortierte Definitionen mit 3.161 Begriffen und Aliasen; automatische Verlinkung aus den Lerntexten und Rückverweise auf erklärende Kapitel. 1.128 kuratierte Einträge besitzen zusätzlich einen präzisen Rückverweis in den neuen CFA-Lernpfad. Mehrdeutige Begriffe wie GMV und Forward werden abhängig vom Kapitel verlinkt. Direktlinks auf zusammengeführte Begriffe bleiben über deren Alias erhalten.
+- **Fachwörterbuch:** 1.465 alphabetisch sortierte Definitionen mit 3.211 Begriffen und Aliasen; automatische Verlinkung aus den Lerntexten und Rückverweise auf erklärende Kapitel. 1.148 kuratierte Einträge besitzen zusätzlich einen präzisen Rückverweis in den neuen CFA-Lernpfad. Mehrdeutige Begriffe wie GMV und Forward werden abhängig vom Kapitel verlinkt. Direktlinks auf zusammengeführte Begriffe bleiben über deren Alias erhalten.
 - **Kelly Studio:** Einzelpositionen, Szenarien, Portfoliooptimierung, Simulation und Herleitung. Der Zustand bleibt beim Modulwechsel erhalten.
 
 ## CFA Level I 2027: laufende Überarbeitung
 
 Der neue Bereich unter **Finance → CFA Level I 2027** führt 102 offizielle Module
 mit 340 einzeln zugeordneten Lernzielreferenzen. Der aktuelle Arbeitsstand enthält
-68 neu ausgearbeitete Einheiten und 1.932 eigenständige englische Trainingsfragen
+69 neu ausgearbeitete Einheiten und 1.992 eigenständige englische Trainingsfragen
 mit deutschen Lösungen. Alle zehn Ethics-Module und alle elf Quant-Module besitzen
 neue Erklärungen und Übungen. Weitere Vertiefungen behandeln EPS, Kennzahlen und
 Leasing/Vergütung. Der Quant-Bereich enthält jetzt auch ausführliche Testwahl,
@@ -279,18 +279,30 @@ sind ausdrücklich auseinandergehalten. Zwei neue Rechner zeigen die einzelnen
 Barwerte beziehungsweise die auf dieselben Zahlungen bezogenen Renditequoten.
 Der bisherige Repo-Rechner bleibt mit seiner bisherigen Adresse erreichbar;
 die zusätzlichen Rechner können im selben Kapitel direkt gewechselt werden.
-Insgesamt 128 zusätzliche berechnete Grafiken erläutern die neuen Zusammenhänge.
+Die **Spot-, Par- und Forwardkurven** sind jetzt in 36 Abschnitten mit neun
+vollständigen Fällen, neun Tabellen, 26 lokal erklärten Formeltafeln und 60
+Trainingsfragen ausgearbeitet. Aus denselben Preisfaktoren werden der tatsächliche
+Kuponbond, die Par-Benchmarks und die künftigen Zinsabschnitte hergeleitet.
+Bootstrapping rekonstruiert die Faktoren aus drei Bondpreisen; zwei vollständig
+finanzierte Zahlungspläne erklären beide Arbitragerichtungen. Sechs Grafiken
+vergleichen Preisreaktion, steigende, fallende, buckelförmige und negative Kurven.
+Die Grenzen üblicher Par-Spot-Faustregeln sowie der Unterschied zwischen endlichem
+Jahresforward, momentaner Rate und Zinsprognose werden ausdrücklich erläutert.
+Ein neuer gemeinsamer Kurvenrechner zeigt drei beschriftete Linien, Zahlungsbarwerte
+und eine separate Pari-Abstimmung. Für die Klausuren kommen je zwei eigene
+reservierte Fragen mit eigenständigen Zahlenfällen hinzu.
+Insgesamt 134 zusätzliche berechnete Grafiken erläutern die neuen Zusammenhänge.
 Direkte Abschnittsverweise verbinden die Einheiten und passende Wörterbuchdefinitionen.
 
-224 Lernzielreferenzen sind aktuell sowohl neuen Erklärungen als auch Trainingsfragen
+227 Lernzielreferenzen sind aktuell sowohl neuen Erklärungen als auch Trainingsfragen
 zugeordnet. Dies ist **kein Nachweis vollständiger CFA-Vorbereitung**. Offene
 Einheiten sind sichtbar; die fachliche Endprüfung läuft. Zwei getrennte Probeklausuren
-haben bisher je 121 von 180 Fragen und bleiben gesperrt. Ihre Ethics- und Quant-Anteile
+haben bisher je 123 von 180 Fragen und bleiben gesperrt. Ihre Ethics- und Quant-Anteile
 sind mit jeweils 22 Fragen pro Thema, ihre Economics-Anteile mit je zwölf und
 ihre Abschlussanalyse-Anteile mit je 22 Fragen angelegt. Corporate Finance hat
 je zwölf reservierte Fragen. Damit sind die Themenanteile der ersten Sitzung
 angelegt. Die Aktienanteile der zweiten Sitzung sind mit je 22 reservierten Fragen
-angelegt. Der Anleihebereich enthält je neun reservierte Fragen; je 59 Fragen
+angelegt. Der Anleihebereich enthält je elf reservierte Fragen; je 57 Fragen
 aus den weiteren Themen fehlen noch. Der implementierte Ablauf
 mit zwei Sitzungen zu je 135 Minuten wird mit gesonderten künstlichen Testdaten
 geprüft, die nicht als echte Lernfragen veröffentlicht werden.
@@ -347,7 +359,7 @@ Der Fragenbereich ist über `~question` erreichbar, einzelne Aufgaben über `~qu
 
 ## Modelle und Lernumfang
 
-43 interaktive Modelle werden in 64 Kapiteln eingesetzt. Der Anleihenrechner zeigt Preis, Macaulay und Modified Duration, DV01, Konvexität und den Vergleich zwischen exaktem Zinsschock, linearer und quadratischer Näherung. Kupon, Rendite, Laufzeit, Zahlungsfrequenz und Schock lassen sich getrennt verändern. Der neue Abschlussbewertungsrechner verbindet Prognoseergebnisse, Kapitalbedarf, Eigentümerzahlungen und eine gesondert normalisierte Endphase. Der Auron-Vertragsrechner stimmt Kredit, Mittelverwendung, Ausschüttung und vier Vertragsprüfungen ab. Der Tilgungsrechner vergleicht Endfälligkeit, gleiche Tilgung, Annuität und Ballon mit vollständigen Zahlungsreihen und einem gemeinsamen Diskontsatz. Der Indexrechner stimmt Anfangsmarktwerte, Vollpreisänderungen, Cashkupons und Gesamtrendite ab. Der Repo-Rechner trennt ursprüngliches Cash, ACT/360-Zins, Endrückkaufpreis und aktuelle Sicherheitenanforderung. Der Spotkurvenrechner bestimmt einen passenden Z-Spread, zwei einzelne YTMs und ihren nominalen Abstand mit vollständigem Barwertledger. Der Floaterrechner löst die Discount Margin aus dem Vollpreis und zeigt jede unterstellte Zahlung; der Geldmarktrechner stellt sechs Renditequoten für denselben Anspruch nebeneinander. Alle Modelle nennen ihre Annahmen und Einheiten.
+44 interaktive Modelle werden in 65 Kapiteln eingesetzt. Der Anleihenrechner zeigt Preis, Macaulay und Modified Duration, DV01, Konvexität und den Vergleich zwischen exaktem Zinsschock, linearer und quadratischer Näherung. Kupon, Rendite, Laufzeit, Zahlungsfrequenz und Schock lassen sich getrennt verändern. Der neue Abschlussbewertungsrechner verbindet Prognoseergebnisse, Kapitalbedarf, Eigentümerzahlungen und eine gesondert normalisierte Endphase. Der Auron-Vertragsrechner stimmt Kredit, Mittelverwendung, Ausschüttung und vier Vertragsprüfungen ab. Der Tilgungsrechner vergleicht Endfälligkeit, gleiche Tilgung, Annuität und Ballon mit vollständigen Zahlungsreihen und einem gemeinsamen Diskontsatz. Der Indexrechner stimmt Anfangsmarktwerte, Vollpreisänderungen, Cashkupons und Gesamtrendite ab. Der Repo-Rechner trennt ursprüngliches Cash, ACT/360-Zins, Endrückkaufpreis und aktuelle Sicherheitenanforderung. Der Spotkurvenrechner bestimmt einen passenden Z-Spread, zwei einzelne YTMs und ihren nominalen Abstand mit vollständigem Barwertledger. Der Floaterrechner löst die Discount Margin aus dem Vollpreis und zeigt jede unterstellte Zahlung; der Geldmarktrechner stellt sechs Renditequoten für denselben Anspruch nebeneinander. Der gemeinsame Kurvenrechner zeigt Spot-, Par- und Einjahresforwardkurven aus denselben drei Knoten; der Bondkupon kann unabhängig verändert werden. Alle Modelle nennen ihre Annahmen und Einheiten.
 
 Die bisherigen 171 Kapitel verwenden eine **2026-Einordnung** und verbinden Grundlagen und Vertiefungen über mehrere Levels; die drei Level-III-Wahlpfade sind Alternativen. Der separate neue Lernpfad gleicht gezielt **Level I 2027** ab. Alte Kapitel werden nicht allein durch einen Link als vollständig auf 2027 aktualisiert gewertet. Das eigenständige Lehrmaterial bildet noch nicht jedes offizielle Learning Outcome oder Pflichtmodul vollständig ab. Für eine konkrete Prüfung ist deren jahresspezifisches Curriculum maßgeblich. Quellen zu CFA Institute, OpenStax, IFRS und den NYU-Lehrmaterialien sind im Lernbereich verlinkt.
 
