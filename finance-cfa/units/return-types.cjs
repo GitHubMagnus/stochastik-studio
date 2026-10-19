@@ -107,6 +107,7 @@ module.exports={id:'return-types',intro:[
   ],'Ein Maß wird aus der Frage gewählt; die attraktivste Zahl ist kein Auswahlkriterium.'),
   'Vergleiche veröffentlichte Zahlen erst nach Angleichung von Zeitraum, Gebührenbasis, Steuerperspektive und Währung. Der nächste Schritt sind TWR und MWR: Sie lösen das zusätzliche Problem unterschiedlich getimter Anlegerzahlungen.'
  ])],related:[
+ {unit:'bond-return',section:'workflow',label:'Kupons, Wiederanlage, Verkauf und Anlagehorizont gemeinsam zur Anleiherendite verbinden'},
  {unit:'floating-yields',section:'effective',label:'Geldmarktsätze auf derselben Tages- und Annualisierungsbasis vergleichen'},{unit:'returns',section:'purchasing-power',label:'Nominale und reale Größen wirtschaftlich verstehen'},{unit:'benchmarks',section:'performance-example',label:'TWR und MWR am gleichen Zahlungsstrom vergleichen'},{unit:'tvm',section:'calculator',label:'Perioden und Vorzeichen am Finanzrechner eingeben'}],
  sources:[
  {title:'CFA Institute: Rates and Returns',url:'https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/rates-and-returns'},

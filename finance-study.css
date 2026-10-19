@@ -70,6 +70,12 @@
 .study-model-legend{display:flex;flex-wrap:wrap;gap:8px 16px;margin:6px 0;font-size:.8rem}
 .study-model-legend span{display:inline-flex;align-items:center;gap:6px}
 .study-model-legend i{display:inline-block;width:22px}
+.study-lab-bondhorizon #lab-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+.study-lab-bondhorizon #lab-metrics>div{min-width:0}
+.study-lab-bondhorizon #lab-metrics strong{font-size:1.15rem;overflow-wrap:anywhere}
+.study-lab-bondhorizon label[for=lab-horizon] .study-pair{grid-template-columns:132px 1fr}
+@media(max-width:600px){.study-lab-bondhorizon #lab-metrics strong{font-size:1rem}}
+@media(max-width:360px){.study-lab-bondhorizon #lab-metrics>div{grid-column:1/-1}}
 .study-lab-yieldcurve #lab-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
 .study-lab-yieldcurve #lab-metrics>div{min-width:0}
 @media(max-width:600px){.study-lab-yieldcurve #lab-metrics strong{font-size:1.05rem}}

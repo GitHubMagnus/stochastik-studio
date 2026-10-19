@@ -199,6 +199,7 @@ module.exports={id:'yield-curves',intro:[
   'Ändere zuerst nur den Jahreskupon. Preis und einzelne Bond-YTM können sich verändern, während die zugrunde liegenden Spot-, Par- und Forwardkurven gleich bleiben. Ändere dann nur den Zweijahresspot und beobachte beide angrenzenden Jahresforwards. So werden Zahlungsstruktur und Kurvenstruktur getrennt verstanden.'
  ])
 ],explorations:[{section:'workflow',lesson:'bonds-06',focus:'lab',label:'Drei Spotknoten und den Bondkupon verändern; Kurven, Zahlungsbarwerte und Pari-Abstimmung vergleichen'}],related:[
+ {unit:'bond-return',section:'workflow',label:'Kupons, Wiederanlage, Verkauf und Anlagehorizont gemeinsam zur Anleiherendite verbinden'},
  {unit:'tvm',section:'bonds',label:'Diskontfaktoren und einzelne Zahlungen als Bewertungsgrundlage auffrischen'},
  {unit:'tvm',section:'forwards',label:'Künftige Zinsabschnitte aus Kapitalfaktoren verstehen'},
  {unit:'bond-prices',section:'settlement',label:'Vollpreis und Zeit zwischen Kuponterminen berücksichtigen'},

@@ -147,7 +147,7 @@ window.FinanceStudy=(()=>{
  }
  function mountLab(id){
   const model=FinanceModels.models[id],el=document.getElementById('study-lab');
-  el.classList.toggle('study-lab-forecast',['forecastvalue','companydrivers','bondcovenants','repayment','bondindex','repofunding','yieldspread','floater','moneyyield','yieldcurve'].includes(id));
+  el.classList.toggle('study-lab-forecast',['forecastvalue','companydrivers','bondcovenants','repayment','bondindex','repofunding','yieldspread','floater','moneyyield','yieldcurve','bondhorizon'].includes(id));
   el.classList.toggle('study-lab-covenants',id==='bondcovenants');
   el.classList.toggle('study-lab-repayment',id==='repayment');
   el.classList.toggle('study-lab-bondindex',id==='bondindex');
@@ -156,6 +156,7 @@ window.FinanceStudy=(()=>{
   el.classList.toggle('study-lab-floater',id==='floater');
   el.classList.toggle('study-lab-moneyyield',id==='moneyyield');
   el.classList.toggle('study-lab-yieldcurve',id==='yieldcurve');
+  el.classList.toggle('study-lab-bondhorizon',id==='bondhorizon');
   el.innerHTML=`<div class="kicker">Interaktives Modell</div><h2>${esc(model.title)}</h2><p>${glossaryText(model.intro)}</p><div class="study-lab-grid"><div class="study-lab-controls">${model.controls.map(f=>f.choices?`<label for="lab-${f.key}">${glossaryText(f.label)}<select id="lab-${f.key}" data-key="${f.key}">${f.choices.map(o=>`<option value="${o.value}"${o.value===f.value?' selected':''}>${esc(o.label)}</option>`).join('')}</select></label>`:`<label for="lab-${f.key}">${glossaryText(f.label)}<div class="study-pair"><input id="lab-${f.key}" data-key="${f.key}" type="number" min="${f.min}" max="${f.max}" step="${f.step}" value="${f.value}"><input aria-label="${esc(f.label)} – Regler" data-range="${f.key}" type="range" min="${f.min}" max="${f.max}" step="${f.step}" value="${f.value}"></div></label>`).join('')}<button class="btn ghost" type="button" id="lab-reset">Ausgangswerte</button></div><div class="study-lab-output"><p id="lab-error" role="alert" hidden></p><div id="lab-results"><div class="study-metrics" id="lab-metrics" aria-live="polite"></div><div id="lab-chart"></div><p id="lab-assumptions" class="study-model-note"></p><details class="study-details"><summary>Kurvenwerte als Tabelle</summary><div class="study-table-wrap" id="lab-table"></div></details></div></div></div>`;
   const update=()=>{
    const params=Object.fromEntries([...el.querySelectorAll('[data-key]')].map(e=>[e.dataset.key,e.value]));
@@ -164,7 +165,7 @@ window.FinanceStudy=(()=>{
     el.querySelector('#lab-error').hidden=true;el.querySelector('#lab-results').hidden=false;
     el.querySelector('#lab-metrics').innerHTML=r.metrics.map(([name,v])=>`<div><span>${esc(name)}</span><strong>${fmt(v,4)}</strong></div>`).join('');
     el.querySelector('#lab-chart').innerHTML=chart(r);
-    if(['forecastvalue','companydrivers','bondcovenants','repayment','bondindex','repofunding','yieldspread','floater','moneyyield','yieldcurve'].includes(id)){
+    if(['forecastvalue','companydrivers','bondcovenants','repayment','bondindex','repofunding','yieldspread','floater','moneyyield','yieldcurve','bondhorizon'].includes(id)){
      const plot=el.querySelector('#lab-chart');plot.tabIndex=0;plot.setAttribute('role','region');plot.setAttribute('aria-label','Seitlich verschiebbare Modellkurve');
      if(!plot.nextElementSibling.classList.contains('study-model-plot-hint')){
       const hint=document.createElement('p');hint.className='study-model-plot-hint';hint.hidden=true;hint.textContent='↔ Die Grafik ist seitlich verschiebbar; mit Fokus auch über die Pfeiltasten.';plot.after(hint);
@@ -209,9 +210,10 @@ window.FinanceStudy=(()=>{
   if(customY)[ymin,ymax]=r.yRange;
   if(xmin===xmax)xmax=xmin+1;if(ymin===ymax)ymax=ymin+1;
   const padding=customY?0:(ymax-ymin)*.07;if(ymin<0)ymin-=padding;ymax+=padding;
+  const axisY=y=>r.compactYAxis&&Math.abs(y)>=1e6?fmt(y/(Math.abs(y)>=1e12?1e12:Math.abs(y)>=1e9?1e9:1e6),1)+(Math.abs(y)>=1e12?' Bio.':Math.abs(y)>=1e9?' Mrd.':' Mio.'):fmt(y,2);
   const sx=x=>78+(x-xmin)/(xmax-xmin)*550,sy=y=>265-(y-ymin)/(ymax-ymin)*215;
   let svg=`<svg viewBox="0 0 660 325" role="img" aria-label="${esc(r.yLabel+' in Abhängigkeit von '+r.xLabel)}"><title>${esc(r.yLabel+' / '+r.xLabel)}</title>`;
-  for(let i=0;i<=4;i++){let y=ymin+(ymax-ymin)*i/4,x=xmin+(xmax-xmin)*i/4;svg+=`<line x1="78" x2="628" y1="${sy(y)}" y2="${sy(y)}" stroke="#d9e4ec"/><text x="70" y="${sy(y)+4}" text-anchor="end">${fmt(y,2)}</text><text x="${sx(x)}" y="287" text-anchor="middle">${fmt(x,2)}</text>`;}
+  for(let i=0;i<=4;i++){let y=ymin+(ymax-ymin)*i/4,x=xmin+(xmax-xmin)*i/4;svg+=`<line x1="78" x2="628" y1="${sy(y)}" y2="${sy(y)}" stroke="#d9e4ec"/><text x="70" y="${sy(y)+4}" text-anchor="end">${axisY(y)}</text><text x="${sx(x)}" y="287" text-anchor="middle">${fmt(x,2)}</text>`;}
   if(ymin<0&&ymax>0)svg+=`<line x1="78" x2="628" y1="${sy(0)}" y2="${sy(0)}" stroke="#718b9e" stroke-dasharray="4 4"/>`;
   for(const line of lines)svg+=`<path d="${line.points.map(([x,y],i)=>(i?'L':'M')+sx(x).toFixed(2)+','+sy(y).toFixed(2)).join(' ')}" fill="none" stroke="${esc(line.color||'#087e82')}" stroke-width="3"${line.dash?' stroke-dasharray="6 3"':''}/>`;
   if(r.marker)svg+=`<circle cx="${sx(r.marker[0])}" cy="${sy(r.marker[1])}" r="5" fill="#0c2439" stroke="white" stroke-width="2"><title>Aktuelle Eingabe: ${fmt(r.marker[0],3)} / ${fmt(r.marker[1],4)}</title></circle>`;
