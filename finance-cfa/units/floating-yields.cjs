@@ -187,6 +187,7 @@ module.exports={id:'floating-yields',intro:[
  {section:'frn-workflow',lesson:'bonds-02',focus:'lab-floater',label:'Referenz, Vertragsmarge und Preis verändern; Discount Margin und jeden Barwert prüfen'},
  {section:'money-workflow',lesson:'bonds-02',focus:'lab-moneyyield',label:'Preis und Tage verändern; Discount, Add-on, CFA-Geldmarkt-BEY und effektive Rate vergleichen'}
 ],related:[
+ {unit:'yield-curves',section:'forward',label:'Flache Referenzannahme mit einer vollständigen Spot-Forward-Struktur vergleichen'},
  {unit:'fixed-yields',section:'period-rate',label:'Nominale Jahresrate und Periodenrate auf derselben Basis verwenden'},
  {unit:'fixed-yields',section:'convert',label:'Geometrisch äquivalente Verzinsungsfrequenzen herleiten'},
  {unit:'fixed-yields',section:'z-definition',label:'Konstanten Spread über eine feste Spotkurve vom einfachen Floater-DM-Modell unterscheiden'},

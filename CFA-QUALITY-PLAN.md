@@ -2169,3 +2169,82 @@ und bestandene Technikprüfungen ersetzen die spätere fachliche Abnahme nicht.
   einschließlich beider Rechner bei 320 Pixeln. Diese Prüfungen bestätigen
   den technischen Arbeitsstand und einzelne nachgerechnete Fälle; sie sind
   keine fachliche Gesamtfreigabe und keine Bestehensprognose.
+
+### 19. Oktober 2026: Spot-, Par- und Forwardkurven
+
+- Neue Einheit `yield-curves` zu den drei tatsächlichen Lernzielen auf Seite 20
+  des 2027-Outlines. **36 Abschnitte, neun vollständige Fälle, neun Tabellen,
+  26 Formeltafeln mit lokalen Symbolerklärungen und sechs berechnete Grafiken
+  mit 136 Werten**. Dazu **60 eigenständige englische Trainingsfragen** mit
+  deutschen Gründen zu jeder Auswahl. Je zwei reservierte Fragen pro Klausur
+  verwenden eigene Transferfälle: Anleihe-Replikation aus Nullkuponpreisen,
+  mehrjähriger Forward aus zwei Nullkuponpreisen, Spotbewertung mit halbjährlichen
+  nominalen Quoten und Par-Kupon gegen effektiv quotierte Spots. Es handelt sich
+  nicht nur um geänderte Zahlen in den entsprechenden Trainingsfragen.
+- Die Herleitung beginnt mit dem Preis einer einzelnen künftigen Geldeinheit.
+  Derselbe Fünfer-Kuponbond wird aus Spots und Forwardprodukten auf 100,180098
+  bewertet. Die separate Par-Kuponrate von 4,934730 % wird von der tatsächlichen
+  Kuponrate fünf Prozent und der einzelnen Bond-YTM 4,933948 % unterschieden.
+  Aus drei Kuponbondpreisen werden die Faktoren Schritt für Schritt zurückgelöst;
+  beide Richtungen einer abweichenden Forwardquote erhalten vollständig finanzierte
+  Anfangs-, Zwischen- und Endzahlungspläne. Mehrjahreswurzel und nominale
+  Halbjahresquote werden jeweils aus den Gesamtfaktoren abgeleitet.
+- Vier eigene Kurvenformen zeigen die Grenzen von Merksätzen. Beim Buckel
+  3/6/4 % liegt der letzte Jahresforward nur bei 0,112496 %. Bei steigenden
+  negativen Spots −3/−2/−1 % liegt der mathematische dreijährige Par-Kupon
+  −0,986542 % über dem Endspot; er setzt negative Kuponpflichten des hypothetischen
+  Benchmarks voraus. Die häufige Par-Spot-Reihenfolge wird deshalb nur mit
+  ausdrücklich geprüften Voraussetzungen erklärt. Jahresforwards, momentane
+  stetige Forwards und Zinsprognosen werden getrennt. Schätzung, Interpolation,
+  Instrumentauswahl und unterschiedliche Risikobasen begrenzen die Ein-Kurvenwelt.
+- Ein neuer Rechner in `bonds-06` stellt **drei gemeinsam beschriftete Kurven**
+  aus denselben Faktoren dar. Der eigene Bondkupon lässt sich unabhängig von
+  den Spotknoten ändern; zusätzlich werden jeder Zahlungsbarwert und ein separater
+  Par-Benchmark auf hundert abgestimmt. Fünf Presets betreffen steigende, flache,
+  fallende, buckelförmige und negative Spots. Linien verbinden nur die Knoten;
+  bei flacher Kurve überlagern sie sich. Die bisherigen Einlinien-Rechner verwenden
+  weiterhin ihren bisherigen Datenweg. Alle Kurvenwerte sind auch tabellarisch
+  lesbar; breite Kurven und Tabellen bleiben lokal per Tastatur verschiebbar.
+- **375 unabhängige Szenarien einschließlich aller Eingabeecken** kontrollieren
+  3.375 Serienpunkte, Spot-Forward-Produkte, Par-Benchmarks jeder Endlaufzeit,
+  Zahlungsbarwerte und die eigene Einzel-YTM. Getrennt nachgerechnet sind alle
+  136 Lehrbuchgrafikwerte, die Bootstrap-Rückrechnung, beide Arbitragerichtungen,
+  die halbjährliche Quote und die loglineare Interpolation. Kontrollierte
+  Eingabeänderungen prüfen auch: Kuponänderung lässt die Kurven stehen; ein
+  Zwischenknoten verschiebt die beiden angrenzenden Forwards entgegengesetzt.
+- **20 weitere kuratierte Begriffe**, darunter eine Anreicherung der bisherigen
+  Zinsstrukturkurve, ergeben 19 neue globale Definitionen. Zinskurven-Bootstrapping
+  erhält einen kontextbezogenen Verweis; der bisherige statistische Bootstrap und
+  seine Aliasadresse bleiben erhalten. Cashflow-Matching verwendet die bereits
+  vorhandene Definition samt neuer Schreibweise. Sechs bestehende Einheiten
+  enthalten passende Rückverweise.
+- Gesamtstand: **69 Einheiten, 227/340 strukturelle Lernzielreferenzen, 1.992
+  Trainingsfragen, je 123 reservierte Klausurfragen und 134 CFA-Grafiken**.
+  **44 Rechner in 65 bisherigen Finance-Kapiteln**, Wörterbuch: **1.148 kuratierte
+  Rückverweise, 1.465 Definitionen und 3.211 globale Begriffe/Aliase**. Offen:
+  **33 Einheiten, 113 Lernzielreferenzen und 57 Fragen je vollständiger Klausur**,
+  danach der fachliche Gesamtaudit. Neue Einheiten bleiben draft und vollständige
+  Klausuren gesperrt. **90/100 und 80/100 sind nicht als erreicht belegt**.
+- Technischer Abschluss: **273 Kernprüfungen bestanden**. Der vollständige
+  CFA-Browserlauf bestand mit **44 Tests** und umfasst alle 69 Einheiten,
+  448 Anleihe- sowie 740 Corporate-/Equity-Trainingsfragen, Speicherung,
+  Rückverweise und den Klausurablauf mit gesonderten vollständigen Testdaten.
+  Anschließend wurden ausschließlich vier reservierte Klausurfälle und ein
+  Wörterbucheintrag ergänzt beziehungsweise präzisiert. Zwei gezielte aktuelle
+  Browsertests prüfen diese vier tatsächlichen Fälle auf Desktop und Mobilgerät
+  samt Antwortgründen, Formelsymbolen und Rückverweisen sowie die neuen
+  Wörterbuchverknüpfungen. Die Umwandlung reservierter Fälle in Trainingskarten
+  findet ausschließlich innerhalb einer isolierten Test-Fixture statt.
+- Ein separater Vergleich der Builds beweist: Abgesehen von diesen vier
+  Fragenobjekten, der Datenversion, dem einen neuen Wörterbucheintrag und den
+  beiden Wörterbuchzählern sind alle CFA-Daten, bisherigen Wörterbucheinträge,
+  übrigen HTML-Inhalte, Skripte und Styles unverändert. Die Datenänderungen wurden
+  damit gezielt geprüft; für den abschließenden Build wurden zusätzlich alle
+  Kernprüfungen und drei bisherige Browserprüfungen wiederholt.
+  Letztere bestehen mit **171 Kapiteln, 44 Modellen, 7.262 Aktionen und 16.838
+  gültigen Begriffsverweisen**, vollständiger Wörterbuchnavigation und Symbolhilfe
+  für 3.054 Formelvorkommen beziehungsweise 2.886 Hilfefelder über zwei Bildschirmbreiten.
+  **26 Ansichten wurden visuell geprüft**: 18 Kapitel-/Grafik-/Modellansichten
+  und die vier reservierten Lösungskarten auf je Desktop und Mobilgerät.
+  Diese Ergebnisse bestätigen den technischen Arbeitsstand und konkrete
+  Gegenrechnungen; die fachliche Gesamtfreigabe bleibt ausstehend.

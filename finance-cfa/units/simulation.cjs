@@ -121,7 +121,8 @@ module.exports={id:'simulation',intro:[
   ],'Eine bestandene technische Kontrolle beweist keine richtige Markthypothese; beide Prüfungsebenen werden benötigt.'),
   'Historische Simulation braucht repräsentative gemeinsame Daten, Bootstrap ein geeignetes Resampling-Design und Monte Carlo eine geeignete stochastische Welt. Alle drei profitieren von wirtschaftlicher Plausibilität, dokumentierten Grenzen und verständlicher Kommunikation der Unsicherheit.'
  ])
-],related:[{unit:'distributions',section:'lognormal',label:'Normalverteilte Logrenditen und lognormale Preise'},{unit:'inference',section:'estimators',label:'Schätzunsicherheit und Standardfehler unterscheiden'},{unit:'portfolio-math',section:'two-assets',label:'Wie Abhängigkeit das Portfoliorisiko verändert'},{unit:'standard-v',section:'basis',label:'Modelle vor einer Empfehlung ausreichend prüfen'}],
+],related:[
+ {unit:'yield-curves',section:'bootstrap',label:'Gleichnamiges Zinskurven-Bootstrapping vom statistischen Resampling unterscheiden'},{unit:'distributions',section:'lognormal',label:'Normalverteilte Logrenditen und lognormale Preise'},{unit:'inference',section:'estimators',label:'Schätzunsicherheit und Standardfehler unterscheiden'},{unit:'portfolio-math',section:'two-assets',label:'Wie Abhängigkeit das Portfoliorisiko verändert'},{unit:'standard-v',section:'basis',label:'Modelle vor einer Empfehlung ausreichend prüfen'}],
  sources:[
  {title:'CFA Institute: offizieller Level-I-Lernzielkatalog 2027',url:'https://www.cfainstitute.org/sites/default/files/2027levelitopicoutline_online.pdf#page=3'},
  {title:'CFA Institute: Simulation Methods',url:'https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/simulation-methods'},

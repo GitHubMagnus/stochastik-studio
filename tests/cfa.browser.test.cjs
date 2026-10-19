@@ -7,6 +7,66 @@ async function open(t,route='cfa'){
  const page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[];page.on('pageerror',e=>errors.push(e.message));t.after(async()=>{await page.close();assert.deepEqual(errors,[]);});await page.goto(url+'/#'+route);return page;
 }
 
+test('reserved yield curve transfer cases render their actual choices, mathematics and symbols in an isolated test fixture',async t=>{
+ const reserved=actual.questions.filter(q=>q.unit==='yield-curves'&&q.pool!=='practice');assert.equal(reserved.length,4);
+ // Test-only conversion exercises the shared answer renderer. The published pools remain disjoint.
+ const fixture={...actual,version:'reserved-curve-render-fixture',questions:reserved.map(q=>({...q,pool:'practice'}))};fixture.inventory=E.inventory(fixture.questions);
+ const html=fs.readFileSync(require('node:path').join(__dirname,'../index.html'),'utf8').replace(/(<script type="application\/json" id="cfa-data">)[\s\S]*?(<\/script>)/,(_,a,b)=>a+JSON.stringify(fixture).replaceAll('<','\\u003c')+b);
+ for(const width of [390,1440]){
+  const page=await browser.newPage({viewport:{width,height:1000}}),errors=[];page.on('pageerror',e=>errors.push(e.message));t.after(async()=>{await page.close();assert.deepEqual(errors,[]);});await page.route(url+'/',route=>route.fulfill({body:html,contentType:'text/html'}));
+  await page.goto(url+'/#cfa~learn-yield-curves');await page.locator('[data-train-unit]').click();
+  for(const [i,q]of reserved.entries()){
+   assert.equal(await page.locator('#cfa-question-title').innerText(),q.stem);await page.locator('input[name="cfa-answer"]').nth(q.correct).check();await page.locator('#cfa-check').click();assert.match(await page.locator('.cfa-solution h3').innerText(),/^Richtig/);
+   const text=await page.locator('.cfa-solution').innerText();for(const o of q.options)assert.ok(text.includes(o.why),q.id);
+   const formulas=q.solution.filter(b=>b.kind==='formula');assert.equal(await page.locator('.cfa-solution .cfa-formula').count(),formulas.length);
+   for(const [j,f]of formulas.entries()){const box=page.locator('.cfa-solution .cfa-formula').nth(j);await box.locator('.formula-notation summary').click();const definitions=await box.locator('.formula-notation').innerText();for(const s of f.symbols)assert.ok(definitions.includes(s.meaning),q.id);}
+   assert.equal(await page.locator('.cfa-solution a[href="#cfa~learn-yield-curves~'+q.section+'"]').count(),1);assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+   if(i<reserved.length-1)await page.locator('#cfa-train-next').click();
+  }
+ }
+});
+
+test('yield curve calculator draws three reconciled series and isolates coupon, shape and convention effects online and offline',async t=>{
+ const page=await open(t,'cfa~learn-yield-curves~workflow');await page.locator('#cfa-section-workflow .cfa-exploration a').click();await page.waitForFunction(()=>document.activeElement.id==='study-lab');
+ const metrics=async()=>page.locator('#lab-metrics strong').evaluateAll(es=>es.map(e=>Number(e.textContent.replaceAll('.','').replace(',','.').replace('−','-'))));
+ assert.equal(await page.locator('.study-lab-controls input[type=number]').count(),4);assert.equal(await page.locator('[data-model-preset]').count(),5);assert.equal(await page.locator('#lab-chart path').count(),3);assert.equal(await page.locator('#lab-chart .study-model-legend span').count(),3);
+ let m=await metrics();for(const[i,x]of [100.18009784,4.93394837,4.93472984,5.00970874,7.02893861,.8638376].entries())assert.ok(Math.abs(m[i]-x)<.000051);
+ const paths=await page.locator('#lab-chart path').evaluateAll(es=>es.map(e=>e.getAttribute('d')));await page.locator('#lab-coupon').fill('0');m=await metrics();assert.ok(Math.abs(m[0]-86.38375985)<.000051);assert.ok(Math.abs(m[1]-5)<.000051);assert.deepEqual(await page.locator('#lab-chart path').evaluateAll(es=>es.map(e=>e.getAttribute('d'))),paths);
+ for(let preset=0;preset<5;preset++){await page.locator('[data-model-preset="'+preset+'"]').click();assert.equal(await page.locator('#lab-chart path').count(),3);assert.equal(await page.locator('#lab-error').isVisible(),false);}
+ m=await metrics();assert.ok(m[2]>-1&&m[2]<0);assert.ok(m[4]>0);assert.ok(m[5]>1);assert.ok((await page.locator('#lab-assumptions').innerText()).includes('negative Kuponpflichten'));
+ await page.locator('#lab-z1').fill('');assert.equal(await page.locator('#lab-error').isVisible(),true);assert.equal(await page.locator('#lab-results').isVisible(),false);await page.locator('#lab-reset').click();assert.equal(await page.locator('#lab-error').isVisible(),false);
+ await page.locator('[data-range=z2]').evaluate(e=>{e.value='6';});await page.locator('[data-range=z2]').dispatchEvent('input');assert.equal(await page.locator('#lab-z2').inputValue(),'6');assert.ok((await metrics())[3]>5.0097);assert.ok((await metrics())[4]<7.0289);
+ assert.equal(await page.locator('#lab-projection .study-model-table').count(),2);for(const table of await page.locator('#lab-projection .study-model-table').all())assert.equal(await table.locator('tbody tr').count(),3);
+ await page.locator('#lab-results > details summary').click();assert.equal(await page.locator('#lab-table tbody tr').count(),9);assert.equal(await page.locator('#lab-table thead th').count(),3);await page.goBack();await page.waitForFunction(()=>document.activeElement.id==='cfa-section-workflow');
+ const off=await browser.newPage({viewport:{width:390,height:900}}),errors=[];off.on('pageerror',e=>errors.push(e.message));t.after(async()=>{await off.close();assert.deepEqual(errors,[]);});await off.context().setOffline(true);
+ await off.goto(require('node:url').pathToFileURL(require('node:path').join(__dirname,'../index.html')).href+'#lesson-bonds-06~lab');await off.locator('[data-model-preset="1"]').click();assert.equal(await off.locator('#lab-chart path').count(),3);assert.equal(await off.locator('#lab-metrics strong').nth(2).innerText(),'4');
+});
+
+test('yield curve textbook and overlaid calculator keep exact graph values, visible legends and keyboard tables on mobile',async t=>{
+ const page=await open(t,'cfa~learn-yield-curves');assert.equal(await page.locator('#page-cfa .cfa-section').count(),36);assert.equal(await page.locator('#page-cfa .cfa-figure').count(),6);
+ for(const[section,count]of [['zero-case',49],['forward',51],['rising',9],['falling',9],['hump',9],['negative-order',9]]){const f=page.locator('#cfa-section-'+section+' .cfa-figure');await f.locator('details summary').click();assert.equal(await f.locator('tbody tr').count(),count);await f.locator('details summary').click();}
+ assert.ok(await page.locator('#page-cfa .cfa-figure').evaluateAll(es=>es.every(e=>e.getBoundingClientRect().width<=641)));
+ assert.ok(await page.locator('#page-cfa .cfa-figure svg').evaluateAll(es=>es.every(svg=>{const b=svg.getBoundingClientRect();return [...svg.querySelectorAll('text')].every(e=>{const r=e.getBoundingClientRect();return r.left>=b.left-1&&r.right<=b.right+1;});})));
+ for(const width of [320,390,1100]){
+  await page.setViewportSize({width,height:900});await page.goto(url+'/#cfa~learn-yield-curves~semiannual');const f=page.locator('#cfa-section-semiannual .cfa-formula').first();await f.locator('.formula-notation summary').click();assert.ok((await f.locator('.formula-notation').innerText()).includes('Verzinsungsperioden'));assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+  await page.goto(url+'/#lesson-bonds-06~lab');for(const[k,v]of Object.entries({z1:-3,z2:12,z3:-3,coupon:12}))await page.locator('#lab-'+k).fill(String(v));
+  assert.ok(await page.locator('#lab-metrics strong').evaluateAll(es=>es.every(e=>{const r=document.createRange();r.selectNodeContents(e);return r.getClientRects().length===1;})));assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));assert.equal(await page.locator('.study-model-legend span').count(),3);
+  const curve=await page.locator('#lab-chart path').evaluateAll(es=>es.map(e=>({color:e.getAttribute('stroke'),dash:e.hasAttribute('stroke-dasharray')}))),legend=await page.locator('.study-model-legend i').evaluateAll(es=>es.map(e=>({color:e.style.borderTopColor,dash:e.style.borderTopStyle==='dashed'})));
+  assert.equal(curve.filter(c=>c.dash).length,1);assert.deepEqual(curve.map(c=>c.dash),legend.map(c=>c.dash));assert.equal(new Set(curve.map(c=>c.color)).size,3);
+ }
+ await page.setViewportSize({width:390,height:900});for(const wrap of await page.locator('#lab-projection .study-table-wrap').all()){await wrap.focus();await page.keyboard.press('ArrowRight');await page.waitForTimeout(120);assert.ok(await wrap.evaluate(e=>e.scrollLeft>0));}
+ const plot=page.locator('#lab-chart');await plot.focus();await page.keyboard.press('ArrowRight');await page.waitForTimeout(120);assert.ok(await plot.evaluate(e=>e.scrollLeft>0));
+});
+
+test('yield curve dictionary links distinguish curve bootstrapping, statistical resampling and the existing cashflow-matching definition',async t=>{
+ const page=await open(t);
+ for(const[section,label,target]of [['bootstrap','Bootstrapping','bootstrap'],['par','Par-Kuponrate','par'],['replication','Replikation','replication'],['cashflows','Preisadditivität','cashflows']]){
+  await page.goto(url+'/#cfa~learn-yield-curves~'+section);const a=page.locator('#cfa-section-'+section+' a.term-link:visible').filter({hasText:new RegExp('^'+label+'$','i')}).first(),id=(await a.getAttribute('href')).split('~')[1];await a.click();await page.locator('#glossary-'+id+' a[href="#cfa~learn-yield-curves~'+target+'"]').click();await page.waitForFunction(target=>document.activeElement.id==='cfa-section-'+target,target);
+ }
+ await page.goto(url+'/#glossary~bootstrapping');await page.waitForFunction(()=>document.activeElement.id==='glossary-bootstrap');assert.equal(await page.locator('#glossary-bootstrap a[href="#cfa~learn-simulation~bootstrap"]').count(),1);
+ await page.goto(url+'/#cfa~learn-yield-curves~applications');const a=page.locator('#cfa-section-applications a.term-link:visible').filter({hasText:/^Cashflow-Matching$/i}).first(),id=(await a.getAttribute('href')).split('~')[1];await a.click();assert.equal(await page.locator('#glossary-'+id+' a[href="#cfa~learn-bond-trading~liability"]').count(),1);
+});
+
 test('floater and money-market calculators preserve the existing repo route and switch independently with working resets and offline access',async t=>{
  const page=await open(t,'cfa~learn-floating-yields~frn-workflow');
  await page.locator('#cfa-section-frn-workflow .cfa-exploration a').click();await page.waitForFunction(()=>document.activeElement.id==='study-lab');

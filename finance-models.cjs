@@ -313,6 +313,35 @@ models.moneyyield.presets=[
  {label:'Negativer Ertrag',values:{price:101,days:180}},
  {label:'Genau ein 365-Tage-Jahr',values:{price:98,days:365}}
 ];
-const api={models,calculate,annuity,price,bsm,cdf,forecastValue,companyPlan,covenantPlan,repaymentSchedule,bondIndexPlan,repoFundingPlan,yieldSpreadPlan,floaterPlan,moneyYieldPlan};
+function yieldCurvePlan(p){
+ if(![p.z1,p.z2,p.z3,p.coupon].every(Number.isFinite)||Math.min(p.z1,p.z2,p.z3)<=-100||p.coupon<0)throw Error('Bitte Spotraten mit positiver Zinsbasis und einen nicht negativen Bondkupon verwenden.');
+ const spots=[p.z1,p.z2,p.z3].map(s=>s/100),D=spots.map((s,k)=>(1+s)**-(k+1)),par=D.map((v,k)=>(1-v)/D.slice(0,k+1).reduce((a,b)=>a+b,0)),forward=D.map((v,k)=>(k?D[k-1]:1)/v-1),cf=[p.coupon,p.coupon,p.coupon+100],P=cf.reduce((v,c,k)=>v+c*D[k],0);
+ const price=y=>cf.reduce((v,c,k)=>v+c/(1+y)**(k+1),0);let lo=-.99,hi=1;
+ if(price(lo)<P||price(hi)>P)throw Error('Einzelrendite liegt außerhalb des Rechenbereichs.');
+ for(let k=0;k<90;k++){const mid=(lo+hi)/2;if(price(mid)>P)lo=mid;else hi=mid;}
+ const y=(lo+hi)/2,pc=par[2]*100;
+ const lines=[{name:'Spot: heute bis Endjahr',color:'#087e82',points:spots.map((s,k)=>[k+1,s*100])},{name:'Par: Jahreskupon-Benchmark',color:'#bc670a',dash:true,points:par.map((s,k)=>[k+1,s*100])},{name:'Forward: nur das letzte Jahr',color:'#6b4ab5',points:forward.map((s,k)=>[k+1,s*100])}];
+ const out=result([['Vollpreis des Kuponbonds',P],['Einzel-YTM effektiv p. a. (%)',y*100],['Dreijähriger Par-Kupon (%)',par[2]*100],['Jahresforward: Jahr 1 bis 2 (%)',forward[1]*100],['Jahresforward: Jahr 2 bis 3 (%)',forward[2]*100],['Diskontfaktor bis Jahr 3',D[2]]],lines[0].points,'Endjahr des betrachteten Zeitraums','Jahresrate (%)','Eigene drei jährliche Spotknoten, effektive Jahresraten, eine Währung und gleichartige ausfallfreie Ansprüche. Der eigene Kuponbond hat hundert Endnominal, drei jährliche Zahlungen und wird direkt nach einer Kuponzahlung bewertet. Keine Optionen, Kosten, Steuern oder Kalenderbesonderheiten. Ein Jahresforward endet am gezeigten Jahr und beginnt ein Jahr davor; eine Spotrate beginnt heute. Die Linien verbinden nur die drei Knoten und behaupten keine geschätzte Zwischenkurve. Bei einer flachen Kurve fallen die drei Linien zusammen. Par-Benchmarks werden für jedes Endjahr getrennt mit jährlichen Kupons konstruiert. Ein negativer mathematischer Par-Kupon bedeutet negative Kuponpflichten des hypothetischen Benchmarks, nicht einen entsprechenden Vertrag des eingegebenen Bonds. Ein Forward ist keine sichere Prognose. Änderung des Bondkupons verändert die Kurve selbst nicht.');
+ out.series=lines;
+ const rates=lines.flatMap(l=>l.points.map(p=>p[1])),min=Math.min(...rates),max=Math.max(...rates),pad=Math.max((max-min)*.12,.2);out.yRange=[min-pad,max+pad];
+ out.curve={spots,discounts:D,par,forward,cashflows:cf,price:P,ytm:y,parCoupon:pc};
+ out.projection={caption:'Dieselben drei Faktoren erzeugen Bondbarwerte und drei verschiedene Kurven',headers:['Endjahr','Spot (%)','Diskontfaktor','Par-Kupon (%)','Letzter Jahresforward (%)','Bondzahlung','Bondbarwert'],rows:D.map((v,k)=>[k+1,spots[k]*100,v,par[k]*100,forward[k]*100,cf[k],cf[k]*v])};
+ out.stable={caption:'Den dreijährigen Par-Benchmark mit seinem eigenen Kupon genau auf hundert abstimmen',headers:['Jahr','Par-Kuponbetrag','Tilgung','Benchmarkzahlung','Barwert'],rows:D.map((v,k)=>[k+1,pc,k===2?100:0,pc+(k===2?100:0),(pc+(k===2?100:0))*v])};
+ return out;
+}
+add('yieldcurve','Spot, Par und Forward aus denselben Preisfaktoren','Beginne mit drei, vier und fünf Prozent Spotrate. Ändere zunächst nur den Bondkupon: Die drei Kurven bleiben gleich, während sich Preis und einzelne Bond-YTM ändern können. Lade danach eine andere Kurvenform und vergleiche ihre eigenen Faktoren.',[
+ field('z1','Spot bis Jahr 1 (% effektiv p. a.)',-3,12,.25,3),
+ field('z2','Spot bis Jahr 2 (% effektiv p. a.)',-3,12,.25,4),
+ field('z3','Spot bis Jahr 3 (% effektiv p. a.)',-3,12,.25,5),
+ field('coupon','Jahreskupon des Bonds je hundert',0,12,.25,5)
+],yieldCurvePlan);
+models.yieldcurve.presets=[
+ {label:'Steigend: 3, 4, 5 Prozent',values:{z1:3,z2:4,z3:5,coupon:5}},
+ {label:'Flach: überall vier Prozent',values:{z1:4,z2:4,z3:4,coupon:5}},
+ {label:'Fallend: 5, 4, 3 Prozent',values:{z1:5,z2:4,z3:3,coupon:5}},
+ {label:'Buckel: 3, 6, 4 Prozent',values:{z1:3,z2:6,z3:4,coupon:5}},
+ {label:'Negative Spots: −3, −2, −1 Prozent',values:{z1:-3,z2:-2,z3:-1,coupon:5}}
+];
+const api={models,calculate,annuity,price,bsm,cdf,forecastValue,companyPlan,covenantPlan,repaymentSchedule,bondIndexPlan,repoFundingPlan,yieldSpreadPlan,floaterPlan,moneyYieldPlan,yieldCurvePlan};
 if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.FinanceModels=api;
 })(globalThis);

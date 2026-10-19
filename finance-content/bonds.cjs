@@ -18,3 +18,4 @@ L('2','Eine Kündigungsoption ist ein Recht. Liegt es beim Emittenten, kostet es
 ];
 // Additional calculators keep the existing repo model and all of its bookmarks.
 module.exports[1].additionalLabs=['floater','moneyyield'];
+module.exports[5].lab='yieldcurve';
