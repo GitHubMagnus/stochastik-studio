@@ -121,7 +121,7 @@ module.exports={id:'bond-return',intro:[
  ]),
  S('derivative','22. Von Barwertgewichten zur Preissensitivität gelangen','b c',[
   F('\\frac{1}{P(y)}\\frac{dP(y)}{dy}=-\\frac{D_M(y)}{1+y/m}','Beim Ableiten jedes Diskontfaktors erscheint sein Zeitpunkt als Multiplikator. Nach Division durch den Gesamtpreis entstehen genau die Macaulay-Gewichte.',[['P(y)','Vollpreis des festen Zahlungsplans bei nominaler Jahres-YTM y.'],['D_M(y)','Macaulay Duration bei diesem Yield in Jahren.'],['y','Nominale Jahres-YTM als Dezimalzahl.'],['m','Perioden pro Jahr.'],['dP(y)/dy','Preisänderung je Einheit der Jahres-YTM.']]),
-  'Eine Zahlung nach vielen Jahren wird häufiger mit dem Periodenfaktor diskontiert; deshalb reagiert ihr Barwert stärker auf denselben kleinen Zinsanstieg. Die Summe der so gewichteten Zeitfaktoren liefert die Preissensitivität. Das nachfolgende Duration-Kapitel vertieft Modified Duration, Geld-Duration, PVBP und Konvexität.',
+  'Eine Zahlung nach vielen Jahren wird häufiger mit dem Periodenfaktor diskontiert; deshalb reagiert ihr Barwert stärker auf denselben kleinen Zinsanstieg. Die Summe der so gewichteten Zeitfaktoren liefert die Preissensitivität. Die nachfolgenden Kapitel vertiefen Modified Duration, Money Duration, PVBP und Konvexität.',
   F('D_{\\mathrm{mod}}=\\frac{D_M}{1+y/m}','Bei derselben Jahres-Yieldkonvention wird aus der zeitlichen Macaulay Duration die normierte Kurssensitivität.',[['D_{\\mathrm{mod}}','Modified Duration bezogen auf die nominale Jahres-YTM.'],['D_M','Macaulay Duration in Jahren.'],['y','Nominale Jahres-YTM als Dezimalzahl.'],['m','Perioden pro Jahr.']])
  ]),
  S('horizon-derivative','23. Kurs- und Wiederanlageeffekt in einer Ableitung zusammenführen','a b c',[
@@ -183,6 +183,7 @@ module.exports={id:'bond-return',intro:[
  ])
 ],explorations:[{section:'workflow',lesson:'bonds-09',focus:'lab',label:'Kaufpreis, neuen Zins und Anlagehorizont kontrolliert vergleichen; alle Durationgewichte und Endvermögensbestandteile nachrechnen'}],
 related:[
+ {unit:'convexity',section:'time',label:'Sofortige Preiswölbung vom Endvermögen nach tatsächlicher Haltedauer trennen'},
  {unit:'duration',section:'workflow',label:'Relative Zinssensitivität in Money Duration und PVBP der tatsächlichen Position übersetzen'},
  {unit:'return-types',section:'holding-period',label:'Kumulative Haltedauerrendite von annualisierter Rendite trennen'},
  {unit:'return-types',section:'annualization',label:'Geometrische Annualisierung und ihre Grenzen nachvollziehen'},

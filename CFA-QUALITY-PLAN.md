@@ -2414,3 +2414,105 @@ und bestandene Technikprüfungen ersetzen die spätere fachliche Abnahme nicht.
   Nullbestand und extremer Positionsgrößen sowie zwei reservierte Lösungskarten
   auf Desktop und Mobilgerät. Diese Evidenz ist keine fachliche Gesamtfreigabe
   der noch unvollständigen CFA-Vorbereitung.
+
+### Konvexität, Zahlungsstreuung und Portfoliorisiko (20.10.2026)
+
+- Neue Einheit convexity zu den drei tatsächlichen Lernzielen auf Seite 21 des
+  2027-Outlines. **38 Abschnitte, sieben eigene Rechenfälle, zehn Tabellen,
+  30 lokal erklärte Formeltafeln und sechs Grafiken mit 753 berechneten Werten**.
+  Dazu **60 englische Trainingsfragen** mit deutschen Lösungen und Gründen zu
+  allen Antwortmöglichkeiten. Je eine getrennte reservierte Transferfrage
+  verbindet Perioden-/Jahresumrechnung beider Ableitungen beziehungsweise
+  unterschiedliche Positionsschocks mit Marktwertgewichtung und zweiter Ordnung.
+- Die Herleitung beginnt bei der zweiten Ableitung jedes Diskontfaktors.
+  Volle normierte Konvexität, halber Taylorbeitrag und Money Convexity sind
+  ausdrücklich getrennt. Nominale Jahresquote, Periodenquote und effektive
+  Jahresquote werden nicht vermischt: Die lineare Periodenumrechnung erfordert
+  die Frequenz zum Quadrat, eine nichtlineare Quotenumrechnung zusätzlich den
+  zweiten Kettenregelterm. Für denselben halbjährlichen Fünfjahresbond lauten die
+  drei Konvexitäten **90,449288741 periodisch**, **22,612322185 nominal jährlich**
+  und **23,554524140 effektiv jährlich**.
+- Der jährliche Hauptbond mit fünf Kupon, fünf Jahren und fünf Prozent YTM hat
+  Preis hundert, Modified Duration **4,329476671** und Konvexität **23,935987498**.
+  Ein Anstieg um hundert Basispunkte ergibt linear **95,670523329**, quadratisch
+  **95,790203267** und vollständig bewertet **95,787636214**. Die Geldrechnung
+  nennt getrennt Marktwert, Money Convexity, linearen Verlust, quadratischen
+  Beitrag und tatsächlichen Verlust. Die zentrale Drei-Preis-Schätzung erläutert
+  das Schockquadrat, den fehlenden zusätzlichen Zweiernenner und Rundungsgrenzen.
+  Eine vollständige zusätzliche Zahlungsrechnung zeigt jeden Barwert, sein
+  Gewicht, den zeitgewichteten Krümmungszähler und dessen Summe **2.638,942621644**.
+  Normierung durch Preis hundert und die zusätzliche Zinsbasis erzeugt die
+  Konvexität tatsächlich aus den fünf Zahlungen.
+- Der Zusammenhang mit Macaulay Duration wird über das zweite Zeitmoment und
+  die barwertgewichtete Zeitvarianz hergeleitet. Der kontrollierte Barbellfall
+  aus je einer Hälfte Barwert im ersten und neunten Jahr hat wie der einzelne
+  Fünfjahres-Bullet Macaulay fünf und Modified **4,761904762**, jedoch Konvexität
+  **41,723356009** gegenüber **27,210884354**. Die festen Endbeträge werden vor
+  dem Schock bestimmt und anschließend unverändert neu bewertet. Der besondere
+  Preisvergleich wird durch Konvexität in der Zeit begründet; er wird nicht
+  zu einem allgemeinen Gewinnsatz für beliebige höhere Anfangskonvexität erklärt.
+- Marktwertgewichtete Portfoliomaße werden aus der Ableitung der Wertsumme entlang
+  einer benannten gemeinsamen eigenen Yieldverschiebung hergeleitet.
+  Unterschiedliche Schocks werden zuerst je Position gerechnet. Ein eigener
+  Zwei-Nullkuponfall zeigt, weshalb eine einzelne aggregierte Portfolio-IRR zwar
+  denselben Anfangspreis, aber andere innere Zahlungsgewichte und Sensitivitäten
+  erzeugen kann. Long-/Shortvorzeichen, Netto-Marktwert null, FX, Spread- und
+  Optionsrisiken, Carry, Finanzierung und tatsächlich verstrichene Zeit sind
+  ausdrücklich abgegrenzt. Auch der lange Discountbond liefert einen
+  nachgerechneten Gegenfall zum unbedingten Konvexitäts-Laufzeitsatz.
+- Der zusätzliche Rechner bondconvex lässt Anfangswert und Duration der
+  Vergleichsportfolios automatisch übereinstimmen. Sechs Eingaben, sechs
+  vollständig spezifizierte Vergleichsfälle, zwölf Kennzahlen, drei Kurven,
+  jede feste Endzahlung sowie lineare, quadratische und exakte Geldänderungen
+  sind verfügbar. Gleiche Termine und Gewichte null oder hundert liefern
+  zusammenfallende exakte Portfoliokurven. Die gemeinsame Tangente bleibt
+  eigenständig. Der bisherige Kuponbondrechner bleibt im selben Kapitel erreichbar.
+- **264 unabhängige Portfolioszenarien einschließlich aller 64 Eingabeecken**
+  prüfen **48.312 Kurvenwerte**, feste Endzahlungen, identische Anfangswerte und
+  erste Sensitivitäten, zweite Geldableitungen, Zeitvarianz und Skalierung.
+  Alle **753 Lehrbuchgrafikwerte** sind separat über eine analytisch abgeleitete
+  Rentenformel beziehungsweise unabhängige Endbetragsbewertung geprüft.
+  Quantitative Aufgaben, sämtliche numerischen Distraktoren der reservierten
+  Fragen und die mögliche positive Cashflowstruktur ihrer Kennzahlen sind
+  unabhängig nachgerechnet.
+- Die konzeptionellen Antwortmöglichkeiten prüfen auch typische Verwechslungen:
+  gleiche Duration gegen gleiche Krümmung, verschwindende Zeitvarianz gegen
+  verschwindendes Zinsrisiko, Marktwert gegen Nominal sowie sofortige Neubewertung
+  gegen tatsächlich erzielte Haltedauerrendite. Reine Bezeichnungsargumente und
+  fachfremde Ablenkungen wurden in diesen Fällen durch entsprechende Denkfehler ersetzt.
+- Zehn zusätzliche Wörterbuchdefinitionen führen zu präzisen Abschnitten.
+  Die bestehende Konvexitätsdefinition wurde vertieft und umgeleitet.
+  Bullet bezeichnet im neuen Kapitel kontextbezogen die Portfoliostruktur;
+  der bisherige allgemeine Alias bleibt bei der endfälligen Anleihe mit möglichen
+  laufenden Kupons. Fünf bestehende Einheiten enthalten fachliche Rückverweise.
+- Gesamtstand: **72 Einheiten, 235/340 strukturelle Lernzielreferenzen,
+  2.164 Trainingsfragen, je 127 reservierte Fragen und 149 CFA-Grafiken**.
+  **46 Rechner in 66 bisherigen Finance-Kapiteln**, **1.184 kuratierte
+  Rückverweise, 1.498 Definitionen und 3.292 Begriffe/Aliase**.
+  Offen bleiben **30 Einheiten, 105 Lernzielreferenzen und 53 Fragen je Klausur**
+  sowie die inhaltliche Gesamtprüfung. Alle neuen Einheiten bleiben Entwürfe,
+  vollständige Klausuren gesperrt. **90/100 und 80/100 sind weiterhin nicht
+  als erreicht belegt.**
+- Technische Prüfung des abschließenden Builds mit Datenversion eacb5f76ab97b6aa:
+  **298 Kernprüfungen, ein vollständiger Lauf mit 57 CFA-Browserprüfungen und
+  drei ergänzende Bestandsprüfungen bestanden**. Dieser abschließende Lauf
+  enthält bereits die vollständige Zahlungsrechnung und die präzisierten
+  Antwortmöglichkeiten. Die früheren Zwischenläufe werden nicht hinzuaddiert.
+  Er prüft alle **72 ausgearbeiteten Einheiten** auf beiden Bildschirmbreiten,
+  beantwortet sämtliche **620 Anleihe- sowie 740 Corporate-/Equity-Trainingsfragen**
+  und prüft außerdem Speicherung, beschädigte Speicherdaten, Offlinebetrieb
+  und den vollständigen Klausurablauf mit getrennten künstlichen Testdaten.
+- Die gezielten Browserprüfungen bestätigen beide Rechnerwege, sechs native
+  gültige Vergleichsfälle, zwölf Kennzahlen, drei Kurven, Grenzfälle, Geldskalierung,
+  alle 30 lokalen Formelerklärungen und sechs ausklappbare Grafikwerttabellen.
+  Die tatsächlichen beiden reservierten Lösungskarten sind mit Symbolen,
+  allen Antwortbegründungen und Abschnittsrückwegen auf zwei Breiten geprüft.
+  Hierfür werden ausschließlich isolierte Test-Fixtures verwendet.
+- Der Bestandsaudit besteht mit **171 Kapiteln, 46 Modellen, 7.357 Aktionen und
+  16.981 gültigen Begriffsverweisen**. Die bisherigen Symbolhilfen werden für
+  **3.054 Formelvorkommen und 2.886 Hilfefelder über zwei Breiten** geprüft.
+  **25 Buch-, Modell- und Lösungsansichten wurden visuell kontrolliert**,
+  einschließlich der vollständigen Zahlungsrechnung, Null-Zeitstreuung,
+  mobiler Symboltafeln und extremer Eingaben bis 320 Pixel Breite.
+  Diese Evidenz ersetzt keine fachliche Gesamtfreigabe der noch unvollständigen
+  CFA-Vorbereitung.

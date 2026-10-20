@@ -185,6 +185,7 @@ module.exports={id:'bond-prices',intro:[
   'Die Trainingsfragen enthalten deshalb sowohl Rechenaufgaben als auch Fälle, in denen ein scheinbar richtiger Satz wegen fehlender Voraussetzungen zu weit geht. Zu jeder Auswahl gehört eine Begründung und ein genauer Rückweg zum passenden Abschnitt.'
  ])
 ],explorations:[{section:'calculator',lesson:'bonds-05',focus:'lab',label:'Kupon, Laufzeit, Frequenz und Yield am vollständigen Barwertmodell vergleichen'}],related:[
+ {unit:'convexity',section:'main-case',label:'Die Preisnäherung aus Duration und Konvexität vollständig nachrechnen'},
  {unit:'duration',section:'workflow',label:'Relative Zinssensitivität in Money Duration und PVBP der tatsächlichen Position übersetzen'},
  {unit:'bond-return',section:'workflow',label:'Kupons, Wiederanlage, Verkauf und Anlagehorizont gemeinsam zur Anleiherendite verbinden'},
  {unit:'yield-curves',section:'price-case',label:'Jede Kuponzahlung mit ihrem eigenen Spotfaktor bewerten'},
