@@ -70,6 +70,12 @@
 .study-model-legend{display:flex;flex-wrap:wrap;gap:8px 16px;margin:6px 0;font-size:.8rem}
 .study-model-legend span{display:inline-flex;align-items:center;gap:6px}
 .study-model-legend i{display:inline-block;width:22px}
+.study-lab-bondconvex #lab-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+.study-lab-bondconvex #lab-metrics>div{min-width:0}
+.study-lab-bondconvex #lab-metrics strong{font-size:1.05rem;overflow-wrap:anywhere}
+.study-lab-bondconvex label[for=lab-value] .study-pair{grid-template-columns:132px 1fr}
+@media(max-width:600px){.study-lab-bondconvex #lab-metrics strong{font-size:.95rem}}
+@media(max-width:360px){.study-lab-bondconvex #lab-metrics>div{grid-column:1/-1}}
 .study-lab-bondrisk #lab-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
 .study-lab-bondrisk #lab-metrics>div{min-width:0}
 .study-lab-bondrisk #lab-metrics strong{font-size:1.05rem;overflow-wrap:anywhere}

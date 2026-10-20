@@ -396,6 +396,35 @@ models.bondhorizon.presets=[
  {label:'Halbjährliche Zahlungen',values:{frequency:2,horizon:4.485432764622604}},
  {label:'Negative Marktzinsen',values:{initial:-1,after:-2,horizon:5}}
 ];
-const api={models,calculate,annuity,price,bsm,cdf,forecastValue,companyPlan,covenantPlan,repaymentSchedule,bondIndexPlan,repoFundingPlan,yieldSpreadPlan,floaterPlan,moneyYieldPlan,yieldCurvePlan,bondHorizonPlan,bondRiskPlan};
+function convexityPlan(p){
+ if(![p.early,p.late,p.weight,p.yield,p.shock,p.value].every(Number.isFinite)||p.early<=0||p.late<p.early||p.weight<0||p.weight>100||p.yield<=-100||p.value<=0||p.yield/100+p.shock/10000<=-1)throw Error('Bitte positive Zahlungstermine in aufsteigender Reihenfolge, ein Gewicht zwischen null und hundert, positiven Marktwert und positive Zinsbasen verwenden.');
+ const y=p.yield/100,b=1+y,w=p.weight===0?0:p.weight/100,V=p.value,t=w*p.early+(1-w)*p.late,varTime=w*(p.early-t)**2+(1-w)*(p.late-t)**2,D=t/b,Cbullet=t*(t+1)/b**2,Cbar=Cbullet+varTime/b**2;
+ const barFactor=d=>w*(b/(b+d))**p.early+(1-w)*(b/(b+d))**p.late,bulletFactor=d=>(b/(b+d))**t,dy=p.shock/10000,barReturn=barFactor(dy)-1,bulletReturn=bulletFactor(dy)-1,linear=dy===0?0:-D*dy,barTaylor=linear+.5*Cbar*dy**2,bulletTaylor=linear+.5*Cbullet*dy**2;
+ const lines=[{name:'Barbell: zwei Zahlungstermine',color:'#087e82',points:seq(-300,300,x=>(barFactor(x/10000)-1)*100,60)},{name:'Bullet: ein Vergleichstermin',color:'#6b4ab5',points:seq(-300,300,x=>(bulletFactor(x/10000)-1)*100,60)},{name:'Gemeinsame Durationnäherung',color:'#bc670a',dash:true,points:seq(-300,300,x=>x===0?0:-D*x/10000*100,60)}];
+ const out=result([['Gemeinsamer Anfangsmarktwert (WE)',V],['Gemeinsame Macaulay Duration (Jahre)',t],['Gemeinsame Modified Duration',D],['Barwertgewichtete Zeitvarianz der Barbell',varTime],['Konvexität der Barbell',Cbar],['Konvexität des Bulletvergleichs',Cbullet],['Exakte Preisänderung Barbell (%)',barReturn*100],['Exakte Preisänderung Bullet (%)',bulletReturn*100],['Quadratische Näherung Barbell (%)',barTaylor*100],['Quadratische Näherung Bullet (%)',bulletTaylor*100],['Money Convexity Barbell (WE je Yield²)',V*Cbar],['Money Convexity Bullet (WE je Yield²)',V*Cbullet]],lines[0].points,'Sofortiger paralleler Yieldschock (Basispunkte)','Änderung des Marktwerts (%)','Eigene sichere feste Nullkuponansprüche in einer Währung. Anfangskurve flach; der eingegebene Satz ist eine effektive Jahres-YTM. Die ersten beiden Ansprüche bilden zusammen die Barbell; der Bullet ist ein separates Vergleichsportfolio mit gleichem Anfangsmarktwert und einem einzigen Termin am barwertgewichteten Zeitschwerpunkt. Dieser Termin darf ein Jahresbruchteil sein; alle Faktoren verwenden die offengelegte jährliche Potenzkonvention, keinen realen Kalender. Die anfänglichen Endbeträge bleiben beim Zinsschock unverändert. Alle Laufzeiten erfahren dieselbe sofortige additive Jahres-Yieldänderung, während keine Zeit verstreicht. Keine Optionen, Ausfälle, Kosten, Steuern oder Währungsänderungen. Die Kurven zeigen Preisvergleichsszenarien, keine Haltedauerrenditen oder garantierte Strategieerträge. Dauerhafte Zinsverläufe, Finanzierung, Alternativkosten und Kurvenverformungen sind damit nicht abgesichert. Bei gleichem Zahlungstermin oder Gewicht null beziehungsweise hundert überlagern sich die beiden exakten Portfoliokurven. Die lineare Durationgerade bleibt eine eigene Näherung.');
+ out.series=lines;out.marker=[p.shock,barReturn*100];const vals=lines.flatMap(l=>l.points.map(p=>p[1])),lo=Math.min(...vals),hi=Math.max(...vals),pad=Math.max((hi-lo)*.08,.2);out.yRange=[lo-pad,hi+pad];
+ const earlyFace=w*V*b**p.early,lateFace=(1-w)*V*b**p.late,bulletFace=V*b**t;
+ out.convexity={yield:y,early:p.early,late:p.late,weight:w,value:V,center:t,varTime,duration:D,barConvexity:Cbar,bulletConvexity:Cbullet,barReturn,bulletReturn,linear,barTaylor,bulletTaylor,earlyFace,lateFace,bulletFace,barValue:V*barFactor(dy),bulletValue:V*bulletFactor(dy)};
+ out.projection={caption:'Erste zwei Zeilen: Barbell-Bestand. Dritte Zeile: separater Bulletvergleich, kein dritter Bestandteil derselben Barbell.',headers:['Bestand','Termin (Jahre)','Eigenes Barwertgewicht','Marktwert vor Schock','Feststehende Endzahlung','Marktwert nach Schock'],rows:[['Barbell: früh',p.early,w,w*V,earlyFace,earlyFace/(b+dy)**p.early],['Barbell: spät',p.late,1-w,(1-w)*V,lateFace,lateFace/(b+dy)**p.late],['Bullet: gesonderter Vergleich',t,1,V,bulletFace,bulletFace/(b+dy)**t]]};
+ out.stable={caption:'Identische erste Ableitung, verschiedene zweite Ableitungen und tatsächliche Preisreaktionen',headers:['Maß','Barbell','Bullet','Einheit / Bezug'],rows:[['Anfänglicher Marktwert',V,V,'WE'],['Macaulay Duration',t,t,'Jahre'],['Modified Duration',D,D,'Nach effektiver Jahres-YTM'],['Konvexität',Cbar,Cbullet,'Nach effektiver Jahres-YTM zum Quadrat'],['Money Convexity',V*Cbar,V*Cbullet,'WE je Einheit der dezimalen Yieldänderung zum Quadrat'],['Nur Duration: Wertänderung',V*linear,V*linear,'WE'],['Mit Konvexität: Wertänderung',V*barTaylor,V*bulletTaylor,'WE'],['Exakte Wertänderung',V*barReturn,V*bulletReturn,'WE'],['Exakter neuer Marktwert',V*barFactor(dy),V*bulletFactor(dy),'WE'],['Fehler der quadratischen Wertänderung',V*(barTaylor-barReturn),V*(bulletTaylor-bulletReturn),'WE: Näherung minus Neubewertung']]};
+ return out;
+}
+add('bondconvex','Barbell und Bullet bei gleichem Preis und gleicher Duration','Vergleiche den breiten Zahlungsabstand mit dem engen Abstand. Der Marktwert und die Duration beider Vergleichsportfolios sind jeweils gleich. Zinsanstieg und Zinsrückgang zeigen, was allein die unterschiedliche Krümmung zur Preisreaktion beiträgt.',[
+ field('early','Früher Zahlungstermin (Jahre)',.5,5,.5,1),
+ field('late','Später Zahlungstermin (Jahre)',5,30,.5,9),
+ field('weight','Früher Anteil am Anfangsmarktwert (%)',0,100,5,50),
+ field('yield','Anfängliche effektive Jahres-YTM (%)',0,12,.25,5),
+ field('shock','Gemeinsamer Yieldschock (Basispunkte)',-300,300,25,100),
+ field('value','Marktwert je Vergleichsportfolio (WE)',1000,10000000,1000,1000000)
+],convexityPlan);
+models.bondconvex.presets=[
+ {label:'Breit: ein und neun Jahre',values:{early:1,late:9,weight:50,yield:5,shock:100,value:1000000}},
+ {label:'Eng: vier und sechs Jahre',values:{early:4,late:6,weight:50,yield:5,shock:100,value:1000000}},
+ {label:'Noch breiter, gleicher Schwerpunkt',values:{early:.5,late:9.5,weight:50,yield:5,shock:100,value:1000000}},
+ {label:'Gleiche Termine: keine Zusatzstreuung',values:{early:5,late:5,weight:50,yield:5,shock:100,value:1000000}},
+ {label:'Nur der späte Anspruch',values:{early:1,late:9,weight:0,yield:5,shock:100,value:1000000}},
+ {label:'Halber Marktwert',values:{early:1,late:9,weight:50,yield:5,shock:100,value:500000}}
+];
+const api={models,calculate,annuity,price,bsm,cdf,forecastValue,companyPlan,covenantPlan,repaymentSchedule,bondIndexPlan,repoFundingPlan,yieldSpreadPlan,floaterPlan,moneyYieldPlan,yieldCurvePlan,bondHorizonPlan,bondRiskPlan,convexityPlan};
 if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.FinanceModels=api;
 })(globalThis);

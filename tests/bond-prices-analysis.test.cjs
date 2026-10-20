@@ -9,7 +9,7 @@ test('bond prices address all three actual objectives with disjoint original pra
  const qs=data.questions.filter(q=>q.unit===u.id);assert.equal(qs.length,54);assert.equal(qs.filter(q=>q.pool==='practice').length,50);
  for(const p of ['mock-a','mock-b']){assert.equal(qs.filter(q=>q.pool===p).length,2);assert.ok(data.inventory[p].bonds<=require('../finance-cfa/engine.cjs').blueprint.bonds);}
  for(const o of data.coverage.find(x=>x.id===u.id).objectives){assert.ok(o.sections.length>=7);assert.ok(o.practice.length>=8);assert.ok(o.mockQuestions>=2);}
- assert.equal(require('../finance-content/bonds.cjs')[2].lab,'repayment');assert.equal(require('../finance-content/bonds.cjs')[4].lab,'bond');assert.equal(Object.keys(require('../finance-models.cjs').models).length,45);
+ assert.equal(require('../finance-content/bonds.cjs')[2].lab,'repayment');assert.equal(require('../finance-content/bonds.cjs')[4].lab,'bond');assert.equal(Object.keys(require('../finance-models.cjs').models).length,46);
 });
 test('all 672 plotted values agree with closed-form cash-flow references, matching units and stated assumptions',()=>{
  let count=0;for(const f of u.sections.flatMap(s=>s.blocks).filter(b=>b.kind==='figure'))for(const[i,s]of f.plot.series.entries())for(const[k,[x,y]]of s.points.entries()){
@@ -56,7 +56,8 @@ test('matrix and pull-to-par tables use target cash flows and disclose the uncer
 });
 test('pricing vocabulary has precise section links and protects established full and clean price defaults',()=>{
  const gl=require('../finance-glossary.cjs'),find=w=>gl.find(g=>[g.term,...g.aliases].some(a=>a.toLowerCase()===w.toLowerCase()));
- for(const[w,section]of [['YTM','yield'],['Bond Periodic Yield','units'],['Coupon Frequency','units'],['Nominal Annual YTM','units'],['Bond Present Value','discount'],['Coupon Entitlement','claim'],['Day-Count Convention','day-count'],['Ex-Coupon','day-count'],['Stub Period','day-count'],['Discount Bond','par'],['Premium Bond','par'],['Pull to Par','pull-par'],['Matrix Pricing','matrix-process'],['Yield Interpolation','interpolation'],['Matrix Valuation Range','matrix-band'],['Terminal-Wealth Return','realized'],['Convexity','convexity'],['Comparable Bond','matrix-peers'],['Fractional-Period Discounting','settlement']])assert.deepEqual(find(w)?.cfa,{unit:u.id,section},w);
+ for(const[w,section]of [['YTM','yield'],['Bond Periodic Yield','units'],['Coupon Frequency','units'],['Nominal Annual YTM','units'],['Bond Present Value','discount'],['Coupon Entitlement','claim'],['Day-Count Convention','day-count'],['Ex-Coupon','day-count'],['Stub Period','day-count'],['Discount Bond','par'],['Premium Bond','par'],['Pull to Par','pull-par'],['Matrix Pricing','matrix-process'],['Yield Interpolation','interpolation'],['Matrix Valuation Range','matrix-band'],['Terminal-Wealth Return','realized'],['Comparable Bond','matrix-peers'],['Fractional-Period Discounting','settlement']])assert.deepEqual(find(w)?.cfa,{unit:u.id,section},w);
+ assert.deepEqual(find('Convexity').cfa,{unit:'convexity',section:'definition'});
  assert.equal(find('Clean Price').cfa.unit,'bond-trading');assert.equal(find('Dirty Price').cfa.unit,'bond-trading');assert.equal(find('IRR').cfa.unit,'capital-allocation');assert.equal(find('Nullkuponanleihe').cfa.unit,'bond-cashflows');
  for(const id of ['bond-features','bond-cashflows','bond-trading','corporate-funding','government-funding'])assert.ok(data.units.find(x=>x.id===id).related.some(r=>r.unit===u.id));
 });

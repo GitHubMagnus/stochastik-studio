@@ -12,7 +12,7 @@ test('duration addresses both actual 2027 objectives with substantive independen
  assert.equal(u.sections.length,32);assert.equal(u.review.status,'draft');assert.equal(data.release,false);assert.ok(u.sources[0].url.endsWith('#page=21'));
  const qs=data.questions.filter(q=>q.unit===u.id);assert.equal(qs.filter(q=>q.pool==='practice').length,52);for(const pool of ['mock-a','mock-b']){assert.equal(qs.filter(q=>q.pool===pool).length,1);assert.ok(data.inventory[pool].bonds<=require('../finance-cfa/engine.cjs').blueprint.bonds);}
  for(const o of data.coverage.find(c=>c.id===u.id).objectives){assert.ok(o.sections.length>=15);assert.ok(o.practice.length>=20);assert.ok(o.mockQuestions>=1);}
- assert.equal(require('../finance-content/bonds.cjs')[7].lab,'bond');assert.equal(Object.keys(M.models).length,45);assert.equal(M.models.bond.controls.length,6);assert.equal(M.models.bond.presets.length,6);
+ assert.equal(require('../finance-content/bonds.cjs')[7].lab,'bond');assert.equal(Object.keys(M.models).length,46);assert.equal(M.models.bond.controls.length,6);assert.equal(M.models.bond.presets.length,6);
  for(const id of ['bond-return','bond-prices','fixed-yields','yield-curves','tvm'])assert.ok(data.units.find(u=>u.id===id).related.some(r=>r.unit==='duration'));
 });
 test('264 bond-position scenarios independently reconcile analytic duration, currency sensitivities and all price curves including every corner',t=>{

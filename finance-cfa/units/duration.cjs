@@ -172,6 +172,7 @@ module.exports={id:'duration',intro:[
  ])
 ],explorations:[{section:'workflow',lesson:'bonds-08',focus:'lab',label:'Nominal und Marktwert getrennt vergleichen; Preisableitung, Positions-PVBP und tatsächliche Neubewertung abstimmen'}],
 related:[
+ {unit:'convexity',section:'variance',label:'Die zweite Preisableitung aus Macaulay und barwertgewichteter Zeitstreuung herleiten'},
  {unit:'bond-return',section:'mac-ledger',label:'Alle Barwertgewichte der Macaulay Duration vollständig nachrechnen'},
  {unit:'bond-return',section:'horizon-derivative',label:'Lokales Preisrisiko vom Endvermögensrisiko am Anlagehorizont unterscheiden'},
  {unit:'bond-prices',section:'settlement',label:'Vollpreis, Stückzinsen und Restzeiten bei der Bewertung abstimmen'},
