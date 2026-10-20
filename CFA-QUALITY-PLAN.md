@@ -2327,3 +2327,90 @@ und bestandene Technikprüfungen ersetzen die spätere fachliche Abnahme nicht.
   18 Buch-/Modellansichten sowie vier reservierte Lösungskarten auf je zwei
   Bildschirmbreiten. Dies belegt konkrete technische und numerische Kontrollen;
   es ersetzt nicht den ausstehenden fachlichen Gesamtaudit.
+
+### 20. Oktober 2026: Modified Duration, Money Duration und PVBP
+
+- Neue Einheit duration zu den beiden tatsächlichen Lernzielen auf Seite 21
+  des 2027-Outlines. **32 Abschnitte, fünf vollständige Rechenfälle, elf Tabellen,
+  22 lokal erklärte Formeltafeln und fünf Grafiken mit 591 berechneten Werten**.
+  Dazu **52 englische Trainingsfragen** mit deutschen Lösungen und Gründen
+  zu allen Antworten. Je eine neue reservierte Frage verbindet Clean Quote,
+  Stückzins, Nominalbestand und Geldsensitivität beziehungsweise zwei verschiedene
+  Preis-/Durationkombinationen mit einem gegenläufigen Nominalbestand.
+- Die Herleitung beginnt bei der Ableitung jedes einzelnen Diskontfaktors.
+  Macaulay in Perioden, Macaulay in Jahren, Modified nach nominaler Jahresquote
+  und Modified nach effektiver Jahresquote sind getrennt. Derselbe halbjährliche
+  Zahlungsplan hat **4,485432765 Jahre Macaulay**, **4,376031965 Modified**
+  nach nominaler Quote und **4,269299479** nach effektiver Quote. Die Kettenregel
+  erklärt diese unterschiedliche Skalierung bei denselben Barwerten.
+- Positionsbeispiele zeigen, weshalb ein höheres relatives Risiko allein keine
+  höhere Geldsensitivität beweist. Bei je einer Million Nominal hat der fünfjährige
+  Nullkupon trotz höherer Modified Duration nur **373,107698 lineare PVBP**,
+  der Par-Kuponbond **432,947667**. Bei je einer Million Marktwert hat der
+  Nullkupon dagegen **476,190476**. Die erforderlichen Nominalbestände werden
+  ausdrücklich umgerechnet.
+- Lineare Ableitungs-PVBP, exakter Ein-bp-Anstiegsverlust, Ein-bp-Rückgangsgewinn
+  und zentrale Halb-Differenz werden nicht gleichgesetzt. Beim Hauptbestand
+  lauten die vier Beträge **432,947667 / 432,828013 / 433,067373 / 432,947693**.
+  Jede numerische Schätzung nennt ihre Schrittweite. Ein 25-bp-Schritt ist
+  ohne weitere Skalierung kein Ein-bp-Betrag. Große Schocks, gerundete Preise,
+  positive Krümmung und mögliche Näherungsfehler sind anhand eigener Fälle erklärt.
+- Laufzeit-, Kupon- und Yieldvergleiche halten ihre jeweilige Vergleichsbasis
+  fest. Der sehr lange Discountbond erhält ein explizites Gegenbeispiel zum
+  unbedingten Laufzeitsatz. Negative Yields können Modified über die Endlaufzeit
+  heben, während Macaulay weiterhin innerhalb der positiven Zahlungszeiten liegt.
+  Null-Yield-Grenzwerte, Long-/Shortvorzeichen, eingeschränkte PVBP-Abstimmung
+  und die Abgrenzung zu Credit-, Kurven- und Optionsrisiken sind enthalten.
+- Der vorhandene Rechner bond wurde erweitert: sechs Eingaben einschließlich
+  Nominalbestand, sechs kontrollierte Vergleichsfälle, zwölf Kennzahlen sowie
+  vollständige Zahlungsbarwert- und Positionstabellen. Die bisherigen acht
+  Preis-/relativen Ausgaben bleiben bei gleichem Bond unverändert. Ein Bestand
+  von null liefert nun auch bei negativer Preisbewegung saubere Nullbeträge.
+  Die Nominaleingabe berücksichtigt die vier Nachkommastellen des exakten
+  Marktwertvergleichs.
+- **264 unabhängige Szenarien einschließlich aller 64 Eingabeecken** prüfen
+  **16.104 Kurvenwerte**, analytische Rentenformeln und deren eigene Ableitung,
+  gesamte Marktwerte, Money Duration, lineare und tatsächlich neu bewertete
+  Ein-bp-Beträge. Alle 591 Lehrbuchgrafikwerte sowie die numerischen Antworten
+  und ausgewählte Distraktoren sind separat nachgerechnet.
+- Zwölf zusätzliche kuratierte Einträge vertiefen oder ergänzen die Begriffe;
+  neun davon sind neue globale Definitionen. Die bestehende Modified-Definition
+  führt jetzt zu ihrer ausführlichen Herleitung. Im Horizontkapitel zeigt das
+  verkürzte Wort Duration kontextbezogen auf Macaulay; die bisherige allgemeine
+  Aliasadresse führt weiterhin zu Modified Duration. Fünf vorhandene Einheiten
+  enthalten Rückverweise.
+- Gesamtstand: **71 Einheiten, 232/340 strukturelle Lernzielreferenzen,
+  2.104 Trainingsfragen, je 126 reservierte Fragen und 143 CFA-Grafiken**.
+  **45 Rechner in 66 bisherigen Finance-Kapiteln**, **1.174 kuratierte
+  Rückverweise, 1.488 Definitionen und 3.266 Begriffe/Aliase**.
+  Offen bleiben **31 Einheiten, 108 Lernzielreferenzen und 54 Fragen je Klausur**
+  sowie die inhaltliche Gesamtprüfung. Alle neuen Einheiten bleiben Entwürfe,
+  vollständige Klausuren gesperrt. **90/100 und 80/100 sind nicht als erreicht
+  belegt.**
+- Technische Prüfung: **290 Kernprüfungen und ein vollständiger Browserlauf
+  mit 53 Prüfungen bestanden**. Dieser Browserlauf umfasst alle 71 Einheiten,
+  alle 560 Anleihe- und 740 Corporate-/Equity-Trainingsfragen, Wörterbuchwege,
+  Speicherung, Offlinebetrieb und den Klausurablauf mit separaten Testdaten.
+  Er enthält auch die gezielten Prüfungen für Horizont- und Durationrechner.
+- Danach wurden die Eingabeschrittweite des Nominalbestands von zwei auf vier
+  Nachkommastellen präzisiert und eine reservierte Frage inhaltlich geschärft.
+  Sie verlangt nun die Ableitung der Nullkupon-Duration vor der Abstimmung
+  zweier Positionssensitivitäten. Ihre Antworten sind rein numerisch; plausible
+  Distraktoren lassen jeweils Preisquoten oder Durationunterschied weg.
+  Ein vollständiger Vergleich bestätigt: Außer dieser einen Frage und der
+  Datenversion sind sämtliche CFA-Daten identisch. Alle übrigen HTML-Inhalte,
+  Rechenfunktionen, Skripte, Styles und Wörterbuchdaten sind abgesehen von der
+  einzelnen Eingabeschrittweite unverändert. Der abschließende Build besteht
+  erneut mit **290 Kernprüfungen**, **vier gezielten Duration-Browserprüfungen**
+  und **drei bestehenden Finance-Browserprüfungen**. Die vier gezielten Prüfungen
+  kontrollieren unter anderem alle sechs Presets gegen die nativen Eingabegrenzen,
+  Nullbestand, Skalierung, alle 22 neuen Formelerklärungen und tatsächliche
+  reservierte Lösungskarten auf zwei Bildschirmbreiten. Die überlappenden Läufe
+  werden nicht als ein einzelner zusätzlicher Gesamtlauf addiert.
+- Der bisherige Finance-Audit bestätigt **171 Kapitel, 45 Modelle, 7.314 Aktionen
+  und 16.981 gültige Begriffsverweise**, sämtliche Wörterbucheinträge sowie
+  Symbolhilfe für 3.054 Formelvorkommen und 2.886 Hilfefelder über zwei Breiten.
+  **24 Ansichten wurden visuell geprüft**: 20 Buch-/Modellansichten einschließlich
+  Nullbestand und extremer Positionsgrößen sowie zwei reservierte Lösungskarten
+  auf Desktop und Mobilgerät. Diese Evidenz ist keine fachliche Gesamtfreigabe
+  der noch unvollständigen CFA-Vorbereitung.
