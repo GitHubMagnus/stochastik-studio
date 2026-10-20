@@ -183,6 +183,7 @@ module.exports={id:'bond-return',intro:[
  ])
 ],explorations:[{section:'workflow',lesson:'bonds-09',focus:'lab',label:'Kaufpreis, neuen Zins und Anlagehorizont kontrolliert vergleichen; alle Durationgewichte und Endvermögensbestandteile nachrechnen'}],
 related:[
+ {unit:'duration',section:'workflow',label:'Relative Zinssensitivität in Money Duration und PVBP der tatsächlichen Position übersetzen'},
  {unit:'return-types',section:'holding-period',label:'Kumulative Haltedauerrendite von annualisierter Rendite trennen'},
  {unit:'return-types',section:'annualization',label:'Geometrische Annualisierung und ihre Grenzen nachvollziehen'},
  {unit:'tvm',section:'bonds',label:'Feste Zahlungen diskontieren und auf gemeinsame Termine bringen'},
