@@ -10,7 +10,7 @@ test('fixed yields meet both actual objectives with fifty-two independent traini
  for(const pool of ['mock-a','mock-b']){assert.equal(q.filter(q=>q.pool===pool).length,1);assert.ok(d.inventory[pool].bonds<=require('../finance-cfa/engine.cjs').blueprint.bonds);}
  for(const o of d.coverage.find(x=>x.id===u.id).objectives){assert.ok(o.sections.length>=9);assert.ok(o.practice.length>=10);assert.equal(o.mockQuestions,2);}
  const b=require('../finance-content/bonds.cjs');assert.equal(b[1].lab,'repofunding');assert.equal(b[2].lab,'repayment');assert.equal(b[4].lab,'bond');assert.equal(b[7].lab,'bond');assert.equal(b[10].lab,'yieldspread');assert.equal(b[12].lab,'abs');
- assert.equal(Object.keys(require('../finance-models.cjs').models).length,46);
+ assert.equal(Object.keys(require('../finance-models.cjs').models).length,47);
  for(const id of ['bond-prices','bond-cashflows','bond-trading','corporate-funding','government-funding'])assert.ok(d.units.find(x=>x.id===id).related.some(r=>r.unit===u.id));
 });
 test('printed equivalent-rate and call tables preserve annual factors and complete dated cash flows',()=>{

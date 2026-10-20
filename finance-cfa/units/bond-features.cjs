@@ -201,6 +201,7 @@ module.exports={id:'bond-features',intro:[
   'Die Rechnungen illustrieren ausdrücklich festgelegte Vertragswelten. Ob eine reale Verpflichtung erfasst, heilbar oder durchsetzbar ist, wird anhand ihrer vollständigen Bedingungen und des relevanten Rechts beurteilt; eine einzelne Quote ist dafür kein Ersatz.'
  ])
 ],explorations:[{section:'funding',lesson:'bonds-01',focus:'lab',label:'Auron: Kredit, Cashverwendung, Ausschüttung und vier Vertragsgrenzen verändern'}],related:[
+ {unit:'curve-risk',section:'option-tree',label:'Vertragliche Ausübung am Kupontermin durch zustandsabhängige Werte erklären'},
  {"unit":"bond-prices","section":"units","label":"Kupon und Periodenrate in die tatsächliche Preisrechnung überführen"},{unit:'government-funding',section:'guarantee',label:'Teilgarantie nach tatsächlichem Umfang und Auslöser rechnen'},{unit:'corporate-funding',section:'credit-terms',label:'Bonitätsklasse, Covenants und langfristige Finanzierung verbinden'},{unit:'bond-trading',section:'market-value',label:'Nominal und Preisnotierung in Marktwert und Indexgewicht übersetzen'},{unit:'bond-cashflows',section:'comparison',label:'Vom Vertragssteckbrief zu vier abgestimmten Tilgungsplänen'},
  {unit:'tvm',section:'bonds',label:'Vertragliche Anleihezahlungen mit ihren Zeitpunkten bewerten'},
  {unit:'returns',section:'promised-expected',label:'Versprochene von erwarteter tatsächlicher Rendite unterscheiden'},

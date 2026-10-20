@@ -212,6 +212,7 @@ module.exports={id:'convexity',intro:[
  ])
 ],explorations:[{section:'workflow',lesson:'bonds-08',focus:'lab',label:'Festen Kuponbond vollständig neu bewerten und mit Duration plus Konvexität vergleichen'},{section:'workflow',lesson:'bonds-08',focus:'lab-bondconvex',label:'Gleichen Marktwert und gleiche Duration bei verschiedenen Zahlungsterminen vergleichen'}],
 related:[
+ {unit:'curve-risk',section:'vector-convexity',label:'Eine einzelne Parallel-Konvexität mit mehreren Knotenschocks abgleichen'},
  {unit:'duration',section:'derivation',label:'Die erste Preisableitung aus den einzelnen Cashflows auffrischen'},
  {unit:'duration',section:'pvbp',label:'Geldsensitivität und Basispunkt-Skalierung konsequent unterscheiden'},
  {unit:'duration',section:'coordinate',label:'Die Renditekoordinate schon bei der ersten Ableitung präzisieren'},

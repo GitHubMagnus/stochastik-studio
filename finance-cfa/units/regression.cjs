@@ -151,6 +151,7 @@ module.exports={id:'regression',intro:[
   'Die OLS-Rechnung lässt sich mit Tabellenkalkulation oder Statistiksoftware reproduzieren. Prüfe zuerst die kleine Handrechnung: Mittelwerte, Kreuzproduktsumme, Steigung und Residuenquadratsumme. Wenn Software andere Zahlen zeigt, kontrolliere Prozent- gegen Dezimalskalierung, fehlende Werte, Intercept und verwendete Zeitfenster, bevor du einen Rundungsfehler vermutest.'
  ])
 ],related:[
+ {unit:'curve-risk',section:'empirical-fit',label:'Empirische Duration aus einem offenliegenden Preis- und Benchmarkdatensatz nachrechnen'},
  {unit:'equity-factors',section:'forecast',label:'Historische Marktregression von zukünftiger Eigenkapitalforderung unterscheiden'},{unit:'inference',section:'p-values',label:'Tests, p-Werte und Intervalle gemeinsam interpretieren'},{unit:'return-statistics',section:'covariance',label:'Kovarianz und Korrelation als Grundlage der Steigung'},{unit:'distributions',section:'lognormal',label:'Warum Exponentieren den Median statt des Mittels liefert'},{unit:'portfolio-math',section:'many-assets',label:'Diversifikation und gemeinsame Risikotreiber'}],
  sources:[
  {title:'CFA Institute: offizieller Level-I-Lernzielkatalog 2027',url:'https://www.cfainstitute.org/sites/default/files/2027levelitopicoutline_online.pdf#page=3'},

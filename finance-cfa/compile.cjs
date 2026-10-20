@@ -4,6 +4,10 @@ function load(directory){return fs.readdirSync(path.join(__dirname,directory)).f
 function compileBlock(block,owner){
  if(typeof block==='string'){if(!block.trim())throw Error(owner+': leerer Absatz');return block;}
  if(!block||typeof block!=='object')throw Error(owner+': ungültiger Inhaltsblock');
+ if(block.kind==='disclosure'){
+  if(typeof block.title!=='string'||!block.title.trim()||!Array.isArray(block.blocks)||!block.blocks.length)throw Error(owner+': leere Vertiefung');
+  return {...block,blocks:block.blocks.map(b=>compileBlock(b,owner))};
+ }
  if(block.kind==='formula'){
   if(!block.tex||!block.reading||!Array.isArray(block.symbols)||!block.symbols.length)throw Error(owner+': Formel ohne Lesart oder Symbole');
   return {...block,mathml:renderLatex(block.tex),symbols:block.symbols.map(([tex,meaning])=>{if(!tex||!meaning)throw Error(owner+': Symboldefinition fehlt');return {tex,meaning,mathml:renderLatex(tex,false)};})};

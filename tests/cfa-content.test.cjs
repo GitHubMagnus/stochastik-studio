@@ -16,7 +16,7 @@ test('financial forecast valuation covers its three official objectives, origina
 });
 test('CFA lessons and independent questions have local mathematics, sources and valid objective links',()=>{
  assert.ok(data.units.length);assert.ok(data.questions.length);
- const walk=blocks=>{for(const b of blocks){if(typeof b==='string')continue;if(b.kind==='formula'){assert.match(b.mathml,/<math/);assert.ok(b.reading.trim());assert.ok(b.symbols.every(s=>s.meaning.trim()&&s.mathml.includes('<math')),b.tex);}if(b.kind==='example')walk(b.steps);}};
+ const walk=blocks=>{for(const b of blocks){if(typeof b==='string')continue;if(b.kind==='formula'){assert.match(b.mathml,/<math/);assert.ok(b.reading.trim());assert.ok(b.symbols.every(s=>s.meaning.trim()&&s.mathml.includes('<math')),b.tex);}if(b.kind==='example')walk(b.steps);if(b.kind==='disclosure')walk(b.blocks);}};
  for(const u of data.units){for(const s of u.sections)walk(s.blocks);assert.ok(u.sources.every(s=>/^https:\/\//.test(s.url)));}
  for(const q of data.questions)walk(q.solution);
 });
@@ -25,6 +25,7 @@ test('all CFA curve stroke patterns agree with their legends and use valid SVG d
  const walk=blocks=>{for(const b of blocks){
   if(typeof b==='string')continue;
   if(b.kind==='example')walk(b.steps);
+  if(b.kind==='disclosure')walk(b.blocks);
   if(b.kind!=='figure')continue;
   figures++;const paths=[...b.svg.matchAll(/<path class="illustration-curve"[^>]*>/g)].map(m=>m[0]);
   assert.equal(paths.length,b.legend.length,b.id);
