@@ -20,4 +20,4 @@ L('2','Eine Kündigungsoption ist ein Recht. Liegt es beim Emittenten, kostet es
 module.exports[1].additionalLabs=['floater','moneyyield'];
 module.exports[5].lab='yieldcurve';
 
-module.exports[7].additionalLabs=['bondconvex'];
+module.exports[7].additionalLabs=['bondconvex','keyrate'];

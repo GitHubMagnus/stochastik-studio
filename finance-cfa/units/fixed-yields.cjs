@@ -202,6 +202,7 @@ module.exports={id:'fixed-yields',intro:[
   'Ein abschließender Bericht nennt relevante Alternativszenarien und Grenzen. Das Wort Rendite wird nicht als Sammelbegriff benutzt, wenn unterschiedliche Größen verglichen werden sollen.'
  ])
 ],explorations:[{section:'z-root',lesson:'bonds-11',focus:'lab',label:'Kaufpreis, Kupon und drei Spots verändern; Z und nominalen IRR-Abstand vergleichen'},{section:'calculator',lesson:'bonds-05',focus:'lab',label:'Kuponfrequenz, nominale Jahresrendite und Anleihepreis gemeinsam verändern'}],related:[
+ {unit:'curve-risk',section:'options-assumptions',label:'OAS und Optionsannahmen bei einem kontrollierten Benchmarkschock festhalten'},
  {unit:'duration',section:'workflow',label:'Relative Zinssensitivität in Money Duration und PVBP der tatsächlichen Position übersetzen'},
  {unit:'bond-return',section:'workflow',label:'Kupons, Wiederanlage, Verkauf und Anlagehorizont gemeinsam zur Anleiherendite verbinden'},
  {unit:'yield-curves',section:'par',label:'Par-Kupon und terminale Spotrate unter einer ganzen Kurve vergleichen'},

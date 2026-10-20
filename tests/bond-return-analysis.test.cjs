@@ -11,7 +11,7 @@ test('bond return covers the three actual 2027 objectives with original practice
  assert.equal(u.sections.length,34);assert.equal(u.review.status,'draft');assert.equal(d.release,false);assert.ok(u.sources[0].url.endsWith('#page=20'));
  const qs=d.questions.filter(q=>q.unit===u.id);assert.equal(qs.filter(q=>q.pool==='practice').length,60);for(const pool of ['mock-a','mock-b']){assert.equal(qs.filter(q=>q.pool===pool).length,2);assert.ok(d.inventory[pool].bonds<=require('../finance-cfa/engine.cjs').blueprint.bonds);}
  for(const o of d.coverage.find(c=>c.id===u.id).objectives){assert.ok(o.sections.length>=15);assert.ok(o.practice.length>=20);assert.ok(o.mockQuestions>=2);}
- assert.equal(require('../finance-content/bonds.cjs')[8].lab,'bondhorizon');assert.equal(require('../finance-content/bonds.cjs')[7].lab,'bond');assert.equal(Object.keys(M.models).length,46);
+ assert.equal(require('../finance-content/bonds.cjs')[8].lab,'bondhorizon');assert.equal(require('../finance-content/bonds.cjs')[7].lab,'bond');assert.equal(Object.keys(M.models).length,47);
  for(const id of ['tvm','return-types','bond-prices','fixed-yields','yield-curves','bond-cashflows'])assert.ok(d.units.find(u=>u.id===id).related.some(r=>r.unit==='bond-return'));
 });
 test('224 horizon scenarios reconcile cash, coupon interest, sale, redemption and principal interest, including every control corner',t=>{

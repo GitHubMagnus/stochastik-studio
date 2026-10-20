@@ -51,6 +51,7 @@ window.FinanceCFA=(()=>{
   const prose=s=>window.FinanceStudy.glossaryText(s,unit);
   return items.map(b=>{
    if(typeof b==='string')return '<p>'+prose(b)+'</p>';
+   if(b.kind==='disclosure')return '<details class="study-details cfa-disclosure"><summary>'+esc(b.title)+'</summary>'+blocks(b.blocks,unit)+'</details>';
    if(b.kind==='figure')return '<figure class="cfa-figure"><figcaption><strong>'+esc(b.title)+'</strong><p>'+prose(b.caption)+'</p></figcaption><div class="cfa-figure-plot" role="region" tabindex="0" aria-label="Seitlich verschiebbare Grafik">'+b.svg+'</div><p class="cfa-figure-hint" aria-hidden="true">&#8596; Die Grafik ist seitlich verschiebbar.</p><ul class="cfa-figure-legend">'+b.legend.map(s=>'<li><span style="border-top:3px '+(s.dash?'dashed':'solid')+' '+s.color+'"></span>'+esc(s.name)+'</li>').join('')+'</ul><p>'+prose(b.reading)+'</p><details class="study-details"><summary>Werte der Abbildung</summary>'+blocks([{kind:'table',caption:'Gezeichnete Werte nach Datenreihe',headers:['Reihe',b.plot.xLabel,b.plot.yLabel],rows:b.plot.series.flatMap(s=>s.points.map(p=>[s.name,format(p[0]),format(p[1])]))}],unit)+'</details></figure>';
    if(b.kind==='formula')return '<div class="cfa-formula"><div class="study-equation">'+b.mathml+'</div><p>'+prose(b.reading)+'</p><details class="formula-notation"><summary>Symbole und Einheiten</summary><dl class="formula-symbols">'+b.symbols.map(s=>'<div><dt>'+s.mathml+'</dt><dd>'+prose(s.meaning)+'</dd></div>').join('')+'</dl></details></div>';
    if(b.kind==='table'){

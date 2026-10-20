@@ -2493,6 +2493,20 @@ und bestandene Technikprüfungen ersetzen die spätere fachliche Abnahme nicht.
   sowie die inhaltliche Gesamtprüfung. Alle neuen Einheiten bleiben Entwürfe,
   vollständige Klausuren gesperrt. **90/100 und 80/100 sind weiterhin nicht
   als erreicht belegt.**
+- Abschließende Prüfung des unveränderten Veröffentlichungsstands
+  **8d9355b4de5bd9bf**: **307 Kernprüfungen, 61 CFA-Browsertests und drei
+  Bestandsprüfungen bestanden**, ohne übersprungene oder fehlgeschlagene Tests.
+  Die CFA-Prüfung umfasst alle 73 Einheiten, 692 Anleihe-Trainingsfragen und
+  740 Corporate-/Equity-Trainingsfragen sowie die gezielten Rechner-, Formel-,
+  Wörterbuch-, Aufklapp-, Offline- und reservierten Fragenprüfungen.
+  Im bisherigen Finance-Bereich wurden **171 Kapitel, 47 Modelle, 7.407
+  Bedienaktionen und 17.008 Begriffslinks** ohne gemeldeten Fehler geprüft;
+  die Formelprüfung erfasst über zwei Breiten **3.054 Formelvorkommen und
+  2.886 Symbolhilfen**. **29 frisch erzeugte Ansichten** decken die sechs
+  Lehrgrafiken, acht Rechenfälle, vier offenen Vertiefungen, Rechner,
+  schmale Bildschirme bis 320 Pixel und beide reservierten Aufgaben ab.
+  Diese technische Prüfung ersetzt keine abschließende fachliche Freigabe
+  des gesamten Lernmaterials.
 - Technische Prüfung des abschließenden Builds mit Datenversion eacb5f76ab97b6aa:
   **298 Kernprüfungen, ein vollständiger Lauf mit 57 CFA-Browserprüfungen und
   drei ergänzende Bestandsprüfungen bestanden**. Dieser abschließende Lauf
@@ -2516,3 +2530,110 @@ und bestandene Technikprüfungen ersetzen die spätere fachliche Abnahme nicht.
   mobiler Symboltafeln und extremer Eingaben bis 320 Pixel Breite.
   Diese Evidenz ersetzt keine fachliche Gesamtfreigabe der noch unvollständigen
   CFA-Vorbereitung.
+
+### Benchmarkkurven, Optionen und empirische Sensitivität (20.10.2026)
+
+- Neue Einheit curve-risk zu den vier tatsächlichen Lernzielen auf Seite 21 des
+  2027-Outlines. **40 Abschnitte, acht eigene Rechenfälle, acht Tabellen,
+  36 lokal erklärte Formeltafeln, vier ausklappbare Vertiefungen und sechs
+  Grafiken mit 1.037 berechneten Linienwerten sowie sieben Beobachtungspunkten**.
+  Dazu **72 englische Trainingsfragen** mit deutschen Rechenwegen und Gründen
+  für sämtliche Antworten. Je eine unabhängige reservierte Frage verbindet
+  Vollpreisskalierung mit zentraler effektiver Konvexität beziehungsweise
+  aktuelle Knotenprofile mit der Abgrenzung einer historischen Einzelsteigung.
+- Effektive Duration und volle effektive Konvexität werden aus denselben drei
+  vollständigen optionsgerechten Preisen berechnet. Im Eingabefall führen
+  **101,2 / 100 / 98,6 bei plus/minus 25 Basispunkten zu 5,2 und minus 320**.
+  Die beiden einseitigen Durationmaße betragen 4,8 und 5,6. Ihr Mittel und ihre
+  normierte Differenz verbinden erste und zweite zentrale Preisdifferenz
+  ausdrücklich als mathematische Formeln. Vorzeichen, Schrittquadrat, Taylorfaktor,
+  Clean-/Vollpreis und Geldskalierung werden getrennt nachgerechnet.
+- Ein eigener Zweijahresbaum erzeugt veränderte Ausübungen nachvollziehbar:
+  vier Jahreskupon, hundert Endnominal, Ausübung nach dem ersten Kupon.
+  Fortsetzung und Kündigung beziehungsweise Rückgabe werden am richtigen
+  Zahlungszeitpunkt verglichen. In jedem Benchmark-Szenario wird der Baum
+  erneut an die ein- und zweijährigen flachen Spotfaktoren angepasst; die
+  risikoneutralen Gewichte bleiben eine Hälfte, der definierte Astabstand bleibt
+  konstant. Ein blind gleicher Schritt aller ursprünglichen Kurzraten wird
+  nicht als automatisch identische Spotverschiebung ausgegeben.
+- Bei drei Prozent Benchmark liefert der Baum **101,913469696 ohne Option**,
+  **100,970873786 kündbar** und in diesem speziellen groben Ausgangsbaum denselben
+  Preis wie Straight mit Rückgaberecht. Die Besonderheit des dort verschwindenden
+  Put-Ausübungsbetrags wird ausdrücklich erklärt. Die optionalen Herleitungen
+  sind als ergänzende Tiefe eingeordnet; die vollständige Baumkalibrierung wird
+  nicht zu einem zusätzlichen verpflichtenden Level-I-Lernziel erklärt.
+- Der grobe Baum besitzt am Ausgangspunkt einen Ausübungsknick. Seine endliche
+  Konvexität hängt stark vom Schritt ab: ungefähr **minus 459,458323 bei zehn
+  Basispunkten**, **minus 182,119024 bei fünfundzwanzig** und **minus 43,457799
+  bei hundert**. Das ist kein unbegrenzt gültiger glatter Ableitungswert.
+  Ein expliziter großer Rückgang zeigt, dass eine extrapolierte Zweitordnungsrechnung
+  sogar die tatsächliche Preisgewinnrichtung verfehlen kann. Effektive Maße
+  werden deshalb nicht als allgemeine Genauigkeitsgarantie für große Schocks
+  dargestellt.
+- Key Rate Duration wird mit Knoten, Bumpform, Quote und übriger Bewertungsregel
+  definiert. Stückweise lineare Basisgewichte und Zwischenlaufzeiten sind
+  veranschaulicht. Die Summenregel zur Parallel-Duration gilt unter einer
+  konsistenten gemeinsamen Richtung; endliche numerische Differenzen werden
+  davon unterschieden. Mehrdimensionale zweite und gemischte Beiträge werden
+  in einer aufklappbaren Vertiefung erklärt.
+- Eine eigene Barbell im ersten und fünften Jahr und ein Bullet im dritten Jahr
+  haben bei flachen vier Prozent denselben Marktwert und dieselbe Parallel-Duration
+  **2,884615385**, aber verschiedene Knotenvektoren. Kurz plus fünfzig, Mitte null
+  und lang minus fünfzig Basispunkte ergeben bei der Barbell linear
+  **plus 0,961538 Prozent**, vollständig **plus 0,980220 Prozent**; der Bullet
+  bleibt unverändert. Ein isolierter mittlerer Anstieg um hundert Basispunkte
+  lässt dagegen die äußeren Ansprüche unverändert und senkt den Bullet vollständig
+  um **2,830018 Prozent**. Jeder ursprüngliche Endbetrag bleibt beim Schock fest.
+- Der neue Rechner keyrate besitzt **sieben Eingaben, sechs native gültige
+  Vergleichsfälle, zwölf Kennzahlen, vier Kurven und vollständige Endzahlungs-
+  sowie Knotenbeitragstabellen**. Auch bei nicht flacher Anfangskurve wird die
+  analytische parallele Sensitivität beider Portfolios automatisch angeglichen.
+  Die dafür nötigen Marktwertanteile werden aus den wirklichen ersten Ableitungen
+  berechnet und nicht pauschal halbiert. Die Achse zeigt Vielfache des gesamten
+  eingegebenen Dreiknotenmusters. Bond- und Konvexitätsrechner bleiben über ihre
+  bisherigen Adressen im selben Kapitel erreichbar.
+- Sieben vollständig offengelegte synthetische Beobachtungen zeigen
+  **empirische Duration zwei gegenüber analytischer Benchmark-Duration fünf**.
+  Spreadänderungen bewegen sich überwiegend entgegen der Benchmark; die eigene
+  Zusatzkomponente erlaubt die Trennung beider Faktoren. Quadratsumme
+  **0,000028** und Produktsumme **minus 0,000056** erklären die Steigung vollständig.
+  Einheitenumrechnung, Kovarianzbeitrag, Marktphase, Beobachtungsfenster, perfekte
+  Kollinearität und Unsicherheit werden abgegrenzt. Auch die gute rechnerische
+  Anpassung von etwa 95,319149 Prozent wird nicht als Kausalitätsnachweis
+  ausgegeben. Die Datenkonstruktion erlaubt keine reale Marktsignifikanzbehauptung.
+- Die reservierte Frage A verlangt aus Clean Quote 102,4, Stückzins 0,6 und
+  den beiden geschockten Vollpreisen zuerst die volle zentrale Risikorechnung.
+  Bei 800.000 Nominal und plus dreißig Basispunkten ergeben sich **minus 11.040**.
+  Die Distraktoren lassen die zweite Ordnung weg oder drehen deren Vorzeichen
+  beziehungsweise verwenden die falsche Ausgangspreisbasis.
+- Die reservierte Frage B besitzt andere Ausgangsprofile als die Trainingsfälle:
+  **0,15 / 1,5 / 1,75** und **0,45 / 0,6 / 1,75**, Marktwertgewichte 30/70.
+  Die Knotenschritte 15 / minus 20 / 10 Basispunkte ergeben **minus 0,0550 Prozent**.
+  Die mitgelieferte historische Duration 2,4 ersetzt diesen kontrollierten
+  Mehrknotenstress nicht. Die falschen Zahlen stammen aus dieser historischen
+  Einzelsteigung beziehungsweise einer gleichen statt marktwertgewichteten
+  Positionsgewichtung. Positive tatsächliche Zahlungspläne mit diesen Profilen
+  sind unabhängig konstruiert und nachgerechnet.
+- **328 unabhängig abgestimmte Szenarien einschließlich aller 128 Eingabeecken**
+  prüfen **80.032 Rechnerkurvenwerte**, ursprüngliche Endbeträge, Knotenbeiträge,
+  gemeinsame parallele erste Sensitivität, Marktwertskalierung und Grenzfälle.
+  Alle **1.037 Lehrbuchlinienwerte und sieben Beobachtungspunkte** sind separat
+  nachgerechnet. Die Baumkalibrierung wird zusätzlich durch eine unabhängige
+  numerische Nullpreisgleichung geprüft. Ein- und Zweifaktorregression, Kovarianz,
+  Standardfehler sowie quantitative Antworten und reservierte Distraktoren sind
+  unabhängig kontrolliert.
+- Sechzehn zusätzliche kuratierte Wörterbucheinträge ergänzen oder vertiefen
+  vierzehn neue globale Definitionen. Kontextbezogene Begriffe im neuen Kapitel
+  führen zu effektiver Konvexität, analytischer Benchmarkreaktion, allgemeiner
+  Zinssensitivität und der Bullet-Portfoliostruktur. Die bestehenden allgemeinen
+  Adressen für Modified Duration, die statistische Klassifikations-Sensitivität,
+  OAS, risikoneutrale Wahrscheinlichkeit und Estimation Window bleiben erhalten.
+  Sechs bestehende Einheiten besitzen präzise fachliche Rückverweise.
+- Gesamtstand: **73 Einheiten, 239/340 strukturelle Lernzielreferenzen,
+  2.236 Trainingsfragen, je 128 reservierte Fragen und 155 CFA-Grafiken**.
+  **47 Rechner in 66 bisherigen Finance-Kapiteln**, **1.200 kuratierte
+  Rückverweise, 1.512 Definitionen und 3.332 Begriffe/Aliase**.
+  Offen bleiben **29 Einheiten, 101 Lernzielreferenzen und 52 Fragen je Klausur**
+  sowie die inhaltliche Gesamtprüfung. Alle neuen Einheiten bleiben Entwürfe,
+  vollständige Klausuren gesperrt. **90/100 und 80/100 sind weiterhin nicht
+  als erreicht belegt.**
