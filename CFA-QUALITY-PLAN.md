@@ -2748,3 +2748,130 @@ und bestandene Technikprüfungen ersetzen die spätere fachliche Abnahme nicht.
   Rechenfälle, drei offene Herleitungen, mobile Tabellen, Eingabeecken bis
   320 Pixel und beide tatsächlichen reservierten Aufgaben. Technische
   Funktionsprüfung und fehlende fachliche Gesamtfreigabe bleiben getrennt.
+
+### Öffentliche Bonität: Bestand, Währung und Finanzierbarkeit (22.10.2026)
+
+- Neue Einheit sovereign-credit zum tatsächlichen einzelnen Lernziel auf Seite 21
+  des 2027-Outlines: **40 Abschnitte, acht Rechenfälle, drei Tabellen,
+  28 lokale Formeltafeln, sechs berechnete Grafiken und drei aufklappbare
+  Herleitungen**. Institutionelle, fiskalische, externe und nicht souveräne
+  Besonderheiten werden mit konkreten Zahlungsquellen verbunden. Die optionalen
+  Herleitungen werden nicht als zusätzliche verpflichtende Level-I-Ziele ausgegeben.
+- Zahlungsfähigkeit und Zahlungsbereitschaft werden getrennt. Steuerbasis,
+  verfügbare Einnahmen und kurzfristige Kasse sind verschiedene Ressourcen.
+  Bei identischer Schuld und gleichem BIP belasten drei WE Zins eine Einnahmebasis
+  zwanzig mit **15 Prozent**, eine Basis acht mit **37,5 Prozent**.
+  Die Quote allein beweist weder Ausfall noch gleiche Haushaltsflexibilität.
+- Schuldnerkreis, Brutto-/Nettobasis und Konsolidierung werden ausdrücklich gelesen.
+  Ein eigener Zentralstaat-/Regionenfall mit Schuld 80 und 20 sowie zehn interner
+  öffentlicher Forderung ergibt **90 konsolidierte Schuld**. Bestandsbewertung
+  wird von neuer Kreditaufnahme und Haushaltsflüssen getrennt.
+- Die Schuldenquote folgt aus der vollständigen nominalen Budgetgleichung.
+  Primärsalden zum Anfangs- und End-BIP werden nicht gleichgesetzt. Ohne FX-Effekt
+  stabilisieren bei Schuld achtzig, Zins fünf Prozent und Wachstum vier Prozent
+  **0,8 WE** die Quote; dies sind **0,769231 Prozent des End-BIP**.
+  Der eigene Mehrjahresvergleich verwendet dagegen ausdrücklich konstante Anteile
+  des jeweiligen Jahres-BIP. Politische Umsetzbarkeit und Wachstumsrückwirkung
+  werden nicht von einer mechanischen Zielgleichung garantiert.
+- Der neue reine Einjahresrechner **sovereign** besitzt **acht Eingaben,
+  sieben vollständig angegebene native Vergleichsfälle, zehn Kennzahlen,
+  drei farblich unterschiedene Kurven und zwei Überleitungstabellen**.
+  Er ist als weiterer Reiter im bisherigen Kapitel bonds-11 eingebunden;
+  der vorherige yieldspread-Rechner und seine Adresse bleiben erhalten.
+  Der Gesamtbestand steigt auf **48 Modelle in 66 bestehenden Finance-Kapiteln**.
+- Das Modell hält Anfangs-BIP bei hundert und verwendet WE auf dieser Basis.
+  Alle Altpositionen zahlen den gegebenen Jahreszins und werden erst am Ende
+  anteilig getilgt. Gleicher Fälligkeitsanteil gilt für beide Währungsgruppen;
+  derselbe FX-Faktor gilt ausdrücklich für Bestand, Kupon und Tilgung.
+  Neue Heimatwährungsschuld wird erst am Ende zu pari aufgenommen; Gebühren,
+  Reservebewegungen und aktive Währungssicherungen sind nicht im Modell.
+- Bestand und Finanzierung werden über unabhängige Zahlungswege abgestimmt:
+  angepasste Altschuld minus planmäßige Tilgung plus Neuaufnahme minus
+  zusätzlicher Schuldabbau ergibt dieselbe Endschuld wie alte Schuld plus
+  Währungsbewertung, Zins, zusätzlicher Belastung und negativem Primärsaldo.
+  Negative rohe Cashbedarfe werden als **zusätzlicher Schuldabbau**, nicht als
+  negative neue Anleihe ausgewiesen. Ein Überschuss über die ganze Restschuld
+  benötigt eine zusätzliche Vermögensrechnung und wird nicht als negative
+  Bruttoschuld zugelassen.
+- Ein eigener Fälligkeitsvergleich ergibt bei Schuld achtzig, Zins vier,
+  Primärsaldo eins und Fälligkeiten acht beziehungsweise 32 eine Neuaufnahme
+  von **elf beziehungsweise 35**. Die Endschuld bleibt in beiden Fällen **83**.
+  Eine identische Endquote beweist damit keinen gleichen kurzfristigen
+  Refinanzierungsbedarf. Neue Marktsätze ändern alte Festkupons nicht sofort;
+  ein gesonderter Ersatzfinanzierungsfall und eine Grafik erklären den Übergang.
+- Im FX-Beispiel erhöht Heimatabwertung um zwanzig Prozent bei einem Viertel
+  Fremdwährungsschuld den angepassten Bestand von 80 auf **84**. Zins **4,2**,
+  Tilgung **8,4**, Primärsaldo eins und End-BIP 104 ergeben Endschuld **87,2**,
+  Endquote **83,846154 Prozent** und neue Finanzierung **11,6**.
+  Der stabilisierende Primärsaldo steigt unter diesen Annahmen auf **fünf WE**.
+  Die Bestandszunahme **7,2** besteht aus vier Bewertung und 3,2 Nettotransaktion.
+- Eine aufklappbare Zeitpunktrechnung verwendet verschiedene Zahlungs- und
+  Stichtagskurse. Externe Schuld nach Gläubigerresidenz wird von der Vertragswährung
+  und vom Staatsschuldnerkreis unterschieden. Leistungsbilanz und einzelner
+  Haushalt werden nicht als identisch behandelt. Dienst/Export-Quotienten
+  beweisen keinen freien staatlichen Zugriff auf sämtliche privaten Exporterlöse.
+- Ein eigener FX-Liquiditätsfall reduziert zehn Bruttoaktiva um drei gebundene
+  und zwei bereits verplante Einheiten. Gegen Schuldendienst acht verbleibt
+  ein Fehlbetrag **drei**. Eigentum, Zugriff, Konvertierung und Zahlungstermin
+  werden ausdrücklich berücksichtigt; ein nationaler Zentralbankbestand wird
+  nicht pauschal als freie Staatskasse behandelt.
+- Nicht souveräne Bonität wird über eigene Befugnisse, Transfers, Ausgabenpflichten,
+  allgemeine Ansprüche und Projektcashflows erklärt. Ein regionaler Transferfall
+  zeigt einen Rückgang der Bedienungsquelle von zehn auf vier bei unveränderter
+  eigener Einnahmebasis. Ein Versorgerfall leitet aus Mengen, Tarifen, festen und
+  variablen Kosten sowie Erhaltung **DSCR 1,25 im Basisfall und 0,5 im Stress** her.
+  Eigentum, Unterstützungserwartung und ausdrückliche Garantie bleiben getrennt.
+- **64 eigene englische Trainingsfragen mit deutschen Begründungen und Rechenwegen**
+  sowie je eine getrennte reservierte Transferfrage ergänzen die Einheit.
+  Reserved A benutzt andere Bestände, FX-Anteile und Schocks als der Buchfall:
+  angepasste Schuld 66, Zins 2,64, Tilgung 13,2, Primärsaldo zwei und Zusatzkosten
+  drei ergeben **16,84 Neuaufnahme**. Die Distraktoren **9,64** und **13,84**
+  verwechseln Bestandstransaktion beziehungsweise lassen die Zusatzbelastung weg.
+  Reserved B ergibt aus anderen Projektzahlen **24 verfügbaren Cashflow,
+  40 Dienst und 0,6 Deckung**; ein unbelegter Staatsrückgriff wird nicht unterstellt.
+- Die unabhängige Analyse prüft **456 Szenarien einschließlich aller 256
+  Eingabeecken** sowie **83.448 Rechnerkurvenwerte**. Eine gesonderte
+  Transaktionsrechnung entfernt alte Kapitalzahlungen vor neuer Finanzierung;
+  der stabilisierende Primärsaldo wird zusätzlich per unabhängiger numerischer
+  Suche geprüft. Alle **888 Werte der sechs Lehrgrafiken**, Beispiele,
+  quantitative Antworten und reservierte Distraktoren sind separat nachgerechnet.
+- Acht dauerhafte neue Analyseprüfungen ergänzen die Kernprüfungen. Ein beim
+  Verfassen erkannter einzelner JavaScript-Backslash hätte den TeX-Befehl für
+  den Cashindex verschluckt; der Fehler ist korrigiert und eine gezielte
+  Escape-Prüfung schützt die beiden neuen Inhaltsdateien. Die Symbolhilfen
+  enthalten lokale Bedeutungen und Einheiten.
+- **28 zusätzliche kuratierte Einträge** ergänzen 26 globale Definitionen und
+  vertiefen CFADS und Leistungsbilanz. Globale Primärsaldo-, Schuldenquote-,
+  SFA-, General-Obligation- und bisherige DSCR-Adressen bleiben erhalten.
+  Konsolidierung und DSCR besitzen präzise öffentliche beziehungsweise
+  projektbezogene Kontextverweise. Eine bereits vorhandene implizite
+  Staatsunterstützung bleibt bei government-funding/agency; die neue
+  Unterstützungserklärung nutzt einen eigenen Eintrag statt einer doppelten
+  kanonischen Definition. Sechs bestehende Einheiten verweisen fachlich zurück.
+- Gesamtstand: **75 Einheiten, 243/340 strukturelle Lernzielreferenzen,
+  2.372 Trainingsfragen, je 130 reservierte Fragen und 168 CFA-Grafiken**.
+  **1.256 kuratierte Rückverweise, 1.560 Definitionen und 3.434 Begriffe/Aliase**.
+  Offen bleiben **27 Einheiten, 97 Lernzielreferenzen und 50 Fragen je Klausur**
+  sowie die fachliche Gesamtprüfung. Alle neuen Einheiten bleiben Entwürfe,
+  vollständige Klausuren gesperrt. **90/100 und 80/100 sind weiterhin
+  nicht als erreicht belegt.**
+- Abschließende technische Prüfung des eingefrorenen Lernstands
+  **6ddb464a17d3dd60**: **324 Kernprüfungen, 69 CFA-Browsertests und drei
+  Bestandsprüfungen bestanden**, ohne übersprungene oder fehlgeschlagene Tests
+  in diesen abschließenden Läufen. Der CFA-Lauf prüft alle 75 Einheiten,
+  828 Anleihe- sowie 740 Corporate-/Equity-Trainingsfragen, neue und bestehende
+  Rechner, Offlinebetrieb, Symbolhilfen, Wörterbuchwege und den Klausurablauf
+  mit getrennten künstlichen Daten. Beide tatsächlichen reservierten
+  öffentlichen Transferfragen werden in isolierten Fixtures auf zwei Breiten
+  mit allen Optionen, Formeln und Rückwegen geprüft.
+- Der Bestandsaudit erfasst **171 Kapitel, 48 Modelle, 7.478 Bedienaktionen und
+  17.086 Begriffsverweise**. Eine beim ersten Durchlauf noch auf 47 stehende
+  reine Bestandszählung im Test wurde auf die nachgewiesenen 48 Modelle
+  aktualisiert; sämtliche Bedienaktionen dieses Laufs hatten bereits keine
+  Funktionsfehler gemeldet. Der anschließende vollständige Bestandslauf besteht.
+  Die Formelprüfung umfasst auf zwei Breiten **3.054 Formelvorkommen und
+  2.886 Hilfefelder**. **32 neu erzeugte Buch-, Rechner- und Aufgabenansichten**
+  sowie ein zusätzlicher gezielter Kurvenfokus ergänzen die Sichtprüfung,
+  einschließlich extremer Werte bis 320 Pixel, positiver Cashüberschüsse,
+  Endschuld null und der erhaltenen ursprünglichen Rechneradresse.
+  Diese Evidenz ersetzt keine fachliche Gesamtfreigabe der verbleibenden Inhalte.

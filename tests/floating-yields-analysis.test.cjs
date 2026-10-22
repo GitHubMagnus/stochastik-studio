@@ -13,7 +13,7 @@ test('floating yields cover both actual 2027 objectives with original questions 
  for(const o of d.coverage.find(c=>c.id===u.id).objectives){assert.ok(o.sections.length>=15);assert.ok(o.practice.length>=25);assert.equal(o.mockQuestions,2);}
  const lesson=require('../finance-content/bonds.cjs')[1];assert.equal(lesson.lab,'repofunding');assert.deepEqual(lesson.additionalLabs,['floater','moneyyield']);
  assert.deepEqual(u.explorations.map(e=>e.focus),['lab-floater','lab-moneyyield']);
- assert.equal(Object.keys(M.models).length,47);
+ assert.equal(Object.keys(M.models).length,48);
  for(const id of ['fixed-yields','bond-prices','bond-cashflows','government-funding','return-types'])assert.ok(d.units.find(u=>u.id===id).related.some(r=>r.unit==='floating-yields'));
 });
 test('printed coupon, margin, maturity and quote tables independently reconcile their amounts and units',()=>{

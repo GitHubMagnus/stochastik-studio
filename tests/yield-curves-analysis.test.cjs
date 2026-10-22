@@ -9,7 +9,7 @@ test('yield curves implement the three actual 2027 objectives with original ques
  const qs=d.questions.filter(q=>q.unit===u.id);assert.equal(qs.filter(q=>q.pool==='practice').length,60);
  for(const pool of ['mock-a','mock-b']){assert.equal(qs.filter(q=>q.pool===pool).length,2);assert.ok(d.inventory[pool].bonds<=require('../finance-cfa/engine.cjs').blueprint.bonds);}
  for(const o of d.coverage.find(c=>c.id===u.id).objectives){assert.ok(o.sections.length>=10);assert.ok(o.practice.length>=20);assert.equal(o.mockQuestions,2);}
- const b=require('../finance-content/bonds.cjs');assert.equal(b[5].lab,'yieldcurve');assert.equal(b[4].lab,'bond');assert.equal(b[1].lab,'repofunding');assert.deepEqual(b[1].additionalLabs,['floater','moneyyield']);assert.equal(Object.keys(M.models).length,47);
+ const b=require('../finance-content/bonds.cjs');assert.equal(b[5].lab,'yieldcurve');assert.equal(b[4].lab,'bond');assert.equal(b[1].lab,'repofunding');assert.deepEqual(b[1].additionalLabs,['floater','moneyyield']);assert.equal(Object.keys(M.models).length,48);
  for(const id of ['tvm','fixed-yields','floating-yields','bond-prices','government-funding','simulation'])assert.ok(d.units.find(u=>u.id===id).related.some(r=>r.unit==='yield-curves'));
 });
 test('all 136 static graph values match independent spot, par and last-period forward equations and stay within the labelled axes',()=>{
