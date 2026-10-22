@@ -232,6 +232,7 @@ module.exports={id:'credit-risk',intro:[
  ])
 ],explorations:[{section:'workflow',lesson:'bonds-10',focus:'lab',label:'Gleichen Mittelverlust bei Konzentration, Abhängigkeit und anderer Verlustschwere vergleichen'}],
 related:[
+ {unit:'sovereign-credit',section:'comparison',label:'Kreditrisiko auf öffentliche Einnahmen und konkrete öffentliche Ansprüche übertragen'},
  {unit:'distributions',section:'conditioning',label:'Bedingte Erwartungen und Zustandsgewichtung herleiten'},
  {unit:'distributions',section:'discrete',label:'Diskrete Ereignisse und ihre Wahrscheinlichkeitsmassen verstehen'},
  {unit:'simulation',section:'tails',label:'Verlustquantile und die begrenzte Aussage seltener Daten einordnen'},

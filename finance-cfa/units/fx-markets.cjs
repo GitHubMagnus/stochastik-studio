@@ -132,7 +132,8 @@ module.exports={id:'fx-markets',intro:[
   ],'Rechnung und wirtschaftliche Deutung werden nacheinander geprüft.'),
   'Die häufigsten Fehler sind vertauschte Einheiten, symmetrisch angenommene Prozentänderungen, die Gleichsetzung eines Forwardpreises mit einer Prognose und die Annahme einer automatisch verbesserten Handelsbilanz nach Abwertung. Die folgenden Rechenkapitel vertiefen ausführbare Kreuzkurse und gedeckte Zinsparität.'
  ])
-],related:[{unit:'monetary',section:'targets',label:'Wechselkursbindung und geldpolitische Ziele'},{unit:'monetary',section:'transmission',label:'Währungsbewegung als Übertragungskanal'},{unit:'trade',section:'gains-costs',label:'Handelsvorteile von Verteilungsfolgen unterscheiden'},{unit:'cycles',section:'leverage',label:'Hebel und Bilanzverluste'},{unit:'tvm',section:'fx-forward',label:'Erste Herleitung eines Devisenterminkurses'}],
+],related:[
+ {unit:'sovereign-credit',section:'fx-reserves',label:'Fremdwährungsschuld, externe Schuld und tatsächlich verfügbare FX-Mittel trennen'},{unit:'monetary',section:'targets',label:'Wechselkursbindung und geldpolitische Ziele'},{unit:'monetary',section:'transmission',label:'Währungsbewegung als Übertragungskanal'},{unit:'trade',section:'gains-costs',label:'Handelsvorteile von Verteilungsfolgen unterscheiden'},{unit:'cycles',section:'leverage',label:'Hebel und Bilanzverluste'},{unit:'tvm',section:'fx-forward',label:'Erste Herleitung eines Devisenterminkurses'}],
  sources:[
  {title:'CFA Institute: Lernzielkatalog Level I 2027',url:'https://www.cfainstitute.org/sites/default/files/2027levelitopicoutline_online.pdf#page=6'},
  {title:'CFA Institute: Capital Flows and the FX Market',url:'https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/capital-flows-and-the-fx-market'},
