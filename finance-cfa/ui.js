@@ -100,7 +100,7 @@ window.FinanceCFA=(()=>{
    (revealed?solutionHTML(q,selected):examMode?'':'<button class="btn" id="cfa-check">Antwort prüfen</button><p id="cfa-answer-required" role="alert" hidden>Wähle zunächst eine Antwort aus.</p>')+'</article>';
  }
  function solutionHTML(q,selected){
-  return '<section class="cfa-solution"><h3>'+(selected===q.correct?'Richtig.':selected===null?'Nicht beantwortet.':'Noch nicht richtig.')+' Antwort '+String.fromCharCode(65+q.correct)+'</h3>'+blocks(q.solution,q.unit)+'<h4>Warum passen die anderen Antworten nicht?</h4><ul>'+q.options.map((o,i)=>'<li><strong>'+String.fromCharCode(65+i)+':</strong> '+prose(o.why,q.unit)+'</li>').join('')+'</ul><p><a href="#cfa~learn-'+q.unit+'~'+q.section+'">Zusammenhang und Rechenweg nacharbeiten →</a></p></section>';
+  return '<section class="cfa-solution"><h3>'+(selected===q.correct?'Richtig.':selected===null?'Nicht beantwortet.':'Noch nicht richtig.')+' Antwort '+String.fromCharCode(65+q.correct)+'</h3>'+blocks(q.solution,q.unit)+'<h4>Antworten im Vergleich</h4><ul>'+q.options.map((o,i)=>'<li><strong>'+String.fromCharCode(65+i)+':</strong> '+prose(o.why,q.unit)+'</li>').join('')+'</ul><p><a href="#cfa~learn-'+q.unit+'~'+q.section+'">Zusammenhang und Rechenweg nacharbeiten →</a></p></section>';
  }
  function startTraining(ids){if(!ids.length)return;training={ids,position:0,answers:{},confidence:{},revealed:[]};save();}
  function trainingView(){

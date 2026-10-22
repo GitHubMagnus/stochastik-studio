@@ -2493,20 +2493,7 @@ und bestandene Technikprüfungen ersetzen die spätere fachliche Abnahme nicht.
   sowie die inhaltliche Gesamtprüfung. Alle neuen Einheiten bleiben Entwürfe,
   vollständige Klausuren gesperrt. **90/100 und 80/100 sind weiterhin nicht
   als erreicht belegt.**
-- Abschließende Prüfung des unveränderten Veröffentlichungsstands
-  **8d9355b4de5bd9bf**: **307 Kernprüfungen, 61 CFA-Browsertests und drei
-  Bestandsprüfungen bestanden**, ohne übersprungene oder fehlgeschlagene Tests.
-  Die CFA-Prüfung umfasst alle 73 Einheiten, 692 Anleihe-Trainingsfragen und
-  740 Corporate-/Equity-Trainingsfragen sowie die gezielten Rechner-, Formel-,
-  Wörterbuch-, Aufklapp-, Offline- und reservierten Fragenprüfungen.
-  Im bisherigen Finance-Bereich wurden **171 Kapitel, 47 Modelle, 7.407
-  Bedienaktionen und 17.008 Begriffslinks** ohne gemeldeten Fehler geprüft;
-  die Formelprüfung erfasst über zwei Breiten **3.054 Formelvorkommen und
-  2.886 Symbolhilfen**. **29 frisch erzeugte Ansichten** decken die sechs
-  Lehrgrafiken, acht Rechenfälle, vier offenen Vertiefungen, Rechner,
-  schmale Bildschirme bis 320 Pixel und beide reservierten Aufgaben ab.
-  Diese technische Prüfung ersetzt keine abschließende fachliche Freigabe
-  des gesamten Lernmaterials.
+
 - Technische Prüfung des abschließenden Builds mit Datenversion eacb5f76ab97b6aa:
   **298 Kernprüfungen, ein vollständiger Lauf mit 57 CFA-Browserprüfungen und
   drei ergänzende Bestandsprüfungen bestanden**. Dieser abschließende Lauf
@@ -2637,3 +2624,127 @@ und bestandene Technikprüfungen ersetzen die spätere fachliche Abnahme nicht.
   sowie die inhaltliche Gesamtprüfung. Alle neuen Einheiten bleiben Entwürfe,
   vollständige Klausuren gesperrt. **90/100 und 80/100 sind weiterhin nicht
   als erreicht belegt.**
+- Abschließende Prüfung des unveränderten Veröffentlichungsstands
+  **8d9355b4de5bd9bf**: **307 Kernprüfungen, 61 CFA-Browsertests und drei
+  Bestandsprüfungen bestanden**, ohne übersprungene oder fehlgeschlagene Tests.
+  Die CFA-Prüfung umfasst alle 73 Einheiten, 692 Anleihe-Trainingsfragen und
+  740 Corporate-/Equity-Trainingsfragen sowie die gezielten Rechner-, Formel-,
+  Wörterbuch-, Aufklapp-, Offline- und reservierten Fragenprüfungen.
+  Im bisherigen Finance-Bereich wurden **171 Kapitel, 47 Modelle, 7.407
+  Bedienaktionen und 17.008 Begriffslinks** ohne gemeldeten Fehler geprüft;
+  die Formelprüfung erfasst über zwei Breiten **3.054 Formelvorkommen und
+  2.886 Symbolhilfen**. **29 frisch erzeugte Ansichten** decken die sechs
+  Lehrgrafiken, acht Rechenfälle, vier offenen Vertiefungen, Rechner,
+  schmale Bildschirme bis 320 Pixel und beide reservierten Aufgaben ab.
+  Diese technische Prüfung ersetzt keine abschließende fachliche Freigabe
+  des gesamten Lernmaterials.
+
+### Kreditrisiko: Ereignis, Schwere, Rating und Spread verbinden (22.10.2026)
+
+- Neue Einheit für die drei tatsächlichen 2027-Lernziele auf Seite 21:
+  **38 Abschnitte, acht Rechenfälle, sechs Tabellen, 31 Formeltafeln,
+  sieben eigene berechnete Grafiken und drei aufklappbare Vertiefungen**.
+  Die optionalen Portfolio- und Bewertungsherleitungen werden ausdrücklich
+  nicht als zusätzliche verpflichtende Level-I-Lernziele ausgegeben.
+- Die allgemeine Verlustidentität verwendet die **bedingte gemeinsame
+  Verlustschwere**. LGD als Quote und LGD als bereits monetärer Betrag werden
+  getrennt. Die EAD ist nicht automatisch zugesagtes Limit oder heutiger
+  Marktwert. Recovery benötigt gleiche Forderungs-, Kosten- und Zeitbasis.
+- Ein eigener Normal-/Stressfall gewichtet PD, EAD und LGD zuerst innerhalb
+  der jeweiligen Zustände. Der richtige Mittelverlust beträgt **9.160**
+  gegenüber **5.336** aus drei blind multiplizierten unbedingten Mittelwerten.
+  Netto-Recovery und ihr Zeitwert werden in einer eigenen Rechnung getrennt.
+- Bedingte Jahres-PD wird über Überleben in kumulative PD übersetzt.
+  Bei jährlich zwei Prozent ergeben sich über drei Jahre **5,8808 Prozent**
+  statt pauschal sechs Prozent; die drei disjunkten Erst-Ausfallzeitpunkte
+  werden vollständig aufgeschrieben.
+- Das bestehende Kreditmodell bleibt unter seiner bisherigen Adresse erreichbar
+  und wird um Konzentration sowie Abhängigkeit erweitert: **fünf Eingaben,
+  sechs native Vergleichsfälle, acht Kennzahlen**, vollständige diskrete
+  Verlustverteilung und Vergleichstabelle. Der erste Mittelverlust und dessen
+  bisherige PD-Kurve bleiben als Vergleich erhalten. Der Modellbestand bleibt
+  **47 Rechner in 66 bisherigen Finance-Kapiteln**.
+- Die eigene Mischung verwendet mit Gewicht rho ein gemeinsames
+  Bernoulli-Ereignis, sonst unabhängige Ereignisse. Damit bleiben die einzelnen
+  PDs gleich; für mehrere Schuldner und nicht entartete PD ist rho die
+  paarweise Ausfallkorrelation. Gemeinsame und einzelne Risiken werden
+  dadurch nachvollziehbar getrennt; keine universelle reale
+  Abhängigkeitsstruktur oder regulatorische Kapitalformel wird behauptet.
+- Bei Gesamtexposure eine Million, PD zwei Prozent und LGD sechzig Prozent
+  beträgt der Mittelverlust durchgängig **12.000**. Ein Einzelanspruch besitzt
+  Standardabweichung **84.000** und linkes 99-Prozent-Verlustquantil **600.000**;
+  bei 25 unabhängigen gleich großen Ansprüchen sind es **16.800** und **72.000**.
+  Ein Nullquantil bei genau einem Prozent Einzel-PD wird ausdrücklich erklärt;
+  Quantil minus Mittelwert ist kein allgemein positiver Kapitalbedarf.
+- Eine unabhängige **Ganzzahlrechnung aller 128.100 Kombinationen aus
+  Schuldnerzahl, nativer PD und nativem rho** fand zunächst drei falsche
+  Einzelkredit-Grenzfälle durch Gleitkommarundung. Die direkte
+  Einzel-Bernoulli-Behandlung korrigiert sie; danach stimmten alle 128.100
+  Quantile überein. Dieser vollständige Rastervergleich ist als dauerhafte
+  Analyseprüfung hinzugefügt.
+- Weitere unabhängige Kontrollen prüfen **378 vollständige
+  Wahrscheinlichkeits- und Quantilszenarien**, **212 Portfolios einschließlich
+  aller 32 Eingabeecken**, **12.932 Mittelwertkurvenwerte** sowie alle
+  **1.128 Lehrbuchgrafikwerte**. Ganze Wahrscheinlichkeiten, Geldskalierung,
+  Nullverlust bei LGD null, weiterhin mögliche Ausfälle, Tabellen und
+  Vergleichsbestände werden getrennt kontrolliert.
+- Ratings werden als relative methodische Urteile mit Agentur, Skala und
+  Gegenstand erläutert. Übliche globale langfristige Grenzen BBB−/BB+
+  beziehungsweise Baa3/Ba1, Unrated, Split Rating, Emittent und Emission,
+  Aktualität, Outlook/Watch sowie mögliche Mandats- und Nachfragewirkungen
+  werden eingeordnet. Die Note wird nicht als genaue PD oder Kaufempfehlung
+  verwendet.
+- Makro-, Markt- und Emittententreiber werden über konkrete Zahlungs-,
+  Refinanzierungs-, Verwertungs- und Liquiditätswege verbunden. Niveau,
+  Schwankung und Sensitivität des Spreads bleiben verschiedene Größen.
+  Benchmarkrückgang kann Spreadanstieg ausgleichen; ein Marktpreisverlust
+  benötigt keinen bereits eingetretenen Ausfall.
+- Ein eigener einjähriger Nullkupon trennt physische PD vom risikoneutralen
+  Bewertungsgewicht unter ausdrücklich gleicher Recovery am Jahresende.
+  Bei Endbetrag hundert, risikofrei fünf Prozent, q drei Prozent und LGD
+  sechzig Prozent beträgt der Preis **93,52380952**, die versprochene Yield
+  **6,924644 Prozent** und bei physischer PD ein Prozent der erwartete
+  Ertrag **6,283096 Prozent**. Spread, physische Nichtzahlung und
+  versprochener Ertrag sind damit sichtbar verschiedene Größen.
+- **72 eigene englische Trainingsfragen mit deutschen Rechenwegen**
+  sowie je eine separat reservierte Transferfrage ergänzen die Einheit.
+  Die reservierte Zustandsrechnung nutzt andere Gewichte und Daten als
+  der Lehrbuchfall und ergibt **7.340**; die Distraktoren **3.931,25**
+  und **5.112,50** verlieren die gemeinsame Zuordnung auf unterschiedliche Weise.
+  Die zweite Frage verbindet unveränderte Note mit Benchmark minus sechzig
+  und Spread plus hundertsechzig Basispunkte: **minus 3,5100 Prozent** mit
+  Duration 3,6 und voller Konvexität 18. Ihre Distraktoren verwenden
+  den isolierten Spread oder fälschlich addierte Schockbeträge.
+- **28 zusätzliche kuratierte Wörterbucheinträge** vertiefen sechs vorhandene
+  Begriffe und ergänzen 22 Definitionen. Die bisherige globale Recovery-Adresse,
+  das Rechnungslegungs-ECL und die allgemeine risikoneutrale Wahrscheinlichkeit
+  bleiben erhalten. Ausfall-Recovery und diskretes Verlustquantil besitzen
+  präzise Kontextverweise im neuen Kapitel; sechs bestehende Einheiten
+  erhalten fachliche Rückverweise.
+- Die Lösungsansicht zeigt die Begründungen aller drei Optionen. Ihre
+  Überschrift lautet jetzt **„Antworten im Vergleich“** und bezeichnet
+  nicht länger auch die richtige Option als unpassende Antwort.
+- Gesamtstand: **74 Einheiten, 242/340 strukturelle Lernzielreferenzen,
+  2.308 Trainingsfragen, je 129 reservierte Fragen und 162 CFA-Grafiken**.
+  **1.228 kuratierte Rückverweise, 1.534 Definitionen und 3.379 Begriffe/Aliase**.
+  Offen bleiben **28 Einheiten, 98 Lernzielreferenzen und 51 Fragen je Klausur**
+  sowie die fachliche Gesamtprüfung. Alle neuen Einheiten bleiben Entwürfe,
+  vollständige Klausuren gesperrt. **90/100 und 80/100 sind weiterhin
+  nicht als erreicht belegt.**
+- Technische Prüfung: **65 CFA-Browsertests des erweiterten Lernstands bestanden**,
+  einschließlich aller 74 Einheiten, 764 Anleihe-Trainingsfragen und
+  740 Corporate-/Equity-Trainingsfragen. Die anschließende Überarbeitung
+  ergänzt nur vier Wörterbucheinträge, Spread/Spreads als Kontextverweise,
+  zwei Begriffszähler und die Überschrift des Antwortvergleichs.
+  Ein vollständiger Artefaktvergleich bestätigt identische CFA-, Finance-
+  und Statistikdaten sowie identischen übrigen HTML-, CSS- und JavaScript-Code.
+  Auf dem endgültigen Build bestehen erneut **316 Kernprüfungen, vier gezielte
+  CFA-Browsertests und drei Bestandsprüfungen**. Sie prüfen auch die neuen
+  Wörterbuchadressen und die tatsächlichen reservierten Antwortbegründungen.
+  Der Bestandslauf umfasst **171 Kapitel, 47 Modelle, 7.421 Bedienaktionen und
+  17.053 Begriffslinks**; die Formelprüfung erfasst über zwei Breiten
+  **3.054 Formelvorkommen und 2.886 Symbolhilfen**. **32 frisch erzeugte
+  Ansichten** ergänzen die Sichtprüfung, darunter sieben Grafiken, acht
+  Rechenfälle, drei offene Herleitungen, mobile Tabellen, Eingabeecken bis
+  320 Pixel und beide tatsächlichen reservierten Aufgaben. Technische
+  Funktionsprüfung und fehlende fachliche Gesamtfreigabe bleiben getrennt.
