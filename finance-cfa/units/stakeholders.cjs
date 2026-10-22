@@ -166,6 +166,7 @@ module.exports={id:'stakeholders',intro:[
   'Eine Analyse endet deshalb mit einer begründeten Einschätzung und den Annahmen, die diese verändern würden. Ein ESG-Etikett garantiert weder eine bestimmte Rendite noch die Erfüllung eines Wirkungsziels. Ebenso ersetzt die stärkere Beachtung einer Gruppe nicht die Prüfung der Ansprüche und Rechte anderer Beteiligter.'
  ])
 ],related:[
+ {unit:'credit-risk',section:'pricing-case',label:'Ausfallmittel und versprochene Spreadquote mit einem eigenen Preisbeispiel trennen'},
  {unit:'bond-features',section:'recovery',label:'Sicherheiten, Fehlbetrag und freie Mittel vollständig auf Forderungen verteilen'},
  {unit:'governance',section:'conflict-map',label:'Konkrete Interessenkonflikte mit passenden Kontrollen verbinden'},
  {unit:'governance',section:'minority-protection',label:'Minderheitenschutz und Geschäfte mit nahestehenden Parteien'},

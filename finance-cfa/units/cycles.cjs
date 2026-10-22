@@ -140,7 +140,8 @@ module.exports={id:'cycles',intro:[
   'Aktien- und Kreditmärkte reagieren auf neue Informationen relativ zu Erwartungen. Sie können sich vor einem statistisch bestätigten Tiefpunkt erholen oder bei noch positivem BIP fallen. Eine rückblickend perfekte Zyklusdatierung wäre deshalb noch keine damals ausführbare Handelsstrategie.',
   'Ein belastbarer Bericht unterscheidet beobachtete Daten, deren Veröffentlichungsstand, geschätztes Potenzial, angenommene Wirkungsmechanismen und alternative Szenarien. Ein einzelner Frühindikator oder eine einzelne Branchenzahl reicht für eine umfassende Konjunkturdiagnose nicht aus.'
  ])
-],related:[{unit:'market-structures',section:'scale',label:'Auslastung und langfristige Skaleneffekte unterscheiden'},{unit:'returns',section:'purchasing-power',label:'Nominale Veränderung von Kaufkraftänderung trennen'},{unit:'data-science',section:'time-split',label:'Veröffentlichungszeit und Datenrevisionen im Backtest beachten'},{unit:'tvm',section:'single-cashflow',label:'Cashflows und Diskontsätze gemeinsam bewerten'}],
+],related:[
+ {unit:'credit-risk',section:'cycle',label:'Kreditzyklus in gemeinsame Ausfall- und Verwertungskanäle übersetzen'},{unit:'market-structures',section:'scale',label:'Auslastung und langfristige Skaleneffekte unterscheiden'},{unit:'returns',section:'purchasing-power',label:'Nominale Veränderung von Kaufkraftänderung trennen'},{unit:'data-science',section:'time-split',label:'Veröffentlichungszeit und Datenrevisionen im Backtest beachten'},{unit:'tvm',section:'single-cashflow',label:'Cashflows und Diskontsätze gemeinsam bewerten'}],
  sources:[
  {title:'CFA Institute: offizieller Lernzielkatalog Level I 2027',url:'https://www.cfainstitute.org/sites/default/files/2027levelitopicoutline_online.pdf#page=5'},
  {title:'CFA Institute: Understanding Business Cycles',url:'https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/understanding-business-cycles'},

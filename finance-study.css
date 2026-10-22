@@ -103,3 +103,5 @@
 @media(max-width:360px){.study-lab-floater #lab-metrics>div,.study-lab-moneyyield #lab-metrics>div{grid-column:1/-1}}
 
 .study-lab-keyrate #lab-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.study-lab-keyrate #lab-metrics>div{min-width:0}.study-lab-keyrate #lab-metrics strong{font-size:1.05rem;overflow-wrap:anywhere}.study-lab-keyrate label[for=lab-value] .study-pair{grid-template-columns:132px 1fr}@media(max-width:600px){.study-lab-keyrate #lab-metrics strong{font-size:.95rem}}@media(max-width:360px){.study-lab-keyrate #lab-metrics>div{grid-column:1/-1}}
+
+.study-lab-credit #lab-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.study-lab-credit #lab-metrics>div{min-width:0}.study-lab-credit #lab-metrics strong{font-size:1.05rem;overflow-wrap:anywhere}.study-lab-credit label[for=lab-ead] .study-pair{grid-template-columns:132px 1fr}@media(max-width:600px){.study-lab-credit #lab-metrics strong{font-size:.95rem}}@media(max-width:360px){.study-lab-credit #lab-metrics>div{grid-column:1/-1}}

@@ -40,7 +40,33 @@ models.bond.presets=[
  {label:'Nullkupon, gleicher Marktwert',values:{c:0,y:5,n:5,m:1,shock:100,position:1276281.5625}},
  {label:'Halbjährliche Zahlungen',values:{c:5,y:5,n:5,m:2,shock:100,position:1000000}}
 ];
-add('credit','Erwarteter Kreditverlust','Ausfallhäufigkeit und Verlustschwere sind unterschiedliche Hebel.',[field('ead','Exposition (€)',1000,1000000,1000,1000000),field('pd','Ausfallwahrscheinlichkeit (%)',0,30,.5,2),field('lgd','Verlustquote bei Ausfall (%)',0,100,1,60)],p=>result([['Erwarteter Verlust (€)',p.ead*p.pd*p.lgd/10000]],seq(0,30,pd=>p.ead*pd*p.lgd/10000),'Ausfallwahrscheinlichkeit (%)','Erwarteter Verlust (€)','Ein definierter Zeitraum, konstante Exposition; erwarteter Verlust ist kein Worst Case und kein vollständiger Credit Spread.'));
+function creditDistribution(n,p,rho){
+ if(!Number.isInteger(n)||n<1||n>100||!Number.isFinite(p)||p<0||p>.3||!Number.isFinite(rho)||rho<0||rho>1)throw Error('Gültige Anzahl ganzer Schuldner, Ausfallwahrscheinlichkeit und Abhängigkeit erforderlich.');
+ const binomial=[Math.exp(n*Math.log1p(-p))];for(let k=1;k<=n;k++)binomial.push(binomial[k-1]*(n-k+1)/k*p/(1-p));
+ const pmf=binomial.map((v,k)=>(1-rho)*v+(k===0?rho*(1-p):k===n?rho*p:0));
+ const tails=Array(n).fill(0);let tail=0;for(let k=n;k>=1;k--){tail+=binomial[k];tails[k-1]=tail;}
+ // Left 99% quantile, evaluated in positive survival probabilities to retain tiny tails.
+ let quantile=0;if(p>0){if(n===1||rho===1)quantile=p<=.01?0:n;else{const threshold=(.01-rho*p)/(1-rho);quantile=n;if(threshold>0)for(let k=0;k<n;k++)if(tails[k]<=threshold){quantile=k;break;}}}
+ return{binomial,pmf,quantile,any:(1-rho)*(-Math.expm1(n*Math.log1p(-p)))+rho*p};
+}
+function creditPlan(p){
+ const E=p.ead,pd=p.pd/100,ell=p.lgd/100,n=p.names,rho=p.rho;
+ if(!(E>0)||!Number.isFinite(E)||!Number.isFinite(ell)||ell<0||ell>1)throw Error('Positive Exposition und gültige Verlustquote erforderlich.');
+ const distribution=creditDistribution(n,pd,rho),severity=E*ell/n,EL=E*ell*pd,sd=E*ell*Math.sqrt(pd*(1-pd)*(rho+(1-rho)/n)),VaR=severity*distribution.quantile;
+ const out=result([['Erwarteter Verlust (WE)',EL],['Verlust je einzelnem Ausfall (WE)',severity],['Verlust-Standardabweichung (WE)',sd],['99-%-Verlustquantil (WE)',VaR],['Mindestens ein Ausfall (%)',distribution.any*100],['Größtmöglicher Modellverlust (WE)',E*ell],['Erwartete Zahl von Ausfällen',n*pd],['99-%-Quantil minus Mittelwert (WE)',VaR-EL]],seq(0,30,x=>E*ell*x/100),'Einjahres-PD je Schuldner (%)','Erwarteter Einjahresverlust (WE)','Eigene Einjahresillustration mit gleich großen, festen Expositionen und gleicher fester LGD. Mit Gewicht rho teilen alle Schuldner dasselbe Bernoulli-Ausfallereignis; sonst sind sie unabhängig. Bei mehreren Schuldnern und einer PD strikt zwischen null und eins ist rho die paarweise Ausfallkorrelation. Die Kurve zeigt nur den Mittelwert: Anzahl und Abhängigkeit verändern ihn bei festem Gesamtexposure nicht. Die Tabellen und das Verlustquantil zeigen die Verteilung. Kein Credit-Spread-, Marktwert- oder aufsichtsrechtliches Kapitalmodell.');
+ let cumulative=0;out.projection={caption:'Vollständige Modellverteilung: Rundungen in der Anzeige werden nicht zur Quantilberechnung verwendet.',headers:['Zahl ausgefallener Schuldner','Verlust (WE)','Wahrscheinlichkeit (%)','Kumuliert bis hier (%)'],rows:distribution.pmf.map((v,k)=>[k,severity*k,100*v,100*(cumulative+=v)])};
+ out.stable={caption:'Gleiches Gesamtexposure, gleiche PD und LGD; nur Anzahl und Abhängigkeit ändern sich.',headers:['Schuldner','Ausfallkorrelation','Erwarteter Verlust (WE)','Standardabweichung (WE)','99-%-Verlustquantil (WE)'],rows:[[1,0],[25,0],[100,0],[25,.25],[25,1]].map(([N,R])=>[N,R,EL,E*ell*Math.sqrt(pd*(1-pd)*(R+(1-R)/N)),E*ell/N*creditDistribution(N,pd,R).quantile])};
+ out.credit={E,p:pd,ell,n,rho,severity,EL,sd,VaR,...distribution};return out;
+}
+add('credit','Erwarteter Verlust und Konzentration','Halte das Gesamtexposure fest und verteile es auf mehr Schuldner. Vergleiche anschließend unabhängige mit gemeinsam getriebenen Ausfällen. Der Mittelwert bleibt gleich; Verlustschwere, Streuung und Quantil verändern sich.',[field('ead','Gesamtexposure (WE)',1000,1000000,1000,1000000),field('pd','Einjahres-PD je Schuldner (%)',0,30,.5,2),field('lgd','Verlustquote bei Ausfall (%)',0,100,1,60),field('names','Gleich große Schuldner',1,100,1,25),field('rho','Paarweise Ausfallkorrelation',0,1,.05,0)],creditPlan);
+models.credit.presets=[
+ {label:'25 unabhängige Schuldner',values:{ead:1000000,pd:2,lgd:60,names:25,rho:0}},
+ {label:'Ein konzentrierter Schuldner',values:{ead:1000000,pd:2,lgd:60,names:1,rho:0}},
+ {label:'Gemeinsame Ausfalltreiber',values:{ead:1000000,pd:2,lgd:60,names:25,rho:.25}},
+ {label:'Gleicher Mittelverlust: häufigere kleine Verluste',values:{ead:1000000,pd:4,lgd:30,names:25,rho:0}},
+ {label:'Vollständig gemeinsame Ausfälle',values:{ead:1000000,pd:2,lgd:60,names:25,rho:1}},
+ {label:'Halbes Gesamtexposure',values:{ead:500000,pd:2,lgd:60,names:25,rho:0}}
+];
 add('waterfall','Gewinne zwischen LP und GP teilen','Ein vereinfachtes Carry-Modell zeigt den Unterschied zwischen Kapitalrückzahlung und Gewinnbeteiligung.',[field('capital','Eingezahltes Kapital',1,200,1,100),field('value','Ausschüttungsfähiger Endwert',0,400,1,150),field('carry','Carry auf Gewinn (%)',0,40,1,20)],p=>{const gp=v=>Math.max(0,v-p.capital)*p.carry/100;return result([['GP-Carry',gp(p.value)],['LP-Rückfluss',p.value-gp(p.value)]],seq(0,400,gp),'Endwert','GP-Carry','Ohne Gebühren, Hurdle, Catch-up, Recycling oder Clawback. Konkrete Verträge können wesentlich anders verteilen.');});
 add('option','Call, Put und Absicherung am Laufzeitende','Wähle eine Strategie. Angezeigt wird der Nettogewinn nach Anfangskosten, ohne Finanzierung.',[field('strategy','Strategie',0,3,1,0),field('s','Aktienkaufpreis',10,200,1,100),field('k','Strike',10,200,1,100),field('premium','Optionsprämie',0,40,.5,5),field('end','Aktienkurs am Ende',0,250,1,110)],p=>{const names=['Long Call','Long Put','Protective Put','Covered Call'];const profit=x=>p.strategy===0?Math.max(x-p.k,0)-p.premium:p.strategy===1?Math.max(p.k-x,0)-p.premium:p.strategy===2?Math.max(x,p.k)-p.s-p.premium:x-p.s+p.premium-Math.max(x-p.k,0);return result([[names[p.strategy]+' · Gewinn',profit(p.end)]],seq(0,250,profit),'Endkurs','Nettogewinn je Einheit','0: Long Call · 1: Long Put · 2: Aktie + Put · 3: Aktie − Call. Europäisches Endprofil; kein Modell für den Optionswert vor Ablauf.');});
 add('binomial','Eine Option replizieren','Das risikoneutrale Gewicht folgt aus Arbitragefreiheit, nicht aus einer Prognose der Trefferquote.',[field('s','Spot',10,200,1,100),field('k','Strike',10,200,1,100),field('u','Aufwärtsfaktor',1.05,1.8,.05,1.2),field('d','Abwärtsfaktor',.2,.95,.05,.8),field('r','Periodenzins (%)',0,20,1,5)],p=>{const B=1+p.r/100;if(!(p.d<B&&B<p.u))throw Error('Arbitragefreie Eingabe erfordert d < 1+r < u.');const q=(B-p.d)/(p.u-p.d),cu=Math.max(p.s*p.u-p.k,0),cd=Math.max(p.s*p.d-p.k,0);return result([['Risikoneutrales q (%)',100*q],['Callwert',(q*cu+(1-q)*cd)/B],['Delta',(cu-cd)/(p.s*(p.u-p.d))]],[[p.s*p.d,cd],[p.s*p.u,cu]],'Aktienkurs im Endzustand','Call-Auszahlung','Ein Zeitschritt, keine Dividenden; Linie verbindet nur die zwei modellierten Zustände.');});
@@ -453,6 +479,6 @@ models.keyrate.presets=[
  {label:'Umgekehrte Flügelbewegung',values:{y1:3,y3:4,y5:5,d1:-50,d3:0,d5:50,value:1000000}},
  {label:'Halber Marktwert',values:{y1:3,y3:4,y5:5,d1:50,d3:0,d5:-50,value:500000}}
 ];
-const api={models,calculate,annuity,price,bsm,cdf,forecastValue,companyPlan,covenantPlan,repaymentSchedule,bondIndexPlan,repoFundingPlan,yieldSpreadPlan,floaterPlan,moneyYieldPlan,yieldCurvePlan,bondHorizonPlan,bondRiskPlan,convexityPlan,keyRatePlan};
+const api={models,calculate,annuity,price,bsm,cdf,forecastValue,companyPlan,covenantPlan,repaymentSchedule,bondIndexPlan,repoFundingPlan,yieldSpreadPlan,floaterPlan,moneyYieldPlan,yieldCurvePlan,bondHorizonPlan,bondRiskPlan,convexityPlan,keyRatePlan,creditPlan,creditDistribution};
 if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.FinanceModels=api;
 })(globalThis);

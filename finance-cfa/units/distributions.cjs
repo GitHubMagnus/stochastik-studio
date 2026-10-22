@@ -136,7 +136,8 @@ module.exports={id:'distributions',intro:[
    'Ebenso ist eine Entscheidung wie Kauf, Verkauf oder weitere Prüfung nicht allein durch die Wahrscheinlichkeit bestimmt. Preis, Erholungsquote, Risikotragfähigkeit und Kosten möglicher Fehlentscheidungen spielen mit.'
   ],'Bayes aktualisiert ein Modell konsistent. Unzuverlässige Priors, falsch geschätzte Signalraten oder ein geänderter Prozess bleiben mögliche Fehlerquellen.')
  ])
-],related:[{unit:'return-statistics',section:'degrees-freedom',label:'Populationsmomente von Stichprobenschätzungen unterscheiden'},{unit:'return-statistics',section:'shape',label:'Schiefe und schwere Ränder beurteilen'},{unit:'portfolio-math',section:'many-assets',label:'Gemeinsame Verteilungen in Portfoliorisiko übersetzen'},{unit:'return-types',section:'continuous',label:'Logrendite und einfache Rendite umrechnen'}],
+],related:[
+ {unit:'credit-risk',section:'conditional',label:'Bedingte PD, Exposition und Verlustquote in gemeinsamen Stresszuständen anwenden'},{unit:'return-statistics',section:'degrees-freedom',label:'Populationsmomente von Stichprobenschätzungen unterscheiden'},{unit:'return-statistics',section:'shape',label:'Schiefe und schwere Ränder beurteilen'},{unit:'portfolio-math',section:'many-assets',label:'Gemeinsame Verteilungen in Portfoliorisiko übersetzen'},{unit:'return-types',section:'continuous',label:'Logrendite und einfache Rendite umrechnen'}],
  sources:[
  {title:'CFA Institute: Probability Trees and Conditional Expectations',url:'https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/probability-trees-and-conditional-expectations'},
  {title:'NIST: Normal Distribution',url:'https://www.itl.nist.gov/div898/handbook/eda/section3/eda3661.htm'},
