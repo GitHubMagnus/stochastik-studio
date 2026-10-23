@@ -11,7 +11,7 @@ test('public credit supplies the actual single objective, 40 sections, independe
  assert.equal(u.sections.length,40);assert.equal(u.review.status,'draft');assert.equal(d.release,false);
  for(const[k,n]of Object.entries({formula:28,example:8,table:3,figure:6,disclosure:3}))assert.equal(blocks.filter(b=>b.kind===k).length,n,k);
  const coverage=d.coverage.find(c=>c.id===u.id);assert.equal(coverage.objectives.length,1);assert.equal(coverage.objectives[0].sections.length,40);assert.equal(coverage.objectives[0].practice.length,64);assert.equal(coverage.objectives[0].mockQuestions,2);
- assert.ok(u.sources[0].url.endsWith('#page=21'));const bonds=require('../finance-content/bonds.cjs');assert.equal(bonds[10].lab,'yieldspread');assert.deepEqual(bonds[10].additionalLabs,['sovereign']);assert.equal(bonds[1].lab,'repofunding');assert.deepEqual(bonds[1].additionalLabs,['floater','moneyyield']);assert.equal(Object.keys(M.models).length,48);
+ assert.ok(u.sources[0].url.endsWith('#page=21'));const bonds=require('../finance-content/bonds.cjs');assert.equal(bonds[10].lab,'yieldspread');assert.deepEqual(bonds[10].additionalLabs,['sovereign']);assert.equal(bonds[1].lab,'repofunding');assert.deepEqual(bonds[1].additionalLabs,['floater','moneyyield']);assert.equal(Object.keys(M.models).length,49);
  for(const id of ['government-funding','fiscal','monetary','fx-markets','credit-risk','bond-cashflows'])assert.ok(d.units.find(u=>u.id===id).related.some(r=>r.unit===u.id));
  for(const b of blocks.filter(b=>b.kind==='formula'))assert.ok(b.mathml.includes('<math')&&b.symbols.every(s=>s.meaning&&s.mathml));
  // Authoring regression: a single JS backslash silently turned \mathrm into the letters "mathrm".

@@ -8,7 +8,7 @@ test('public funding addresses both actual 2027 objectives with original questio
  const qs=d.questions.filter(q=>q.unit===u.id);assert.equal(qs.filter(q=>q.pool==='practice').length,46);assert.ok(qs.every(q=>q.id.startsWith('gfu-')));
  for(const o of d.coverage.find(c=>c.id===u.id).objectives){assert.ok(o.sections.length>=15);assert.ok(o.practice.length>=20);assert.equal(o.mockQuestions,2);}
  for(const pool of ['mock-a','mock-b']){assert.equal(qs.filter(q=>q.pool===pool).length,1);assert.ok(d.inventory[pool].bonds<=require('../finance-cfa/engine.cjs').blueprint.bonds);}
- assert.equal(d.questions.find(q=>q.id==='gov-01').unit,'governance');assert.equal(require('../finance-content/bonds.cjs')[1].lab,'repofunding');assert.equal(Object.keys(require('../finance-models.cjs').models).length,48);
+ assert.equal(d.questions.find(q=>q.id==='gov-01').unit,'governance');assert.equal(require('../finance-content/bonds.cjs')[1].lab,'repofunding');assert.equal(Object.keys(require('../finance-models.cjs').models).length,49);
  for(const id of ['fiscal','monetary','bond-trading','corporate-funding','bond-features','bond-cashflows'])assert.ok(d.units.find(x=>x.id===id).related.some(r=>r.unit===u.id));
 });
 test('printed gross and net funding reconcile household cash needs, old redemptions, reserve use, issue price and fees',()=>{

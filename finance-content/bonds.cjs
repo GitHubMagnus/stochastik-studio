@@ -22,3 +22,4 @@ module.exports[5].lab='yieldcurve';
 
 module.exports[7].additionalLabs=['bondconvex','keyrate'];
 module.exports[10].additionalLabs=['sovereign'];
+module.exports[9].additionalLabs=['creditcash'];
