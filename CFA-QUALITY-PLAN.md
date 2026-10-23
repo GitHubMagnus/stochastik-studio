@@ -2948,3 +2948,76 @@ und bestandene Technikprüfungen ersetzen die spätere fachliche Abnahme nicht.
   47d1cb5d981a4122fb6f88facbfa00d4d8b89f72e8b919aee2e1f9266d75871b
   bei 19.649.513 Bytes. Diese technische Evidenz ersetzt weiterhin weder die
   ausstehende fachliche Gesamtabnahme noch die fehlenden Themen und Klausurfragen.
+
+### 23.10.2026: Grundlagen der Verbriefung
+
+- Das neue eigene Kapitel **Grundlagen der Verbriefung** erläutert die beiden
+  Lernziele des tatsächlichen 2027-Outline, Seite 21, in **31 Abschnitten**.
+  Es ergänzt **60 englische Trainingsfragen**, zwei getrennte reservierte
+  Transferfragen, sechs vollständige Rechenfälle, zwei Vergleichstabellen,
+  **15 Formeltafeln mit lokalen Symbolhilfen**, vier berechnete Grafiken
+  und zwei aufklappbare Vertiefungen.
+- **Zwei neue native SVG-Ablaufbilder** trennen Geldzahlungen von der Übertragung
+  oder Begründung von Ansprüchen. Eine weitere Zahlungsansicht stimmt den
+  Einzug mit Gebühren, Senior- und Juniorzahlung ab. Jeder Pfeil besitzt
+  Richtung, Bedeutung, eine passende Legende und eine alternative Tabellenzeile.
+  Mobile Nutzer können ausschließlich den Bild- oder Tabellenbereich seitlich
+  verschieben, auch per Tastatur. Die Beschriftungen wurden auf ihre Grenzen
+  innerhalb der Grafik und ihrer Knoten geprüft.
+- Der durchgehende Poolfall unterscheidet externe Emissionsmittel, Kaufpreis,
+  Verkäufergebühren, Netto-Cash, bilanziellen Gewinn und behaltene Ansprüche.
+  Die weitergereichten hundert werden nicht als zweihundert Finanzierung gezählt.
+  Ein eigener Prioritätsfall trennt verfügbare Zahlung, fällige Tilgung,
+  spätere Nachzahlung und endgültigen Verlust. Separate terminale Verlustfälle
+  erklären Juniorabschirmung, Seniorverlust und den selbst getragenen Rückbehalt.
+  Eine optionale Bilanzrechnung nennt ihre Voraussetzungen; ein gesonderter
+  Barwertvergleich erklärt die Volumenwirkung fixer Transaktionskosten.
+- Quellenabgleich: verbindlicher **2027-Outline** und veröffentlichte
+  **2027-Errata**; die öffentliche 2026-Leseübersicht dient nur als Ergänzung.
+  OCC, Federal Reserve, FSB und BIS stützen Prozess-, Anreiz- und operationelle
+  Risikobegriffe. Historische Leitfäden werden nicht als heutige Kapital- oder
+  Bilanzierungsregeln ausgegeben. Die herangezogene AASB-9-Kompilation nennt ihren
+  begrenzten Anwendungszeitraum ausdrücklich. True Sale, Insolvenzferne,
+  Ausbuchung, Konsolidierung und regulatorische Kapitalentlastung bleiben
+  getrennte Prüfungen; die eigenen Zahlenfälle behaupten keine automatische
+  Rechts- oder Bilanzfolge.
+- **25 kuratierte Wörterbucheinträge**, einschließlich zweier angereicherter
+  bestehender Definitionen, erklären die Rollen und Zahlungsbegriffe.
+  Kontextverweise für Trustee und Underwriter erhalten ihre bestehenden
+  Anleihe- und Aktienbedeutungen; auch der bisherige Waterfall-Verweis bleibt
+  erhalten. Sechs bestehende Einheiten verweisen auf passende neue Abschnitte.
+  Der vorhandene ABS-Rechner ist direkt erreichbar und bleibt unverändert.
+- Der Stand umfasst **77 Einheiten, 248 von 340 strukturell zugeordneten
+  Lernzielreferenzen, 2.492 Trainingsfragen, 178 berechnete CFA-Grafiken,
+  zwei Ablaufbilder und 49 Rechner**. Beide Klausuren enthalten je
+  **132 von 180** reservierten Fragen, davon je zwanzig im Anleihebereich.
+  **25 Einheiten, 92 Lernzielreferenzen, 48 Fragen je Klausur und die fachliche
+  Gesamtabnahme bleiben offen.** Release bleibt false, die Einheiten bleiben
+  draft und die unvollständigen echten Klausuren gesperrt. Die Zielwerte
+  90/100 und 80/100 sind weiterhin nicht als erreicht belegt.
+- Unabhängige Gegenrechnungen bestätigen **785 gezeichnete Wertepaare**,
+  **3.501 Zahlungsprioritätsfälle** und **2.424 Szenarien des bestehenden
+  ABS-Rechners mit 147.864 dargestellten Punkten**. Die 337 Kernprüfungen
+  und alle vier neuen Browserprüfungen bestehen. Alle **29 neuen
+  Bildschirmansichten** wurden zusätzlich visuell gelesen: Ablaufbilder,
+  sämtliche Grafiken und Beispiele, beide Vertiefungen, Rollentabelle,
+  mobile Symbolhilfe, Rechner, Breiten bis 320 Pixel und beide tatsächlichen
+  reservierten Lösungen auf Desktop und Mobilgerät.
+- Die drei abschließenden Bestandsprüfungen bestehen ebenfalls: **171 Kapitel,
+  49 Modelle, 7.535 Bedienaktionen und 17.093 Begriffsverweise** ohne Fehler.
+  Die Formelprüfung bestätigt **3.054 Vorkommen und 2.886 Hilfefelder** über
+  Desktop- und Mobilbreite.
+- Abschließende Gesamtprüfung des unveränderten Lernstands
+  **327cdbc19c50d8c6**: **337/337 Kernprüfungen, 77/77 CFA-Browsertests und
+  3/3 Bestandsprüfungen bestanden**, ohne übersprungene oder fehlgeschlagene
+  Tests in diesen Läufen. Der CFA-Lauf prüft alle 77 Einheiten, alle 948
+  Anleihe- und 740 Corporate-/Equity-Trainingsfragen, neue und bestehende
+  Rechner, mobile und Tastaturbedienung, Offlinebetrieb, Begriffsverweise,
+  tatsächliche reservierte Transferlösungen und den Klausurablauf mit
+  ausdrücklich künstlichen vollständigen Testdaten. Frühere neue Zieltests
+  benötigten zwei Korrekturen an den Testselektoren beziehungsweise am Warten
+  auf Tastaturscrollen; die Anwendung wurde dadurch nicht verändert.
+  Der normalisierte HTML-Prüfwert lautet
+  a124695ec4a7c88970035f3c216136bf3f93e4f9c2871a8308a17c95546f1281
+  bei 19.884.604 Bytes. Diese technische Evidenz ersetzt weder die offenen
+  Themen und Klausurfragen noch die fachliche Gesamtabnahme.

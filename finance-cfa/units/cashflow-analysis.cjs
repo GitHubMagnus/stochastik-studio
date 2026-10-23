@@ -122,6 +122,7 @@ module.exports={id:'cashflow-analysis',intro:[
   'Freie Cashflows sind Analysegrößen, keine gesetzlich einheitlich definierte zusätzliche Abschlusszeile. Deshalb werden Definitionen, Anpassungen und Brücken zu den veröffentlichten Zahlen offengelegt. Sonst kann derselbe Begriff in zwei Präsentationen verschiedene Zahlungsströme meinen.'
  ])
 ],related:[
+ {unit:'securitization',section:'proceeds',label:'Heutiges Cash, abgegebenen Buchwert und Verkaufsergebnis auseinanderhalten'},
  {unit:'corporate-credit',section:'ffo',label:'Kredit-FFO, CFO und FCF im selben Zahlungsfall abgrenzen'},{unit:'cashflow-preparation',section:'case-data',label:'Vollständige Ausgangsdaten des Lumen-Falls'},{unit:'cashflow-preparation',section:'ifrs18-case',label:'Die IFRS-18-Umgliederung nachrechnen'},{unit:'ratios',section:'industry-forecast',label:'Umsatztage in künftige Kapitalbindung übersetzen'},{unit:'tvm',section:'terminal-value',label:'Zahlungszeitpunkt und Fortführungswert'},{unit:'analysis-framework',section:'management',label:'Bereinigte Ergebnisgrößen kritisch beurteilen'},{unit:'valuation-overview',section:'cash',label:'Kasse und Ansprüche in der Bewertung genau einmal erfassen'},{unit:'dcf-equity',section:'consistent-debt',label:'FCFE und FCFF mit abgestimmter Finanzierung bewerten'}],
  sources:[
  {title:'CFA Institute: Lernziele Level I 2027',url:'https://www.cfainstitute.org/sites/default/files/2027levelitopicoutline_online.pdf#page=12'},

@@ -20,6 +20,10 @@ function compileBlock(block,owner){
   if(!block.title||!block.given||!block.steps.length||!block.conclusion)throw Error(owner+': unvollständiges Beispiel');
   return {...block,steps:block.steps.map(x=>compileBlock(x,owner))};
  }
+ if(block.kind==='diagram'){
+  const id='cfa-diagram-'+owner.replace(/[^a-z0-9-]/g,'-')+'-'+block.id;
+  return {...block,id,...require('./diagram.cjs').render(block,id)};
+ }
  if(block.kind==='figure'){
   const {render,colors}=require('../finance-illustrations/chart.cjs'),p=block.plot;
   if(!/^[a-z0-9-]+$/.test(block.id)||!block.title||!block.caption||!block.reading||!p?.xLabel||!p?.yLabel||!p.series?.length)throw Error(owner+': unvollständige Abbildung');
