@@ -531,6 +531,51 @@ models.creditcash.presets=[
  {label:'Nur Schuld ohne Jahresendfälligkeit',values:{sales:200,variable:60,fixed:30,capex:15,wc:10,debt:150,maturity:0,shock:0}},
  {label:'Negatives EBITDA sichtbar machen',values:{sales:120,variable:80,fixed:60,capex:15,wc:10,debt:150,maturity:20,shock:0}}
 ];
-const api={models,calculate,annuity,price,bsm,cdf,forecastValue,companyPlan,covenantPlan,repaymentSchedule,bondIndexPlan,repoFundingPlan,yieldSpreadPlan,floaterPlan,moneyYieldPlan,yieldCurvePlan,bondHorizonPlan,bondRiskPlan,convexityPlan,keyRatePlan,creditPlan,creditDistribution,sovereignPlan,creditCashPlan};
+function mortgagePoolPlan(p){
+ const {principal,coupon,months,cpr,fee,discount}=p;
+ if(![principal,coupon,months,cpr,fee,discount].every(Number.isFinite)||principal<=0||coupon<0||fee<0||discount<0||!Number.isInteger(months)||months<1||months>360||cpr<0||cpr>=100)throw Error('Für diesen Hypothekenplan werden positive Anfangsschuld, ganze Restmonate und gültige nicht negative Zins-/Prepayment-Raten benötigt.');
+ if(fee>coupon)throw Error('Die laufende Gebühr darf im gewählten Modell den Vertragszins nicht übersteigen.');
+ const r=coupon/1200,f=fee/1200,y=discount/1200,payment=r===0?principal/months:principal*r/(-Math.expm1(-months*Math.log1p(r)));
+ const smm=-Math.expm1(Math.log1p(-cpr/100)/12);
+ const schedule=s=>{
+  let balance=principal,survival=1,pv=0,interest=0,fees=0,netInterest=0,capital=0,wal=0;const rows=[],points=[[0,principal]];
+  for(let t=1;t<=months;t++){
+   const opening=balance,grossInterest=r*opening,grossPayment=payment*survival;
+   const scheduled=t===months?opening:Math.min(opening,Math.max(0,grossPayment-grossInterest));
+   const extra=s*(opening-scheduled),principalPaid=scheduled+extra,paidFee=f*opening,investorInterest=grossInterest-paidFee,cash=principalPaid+investorInterest;
+   balance=t===months?0:Math.max(0,opening-principalPaid);
+   const present=cash/(1+y)**t;pv+=present;interest+=grossInterest;fees+=paidFee;netInterest+=investorInterest;capital+=principalPaid;wal+=t/12*principalPaid/principal;
+   rows.push({month:t,opening,grossPayment:grossInterest+scheduled,grossInterest,scheduled,extra,fee:paidFee,investorInterest,principal:principalPaid,cash,ending:balance,pv:present});
+   points.push([t/12,opening],[t/12,balance]);survival*=1-s;
+  }
+  return {rows,points,pv,interest,fees,netInterest,capital,wal,ending:balance};
+ };
+ return {payment,smm,without:schedule(0),with:schedule(smm)};
+}
+add('mortgage','Hypothekenpool: planmäßige und zusätzliche Tilgung','Vergleiche denselben homogenen Festzinspool ohne Prepayment und mit konstant angenommener CPR. Kapital, Zins und Gebühren bleiben getrennt.',[
+ field('principal','Anfangskapital (WE)',100,1000000,100,100000),
+ field('coupon','Vertragszins (% p. a., nominal)',0,15,.05,6),
+ field('months','Verbleibende Monatszahlungen',1,360,1,360),
+ field('cpr','Konstante jährliche CPR (%)',0,50,.1,12),
+ field('fee','Laufende Gebühr (% p. a.)',0,2,.01,.5),
+ field('discount','Diskontsatz (% p. a., nominal)',0,20,.01,5.5)
+],p=>{
+ const v=mortgagePoolPlan(p),a=v.without,b=v.with,curves=[{name:'Ohne vorzeitige Rückzahlung',color:'#ba6824',dash:true,points:a.points},{name:'Mit der eingegebenen konstanten CPR',color:'#087e82',points:b.points}];
+ const out=result([['Anfängliche Brutto-Monatsrate (WE)',v.payment],['Anlegerbarwert ohne Prepayment (WE)',a.pv],['Anlegerbarwert mit CPR (WE)',b.pv],['Kapitaldauer ohne Prepayment (Jahre)',a.wal],['Kapitaldauer mit CPR (Jahre)',b.wal],['Anlegerzins gesamt ohne Prepayment (WE)',a.netInterest],['Anlegerzins gesamt mit CPR (WE)',b.netInterest],['Aus CPR abgeleitete monatliche SMM (%)',v.smm*100],['Kapitalrückzahlung gesamt mit CPR (WE)',b.capital]],curves[0].points,'Zeit seit Start des Vergleichs (Jahre)','Ausstehendes Poolkapital (WE)','Eigener homogener Pool gleicher vollständig amortisierender Festzinskredite mit derselben Restlaufzeit. Alle Zins- und Diskontsätze sind nominale Jahresquoten, Monatsfaktor jeweils ein Zwölftel; keine Effektivjahres- oder Tageszählungsumrechnung. Nachschüssige Monatszahlung, keine Zahlungsverschiebung, Steuern, Ausfälle oder Garantiezahlungen. Die CPR wird über Überlebensfaktoren in SMM umgerechnet und nach der planmäßigen Tilgung auf das verbleibende Kapital angewandt. Eine proportionale Teilgruppe ganzer gleicher Kredite zahlt dann vollständig zurück. Die Rate je verbleibendem Einzelkredit bleibt fest; die gesamte Poolrate sinkt mit den ausgeschiedenen Krediten. Dies ist kein Modell unverändert hoher Poolraten bei Teiltilgung eines einzelnen Kredits. Die Gebühr ist die eingegebene jährliche Quote geteilt durch zwölf auf das Monatsanfangskapital; sie mindert nur den Anlegerzins. Sie darf hier den Vertragszins nicht übersteigen. Alles planmäßig und zusätzlich zurückgezahlte Kapital wird am selben Monatsende weitergegeben. Keine Wiederanlage der Anlegerzahlungen, Reserve, Tranchierung, PSA-Rampe oder zustandsabhängige Refinanzierungsentscheidung. Die CPR bleibt beim Ändern des Diskontsatzes fest: Die Preisvergleiche sind keine vollständige Optionsbewertung oder effektive MBS-Duration. Gezeichnete Stufen zeigen Bestand vor und nach jedem Zahlungstermin. Intern wird nicht auf Cent gerundet; die Anzeige rundet unabhängig.');
+ out.series=curves;out.yRange=[0,p.principal*1.02];
+ out.projection={collapsible:true,summary:'Vollständiger monatlicher Zahlungsplan mit CPR',caption:'Eigener Monatsledger in WE mit der eingegebenen CPR; Bruttorate ohne Extra, Tilgung und Kapitalbestand jeweils getrennt. Anzeige gerundet, Berechnung ungerundet.',headers:['Monat','Anfangskapital','Bruttorate','Bruttozins','Plan-Tilgung','Extra-Tilgung','Gebühr','Anlegerzins','Anlegercash','Endkapital','Barwert'],rows:b.rows.map(r=>[r.month,r.opening,r.grossPayment,r.grossInterest,r.scheduled,r.extra,r.fee,r.investorInterest,r.cash,r.ending,r.pv])};
+ out.stable={caption:'Getrennte Gesamtvergleiche derselben Anfangsschuld und Vertragsdaten. Die Kapitaldauer gewichtet ausschließlich Kapital, nicht Zins.',headers:['Größe','Ohne Prepayment','Mit eingegebener CPR'],rows:[['Ursprüngliches Poolkapital (WE)',p.principal,p.principal],['Summe Kapitalrückzahlungen (WE)',a.capital,b.capital],['Summe Bruttozinsen (WE)',a.interest,b.interest],['Summe Gebühren (WE)',a.fees,b.fees],['Summe Anlegerzins (WE)',a.netInterest,b.netInterest],['Summe Anlegercash (WE)',a.capital+a.netInterest,b.capital+b.netInterest],['Anlegerbarwert (WE)',a.pv,b.pv],['Kapitaldauer (Jahre)',a.wal,b.wal],['Endkapital nach letztem Monat (WE)',a.ending,b.ending]]};
+ return out;
+});
+models.mortgage.presets=[
+ {label:'Basis: zwölf Prozent CPR',values:{principal:100000,coupon:6,months:360,cpr:12,fee:.5,discount:5.5}},
+ {label:'Nur CPR auf null setzen',values:{principal:100000,coupon:6,months:360,cpr:0,fee:.5,discount:5.5}},
+ {label:'Nur CPR auf 24 Prozent erhöhen',values:{principal:100000,coupon:6,months:360,cpr:24,fee:.5,discount:5.5}},
+ {label:'Nur Diskontsatz auf drei Prozent',values:{principal:100000,coupon:6,months:360,cpr:12,fee:.5,discount:3}},
+ {label:'Nur Diskontsatz auf acht Prozent',values:{principal:100000,coupon:6,months:360,cpr:12,fee:.5,discount:8}},
+ {label:'Nullzins und keine Gebühr',values:{principal:100000,coupon:0,months:360,cpr:12,fee:0,discount:0}},
+ {label:'Zwei Monate vollständig nachrechnen',values:{principal:1000,coupon:12,months:2,cpr:0,fee:.24,discount:11.76}}
+];
+const api={models,calculate,annuity,price,bsm,cdf,forecastValue,companyPlan,covenantPlan,repaymentSchedule,bondIndexPlan,repoFundingPlan,yieldSpreadPlan,floaterPlan,moneyYieldPlan,yieldCurvePlan,bondHorizonPlan,bondRiskPlan,convexityPlan,keyRatePlan,creditPlan,creditDistribution,sovereignPlan,creditCashPlan,mortgagePoolPlan};
 if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.FinanceModels=api;
 })(globalThis);

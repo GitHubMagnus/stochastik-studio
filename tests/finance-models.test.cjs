@@ -18,6 +18,7 @@ test('every interactive Finance model matches independent reference values',()=>
  refs.keyrate=[1000000,2.8846153846153846,49.519230769230774,50.480769230769226,14.669796223194282,11.094674556213016,.9800626836493853,0,.9615384615384615,0,1009800.6268364938,1000000];
  refs.sovereign=[80,4,4.2,87.2,83.84615384615384,8.4,11.6,11.153846153846153,0,5];
  refs.creditcash=[50,40,7.5,34.375,24.375,9.375,30,-5.625,15.625,135.625];
+ refs.mortgage=[100000*.005/(1-1.005**-360),100000,100000];
  assert.equal(Object.keys(refs).length+1,Object.keys(M.models).length);
  for(const [id,expected] of Object.entries(refs)){const actual=run(id).metrics;expected.forEach((v,i)=>near(actual[i][1],v,id==='bsm'?1e-5:1e-6));}
 });
@@ -33,7 +34,7 @@ test('Finance model boundaries remain finite or explicitly reject invalid mathem
  for(const [id,m] of Object.entries(M.models))for(const f of m.controls){
   for(const value of [f.min,f.max]){
    try{const result=run(id,{[f.key]:value});assert.ok(result.points.length>1);result.points.forEach(p=>p.forEach(v=>assert.ok(Number.isFinite(v))));}
-   catch(e){assert.ok((id==='gordon'&&/Wachstum/.test(e.message))||(id==='binomial'&&/Arbitrage/.test(e.message))||(id==='forecastvalue'&&/Wachstum.*Diskontsatz/.test(e.message))||(id==='bondcovenants'&&/Zahlungen.*verfügbare/.test(e.message)),id+': '+e.message);}
+   catch(e){assert.ok((id==='gordon'&&/Wachstum/.test(e.message))||(id==='binomial'&&/Arbitrage/.test(e.message))||(id==='forecastvalue'&&/Wachstum.*Diskontsatz/.test(e.message))||(id==='bondcovenants'&&/Zahlungen.*verfügbare/.test(e.message))||(id==='mortgage'&&/Gebühr.*Vertragszins/.test(e.message)),id+': '+e.message);}
    checks++;
   }
   for(const value of ['',null,NaN,Infinity,f.min-1,f.max+1]){assert.throws(()=>run(id,{[f.key]:value}));checks++;}

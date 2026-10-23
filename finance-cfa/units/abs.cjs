@@ -294,6 +294,7 @@ module.exports={id:'abs',intro:[
   'Begründe schließlich die unterschiedliche OC-Heilung aus Zinscash und aus Aktivarealisierung. Prüfe am Zweischuldnerfall, warum ein unveränderter Poolerwartungsverlust für Senior nicht genügt. Die eigenständigen Trainingsaufgaben kombinieren diese Erklärungsschritte mit neuen Daten und begründeten Antwortalternativen.'
  ])
 ],explorations:[{section:'subordination',lesson:'bonds-13',focus:'lab',label:'Im vorhandenen Zweitranchenmodell Verlusthöhe und Juniorabschirmung isolieren; ohne OC-Reserve, Zins oder Trigger'}],related:[
+ {unit:'mbs',section:'cmo',label:'MBS-Zeittranchierung von Kreditverlustverteilung unterscheiden'},
  {unit:'securitization',section:'issuance',label:'Poolrechte, Anlegeransprüche und tatsächliche Geldwege vorab unterscheiden'},
  {unit:'securitization',section:'retention',label:'Behaltenen Junioranspruch vom heutigen Netto-Cash abgrenzen'},
  {unit:'securitization',section:'timing',label:'Verspäteten Eingang und endgültigen Kapitalverlust getrennt rechnen'},

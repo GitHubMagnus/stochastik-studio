@@ -181,6 +181,7 @@ module.exports={id:'securitization',intro:[
   'Prüfe insbesondere, ob ein zurückbehaltener Junioranspruch fälschlich als Cash gezählt wird, eine verspätete Zahlung vorschnell als endgültiger Verlust gilt oder ein rechtlich eigener Rechtsträger automatisch als ausgebuchtes Risiko behandelt wird. Die Übungsfragen variieren diese Verwechslungen mit eigenen Daten und erläutern alle drei Antwortmöglichkeiten.'
  ])
 ],explorations:[{section:'losses',lesson:'bonds-13',focus:'lab',label:'Den vorhandenen ABS-Rechner nutzen: gleicher Poolverlust bei anderer Juniorabschirmung'}],related:[
+ {unit:'mbs',section:'pass-through',label:'Hypothekenzahlungen bis zum Nettoanlegercash verfolgen'},
  {unit:'abs',section:'seller-interest',label:'Verkäuferanteil und zuerst verlusttragenden Rückbehalt vergleichen'},
  {unit:'corporate-credit',section:'structural',label:'Ansprüche gegen getrennte Rechtsträger und ihre Vermögensmassen unterscheiden'},
  {unit:'corporate-credit',section:'liquidity',label:'Tatsächlich zugängliche Kasse und fällige Verpflichtung verbinden'},

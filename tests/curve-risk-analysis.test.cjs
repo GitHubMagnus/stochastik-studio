@@ -16,7 +16,7 @@ test('curve risk implements all four actual 2027 objectives, independent practic
  const qs=data.questions.filter(q=>q.unit===u.id);assert.equal(qs.filter(q=>q.pool==='practice').length,72);
  for(const pool of ['mock-a','mock-b']){assert.equal(qs.filter(q=>q.pool===pool).length,1);assert.ok(data.inventory[pool].bonds<=require('../finance-cfa/engine.cjs').blueprint.bonds);}
  for(const o of data.coverage.find(c=>c.id===u.id).objectives){assert.ok(o.sections.length>=15);assert.ok(o.practice.length>=18);assert.ok(o.mockQuestions>=1);}
- const b=require('../finance-content/bonds.cjs');assert.equal(b[7].lab,'bond');assert.deepEqual(b[7].additionalLabs,['bondconvex','keyrate']);assert.equal(b[5].lab,'yieldcurve');assert.equal(b[8].lab,'bondhorizon');assert.equal(Object.keys(M.models).length,49);
+ const b=require('../finance-content/bonds.cjs');assert.equal(b[7].lab,'bond');assert.deepEqual(b[7].additionalLabs,['bondconvex','keyrate']);assert.equal(b[5].lab,'yieldcurve');assert.equal(b[8].lab,'bondhorizon');assert.equal(Object.keys(M.models).length,50);
  for(const id of ['duration','convexity','yield-curves','fixed-yields','regression','bond-features'])assert.ok(data.units.find(u=>u.id===id).related.some(r=>r.unit==='curve-risk'));
  assert.equal(u.explorations[0].focus,'lab-keyrate');
 });

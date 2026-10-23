@@ -14,7 +14,7 @@ test('corporate-credit has substantive coverage of all three actual 2027 objecti
  assert.equal(bank.filter(q=>q.pool==='practice').length,60);for(const pool of ['mock-a','mock-b'])assert.equal(bank.filter(q=>q.pool===pool).length,1);
  const cov=d.coverage.find(c=>c.id===u.id);assert.equal(cov.objectives.length,3);for(const o of cov.objectives){assert.ok(o.sections.length>=10);assert.ok(o.practice.length>=10);assert.ok(o.mockQuestions>=1);}
  assert.equal(u.review.status,'draft');assert.equal(d.release,false);assert.ok(u.sources[0].url.endsWith('#page=21'));assert.ok(u.sources.some(s=>s.url.endsWith('2027-cfa-program-level-1-errata-notice.pdf')));
- assert.equal(require('../finance-content/bonds.cjs')[9].lab,'credit');assert.deepEqual(require('../finance-content/bonds.cjs')[9].additionalLabs,['creditcash']);assert.equal(Object.keys(M.models).length,49);assert.equal(M.models.creditcash.controls.length,8);assert.equal(M.models.creditcash.presets.length,7);
+ assert.equal(require('../finance-content/bonds.cjs')[9].lab,'credit');assert.deepEqual(require('../finance-content/bonds.cjs')[9].additionalLabs,['creditcash']);assert.equal(Object.keys(M.models).length,50);assert.equal(M.models.creditcash.controls.length,8);assert.equal(M.models.creditcash.presets.length,7);
  for(const id of ['company','ratios','cashflow-analysis','bond-features','corporate-funding','credit-risk'])assert.ok(d.units.find(u=>u.id===id).related.some(r=>r.unit==='corporate-credit'));
  const text=blocks.filter(b=>typeof b==='string').join(' ');assert.ok(text.length>22000);assert.ok(text.includes('keine')&&text.includes('Working Capital'));
 });

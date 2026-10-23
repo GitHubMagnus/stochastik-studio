@@ -11,7 +11,7 @@ test('credit risk implements all three actual objectives with original practice,
  assert.equal(u.sections.length,38);assert.equal(u.review.status,'draft');assert.equal(d.release,false);assert.equal(blocks.filter(b=>b.kind==='figure').length,7);assert.equal(blocks.filter(b=>b.kind==='example').length,8);assert.equal(blocks.filter(b=>b.kind==='disclosure').length,3);
  const qs=d.questions.filter(q=>q.unit===u.id);assert.equal(qs.filter(q=>q.pool==='practice').length,72);for(const pool of ['mock-a','mock-b'])assert.equal(qs.filter(q=>q.pool===pool).length,1);
  for(const o of d.coverage.find(c=>c.id===u.id).objectives){assert.ok(o.sections.length>=10);assert.ok(o.practice.length>=20);assert.ok(o.mockQuestions>=1);}
- assert.equal(u.sources[0].url,'https://www.cfainstitute.org/sites/default/files/2027levelitopicoutline_online.pdf#page=21');assert.equal(u.explorations[0].lesson,'bonds-10');assert.equal(Object.keys(M.models).length,49);
+ assert.equal(u.sources[0].url,'https://www.cfainstitute.org/sites/default/files/2027levelitopicoutline_online.pdf#page=21');assert.equal(u.explorations[0].lesson,'bonds-10');assert.equal(Object.keys(M.models).length,50);
  for(const id of ['curve-risk','stakeholders','distributions','fixed-yields','cycles','bond-trading'])assert.ok(d.units.find(u=>u.id===id).related.some(r=>r.unit==='credit-risk'));
  for(const b of blocks.filter(b=>b.kind==='formula'))assert.ok(b.mathml.includes('<math')&&b.symbols.every(s=>s.mathml&&s.meaning));
 });

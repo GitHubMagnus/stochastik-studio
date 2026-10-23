@@ -187,6 +187,7 @@ module.exports={id:'floating-yields',intro:[
  {section:'frn-workflow',lesson:'bonds-02',focus:'lab-floater',label:'Referenz, Vertragsmarge und Preis verändern; Discount Margin und jeden Barwert prüfen'},
  {section:'money-workflow',lesson:'bonds-02',focus:'lab-moneyyield',label:'Preis und Tage verändern; Discount, Add-on, CFA-Geldmarkt-BEY und effektive Rate vergleichen'}
 ],related:[
+ {unit:'mbs',section:'arm',label:'ARM-Zinsanpassung mit Vertragsgrenzen lesen'},
  {unit:'abs',section:'interest',label:'Variable Poolzinsen und die tatsächliche Zinsdeckung eines CLO unterscheiden'},
  {unit:'yield-curves',section:'forward',label:'Flache Referenzannahme mit einer vollständigen Spot-Forward-Struktur vergleichen'},
  {unit:'fixed-yields',section:'period-rate',label:'Nominale Jahresrate und Periodenrate auf derselben Basis verwenden'},
