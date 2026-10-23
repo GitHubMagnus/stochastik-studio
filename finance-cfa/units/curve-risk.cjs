@@ -247,6 +247,7 @@ module.exports={id:'curve-risk',intro:[
  ])
 ],explorations:[{section:'workflow',lesson:'bonds-08',focus:'lab-keyrate',label:'Gleiche parallele Duration mit Flügel-, Mittel- und gemeinsamen Knotenschocks vergleichen'}],
 related:[
+ {unit:'mbs',section:'option-price',label:'Szenarioabhängige MBS-Zahlungen und effektive Konvexität erklären'},
  {unit:'credit-risk',section:'pricing',label:'Ausfallrisiko, physische Prognose und gemeinsame Spreadtreiber unterscheiden'},
  {unit:'duration',section:'own-yield',label:'Eigene Yieldrichtung und erste Preisableitung präzisieren'},
  {unit:'convexity',section:'portfolio',label:'Marktwertgewichtete Sensitivitäten entlang einer benannten gemeinsamen Richtung verstehen'},

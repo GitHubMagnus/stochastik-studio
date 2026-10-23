@@ -3109,3 +3109,90 @@ und bestandene Technikprüfungen ersetzen die spätere fachliche Abnahme nicht.
   a95e016e8c039054deb37a584325174e237c207eefcbea5f0dcaa4a0ea24438d
   bei 20.225.941 Bytes. Diese technische Evidenz ersetzt weiterhin weder die
   offenen Themen und Klausurfragen noch die fachliche Gesamtabnahme.
+
+### 24.10.2026 — MBS, Hypotheken und Zeittranchierung
+
+- Die vier tatsächlichen Lernziele des MBS-Moduls 2027 werden in 39
+  Abschnitten ausgearbeitet: Prepayment und Zeitklassen, Wohnhypotheken,
+  Pass-through/RMBS/CMO sowie gewerbliche Hypothekenwertpapiere. Damit
+  besitzen alle 19 katalogisierten Fixed-Income-Module eigene neue
+  Erklärungen und Übungen. Das ist eine Aussage zum Arbeitsstand und
+  keine fachliche Freigabe des gesamten Themenbereichs.
+- 35 gesetzte Formeltafeln besitzen lokale Symbol- und Einheitenerklärungen.
+  15 eigene Fälle, 19 Tabellen, neun berechnete Grafiken, ein Zahlungsbild
+  und fünf Vertiefungen verbinden Vertragsmerkmale, Kapitalbestände und
+  tatsächlich verfügbare Mittel. Die Rechnungen unterscheiden Annuität,
+  Ballon, ARM-Grenzen, WAC/WAM, CPR/SMM/PSA, WAL und Duration ausdrücklich.
+- Der neue Hypothekenrechner ist Modell 50 und hebt die Anzahl interaktiver
+  Finance-Kapitel auf 67. Sechs Eingaben und sieben Vergleichsfälle erklären
+  die Poolcashflows. Der vollständige Monatsplan ist aufklappbar und behält
+  seinen geöffneten Zustand bei Eingabeänderungen. Proportional ausscheidende
+  ganze gleichartige Kredite erzeugen sinkende gesamte Poolraten; das wird
+  nicht mit einem Einzelkredit mit konstant voller Rate vermischt.
+- Die Modellgrenzen stehen direkt bei Rechnung und Rechner: konstante
+  exogene CPR, keine PSA-Rampe, kein Ausfall, keine Zahlungsverschiebung,
+  keine Tranchierung und kein endogenes Refinanzierungsmodell. Der
+  Preisvergleich bei festem Diskontsatz ist keine effektive MBS-Duration.
+  Ein eigener sicherer Zweiterminfall erläutert die negative endliche
+  Konvexitätsdifferenz am Optionswechsel; am Knick wird keine analytische
+  zweite Ableitung behauptet.
+- Sequential Pay und PAC werden vollständig finanziert. Support kann
+  Timing-Schwankung aufnehmen, aber fehlenden Cash nicht erzeugen.
+  Die PAC-Beispiele verwenden einen gesetzten Lehrplan, keine behauptete
+  reale PSA-Bandberechnung. IO und PO addieren sich je Szenario zum
+  gesamten Poolanspruch. CMBS-Fälle trennen laufende Zinsdeckung,
+  Objektwert, neue Tragfähigkeitsgrenze und Ballonrefinanzierung.
+  Grenzwerte und eigene Ausgleichsformeln sind ausdrücklich Fallannahmen.
+- 80 neue englische Trainingsfragen erläutern alle drei Optionen und
+  verweisen zur passenden Erklärung. Zwei disjunkte reservierte Fälle
+  verwenden zusätzliche neue Daten. Beide echten Klausuren enthalten
+  jetzt je 134 von 180 Fragen; der Fixed-Income-Anteil ist mit je 22
+  angelegt. Es fehlen je 13 Derivate-, 13 Alternative-Investments- und
+  20 Portfoliofragen. Die echten unvollständigen Klausuren bleiben gesperrt.
+- 45 weitere kuratierte Begriffe besitzen präzise CFA-Rückwege. Insgesamt
+  stehen 1.674 Wörterbucheinträge mit 3.688 allgemeinen Begriffen/Aliasen
+  und zusätzlichen kontextbezogenen Aliasen bereit; 1.382 Einträge sind
+  kuratiert dem neuen Lernpfad zugeordnet. Der allgemeine Anleiheverweis
+  für Balloon Payment bleibt erhalten; MBS verwendet einen eigenen
+  Kontextverweis. Ebenso bleiben ursprüngliche WAL- und Corporate-DSCR-
+  Bedeutungen verfügbar.
+- Die Primärquellen umfassen die tatsächliche 2027-Lernzielliste, ergänzende
+  öffentliche Instrumentinformationen und konkrete Emittentendokumente.
+  Der historische PSA-Prospekt wird als historische Konventionsquelle
+  gekennzeichnet. Beim Defeasance-PDF wird nur der tatsächlich zugängliche
+  Suchauszug ausgewiesen. Die Oktober-Errata wurde nach hypotheken- und
+  verbriefungsbezogenen Einträgen durchsucht.
+- Unabhängige geschlossene Kreditbestände prüfen 945 Modellkonstellationen,
+  187.110 Monatszeilen und 376.110 gezeichnete Rechnerwerte. Weitere
+  Gegenrechnungen bestätigen alle 1.832 Buchgrafikwerte sowie 34 numerische
+  Antworten und drei zusätzliche gepaarte Zahlenvergleiche. Kapital,
+  Gebühren, Zins und Cash werden getrennt abgestimmt.
+- **Der Gesamtstand bleibt unvollständig:** 79 Einheiten, 256 von 340
+  Lernzielreferenzen und 2.644 Trainingsfragen sind ausgearbeitet.
+  23 Einheiten und 84 Referenzen sowie je 46 Klausurfragen und die
+  fachliche Gesamtabnahme bleiben offen. Release bleibt false und alle
+  Einheiten bleiben draft. Die Zielwerte 90/100 und 80/100 werden
+  deshalb weiterhin nicht als erreicht ausgegeben.
+- Technische Abnahme: Der vollständige CFA-Browserlauf besteht mit **87/87**
+  Prüfungen. Nach Ergänzung der letzten Begriffe bestehen nochmals **2/2**
+  gezielte CFA-Verweis- und Darstellungsprüfungen über alle 79 Einheiten.
+  Nach der zuletzt ausschließlich für den neuen Rechner geänderten
+  Kartenanordnung bestehen am endgültigen HTML erneut **353/353
+  Kernprüfungen, 6/6 MBS-Browsertests und 3/3 Bestandsprüfungen**,
+  jeweils ohne übersprungene oder fehlgeschlagene Tests in diesen Läufen.
+  Die Bestandsprüfung zählt 7.582 Bedienaktionen und 17.117 Begriffsverweise.
+- Die visuelle Kontrolle umfasst alle neun neuen Grafiken, 15 Fälle,
+  19 Tabellen, fünf Vertiefungen und das Zahlungsbild, mobile Symbolhilfen,
+  Rechner und lesbare Monatsplan-Detailaufnahmen sowie beide tatsächlichen
+  reservierten Lösungen auf Desktop und Mobilgerät. Ein dabei gefundener
+  Umbruch großer Zahlen wurde durch ausreichend breite Ergebniskarten
+  behoben; zusätzliche Prüfungen verwenden eine Million Anfangskapital
+  und fünfzehn Prozent Kupon bei Breiten 320, 390, 600 und 1.440 Pixel.
+  Der gefundene Wörterbuchkonflikt für Balloon Payment wurde mit einem
+  eigenen Kontextalias behoben.
+- Der endgültige Lerninhalt besitzt Version **7d7d91f402cd602d**.
+  Der nach LF normalisierte HTML-Prüfwert lautet
+  e24a6014f1af1ba58d1db0b0fc72db0c7d08bec1aca0a6ed6fa79e24fd0f963d
+  bei 20.655.514 Bytes. Der vollständige 87er-Lauf liegt vor der letzten
+  ausschließlich rechnerbezogenen CSS-Korrektur; die drei danach genannten
+  Läufe und die Bildkontrolle prüfen deren endgültiges Ergebnis.

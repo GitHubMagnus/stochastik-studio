@@ -10,7 +10,7 @@ test('ABS develops the four actual 2027 outcomes with original questions, explic
  assert.equal(bank.filter(q=>q.pool==='practice').length,72);assert.equal(bank.filter(q=>q.pool==='mock-a').length,1);assert.equal(bank.filter(q=>q.pool==='mock-b').length,1);assert.equal(d.release,false);assert.equal(u.review.status,'draft');
  const c=d.coverage.find(c=>c.id===u.id);assert.equal(c.objectives.length,4);for(const o of c.objectives){assert.ok(o.sections.length>=10);assert.ok(o.practice.length>=12);}assert.deepEqual(c.objectives.map(o=>o.mockQuestions),[1,1,0,1]);
  assert.ok(u.sources[0].url.endsWith('#page=22'));assert.ok(u.sources.some(s=>s.url.includes('fca.org.uk')));assert.ok(u.sources.some(s=>s.url.includes('pfandbg/__30')));assert.ok(u.sources.some(s=>s.url.includes('P191219')));
- assert.ok(blocks.filter(b=>typeof b==='string').join(' ').length>32000);assert.equal(Object.keys(require('../finance-models.cjs').models).length,49);
+ assert.ok(blocks.filter(b=>typeof b==='string').join(' ').length>32000);assert.equal(Object.keys(require('../finance-models.cjs').models).length,50);
  assert.deepEqual(u.explorations,[{section:'subordination',lesson:'bonds-13',focus:'lab',label:'Im vorhandenen Zweitranchenmodell Verlusthöhe und Juniorabschirmung isolieren; ohne OC-Reserve, Zins oder Trigger'}]);
  for(const id of ['securitization','bond-features','bond-cashflows','credit-risk','corporate-funding','floating-yields'])assert.ok(d.units.find(u=>u.id===id).related.some(r=>r.unit==='abs'));
 });
@@ -51,7 +51,7 @@ test('the installment, prepayment, geometric paydown and dependence cases reconc
 test('numerical training and both reserved transfers answer the actual stated question with explicit reasons',()=>{
  const expected={'03':'65.','04':'100.','13':'120%.','14':'20%.','15':'16.67%.','17':'0.','18':'Residual 20, junior 20 and senior 15.','19':'50%.','20':'100%.','21':'25.','22':'It remains 20.','24':'5.','25':'2.','26':'4.','27':'7.','32':'3.','34':'34.5.','35':'40.','37':'1.33 years.','39':'90.','40':'0.','42':'160.','43':'120 and 120.','44':'128.','45':'20%.','48':'Dilution of 12 rather than a credit default on the remaining obligation.','50':'105.','51':'2.4.','52':'8.','57':'150%.','59':'105%.','61':'1.82.','62':'109.09%, still below target.','63':'20.','68':'1.6.','69':'8.0.','70':'14.4 under independence to 8 under joint defaults.','71':'12%.','exam-a':'123.','exam-b':'1.36.'};for(const[id,value]of Object.entries(expected))assert.equal(answer(id),value,id);
  near(114+(150-114)*.25,123);const pay=root(x=>117/(110-x),1.1,10);near(pay,40/11);near(5-pay,15/11);near(117/(110-pay),1.1);near(pay+5-pay,5);
- for(const p of ['mock-a','mock-b'])assert.equal(d.inventory[p].bonds,21);
+ for(const p of ['mock-a','mock-b'])assert.equal(d.inventory[p].bonds,22);
  for(const q of bank){assert.equal(q.options.length,3);assert.ok(q.options.every(o=>o.why.length>=15));assert.ok(q.solution.length);assert.ok(u.sections.some(s=>s.id===q.section));}
 });
 test('ABS dictionary resolves local meanings and preserves earlier global subordination, residual, WAL and default correlation',()=>{
