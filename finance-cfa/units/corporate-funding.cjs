@@ -226,6 +226,7 @@ module.exports={id:'corporate-funding',intro:[
   'Die Modellkurve vergleicht gleichzeitige Sicherheitenpreisszenarien, keine Prognose eines zeitlichen Preispfads. Endrückkauf, aktuelle Sicherheitenquote und Zwischenmargin werden bewusst auf unterschiedlichen klar genannten Zeit- und Bemessungsgrundlagen gerechnet. Die Modellgrenzen gehören zur Erklärung und nicht bloß zum Kleingedruckten.'
  ])
 ],explorations:[{section:'margin-call',lesson:'bonds-02',focus:'lab',label:'Repo: Cash, Zins, Haircut und zusätzliche Sicherheiten getrennt verändern'}],related:[
+ {unit:'securitization',section:'sources',label:'Neue Emissionsmittel und ihre vollständige Verwendung abstimmen'},
  {unit:'corporate-credit',section:'liquidity',label:'Refinanzierungsbedarf trotz Zinsdeckung berechnen'},
  {"unit":"fixed-yields","section":"changes","label":"Benchmark- und Spreadbewegung in einer konsistenten Yielddifferenz erklären"},
  {"unit":"bond-prices","section":"par","label":"Kupon, verlangte Rendite und Ausgabepreis gemeinsam prüfen"},{unit:'government-funding',section:'maturity',label:'Öffentliche Fälligkeiten und unternehmerische Ersatzfinanzierung verbinden'},

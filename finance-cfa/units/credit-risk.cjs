@@ -232,6 +232,7 @@ module.exports={id:'credit-risk',intro:[
  ])
 ],explorations:[{section:'workflow',lesson:'bonds-10',focus:'lab',label:'Gleichen Mittelverlust bei Konzentration, Abhängigkeit und anderer Verlustschwere vergleichen'}],
 related:[
+ {unit:'securitization',section:'losses',label:'Den gegebenen Verlust auf Junior und Senior vollständig verteilen'},
  {unit:'corporate-credit',section:'recovery-case',label:'Besicherung, Rang und konkrete Rückgewinnung verbinden'},
  {unit:'sovereign-credit',section:'comparison',label:'Kreditrisiko auf öffentliche Einnahmen und konkrete öffentliche Ansprüche übertragen'},
  {unit:'distributions',section:'conditioning',label:'Bedingte Erwartungen und Zustandsgewichtung herleiten'},
