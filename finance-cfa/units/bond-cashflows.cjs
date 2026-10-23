@@ -253,6 +253,7 @@ module.exports={id:'bond-cashflows',intro:[
   'Der Rechner verwendet feste sichere Planzahlungen und bildet keine Optionen, Steuern oder Ausfälle ab. Diese Ebenen werden anhand der eigenen Fälle bewusst separat hinzugefügt. Eine genaue Rechnung mit einem unvollständigen Zahlungsplan bleibt eine unvollständige Bewertung.'
  ])
 ],explorations:[{section:'comparison',lesson:'bonds-03',focus:'lab',label:'Vier Tilgungspläne, vollständige Zahlungsreihen und Restschuld verändern'}],related:[
+ {unit:'abs',section:'revolving',label:'Kapitalrückfluss zwischen Wiederanlage und Note-Tilgung unterscheiden'},
  {unit:'securitization',section:'waterfall',label:'Kapitalnominal und laufende Verteilung im Verbriefungsfall trennen'},
  {unit:'sovereign-credit',section:'maturity',label:'Gleichen Endbestand bei verschiedenem öffentlichem Rolloverbedarf vergleichen'},
  {unit:'bond-return',section:'workflow',label:'Kupons, Wiederanlage, Verkauf und Anlagehorizont gemeinsam zur Anleiherendite verbinden'},

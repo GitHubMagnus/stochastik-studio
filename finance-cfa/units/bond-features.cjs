@@ -201,6 +201,7 @@ module.exports={id:'bond-features',intro:[
   'Die Rechnungen illustrieren ausdrücklich festgelegte Vertragswelten. Ob eine reale Verpflichtung erfasst, heilbar oder durchsetzbar ist, wird anhand ihrer vollständigen Bedingungen und des relevanten Rechts beurteilt; eine einzelne Quote ist dafür kein Ersatz.'
  ])
 ],explorations:[{section:'funding',lesson:'bonds-01',focus:'lab',label:'Auron: Kredit, Cashverwendung, Ausschüttung und vier Vertragsgrenzen verändern'}],related:[
+ {unit:'abs',section:'dual-recourse',label:'Zusätzlichen Emittenten- und Poolrückgriff ohne doppelte Forderung lesen'},
  {unit:'securitization',section:'remoteness',label:'Wirksame Poolübertragung und gesonderte Anspruchsmasse prüfen'},
  {unit:'corporate-credit',section:'structural',label:'Getrennte Tochter- und Holdingmassen nachrechnen'},
  {unit:'curve-risk',section:'option-tree',label:'Vertragliche Ausübung am Kupontermin durch zustandsabhängige Werte erklären'},

@@ -3021,3 +3021,91 @@ und bestandene Technikprüfungen ersetzen die spätere fachliche Abnahme nicht.
   a124695ec4a7c88970035f3c216136bf3f93e4f9c2871a8308a17c95546f1281
   bei 19.884.604 Bytes. Diese technische Evidenz ersetzt weder die offenen
   Themen und Klausurfragen noch die fachliche Gesamtabnahme.
+
+### 23.10.2026: ABS, Kreditschutz und CLO-Zahlungen
+
+- Das neue eigene Kapitel **ABS und Kreditschutz** entwickelt die vier
+  tatsächlichen 2027-Lernziele auf Seite 22 in **40 Abschnitten**.
+  Es ergänzt **72 englische Trainingsfragen**, zwei getrennte reservierte
+  Transferfragen, neun vollständige Rechenfälle, acht Vergleichs- und
+  Zahlungstabellen, **31 gesetzte Formeltafeln mit lokalen Symbolhilfen**,
+  sieben berechnete Grafiken, zwei weitere native Ablaufbilder und drei
+  optionale Herleitungen. Die weitergehenden quantitativen Modelle werden
+  von den beschreibenden offiziellen Lernzielen unterschieden.
+- Covered Bonds werden über Emittentenpflicht, Deckungspool und begrenzte
+  Restforderung erklärt. Dual Recourse wird nicht als doppelte Auszahlung
+  ausgegeben. Vergleichsfälle behandeln gemeinsame Emittenten-/Poolschwäche,
+  dynamische Pools, Vermögensbindung und Hard Bullet, Soft Bullet sowie
+  Conditional Pass-through. Die britische SPV-Struktur der FCA und das
+  deutsche Trennungsprinzip werden als unterschiedliche Rahmenbeispiele
+  dargestellt; die Zahl der Rechtsträger ersetzt keine Anspruchsanalyse.
+- Credit Enhancement trennt Subordination, Übersicherung, finanzierte Reserve,
+  Excess Spread und externe Sicherung. Ein durchgehender Kapitalfall stimmt
+  Aktiva 120, Senior 80, Junior 20 und Residual 20 ab. Attachment, Detachment,
+  Schichtverlust und Poolquote verwenden jeweils die erklärte Basis.
+  Reservefinanzierung und bereits enthaltene Ressourcen werden nicht
+  doppelt gezählt; laufende Marge wird von künftiger Erwartung getrennt.
+- Nicht hypothekarische Pools werden nach tatsächlichem Cashflow verglichen:
+  Auto-, Leasing-, Studienkredit-, Kreditkarten-, Handelsforderungs- und
+  Unternehmenskreditpools. Eigene Fälle erklären vorzeitige Zahlung und
+  Kapitaldauer, Restwert, Kapitalisierung ohne Cash, Dilution und
+  kurzfristige ABCP-Finanzierung. Zwei Ablaufbilder verwenden denselben
+  Kapitalzufluss alternativ für Ersatzforderungen oder Investortilgung.
+  Seller’s Interest wird ausdrücklich von einer First-Loss-Position getrennt.
+- Der CLO-Fall verbindet Gebühren, Zinsen, Rangnenner, anrechenbare Aktiva,
+  Deckungsschwelle, tatsächlich verfügbares Cash und Senior-Tilgung.
+  Eine optionale Herleitung unterscheidet Tilgung aus separat vorhandenem
+  Zinscash von Tilgung aus bereits gezählten Aktiva. Die unterschiedlichen
+  notwendigen Beträge sind jeweils vollständig finanziert und abgestimmt.
+  Ein weiterer Fall zeigt bei gleichen Einzel-Ausfallwahrscheinlichkeiten und
+  gleichem Poolerwartungsverlust unterschiedliche Senior- und Juniorverluste.
+  Die Abhängigkeitsannahme und ihre zulässigen Grenzen sind erläutert.
+- Quellen: verbindlicher 2027-Outline und veröffentlichte Oktober-Errata;
+  die öffentliche 2026-Leseübersicht dient nur als Ergänzung. FCA und der
+  tatsächlich gelesene § 30 PfandBG stützen die klar begrenzten Rahmenbeispiele.
+  Öffentliche EBA-Auszüge erläutern Fälligkeitsbegriffe, ohne Beratung als
+  allgemein geltende Neuregel auszugeben. Historische OCC-, Federal-Reserve-
+  und FSB-Texte dienen ergänzend den Strukturmechanismen; daraus werden keine
+  aktuellen universellen Garantie-, Kapital-, Bilanz- oder Testgrenzen übernommen.
+  Toyota dient als reales Emittentenbeispiel für Raten- und Leasingpools;
+  sämtliche verwendeten Zahlenfälle bleiben eigene hypothetische Fälle.
+- **35 kuratierte Wörterbucheinträge**, darunter drei angereicherte vorhandene
+  Definitionen, ergänzen präzise Rückverweise. Lokale Bedeutungen von
+  Subordination, Residual, IC und OC verdrängen nicht die bisherigen
+  Corporate-, Statistik-, Kapitaldauer- oder Kreditkorrelationsdefinitionen.
+  Sechs bereits vorhandene Einheiten verweisen auf passende neue Abschnitte.
+  Der bestehende Zweitranchen-ABS-Rechner ist gezielt angebunden; seine
+  Grenzen ohne Reserve, Zins, Revolving und Trigger sind ausdrücklich genannt.
+- Der Stand umfasst **78 Einheiten, 252 von 340 strukturell zugeordneten
+  Lernzielreferenzen, 2.564 Trainingsfragen, 185 berechnete CFA-Grafiken,
+  vier Ablaufbilder und 49 Rechner**. Beide Klausuren enthalten je
+  **133 von 180** reservierten Fragen, davon je 21 im Anleihebereich.
+  **24 Einheiten, 88 Lernzielreferenzen, 47 Fragen je Klausur und die
+  fachliche Gesamtabnahme bleiben offen.** Release bleibt false, alle Einheiten
+  bleiben draft und die unvollständigen echten Klausuren gesperrt.
+  Die Zielwerte 90/100 und 80/100 sind weiterhin nicht als erreicht belegt.
+- Unabhängige numerische Prüfungen bestätigen **1.206 gezeichnete Wertepaare**,
+  **12.001 terminale Verlustzuordnungen** und **501 Fälle mit begrenzt
+  verfügbarem Cash**. Der eingefrorene Stand besteht mit **345 Kernprüfungen**.
+  Alle **44 neu erzeugten Bildschirmansichten** wurden zusätzlich visuell
+  gelesen: alle Grafiken, Fälle, Tabellen und Vertiefungen, beide Zahlungsbilder,
+  mobile Symbolhilfe und Rechner, Breiten bis 320 Pixel sowie die beiden
+  tatsächlichen reservierten Lösungen mit aufgeklappten Symbolen auf Desktop
+  und Mobilgerät.
+- Abschließende Prüfung des unveränderten Lernstands **c2210dfd4e799327**:
+  **345/345 Kernprüfungen, 81/81 CFA-Browsertests und 3/3 Bestandsprüfungen
+  bestanden**, ohne übersprungene oder fehlgeschlagene Tests in diesen Läufen.
+  Der vollständige CFA-Lauf prüft alle 78 Einheiten, alle 1.020 Anleihe-
+  und 740 Corporate-/Equity-Trainingsfragen, neue und vorhandene Begriffswege,
+  Rechner, Symbolhilfen, Offlinebetrieb und den Klausurablauf mit gesonderten
+  künstlichen vollständigen Testdaten. Die Bestandsprüfung bestätigt 171 Kapitel,
+  49 Modelle, 7.535 Bedienaktionen und 17.096 Begriffsverweise ohne Fehler;
+  3.054 Formelvorkommen und 2.886 Hilfefelder werden über zwei Breiten geprüft.
+  Frühere Korrekturen betrafen einen Testselektor und zwei Bildschirmaufnahme-
+  Abläufe, nicht fehlerhafte Anwendungslogik. Anschließend wurden die
+  mathematische Darstellung und die Unterscheidbarkeit deckungsgleicher
+  Verlustlinien verbessert; alle abschließenden Läufe verwenden diesen Stand.
+  Der normalisierte HTML-Prüfwert lautet
+  a95e016e8c039054deb37a584325174e237c207eefcbea5f0dcaa4a0ea24438d
+  bei 20.225.941 Bytes. Diese technische Evidenz ersetzt weiterhin weder die
+  offenen Themen und Klausurfragen noch die fachliche Gesamtabnahme.
