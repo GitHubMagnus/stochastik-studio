@@ -17,6 +17,7 @@ test('every interactive Finance model matches independent reference values',()=>
  refs.bondconvex=[1000000,5,5/1.05,16,46/1.05**2,30/1.05**2,-4.560258739784617,-4.628817154361342,-4.55328798185941,-4.625850340136054,1000000*46/1.05**2,1000000*30/1.05**2];
  refs.keyrate=[1000000,2.8846153846153846,49.519230769230774,50.480769230769226,14.669796223194282,11.094674556213016,.9800626836493853,0,.9615384615384615,0,1009800.6268364938,1000000];
  refs.sovereign=[80,4,4.2,87.2,83.84615384615384,8.4,11.6,11.153846153846153,0,5];
+ refs.creditcash=[50,40,7.5,34.375,24.375,9.375,30,-5.625,15.625,135.625];
  assert.equal(Object.keys(refs).length+1,Object.keys(M.models).length);
  for(const [id,expected] of Object.entries(refs)){const actual=run(id).metrics;expected.forEach((v,i)=>near(actual[i][1],v,id==='bsm'?1e-5:1e-6));}
 });

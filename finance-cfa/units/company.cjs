@@ -249,6 +249,7 @@ module.exports={id:'company',intro:[
   'Jede Formel besitzt eine Lesart und aufklappbare Definitionen. Der gemeinsame Jahresfall wird mit direkten Zahlungen, Beständen und Eigentümerflüssen gegengeprüft. Die mathematische Abstimmung beweist die Rechnungslogik, nicht die zukünftigen Modellannahmen.'
  ])
 ],explorations:[{section:'price-capital',lesson:'equity-05',focus:'lab',label:'Kernwerk: Preis, Menge, Kapital und Finanzierung gemeinsam verändern'}],related:[
+ {unit:'corporate-credit',section:'cash-case',label:'Operativen Ertrag bis zu Gläubigerzahlungen überleiten'},
  {unit:'research',section:'memo',label:'Unternehmensanalyse in einen nachvollziehbaren Researchbericht übersetzen'},
  {unit:'industry',section:'five-forces',label:'Branchenkräfte von eigener Wettbewerbsposition unterscheiden'},
  {unit:'industry',section:'shares',label:'Markt- und Firmenwachstum mit Anteilen verbinden'},

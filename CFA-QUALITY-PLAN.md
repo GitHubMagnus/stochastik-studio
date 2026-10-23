@@ -2875,3 +2875,76 @@ und bestandene Technikprüfungen ersetzen die spätere fachliche Abnahme nicht.
   einschließlich extremer Werte bis 320 Pixel, positiver Cashüberschüsse,
   Endschuld null und der erhaltenen ursprünglichen Rechneradresse.
   Diese Evidenz ersetzt keine fachliche Gesamtfreigabe der verbleibenden Inhalte.
+
+### 23.10.2026: Unternehmensbonität, Kreditkennzahlen und Anspruchsmassen
+
+- Das nächste tatsächliche Level-I-Modul 2027 ist ausgearbeitet: **35 Abschnitte,
+  fünf vollständige Rechenfälle, vier Tabellen, 21 Formeltafeln, sechs berechnete
+  Grafiken und 60 eigenständige Trainingsfragen**. Die drei Lernziele betreffen
+  qualitative/quantitative Bonitätsfaktoren, Kreditquoten sowie Rang, Sicherheit,
+  Insolvenzpriorität und Ratingwirkung. Die Zuordnung ist strukturelle Evidenz,
+  weiterhin keine fachliche Gesamtfreigabe.
+- Der eigene Neravo-Fall verbindet Geschäftsmodell, Fixkostenhebel, EBITDA, EBIT,
+  Cashzins, Cashsteuer, Kredit-FFO, operatives Working Capital, CFO, Capex, FCF,
+  fällige Tilgung und benötigte Endbetriebskasse. Kontrollierte Fälle zeigen,
+  weshalb gleichbleibende Zinsdeckung einen größeren Refinanzierungsbedarf
+  nicht ausschließt. Negative EBITDA-Nenner werden nicht als günstige
+  Leverage-Zahlen interpretiert. Zwei aufklappbare Vertiefungen erklären den
+  Nullnenner und die stückweise Cashwirkung zusätzlichen Zinses.
+- Der zusätzliche Rechner besitzt **acht Eingaben, sieben native Vergleichsfälle,
+  zehn Kennzahlen, drei verschieden gezeichnete Kurven sowie zwei vollständige
+  Überleitungstabellen**. Er wahrt den ursprünglichen Kreditrechner und dessen
+  Adresse. Nur die Hälfte des Altbestands trägt den ausdrücklich gegebenen
+  variablen Reset; Jahresendtilgung verändert nicht rückwirkend den Altjahreszins.
+  Neue Finanzierung ist ein bedingter Bedarf, keine Auszahlungsgarantie.
+- Eigene Verteilungsfälle rechnen eine gesonderte Sicherheit, deren unbesicherte
+  Restforderung, gleiche Senior-Poolquote, Nachrang und Eigentümerrest vollständig
+  ab. Ein weiterer Fall trennt Tochter- und Holdingmasse. Die Annahmen werden
+  ausdrücklich festgelegt; das Modell behauptet keine universelle Insolvenzordnung
+  oder automatischen Ratingnotches. Bei der Ausarbeitung wurden der tatsächliche
+  2027-Outline und die offiziellen Errata 2027 sowie die präzisierte ältere
+  Emittenten-/Emissionsrating-Formulierung geprüft.
+- **21 zusätzliche kuratierte Dictionary-Einträge**, darunter zwei angereicherte
+  bestehende Ergebnisdefinitionen, trennen Kredit-FFO von Immobilien-FFO und die
+  analytische von der vertraglichen Nettoquote. Kontextverweise erhalten sämtliche
+  zuvor belegten Bedeutungen von Maintenance/Growth Capex, Structural/Contractual
+  Subordination, Deficiency Claim und DSCR. Sechs bereits vorhandene Einheiten
+  verweisen gezielt auf die neue Erklärung.
+- Beide reservierten Transferfragen verwenden andere Daten als die Lehrfälle.
+  Die eine verbindet Ergebnis-Cash-Brücke und notwendige Reserve, die andere
+  getrennte Rechtsträger. Beide bleiben vom Übungspool getrennt; alle falschen
+  Optionen besitzen nachvollziehbare Fehlergründe.
+- Der Stand umfasst **76 Einheiten, 246 von 340 strukturell zugeordneten
+  Lernzielreferenzen, 2.432 Trainingsfragen, 174 CFA-Grafiken und 49 Rechner**.
+  Beide Klausuren enthalten je **131 von 180** reservierten Fragen, davon je
+  neunzehn im Anleihebereich. **26 Einheiten, 94 Lernzielreferenzen, 49 Fragen je
+  Klausur und die fachliche Gesamtabnahme bleiben offen**. Release bleibt false,
+  die Einheiten bleiben draft und die unvollständigen echten Klausuren gesperrt.
+  Die Zielwerte 90/100 und 80/100 werden weiterhin nicht als erreicht behauptet.
+- Unabhängige numerische Prüfungen bestätigen **506 Cash-/Schuldüberleitungen**,
+  darunter sämtliche 256 Kombinationen der Eingabegrenzen, **92.598 Rechnerpunkte**
+  sowie alle **1.446 gezeichneten Buchwertepaare**. Die 330 Kernprüfungen bestehen.
+  Der Bestandslauf bestätigt 171 Kapitel, 49 Modelle, 7.535 Bedienaktionen und
+  17.086 Begriffsverweise ohne Funktionsfehler. Die Bestandsformelprüfung umfasst
+  unverändert 3.054 Vorkommen und 2.886 Hilfefelder auf zwei Breiten.
+  Alle **30 neuen Bildschirmansichten** wurden zusätzlich visuell gelesen:
+  sechs Grafiken, fünf Beispiele, zwei Vertiefungen, Rechner und Überleitungen,
+  mobile Symbolhilfe, Null-/Negativ-EBITDA, Extreme bis 320 Pixel sowie beide
+  tatsächlichen reservierten Lösungen auf Desktop und Mobilgerät.
+- Die vollständige CFA-Browserregression besteht mit **73/73 Testfällen** auf
+  dem Stand 47a7ac00b24ec069, ebenso die 330 Kernprüfungen. Ein früherer Lauf
+  überspannte eine Rechnerunterbrechung und enthielt zwei Aktions-Timeouts;
+  beide gezielten Wiederholungen und der anschließende vollständige Lauf bestehen.
+- Anschließend wurde ausschließlich der Name des eigenen Firmenfalls von Lumen
+  in **Neravo** geändert, damit die Daten nicht mit dem bestehenden Lumen-Fall der
+  Cashflow-Analyse verwechselt werden. Rechenregeln, Zahlen, Modelle, Zuordnungen
+  und Abläufe wurden dabei nicht verändert. Der abschließende Lernstand
+  **03e191cf5ad9b8c0** besteht erneut mit **330/330 Kernprüfungen, 4/4 neuen
+  CFA-Browsertests und 3/3 Bestandsprüfungen**. Die 30 Bildschirmansichten wurden
+  auf diesem Stand frisch erzeugt. Die letzte Fallunterscheidung wurde zusätzlich
+  mit geöffneter Symbolhilfe auf Desktop und in zwei mobilen Ausschnitten geprüft;
+  ihre Geometrie blieb über 120 aufeinanderfolgende Bilder stabil.
+  Der normalisierte HTML-Prüfwert lautet
+  47d1cb5d981a4122fb6f88facbfa00d4d8b89f72e8b919aee2e1f9266d75871b
+  bei 19.649.513 Bytes. Diese technische Evidenz ersetzt weiterhin weder die
+  ausstehende fachliche Gesamtabnahme noch die fehlenden Themen und Klausurfragen.
