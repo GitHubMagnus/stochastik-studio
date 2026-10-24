@@ -147,7 +147,7 @@ window.FinanceStudy=(()=>{
  }
  function mountLab(id){
   const model=FinanceModels.models[id],el=document.getElementById('study-lab');
-  el.classList.toggle('study-lab-forecast',['forecastvalue','companydrivers','bondcovenants','repayment','bondindex','repofunding','yieldspread','floater','moneyyield','yieldcurve','bondhorizon','bond','bondconvex','keyrate','credit','sovereign','creditcash','mortgage','forwardvalue'].includes(id));
+  el.classList.toggle('study-lab-forecast',['forecastvalue','companydrivers','bondcovenants','repayment','bondindex','repofunding','yieldspread','floater','moneyyield','yieldcurve','bondhorizon','bond','bondconvex','keyrate','credit','sovereign','creditcash','mortgage','forwardvalue','option'].includes(id));
   el.classList.toggle('study-lab-covenants',id==='bondcovenants');
   el.classList.toggle('study-lab-repayment',id==='repayment');
   el.classList.toggle('study-lab-bondindex',id==='bondindex');
@@ -172,7 +172,7 @@ window.FinanceStudy=(()=>{
     el.querySelector('#lab-error').hidden=true;el.querySelector('#lab-results').hidden=false;
     el.querySelector('#lab-metrics').innerHTML=r.metrics.map(([name,v])=>`<div><span>${esc(name)}</span><strong>${fmt(v,4)}</strong></div>`).join('');
     el.querySelector('#lab-chart').innerHTML=chart(r);
-    if(['forecastvalue','companydrivers','bondcovenants','repayment','bondindex','repofunding','yieldspread','floater','moneyyield','yieldcurve','bondhorizon','bond','bondconvex','keyrate','credit','sovereign','creditcash','mortgage','forwardvalue'].includes(id)){
+    if(['forecastvalue','companydrivers','bondcovenants','repayment','bondindex','repofunding','yieldspread','floater','moneyyield','yieldcurve','bondhorizon','bond','bondconvex','keyrate','credit','sovereign','creditcash','mortgage','forwardvalue','option'].includes(id)){
      const plot=el.querySelector('#lab-chart');plot.tabIndex=0;plot.setAttribute('role','region');plot.setAttribute('aria-label','Seitlich verschiebbare Modellkurve');
      if(!plot.nextElementSibling.classList.contains('study-model-plot-hint')){
       const hint=document.createElement('p');hint.className='study-model-plot-hint';hint.hidden=true;hint.textContent='↔ Die Grafik ist seitlich verschiebbar; mit Fokus auch über die Pfeiltasten.';plot.after(hint);
