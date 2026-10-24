@@ -5,6 +5,7 @@ const run=(id,p={})=>M.calculate(id,{...defaults(id),...p});
 const near=(a,b,tol=1e-6)=>assert.ok(Math.abs(a-b)<=tol,`${a} != ${b}`);
 const refs={dcf:[863.837598531476],annuity:[272.324802937048],growth:[5,3.07764064044],diversification:[14.14213562373],capm:[9],wacc:[7.5],gordon:[50],inflation:[3.92156862745],fx:[2.6],forward:[105.1271096376],bond:[97.3269880505,2.6956108],credit:[12000,24000,16800,72000,39.65352702211031,600000,.5,60000],waterfall:[10,140],option:[5,10,5],binomial:[62.5,11.9047619048,.5],bsm:[10.4505835722,5.5735260223,.6368306512],supply:[30,40],regression:[2],ar:[5+5*.8**30],dupont:[24],utility:[50],rebalance:[64.2857142857],risk:[1.64485362695,2.06271280751],alm:[-9.4,95.2380952381],attribution:[.6,1,.2,1.8],execution:[125],tax:[15529.694217329,15931.3577240714]};
 test('every interactive Finance model matches independent reference values',()=>{
+ refs.futuresstates=[100,2080/21,20/21,1000/11,2000,-2000];
  refs.repofunding=[95,19/60,95+19/60,2,0,100/95*100];
  Object.assign(refs,{npv:[197.813011123],fxforward:[.882692307692],forwardvalue:[4.9,-4.9],abs:[20,10],property:[2000000],frontier:[6,11.1803398875],forecastvalue:[756.9824942144152,786.9824942144152,78.69824942144152,50.55],companydrivers:[199.5,25.5,16.675,0],bondcovenants:[250,15,2.9375,5,80/13.8]});
  refs.repayment=[288.59149237327324,288.59149237327324,154.36596949309387,2.5727661582182275,1000];

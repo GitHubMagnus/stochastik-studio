@@ -3692,3 +3692,116 @@ Endgültige Inhaltsversion: 7d4977ab228f1d50.
 Normalisierter HTML-SHA-256:
 119e10d2008a91ac38e880dd426ed05c84bf9761fa3af40689e6fa68c67cbc4e
 bei 22.250.414 Bytes.
+
+## 25.10.2026 – Futures, Zahlungszeitpunkte und konsistente Zustandsbewertung
+
+Die beiden tatsächlichen Lernziele des Futures-Moduls 2027 sind in 32 Abschnitten
+ausgearbeitet. 30 gesetzte Formeltafeln mit lokalen Symbolhilfen, 15 gerechnete
+Beispiele, neun Tabellen und sechs berechnete Grafiken erklären den Preis- und
+Wertvergleich sowie mögliche Preisunterschiede. 13 Klapptexte enthalten unter
+anderem acht begründete Verständnisfragen und zusätzliche Herleitungen.
+50 neue Trainingsfragen sind gleichmäßig den beiden Lernzielen zugeordnet.
+Zwei getrennt reservierte Transfers ergänzen die echten Klausurpools.
+
+Die Cashfälle trennen Futuresquote, noch offenen Vertragsanspruch, kumulierte
+Variation, Sicherheitskonto, zusätzliche Einzahlung und Kontorückgabe.
+Ein vollständiger Kontoauszug verhindert doppelte Verlustzählung. Datierte
+Gewinne und Verluste werden mit ihren eigenen Restlaufzeiten finanziert.
+Gleicher ungewichteter Endgewinn bedeutet deshalb nicht gleichen finanzierten
+Endcash. Physische Lieferung und vorher ausgezahlte Variation werden ebenfalls
+abgestimmt, statt den gleichen Gewinn zweimal zu zählen.
+
+Eine ergänzende dynamische Replikation zeigt die exakte Mengenanpassung bei
+sicheren Faktoren. Im eigenen Zweiperiodenfall liefert der angepasste Bestand
+einen Endanspruch von sechs, während dieselbe unverändert gehaltene Menge
+6,40 erzeugt. Das erklärt die Preisgleichheit im sicheren Zinsmodell ohne
+fälschlich identische statische Zahlungswege zu behaupten. Negative sichere
+Zinsen und abweichende Mengen sind in der Gegenrechnung berücksichtigt.
+
+Das eigene Zwei-Zustände-Modell leitet Forwardquote, Futuresquote, heutigen
+Spot und Zero-Bond-Preis aus denselben positiven Zustandswerten ab. Es setzt
+keinen unabhängigen widersprüchlichen Spot zusätzlich fest. Der Future bezahlt
+die ganze hier bei Termin eins aufgelöste Preisänderung; der Forward zahlt erst
+bei zwei. Eine Umkehr der Zinszuordnung kehrt den Quoteabstand um. Ein positiver
+arithmetischer Endmittelwert wird nicht als risikofreier Gewinn ausgegeben:
+Beide diskontierten Startwerte sind null. Risikoneutrale Bewertungsgewichte
+bleiben von tatsächlichen Prognosewahrscheinlichkeiten getrennt.
+
+Der neue Rechner besitzt sechs Eingaben, acht kontrollierte Vergleichsfälle,
+sechs Kennzahlen, zwei Kurven und zwei Zustands-/Zahlungstabellen. Preise je
+Einheit und Geldpositionen sind getrennt bezeichnet. Die Kurve verändert nur
+den zweiten Zins in Zustand A; alle übrigen gesetzten Parameter bleiben fest.
+Nullmenge beseitigt die Positionszahlungen, nicht die fairen Stückquoten.
+Gleiche Endpreise oder gleiche spätere Zinsen beseitigen den konkret gezeigten
+Timingeffekt. Die Zustandsrechnung ist ausdrücklich zusätzliche Vertiefung,
+kein neu erfundenes verpflichtendes CFA-Rechenlernziel.
+
+Inverse Zinsquote, Punktmultiplikator und Basispunktbetrag werden schrittweise
+übersetzt. Die Krümmung eines klassischen vorschüssigen FRA wird weder mit
+einem universellen festen Convexity-Spread noch mit einer zweiten zusätzlichen
+Endzahlung verwechselt. Die nachschüssig zusammengesetzte SOFR-Referenz wird
+vom klassischen vor Beginn feststehenden Termzins getrennt. Tatsächliche
+Erfüllung unter STM und bloße Besicherung unter CTM bleiben unterscheidbar.
+Besondere LME-DCVM-Regeln begrenzen die Aussage, dass sämtliche börslichen
+Gewinne immer sofort frei auszahlbar seien. Die unabhängigen Rechenbeispiele
+verwenden ihre ausdrücklich festgelegte realisierte Cashkonvention.
+
+Maßgeblich sind die zwei Lernziele im offiziellen 2027-Outline. Die öffentliche
+CFA-Übersicht von 2026 ist als Ergänzung gekennzeichnet. Primärquellen von
+CFTC, CME, BIS und LME belegen die jeweils abgegrenzten Markt- und
+Abrechnungsaussagen. Ein CME-Beispiel von 2024 illustriert die unterschiedliche
+Futures-implied Yield und Swaprate; seine Werte werden nicht als allgemeiner
+oder aktueller fixer Marktspread übernommen. 20 neue Begriffsdefinitionen
+erhalten genaue Rückverweise; mehrdeutige Margin-, Wert- und Quotebezeichnungen
+werden nur im Futureskontext umgelenkt.
+
+Unabhängige Kontrollen prüfen 729 Parameterkombinationen, alle 147.258
+Modellkoordinaten, alle 687 Buchkoordinaten und sämtliche 24 numerischen
+Aufgaben einschließlich der beiden tatsächlichen reservierten Transfers.
+Referenzen sind positive Zustandswerte, vollständige Cash-Ledger und
+endwertbezogene Replikation. Jeder faire Startwert, sämtliche Modelltabellen,
+die Quote-Spot-Bond-Konsistenz und die Vorzeichen bei umgekehrter Verbindung
+werden geprüft. Die ursprüngliche Koordinatenzählung 766 war ein Fehler der
+Testinventur; die vollständige unabhängige Nachzählung ergibt 687. Kein
+abweichender Grafikpunkt wurde durch diese Korrektur akzeptiert.
+
+Die Regression umfasst 471 unterschiedliche bestandene Tests: 396 Kern-,
+25 allgemeine Browser-, fünf neue Futures-Browser- und 45 übergreifende
+CFA-Browserprüfungen. Die 45 übergreifenden Prüfungen liefen auf Version
+a98cd559e8568c68. Nach der Durchsicht wurden ausschließlich die neue
+Futureserklärung mit zwei zusätzlichen Formeltafeln und einem Replikationsfall,
+eine Grafiklesehilfe, ein gerundeter Wert im Beispiel, eine Quellen-/Linkzeile
+und die Einheit einer Modellkennzahl ergänzt. Ein normalisierter
+Datensatzvergleich bestätigt unveränderte Fragen, unverändertes Wörterbuch
+und unveränderte übrige 84 Einheiten; die numerische Modelllogik blieb gleich.
+396 Kern-, fünf Futures-Browser- und 25 allgemeine Browserprüfungen wurden
+auf der endgültigen Version erneut durchgeführt. Die allgemeine Prüfung
+durchläuft alle 171 bisherigen Kapitel und 53 Modelle.
+
+55 erste Kontrollansichten wurden visuell gelesen; die endgültigen 56
+Ansichten umfassen auch die hinzugefügte Replikation. Alle 38 nach der letzten
+Fassung abweichenden Ansichten wurden erneut gelesen; die übrigen 18 sind
+per SHA-256 identisch. Lange Formeln, Grafiken und Tabellen besitzen auf schmalen
+Bildschirmen seitliche Verschiebung und Tastaturbedienung. Die Kennzahlen
+bleiben bei 320 Pixeln innerhalb des Layouts. Echte unvollständige Klausuren
+bleiben gesperrt; die beiden reservierten Aufgaben werden nur in einer
+isolierten Testkopie vorübergehend als Übungsfragen gerendert.
+
+**Das Gesamtziel bleibt offen:** 85 von 102 Einheiten, 269 von 340
+Lernzielreferenzen und 2.944 Trainingsfragen. Vier Derivate-, sieben
+Alternative-Investments- und sechs Portfolioeinheiten fehlen, zusammen
+17 Einheiten und 71 LOS. Die beiden echten Klausuren enthalten je 143 von
+180 Fragen. Jeweils fehlen vier Derivate-, 13 Alternative-Investments- und
+20 Portfoliofragen, zusammen 37. Sämtliche Einheiten bleiben draft;
+Release bleibt false. Insgesamt bestehen 233 berechnete CFA-Buchgrafiken,
+zehn Ablaufbilder, 53 Modelle und 70 interaktive Zugänge in den bisherigen
+Finance-Kapiteln. Das Wörterbuch besitzt 1.816 Definitionen, 3.957
+Begriffe/Aliase und 1.548 kuratierte Rückverweise. Die fachliche Gesamtabnahme
+und die Zielwerte 90/100 Materialqualität und 80/100 Vorbereitungseignung
+sind weiterhin nicht erreicht. Diese Scores sind keine persönliche
+Bestehenswahrscheinlichkeit.
+
+Endgültige Inhaltsversion: 7a8046235c3497ab.
+Normalisierter HTML-SHA-256:
+36425dca586200e9bc8c720adaf7aedd578dedc44cf073115c3e423ceba8c4b3
+bei 22.522.704 Bytes.

@@ -316,3 +316,5 @@ module.exports={id:'forward-value',intro:[
  {title:'ANZ: historische Erläuterung von FRA, Nominal und vorschüssigem Ausgleich; keine aktuelle Benchmark- oder Vertragsnorm',url:'https://www.anz.com/Documents/FXOnline/FRA.pdf'},
  {title:'BIS: CRE 52, historische FAQ zur Trennung des FRA-Periodenendes vom typischen frühen Ausgleichsdatum; keine Anwendung der Kapitalformeln im Lernmodell',url:'https://www.bis.org/committees/bcbs/basel-framework/standard/cre/52/inforce/2019-12-15/published/2019-12-15'}
 ],review:{status:'draft',date:'2026-10-24',note:'Eigene Preis-, Kurven- und Cashfallrechnungen mit getrennten Annahmen; mathematische und Browsergegenprüfung ersetzen keine unabhängige fachliche Gesamtabnahme.'}};
+
+module.exports.related.push({unit:'futures',section:'reset',label:'Forwardbewertung mit dem laufenden tatsächlichen Futuresausgleich vergleichen'});
