@@ -3280,3 +3280,108 @@ und bestandene Technikprüfungen ersetzen die spätere fachliche Abnahme nicht.
   Die fachliche Gesamtabnahme bleibt offen; Release bleibt false
   und alle Einheiten bleiben draft. Die Zielwerte 90/100 und
   80/100 werden weiterhin nicht als erreicht behauptet.
+
+### 24. Oktober 2026 — Instrumentvergleich und Optionsprofile
+
+Die Einheit derivative-contracts arbeitet die drei tatsächlichen Lernziele
+2027 zu Instrumentmerkmalen, Optionsendwert/Gewinn und festen
+Verpflichtungen gegenüber bedingten Ansprüchen aus. Umfang: 30 Abschnitte,
+27 Formeln mit lokalen Symbol- und Einheitenerklärungen, 16 eigene
+Rechenbeispiele, 16 Tabellen, acht berechnete Grafiken, ein Ablaufbild und
+acht ausklappbare Vertiefungen beziehungsweise Verständnisfragen.
+
+- Forward, Future und Swap werden aus den vertraglichen Leistungen und
+  tatsächlichen Zahlungszeitpunkten entwickelt. Ein passender Einkauf mit
+  Forward, ein verlustreicher Zwischenweg beim Future und Swap plus
+  variabler Kredit zeigen jeweils das gemeinsame wirtschaftliche Ergebnis.
+- Call und Put werden jeweils für Käufer und Verkäufer hergeleitet.
+  Strike, Moneyness, Gewinnschwelle, Endauszahlung und Gewinn bleiben
+  getrennt. Die Fälle verändern Endkurs oder Prämie gezielt und erklären,
+  warum positiver Ausübungswert noch keinen positiven Gesamtgewinn schafft.
+- Die Grenzen der vier Positionen folgen aus den angenommenen Extremkursen.
+  Prozentuale Prämienrendite ist von der Kapitalbindung eines Verkäufers
+  getrennt. Menge, Multiplikator, physischer Kaufpreis und finanzierter
+  gegenüber unfinanziertem Gewinn besitzen eigene vollständige Rechnungen.
+- Kreditderivate unterscheiden Referenzschuldner und Sicherungsverkäufer.
+  CDS-Prämie, Recovery, Schutzleistung und gesamter Anleihe-/CDS-Wert werden
+  getrennt bilanziert. Physische Lieferung und Barausgleich werden mit
+  identischen wirtschaftlichen Werten, aber unterschiedlichen
+  Bruttoübertragungen verglichen. Total Return Swap wird als anderes
+  übertragendes Profil eingeordnet.
+- Protective Put und Covered Call zeigen die Kombination mit der Aktie:
+  geschützter Endwert versus gezahlte Schutzprämie beziehungsweise
+  begrenzte Oberseite bei weiter bestehendem Aktienabwärtsrisiko.
+- 60 eigenständige englische Trainingsfragen decken jedes der drei
+  Lernziele mit je 20 Fragen ab. Alle drei Antworten besitzen deutsche
+  Begründungen und einen genauen Abschnittsrückverweis. Vier weitere
+  Transferfragen sind ausschließlich auf die getrennten Klausuren verteilt.
+
+Der bestehende Optionsrechner bleibt in den bisherigen Kapiteln 06 und 10
+erreichbar. Die vier bisherigen Positionsnummern bleiben erhalten;
+Short Call und Short Put ergänzen die Auswahl. Sechs benannte Positionen,
+sieben Vergleichsfälle, getrennte Gewinn- und Endwertkurven sowie ein
+Bestandteilkonto stellen Auszahlung, Netto-Anfangskosten und Gewinn
+gegenüber. Die erste Kennzahl bleibt unverändert der Gewinn.
+Keine Vorablaufbewertung, Finanzierung, Margin- oder Ausübungssimulation
+wird als implementiert ausgegeben. Einheiten und Zeichenbereich werden
+ausdrücklich benannt; der sichtbare rechte Rand begrenzt keinen theoretischen
+Short-Call-Verlust.
+
+Die Wörterbuchprüfung fand eine tatsächliche Alias-Kollision:
+Die drei Moneyness-Zustände wurden zunächst auf denselben Sammelbegriff
+aufgelöst. Eigene präzise Zustandseinträge und kontextbezogene Verweise
+beheben dies; der übergreifende Eintrag Moneyness erklärt weiterhin alle
+drei Richtungen. Bestehende Forward-, wirtschaftliche Gewinnschwellen-,
+Repo-Margin- und Settlement-Bedeutungen bleiben erhalten. Der endgültige
+Stand umfasst 1.737 Definitionen, 3.818 allgemeine Begriffe/Aliase,
+160 kontextbezogene Aliase und 1.461 kuratierte genaue CFA-Rückverweise.
+
+Die unabhängigen numerischen Gegenprüfungen umfassen 3.456 Szenarien
+aller sechs Rechnerpositionen und 3.462.912 berechnete Kurvenkoordinaten.
+Anfangszahlung, Endwert, Gewinnbeitrag und deren Gesamtsummen stimmen
+überein. Sämtliche 2.659 Punkte der acht Buchgrafiken und 28 numerische
+Trainings-/Transferantworten wurden separat nachgerechnet. Swap-/Kreditzinsen,
+Options-Grenzfälle, Finanzierung und die Bruttolieferung von Aktien sind
+zusätzlich abgestimmt. Die Quellformeln werden streng mit KaTeX kompiliert.
+
+Bei der Sichtprüfung wurden eine überlappende Recovery-Wertachse auf
+ausdrücklich bezeichnete Millionen WE umgestellt und lange Rechenketten
+mehrzeilig gesetzt. Der abschließende Browsertest prüft auch
+Achsenbeschriftungskollisionen und vollständig sichtbare Desktopformeln.
+Auf kleinen Bildschirmen bleiben echte Überläufe mit Tastatur und
+Verschiebehinweisen zugänglich.
+
+**Das Gesamtziel bleibt offen:** 81 von 102 Einheiten und 261 von
+340 Lernzielreferenzen sind ausgearbeitet, mit 2.744 Trainingsfragen.
+Acht Derivate-, sieben Alternative-Investments- und sechs Portfolioeinheiten
+bleiben offen, insgesamt 21 Einheiten und 79 Lernzielreferenzen.
+Die realen Probeklausuren besitzen je 137 von 180 Fragen; es fehlen jeweils
+zehn Derivate-, 13 Alternative-Investments- und 20 Portfoliofragen.
+Sie bleiben gesperrt, Release bleibt false und alle Einheiten bleiben
+draft. Insgesamt existieren 208 berechnete CFA-Buchgrafiken und acht
+Ablaufbilder. Die fachliche Gesamtabnahme steht aus. Die Zielwerte 90/100
+Materialqualität und 80/100 Vorbereitungseignung werden nicht als erreicht
+behauptet; sie sind weiterhin keine persönliche Bestehenswahrscheinlichkeit.
+
+Abschließende Prüfung auf dem veröffentlichten Inhaltsstand:
+366/366 Fach- und Codetests sowie 6/6 neue und 45/45 allgemeine
+CFA-Browsertests sind bestanden, insgesamt 417 Tests. Die allgemeine
+CFA-Prüfung umfasst das Rendering aller 81 Einheiten, Kapitel- und
+Wörterbuchverweise, Notation, Training, Zustandsspeicherung, Offlinebetrieb
+sowie den mit gesonderten künstlichen Daten getesteten Klausurablauf.
+Beide echten unvollständigen Klausuren bleiben gesperrt.
+
+57 Ansichten wurden für Buchgrafiken, Fälle, Tabellen, Vertiefungen,
+Bruttoübertragungen, mobile Bedienung, Rechnerausgaben und tatsächliche
+reservierte Lösungen erzeugt. Die Sichtprüfung umfasste insbesondere
+alle überarbeiteten Rechenketten, die korrigierte Millionenachse, die
+CDS-Erfüllungstabelle und die zusätzlichen Rechneransichten. Die
+Screenshot-Hilfe prüft bei reservierten Fragen ausdrücklich deren
+eigene Versionskennung, Fragestellung und richtige Rückmeldung.
+
+Inhaltsversion: e9a698cc7d78658b.
+Normalisierter HTML-SHA-256:
+5ab5348db1916a2d70c4928372e8368da67167bec53336822a5fdb8e654e0724
+bei 21.288.572 Bytes. Der Prüfsummenvergleich erfasst das vollständige
+Offline-Artefakt einschließlich Wörterbuch und Rechner, nicht nur
+die aus Lerneinheiten und Fragen gebildete Inhaltsversion.

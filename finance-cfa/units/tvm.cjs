@@ -136,3 +136,5 @@ module.exports={id:'tvm',intro:[
  {title:'Texas Instruments: P/Y, C/Y und BGN/END',url:'https://education.ti.com/en/customer-support/knowledge-base/financial-calculators/product-usage/11228'},
  {title:'Texas Instruments: Ursachen unerwarteter TVM-Ergebnisse',url:'https://education.ti.com/en/customer-support/knowledge-base/financial-calculators/product-usage/21590'}
  ],review:{status:'draft',date:'2026-09-18',note:'Eigene Herleitungen von Barwerten, Replikation, Forward- und Optionswerten; konkrete Rechnerkonventionen.'}};
+
+module.exports.related.push({"unit":"derivative-contracts","section":"financing","label":"Eine Optionsprämie für den Endgewinn auf denselben Termin aufzinsen"});

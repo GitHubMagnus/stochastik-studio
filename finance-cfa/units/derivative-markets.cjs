@@ -275,3 +275,5 @@ module.exports={id:'derivative-markets',intro:[
  {title:'BIS: Central Clearing — Trends and Current Issues, historische konzeptionelle Analyse zu Netting, Teilnehmerketten und gemeinsamen Risiken',url:'https://www.bis.org/publications/central-clearing-trends-and-current-issues'},
  {title:'CFA Institute: Level-I-Errata 2027, Ausgabe Oktober 2026, Derivateabschnitt ergänzend geprüft',url:'https://www.cfainstitute.org/sites/default/files/2027-cfa-program-level-1-errata-notice.pdf'}
 ],review:{status:'draft',date:'2026-10-24',note:'Eigene Vertrags-, Zahlungs-, Netting- und Marginfälle. Numerische Gegenprüfungen und Browserkontrolle ersetzen keine fachliche Gesamtabnahme.'}};
+
+module.exports.related.push({"unit":"derivative-contracts","section":"comparison","label":"Instrumenttypen und Optionsgewinn anhand vollständiger Zahlungsprofile vergleichen"});

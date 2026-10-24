@@ -254,3 +254,5 @@ related:[
  {title:'S&P Global Ratings: Understanding Credit Ratings; relative Bonität, Verwendungszweck und Grenzen des Urteils',url:'https://www.spglobal.com/ratings/en/credit-ratings/about/understanding-credit-ratings'},
  {title:'Bank for International Settlements: Expected credit losses; Bedeutung konsistenter Annahmen, Horizonte, Eingaben und Szenarien. Das eigene Portfolio-Beispiel ist kein regulatorisches Kapitalmodell',url:'https://www.bis.org/committees/bcbs/basel-consolidated-guidelines/module/pap/20'}
 ],review:{status:'draft',date:'2026-10-22',note:'Eigene Zahlungs-, Zustands-, Konzentrations- und Spreadfälle. Quote und Geldverlust, physisches und Bewertungsmaß, Marktpreis und Ausfallverlust ausdrücklich getrennt. Fachliche Gesamtfreigabe bleibt ausstehend.'}};
+
+module.exports.related.push({"unit":"derivative-contracts","section":"cds","label":"Referenzereignis, CDS-Prämie und Gegenparteierfüllung getrennt untersuchen"});
