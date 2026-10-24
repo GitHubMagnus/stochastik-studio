@@ -279,3 +279,5 @@ module.exports={id:'derivative-markets',intro:[
 module.exports.related.push({"unit":"derivative-contracts","section":"comparison","label":"Instrumenttypen und Optionsgewinn anhand vollständiger Zahlungsprofile vergleichen"});
 
 module.exports.related.push({"unit":"derivative-uses","section":"liquidity-case","label":"Einen Produzenten-Hedge mit tatsächlicher Zwischenfinanzierung verbinden"});
+
+module.exports.related.push({"unit":"carry","section":"cash-carry","label":"Arbitrage mit vollständig finanzierten Lieferströmen herleiten"});

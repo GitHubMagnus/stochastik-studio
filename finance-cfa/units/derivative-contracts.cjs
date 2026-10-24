@@ -274,3 +274,5 @@ module.exports={id:'derivative-contracts',intro:[
 ],review:{status:'draft',date:'2026-10-24',note:'Eigene Zahlungs-, Options- und CDS-Fälle; mathematische und Browsergegenprüfungen ersetzen keine unabhängige fachliche Gesamtabnahme.'}};
 
 module.exports.related.push({"unit":"derivative-uses","section":"long-hedge","label":"Absicherung nach Ziel, Menge, Basis und Zahlungszeitpunkt prüfen"});
+
+module.exports.related.push({"unit":"carry","section":"value","label":"Lieferpreis und bestehenden Vertragswert aus dem Replikationsvergleich ableiten"});
