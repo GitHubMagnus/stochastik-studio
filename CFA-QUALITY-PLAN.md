@@ -3196,3 +3196,87 @@ und bestandene Technikprüfungen ersetzen die spätere fachliche Abnahme nicht.
   bei 20.655.514 Bytes. Der vollständige 87er-Lauf liegt vor der letzten
   ausschließlich rechnerbezogenen CSS-Korrektur; die drei danach genannten
   Läufe und die Bildkontrolle prüfen deren endgültiges Ergebnis.
+
+### 24.10.2026 — Derivate und Marktorganisation
+
+- Das erste der zehn tatsächlichen Derivatemodule 2027 ist in 33
+  Abschnitten ausgearbeitet. Die beiden Lernziele zu Instrumentmerkmalen
+  und OTC-/Börsenmärkten werden mit 17 gesetzten Formeltafeln, zwölf
+  eigenen Rechenfällen, 13 Tabellen, sechs berechneten Grafiken,
+  zwei Zahlungsbildern und zwei Vertiefungen erläutert.
+- Die Darstellung trennt feste Preisregel, heutigen Neugeschäftspreis,
+  vorzeichenbehafteten Marktwert, Nominalmaß, aktuellen positiven Zugriff
+  und tatsächlich fälliges Cash. Lieferung und Barausgleich werden
+  getrennt gerechnet. Cash und Aktienansprüche besitzen im Zahlungsbild
+  eigene Pfeilarten und werden nicht als gleichartige Beträge addiert.
+- OTC-Handel und zentrales Clearing sind getrennte Merkmale. Broker,
+  Kunde, Clearingmitglied und CCP erhalten unterschiedliche Rollen.
+  Die Beispiele erläutern aktuelle Netting-Sätze, anrechenbare
+  Sicherheiten und verbleibende mögliche Close-out-Lücken.
+  Die Bedingungen von Netting, Haircuts, Maintenance und CCP-Ressourcen
+  sind ausdrücklich gesetzt; daraus wird keine universelle aktuelle
+  Rechtsregel oder unbegrenzte Clearinggarantie abgeleitet.
+- Ein täglicher Futuresfall stimmt jedes Ergebnis, jede externe
+  Zusatzeinzahlung und den Endkontorückfluss ab. Ein Produzentenfall
+  zeigt den unterschiedlichen Zeitpunkt von Marginbedarf und späterem
+  Verkaufserlös. Ein reiner Mengenvergleich erklärt Unter- und
+  Überdeckung durch ganzzahlige Standardkontrakte, ohne damit die
+  gesamte Marktformwahl vorzugeben.
+- Der vorhandene Forwardwert-Rechner zeigt beide Vertragsseiten und
+  fünf kontrollierte Fälle. Seine anfängliche Beschränkung des
+  Diskontfaktors auf höchstens eins wurde erweitert; der gewählte
+  Eingabebereich 0,5 bis 1,5 wird als Oberflächenbereich erklärt.
+  Ein Faktor über eins ist kein mathematischer Fehler. Der Rechner
+  verwendet eine Einheit und behauptet keine Margin-, Ausfall-,
+  CVA- oder Funding-Simulation. Beide bisherigen beziehungsweise neuen
+  Kapitelzugänge bleiben erreichbar. Insgesamt bestehen weiterhin
+  50 Modelle; 68 der 171 Finance-Kapitel sind nun interaktiv.
+- 40 eigenständige englische Trainingsfragen enthalten deutsche
+  Rechenwege und Begründungen aller drei Alternativen. Je eine neue
+  reservierte Frage verknüpft Mengen-/Preisbewertung beziehungsweise
+  getrennte Gegenpartei-Netting-Sätze mit neuen Daten. Die echten
+  Klausuren enthalten nun je 135 von 180 Fragen und bleiben gesperrt.
+  Der Derivateanteil enthält je eine von geplanten 13 Fragen.
+- 41 weitere Einträge werden kuratiert dem neuen Lernpfad zugeordnet.
+  Der endgültige Wörterbuchstand umfasst 1.709 Definitionen,
+  3.745 allgemeine Begriffe/Aliase und 152 zusätzliche kontextbezogene
+  Aliase; 1.423 Einträge besitzen einen präzisen CFA-Rückweg.
+  Derivate-Margin, Repo-Initial-Margin, Aktien-Settlement sowie der
+  allgemeine und der im Bewertungsvergleich verwendete Forward
+  bleiben passend unterschieden. Fixing, Intraday, Funding und
+  Gegenparteiausfall wurden bei der Begriffskontrolle ergänzt.
+- Die tatsächliche Lernzielliste 2027 ist die Abdeckungsbasis.
+  Die öffentliche Übersicht 2026 sowie Quellen von BIS,
+  BCBS-IOSCO, CME und UNIDROIT ergänzen Instrument- und
+  Organisationsmerkmale. Die Derivate-Errataseite 2027 wurde
+  gegengeprüft. Historische Infrastrukturquellen werden nicht als
+  Beleg heutiger universeller Marginquoten verwendet.
+- Unabhängige Rechnungen prüfen **3.528 Modellkonstellationen** und
+  **430.416 gezeichnete Rechnerwerte** durch getrennte diskontierte
+  Bruttoleistungen. Alle **701 Buchgrafikwerte** und **27 numerische
+  Fragenlösungen** stimmen mit Gegenrechnungen überein.
+  Tageskonto, externe Finanzierung, Mittelverteilung und die getrennte
+  Cash-/Aktienbilanz werden zusätzlich abgestimmt.
+- Der vollständige CFA-Browserlauf besteht mit **93/93** Prüfungen.
+  Er liegt vor der abschließenden Präzisierung zweier Beispieltexte
+  und den letzten vier Wörterbucheinträgen. Danach bestehen am
+  endgültigen HTML nochmals **359/359 Kernprüfungen, 6/6
+  Derivate-Browsertests, 3/3 Bestandsprüfungen und 2/2 gezielte
+  CFA-Verweis-/Darstellungsprüfungen über alle 80 Einheiten**.
+  Alle genannten Läufe enthalten keine übersprungenen oder
+  fehlgeschlagenen Tests. Die 43 neuen Ansichten wurden visuell
+  kontrolliert; die beiden zuletzt präzisierten Beispielansichten
+  wurden auf dem abschließenden Stand nochmals gelesen.
+- Der endgültige Lerninhalt besitzt Version **3af30d713a857d13**.
+  Der nach LF normalisierte HTML-Prüfwert lautet
+  5e129c2491eb4ca4b6718f00fe6f5ecbcb2da631958c3f27ed08df8e9124e546
+  bei 20.904.464 Bytes.
+- **Das Gesamtziel ist noch nicht erreicht:** 80 von 102 Einheiten,
+  258 von 340 Lernzielreferenzen und 2.684 Trainingsfragen sind
+  ausgearbeitet. Neun Derivate-, sieben Alternative-Investments- und
+  sechs Portfolioeinheiten bleiben offen, insgesamt 22 Einheiten
+  und 82 Lernzielreferenzen. Je Klausur fehlen zwölf Derivate-,
+  13 Alternative-Investments- und 20 Portfoliofragen, zusammen 45.
+  Die fachliche Gesamtabnahme bleibt offen; Release bleibt false
+  und alle Einheiten bleiben draft. Die Zielwerte 90/100 und
+  80/100 werden weiterhin nicht als erreicht behauptet.

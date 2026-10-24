@@ -342,6 +342,7 @@ module.exports={id:'mbs',intro:[
   'Prüfe beim CMBS-Fall zuletzt laufenden Schuldendienst, Objektwert und maximalen Neukredit getrennt. Ändere nur den Kapitalisierungssatz und danach nur den neuen Kreditzins. Die Trainingsfragen enthalten eigene zusätzliche Daten, erläutern jede Antwortalternative und verweisen zur passenden Erklärung zurück.'
  ])
 ],explorations:[{section:'calculator',lesson:'bonds-14',focus:'lab',label:'CPR, Kapitaldauer, Nettozahlungen und Barwert im vollständig abgestimmten Monatsplan vergleichen'}],related:[
+ {unit:'derivative-markets',section:'rights',label:'Schuldneroption und vertraglich bedingten Anspruch in den Derivategrundlagen einordnen'},
  {unit:'bond-cashflows',section:'wal',label:'Kapitalgewichtete Tilgungszeit von Barwertdauer und vertraglicher Endfälligkeit unterscheiden'},
  {unit:'floating-yields',section:'reset-case',label:'Index, Marge und Zinsanpassung vor dem ARM-Vergleich nachvollziehen'},
  {unit:'abs',section:'subordination',label:'Kreditverlustverteilung getrennt von MBS-Zeittranchierung rechnen'},
