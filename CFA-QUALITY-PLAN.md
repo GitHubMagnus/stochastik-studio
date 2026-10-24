@@ -3499,3 +3499,104 @@ die fachliche Gesamtabnahme steht aus. Insgesamt bestehen jetzt
 Die Zielwerte 90/100 Materialqualität und 80/100 Vorbereitungseignung
 werden nicht als erreicht behauptet und sind keine persönliche
 Bestehenswahrscheinlichkeit.
+
+## 24.10.2026: Arbitrage, Replikation und Cost of Carry
+
+Die neue Einheit bearbeitet die beiden tatsächlichen 2027-Lernziele zu
+Arbitrage/Replikation und Spot, realer Erwartung und Haltekosten. Sie enthält
+32 Abschnitte mit mehr als 25.000 Zeichen erklärender Prosa,
+31 gesetzte Formeltafeln mit lokalen Symbolhilfen, 14 eigene Beispiele,
+neun Tabellen, vier berechnete Grafiken und elf aufklappbare Erläuterungen,
+darunter acht zusätzliche Verständnisfragen.
+
+Vollständige Anfangs-/Endzahlungen und Rückgabepflichten erklären
+Cash-and-Carry und die Umkehrung. Der gleiche unsichere Spotpreis wird
+in jedem Zustand eliminiert. Bekannte Geldzahlungen mit ihrem jeweiligen
+Termin sind von bekannten proportionalen Ertragsraten mit Wiederanlage
+getrennt. Effektive und stetige Verzinsung werden ineinander überführt.
+Kontrollierte Fälle vergleichen Ertragszeit, Lagerkostentermin, negative
+Zinsen, Laufzeit, Finanzierung, Besitznutzen und Geld-/Briefpreise.
+Forwardpreis, alter fester Lieferpreis, heutiger Vertragswert und reale
+Spot-Erwartung bleiben getrennte Größen. Die Zwei-Zustands-Bewertung
+ist ausdrücklich zusätzliche Modellvertiefung. Ein nicht handelbarer
+Convenience Yield wird nicht zu einem sicheren Coupon umgedeutet;
+ein nicht ausführbarer Rohstoffleerverkauf begründet keine exakte Preisgleichheit.
+
+50 eigenständige Trainingsfragen verteilen sich gleichmäßig auf beide
+Lernziele. Je zwei weitere eigene Transfers sind ausschließlich für
+Klausur A beziehungsweise B reserviert. Alle Antwortmöglichkeiten besitzen
+Begründungen und genaue Rückverweise. Auch die Lagerkostenfrage enthält
+alle Annahmen im eigenen Fragetext und setzt keine vorherige Frage voraus.
+
+Der bestehende Forward-Rechner wurde erweitert, sein bisheriger
+Standardpreis 105,1271096376 bleibt erhalten. Fünf Eingaben und acht
+Vergleichsfälle zeigen fairen Lieferpreis, Prepaid-Replikationspreis,
+anfänglichen Stückbestand sowie einen separat eingegebenen Marktpreis.
+Tatsächliche Cashzahlungen und Stückentwicklung sind getrennt.
+Proportionale Erträge werden wiederangelegt und nicht doppelt als frei
+verfügbares Cash gezählt. Negative Finanzierung und exakt ausgeglichene
+Raten sind zugelassen; numerisches „−0“ im Nullvergleich ist beseitigt.
+Die Preisachse nutzt den tatsächlich gezeigten Bereich, damit geringe
+Carry-Unterschiede sichtbar bleiben. Die angebotene Einzelquote wird
+nicht als erfundene gesamte Marktkurve dargestellt. Lagerung,
+Convenience Yield, unsichere Erträge, Kosten, Margin und Ausfall werden
+von diesem begrenzten Finanzasset-Modell nicht simuliert.
+
+20 kuratierte Wörterbucheinträge erhalten neue genaue CFA-Rückverweise,
+teilweise durch Aktualisierung bestehender Definitionen. Das gesamte
+Wörterbuch umfasst 1.777 Definitionen, 3.903 Begriffe/Aliase und
+167 kontextgebundene Aliaszuordnungen; 1.508 Einträge sind für den
+CFA-Lernpfad kuratiert. Allgemeine Replikation bleibt beim Zeitwertkapitel,
+Zinsreplikation behält ihren vorhandenen Namen/Alias; im Carrykontext
+führt Replikation zur eindeutig benannten Terminvertragsreplikation.
+Eingehende Verbindungen aus den bisherigen Derivateeinheiten wurden ergänzt.
+Im README wurden zusätzlich versehentlich wörtlich gespeicherte
+Zeilenumbruchzeichen im vorherigen Arbeitsstandsabschnitt korrigiert.
+
+Unabhängige Kontrollen prüfen 1.600 Parameterszenarien mit
+323.200 Kurvenkoordinaten, alle 1.171 Buchkoordinaten und
+26 numerische Trainings-/Klausurfälle. Die Referenzen verwenden
+getrennte Diskont-/Stück-/Schuldrechnungen sowie vollständige
+Zustands- und Cashpfade. Gleiche Erwartungswerte werden durch
+unterschiedliche Zustandszahlungen widerlegt. Reale und
+Bewertungswahrscheinlichkeiten sind numerisch gegengeprüft.
+
+53 Kontrollansichten wurden visuell geprüft: alle Buchgrafiken,
+Beispiele, Klapptexte und weiteren Tabellen, mobile Symbole,
+sämtliche Rechnerfälle sowie die tatsächlichen reservierten
+Aufgabenlösungen auf Desktop und Mobilgerät. Bei der letzten
+Rechner-/Textkorrektur änderten sich 19 dieser Ansichten; sie wurden
+erneut gelesen. Die übrigen 34 Bilder sind per SHA-256 identisch.
+Die reservierten Fragen werden nur im isolierten Test vorübergehend
+als Trainingsfragen gerendert; echte unvollständige Klausuren bleiben gesperrt.
+
+**Das Gesamtziel bleibt offen:** 83 von 102 Einheiten,
+265 von 340 Lernzielreferenzen und 2.844 Trainingsfragen.
+Es fehlen sechs Derivate-, sieben Alternative-Investments- und sechs
+Portfolioeinheiten, zusammen 19 Einheiten und 75 LOS.
+Die echten Probeklausuren besitzen je 141 von 180 Fragen. Je Klausur
+fehlen sechs Derivate-, 13 Alternative-Investments- und 20 Portfoliofragen,
+zusammen 39. Release bleibt false; sämtliche Einheiten bleiben draft.
+Insgesamt gibt es jetzt 220 berechnete CFA-Buchgrafiken, neun Ablaufbilder,
+51 Modelle und 69 interaktive Zugänge in den 171 bisherigen Finance-Kapiteln.
+Die fachliche Gesamtabnahme und die Zielwerte 90/100 Materialqualität
+und 80/100 Vorbereitungseignung sind damit weiterhin nicht erreicht.
+Diese Scores sind keine persönliche Bestehenswahrscheinlichkeit.
+
+Die Regression umfasst 455 unterschiedliche bestandene Tests: 382 Kernprüfungen,
+sechs neue Carry-Browserprüfungen, 22 allgemeine Browserprüfungen und
+45 übergreifende CFA-Browserprüfungen. Die letzten beiden Suiten liefen auf
+Version 3a2a30f7a9b32b2a. Danach wurde ausschließlich Frage car-37
+sprachlich eigenständig formuliert. Ein Datensatzvergleich bestätigt, dass
+sich allein deren Fragetext und Revisionskennung änderten. Die 382 Kern-
+und sechs Carry-Browserprüfungen einschließlich aller 50 Originalfragen
+wurden auf der endgültigen Version erneut bestanden. 52 finale
+Kontrollbilder sind nach dieser redaktionellen Änderung pixelidentisch. Die einzige abweichende Aufnahme des mobilen Modellausgangs wurde erneut visuell geprüft.
+Die allgemeine Prüfung durchläuft sämtliche 171 bisherigen Kapitel und
+alle 51 registrierten Modelle; eine veraltete feste Obergrenze von
+fünfzig wurde durch den Vergleich mit dem tatsächlichen Modellregister ersetzt.
+
+Inhaltsversion: eaf553389ca1a3fd.
+Normalisierter HTML-SHA-256:
+18f53a7b8012a524b33b82aafc5f823809651fd6d5b71c5c48ccd17739cf917a
+bei 21.904.263 Bytes.

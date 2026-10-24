@@ -272,3 +272,5 @@ module.exports={id:'derivative-uses',intro:[
  {title:'CME: Understanding Stock Index Futures, historische Prinzipien zur Beta-Anpassung; sämtliche hier verwendeten Zahlen sind eigene Gegenrechnungen',url:'https://www.cmegroup.com/education/files/understanding-stock-index-futures.pdf'},
  {title:'CME: Cash Equitization with E-mini Equity Index Futures, historisches Umsetzungskonzept; keine Übernahme damaliger Marginquoten oder Marktpreise',url:'https://www.cmegroup.com/education/articles-and-reports/cash-equitization-with-e-mini-equity-index-futures'}
 ],review:{status:'draft',date:'2026-10-24',note:'Eigene Ziel-, Zahlungs-, Basis-, Mengen-, Währungs-, Beta- und Finanzierungsfälle. Numerische und technische Prüfungen ersetzen keine unabhängige fachliche Gesamtabnahme.'}};
+
+module.exports.related.push({"unit":"carry","section":"calculator","label":"Preisfixierung von Replikation und Spotprognose unterscheiden"});

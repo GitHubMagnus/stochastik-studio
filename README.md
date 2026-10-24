@@ -13,14 +13,14 @@ Direkt im Browser nutzbar, ohne Download oder Installation.
 - **Verständnis prüfen:** 1.034 Aufgaben, mindestens sechs in jedem Finance-Kapitel und 14 bei Duration. Grundverständnis, Herleitung oder Begründung, Rechen- oder Fallaufgabe, Vergleich, Transfer und Fehlersuche besitzen getrennte Hinweise und ausführliche Lösungen. Aufgabenangaben und Ergebnistabellen sind getrennt. Die Lösungen enthalten 544 gesetzte Formeltafeln und 90 gesetzte Inline-Formeln, einschließlich bewusst wiederverwendeter Kapitelrechnungen.
 - **Vertiefungen:** 361 zusätzliche Erklärabschnitte, 175 Vergleichstabellen, insgesamt 519 erläuterte Lösungsschritte, 740 Kapitelverbindungen und neun Erklärungsgrafiken. Wichtige Zusammenhänge wie Duration, Cashflowbewertung, CAPM und Optionsreplikation erhalten mehrere aufeinander aufbauende Herleitungen.
 - **Mathematische Notation:** 156 zentrale mathematische Formeltafeln, 219 Formeltafeln in Herleitungen und 383 numerische Lösungsschritte werden ausdrücklich in LaTeX verfasst und als MathML eingebettet. Auch Formeln in Vergleichstabellen und alle neun Kelly-Formeltafeln sind gesetzt. Qualitative Entscheidungsfragen werden als Prosa dargestellt. Es gibt keine automatische Umwandlung von Wörtern in vermeintliche Gleichungen.
-- **Fachwörterbuch:** 1.762 alphabetisch sortierte Definitionen mit 3.872 Begriffen und Aliasen; automatische Verlinkung aus den Lerntexten und Rückverweise auf erklärende Kapitel. 1.488 kuratierte Einträge besitzen zusätzlich einen präzisen Rückverweis in den neuen CFA-Lernpfad. Mehrdeutige Begriffe wie GMV, Forward, FFO, DSCR, Trustee, Subordination, Residual, WAL, Balloon Payment, Margin und Settlement werden abhängig vom Kapitel verlinkt. Direktlinks auf zusammengeführte Begriffe bleiben über deren Alias erhalten.
+- **Fachwörterbuch:** 1.777 alphabetisch sortierte Definitionen mit 3.903 Begriffen und Aliasen; automatische Verlinkung aus den Lerntexten und Rückverweise auf erklärende Kapitel. 1.508 kuratierte Einträge besitzen zusätzlich einen präzisen Rückverweis in den neuen CFA-Lernpfad. Mehrdeutige Begriffe wie GMV, Forward, FFO, DSCR, Trustee, Subordination, Residual, WAL, Balloon Payment, Margin und Settlement werden abhängig vom Kapitel verlinkt. Direktlinks auf zusammengeführte Begriffe bleiben über deren Alias erhalten.
 - **Kelly Studio:** Einzelpositionen, Szenarien, Portfoliooptimierung, Simulation und Herleitung. Der Zustand bleibt beim Modulwechsel erhalten.
 
 ## CFA Level I 2027: laufende Überarbeitung
 
 Der neue Bereich unter **Finance → CFA Level I 2027** führt 102 offizielle Module
 mit 340 einzeln zugeordneten Lernzielreferenzen. Der aktuelle Arbeitsstand enthält
-82 neu ausgearbeitete Einheiten und 2.794 eigenständige englische Trainingsfragen
+83 neu ausgearbeitete Einheiten und 2.844 eigenständige englische Trainingsfragen
 mit deutschen Lösungen. Alle zehn Ethics-Module und alle elf Quant-Module besitzen
 neue Erklärungen und Übungen. Weitere Vertiefungen behandeln EPS, Kennzahlen und
 Leasing/Vergütung. Der Quant-Bereich enthält jetzt auch ausführliche Testwahl,
@@ -463,20 +463,62 @@ Bestandteiltabelle zeigen Endwert, Netto-Anfangskosten und Gewinn.
 Er rechnet eine Einheit unverzinst und bewertet keine Option vor Ablauf.
 Die Zeichen- und Eingabegrenzen sind keine Verlustgrenze des Short Call.
 
-Die Einheit zu Nutzen, Risiken und Emittenten-/Anlegerzielen ergänzt\n32 Abschnitte, 24 Formeln mit lokalen Symbolerklärungen, 18 eigene\nRechenbeispiele, elf Tabellen, acht berechnete Grafiken und ein Ablaufbild.\n50 Trainingsfragen und vier getrennt reservierte Klausurfälle bearbeiten\ndie beiden tatsächlichen Lernziele 2027. Grundgeschäft und Derivat werden\nüber gemeinsame Einkaufsaufwände, Verkaufserlöse, Basis-, Mengen- und\nZahlungseffekte verglichen. Ein vollständiger Tagespfad erklärt, warum\nein sinnvoller Hedge trotzdem Zwischenfinanzierung brauchen kann.\nWährungs- und Zinssicherung, Beta-Overlay und Cash Equitization zeigen\ndie unterschiedlichen Ziele von Unternehmen und Anlegern. Die zusätzliche\nVarianzoptimierung ist ausdrücklich als freiwillige Modellvertiefung und\nnicht als eigens verlangte Rechenanforderung des beschreibenden LOS markiert.\n\nDer neue Hedge-Rechner zeigt Einkauf mit Long-Future und Verkauf mit\nShort-Future. Acht Ladefälle verändern Preis, Basis, Menge, tatsächlichen\nBedarf oder Kosten. Eine Bestandteiltabelle stimmt jede positive und\nnegative Zahlung ab; bei physischer Menge null wird kein Einheitspreis\nerfunden. Der Rechner hält in seinen Kurven die Basis fest und simuliert\nkeinen täglichen Margin- oder Finanzierungspfad. Insgesamt stehen jetzt\n51 Modelle bereit; 69 der 171 bisherigen Finance-Kapitel besitzen einen\ninteraktiven Zugang.\n\nInsgesamt 216 zusätzliche berechnete Grafiken und neun Ablaufbilder erläutern
+Die Einheit zu Nutzen, Risiken und Emittenten-/Anlegerzielen ergänzt
+32 Abschnitte, 24 Formeln mit lokalen Symbolerklärungen, 18 eigene
+Rechenbeispiele, elf Tabellen, acht berechnete Grafiken und ein Ablaufbild.
+50 Trainingsfragen und vier getrennt reservierte Klausurfälle bearbeiten
+die beiden tatsächlichen Lernziele 2027. Grundgeschäft und Derivat werden
+über gemeinsame Einkaufsaufwände, Verkaufserlöse, Basis-, Mengen- und
+Zahlungseffekte verglichen. Ein vollständiger Tagespfad erklärt, warum
+ein sinnvoller Hedge trotzdem Zwischenfinanzierung brauchen kann.
+Währungs- und Zinssicherung, Beta-Overlay und Cash Equitization zeigen
+die unterschiedlichen Ziele von Unternehmen und Anlegern. Die zusätzliche
+Varianzoptimierung ist ausdrücklich als freiwillige Modellvertiefung und
+nicht als eigens verlangte Rechenanforderung des beschreibenden LOS markiert.
+
+Der neue Hedge-Rechner zeigt Einkauf mit Long-Future und Verkauf mit
+Short-Future. Acht Ladefälle verändern Preis, Basis, Menge, tatsächlichen
+Bedarf oder Kosten. Eine Bestandteiltabelle stimmt jede positive und
+negative Zahlung ab; bei physischer Menge null wird kein Einheitspreis
+erfunden. Der Rechner hält in seinen Kurven die Basis fest und simuliert
+keinen täglichen Margin- oder Finanzierungspfad. Insgesamt stehen jetzt
+51 Modelle bereit; 69 der 171 bisherigen Finance-Kapitel besitzen einen
+interaktiven Zugang.
+
+Die Einheit zu Arbitrage, Replikation und Cost of Carry ergänzt 32 Abschnitte,
+31 gesetzte Formeltafeln mit Symbolhilfen, 14 vollständig erläuterte Beispiele,
+neun Tabellen, vier berechnete Grafiken und acht zusätzliche Verständnisfragen.
+50 Trainingsfragen sowie je zwei reservierte Klausurfälle entwickeln die beiden
+echten Lernziele 2027. Vollständige Zahlungs- und Rückgabepfade erklären
+Cash-and-Carry und seine Umkehrung. Kontrollierte Vergleiche zeigen Verzinsung,
+Ertragstermine, proportionale Wiederanlage, negative Zinsen, Lagerkosten und
+nicht handelbaren Besitznutzen. Replikationspreis, reale Spot-Erwartung, alter
+Lieferpreis und heutiger Vertragswert bleiben getrennt. Handelskosten und
+verschiedene ausführbare Geld-/Brief- und Fundingbedingungen erzeugen ein Band.
+Die ergänzende Zwei-Zustands-Bewertung ist ausdrücklich freiwillige Vertiefung.
+
+Der vorhandene Terminpreis-Rechner besitzt jetzt fünf Eingaben und acht
+kontrollierte Vorgaben. Er zeigt Prepaid-Preis, anfänglichen Stückbestand,
+vollständige Anfangs-/Endzahlungen, Ertragswiederanlage und den Abstand zu einer
+getrennt angebotenen Lieferquote. Negative Zinsen sind zugelassen; die bestehende
+Grundrechnung bleibt erhalten. Die Kurvenachse zeigt Unterschiede deutlicher.
+Eine vollständige Kosten-, Margin- oder Convenience-Yield-Simulation wird aus
+diesem ausdrücklich begrenzten Finanzasset-Modell nicht abgeleitet.
+
+Insgesamt 220 zusätzliche berechnete Grafiken und neun Ablaufbilder erläutern
 die neuen Zusammenhänge.
 Direkte Abschnittsverweise verbinden die Einheiten und passende Wörterbuchdefinitionen.
 
-263 Lernzielreferenzen sind aktuell sowohl neuen Erklärungen als auch Trainingsfragen
+265 Lernzielreferenzen sind aktuell sowohl neuen Erklärungen als auch Trainingsfragen
 zugeordnet. Dies ist **kein Nachweis vollständiger CFA-Vorbereitung**. Offene
 Einheiten sind sichtbar; die fachliche Endprüfung läuft. Zwei getrennte Probeklausuren
-haben bisher je 139 von 180 Fragen und bleiben gesperrt. Ihre Ethics- und Quant-Anteile
+haben bisher je 141 von 180 Fragen und bleiben gesperrt. Ihre Ethics- und Quant-Anteile
 sind mit jeweils 22 Fragen pro Thema, ihre Economics-Anteile mit je zwölf und
 ihre Abschlussanalyse-Anteile mit je 22 Fragen angelegt. Corporate Finance hat
 je zwölf reservierte Fragen. Damit sind die Themenanteile der ersten Sitzung
 angelegt. Die Aktienanteile der zweiten Sitzung sind mit je 22 reservierten Fragen
-angelegt. Der Anleihebereich enthält je 22 reservierte Fragen; Derivate bisher je fünf.
-Es fehlen je acht Derivate-, 13 Alternative-Investments- und 20 Portfoliofragen.
+angelegt. Der Anleihebereich enthält je 22 reservierte Fragen; Derivate bisher je sieben.
+Es fehlen je sechs Derivate-, 13 Alternative-Investments- und 20 Portfoliofragen.
 Der implementierte Ablauf
 mit zwei Sitzungen zu je 135 Minuten wird mit gesonderten künstlichen Testdaten
 geprüft, die nicht als echte Lernfragen veröffentlicht werden.
@@ -504,7 +546,8 @@ Die veröffentlichte Website ist über [GitHub Pages](https://githubmagnus.githu
 - [Verbriefung: Geldwege, Zahlungsprioritäten und Verluste](https://githubmagnus.github.io/stochastik-studio/#cfa~learn-securitization)
 - [ABS und Kreditschutz: Covered Bonds, Pooltypen und CLO-Tests](https://githubmagnus.github.io/stochastik-studio/#cfa~learn-abs)
 - [MBS, Hypotheken und Zeittranchierung](https://githubmagnus.github.io/stochastik-studio/#cfa~learn-mbs)
-- [Derivate einsetzen und Risiken prüfen](https://githubmagnus.github.io/stochastik-studio/#cfa~learn-derivative-uses)\n- [Verpflichtungen und Optionsprofile](https://githubmagnus.github.io/stochastik-studio/#cfa~learn-derivative-contracts)
+- [Derivate einsetzen und Risiken prüfen](https://githubmagnus.github.io/stochastik-studio/#cfa~learn-derivative-uses)
+- [Verpflichtungen und Optionsprofile](https://githubmagnus.github.io/stochastik-studio/#cfa~learn-derivative-contracts)
 - [Derivate und Marktorganisation](https://githubmagnus.github.io/stochastik-studio/#cfa~learn-derivative-markets)
 - [Kelly Studio](https://githubmagnus.github.io/stochastik-studio/#kelly)
 - [Stochastik-Studio](https://githubmagnus.github.io/stochastik-studio/#stochastik)
