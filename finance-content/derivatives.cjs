@@ -15,3 +15,5 @@ L('3','Ein Hedge sollte die Sensitivität treffen, die wirtschaftlich stört. Ne
 ];
 // Introduce price versus value with the same independently usable model as chapter 3.
 module.exports[0].lab='forwardvalue';
+
+module.exports[11].lab='hedgeuse';

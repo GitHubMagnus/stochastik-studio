@@ -3385,3 +3385,117 @@ Normalisierter HTML-SHA-256:
 bei 21.288.572 Bytes. Der Prüfsummenvergleich erfasst das vollständige
 Offline-Artefakt einschließlich Wörterbuch und Rechner, nicht nur
 die aus Lerneinheiten und Fragen gebildete Inhaltsversion.
+
+### 24. Oktober 2026 — Derivateeinsatz, Basis und finanzierbare Hedges
+
+Die Einheit derivative-uses arbeitet die beiden tatsächlichen Lernziele
+2027 zu Nutzen/Risiken und zum Einsatz durch Emittenten und Anleger aus:
+32 Abschnitte, 24 Formeln mit lokalen Symbolen und Einheiten,
+18 eigene Beispiele, elf Tabellen, acht berechnete Grafiken,
+ein Ablaufbild und acht ausklappbare Vertiefungen/Verständnisfragen.
+
+Die Erklärung beginnt beim Grundgeschäft und seiner Zielgröße. Sie trennt
+Absicherung, zusätzliche Marktsicht und Arbitrage. Risikoallokation,
+Preisinformation und mögliche Durchführungsvorteile werden gemeinsam
+mit ihren Voraussetzungen und Kosten erläutert. Ein geringerer
+Anfangscashbedarf wird nicht als geringere maximale Verlusthöhe ausgegeben.
+
+Die eigenen Käufer-/Verkäuferfälle zeigen insbesondere:
+- Preisänderung des physischen Geschäfts, entgegengesetztes Futuresergebnis
+  und daraus resultierenden Nettoaufwand beziehungsweise Erlös.
+- Die explizite Basisdefinition Kassa minus Future. Eine passende Menge
+  entfernt die gemeinsame Futureskomponente, fixiert aber nicht die
+  lokale Endbasis. Stärkere Basis belastet Käufer und begünstigt Verkäufer.
+- Unter- und Übersicherung, Wegfall des tatsächlichen Bedarfs sowie eine
+  daraus entstehende ungebundene Position. Bei Menge null wird kein
+  scheinbar gültiger Betrag je physischer Einheit ausgewiesen.
+- Ein vollständiger Tagespfad mit anfänglicher freier Kasse, Zahlungen,
+  tatsächlicher Kreditaufnahme und späterer Tilgung. Anfangssicherheit,
+  eigene liquide Mittel und Kreditaufnahme werden nicht als Gewinn gezählt.
+- Referenzschuldner-/Gegenparteirisiken, technische und rechtliche
+  Durchführung, Mandat, laufende Kontrolle und ehrliche Gesamtdarstellung.
+- Natürlicher Währungsausgleich, richtiger Long-/Short-Dollar-Hedge,
+  variabler Kredit plus Festzins-Swap, Erlös- gegenüber Gewinnstabilität,
+  Beta-Overlay und Cash Equitization.
+
+Die zusätzliche Einperioden-Varianzoptimierung ist ausdrücklich eine
+freiwillige Modellvertiefung. Die tatsächlichen 2027-LOS dieses Moduls
+sind beschreibend; es wird keine zusätzliche offiziell verlangte
+Optimierungsrechnung erfunden. Die ergänzende Übungsfrage ist als
+Supplementary modelling exercise gekennzeichnet. Vier unabhängig
+enumerierte gemeinsame Preiszustände verifizieren die angenommene
+Korrelation, Varianzen, optimale Quote und den ungünstigen Eins-zu-eins-Fall.
+
+50 eigene englische Trainingsfragen besitzen vollständige deutsche
+Antwortbegründungen und genaue Abschnittsrückverweise; je 25 behandeln
+die beiden LOS. Vier andere Transferfälle sind mit je zwei Fragen
+ausschließlich den getrennten Probeklausuren vorbehalten.
+
+Der neue Hedge-Rechner ist Modell 51 und ergänzt einen interaktiven
+Zugang im bisherigen Kapitel derivatives-12. Die 50 vorhandenen Modelle
+behalten IDs und Standardrechnungen. Dezentrale alte Kapiteltests
+begrenzen den wachsenden Modellbestand nicht länger auf exakt fünfzig;
+die zentrale Referenzprüfung umfasst alle deterministischen
+Standardrechnungen, das zusätzliche Modell und die separate Monte-Carlo-Prüfung.
+
+Sieben Steuergrößen und acht Ladefälle verbinden physische Rolle,
+tatsächlichen Bedarf, Hedge-Einheiten, Start-/Endfuture, Endbasis und
+vorgegebene Gesamtkosten. Käuferaufwand und Verkäufererlös werden von
+tatsächlichen positiven/negativen Cashzahlungen getrennt. Die
+Bestandteiltabelle stimmt jede Zahlung ab. Die Kurven halten Basis und
+Menge fest. Weder laufende Margin noch eine automatische Finanzierung,
+Korrelationsermittlung oder optimale Kontraktzahl wird als implementiert
+ausgegeben.
+
+Numerische Gegenprüfung:
+- 11.520 unabhängige Grenz- und Vergleichsszenarien mit 4.170.240
+  Rechnerkurvenpunkten, allen Kennzahlen und vollständiger Cashabstimmung.
+- Sämtliche 2.094 Koordinaten der acht Buchgrafiken, einschließlich
+  ausdrücklich bezeichneten Tausenderachsen.
+- 24 numerische Trainings-/Transferfragen sowie tägliche Kredit- und
+  Kassenabstimmung, Einheiten, Kosten und vier gemeinsame Varianzzustände.
+
+Wörterbuch und Verknüpfungen:
+1.762 Definitionen, 3.872 allgemeine Begriffe/Aliase,
+165 kontextbezogene Aliase und 1.488 genaue kuratierte CFA-Rückverweise.
+Basis und Overlay werden im neuen Kapitel passend aufgelöst. Die
+bestehenden Bedeutungen zu Floater-Basisrisiko, natürlicher Absicherung,
+Unternehmens-Finanzierungslücke, generischem Forward und Currency Overlay
+bleiben erhalten. Ein Browsertest wartet auf den tatsächlich erreichten
+Fokus, statt einen alten Fokus während des asynchronen Routenwechsels
+als fehlgeschlagene Navigation zu werten.
+
+Abschließende Prüfung:
+374/374 Fach-/Codetests, 6/6 neue und 45/45 allgemeine CFA-Browsertests,
+insgesamt 425 Tests, sind auf dem abschließenden Artefakt bestanden.
+Die allgemeine Prüfung umfasst das Rendering aller 82 Einheiten,
+Notation, Wörterbuchverweise, Trainingsabläufe, Offlinebetrieb,
+Zustandsspeicherung und den synthetisch vervollständigten Klausurablauf.
+Beide echten unvollständigen Klausuren bleiben gesperrt.
+
+56 erzeugte Ansichten wurden visuell geprüft: Grafiken, alle Beispiele,
+Tabellen, Vertiefungen, Zeit-/Bruttoübertragungen, beide Rechnerrollen,
+entfallener Bedarf und tatsächliche reservierte Lösungen auf Desktop
+und Mobilgeräten. Die Symboltafel wurde bei unveränderter mobiler Breite
+in einem höheren Aufnahmefenster vollständig erfasst; eine isolierte
+Messung über zwanzig Frames bestätigte die stabile tatsächliche
+Position nach dem Öffnen der mehr als tausend Pixel hohen Tafel.
+
+Inhaltsversion: 2ae6580e44ea8cfd.
+Normalisierter HTML-SHA-256:
+1d7dd4e02ab2c8aba9b864762047d88223097c5ee8b3fc8050713a9d84ca8cc9
+bei 21.616.095 Bytes.
+
+**Das Gesamtziel bleibt offen:** 82 von 102 Einheiten,
+263 von 340 Lernzielreferenzen und 2.794 Trainingsfragen.
+Sieben Derivate-, sieben Alternative-Investments- und sechs
+Portfolioeinheiten fehlen, insgesamt zwanzig Einheiten und 77 LOS.
+Die echten Probeklausuren besitzen je 139 von 180 Fragen. Je Klausur
+fehlen acht Derivate-, 13 Alternative-Investments- und 20 Portfoliofragen,
+zusammen 41. Release bleibt false, alle Einheiten bleiben draft,
+die fachliche Gesamtabnahme steht aus. Insgesamt bestehen jetzt
+216 berechnete CFA-Buchgrafiken, neun Ablaufbilder, 51 Modelle und
+69 interaktive Zugänge in den 171 bisherigen Finance-Kapiteln.
+Die Zielwerte 90/100 Materialqualität und 80/100 Vorbereitungseignung
+werden nicht als erreicht behauptet und sind keine persönliche
+Bestehenswahrscheinlichkeit.

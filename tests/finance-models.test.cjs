@@ -19,6 +19,7 @@ test('every interactive Finance model matches independent reference values',()=>
  refs.sovereign=[80,4,4.2,87.2,83.84615384615384,8.4,11.6,11.153846153846153,0,5];
  refs.creditcash=[50,40,7.5,34.375,24.375,9.375,30,-5.625,15.625,135.625];
  refs.mortgage=[100000*.005/(1-1.005**-360),100000,100000];
+ refs.hedgeuse=[8500,2000,10500,0,85];
  assert.equal(Object.keys(refs).length+1,Object.keys(M.models).length);
  for(const [id,expected] of Object.entries(refs)){const actual=run(id).metrics;expected.forEach((v,i)=>near(actual[i][1],v,id==='bsm'?1e-5:1e-6));}
 });

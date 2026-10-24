@@ -272,3 +272,5 @@ module.exports={id:'derivative-contracts',intro:[
  {title:'Pricing and Hedging Derivative Securities: Options Markets, ergänzender didaktischer Vergleich von Endwert- und Gewinndiagrammen',url:'https://book.derivative-securities.org/Chapter_IntroOptions.html'},
  {title:'Federal Reserve: Credit Default Swaps, 2022, historische konzeptionelle Darstellung der Schutz- und Recoverymechanik',url:'https://www.federalreserve.gov/econres/feds/files/2022023pap.pdf'}
 ],review:{status:'draft',date:'2026-10-24',note:'Eigene Zahlungs-, Options- und CDS-Fälle; mathematische und Browsergegenprüfungen ersetzen keine unabhängige fachliche Gesamtabnahme.'}};
+
+module.exports.related.push({"unit":"derivative-uses","section":"long-hedge","label":"Absicherung nach Ziel, Menge, Basis und Zahlungszeitpunkt prüfen"});

@@ -12,7 +12,7 @@ test('MBS develops all four actual 2027 outcomes with 80 distinct original pract
  assert.equal(d.release,false);assert.equal(u.review.status,'draft');assert.equal(d.inventory['mock-a'].bonds,22);assert.equal(d.inventory['mock-b'].bonds,22);assert.ok(blocks.filter(b=>typeof b==='string').join(' ').length>32000);
  assert.ok(u.sources[0].url.endsWith('#page=22'));assert.ok(u.sources.some(s=>s.url.includes('capitalmarkets.fanniemae.com')));assert.ok(u.sources.some(s=>s.title.includes('Suchauszug')));assert.equal(u.explorations[0].lesson,'bonds-14');assert.equal(require('../finance-content/bonds.cjs')[13].lab,'mortgage');
  for(const id of ['bond-cashflows','floating-yields','abs','securitization','curve-risk','credit-risk'])assert.ok(d.units.find(x=>x.id===id).related.some(r=>r.unit==='mbs'));
- assert.equal(Object.keys(require('../finance-models.cjs').models).length,50);assert.ok(!JSON.stringify(u).includes('NaN'));assert.ok(!JSON.stringify(u).includes('undefined'));
+ assert.ok(Object.keys(require('../finance-models.cjs').models).length>=50);assert.ok(!JSON.stringify(u).includes('NaN'));assert.ok(!JSON.stringify(u).includes('undefined'));
 });
 test('all nine book figures agree with independent loan balances, valuation, PSA, cash allocation and refinancing limits',t=>{
  let count=0;for(const g of figures)for(const[i,s]of g.plot.series.entries())for(const[j,[x,y]]of s.points.entries()){
