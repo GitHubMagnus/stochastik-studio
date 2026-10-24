@@ -232,6 +232,7 @@ module.exports={id:'credit-risk',intro:[
  ])
 ],explorations:[{section:'workflow',lesson:'bonds-10',focus:'lab',label:'Gleichen Mittelverlust bei Konzentration, Abhängigkeit und anderer Verlustschwere vergleichen'}],
 related:[
+ {unit:'derivative-markets',section:'notional',label:'Nominal, aktuellen Wiederbeschaffungswert und tatsächlichen Ausfallverlust trennen'},
  {unit:'mbs',section:'concentration',label:'Konzentrierte CMBS-Verluste und begrenzte Schutzschichten rechnen'},
  {unit:'abs',section:'dependence',label:'Gleichen Poolerwartungsverlust bei anderer Trancheverteilung vergleichen'},
  {unit:'securitization',section:'losses',label:'Den gegebenen Verlust auf Junior und Senior vollständig verteilen'},
