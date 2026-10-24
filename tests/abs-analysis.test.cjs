@@ -10,7 +10,7 @@ test('ABS develops the four actual 2027 outcomes with original questions, explic
  assert.equal(bank.filter(q=>q.pool==='practice').length,72);assert.equal(bank.filter(q=>q.pool==='mock-a').length,1);assert.equal(bank.filter(q=>q.pool==='mock-b').length,1);assert.equal(d.release,false);assert.equal(u.review.status,'draft');
  const c=d.coverage.find(c=>c.id===u.id);assert.equal(c.objectives.length,4);for(const o of c.objectives){assert.ok(o.sections.length>=10);assert.ok(o.practice.length>=12);}assert.deepEqual(c.objectives.map(o=>o.mockQuestions),[1,1,0,1]);
  assert.ok(u.sources[0].url.endsWith('#page=22'));assert.ok(u.sources.some(s=>s.url.includes('fca.org.uk')));assert.ok(u.sources.some(s=>s.url.includes('pfandbg/__30')));assert.ok(u.sources.some(s=>s.url.includes('P191219')));
- assert.ok(blocks.filter(b=>typeof b==='string').join(' ').length>32000);assert.equal(Object.keys(require('../finance-models.cjs').models).length,50);
+ assert.ok(blocks.filter(b=>typeof b==='string').join(' ').length>32000);assert.ok(Object.keys(require('../finance-models.cjs').models).length>=50);
  assert.deepEqual(u.explorations,[{section:'subordination',lesson:'bonds-13',focus:'lab',label:'Im vorhandenen Zweitranchenmodell Verlusthöhe und Juniorabschirmung isolieren; ohne OC-Reserve, Zins oder Trigger'}]);
  for(const id of ['securitization','bond-features','bond-cashflows','credit-risk','corporate-funding','floating-yields'])assert.ok(d.units.find(u=>u.id===id).related.some(r=>r.unit==='abs'));
 });

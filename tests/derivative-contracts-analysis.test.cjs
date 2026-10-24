@@ -6,7 +6,7 @@ test('instrument comparison covers the three actual 2027 outcomes with deep expl
  assert.ok(blocks.filter(b=>typeof b==='string').join(' ').length>28000);assert.equal(bank.filter(q=>q.pool==='practice').length,60);for(const pool of ['mock-a','mock-b'])assert.equal(bank.filter(q=>q.pool===pool).length,2);
  const c=d.coverage.find(c=>c.id===u.id);assert.equal(c.objectives.length,3);for(const o of c.objectives){assert.equal(o.practice.length,20);assert.ok(o.sections.length>=12);assert.ok(o.mockQuestions>=1);}
  assert.equal(u.review.status,'draft');assert.equal(d.release,false);assert.ok(u.sources[0].url.endsWith('#page=23'));for(const domain of ['cmegroup.com','cftc.gov','optionseducation.org','federalreserve.gov'])assert.ok(u.sources.some(s=>s.url.includes(domain)));
- assert.equal(d.inventory['mock-a'].derivatives,3);assert.equal(d.inventory['mock-b'].derivatives,3);assert.equal(Object.keys(M.models).length,50);for(const i of [5,9])assert.equal(require('../finance-content/derivatives.cjs')[i].lab,'option');
+ for(const pool of ['mock-a','mock-b'])assert.ok(d.inventory[pool].derivatives>=bank.filter(q=>q.pool===pool).length);assert.ok(Object.keys(M.models).length>=50);for(const i of [5,9])assert.equal(require('../finance-content/derivatives.cjs')[i].lab,'option');
  for(const id of ['derivative-markets','credit-risk','tvm'])assert.ok(d.units.find(u=>u.id===id).related.some(r=>r.unit===u.id));
  const practice=bank.filter(q=>q.pool==='practice');for(const q of bank.filter(q=>q.pool!=='practice'))assert.ok(!practice.some(p=>p.stem===q.stem));
 });

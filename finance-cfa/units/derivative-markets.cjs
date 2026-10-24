@@ -277,3 +277,5 @@ module.exports={id:'derivative-markets',intro:[
 ],review:{status:'draft',date:'2026-10-24',note:'Eigene Vertrags-, Zahlungs-, Netting- und Marginfälle. Numerische Gegenprüfungen und Browserkontrolle ersetzen keine fachliche Gesamtabnahme.'}};
 
 module.exports.related.push({"unit":"derivative-contracts","section":"comparison","label":"Instrumenttypen und Optionsgewinn anhand vollständiger Zahlungsprofile vergleichen"});
+
+module.exports.related.push({"unit":"derivative-uses","section":"liquidity-case","label":"Einen Produzenten-Hedge mit tatsächlicher Zwischenfinanzierung verbinden"});

@@ -141,3 +141,5 @@ module.exports={id:'fx-markets',intro:[
  {title:'IMF: Capital Flows',url:'https://www.imf.org/en/topics/capital-flows'},
  {title:'IMF: Guidance on Liberalization and Management of Capital Flows',url:'https://www.imf.org/en/publications/policy-papers/issues/2023/12/11/guidance-note-on-the-liberalization-and-management-of-capital-flows-542289'}
  ],review:{status:'draft',date:'2026-09-24',note:'Notierungsrichtung, reale Preisrelationen und Mengenreaktionen ausdrücklich definiert; eigene Umrechnungs-, Handelsbilanz- und Fremdwährungsbilanzfälle.'}};
+
+module.exports.related.push({"unit":"derivative-uses","section":"issuer-fx","label":"Dollarzuflüsse und Dollarzahlungen durch passende Termingeschäftsrichtungen unterscheiden"});

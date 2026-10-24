@@ -214,3 +214,5 @@ module.exports={id:'equity-factors',intro:[
  {title:'Kenneth R. French, Dartmouth: Description of Fama/French Factors; Definition der Drei-Faktor-Reihen',url:'https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/Data_Library/f-f_factors.html'},
  {title:'Kenneth R. French, Dartmouth: Description of Fama/French 5 Factors; erweiterte Faktor- und SMB-Konstruktion',url:'https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/Data_Library/f-f_5_factors_2x3.html'}
 ],review:{status:'draft',date:'2026-10-16',note:'Eigene kontrollierte Risiko-, Regressions-, Bewertungs- und Faktorbeispiele. Zahlen, Grafiken und Modellverbindungen wurden technisch und durch unabhängige Gegenrechnungen geprüft. Der fachliche Gesamtaudit bleibt offen.'}};
+
+module.exports.related.push({"unit":"derivative-uses","section":"investor-market","label":"Ein Zielbeta mit einem Indexfutures-Overlay unter expliziten Annahmen einstellen"});
