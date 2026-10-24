@@ -17,3 +17,5 @@ L('3','Ein Hedge sollte die Sensitivität treffen, die wirtschaftlich stört. Ne
 module.exports[0].lab='forwardvalue';
 
 module.exports[11].lab='hedgeuse';
+
+module.exports[2].additionalLabs=['fra'];

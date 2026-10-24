@@ -638,6 +638,41 @@ models.hedgeuse.presets=[
  {label:'Bedarf entfällt, Long-Hedge bleibt',values:{side:0,physical:0,hedge:100,initial:80,terminal:60,basis:5,cost:0}},
  {label:'Nur Kosten auf 200 setzen',values:{side:0,physical:100,hedge:100,initial:80,terminal:100,basis:5,cost:200}}
 ];
+add('fra','Forwardzins, FRA-Wert und spätere Kreditabsicherung','Die heutige Zinskurve bestimmt den implizierten Forwardzins und den Wert des bestehenden Pay-fixed-FRA. Ein getrennt gewählter späterer Referenzzins bestimmt den möglichen Reset-Cashflow; er ist keine Prognose der heutigen Kurve.',[
+ field('n','Nominalbetrag (WE)',0,10000000,1000,1000000),
+ field('start','Beginn T₁ (Jahre ab heute)',.25,3,.25,1),
+ field('tenor','Zinsperiodenbruch δ (Jahre)',.25,2,.25,1),
+ field('z1','Effektive Jahres-Spotrate bis T₁ (%)',-5,15,.25,4),
+ field('z2','Effektive Jahres-Spotrate bis T₂ (%)',-5,15,.25,5),
+ field('k','Fester FRA-Zins K (% einfach jährlich)',-15,50,.25,5),
+ field('fix','Szenario: späterer Referenzzins L (%)',-15,50,.25,7)
+],p=>{
+ const clean=x=>Object.is(x,-0)?0:x,T2=p.start+p.tenor,k=p.k/100,L=p.fix/100,df1=(1+p.z1/100)**-p.start,df2=(1+p.z2/100)**-T2;
+ // Exact flat, one-year identity avoids a fictitious signed rounding residual.
+ const f=clean(p.z1===p.z2&&p.tenor===1?p.z1/100:Math.expm1(T2*Math.log1p(p.z2/100)-p.start*Math.log1p(p.z1/100))/p.tenor);
+ const value=clean(p.n*p.tenor*df2*(f-k)),terminal=clean(p.n*p.tenor*(L-k)),reset=clean(terminal/(1+L*p.tenor)),interest=clean(p.n*p.tenor*L),net=clean(interest-terminal);
+ const series=[{name:'FRA-Startzahlung bei T₁',points:seq(-15,50,x=>clean(p.n*p.tenor*(x/100-k)/(1+x/100*p.tenor))/1000,260)},{name:'Endwertäquivalent bei T₂',dash:true,points:seq(-15,50,x=>clean(p.n*p.tenor*(x/100-k))/1000,260)}];
+ const out=result([['Heute: implizierter Forwardzins (%)',100*f],['Heute: Pay-fixed-Vertragswert (WE)',value],['Szenario: FRA-Startzahlung (WE)',reset],['Szenario: Endwertäquivalent (WE)',terminal],['Szenario: variable Kreditzinsen (WE)',interest],['Ab T₁: Nettozins mit vorhandenem FRA (WE)',net]],series[0].points,'Späterer Referenzzins L (% einfach jährlich)','FRA-Zahlung / Äquivalent (Tsd. WE)','Stilisiertes, vorschüssig festgelegtes und zu T₁ bar ausgeglichenes Pay-fixed/Receive-floating-FRA, Nominalbetrag im FRA nicht ausgetauscht. Die zwei Kurven zeigen denselben Anspruch zu verschiedenen Zeitpunkten: Startzahlung und bis T₂ aufgezinstes Äquivalent dürfen nicht addiert werden. Die Geldkennzahlen sind WE; die Grafik verwendet tausend WE. Heutige Kurvenannahmen und späteres Fixing-Szenario werden getrennt gewählt. Der gemeinsame Kreditpfad beginnt bei T₁ und setzt den FRA als vorhanden voraus. Ein etwaiger heutiger Kaufpreis oder Wertausgleich ist in der Periodenzinslast nicht enthalten und wird im Buch gesondert erklärt. Nur zwei positive Diskontfaktoren aus effektiven Jahres-Spotraten; einheitliche modellierte Jahresbasis, keine automatische Kalender-/Banktagsberechnung. Zwischenpunkte der gesamten heutigen Kurve werden nicht erfunden. Single-curve-Replikation ohne Kreditspread, Kosten, Margin, Ausfall oder unterschiedliche Referenz-/Fundingbedingungen. Die Nettozinsfixierung setzt voraus, dass reale Kreditverzinsung, FRA-Referenz und Anlage/Finanzierung des frühen Ausgleichs zum selben L und Periodenbruch passen. Sonst verbleiben Risiken. Negative Sätze sind innerhalb positiver Aufzinsungsfaktoren möglich. Moderne nachschüssig beobachtete Referenzkonventionen verlangen ihren tatsächlichen Zahlungsplan. Die Werteachse wird nicht zwangsweise bei null begonnen.');
+ out.series=series;out.marker=[p.fix,reset/1000];const ys=series.flatMap(s=>s.points.map(p=>p[1])),lo=Math.min(...ys),hi=Math.max(...ys),pad=Math.max((hi-lo)*.06,1);out.yRange=[lo-pad,hi+pad];
+ out.projection={caption:'Heutige Kurvenstützstellen: T₂ ist Beginn plus Periodenbruch. Der implizierte einfache Forwardzins wird aus DF₁ geteilt durch DF₂ abgeleitet; er ist keine tatsächliche spätere Fixingbeobachtung.',headers:['Stützstelle','Jahre ab heute','Effektive Jahres-Spotrate (%)','Heutiger Diskontfaktor'],rows:[['Beginn T₁',p.start,clean(p.z1),df1],['Ende T₂',T2,clean(p.z2),df2]]};
+ out.stable={caption:'Späteres, vollständig passendes Kreditszenario aus Sicht des Kreditnehmers: positiv ist Cashzufluss, negativ Abfluss. Der frühe FRA-Ausgleich wird angelegt oder finanziert; ein Endwertäquivalent ist keine zweite FRA-Zahlung.',headers:['Bestandteil','Cash bei T₁ (WE)','Cash bei T₂ (WE)','Bedeutung'],rows:[
+  ['Realer variabler Kredit',clean(p.n),clean(-p.n*(1+L*p.tenor)),'Kapitalaufnahme und spätere Rückzahlung mit Referenzzins.'],
+  ['Vorschüssig erfüllter FRA',reset,0,'Einmalige Startzahlung; danach im Modell erledigt.'],
+  ['FRA-Cash anlegen oder finanzieren',clean(-reset),terminal,'Früher Zufluss wird angelegt; früher Abfluss zum gleichen Satz finanziert.'],
+  ['Gemeinsamer abgeschlossener Kreditpfad',clean(p.n),clean(-p.n*(1+k*p.tenor)),'Das FRA tauscht kein Kapital; die gemeinsame Zinsbelastung folgt dem Festzins auf passende Basis und Periode.']
+ ]};
+ out.fra={df1,df2,forward:f,reset,terminal,interest,net,T2};return out;
+});
+models.fra.presets=[
+ {label:'Grundfall: späterer Zins sieben Prozent',values:{n:1000000,start:1,tenor:1,z1:4,z2:5,k:5,fix:7}},
+ {label:'Nur späterer Zins fällt auf drei Prozent',values:{n:1000000,start:1,tenor:1,z1:4,z2:5,k:5,fix:3}},
+ {label:'Nur Nominalbetrag verdoppeln',values:{n:2000000,start:1,tenor:1,z1:4,z2:5,k:5,fix:7}},
+ {label:'Nur kürzere Zinsperiode: ein halbes Jahr',values:{n:1000000,start:1,tenor:.5,z1:4,z2:5,k:5,fix:7}},
+ {label:'Nur heutige Kurve flach auf vier Prozent',values:{n:1000000,start:1,tenor:1,z1:4,z2:4,k:5,fix:7}},
+ {label:'Nur alter Festzins steigt auf sieben Prozent',values:{n:1000000,start:1,tenor:1,z1:4,z2:5,k:7,fix:7}},
+ {label:'Negative Zinsen mit passender Jahresquote',values:{n:1000000,start:1,tenor:1,z1:-1,z2:-1,k:-1,fix:-2}},
+ {label:'Kein Nominalbetrag, kein Geldexposure',values:{n:0,start:1,tenor:1,z1:4,z2:5,k:5,fix:7}}
+];
 const api={models,calculate,annuity,price,bsm,cdf,forecastValue,companyPlan,covenantPlan,repaymentSchedule,bondIndexPlan,repoFundingPlan,yieldSpreadPlan,floaterPlan,moneyYieldPlan,yieldCurvePlan,bondHorizonPlan,bondRiskPlan,convexityPlan,keyRatePlan,creditPlan,creditDistribution,sovereignPlan,creditCashPlan,mortgagePoolPlan};
 if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.FinanceModels=api;
 })(globalThis);

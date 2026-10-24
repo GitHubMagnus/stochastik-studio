@@ -281,3 +281,5 @@ module.exports.related.push({"unit":"derivative-contracts","section":"comparison
 module.exports.related.push({"unit":"derivative-uses","section":"liquidity-case","label":"Einen Produzenten-Hedge mit tatsächlicher Zwischenfinanzierung verbinden"});
 
 module.exports.related.push({"unit":"carry","section":"cash-carry","label":"Arbitrage mit vollständig finanzierten Lieferströmen herleiten"});
+
+module.exports.related.push({"unit":"forward-value","section":"fra-contract","label":"Preis, Wert, Reset und tatsächlichen FRA-Ausgleich zeitlich auseinanderhalten"});

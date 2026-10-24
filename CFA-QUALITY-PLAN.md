@@ -3600,3 +3600,95 @@ Inhaltsversion: eaf553389ca1a3fd.
 Normalisierter HTML-SHA-256:
 18f53a7b8012a524b33b82aafc5f823809651fd6d5b71c5c48ccd17739cf917a
 bei 21.904.263 Bytes.
+
+## 25.10.2026 – Forward-Bewertung und Zinsforwards
+
+Die beiden tatsächlichen Lernziele des 2027-Moduls werden in 36 Abschnitten
+ausgearbeitet. 37 gesetzte Formeltafeln mit Symbolhilfen, 17 gerechnete Fälle,
+acht Tabellen, sieben berechnete Buchgrafiken und ein Zahlungsablauf verbinden
+neuen Forwardpreis, alten Lieferpreis, heutigen Vertragswert und tatsächliches
+Cash. Zwölf Klapptexte enthalten zusätzliche Herleitungen und acht begründete
+Verständnisfragen. 50 eigenständige Trainingsfragen und je eine neue, separat
+reservierte Transferfrage ergänzen die beiden Klausurpools.
+
+Die Rechnungen trennen Bewertung und Erfüllung, Restdividenden und bereits
+erhaltene Erträge, Stückzahl und Notional, FX-Währungen und Diskontkurven sowie
+einfache, effektive und stetige Zinskonventionen. Der Zinsforward wird aus
+Wachstumsfaktoren und aus zwei Nullkuponansprüchen hergeleitet; er ist keine
+garantierte Prognose. FRA-Fälle unterscheiden den heutigen Marktwert, das
+spätere Fixing, frühen Ausgleich und dessen Endwertäquivalent. Vollständige
+Kredit- und Einlagepfade zeigen die passende Anlage oder Finanzierung des
+frühen Ausgleichs, Funding-Abweichungen und zulässige negative Zinsen.
+
+Der zusätzliche FRA-Rechner besitzt sieben Eingaben und acht kontrollierte
+Vergleiche. Heutige Kurve und späteres Fixing sind unabhängig: Ein anderes
+Fixing ändert den heutigen Vertragswert nicht rückwirkend. Sechs Kennzahlen,
+zwei Kurven und zwei Zahlungstabellen stimmen die Ergebnisse ab. Die feste
+Periodenzinslast setzt einen bereits vorhandenen FRA und genau passende
+Finanzierung voraus. Wer den alten günstigen Vertrag heute erst erwirbt,
+muss seinen positiven Kaufpreis beziehungsweise Opportunitätswert berücksichtigen.
+Eine eigene Herleitung zeigt, warum sich einschließlich dieser Kosten wieder
+die heutige faire Forwardkondition ergibt. Der ursprüngliche Forwardrechner
+bleibt mit seinem Beispielwert 4,90 erhalten.
+
+Der Wortlaut des offiziellen 2027-Themenplans ist maßgeblich. Öffentliche
+CFA-Refresher von 2026 sind ausdrücklich ergänzende Quellen. Historische
+ANZ- und BIS-Beispiele werden nur für die bezeichneten Rechenkonventionen
+verwendet; ein stilisiertes vorschüssiges Ein-Kurven-FRA-Modell wird nicht
+als allgemeine Abbildung moderner nachschüssiger Referenzprodukte ausgegeben.
+20 kuratierte Begriffe ergeben 19 zusätzliche Wörterbucheinträge; mehrdeutige
+Bezeichnungen behalten ihren Kontext. Mark-to-Market verlinkt zurück zum
+tatsächlich erklärenden Vertragsverlaufsbeispiel.
+
+Unabhängige Rechnungen prüfen 2.187 Kurven-, Mengen-, Perioden- und
+Fixingkombinationen, 1.141.614 Modellkoordinaten, sämtliche 1.373 Buchkoordinaten
+und 26 numerische Aufgabenfälle. Zwei getrennte Nullkuponansprüche,
+Cash-Ledger, vollständige Schuldenpfade sowie eigene FX- und Dividendenrechnungen
+bilden die Referenzen. Auch der Einbezug des heutigen Erwerbswerts ist geprüft.
+
+59 Kontrollansichten wurden visuell gelesen. Nach den fachlichen und
+sprachlichen Nachbesserungen wurden alle 40 abweichenden Ansichten erneut
+geprüft; die übrigen 19 waren per SHA-256 identisch. Die abschließende
+Leerzeichenkorrektur einer Antwort wurde gesondert im Browser angesehen.
+Die mobilen Geldkennzahlen bleiben auch bei 320 Pixeln vollständig im Layout.
+Breite Formeln, Grafiken und Tabellen sind gezielt seitlich verschiebbar und
+per Tastatur bedienbar. Die beiden reservierten Aufgaben wurden nur in einer
+isolierten Testkopie als Übungsaufgaben gerendert.
+
+Die Regression umfasst 480 unterschiedliche bestandene Tests: 389 Kernprüfungen,
+22 allgemeine Browserprüfungen, 24 Browserprüfungen für die letzten vier
+Derivateeinheiten und 45 übergreifende CFA-Browserprüfungen. Die 45 übergreifenden
+Prüfungen liefen auf Version 3af4b357839f0adf. Die danach geänderten Erklärtexte,
+zwei ergänzten Formeltafeln, der Wörterbuchrückweg und die Modellbeschriftung
+wurden durch erneute 389 Kern-, 22 allgemeine und 24 Derivate-Browserprüfungen
+auf Version 6010d06f451fb30c abgedeckt. Zahlenlogik, andere Einheiten und Fragen
+blieben dabei unverändert. Auf der endgültigen Version mit ausschließlich
+ergänztem Leerzeichen wurden die sieben unabhängigen Forward-Analysen und
+sechs zugehörigen Browserprüfungen erneut bestanden. Die allgemeine
+Browserprüfung durchläuft alle 171 bisherigen Kapitel und alle 52 Modelle.
+
+Vier ältere Browserprüfungen prüften die Klausursperre bislang mit einem
+nicht vorhandenen Selektor. Sie verlangen jetzt auf der echten Klausurseite
+genau zwei tatsächliche Startknöpfe und leiten deren Freigabe aus 180 Fragen
+sowie der exakten Themenverteilung jedes Pools ab. Damit ist eine leere
+Treffermenge kein vermeintlicher Nachweis mehr. Die vorhandenen unvollständigen
+Klausuren bleiben korrekt gesperrt; spätere vollständige Pools werden nicht
+durch eine feste Testobergrenze blockiert.
+
+**Das Gesamtziel bleibt offen:** 84 von 102 Einheiten, 267 von 340
+Lernzielreferenzen und 2.894 Trainingsfragen. Es fehlen fünf Derivate-, sieben
+Alternative-Investments- und sechs Portfolioeinheiten, insgesamt 18 Einheiten
+und 73 LOS. Jede Probeklausur besitzt 142 von 180 Fragen; jeweils fehlen fünf
+Derivate-, 13 Alternative-Investments- und 20 Portfoliofragen. Alle Einheiten
+bleiben draft, Release bleibt false. Insgesamt sind 227 berechnete CFA-Grafiken,
+zehn Ablaufbilder, 52 Modelle und 69 interaktive Zugänge in den bisherigen
+Finance-Kapiteln vorhanden. Das Wörterbuch besitzt 1.796 Definitionen,
+3.928 Begriffe/Aliase und 1.528 kuratierte Rückverweise.
+Die abschließende fachliche Gesamtabnahme und die Zielwerte 90/100
+Materialqualität und 80/100 Vorbereitungseignung sind noch nicht erreicht.
+Diese Scores sind keine persönliche Bestehenswahrscheinlichkeit.
+
+Endgültige Inhaltsversion: 7d4977ab228f1d50.
+Normalisierter HTML-SHA-256:
+119e10d2008a91ac38e880dd426ed05c84bf9761fa3af40689e6fa68c67cbc4e
+bei 22.250.414 Bytes.

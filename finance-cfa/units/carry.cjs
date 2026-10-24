@@ -288,3 +288,5 @@ module.exports={id:'carry',intro:[
  {title:'CME: What is Equity Index Basis? Explizit entgegengesetzte Basiskonvention und Besitz-/Dividendenbehandlung',url:'https://www.cmegroup.com/education/courses/introduction-to-equity-index-products/what-is-equity-index-basis'},
  {title:'CME: What is Contango and Backwardation? Rohstoffkurven, Lagerung und Convenience Yield',url:'https://www.cmegroup.com/education/courses/introduction-to-base-metals/what-is-contango-and-backwardation'}
 ],review:{status:'draft',date:'2026-10-24',note:'Eigene Replikationspfade, kontrollierte Preisvergleiche und Fragen; mathematische und Browsergegenprüfung ersetzen keine unabhängige fachliche Gesamtabnahme.'}};
+
+module.exports.related.push({"unit":"forward-value","section":"replication","label":"Bestehende Lieferverträge und spätere Zinsperioden vollständig bewerten"});
