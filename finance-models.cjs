@@ -673,6 +673,32 @@ models.fra.presets=[
  {label:'Negative Zinsen mit passender Jahresquote',values:{n:1000000,start:1,tenor:1,z1:-1,z2:-1,k:-1,fix:-2}},
  {label:'Kein Nominalbetrag, kein Geldexposure',values:{n:0,start:1,tenor:1,z1:4,z2:5,k:5,fix:7}}
 ];
+add('futuresstates','Forward und Future: Zahlungszeitpunkte und Zinszustände','Ein eigenes Zwei-Zustände-Modell leitet beide fairen Quoten aus denselben Annahmen ab. Bei Termin eins werden Endpreis und zweiter Periodenzins bekannt; der Future zahlt dann die ganze Variation. Der Forward zahlt erst bei Termin zwei.',[
+ field('sa','Endpreis in Zustand A (WE je Einheit)',60,180,5,120),
+ field('sb','Endpreis in Zustand B (WE je Einheit)',20,140,5,80),
+ field('p','Risikoneutrales Bewertungsgewicht A (%)',10,90,5,50),
+ field('ra','Zweiter Periodenzins in A (%)',-5,20,.5,10),
+ field('rb','Zweiter Periodenzins in B (%)',-5,20,.5,0),
+ field('qty','Gesamte Einheitenmenge Q',0,1000,10,100)
+],p=>{
+ const clean=x=>Object.is(x,-0)?0:x,w=p.p/100,da=1/(1+p.ra/100),db=1/(1+p.rb/100),mean=w*da+(1-w)*db,g=w*p.sa+(1-w)*p.sb,k=p.ra===p.rb||p.sa===p.sb?g:(w*da*p.sa+(1-w)*db*p.sb)/mean,spot=(w*da*p.sa+(1-w)*db*p.sb)/1.04,a=clean(p.qty*(p.sa-g)),b=clean(p.qty*(p.sb-g));
+ const series=[{name:'Faire Futuresquote',dash:true,points:seq(-5,20,()=>g,100)},{name:'Faire Forwardquote',points:seq(-5,20,x=>{const d=1/(1+x/100);return x===p.rb||p.sa===p.sb?g:(w*d*p.sa+(1-w)*db*p.sb)/(w*d+(1-w)*db);},100)}],ys=series.flatMap(s=>s.points.map(v=>v[1])),lo=Math.min(...ys),hi=Math.max(...ys),pad=Math.max(1,(hi-lo)*.12);
+ const out=result([['Faire Futuresquote (WE je Einheit)',g],['Faire Forwardquote (WE je Einheit)',k],['Futuresquote minus Forwardquote (WE je Einheit)',clean(g-k)],['Konsistenter heutiger Spot (WE je Einheit)',spot],['Futurescash bei T₁ in A (WE)',a],['Futurescash bei T₁ in B (WE)',b]],series[0].points,'Zweiter Periodenzins in A (%)','Faire Quote (WE je Einheit)','Termine T₀=0, T₁=1, T₂=2; erster Periodenzins sicher vier Prozent. Ab T₁ sind Endpreis und Zinssatz des jeweiligen Zustands sicher. Daher entsteht bei T₂ keine weitere Futuresvariation. Keine Erträge, Spreads, Margin- oder Handelskosten und Ausfälle. Die Gewichte sind risikoneutrale Bewertungsgewichte, keine realen Prognosen. Heutiger Spot und Zero-Bond-Preis werden konsistent abgeleitet. Die Kurve variiert nur den A-Zins; B-Zins und übrige Eingaben bleiben fest. Negative Zinsen sind bei positiven Faktoren zulässig. Einheitenmenge skaliert Geldzahlungen, nicht faire Stückquoten. Geld wird ungerundet berechnet und gerundet angezeigt.');
+ out.series=series;out.marker=[p.ra,k];out.yRange=[lo-pad,hi+pad];
+ out.projection={caption:'Dieselben beiden Zustände; die Faktoren der ersten beiden Zeilen diskontieren von T₂ nach T₁. Die letzte Zeile nennt dagegen den heutigen Zero-Bond-Preis: gewichtetes Faktormittel geteilt durch 1,04.',headers:['Zustand / Anspruch','Bewertungsgewicht','Zweiter Periodenzins (%)','Zustandsfaktor / heutiger Preis'],rows:[['A',w,p.ra,da],['B',1-w,p.rb,db],['Heutiger Zero-Bond-Preis P₀(2)','—','—',mean/1.04]]};
+ out.stable={caption:'Position Q: Positiv bedeutet Zufluss, negativ Abfluss. Futurescash bei T₁ und sein finanzierter Endwert bei T₂ sind dieselbe Wirkung zu zwei Terminen, keine addierbaren Gewinne. Die Forwardzahlung erfolgt ausschließlich bei T₂.',headers:['Zustand','Endpreis je Einheit','Futurescash T₁ (WE)','Finanzierter Endwert T₂ (WE)','Forwardcash T₂ (WE)'],rows:[['A',p.sa,a,a*(1+p.ra/100),clean(p.qty*(p.sa-k))],['B',p.sb,b,b*(1+p.rb/100),clean(p.qty*(p.sb-k))]]};
+ return out;
+});
+models.futuresstates.presets=[
+ {label:'Grundfall: hoher Preis, hoher Zins',values:{sa:120,sb:80,p:50,ra:10,rb:0,qty:100}},
+ {label:'Verbindung umkehren: Zinsen tauschen',values:{sa:120,sb:80,p:50,ra:0,rb:10,qty:100}},
+ {label:'Nur A-Zins auf null: gleiche Zinsen',values:{sa:120,sb:80,p:50,ra:0,rb:0,qty:100}},
+ {label:'Nur A-Endpreis auf achtzig: gleicher Preis',values:{sa:80,sb:80,p:50,ra:10,rb:0,qty:100}},
+ {label:'Nur Menge verdoppeln',values:{sa:120,sb:80,p:50,ra:10,rb:0,qty:200}},
+ {label:'Nur Bewertungsgewicht A erhöhen',values:{sa:120,sb:80,p:75,ra:10,rb:0,qty:100}},
+ {label:'Nur A-Zins negativ',values:{sa:120,sb:80,p:50,ra:-5,rb:0,qty:100}},
+ {label:'Nur Menge null',values:{sa:120,sb:80,p:50,ra:10,rb:0,qty:0}}
+];
 const api={models,calculate,annuity,price,bsm,cdf,forecastValue,companyPlan,covenantPlan,repaymentSchedule,bondIndexPlan,repoFundingPlan,yieldSpreadPlan,floaterPlan,moneyYieldPlan,yieldCurvePlan,bondHorizonPlan,bondRiskPlan,convexityPlan,keyRatePlan,creditPlan,creditDistribution,sovereignPlan,creditCashPlan,mortgagePoolPlan};
 if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.FinanceModels=api;
 })(globalThis);

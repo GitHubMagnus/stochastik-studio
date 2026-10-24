@@ -290,3 +290,4 @@ module.exports={id:'carry',intro:[
 ],review:{status:'draft',date:'2026-10-24',note:'Eigene Replikationspfade, kontrollierte Preisvergleiche und Fragen; mathematische und Browsergegenprüfung ersetzen keine unabhängige fachliche Gesamtabnahme.'}};
 
 module.exports.related.push({"unit":"forward-value","section":"replication","label":"Bestehende Lieferverträge und spätere Zinsperioden vollständig bewerten"});
+module.exports.related.push({unit:'futures',section:'deterministic',label:'Die Bedingungen gleicher Forward- und Futuresquotes und ihre Grenzen nachvollziehen'});
