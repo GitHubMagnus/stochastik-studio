@@ -291,3 +291,5 @@ module.exports={id:'carry',intro:[
 
 module.exports.related.push({"unit":"forward-value","section":"replication","label":"Bestehende Lieferverträge und spätere Zinsperioden vollständig bewerten"});
 module.exports.related.push({unit:'futures',section:'deterministic',label:'Die Bedingungen gleicher Forward- und Futuresquotes und ihre Grenzen nachvollziehen'});
+
+module.exports.related.push({unit:'option-values',section:'option-replication',label:'Die bedingte Replikation mit der linearen Forwardpflicht vergleichen'});

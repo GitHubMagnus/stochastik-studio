@@ -724,6 +724,50 @@ models.swapvalue.presets=[
  {label:'Negative Raten und negativer Festzins',values:{n:1000000,k:-1,p1:1.01,p2:1.02,p3:1.03,basis:0}},
  {label:'Nur Nominal null',values:{n:0,k:4,p1:.97,p2:.93,p3:.88,basis:0}}
 ];
-const api={models,calculate,annuity,price,bsm,cdf,forecastValue,companyPlan,covenantPlan,repaymentSchedule,bondIndexPlan,repoFundingPlan,yieldSpreadPlan,floaterPlan,moneyYieldPlan,yieldCurvePlan,bondHorizonPlan,bondRiskPlan,convexityPlan,keyRatePlan,creditPlan,creditDistribution,sovereignPlan,creditCashPlan,mortgagePoolPlan};
+// European, stock-style premium; decimal continuous rates and proportional income yield.
+function europeanOption(s,k,r,q,v,t){
+ const a=s*Math.exp(-q*t),b=k*Math.exp(-r*t),ic=Math.max(s-k,0),ip=Math.max(k-s,0);
+ let call,put;
+ if(t===0){call=ic;put=ip;}
+ else if(v===0){call=Math.max(a-b,0);put=Math.max(b-a,0);}
+ else{
+  const z=v*Math.sqrt(t),d1=(Math.log(s/k)+(r-q+.5*v*v)*t)/z,d2=d1-z;
+  // Price the out-of-the-money forward side directly, then use parity.
+  // This avoids cancellation of two large ITM legs; clamp only CDF round-off.
+  if(a<=b){call=Math.max(0,Math.min(a,a*cdf(d1)-b*cdf(d2)));put=call-a+b;}
+  else{put=Math.max(0,Math.min(b,b*cdf(-d2)-a*cdf(-d1)));call=put+a-b;}
+ }
+ return {call,put,ic,ip,tc:call-ic,tp:put-ip,a,b,lc:Math.max(a-b,0),lp:Math.max(b-a,0),uc:a,up:b};
+}
+add('optionvalue','Optionswert, Ausübungswert und Zeitwert','Europäische Aktienoptionen vor und am Ablauf vergleichen. Sechs Eingaben verändern jeweils einen klar bezeichneten Werttreiber; Prämienfinanzierung, frühe Ausübung und diskrete Dividendentermine sind nicht Bestandteil dieses Modells.',[
+ field('s','Heutiger Aktienkurs (WE)',10,250,1,100),field('k','Ausübungspreis (WE)',10,250,1,100),
+ field('r','Stetiger Zins (% jährlich)',-5,15,.25,5),field('q','Stetige Ausschüttungsrendite (% jährlich)',0,15,.25,0),
+ field('v','Volatilität (% jährlich)',0,80,1,20),field('t','Restlaufzeit (Jahre)',0,5,.05,1)
+],p=>{
+ const run=s=>europeanOption(s,p.k,p.r/100,p.q/100,p.v/100,p.t),o=run(p.s),curves=[
+  {name:'Europäischer Callwert',color:'#087e82',points:seq(10,250,s=>run(s).call,100)},
+  {name:'Call-Ausübungswert',color:'#d56718',dash:true,points:seq(10,250,s=>Math.max(s-p.k,0),100)},
+  {name:'Europäischer Putwert',color:'#5c5fc1',points:seq(10,250,s=>run(s).put,100)},
+  {name:'Put-Ausübungswert',color:'#c0485c',dash:true,points:seq(10,250,s=>Math.max(p.k-s,0),100)}
+ ],values=curves.flatMap(c=>c.points.map(x=>x[1])),hi=Math.max(1,...values);
+ const out=result([['Europäischer Callwert (WE)',o.call],['Europäischer Putwert (WE)',o.put],['Call-Ausübungswert (WE)',o.ic],['Put-Ausübungswert (WE)',o.ip],['Call-Zeitwert (WE)',o.tc],['Put-Zeitwert (WE)',o.tp]],curves[0].points,'Heutiger Aktienkurs (WE)','Wert je Aktienrecht (WE)','Black–Scholes–Merton mit konstanter stetiger Ausschüttungsrendite, Volatilität und Zins; keine diskreten Dividenden, Sprünge, Gebühren oder amerikanische Ausübung. Kein Prognosemodell für tatsächliche Gewinne. Die Kurve variiert nur den heutigen Aktienkurs. Ausübungswert bedeutet hypothetischer Sofortwert; das europäische Recht erlaubt heute keine Ausübung. Zeitwert ist die Differenz zum Spot-Ausübungswert und kann negativ sein. Die obere Putgrenze ist der Barwert des Strikes, auch bei negativem Zins. Bei Laufzeit null gilt der Endauszahlungswert; bei Volatilität null die diskontierte sichere Endzahlung. Alle Werte je einzelner Aktienrechtseinheit, keine feste Annahme über die Kontraktgröße.');
+ out.series=curves;out.marker=[p.s,o.call];out.yRange=[0,hi*1.06];
+ out.projection={caption:'Zerlegung und arbitragefreie europäische Grenzen beziehen sich auf dieselbe heutige Option und dieselben Annahmen. Negativer Zeitwert ist kein negativer Gesamtpreis.',headers:['Option','Modellwert (WE)','Ausübungswert (WE)','Zeitwert (WE)','Untere Grenze (WE)','Obere Grenze (WE)'],rows:[['Call',o.call,o.ic,o.tc,o.lc,o.uc],['Put',o.put,o.ip,o.tp,o.lp,o.up]]};
+ out.stable={caption:'Zeitwert und Diskontierung nicht verwechseln. Die Faktoren bewerten den späteren Aktienerhalt und die spätere Strikezahlung; der heutige Spot-Ausübungswert verwendet dagegen den unverschobenen Kurs und Strike.',headers:['Baustein','Heutiger Wert (WE)','Bedeutung'],rows:[['Vorab bezahlter Aktienerhalt',o.a,'Heutiger Kurs mal Faktor der stetigen Ausschüttungsrendite'],['Strike am Endtermin',o.b,'Heutiger Barwert der späteren Strikezahlung'],['Call minus Put',o.call-o.put,'Kontrolle: Aktienerhalt minus Strikebarwert']]};return out;
+});
+models.optionvalue.presets=[
+ {label:'Grundfall: am Geld',values:{s:100,k:100,r:5,q:0,v:20,t:1}},
+ {label:'Nur Aktienkurs 120',values:{s:120,k:100,r:5,q:0,v:20,t:1}},
+ {label:'Nur Strike 120',values:{s:100,k:120,r:5,q:0,v:20,t:1}},
+ {label:'Nur Volatilität 40 %',values:{s:100,k:100,r:5,q:0,v:40,t:1}},
+ {label:'Nur Laufzeit zwei Jahre',values:{s:100,k:100,r:5,q:0,v:20,t:2}},
+ {label:'Nur Ausschüttungsrendite 5 %',values:{s:100,k:100,r:5,q:5,v:20,t:1}},
+ {label:'Nur Zins 10 %',values:{s:100,k:100,r:10,q:0,v:20,t:1}},
+ {label:'Tiefer ITM-Put: negativer Zeitwert',values:{s:20,k:100,r:5,q:0,v:10,t:1}},
+ {label:'Negativzins: Call unter Ausübungswert',values:{s:180,k:100,r:-5,q:0,v:5,t:1}},
+ {label:'Nur Restlaufzeit null',values:{s:100,k:100,r:5,q:0,v:20,t:0}},
+ {label:'Nur Volatilität null',values:{s:100,k:100,r:5,q:0,v:0,t:1}}
+];
+const api={models,calculate,annuity,price,bsm,cdf,europeanOption,forecastValue,companyPlan,covenantPlan,repaymentSchedule,bondIndexPlan,repoFundingPlan,yieldSpreadPlan,floaterPlan,moneyYieldPlan,yieldCurvePlan,bondHorizonPlan,bondRiskPlan,convexityPlan,keyRatePlan,creditPlan,creditDistribution,sovereignPlan,creditCashPlan,mortgagePoolPlan};
 if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.FinanceModels=api;
 })(globalThis);
