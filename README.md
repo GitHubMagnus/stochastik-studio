@@ -13,14 +13,14 @@ Direkt im Browser nutzbar, ohne Download oder Installation.
 - **Verständnis prüfen:** 1.034 Aufgaben, mindestens sechs in jedem Finance-Kapitel und 14 bei Duration. Grundverständnis, Herleitung oder Begründung, Rechen- oder Fallaufgabe, Vergleich, Transfer und Fehlersuche besitzen getrennte Hinweise und ausführliche Lösungen. Aufgabenangaben und Ergebnistabellen sind getrennt. Die Lösungen enthalten 544 gesetzte Formeltafeln und 90 gesetzte Inline-Formeln, einschließlich bewusst wiederverwendeter Kapitelrechnungen.
 - **Vertiefungen:** 361 zusätzliche Erklärabschnitte, 175 Vergleichstabellen, insgesamt 519 erläuterte Lösungsschritte, 740 Kapitelverbindungen und neun Erklärungsgrafiken. Wichtige Zusammenhänge wie Duration, Cashflowbewertung, CAPM und Optionsreplikation erhalten mehrere aufeinander aufbauende Herleitungen.
 - **Mathematische Notation:** 156 zentrale mathematische Formeltafeln, 219 Formeltafeln in Herleitungen und 383 numerische Lösungsschritte werden ausdrücklich in LaTeX verfasst und als MathML eingebettet. Auch Formeln in Vergleichstabellen und alle neun Kelly-Formeltafeln sind gesetzt. Qualitative Entscheidungsfragen werden als Prosa dargestellt. Es gibt keine automatische Umwandlung von Wörtern in vermeintliche Gleichungen.
-- **Fachwörterbuch:** 1.918 alphabetisch sortierte Definitionen mit 4.163 Begriffen und Aliasen; automatische Verlinkung aus den Lerntexten und Rückverweise auf erklärende Kapitel. 1.678 kuratierte Einträge besitzen zusätzlich einen präzisen Rückverweis in den neuen CFA-Lernpfad. Mehrdeutige Begriffe wie GMV, Forward, FFO, DSCR, Trustee, Subordination, Residual, WAL, Balloon Payment, Margin, Settlement und Delta werden abhängig vom Kapitel verlinkt. Direktlinks auf zusammengeführte Begriffe bleiben über deren Alias erhalten.
+- **Fachwörterbuch:** 1.942 alphabetisch sortierte Definitionen mit 4.193 Begriffen und Aliasen; automatische Verlinkung aus den Lerntexten und Rückverweise auf erklärende Kapitel. 1.707 kuratierte Einträge besitzen zusätzlich einen präzisen Rückverweis in den neuen CFA-Lernpfad. Mehrdeutige Begriffe wie GMV, Forward, FFO, DSCR, Trustee, Subordination, Residual, WAL, Balloon Payment, Margin, Settlement und Delta werden abhängig vom Kapitel verlinkt. Direktlinks auf zusammengeführte Begriffe bleiben über deren Alias erhalten.
 - **Kelly Studio:** Einzelpositionen, Szenarien, Portfoliooptimierung, Simulation und Herleitung. Der Zustand bleibt beim Modulwechsel erhalten.
 
 ## CFA Level I 2027: laufende Überarbeitung
 
 Der neue Bereich unter **Finance → CFA Level I 2027** führt 102 offizielle Module
 mit 340 einzeln zugeordneten Lernzielreferenzen. Der aktuelle Arbeitsstand enthält
-91 neu ausgearbeitete Einheiten und 3.274 eigenständige englische Trainingsfragen
+92 neu ausgearbeitete Einheiten und 3.334 eigenständige englische Trainingsfragen
 mit deutschen Lösungen. Alle zehn Ethics-Module und alle elf Quant-Module besitzen
 neue Erklärungen und Übungen. Weitere Vertiefungen behandeln EPS, Kennzahlen und
 Leasing/Vergütung. Der Quant-Bereich enthält jetzt auch ausführliche Testwahl,
@@ -646,20 +646,35 @@ Das neue Gebührenlabor ergänzt den einfachen Carry-Rechner. Neun Eingaben,
 Summe oder Entweder/oder sowie das tatsächliche Nettoergebnis. Ein möglicher
 Sprung an der weichen Hürde wird mit getrennten Kurvenabschnitten gezeichnet.
 
-Insgesamt 268 zusätzliche berechnete Grafiken und elf Ablaufbilder erläutern
+Private Equity und Private Debt ergänzen 35 Abschnitte, 42 Formeltafeln mit
+Symbolerklärungen, 26 Rechenfälle, elf Tabellen, sieben berechnete Grafiken und
+14 ausführliche Verständnisfragen. 60 Trainingsfragen und vier reservierte
+Klausurtransfers behandeln Venture, Growth, Buyout, Direct Lending, Mezzanine,
+Unitranche, Venture Debt, PIK und Distressed sowie mögliche Portfoliostreuung.
+Kapitalrunden unterscheiden neues Betriebscash von Verkäufen alter Anteile.
+Vergleiche trennen EBITDA, Bewertung, Zins, Tilgung und Eigenkapitalergebnis.
+Das neue Buyout-Labor enthält acht Eingaben, 14 Vergleichsfälle, einen jährlichen
+Zahlungsplan und fünf alternative Exitpreise. Ein Zinsfehlbetrag wird als echte
+zusätzliche Eigenkapitalzahlung gezeigt; nach früher Entschuldung entstehen
+Dividenden. Bank- und Eigenkapitalerlös stimmen den Verkauf ab. Ohne positiven
+Rückfluss gibt es keine künstliche IRR. Die Diversifikationsbeispiele zeigen,
+warum verschiedene Fondsnamen und niedrige gemeldete Korrelation allein nicht
+für ein risikoärmeres oder ausreichend liquides Portfolio genügen.
+
+Insgesamt 275 zusätzliche berechnete Grafiken und elf Ablaufbilder erläutern
 die neuen Zusammenhänge.
 Direkte Abschnittsverweise verbinden die Einheiten und passende Wörterbuchdefinitionen.
 
-283 Lernzielreferenzen sind aktuell sowohl neuen Erklärungen als auch Trainingsfragen
+286 Lernzielreferenzen sind aktuell sowohl neuen Erklärungen als auch Trainingsfragen
 zugeordnet. Dies ist **kein Nachweis vollständiger CFA-Vorbereitung**. Offene
 Einheiten sind sichtbar; die fachliche Endprüfung läuft. Zwei getrennte Probeklausuren
-haben bisher je 151 von 180 Fragen und bleiben gesperrt. Ihre Ethics- und Quant-Anteile
+haben bisher je 153 von 180 Fragen und bleiben gesperrt. Ihre Ethics- und Quant-Anteile
 sind mit jeweils 22 Fragen pro Thema, ihre Economics-Anteile mit je zwölf und
 ihre Abschlussanalyse-Anteile mit je 22 Fragen angelegt. Corporate Finance hat
 je zwölf reservierte Fragen. Damit sind die Themenanteile der ersten Sitzung
 angelegt. Die Aktienanteile der zweiten Sitzung sind mit je 22 reservierten Fragen
 angelegt. Der Anleihebereich enthält je 22 reservierte Fragen; Derivate je 13.
-Die ersten vier Alternative-Investments-Fragen je Klausur sind angelegt. Pro Klausur fehlen noch neun Fragen zu Alternative Investments und 20 zu Portfolio Construction.
+Die ersten sechs Alternative-Investments-Fragen je Klausur sind angelegt. Pro Klausur fehlen noch sieben Fragen zu Alternative Investments und 20 zu Portfolio Construction.
 Der implementierte Ablauf
 mit zwei Sitzungen zu je 135 Minuten wird mit gesonderten künstlichen Testdaten
 geprüft, die nicht als echte Lernfragen veröffentlicht werden.

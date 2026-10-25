@@ -147,7 +147,7 @@ window.FinanceStudy=(()=>{
  }
  function mountLab(id){
   const model=FinanceModels.models[id],el=document.getElementById('study-lab');
-  el.classList.toggle('study-lab-forecast',['forecastvalue','companydrivers','bondcovenants','repayment','bondindex','repofunding','yieldspread','floater','moneyyield','yieldcurve','bondhorizon','bond','bondconvex','keyrate','credit','sovereign','creditcash','mortgage','forwardvalue','option','hedgeuse','forward','fra','futuresstates','swapvalue','optionvalue','parity','binomialrep','commitment','fundfees'].includes(id));
+  el.classList.toggle('study-lab-forecast',['forecastvalue','companydrivers','bondcovenants','repayment','bondindex','repofunding','yieldspread','floater','moneyyield','yieldcurve','bondhorizon','bond','bondconvex','keyrate','credit','sovereign','creditcash','mortgage','forwardvalue','option','hedgeuse','forward','fra','futuresstates','swapvalue','optionvalue','parity','binomialrep','commitment','fundfees','privatecapital'].includes(id));
   el.classList.toggle('study-lab-covenants',id==='bondcovenants');
   el.classList.toggle('study-lab-repayment',id==='repayment');
   el.classList.toggle('study-lab-bondindex',id==='bondindex');
@@ -164,7 +164,7 @@ window.FinanceStudy=(()=>{
   el.classList.toggle('study-lab-sovereign',id==='sovereign');
   el.classList.toggle('study-lab-creditcash',id==='creditcash');
   el.classList.toggle('study-lab-mortgage',id==='mortgage');
-  el.classList.toggle('study-lab-fra',['fra','futuresstates','swapvalue','optionvalue','parity','binomialrep','commitment','fundfees'].includes(id));
+  el.classList.toggle('study-lab-fra',['fra','futuresstates','swapvalue','optionvalue','parity','binomialrep','commitment','fundfees','privatecapital'].includes(id));
   el.innerHTML=`<div class="kicker">Interaktives Modell</div><h2>${esc(model.title)}</h2><p>${glossaryText(model.intro)}</p><div class="study-lab-grid"><div class="study-lab-controls">${model.controls.map(f=>f.choices?`<label for="lab-${f.key}">${glossaryText(f.label)}<select id="lab-${f.key}" data-key="${f.key}">${f.choices.map(o=>`<option value="${o.value}"${o.value===f.value?' selected':''}>${esc(o.label)}</option>`).join('')}</select></label>`:`<label for="lab-${f.key}">${glossaryText(f.label)}<div class="study-pair"><input id="lab-${f.key}" data-key="${f.key}" type="number" min="${f.min}" max="${f.max}" step="${f.step}" value="${f.value}"><input aria-label="${esc(f.label)} – Regler" data-range="${f.key}" type="range" min="${f.min}" max="${f.max}" step="${f.step}" value="${f.value}"></div></label>`).join('')}<button class="btn ghost" type="button" id="lab-reset">Ausgangswerte</button></div><div class="study-lab-output"><p id="lab-error" role="alert" hidden></p><div id="lab-results"><div class="study-metrics" id="lab-metrics" aria-live="polite"></div><div id="lab-chart"></div><p id="lab-assumptions" class="study-model-note"></p><details class="study-details"><summary>Kurvenwerte als Tabelle</summary><div class="study-table-wrap" id="lab-table"></div></details></div></div></div>`;
   const update=()=>{
    const params=Object.fromEntries([...el.querySelectorAll('[data-key]')].map(e=>[e.dataset.key,e.value]));
@@ -173,7 +173,7 @@ window.FinanceStudy=(()=>{
     el.querySelector('#lab-error').hidden=true;el.querySelector('#lab-results').hidden=false;
     el.querySelector('#lab-metrics').innerHTML=r.metrics.map(([name,v])=>`<div><span>${esc(name)}</span><strong>${fmt(v,4)}</strong></div>`).join('');
     el.querySelector('#lab-chart').innerHTML=chart(r);
-    if(['forecastvalue','companydrivers','bondcovenants','repayment','bondindex','repofunding','yieldspread','floater','moneyyield','yieldcurve','bondhorizon','bond','bondconvex','keyrate','credit','sovereign','creditcash','mortgage','forwardvalue','option','hedgeuse','forward','fra','futuresstates','swapvalue','optionvalue','parity','binomialrep','commitment','fundfees'].includes(id)){
+    if(['forecastvalue','companydrivers','bondcovenants','repayment','bondindex','repofunding','yieldspread','floater','moneyyield','yieldcurve','bondhorizon','bond','bondconvex','keyrate','credit','sovereign','creditcash','mortgage','forwardvalue','option','hedgeuse','forward','fra','futuresstates','swapvalue','optionvalue','parity','binomialrep','commitment','fundfees','privatecapital'].includes(id)){
      const plot=el.querySelector('#lab-chart');plot.tabIndex=0;plot.setAttribute('role','region');plot.setAttribute('aria-label','Seitlich verschiebbare Modellkurve');
      if(!plot.nextElementSibling.classList.contains('study-model-plot-hint')){
       const hint=document.createElement('p');hint.className='study-model-plot-hint';hint.hidden=true;hint.textContent='↔ Die Grafik ist seitlich verschiebbar; mit Fokus auch über die Pfeiltasten.';plot.after(hint);

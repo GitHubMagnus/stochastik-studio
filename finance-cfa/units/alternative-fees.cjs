@@ -282,6 +282,7 @@ module.exports={id:'alternative-fees',intro:[
   D('12. Was sagt eine KS-PME von 1,033333 aus?',['Unter den gewählten Cashflow-, NAV- und Indexkonventionen liegt der skalierte Fonds-Gesamtwert über den skalierten Beiträgen. Das Verhältnis ist nicht annualisiert und noch kein risikobereinigtes Alpha. Ungeeigneter Index oder überhöhter Rest-NAV kann auch diese Zahl irreführend machen.'])
  ])
 ],explorations:[{section:'calculator',lesson:'alternatives-02',focus:'lab-fundfees',label:'Gebührenvertrag, Hürden und Nettoergebnis selbst vergleichen'}],related:[
+ {unit:'private-capital',section:'cash-debt',label:'Aus Betriebscash den tatsächlichen Buyout-Zins-, Tilgungs- und Eigenkapitalplan herleiten'},
  {unit:'alternative-structures',section:'cash-call',label:'Kapitalzusage, tatsächliche Zahlung und verfügbare Liquidität unterscheiden'},
  {unit:'benchmarks',section:'time-weighted',label:'TWR und MWR im allgemeinen Renditevergleich vertiefen'},
  {unit:'tvm',section:'implied',label:'Die Abzinsung hinter der IRR verstehen'},

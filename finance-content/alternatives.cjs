@@ -16,3 +16,4 @@ L('12','Eine zusätzliche Anlage hilft, wenn ihre wirtschaftlichen Risiken das b
 module.exports[0].lab='commitment';
 module.exports[1].lab='waterfall';
 module.exports[1].additionalLabs=['fundfees'];
+module.exports[3].lab='privatecapital';
