@@ -275,6 +275,7 @@ module.exports={id:'carry',intro:[
   'In einer guten Erläuterung stehen daher nicht nur Ergebnis und Formel. Genannt werden auch Anspruch, Verzinsungskonvention, Ertragstyp, Zahlungszeitpunkte und Durchführbarkeit. Erst dieses vollständige Bild macht die Rechnung als Lernstoff und später als Nachschlagewerk belastbar.'
  ])
 ],explorations:[{section:'calculator',lesson:'derivatives-02',focus:'lab',label:'Arbitragefreien Preis, Prepaid-Replikation und angebotenen Lieferpreis mit acht kontrollierten Vergleichsfällen untersuchen'}],related:[
+ {unit:'resources',section:'roll',label:'Rohstoffkurven mit tatsächlich gerollten Positionen und Kontozahlungen verbinden'},
  {unit:'derivative-uses',section:'liquidity',label:'Eine sichere Endwirkung von tatsächlich rechtzeitig verfügbaren Marginmitteln unterscheiden'},
  {unit:'derivative-uses',section:'basis',label:'Basis mit ausdrücklich festgelegter Kassa-minus-Futures-Konvention interpretieren'},
  {unit:'derivative-markets',section:'price-value',label:'Die neue Lieferkondition vom Marktwert eines alten Vertrags trennen'},

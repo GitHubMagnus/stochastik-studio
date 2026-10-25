@@ -296,6 +296,7 @@ module.exports={id:'real-assets',intro:[
   D('16. Warum braucht langfristige Anlage auch kurzfristige Kassenplanung?',['Capex, Bauabrufe, gebundene Reserven, Zins und Fälligkeiten können vor den langfristigen Erlösen Geld benötigen. Ein stabil gemeldeter NAV und eine lange physische Lebensdauer decken diese Zahlungen nicht automatisch.'])
  ])
 ],explorations:[{section:'calculator',lesson:'alternatives-06',focus:'lab-propertydcf',label:'NOI, Capex, Kauf-/Verkaufs-Cap, Diskontrate und tatsächliche Cashflow-IRR vergleichen'}],related:[
+ {unit:'resources',section:'farm-cash',label:'Land- und Forsterträge aus Menge, Preis, Kosten und Erntezeit herleiten'},
  {unit:'private-capital',section:'cash-debt',label:'Operatives Geld mit Zins, Tilgung und Eigenkapitalzahlungen abstimmen'},
  {unit:'alternative-fees',section:'smoothing',label:'Glättung von NAV-Renditen und scheinbare Diversifikation erkennen'},
  {unit:'valuation-model',section:'terminal-capital',label:'Wachstum und notwendige künftige Investitionen zusammenführen'},
