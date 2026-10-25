@@ -292,7 +292,8 @@ module.exports={id:'parity',intro:[
  {unit:'derivative-contracts',section:'moneyness',label:'Moneyness, Auszahlung und vollständigen Gewinn voneinander trennen'},
  {unit:'carry',section:'calculator',label:'Passende Aktien-, Ertrags- und Finanzierungsleistungen gemeinsam bewerten'},
  {unit:'forward-value',section:'replication',label:'Alten Liefervertrag, aktuellen Marktwert und neue Quote unterscheiden'},
- {unit:'futures',section:'funding',label:'Zwischenzahlungen und deren Finanzierung beim Instrumentvergleich beachten'}
+ {unit:'futures',section:'funding',label:'Zwischenzahlungen und deren Finanzierung beim Instrumentvergleich beachten'},
+ {unit:'binomial',section:'neutral-price',label:'Einzelne Call- und Putpreise aus zwei Zuständen und ihrer Finanzierung bestimmen'}
 ],sources:[
  {title:'CFA Institute: tatsächliche Level-I-Lernziele 2027, Option Replication Using Put-Call Parity, Seite 24',url:'https://www.cfainstitute.org/sites/default/files/2027levelitopicoutline_online.pdf#page=24'},
  {title:'CFA Institute: ergänzende öffentliche Übersicht 2026; Kernfall europäische Rechte ohne laufenden Ertrag, keine vollständige 2027-Curriculumquelle',url:'https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/option-replication-using-put-call-parity'},

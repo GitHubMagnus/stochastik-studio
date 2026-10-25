@@ -353,3 +353,4 @@ module.exports={id:'option-values',intro:[
 ],review:{status:'draft',date:'2026-10-25',note:'Eigene Preis-, Replikations- und Grenzfälle; unabhängige mathematische und technische Gegenprüfung sowie fachliche Gesamtabnahme erforderlich.'}};
 
 module.exports.related.push({unit:'parity',section:'spot',label:'Passende Call- und Putrechte über ihre vollständigen Endpakete verknüpfen'});
+module.exports.related.push({unit:'binomial',section:'replication',label:'Den Zweizustandsnachbau vollständig herleiten und über Preisgewichte gegenprüfen'});

@@ -18,6 +18,8 @@ module.exports[0].lab='forwardvalue';
 
 module.exports[11].lab='hedgeuse';
 
+module.exports[6].additionalLabs=['binomialrep'];
+
 module.exports[2].additionalLabs=['fra'];
 module.exports[3].lab='futuresstates';
 module.exports[4].lab='swapvalue';
