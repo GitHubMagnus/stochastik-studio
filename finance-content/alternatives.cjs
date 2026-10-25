@@ -17,3 +17,4 @@ module.exports[0].lab='commitment';
 module.exports[1].lab='waterfall';
 module.exports[1].additionalLabs=['fundfees'];
 module.exports[3].lab='privatecapital';
+module.exports[5].additionalLabs=['propertydcf'];

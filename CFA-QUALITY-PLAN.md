@@ -4578,3 +4578,120 @@ Endgültige Inhaltsversion: 4fe44391f093b176.
 Normalisierter HTML-SHA-256:
 d65063f20b3c91dc1942aafe16ed2cae4dec591c36bad77e200051c19b8ddb44
 bei 24.732.102 Bytes.
+
+
+## Immobilien und Infrastruktur: Zahlungsrechte, Wert und Kaufpreis (25.10.2026)
+
+Das Modul real-assets bearbeitet die vier tatsächlichen Lernziele 2027:
+Merkmale und Anlageeigenschaften von Immobilien sowie von Infrastruktur.
+Die Abgrenzung wurde am offiziellen Outline, Seiten 25–26, überprüft.
+Die öffentlichen CFA-Übersichten 2026 und die Nareit-Definitionen ergänzen
+Begriffs- und Mechanismusprüfungen; sie ersetzen keinen vollständigen
+Zugriff auf das Curriculum 2027. Zusätzliche NAV-/FFO- und Projektbewertung
+wird ausdrücklich als Vertiefung und nicht als erfundenes Level-I-LOS markiert.
+
+40 Abschnitte enthalten 47 mathematische Formeln mit zugeordneten Symbolhilfen,
+28 durchgerechnete beziehungsweise erklärte Fälle, elf Tabellen, neun Grafiken
+mit 955 unabhängig geprüften Koordinaten sowie 16 Verständnisfragen mit
+aufklappbarer Selbstkontrolle. Zwei weitere Ausklapptexte vertiefen
+Vergleichbarkeit und abschließende Cashflowabstimmung. Anwendungen, Grenzen,
+Kosten, Zahlungszeit und unterschiedliche Anlegeransprüche stehen unmittelbar
+bei den jeweiligen Konzepten. 32 Wörterbucheinträge wurden ergänzt oder vertieft;
+NOI und CFADS erhalten eigene Kontextziele, während die älteren MBS-, Projekt-
+und Kredit-FFO-Bedeutungen erhalten bleiben.
+
+Die wichtigsten wirtschaftlichen Kontrollpunkte:
+
+- Leerstand, Betriebskosten, Capex, Kreditzins und Tilgung werden getrennt.
+  1000 mögliche Miete, zehn Prozent Ausfall, 20 weiterer Ertrag und 320
+  Betriebskosten ergeben NOI 600; nach 80 Capex, 200 Zins und 100 Tilgung
+  verbleiben 220 Eigenkapitalcash. Reservebewegungen werden ohne doppelte
+  Bezahlung derselben Erneuerung abgestimmt.
+- Aktueller NOI 100 und Folgejahres-NOI 102 ergeben bei Preis 2000 Current-Cap
+  fünf und Forward-Cap 5,1 Prozent. Eine NOI-Cap-Rate ist keine automatische
+  Netto-Cashrendite. Bei 90 Prozent Cashkonversion, Forward-Cap fünf Prozent
+  und dauerhaft zwei Prozent Wachstum folgt unter den benannten Gordon-
+  Voraussetzungen eine konsistente Rendite von 6,5 und nicht sieben Prozent.
+- Der endliche Fünfjahresfall trennt laufendes Cash, Folgejahres-NOI für
+  die Exitbewertung, einmalige Verkaufskosten und tatsächlich erhaltenen
+  Nettoverkauf. Bei acht Prozent beträgt sein DCF 1875,709421 gegen
+  Kaufpreis 2000, Kapitalwert minus 124,290579 und Zahlungs-IRR 6,5 Prozent.
+  Rund 80,121029 Prozent des DCF hängen vom Schlussverkauf ab.
+- Nur die Diskontrate zu ändern verändert den DCF, aber nicht dieselben
+  tatsächlichen Zahlungen oder deren Kaufpreis-IRR. Ein günstigerer Kauf
+  verändert dagegen IRR und Kapitalwert, ohne den unveränderten Rückfluss-DCF
+  zu erhöhen. Endliches Wachstum oberhalb des Diskontsatzes ist kein pauschal
+  unzulässiger Gordon-Fall; der exogene Exit muss wirtschaftlich begründet sein.
+- Einjähriges Eigenkapital kann durch teureren Kredit bei konstantem Objektpreis
+  weniger verdienen: 4,5 Prozent Objektcashrendite und fünf Prozent Kreditkosten
+  ergeben im eigenen Fall 3,75 Prozent Eigenkapitalrendite. Höhere oder niedrigere
+  Verkaufspreise besitzen wegen des kleineren Eigenkapitaleinsatzes größere Wirkung.
+- REIT-NAV ist kein garantierter Liquidationspreis. Die vereinfachte FFO-/AFFO-
+  Überleitung nennt alle eigenen Anpassungen; eine einheitliche weltweite AFFO-
+  oder Ausschüttungsregel wird nicht behauptet. Mietcaps und Kosteninflation
+  können trotz höherer nominaler Miete den realen NOI vermindern.
+- Nutzerentgelte hängen an bezahlter Menge und Deckungsbeitrag; Verfügbarkeit
+  bleibt an Leistung, Abzüge und zahlungsfähige Vertragspartner gebunden.
+  PPP und Projektgesellschaft begründen keine automatische Staatsgarantie.
+  Eine erlaubte Rendite auf anerkannte Kapitalbasis ist keine identische
+  garantierte Eigenkapital-IRR auf den tatsächlichen Kapitaleinsatz.
+- Zehn Vertragszahlungen 20 bei acht Prozent haben Wert 134,201628, keine
+  erfundene ewige Rente 250 bei entschädigungsloser Rückgabe. Ein Jahr Verzug
+  ergibt Kapitalwert 24,260767 bei vollständiger Verlängerung, aber 15,683109
+  bei festem Ende und nur neun Zahlungen. Rückgabekosten, gebundene Reserven,
+  Fremdwährungsdienst und kurzfristiger Mittelbedarf werden zusätzlich geprüft.
+
+Das neue zusätzliche Labor propertydcf besitzt acht Eingaben, 14 gültige
+native Szenarien, sechs Ergebnisse, zwei berechnete Kurven, fünf Exit-Cap-
+Alternativen und ein aufklappbares jährliches Cashflowledger. Der bisherige
+property-Rechner und sein direkter Zugang bleiben erhalten. Alle 80 eigenen
+Trainingsfragen besitzen Begründungen für jede Antwort sowie genaue
+Kapitelrückverweise; die vier weiteren reservierten Transfers bleiben von
+Training und voneinander getrennt. Auf jedes der vier LOS entfallen zwanzig
+Trainingsfragen und ein separater Klausurtransfer.
+
+Die unabhängige Numerik prüft 6561 Szenarien, 45.927 Jahresabrechnungen und
+1.062.882 Rechnerkurvenpunkte gegen eine gesonderte endliche geometrische
+Bewertung, datierte Cashflows und IRR-Nullstellen. Alle 14 Presets, alle
+955 Buchgrafikpunkte, 37 numerischen Antworten einschließlich reservierter
+Transfers und die erklärten Zahlungspläne stimmen innerhalb ihrer Rundung.
+
+Die endgültige Fassung besteht 492 verschiedene automatisierte Tests:
+461 Kernprüfungen sowie 31 Browserprüfungen, davon sechs neue. Die vorherigen
+acht Einzel-Numeriktests werden nicht noch einmal gezählt. Geprüft werden
+alle 171 bisherigen Kapitel, alle 61 Modelle, Offlinezugang, 47 Symbolhilfen,
+Grafikbeschriftungen, native Eingaben, Tastatur, 14 Presets, Szenario-/Jahres-
+und Kurventabellen, alle 80 tatsächlichen Trainingsfragen sowie reservierte
+Fragen in ausdrücklich isolierten Testansichten. Die echten unvollständigen
+Klausuren bleiben gesperrt. Ein doppelter normalisierter Kontextalias wurde
+entfernt; eine frühere FFO-Testannahme wurde auf den jetzt vorhandenen präzisen
+CFA-Rückverweis aktualisiert. Ein übernommener falscher Abschnittsselektor
+im neuen Browsertest wurde korrigiert. Die vollständigen relevanten Tests
+liefen danach erneut.
+
+108 neue Ansichten wurden visuell gelesen, darunter jede neue Grafik,
+alle 28 Beispiele, ausklappbare Erläuterungen, zusätzliche Tabellen,
+mobile Symbolhilfen, 14 Rechnerszenarien und die reservierten Lösungen.
+Die finale Aufnahme wurde mit SHA-256 verglichen: 101 Ansichten waren
+bildidentisch, sieben wurden erneut gelesen. Linke, mittlere und rechte
+Tabellenspalten bleiben per seitlichem Verschieben erreichbar; lange
+Formeln und Kurven besitzen auf schmalen Ansichten entsprechende Hinweise.
+
+**Das Gesamtziel bleibt offen:** 93 von 102 Einheiten und 290 von 340 LOS
+besitzen neue Erklärungen und Trainingszuordnungen. Es gibt 3414 Trainingsfragen
+und je 155 von 180 echten Klausurfragen. Je Klausur fehlen fünf Alternative-
+Investments- und 20 Portfoliofragen. Drei Alternativen- und sechs Portfolio-
+einheiten fehlen, zusammen neun Einheiten und 50 LOS. Alle 93 Einheiten
+bleiben draft, Release bleibt false. Insgesamt gibt es 284 berechnete CFA-
+Grafiken, elf Ablaufbilder, 61 Modelle und 74 bisherige Kapitel mit primärem
+interaktivem Zugang. Das Wörterbuch umfasst 1967 Definitionen, 4243 Begriffe
+und Aliase, 264 Kontextzuordnungen und 1739 kuratierte Rückverweise.
+Der separate vollständige CFA-Ablauf wurde zuletzt bei 89 Einheiten geprüft;
+der abschließende Gesamtaudit steht weiterhin aus. Die Zielwerte 90/100
+Materialqualität und 80/100 Vorbereitungseignung sind weiterhin nicht als
+erreicht abgenommen und keine persönliche Bestehenswahrscheinlichkeit.
+
+Endgültige Inhaltsversion: 2f11be5bdfe8fba1.
+Normalisierter HTML-SHA-256:
+275c20f061ef4ca755f2f8df067ac11621e99f311576f56b8a5c7e78fc157722
+bei 25083957 Bytes.
