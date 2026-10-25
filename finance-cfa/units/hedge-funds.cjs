@@ -320,7 +320,8 @@ module.exports={id:'hedge-funds',intro:[
  {unit:'binomial',section:'delta',label:'Lokale Replikation und Hedge-Stückzahl im konkreten Optionsmodell herleiten'},
  {unit:'curve-risk',section:'key-case',label:'Parallele Duration und unterschiedliche Laufzeitknoten auseinanderhalten'},
  {unit:'corporate-credit',section:'cash-case',label:'Operatives Geld, Kreditzins und fällige Finanzierung vollständig abstimmen'},
- {unit:'credit-risk',section:'quantile',label:'Quantilgrenzen von schweren Verlusten außerhalb des betrachteten Bereichs unterscheiden'}
+ {unit:'credit-risk',section:'quantile',label:'Quantilgrenzen von schweren Verlusten außerhalb des betrachteten Bereichs unterscheiden'},
+ {unit:'digital-assets',section:'quantity-case',label:'Bruttoanzeige und tatsächliches Anlegervermögen auch bei Token-Rewards getrennt überleiten'}
 ],sources:[
  {title:'CFA Institute: tatsächliche Lernziele Level I 2027, Hedge Funds, Seite 26',url:'https://www.cfainstitute.org/sites/default/files/2027levelitopicoutline_online.pdf#page=26'},
  {title:'CFA Institute: öffentliche Level-II-Vertiefungsübersicht Hedge Fund Strategies 2026; zusätzliche Strategieerklärung und keine neuen Level-I-Lernziele',url:'https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/hedge-fund-strategies'},

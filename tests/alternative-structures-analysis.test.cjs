@@ -48,8 +48,8 @@ test('fee bases, strict hurdle, high-water mark and manager exposure use explici
  near(20/400,.05);near(140-.2*40,132);near(140-2-.2*(140-2-100),130.4);near(140-2-.2*(140-100),130);near(140-.2*(40-8),133.6);near(.2*Math.max(110-120,0),0);near(.2*Math.max(130-120,0),2);near(-.5*20+20,10);
  near((120-60)/40-1,.5);near((80-60)/40-1,-.5);near(500*.8,400);near(60*(100/300),20);
 });
-test('twenty-five curated definitions preserve existing corporate GP/LP, hurdle and clawback targets while providing fund context',()=>{
- const g=require('../finance-glossary.cjs'),entries=require('../finance-cfa/glossary.cjs').filter(e=>e.cfa.unit===u.id);assert.equal(entries.length,25);assert.equal(new Set(g.map(e=>e.term)).size,g.length);for(const e of entries){assert.ok(g.some(x=>x.term===e.term));assert.ok(u.sections.some(s=>s.id===e.cfa.section));}
- for(const term of ['General Partner','Limited Partner'])assert.equal(g.find(e=>e.term===term).cfa.unit,'issuer-forms');assert.equal(g.find(e=>e.term==='Hurdle Rate').cfa.unit,'capital-allocation');assert.equal(g.find(e=>e.term==='Clawback').cfa.unit,'governance');
+test('twenty-six curated definitions preserve existing corporate GP/LP, hurdle and clawback targets while providing fund context',()=>{
+ const g=require('../finance-glossary.cjs'),entries=require('../finance-cfa/glossary.cjs').filter(e=>e.cfa.unit===u.id);assert.equal(entries.length,26);assert.equal(new Set(g.map(e=>e.term)).size,g.length);for(const e of entries){assert.ok(g.some(x=>x.term===e.term));assert.ok(u.sections.some(s=>s.id===e.cfa.section));}
+ assert.deepEqual(g.find(e=>[e.term,...e.aliases].includes('Fund of Funds')).cfa,{unit:u.id,section:'fund-selection'});for(const term of ['General Partner','Limited Partner'])assert.equal(g.find(e=>e.term===term).cfa.unit,'issuer-forms');assert.equal(g.find(e=>e.term==='Hurdle Rate').cfa.unit,'capital-allocation');assert.equal(g.find(e=>e.term==='Clawback').cfa.unit,'governance');
  for(const label of ['GP','LP','Hurdle','Clawback','Carry'])assert.ok(entries.some(e=>e.contextualAliases?.some(a=>a.label===label&&a.units.includes(u.id))),label);
 });
