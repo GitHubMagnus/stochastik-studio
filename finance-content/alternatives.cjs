@@ -20,3 +20,5 @@ module.exports[3].lab='privatecapital';
 module.exports[5].additionalLabs=['propertydcf'];
 module.exports[7].lab='commodityledger';
 module.exports[8].lab='hedgeexposure';
+
+module.exports[9].lab='tokenwealth';

@@ -4880,3 +4880,76 @@ Endgültige Inhaltsversion: c6653cc210826857.
 Normalisierter HTML-SHA-256:
 044bf39cf7b5d95b105240ce954f4f6b593b4c2652c4f4d40cbb27af4422d80e
 bei 25781876 Bytes.
+
+## Stand 26.10.2026: Digitale Vermögenswerte und vollständige Alternative-Investments-Pools
+
+Die vier tatsächlichen Digital-Assets-Lernziele für Level I 2027 sind mit
+43 Abschnitten, 46 gesetzten Formeln mit Symbolhilfen, 32 erklärten Fällen,
+neun berechneten Grafiken, sechs Tabellen und einem Ablaufbild ausgearbeitet.
+20 Verständnisfragen und 80 Trainingsfragen verbinden Registerfunktion,
+Anlageeigenschaften, Zugangsformen sowie Risiko und Rendite. Vier zusätzliche
+reservierte Transferfälle schließen die Alternative-Investments-Anteile beider
+Klausuren mit je 13 Fragen ab. Je Klausur fehlen weiterhin 20 Portfoliofragen.
+
+Die Erklärung trennt Datenregister, tatsächlichen Anspruch und Anlegerergebnis.
+Hashing, Signatur, Verschlüsselung, Pseudonymität, Berechtigungen, Konsens,
+Finalität und externe Daten besitzen eigene Grenzen. Das Abwicklungsbild zeigt
+unter ausdrücklich angenommenen wirksamen Regeln Lieferung gegen Zahlung;
+Tokenübertragung ist kein zweiter Cashzufluss. Direkte, verwahrte und
+synthetische Ansprüche werden unterschieden. Reserven, vorrangige Kosten,
+proportionale Verteilung und ein ausdrücklich anderer Vorrangfall erklären,
+weshalb eine angestrebte Preisbindung keine garantierte Vollzahlung ist.
+
+Das neue Tokenlabor verwendet acht Eingaben und 14 Szenarien. Eigener Bestand,
+Gesamtangebot, Gesamtbewertung und Stückpreis sind getrennt. Jährliche Rewards
+beziehen sich auf den jeweiligen Anfangsbestand; die Gebühr gilt nur für neue
+Rewards. Ein Bestandsverlust trifft genau einmal den Bestand nach der ersten
+Reward-Gebühr. Alle weiteren Jahre verwenden den verbleibenden Bestand.
+Das globale Angebot wird separat als Szenario vorgegeben; es entsteht kein
+zweiter automatisch unterstellter Burn. Der Rechner ist eine vollständige
+Mengen- und Bewertungsrechnung unter exogenen Annahmen, keine Nachfrageprognose,
+Protokollsimulation oder Garantie tatsächlich erzielbarer Rewards.
+
+Der Grundfall erklärt 36,0251712 Prozent mehr Token bei nur 2,1977244 Prozent
+mehr Geldvermögen nach drei Jahren. Andere Szenarien ändern einzeln Gebühr,
+Angebot, Bewertung, Haltedauer oder Verlust. Die Jahresrechnung stimmt jeden
+Bestand und Abzug ab. Weitere Fälle verbinden Währung und reale Kaufkraft,
+Verwahrung und Plattformausfall, Spot-ETP und Futureskonto, NAV und bezahlte
+Prämie, Unternehmensaktie, Liquidation, Markttiefe und Portfoliorisiko.
+Die zusätzliche konstante-Produkt-Poolrechnung ist als Vertiefung bezeichnet,
+nicht als neues offizielles Lernziel. 44 neue oder erweiterte Digital-Assets-
+Definitionen besitzen präzise Rückverweise. Der allgemeine Dachfondsbegriff
+ist zusätzlich vom spezielleren Hedgefondsfall getrennt. Gerundete
+Laboranzeigen zeigen bei einem auf null gerundeten Wert keine negative Null.
+
+**Prüfung des endgültigen Stands:** 516 unterschiedliche Tests bestanden:
+485 Rechen-/Inhalts-/Strukturtests und 31 Browsertests, davon sechs neue
+Digital-Assets-Tests. Frühere Wiederholungen werden nicht zusätzlich gezählt.
+Unabhängige geschlossene Formeln kontrollieren 6561 Szenarien, 19683 Jahreskonten
+und 1587762 Rechner-Kurvenpunkte. Alle 1307 Buchgrafikpunkte und alle 31
+numerischen Trainings-/Klausurantworten sind gesondert nachgerechnet.
+Die Browserprüfungen erfassen alle 14 Vorgaben, acht Zahl-/Reglerpaare,
+sämtliche Kennzahlen, Tabellen und 242 Kurvenzeilen je Vorgabe, alle 80
+Trainingsfragen, vier reservierte Fälle, Symbolhilfen, Wörterbuchrückwege,
+Offlinebetrieb und Breiten 320, 390, 600 und 1440 Pixel. Das DvP-Bild besitzt
+eine geprüfte Textbegrenzung, Tastaturverschiebung und Tabellenalternative.
+Die allgemeine Prüfung erfasst alle 171 bisherigen Kapitel und 64 Rechner.
+127 Ansichten wurden auf 32 Kontaktblättern vollständig visuell geprüft.
+
+**Das Gesamtziel bleibt offen:** 96 von 102 Einheiten und 300 von 340 LOS
+besitzen neue Erklärungen und Trainingszuordnungen. Es gibt 3614 Trainingsfragen
+und je 160 von 180 echten Klausurfragen. Offen sind die sechs Portfolioeinheiten
+mit zusammen 40 LOS und je 20 noch fehlenden Klausurfragen. Alle 96 Einheiten
+bleiben draft, Release bleibt false und die unvollständigen Klausuren gesperrt.
+Gesamtbestand: 311 berechnete CFA-Grafiken, zwölf Ablaufbilder, 64 Modelle,
+77 bisherige Kapitel mit primärem interaktivem Zugang. Wörterbuch: 2064
+Definitionen, 4412 Begriffe/Aliase, 298 Kontextzuordnungen und 1844 kuratierte
+Rückverweise. Der separate vollständige CFA-Ablauf wurde zuletzt bei 89
+Einheiten geprüft; der abschließende Gesamtaudit steht aus. 90/100
+Materialqualität und 80/100 Vorbereitungseignung sind weiterhin nicht als
+Gesamtziel abgenommen und keine persönliche Bestehenswahrscheinlichkeit.
+
+Endgültige Inhaltsversion: 15926d3b4c7cd47e.
+Normalisierter HTML-SHA-256:
+51152f08835079d06c366510a8007d59d7478424038306a3525cbcc633ed96ee
+bei 26182691 Bytes.
