@@ -4443,3 +4443,138 @@ Endgültige Inhaltsversion: a718ea3a7918ffe8.
 Normalisierter HTML-SHA-256:
 011f4f89f8c7abcf6563e88ada367a1b1c65ceed0169820e0f4721c852dddffb
 bei 24.403.720 Bytes.
+
+## Private Equity und Private Debt: geprüfter Ausbau (25.10.2026)
+
+Das Modul private-capital bearbeitet die drei tatsächlichen Lernziele 2027
+zu Private Equity, Private Debt und möglichen Diversifikationseffekten.
+Es enthält 35 Abschnitte, 42 Formeltafeln mit lokalen Lesarten, Einheiten
+und Symboldefinitionen, 26 eigene Rechenfälle, elf Tabellen, sieben
+berechnete Grafiken und 14 aufklappbare Verständnisfragen. Zwei weitere
+Vertiefungen erläutern Optionspools/Down Rounds und die Grenzen gemeldeter
+Sharpe Ratios. 60 eigene englische Trainingsfragen, je 20 pro Lernziel,
+erhalten deutsche Begründungen für alle Antworten. Vier neue Transfers
+bleiben für die beiden getrennten Klausurpools reserviert.
+
+Die Darstellung ordnet Venture, Growth und Buyout nach Unternehmensphase
+und Finanzierungsbedarf. Runway und Stufenfinanzierung verbinden künftige
+Chancen mit heutiger Kasse. Bei Pre-Money 80 und 20 Primärkapital erhält
+der neue Anleger 20 % von 100; beim reinen Sekundärkauf für 20 zum Wert
+80 sind 25 % möglich, aber das Unternehmen erhält kein neues Cash.
+Mehrere Runden und ein eigener nicht teilnehmender Vorzugsvertrag zeigen,
+warum Quote, Anteilwert und tatsächlicher Exit-Rückfluss verschieden sind.
+Ein einzelner 15-facher Venture-Gewinner führt im eigenen Zehnerportfolio
+mit neun Totalausfällen nur zu 1,5-fachem Gesamtrückfluss.
+
+Die Buyout-Fälle trennen operatives EBITDA, Kauf-/Exitmultiple,
+Unternehmens- und Eigenkapitalwert sowie tatsächlich finanzierten
+Schuldenabbau. Der vereinfachte Fall 100 EV/60 Schuld/40 Eigenkapital
+zu 120 EV/40 Restschuld/80 Eigenkapital erklärt 20 aus höherem EV und
+20 aus finanzierter Tilgung. Die ausführliche Cash-Sweep-Rechnung
+verwendet dagegen sieben jährliche Cash-WE vor fünf Prozent Zins:
+Restschuld nach fünf Jahren 37,897475 und bei Exit 120 ein
+Eigenkapitalrückfluss von 82,102525, entsprechend 15,467378 % IRR
+ohne Zwischenzahlungen. Sinkender Zins setzt zunehmend Geld für Tilgung
+frei. EBITDA wird nicht als frei verfügbares Cash ausgegeben.
+
+Ein Gegenfall ohne operatives Cash benötigt fünf jährliche Zinsstützungen
+von drei: 55 gesamte Eigenkapitaleinzahlungen und 60 Verkaufserlös.
+Die tatsächliche IRR des datierten Stroms ist 2,090541 %; das Multiple
+60/55 wird nicht wie eine reine Anfangseinzahlung annualisiert.
+Ein weiterer Fall begrenzt Tilgung auf die echte Restschuld und bezahlt
+danach Dividenden. Die Rekapitalisierungsdividende verschiebt bei
+unverändertem Betrieb lediglich Wert aus dem verbleibenden Anteil in Cash.
+
+Private Debt wird nach Direct Lending, Mezzanine, Unitranche, Venture
+Debt und Distressed eingeordnet. Zinsfloor und Marge, Senior-/Juniorrang,
+separate Warrants und PIK werden mit expliziten Lehrverträgen erklärt.
+PIK wächst im Anspruch von 100 auf 121 in zwei Jahren, garantiert aber
+keine Zahlung. Eine Recovery von 70 würde einen Verlust erzeugen.
+Der Distressed-Vergleich auf Kaufpreis 40 zeigt bei Recovery 60 nach
+zwei Jahren 22,474487 %, bei Recovery 20 dagegen −29,289322 %.
+Ein Szenariobarwert erhält verschiedene tatsächliche Zahlungstermine;
+Szenario-IRRs werden nicht mit der IRR aggregierter Cashflows gleichgesetzt.
+
+Die Diversifikation wird weder aus Produktnamen noch aus Illiquidität
+abgeleitet. Ein eigener 50/50-Fall mit 20 % und 30 % Einzelvolatilität
+liefert bei Korrelation 0,2 eine Streuung von 19,621417 %, bei 0,8
+dagegen 23,769729 %. Die Schwelle gegenüber 20 % ist in genau diesem
+Fall 0,25. Gemeinsamer Schuldner, Vintage, Manager, Bewertungslags,
+Denominator Effect und Kapitalabrufstress ergänzen die Varianzrechnung.
+Eine gemeldete niedrige Korrelation oder hohe Sharpe Ratio wird nicht
+automatisch als wirtschaftliche Diversifikation interpretiert.
+
+Der neue primäre Rechner privatecapital bietet acht Eingaben,
+14 native gültige Vergleichsfälle, sechs Kennzahlen, zwei Kurven,
+fünf Exit-Szenarien und einen aufklappbaren jährlichen Zahlungsplan.
+Seine Cashkonversion ist eine eigene Annahme nach bereits berücksichtigten
+Steuern/Investitionen, aber vor Schuldzins, keine universelle FCF-Formel.
+Laufende Zinsdefizite werden im Szenario mit neuem Eigenkapital gedeckt;
+das wird nicht als allgemeine gesetzliche Nachschusspflicht behauptet.
+Am Exit trägt die Bank unter der gesonderten Annahme ohne persönliche
+Restschuldgarantie einen eventuellen ungedeckten Kreditbetrag.
+Ausgezahltes oder bereits zur Tilgung verwendetes Cash wird im
+operativen Verkaufspreis nicht doppelt angesetzt. Ohne positive
+Eigenkapitalzahlung wird keine IRR im offenen Bereich über −100 % erfunden.
+
+Grundlage sind der offizielle 2027-Outline, die als ergänzend markierte
+öffentliche Level-I-Übersicht 2026 und wirtschaftliche Vertiefungsübersichten
+zu Private Equity und Private Debt. Die zusätzlichen Level-III-Rechenideen
+werden nicht zu neuen Level-I-Pflichten erklärt. Die 2026-Errata
+berichtigen den Namen Special Purpose Acquisition Company; diese
+Bezeichnung wird gegenüber dem noch fehlerhaften öffentlichen Kurztext
+verwendet. Offizielle Übungsfragen werden nicht übernommen.
+29 kuratierte Definitionen ergänzen präzise Rückverweise. Allgemeine
+Ziele für Venture/Growth, Leveraged Buyout, Pre-Money, PIK und
+CLO-Mezzanine bleiben erhalten; mehrdeutige Begriffe erhalten im neuen
+Kapitel einen passenden Kontext.
+
+**484 unterschiedliche Prüfungen bestanden:** 453 Kernprüfungen und
+31 Browserprüfungen, davon sechs neue Private-Capital-Prüfungen.
+Der unabhängige Erstlauf mit acht neuen Analyseprüfungen war bereits
+erfolgreich; er wird nicht nochmals zur Gesamtzahl addiert.
+Die Numerik prüft 6.561 Buyout-Szenarien, 34.992 jährliche Kassenkonten,
+1.062.882 Modellkurven-Koordinaten, alle 1.435 Buchgrafik-Koordinaten
+und alle 36 numerischen Antworten einschließlich echter reservierter
+Transfers. Finanzierung bei Kauf, jährliche Mittelverwendung, Tilgung,
+Restschuld, Exit-Verteilung, Beiträge, Multiples und IRR-Barwertrest
+werden unabhängig abgestimmt.
+
+Die Browserprüfung bedient alle 14 Fälle und acht synchronisierte
+Zahlen-/Reglerpaare, prüft Tabellenwerte, IRR-Grenzfall, Fehler/Reset,
+direkten Kapitelzugang, Wörterbuchrückkehr und Offlinebetrieb.
+Alle 60 tatsächlichen Trainingsfragen und die vier tatsächlich
+reservierten Transfers werden mit Begründungen und Symbolhilfen
+gerendert; die reservierten Fälle ausschließlich in isolierten
+Render-Testdaten. Breiten 320, 390, 600 und 1440 werden geprüft.
+Der allgemeine Lauf kontrolliert alle 171 bisherigen Kapitel,
+60 Modelle, 43 bisherige Zusatzgrafiken und Formelhilfen.
+100 neue Ansichten wurden manuell durchgesehen: alle sieben Grafiken,
+26 Fälle, 16 offene Vertiefungen, Tabellen, mobile Symbolhilfen,
+Modellfälle und sämtliche reservierten Lösungen sowie seitlich
+verschobene jährliche Kassenkonten für Grundfall, Zinsstützung und
+frühe Dividenden. Keine JavaScript-Fehler oder globalen Überläufe
+in den geprüften Ansichten. Inhalt und Build bleiben nach dem
+Einfrieren unverändert.
+
+**Das Gesamtziel bleibt offen:** 92 von 102 Einheiten und 286 von
+340 Lernzielreferenzen besitzen neue Erklärungen und Übungen.
+Es gibt 3.334 Trainingsfragen und je 153 von 180 echten
+Klausurfragen. Je Klausur fehlen sieben Alternative-Investments-
+und 20 Portfoliofragen. Vier Alternativen- und sechs Portfolioeinheiten
+fehlen, zusammen zehn Einheiten und 54 LOS.
+Alle 92 Einheiten bleiben draft, Release bleibt false.
+Der Gesamtstand enthält 275 berechnete CFA-Grafiken, elf Ablaufbilder,
+60 Modelle und 74 bisherige Kapitel mit primärem interaktivem Zugang.
+Das Wörterbuch umfasst 1.942 Definitionen, 4.193 Begriffe/Aliase,
+256 Kontextzuordnungen und 1.707 kuratierte Rückverweise.
+Der separate vollständige CFA-Ablauf wurde zuletzt bei 89 Einheiten
+geprüft; der abschließende Gesamtaudit steht weiterhin aus.
+Die Zielwerte 90/100 Materialqualität und 80/100 Vorbereitungseignung
+sind nicht als erreicht abgenommen und keine persönliche
+Bestehenswahrscheinlichkeit.
+
+Endgültige Inhaltsversion: 4fe44391f093b176.
+Normalisierter HTML-SHA-256:
+d65063f20b3c91dc1942aafe16ed2cae4dec591c36bad77e200051c19b8ddb44
+bei 24.732.102 Bytes.

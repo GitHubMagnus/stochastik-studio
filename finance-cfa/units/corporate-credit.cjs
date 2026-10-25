@@ -206,6 +206,7 @@ module.exports={id:'corporate-credit',intro:[
   'Variiere im Rechner jeweils nur einen Treiber. Mehr Working Capital sollte bei sonst gleichen Daten FFO unverändert lassen, aber CFO senken. Höhere Fälligkeit sollte den bisherigen Jahreszins in dieser Endjahreskonvention nicht ändern. Negatives EBITDA darf keine scheinbar günstige Leverage-Note erzeugen. Vergleiche danach einen gemeinsamen Stress und erkläre, warum seine Wirkungen nicht durch eine einzige isolierte Quote beschrieben sind.'
  ])
 ],explorations:[{section:'workflow',lesson:'bonds-10',focus:'lab-creditcash',label:'Neravo verändern: Ergebnis, Cashbindung, Zins und Tilgung bis zum Finanzierungsbedarf verfolgen'}],related:[
+ {unit:'private-capital',section:'debt-map',label:'Private Kreditstrategien, PIK, Venture Debt und Distressed nach Anspruch und Geldfluss einordnen'},
  {unit:'securitization',section:'retained-loss',label:'Einen verbliebenen Junioranspruch nach dem Forderungsverkauf verfolgen'},
  {unit:'company',section:'operating-leverage',label:'Operativen Hebel aus Preis, Menge und Fixkosten weiter herleiten'},
  {unit:'ratios',section:'solvency',label:'Bilanzielle Verschuldungs- und Deckungsgrößen vergleichen'},
