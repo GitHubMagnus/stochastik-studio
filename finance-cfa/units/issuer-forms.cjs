@@ -157,3 +157,5 @@ module.exports={id:'issuer-forms',intro:[
  {title:'SEC / Investor.gov: SPACs, Rückgaben und Verwässerung',url:'https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins/what-you'},
  {title:'SEC: Unterschied zwischen Börsennotierung und Berichtspflichten',url:'https://www.sec.gov/resources-small-businesses/going-public/exchange-act-reporting-registration'}
 ],review:{status:'draft',date:'2026-09-26',note:'Eigene Fälle zu Haftung, mehrstufiger Steuer, Stimmrechten, fairer und unterbewerteter Ausgabe, IPO-Cash und Erwerbshebel. Globale Grundbegriffe werden von konkreten Rechts- und Steuerregeln getrennt. Numerische Gegenprüfungen und vollständiger Trainingsdurchlauf vorhanden; fachlicher Gesamtaudit bleibt offen.'}};
+
+module.exports.related.push({unit:'alternative-structures',section:'ownership',label:'Fondseigentum, Kapitalzusagen und tatsächliche Pflichten im alternativen Zugang unterscheiden'});

@@ -177,3 +177,5 @@ module.exports={id:'working-capital',intro:[
  {title:'ACCA: Cashflow Finance und Invoice Factoring, Vorschuss und Rückgriff',url:'https://www.accaglobal.com/gb/en/business-finance/types-finance/cashflow-invoice.html'},
  {title:'CFA Institute: Curriculum-Errata 2026, Korrektur zur Richtung des CCC bei längerer Lieferantenzahlung',url:'https://www.cfainstitute.org/sites/default/files/docs/programs/cfa-program/candidate-resources/2026-cfa-li-curriculum-errata-notice.pdf#page=29'}
 ],review:{status:'draft',date:'2026-09-27',note:'Eigene Zeitachsen-, Tagesbasis-, Liquiditäts-, Finanzierungs- und Politikfälle mit ausdrücklichen Modellgrenzen. 2027-Lernzielzuordnung; fachlicher Gesamtaudit und vollständige Kursfreigabe bleiben offen.'}};
+
+module.exports.related.push({unit:'alternative-structures',section:'cash-timing',label:'Die zeitliche Liquiditätsplanung auf Fondszusagen und Ausschüttungen übertragen'});

@@ -8,6 +8,7 @@ test('every interactive Finance model matches independent reference values',()=>
  refs.futuresstates=[100,2080/21,20/21,1000/11,2000,-2000];
  refs.parity=[105.12,105.12,0,7.12,7.12,101.12/.94];
  refs.binomialrep=[62.5,250/21,50/7,.5,-800/21,12];
+ refs.commitment=[600,100,700,350,50,-50];
  refs.optionvalue=[10.4505835722,5.5735260223,0,0,10.4505835722,5.5735260223];
  refs.swapvalue=[120/27.8,8800,120000,111200,2.78,278];
  refs.repofunding=[95,19/60,95+19/60,2,0,100/95*100];

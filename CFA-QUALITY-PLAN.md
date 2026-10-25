@@ -4213,3 +4213,118 @@ Endgültige Inhaltsversion: 11eb6a76af69ddee.
 Normalisierter HTML-SHA-256:
 3232633b6fbbe3e5ea6ecd2947af6e01008fae2b2e03ccceb40459f8ae98b09f
 bei 23.788.505 Bytes.
+
+## Zugang und Strukturen alternativer Anlagen: geprüfter Ausbau (25.10.2026)
+
+Die 90. Einheit behandelt die drei tatsächlichen Lernziele 2027 zu
+Merkmalen/Kategorien, Direkt-/Co-/Fondsanlage sowie Eigentums- und
+Vergütungsstrukturen. 32 Abschnitte enthalten 26 gesetzte Formeln mit
+Symbolen und Einheiten, 21 eigene Fälle, 16 Tabellen, vier berechnete
+Buchgrafiken und ein Zahlungsbild. 13 Vertiefungen umfassen zehn
+Verständnisfragen. 60 eigenständige Übungsfragen, jeweils 20 pro Lernziel,
+und vier getrennt reservierte Klausurtransfers ergänzen die Erklärungen.
+Jede Antwortmöglichkeit besitzt eine Begründung.
+
+Die Analyse trennt Anlagegegenstand, Strategie, Zugang und Rechtsmantel.
+Kostenvergleiche zeigen Fixkosteneffekte und ihre Grenzen; ein Co-Investment
+erhöht im eigenen Fall die bereits im Fonds enthaltene Unternehmensexposition.
+Fonds, LP, GP, Managementgesellschaft und Portfoliounternehmen erhalten
+getrennte Rollen. Das klassische GP-Haftungsmodell wird erklärt und von
+einem tatsächlich als GP eingesetzten haftungsbeschränkten Rechtsträger
+unterschieden. Rechts- und Steuerfolgen werden nicht weltweit verallgemeinert.
+
+Die Kapitalrechnung führt ursprüngliche Zusage, anrechenbare Einzahlungen,
+Ausschüttungen und aktuell noch ungenutzte Wiederabrufkapazität getrennt.
+Ein ausdrücklich eigener Lehrvertrag begründet die verwendete Rechnung;
+sie wird nicht als allgemeine LPA-Regel dargestellt. Wiederanlage im Fonds
+und Ausschüttung mit späterem Wiederabruf sind verschiedene Zahlungswege.
+NAV und verfügbare Anlegerliquidität bleiben getrennt. Ein vollständiger
+Zeitplan zeigt den früheren Spitzenbedarf trotz ausgeglichenem Endbestand
+und den höheren Bedarf bei ausbleibender Ausschüttung.
+
+Weitere Fälle erklären Fremdkapitalhebel, verschiedene Gebührenbasen,
+Kapitalrückzahlung und Carry, eine harte Hürde ohne Catch-up, High-Water
+Mark, Gate-Zuteilung und Sekundärpreisabschlag. Management Fee und Carry
+werden in ihrer Reihenfolge verglichen. Der Sekundärfall berücksichtigt,
+dass mit einem vollständigen Anteilsverkauf auch Rechte und wirksam
+übernommene Restpflichten wechseln können. Die zukünftige Kapitalleistung
+wird weder als schon bezahlter Kaufpreis noch automatisch als Verlust
+gezählt. Governance, Interessenkonflikte, operative Prüfung und Eignung
+werden mit konkreten Kontrollfragen verbunden.
+
+Maßgeblich ist Seite 25 der offiziellen Lernzielübersicht 2027. Die
+öffentliche CFA-Übersicht 2026 bleibt als Ergänzung gekennzeichnet.
+SEC und Investor.gov erläutern Strukturen, Illiquidität, Kosten und
+Konflikte im US-Kontext. Die US-SBA dient zur klassischen LP-/LLC-
+Abgrenzung. ILPA-Prinzipien sind ausdrücklich Branchenempfehlungen,
+kein Gesetz oder automatischer Vertragsinhalt. Die ILPA-FAQ 2025
+verdeutlichen unterschiedliche Darstellungskonventionen rückrufbarer
+Ausschüttungen. Alle Zahlenfälle, Grafiken und Aufgaben sind eigene.
+
+Das erste bisherige Alternative-Investments-Kapitel erhält ein primäres
+Kapitalabruflabor: sieben Eingaben, elf Vergleichsfälle, sechs Kennzahlen,
+zwei Kurven und zwei getrennte Tabellen. Eine NAV-Änderung verändert
+keinen unveränderten Cashfehlbetrag. Vergangene Ausschüttungen werden
+nicht zum separat angegebenen heutigen Cashbestand nochmals addiert.
+Ein negativer Puffer bleibt ungedeckter Bedarf statt eines automatisch
+gewährten Kredits. Bei keiner Anforderung wird keine Deckungsquote durch
+null berechnet. Jeder Kurvenpunkt ist ein eigener Anforderungstest und
+kein behaupteter tatsächlicher zeitlicher Abrufpfad.
+
+25 kuratierte Definitionen enthalten 15 neue Begriffe. Fondsbezogene
+GP-, LP-, Hurdle-, Clawback- und Carry-Verweise führen zu den passenden
+Erklärungen. Die allgemeinen bisherigen GP-/LP-, Projekthürden- und
+Vergütungs-Clawback-Ziele bleiben erhalten. Zwei eingehende Kapitelverweise
+verbinden Unternehmensformen und Liquiditätsplanung mit der neuen Einheit.
+
+Acht neue unabhängige Rechenprüfungen bestehen. 2.187 Kombinationen
+stimmen bei Kapitalereignissen, Kennzahlen, beiden Tabellen und 266.814
+Modellkoordinaten überein. Alle 509 Buchkoordinaten, fünf Zahlungswege,
+27 numerischen Auswahlfragen einschließlich der numerischen reservierten
+Transfers sowie der qualitative Kosten-Transfer werden gesondert geprüft.
+Weitere Nachweise stimmen Zusageverlauf, Plan-/Stresskasse, Kostenvergleich,
+Gebührenbasen und die unterschiedlichen Erfolgsvertragsregeln ab.
+
+468 unterschiedliche Tests bestehen: 437 Kernprüfungen einschließlich der
+acht neuen Rechenprüfungen, 25 allgemeine Browserprüfungen und sechs neue
+Struktur-Browserprüfungen. Im ersten neuen Browserlauf bestanden fünf;
+die Direktaufrufprüfung verlangte fälschlich einen erneuten Fokuswechsel
+bei Navigation auf die bereits unverändert geöffnete Rechneradresse.
+Die Prüfung navigiert jetzt tatsächlich erst zurück zum Lernkapitel und
+dann zum direkten Rechnerlink. Die betroffene Prüfung besteht danach
+gezielt erneut, einschließlich aller elf Fälle und beider Tabellen.
+Hierfür wurden keine Programminhalte oder Modellrechnungen geändert.
+Die übrigen fünf erfolgreichen Prüfungen bleiben unverändert. Die
+45 übergreifenden CFA-Browserprüfungen des vorigen 89-Einheiten-Stands
+wurden diesmal nicht wiederholt und sind hier nicht mitgezählt.
+
+Die neuen Prüfungen öffnen alle lokalen Symbolhilfen, Wörterbuchrückwege,
+alle 60 Übungen mit den Erklärungen jeder Antwort und vier tatsächliche
+reservierte Lösungen in isolierten Testkopien. Das Zahlungsbild behält
+seine fünf Richtungen und lesbare SVG-Beschriftungen. Alle 77 ersten
+Kontrollansichten wurden gelesen. Vier zusätzliche Ansichten prüfen
+die geöffnete Bestandstabelle und die nach rechts verschobenen
+Szenariowerte bei 390 und 1440 Pixeln. Insgesamt wurden 81 Ansichten
+manuell durchgesehen. Lange Formeln, Grafiken und Tabellen besitzen
+Verschiebehinweise und Tastaturzugang; kein globaler Seitenüberlauf.
+Die echten unvollständigen Klausuren bleiben gesperrt. Nach dem
+Einfrieren wurden nur die beschriebene Testnavigation und Dokumentation
+geändert; Lerninhalt, Fragen, Wörterbuch und Modellfunktion bleiben gleich.
+
+**Das Gesamtziel bleibt offen:** 90 von 102 Einheiten, 281 von 340
+Lernzielreferenzen und 3.214 Trainingsfragen. Sechs weitere Alternative-
+Investments- und sechs Portfolioeinheiten fehlen, zusammen zwölf
+Einheiten und 59 LOS. Jede echte Klausur enthält 149 von 180 Fragen;
+jeweils fehlen elf Alternative-Investments- und 20 Portfoliofragen.
+Alle 90 Einheiten bleiben draft, Release bleibt false. Es bestehen
+261 berechnete CFA-Buchgrafiken, elf Ablaufbilder, 58 Modelle und
+72 bisherige Finance-Kapitel mit primärem interaktivem Zugang.
+Das Wörterbuch besitzt 1.901 Definitionen, 4.128 Begriffe/Aliase und
+1.652 kuratierte Rückverweise. Die Zielwerte 90/100 Materialqualität
+und 80/100 Vorbereitungseignung sind weiterhin nicht erreicht;
+sie sind keine persönliche Bestehenswahrscheinlichkeit.
+
+Endgültige Inhaltsversion: 5b8a84960ec5f9ef.
+Normalisierter HTML-SHA-256:
+f32fbf18fbd632607be8b98a0f9c8676f93d20f3f4fa7129ac2afbf2ed33aabd
+bei 24.038.255 Bytes.
