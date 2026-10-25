@@ -273,7 +273,8 @@ module.exports={id:'alternative-structures',intro:[
  {unit:'governance',section:'private-incentives',label:'Manageranreize als Bündel von Zahlungen und Entscheidungen analysieren'},
  {unit:'working-capital',section:'cash-budget',label:'Den höchsten Liquiditätsbedarf aus einem vollständigen Zahlungsplan gewinnen'},
  {unit:'standard-vi',section:'conflicts',label:'Interessenkonflikte erkennen und wirksame Behandlung statt bloßer Schlagwörter prüfen'},
- {unit:'standard-v',section:'basis',label:'Die tatsächliche Prüfung ausgelagerter Anlagen und externer Informationen begründen'}
+ {unit:'standard-v',section:'basis',label:'Die tatsächliche Prüfung ausgelagerter Anlagen und externer Informationen begründen'},
+ {unit:'hedge-funds',section:'vehicles',label:'Hedgefonds-Zugangsformen bis zu den tatsächlichen Positionen und Auszahlungsrechten verfolgen'},
 ],sources:[
  {title:'CFA Institute: tatsächliche Level-I-Lernziele 2027, Alternative Investment Features, Methods, and Structures, Seite 25',url:'https://www.cfainstitute.org/sites/default/files/2027levelitopicoutline_online.pdf#page=25'},
  {title:'CFA Institute: ergänzende öffentliche Übersicht 2026; keine vollständige Curriculumquelle 2027',url:'https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/alternative-investment-features-methods-and-structures'},

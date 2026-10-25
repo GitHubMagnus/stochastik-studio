@@ -4818,3 +4818,65 @@ Endgültige Inhaltsversion: 02266f7d7f10946f.
 Normalisierter HTML-SHA-256:
 4a688b258a937059bef87962062766192f46f822b3d59c57f1509d08185ffa7b
 bei 25430129 Bytes.
+
+## Stand 25.10.2026: Hedgefonds mit vollständigen Positions- und Anlegerfällen
+
+Die drei tatsächlichen Hedgefonds-Lernziele für Level I 2027 sind mit 41
+Abschnitten, 49 mathematischen Formeln mit Symbolhilfen, 34 erklärten Fällen,
+zehn berechneten Grafiken, sechs Tabellen und 16 Verständnisfragen ausgearbeitet.
+60 neue Trainingsfragen verteilen sich gleichmäßig auf die drei Lernziele;
+vier reservierte Transferfälle ergänzen die getrennten Klausurpools.
+
+Strategie und Vehikel werden getrennt erklärt. Der Short-Broker-Fall führt
+Verkaufserlös, gebundene Kasse, tatsächlich zusätzlich aufgenommenen Kredit,
+Dividendenkompensation, Leihkosten und beide Zinsseiten bis zur abgestimmten
+Endbilanz. Relative Value erhält Spread- und Finanzierungsstress; Deal-Spreads
+werden mit Scheiternzustand, Wahrscheinlichkeit, Zeit und Kosten verbunden.
+Weitere Fälle behandeln Delta-Hedge-Grenzen, Makro-Margin, Trendwechsel,
+Optionsprämien und seltene schwere Verluste. Hard Hurdle, Gebührenreihenfolge
+und Verlustausgleich über die High-water mark haben ausdrücklich eigene
+Vertragsannahmen. Alpha wird mit Faktorwahl, Schätzunsicherheit und Grenzen
+erklärt. Historische Glättung und Datenauswahl gelten nicht als geringer
+wirtschaftlicher Verlust oder garantierte Managerfähigkeit.
+
+Das neue Long-/Short-Labor auf alternatives-09 trennt Bruttoexposure,
+Nettoexposure und Marktbeta. Acht Eingaben, 14 Szenarien, sieben Kennzahlen,
+zwei Kurven, fünf Hedgevergleiche und eine aufklappbare Beitragsrechnung zeigen
+die Unterschiede. Der Null-Referenzzins, feste Anfangsgewichte, exogene
+Sondereffekte, gemeinsame Gesamtertragsbasis und aggregierten Bruttokosten
+sind offengelegt. Eine enthaltene Dividende wird beim Short nicht doppelt
+abgezogen. Das lineare Modell ist kein Nachweis tatsächlicher Finanzierbarkeit.
+Dreißig neue oder erweiterte Definitionen besitzen präzise Rückverweise;
+Alpha, Beta, Marktneutralität, Gate, Side Pocket und Dividend Compensation
+bewahren ältere Bedeutungen durch passende Kontextzuordnungen.
+
+**Prüfung des endgültigen Stands:** 508 unterschiedliche Tests bestanden:
+477 Rechen-/Inhalts-/Strukturtests und 31 Browsertests, davon sechs neue
+Hedgefonds-Tests. Frühere Wiederholungen werden nicht zusätzlich gezählt.
+Unabhängige Bewertung von 6561 signierten Positionsfällen kontrolliert
+1062882 Kurvenkoordinaten; zusätzlich sind alle 1548 Koordinaten der zehn
+Buchgrafiken und alle 25 numerischen Trainings-/Klausurantworten geprüft.
+Alle 14 Vorgaben, acht Zahl-/Reglerpaare, Tabellen, Erklärungen zu Symbolen,
+Wörterbuchrückwege, 60 Trainingsfragen und vier reservierte Fälle werden
+im echten Edge-Browser geprüft. Die echten unvollständigen Klausuren bleiben
+gesperrt. Offlinebetrieb und Breiten 320, 390, 600 und 1440 Pixel sind erfasst.
+118 visuelle Ansichten wurden gelesen; nach dem letzten Rendervergleich
+waren 100 identisch und 18 geändert, die erneut vollständig gelesen wurden.
+
+**Das Gesamtziel bleibt offen:** 95 von 102 Einheiten und 296 von 340 LOS
+besitzen neue Erklärungen und Trainingszuordnungen. Es gibt 3534 Trainingsfragen
+und je 158 von 180 echten Klausurfragen. Je Klausur fehlen zwei Fragen zu
+digitalen Assets und zwanzig Portfoliofragen. Offen sind digitale Assets
+und sechs Portfolioeinheiten: zusammen sieben Einheiten und 44 LOS.
+Alle 95 Einheiten bleiben draft, Release bleibt false. Gesamtbestand:
+302 berechnete CFA-Grafiken, elf Ablaufbilder, 63 Modelle, 76 bisherige Kapitel
+mit primärem interaktivem Zugang. Wörterbuch: 2023 Definitionen, 4328 Begriffe/
+Aliase, 283 Kontextzuordnungen und 1799 kuratierte Rückverweise. Der separate
+vollständige CFA-Ablauf wurde zuletzt bei 89 Einheiten geprüft; der abschließende
+Gesamtaudit steht aus. 90/100 Materialqualität und 80/100 Vorbereitungseignung
+sind weiterhin nicht als erreicht abgenommen und keine Bestehenswahrscheinlichkeit.
+
+Endgültige Inhaltsversion: c6653cc210826857.
+Normalisierter HTML-SHA-256:
+044bf39cf7b5d95b105240ce954f4f6b593b4c2652c4f4d40cbb27af4422d80e
+bei 25781876 Bytes.
