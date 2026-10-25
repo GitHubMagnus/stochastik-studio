@@ -3805,3 +3805,113 @@ Endgültige Inhaltsversion: 7a8046235c3497ab.
 Normalisierter HTML-SHA-256:
 36425dca586200e9bc8c720adaf7aedd578dedc44cf073115c3e423ceba8c4b3
 bei 22.522.704 Bytes.
+
+## 25. Oktober 2026: Swapbewertung, Zahlungspläne und passende Absicherung
+
+Die neue Einheit bearbeitet die beiden tatsächlichen Lernziele auf Seite 24
+des offiziellen 2027-Outline: Vergleich mit einer Forwardserie sowie
+Unterscheidung von Preis und Wert. Sie enthält 32 Abschnitte, 43 gesetzte
+Formeltafeln mit Symbolhilfen, 19 eigene Rechenfälle, sechs Tabellen, sechs
+berechnete Grafiken und 13 aufklappbare Erklärungen einschließlich acht
+Verständnisfragen. 50 eigenständige Trainingsfragen verteilen sich gleichmäßig
+auf beide LOS; zwei weitere Transfers bleiben den getrennten Klausuren
+vorbehalten. Weiterführende Bewertungsrechnungen sind ausdrücklich
+Verständnisvertiefungen, keine zusätzlichen erfundenen Pflichtlernziele.
+
+Die gemeinsame feste Swaprate wird aus beiden Zahlungsbarwerten hergeleitet.
+Unterschiedliche einzelne Forwardraten und positive Barwertgewichte erklären,
+warum nicht jede Teilperiode eines fairen Gesamtvertrags selbst wertlos sein
+muss. Getrennte fixe und variable Kalender, Jahresbrüche, späterer Beginn
+und geplante Nominaländerungen begrenzen die einfache Ein-Kurven-Kurzformel.
+Der alte vertragliche Festzins bleibt bei einer Neubewertung unverändert.
+Ein positiver Altvertragswert ist weder bereits erhaltenes Cash noch ein
+kostenlos erwerbbarer günstiger Festzins. Die Erwerbsgegenleistung wird im
+Vergleich ausdrücklich berücksichtigt.
+
+Bekannte Fixings werden von noch offenen Projektionen getrennt. Im eigenen
+Fall bleibt ein bereits festgesetzter voller Jahrescoupon vollständig
+erhalten, obwohl nur noch ein halbes Jahr bis zu seiner Zahlung verbleibt.
+Vor und nach einer Zahlung werden Cash und Restwert gemeinsam abgestimmt.
+Die Anleihenreplikation verwendet hypothetische gemeinsame Kapitalansprüche,
+die sich herauskürzen; sie bucht keinen zusätzlichen echten Nominalaustausch.
+Negative feste und variable Quoten behalten ihre vorzeichenrichtige
+wirtschaftliche Bedeutung. Ein eigener Fall stimmt zwei negative
+Zinsbeinwerte mit einem positiven Nettowert ab.
+
+Kredit- und Anlagehedges vergleichen die jeweils passende Swaprichtung.
+Referenzfloor, Kreditspread und Nominalabweichung werden tatsächlich
+nebeneinander gerechnet. Rohstoff-, Total-Return- und Währungsswaps
+erläutern die abweichenden Quoteneinheiten und Zahlungsbestandteile.
+Ausschüttungen werden nicht zweimal erfasst; Währungsbeine werden erst in
+ihrer Währung bewertet und danach passend umgerechnet. Swapspreads werden
+nicht als reine Kreditrisikoprämie oder allgemeines Arbitrageversprechen
+ausgegeben.
+
+Das neue Modell besitzt sechs Eingaben, acht kontrollierte Vergleichsfälle,
+sechs Kennzahlen, zwei Zahlungs-/Beintabellen und zwei gegenläufige
+Schockkurven. Es bewertet ausdrücklich unmittelbar vor dem ersten
+Referenzfixing. Die isolierte Projektionsänderung hält Diskontierung fest;
+der gemeinsame Kurvenschock verändert Faktoren und daraus abgeleitete
+Projektionen zusammen. Festzins-Quote-PV01 wird von vollständiger paralleler
+Kurven-DV01 unterschieden. Nullnominal beseitigt Geldpositionen, nicht die
+fairen Jahresquoten. Eingabegenauigkeit und native Schrittvalidität erhalten
+auch den exakt bezeichneten flachen Kurvenvergleich.
+
+Primärquellen sind der offizielle 2027-Outline sowie CME, BIS und ISDA.
+Die öffentliche CFA-Übersicht von 2026 ist ergänzend bezeichnet. Die
+historische Facharbeit von Ametrano/Bianchetti unterstützt die getrennte
+Kurvenkonstruktion; historische Einschränkungen werden nicht als heutiges
+Verbot negativer Zinssätze übernommen. 20 kuratierte Wörterbuchrückverweise
+umfassen 19 neue Definitionen und die überarbeitete Total-Return-Swap-
+Definition. Mehrdeutige Begriffe werden im passenden Kontext zugeordnet;
+die allgemeinen Annuitäts-, Barwertgewicht- und Swapspread-Ziele bleiben
+erhalten. Forward- und Futureskapitel erhalten passende Verbindungen.
+
+Unabhängige Referenzrechnungen prüfen 729 Parameterkombinationen, sämtliche
+147.258 Modellkoordinaten und beide Ledger, alle 406 Buchkoordinaten sowie
+alle 22 numerischen Aufgaben einschließlich der echten reservierten
+Transfers. Referenzen verwenden vollständige Zahlungsreihen,
+Zero-Bond-Replikation, bekannte Couponbeträge und die jeweils angegebenen
+Jahresbrüche. Die Summen und Vorzeichen werden vor Rundung abgestimmt.
+
+478 unterschiedliche Tests bestehen: 403 Kernprüfungen, 25 allgemeine
+Browserprüfungen, fünf neue Swap-Browserprüfungen und 45 übergreifende
+CFA-Browserprüfungen. Die allgemeinen und übergreifenden Browserprüfungen
+liefen auf Version b0c90aef87c37b5d. Nach der Durchsicht kamen ausschließlich
+eine negative Festzinsvertiefung, lokale Formelaufteilung sowie präzisere
+Angaben zum Zeitpunkt vor dem ersten Fixing hinzu. Nur der Text und die
+Revision von swp-31 wurden entsprechend präzisiert; dessen Rechnung und
+Antwortmöglichkeiten blieben unverändert. Normalisierte Vergleiche bestätigen
+unveränderte übrige Fragen, unverändertes Wörterbuch und unveränderte übrige
+85 Einheiten; die numerische Modellfunktion blieb gleich.
+
+403 Kern- und fünf Swap-Browserprüfungen wurden auf 6f9a9635a52d61a1 erneut
+bestanden. Die letzte Änderung erhöht ausschließlich die Zeilenabstände in
+drei lokalen Formeltafeln. Anschließend bestanden die sieben unabhängigen
+Swap-Rechentests und fünf Swap-Browserprüfungen erneut auf der endgültigen
+Version. 57 erste Ansichten wurden visuell gelesen; die erweiterte Fassung
+hat 59. Alle 52 danach abweichenden Ansichten wurden erneut gelesen.
+Nach der letzten Abstandskorrektur wurden weitere 37 abweichende Ansichten
+erneut gelesen; 22 sind per SHA-256 identisch. Seitliches Verschieben und
+Tastaturbedienung bleiben bei langen Formeln, Tabellen und Diagrammen
+verfügbar; Kennzahlen passen auch bei 320 Pixeln. Unvollständige echte
+Klausuren bleiben gesperrt. Die reservierten Lösungen wurden ausschließlich
+in isolierten Testkopien vorübergehend als Trainingsfragen gerendert.
+
+**Das Gesamtziel bleibt offen:** 86 von 102 Einheiten, 271 von 340
+Lernzielreferenzen und 2.994 Trainingsfragen. Drei Derivate-, sieben
+Alternative-Investments- und sechs Portfolioeinheiten fehlen, zusammen
+16 Einheiten und 69 LOS. Die echten Klausuren enthalten je 144 von 180
+Fragen; jeweils fehlen drei Derivate-, 13 Alternative-Investments- und
+20 Portfoliofragen. Alle 86 Einheiten bleiben draft; Release bleibt false.
+Es bestehen 239 berechnete CFA-Buchgrafiken, zehn Ablaufbilder, 54 Modelle
+und 71 interaktive Zugänge in den bisherigen Finance-Kapiteln. Das Wörterbuch
+besitzt 1.835 Definitionen, 3.983 Begriffe/Aliase und 1.567 kuratierte
+Rückverweise. Die fachliche Gesamtabnahme und die Zielwerte 90/100
+Materialqualität sowie 80/100 Vorbereitungseignung sind weiterhin nicht
+erreicht. Diese Scores sind keine persönliche Bestehenswahrscheinlichkeit.
+
+Endgültige Inhaltsversion: faa5b9317156d5c8.
+Normalisierter HTML-SHA-256:
+a885d7ea3851f822e8c2a3685a62fc6a45a437a68d3d7de5f58b818465bdfbc5
+bei 22.821.527 Bytes.

@@ -699,6 +699,31 @@ models.futuresstates.presets=[
  {label:'Nur A-Zins negativ',values:{sa:120,sb:80,p:50,ra:-5,rb:0,qty:100}},
  {label:'Nur Menge null',values:{sa:120,sb:80,p:50,ra:10,rb:0,qty:0}}
 ];
+add('swapvalue','Swaprate, beide Zinsbeine und bestehender Marktwert','Lehrbewertung unmittelbar vor dem ersten Referenzfixing: Alle drei jährlichen Coupons sind noch zu bestimmen. Diskontfaktoren, alter Festzins, Menge und Projektionsaufschlag lassen sich kontrolliert vergleichen. Bereits bekannte Coupons behandelt der eigene Buchabschnitt gesondert.',[
+ field('n','Konstanter Nominalbetrag (WE)',0,10000000,1000,1000000),
+ field('k','Alter fester Jahreszins (%)',-5,15,.25,4),
+ field('p1','Diskontfaktor bis Jahr eins',.5,1.2,.000001,.97),
+ field('p2','Diskontfaktor bis Jahr zwei',.5,1.2,.000001,.93),
+ field('p3','Diskontfaktor bis Jahr drei',.5,1.2,.000001,.88),
+ field('basis','Nur Projektionsaufschlag (Basispunkte)',-200,200,10,0)
+],p=>{
+ const clean=x=>Object.is(x,-0)?0:x,ps=[p.p1,p.p2,p.p3],a=ps.reduce((s,x)=>s+x,0),b=p.basis/10000,k=p.k/100,fs=ps.map((x,i)=>(i?ps[i-1]:1)/x-1+b),unitFloat=ps.reduce((s,x,i)=>s+x*fs[i],0),fair=unitFloat/a,float=clean(p.n*unitFloat),fixed=clean(p.n*k*a),value=clean(float-fixed);
+ const shock=h=>{const d=ps.map((x,i)=>x*Math.exp(-h/100*(i+1))),A=d.reduce((s,x)=>s+x,0);return clean(p.n*(1-d[2]+(b-k)*A))/1000;},series=[{name:'Pay-fixed / Receive-floating',points:seq(-2,2,shock,100)},{name:'Receive-fixed / Pay-floating',dash:true,points:seq(-2,2,h=>clean(-shock(h)),100)}],ys=series.flatMap(s=>s.points.map(p=>p[1])),lo=Math.min(...ys),hi=Math.max(...ys),pad=Math.max(1,(hi-lo)*.08);
+ const out=result([['Heute faire feste Jahresrate (%)',fair*100],['Bestehender Pay-fixed-Wert (WE)',value],['Barwert variabler Zinsen (WE)',float],['Barwert fester Zinsen (WE)',fixed],['Rentenbarwertfaktor A',a],['Mehrbelastung bei Festzins +1 bp (WE)',clean(p.n*a/10000)]],series[0].points,'Gemeinsamer stetiger Zero-Schock (Prozentpunkte)','Neuer Swapwert (Tsd. WE)','Eigener Dreijahres-Lehrswap, drei volle jährliche Perioden mit identischen fixen und variablen Zahlungsplänen; kein Kapitalaustausch. Grundprojektion aus derselben Faktorfolge, plus ausdrücklich separat gesetzter jährlicher Projektionsaufschlag. Dieser Zusatz ist eine Sensitivitätsvorgabe, keine kalibrierte Markt-Mehrkurvenstruktur. Werte größer eins und steigende Faktoren sind bei negativen Forwardraten zulässig. Die Schockkurve verändert alle Faktoren mit demselben stetigen Zero-Schock und leitet die Basisprojektion daraus neu ab; der Zusatzaufschlag bleibt gleich. Nominal, alter Festzins und Jahresbrüche bleiben unverändert. Kennzahlen in WE, Kurve in tausend WE. Letzte Kennzahl betrifft einen Basispunkt mehr festen Vertragszins bei festgehaltenem Markt, keine vollständige parallele Kurven-DV01. Keine bekannten alten Resetbeträge, Gebühren, Ausfälle, Sicherheiten- oder Kapitalwechsel; diese Grenzen werden im Buch erläutert.');
+ out.series=series;out.marker=[0,value/1000];out.yRange=[lo-pad,hi+pad];
+ out.projection={caption:'Jede Zeile ist eine volle jährliche Periode. Projiziertes Cash beschreibt Bewertungsbausteine, keine garantierten späteren Referenzrealisationen. Positive Nettozahlung bedeutet Zufluss für Pay-fixed. Anzeige gerundet, Rechnung ungerundet.',headers:['Jahr','Diskontfaktor','Projektion (% jährlich)','Barwertgewicht','Variable Zinsen (WE)','Feste Zinsen (WE)','Netto (WE)','Nettobarwert (WE)'],rows:ps.map((x,i)=>[i+1,x,fs[i]*100,x/a,clean(p.n*fs[i]),clean(p.n*k),clean(p.n*(fs[i]-k)),clean(p.n*(fs[i]-k)*x)])};
+ out.stable={caption:'Beine enthalten ausschließlich Zinsen. Die hypothetische gleiche Endkapitalzahlung der Anleihenreplikation würde sich herauskürzen und wird hier nicht als echtes zusätzliches Swapcash dargestellt.',headers:['Bestandteil','Heutiger Wert (WE)','Bedeutung'],rows:[['Variabler Empfang',float,'Passend projizierte Referenzzinsen'],['Feste Zahlung',fixed,'Alter Festzins auf allen drei Perioden'],['Pay-fixed netto',value,'Variabel minus fest'],['Receive-fixed netto',clean(-value),'Gegenrichtung im symmetrischen Lehrfall']]};return out;
+});
+models.swapvalue.presets=[
+ {label:'Grundfall: alter Festzins vier Prozent',values:{n:1000000,k:4,p1:.97,p2:.93,p3:.88,basis:0}},
+ {label:'Nur alter Festzins fünf Prozent',values:{n:1000000,k:5,p1:.97,p2:.93,p3:.88,basis:0}},
+ {label:'Nur Nominal verdoppeln',values:{n:2000000,k:4,p1:.97,p2:.93,p3:.88,basis:0}},
+ {label:'Nur Projektion +100 Basispunkte',values:{n:1000000,k:4,p1:.97,p2:.93,p3:.88,basis:100}},
+ {label:'Nur letzter Faktor steigt auf 0,93',values:{n:1000000,k:4,p1:.97,p2:.93,p3:.93,basis:0}},
+ {label:'Flache Kurve: gleicher Einjahresfaktor 0,96',values:{n:1000000,k:4,p1:.96,p2:.9216,p3:.884736,basis:0}},
+ {label:'Negative Raten und negativer Festzins',values:{n:1000000,k:-1,p1:1.01,p2:1.02,p3:1.03,basis:0}},
+ {label:'Nur Nominal null',values:{n:0,k:4,p1:.97,p2:.93,p3:.88,basis:0}}
+];
 const api={models,calculate,annuity,price,bsm,cdf,forecastValue,companyPlan,covenantPlan,repaymentSchedule,bondIndexPlan,repoFundingPlan,yieldSpreadPlan,floaterPlan,moneyYieldPlan,yieldCurvePlan,bondHorizonPlan,bondRiskPlan,convexityPlan,keyRatePlan,creditPlan,creditDistribution,sovereignPlan,creditCashPlan,mortgagePoolPlan};
 if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.FinanceModels=api;
 })(globalThis);
