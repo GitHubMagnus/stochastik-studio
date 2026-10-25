@@ -4328,3 +4328,118 @@ Endgültige Inhaltsversion: 5b8a84960ec5f9ef.
 Normalisierter HTML-SHA-256:
 f32fbf18fbd632607be8b98a0f9c8676f93d20f3f4fa7129ac2afbf2ed33aabd
 bei 24.038.255 Bytes.
+
+## Performance und Gebühren alternativer Anlagen: geprüfter Ausbau (25.10.2026)
+
+Das Modul alternative-fees bearbeitet die zwei tatsächlichen Lernziele 2027
+zur Performancebeurteilung und zu Renditen vor und nach Gebühren. Neu sind
+32 Abschnitte, 58 Formeltafeln mit lokalen Lesarten und Symboldefinitionen,
+29 eigene Rechenfälle, 13 Tabellen, sieben berechnete Grafiken sowie zwölf
+Verständnisfragen mit ausführlicher aufklappbarer Selbstkontrolle. Zwei weitere
+Vertiefungen erklären Annualisierung und Regeln bei wechselndem Anteilbestand.
+60 eigene englische Trainingsfragen, je 30 pro Lernziel, erhalten deutsche
+Begründungen für jede Antwortoption. Vier neue Transfers bleiben ausschließlich
+für die beiden Klausurpools reserviert.
+
+Die Darstellung trennt Asset, Fonds und LP, tatsächliche Zahlungen und
+bewerteten Rest-NAV sowie kumulierte und annualisierte Maße. TWR und
+Cashflow-IRR werden aus ihren Gleichungen erklärt; −100, +30, +100 ergibt
+16,118742 % IRR, aber bei unverzinster Zwischenhaltung nur 130 WE Endvermögen.
+Die Wiederanlage zum internen Zins ist eine gesonderte Annahme. Der eigene
+Strom −100, +230, −132 besitzt zehn und zwanzig Prozent IRR; es wird keine
+willkürliche eindeutige Lösung ausgegeben. Derselbe 1,4-fache Einzahlungs-/
+Auszahlungsfaktor bedeutet nach zwei Jahren 18,321596 %, nach zwölf nur
+2,843616 % pro Jahr. DPI, RVPI, TVPI und MOIC bekommen explizite Kosten-
+und Nennerkonventionen. Bewertungsband, Glättung, Datenbankverzerrungen,
+Währung und cashflowgleiche KS-PME begrenzen naive Vergleiche.
+
+Die Subscription-Line-Rechnung stimmt Kauf, Bankhauptbetrag, Zins und
+LP-Abruf ab: 105 nach einem Jahr und 144 nach zwei Jahren ergeben
+37,142857 % tatsächliche LP-IRR. Ohne Linie bringen 100 bei Beginn und
+144 nach zwei Jahren 20 % IRR. Mit Linie sind Gewinn und Multiple trotzdem
+geringer. Unterschiedliche Cashflow-Ebenen werden nicht als Alpha oder
+additive Gebührenpunkte interpretiert.
+
+Die Gebührenfälle unterscheiden Managementbasis und Reihenfolge von der
+tatsächlichen Summen-/Maximum-Zahlung. Aus 20 % Bruttoertrag werden im
+Grundfall 14,4 % netto, bei Management auf Brutto-End-NAV 14,08 %, bei
+Erfolg vor Management 14 % und beim definierten Entweder/oder-Vertrag
+16 %. Harte und weiche Hürde sind eigene Klauseln; eine weiche Hürde ist
+kein pauschal identischer vollständiger Catch-up. Dessen Verteilungsstufen
+werden gesondert gerechnet und durch tatsächlich verfügbare Mittel begrenzt.
+Die HWM-Rechnung belastet bloße Verlustaufholung nicht erneut.
+
+Ein Zweidealfall vergleicht Whole-Fund und Deal-by-Deal einschließlich
+vollständig erfülltem Clawback: jeweils 224 WE LP-Geld und sechs WE GP-Carry,
+aber 8,958030 % beziehungsweise 8,654599 % LP-IRR durch andere Zeitpunkte.
+Eine nur teilweise erfüllte Rückforderung wird nicht als bereits vorhandenes
+Cash angesetzt. Branchenempfehlungen der ILPA sind ausdrücklich kein Gesetz
+und kein automatisch wirksamer Vertragsinhalt. Grundlage sind der
+offizielle 2027-Outline, die als ergänzend gekennzeichnete öffentliche
+2026-Themenübersicht sowie primäre GIPS-/ILPA-Methodikquellen. Die Rechnungen
+und Fragen sind eigene Fälle; zeitabhängige Rechtsaussagen der älteren
+Reporting-FAQ werden nicht als heutige Gesetze übernommen.
+
+Das neue zusätzliche Labor fundfees erhält neun Eingaben, 13 gültige
+Vergleichsfälle, sechs Kennzahlen, fünf Vergleichszeilen und elf aufklappbare
+Abstimmungszeilen. Der einfache waterfall-Rechner bleibt als primärer
+Zugang erreichbar. Der Einjahresvertrag schließt externe Zahlungen,
+Steuern, Fremdkapital und mehrjährige Verteilungsmechanismen ausdrücklich
+aus. Management und Erfolg sind im Entweder/oder-Fall Kandidaten;
+nur deren Maximum wird tatsächlich bezahlt. Die weiche Schwelle ist
+streng: Bei zehn Prozent brutto bleibt netto acht, bei elf Prozent
+brutto nur 7,2. Der mögliche Sprung wird durch getrennte Pfade sichtbar;
+kein interpolierter Verbindungspfad erfindet eine kontinuierliche Entwicklung.
+
+Unabhängige Kontrollen prüfen 4.374 Gebührenverträge, 885.006 Modellkurven-
+koordinaten, sämtliche Projektionen, alle 1.010 Buchgrafik-Koordinaten
+und alle 41 numerischen Antwortfälle einschließlich reservierter Transfers.
+Zusätzliche Prüfungen stimmen Catch-up-Stufen, Höchststandspfad,
+Clawback-Timing, Kreditlinien und Glättungsstreuungen ab.
+26 kuratierte Begriffe geben präzise Rückverweise. Die allgemeinen
+Corporate-IRR-, Hurdle-, Clawback- und Außenhandels-J-Kurvenziele bleiben
+erhalten; der neue Kontext verlinkt zu den passenden Fondsdefinitionen.
+
+**476 unterschiedliche Prüfungen bestanden:** 445 Kernprüfungen und
+31 Browserprüfungen einschließlich sechs neuer Gebührenprüfungen.
+Der erste Kernlauf hatte 444 Erfolge und einen veralteten Test:
+Das vorige Strukturmodul erwartete den damaligen Gesamtbestand von zwei
+Alternativenfragen je Klausur. Nach der Ergänzung sind es vier.
+Die Bestandsprüfung wurde auf den eigenen Modulbeitrag und die gültige
+Themenobergrenze begrenzt. Der betroffene Test und alle neuen Analysen
+bestanden anschließend in einem gezielten Lauf mit 16 Erfolgen.
+Wiederholungen werden nicht als zusätzliche verschiedene Tests gezählt.
+Vor dem eingefrorenen Build wurden zwei knappe Antwortbegründungen
+ausgebaut und eine falsch erwartete Koordinatenanzahl im neuen Test korrigiert.
+
+Die Browserläufe bedienen alle 60 tatsächlichen Trainingsfragen und alle
+vier reservierten Fälle in ausdrücklich isolierten Render-Testdaten.
+Sie prüfen alle 13 Rechnerfälle, alle Vertragsauswahlen, gültige
+Formulareingaben, genaue Tabellenwerte, Fehler/Reset, Wörterbuchrückkehr,
+Offlinebetrieb sowie Breiten 320, 390, 600 und 1440. Der allgemeine Lauf
+erfasst alle 171 bisherigen Kapitel und alle 59 Modelle, dazu die
+43 bisherigen Zusatzgrafiken und Formelhilfen. 96 neue Ansichten wurden
+manuell durchgesehen, einschließlich aller sieben Buchgrafiken,
+29 Fälle, 14 offenen Vertiefungen, Symbolhilfen, Rechnerfälle und
+mobiler/desktop Tabellen mit nach rechts verschobenem Inhalt.
+Keine JavaScript-Fehler oder globalen Überläufe in den geprüften Ansichten.
+Der gesonderte vollständige CFA-Ablauf wurde zuletzt beim Stand von
+89 Einheiten geprüft; ein finaler Gesamtaudit aller 102 Einheiten steht aus.
+
+**Das Gesamtziel bleibt offen:** 91 von 102 Einheiten, 283 von 340
+Lernzielreferenzen und 3.274 Trainingsfragen. Fünf weitere Alternative-
+Investments- und sechs Portfolioeinheiten fehlen, zusammen elf
+Einheiten und 57 LOS. Jede echte Klausur enthält 151 von 180 Fragen;
+jeweils fehlen neun Alternative-Investments- und 20 Portfoliofragen.
+Alle 91 Einheiten bleiben draft, Release bleibt false. Es bestehen
+268 berechnete CFA-Buchgrafiken, elf Ablaufbilder, 59 Modelle und
+73 bisherige Finance-Kapitel mit primärem interaktivem Zugang.
+Das Wörterbuch besitzt 1.918 Definitionen, 4.163 Begriffe/Aliase,
+250 Kontextzuordnungen und 1.678 kuratierte Rückverweise.
+Die Zielabnahme 90/100 beziehungsweise 80/100 ist noch nicht erreicht;
+die Zahlen sind keine persönliche Bestehenswahrscheinlichkeit.
+
+Endgültige Inhaltsversion: a718ea3a7918ffe8.
+Normalisierter HTML-SHA-256:
+011f4f89f8c7abcf6563e88ada367a1b1c65ceed0169820e0f4721c852dddffb
+bei 24.403.720 Bytes.
