@@ -292,3 +292,5 @@ module.exports={id:'futures',intro:[
  {title:'BIS: historische FAQ 2018; Erfüllung statt Sicherheitenübertragung bei Settled-to-market, keine individuelle Bilanzierungsanweisung',url:'https://www.bis.org/publications/201809-faq-frequently-asked-questions-liquidity-risk-treatment-settled-to-market-derivatives'},
  {title:'LME: An introduction to LME margins; Besonderheiten von DCVM und RVM statt universeller Auszahlungsannahme',url:'https://www.lme.com/Education/Online-resources/LME-Digest/An-introduction-to-LME-margins'}
 ],review:{status:'draft',date:'2026-10-25',note:'Eigene Cash-, Zustands- und Quotenumrechnungen; zusätzliche Zwei-Zustände-Herleitung als Vertiefung. Mathematische und Browserprüfung ersetzen keine unabhängige fachliche Gesamtabnahme.'}};
+
+module.exports.related.push({unit:'swaps',section:'forward-strip',label:'Mehrere Zinsperioden zu einer gemeinsamen festen Swapquote verbinden'});

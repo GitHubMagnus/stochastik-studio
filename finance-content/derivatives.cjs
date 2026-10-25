@@ -20,3 +20,4 @@ module.exports[11].lab='hedgeuse';
 
 module.exports[2].additionalLabs=['fra'];
 module.exports[3].lab='futuresstates';
+module.exports[4].lab='swapvalue';
