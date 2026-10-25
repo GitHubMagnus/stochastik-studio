@@ -236,6 +236,7 @@ module.exports={id:'sovereign-credit',intro:[
  ])
 ],explorations:[{section:'workflow',lesson:'bonds-11',focus:'lab-sovereign',label:'Gleiche Anfangsschuld bei anderer Währung, Fälligkeit und Primärbilanz vergleichen'}],
 related:[
+ {unit:'real-assets',section:'concession',label:'Endliche Projektansprüche, Rückgabe und Schuldendienst aus dem Vertrag bewerten'},
  {unit:'government-funding',section:'gross-net',label:'Bruttoaufnahme, Netto-Nominaländerung und Casherlös im Emissionsfall abstimmen'},
  {unit:'government-funding',section:'guarantee',label:'Auftrag, Eigentum und konkreten Garantieumfang unterscheiden'},
  {unit:'government-funding',section:'project-case',label:'Ein weiteres Projekt mit abgegrenzter Zahlungsquelle nachrechnen'},

@@ -64,7 +64,7 @@ test('worked calculations and original numerical answer choices use the intended
 });
 test('credit FFO and DSCR have precise contextual definitions while REIT FFO and existing project and structural routes survive',()=>{
  const g=require('../finance-glossary.cjs'),find=t=>g.find(e=>[e.term,...e.aliases].includes(t));
- assert.equal(find('FFO').term,'Funds from Operations');assert.equal(find('FFO').cfa,undefined);assert.ok(find('FFO').definition.includes('Immobilien'));
+ assert.equal(find('FFO').term,'Funds from Operations');assert.deepEqual(find('FFO').cfa,{unit:'real-assets',section:'ffo'});assert.ok(find('FFO').definition.includes('Immobilien'));
  assert.deepEqual(find('DSCR').cfa,{unit:'government-funding',section:'project-case'});assert.deepEqual(find('Strukturelle Nachrangigkeit').cfa,{unit:'bond-features',section:'structural'});
  for(const [term,section]of [['Kredit-FFO','ffo'],['Kredit-FCF','fcf'],['Kredit-Schuldendienstdeckung','cashcoverage'],['Brutto-Leverage','leverage'],['Analytische Netto-Leverage','leverage'],['EBIT','earnings'],['EBITDA','earnings'],['Struktureller Nachrang','structural'],['Erhaltungs-Capex','fcf']])assert.deepEqual(find(term).cfa,{unit:'corporate-credit',section});
  for(const [word,unit,section]of [['Structural Subordination','bond-features','structural'],['Contractual Subordination','bond-features','security'],['Deficiency Claim','bond-features','recovery'],['Netto-Leverage','bond-features','definitions'],['Maintenance Capex','company','investment'],['Growth Capex','company','investment']])assert.deepEqual(find(word).cfa,{unit,section});

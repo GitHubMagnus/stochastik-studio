@@ -276,6 +276,7 @@ module.exports={id:'private-capital',intro:[
   D('14. Welche letzte Prüfung verhindert erfundene Buyout-Rendite?',['Bei Kauf müssen Eigenkapital plus Kredit den Kaufpreis finanzieren. Jährlich müssen Cash plus echte neue Beiträge gleich Zins plus Tilgung plus Dividende sein. Beim Exit müssen Bank- und Eigenkapitalzahlung den verfügbaren Verkaufserlös abstimmen. Erst auf diesem vollständigen Ledger werden die tatsächlichen Anlegerkennzahlen berechnet.'])
  ])
 ],explorations:[{section:'calculator',lesson:'alternatives-04',focus:'lab',label:'Buyout-Cashflow, Zins, Tilgung, zusätzliche Beiträge und Exit selbst abstimmen'}],related:[
+ {unit:'real-assets',section:'leverage',label:'Objektcash, Kredit und Eigenkapitalrendite bei Immobilien getrennt prüfen'},
  {unit:'alternative-structures',section:'cash-call',label:'Kapitalzusage und tatsächlich fällige Beiträge im Liquiditätsplan trennen'},
  {unit:'alternative-fees',section:'irr',label:'IRR aus datierten Zahlungen herleiten und von Multiples unterscheiden'},
  {unit:'capital-structure',section:'valuation-bridge',label:'Unternehmenswert und Kapitalgeberansprüche konsistent überleiten'},
