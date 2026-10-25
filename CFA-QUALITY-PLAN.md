@@ -3915,3 +3915,125 @@ Endgültige Inhaltsversion: faa5b9317156d5c8.
 Normalisierter HTML-SHA-256:
 a885d7ea3851f822e8c2a3685a62fc6a45a437a68d3d7de5f58b818465bdfbc5
 bei 22.821.527 Bytes.
+
+## 25. Oktober 2026: Optionswert, Replikation und sechs Werttreiber
+
+Die neue Einheit bearbeitet die drei tatsächlichen Lernziele auf Seite 24 des
+offiziellen 2027-Outline: Ausübungswert/Moneyness/Zeitwert, Replikation im
+Vergleich zur Forwardpflicht und die Wirkung der Preisfaktoren. Sie umfasst
+37 Abschnitte, 40 gesetzte Formeltafeln mit Lesarten und Symbolen, 22 eigene
+Fälle, zwölf Tabellen, sieben berechnete Grafiken und 14 aufklappbare
+Erklärungen einschließlich acht Verständnisfragen. 60 eigenständige
+Trainingsfragen bieten mindestens 20 Anwendungen je LOS; zwei weitere
+Transfers bleiben den getrennten Klausuren vorbehalten.
+
+Ausübungswert, heutiger Preis, Zeitwert und vollständiger Positionsgewinn
+werden getrennt gerechnet. Moneyness verändert sich nicht mit der früheren
+Prämie oder der Long-/Short-Richtung. Der Kontraktmultiplikator wird erst nach
+der Rechnung je Recht eingesetzt. Effektive und stetige Verzinsung sind
+ausdrücklich bezeichnet. Europäische Ausübungsbeschränkung bedeutet nicht
+fehlende Handelbarkeit vor Ablauf; ein Verkauf wird mit tatsächlich
+erzielbarem Erlös und nicht automatisch mit dem Modellmittelpreis verglichen.
+
+Eigene sichere Grenzfälle begründen negativen europäischen Zeitwert,
+diskontierte Putobergrenzen über dem Strike bei negativem Zins und einen
+sinkenden europäischen Putpreis bei längerer Laufzeit. Amerikanische
+Zusatzrechte werden nicht mit europäischen Endrechten gleichgesetzt. Der
+übliche Satz über unvorteilhafte frühe Callausübung erhält seine nötigen
+Zins- und Ausschüttungsbedingungen. Bekannte Gelddividenden und stetige
+proportionale Ertragsrendite bleiben verschiedene Modellannahmen.
+
+Call- und Putuntergrenze werden durch vollständige Aktien- und
+Finanzierungswege begründet. Die Arbitragebeispiele stimmen Anfangseinnahme,
+Strikebereitstellung, Aktienrücklieferung und beide Endkursregionen ab.
+Anfangseinnahmen werden nicht nochmals als unabhängiger Endgewinn addiert.
+Die Zweizustandsreplikation bestimmt Aktienquote und Endschuld aus beiden
+Leistungen; ein zusätzlicher gedachter Endkurs zeigt ihre statische Grenze.
+Positive Zustandspreise, normierte risikoneutrale Gewichte und tatsächliche
+Prognosewahrscheinlichkeiten bleiben unterscheidbar.
+
+Gezielte Vergleiche isolieren Spot, Strike, Volatilität, Restlaufzeit, Zins und
+Ausschüttung. Ein eigener mittelwerterhaltender Streuungsvergleich begründet
+die konvexe Wahlwertwirkung. Ein gleichzeitiger Spotanstieg und starker
+Volatilitätsrückgang zeigt, warum eine partielle Richtungsregel keine
+vollständige Tagesprognose liefert. Delta, Ausübungswahrscheinlichkeit,
+Theta-Konvention und Vega je Dezimaleinheit beziehungsweise Prozentpunkt
+werden nicht verwechselt. Implizite Volatilität bleibt eine modellabhängige
+inverse Preiskennzahl, keine garantierte künftige Schwankung.
+
+Ein zusätzlicher Rechner erhält das bestehende Endauszahlungsmodell im selben
+Kapitel. Sechs Eingaben, elf ausdrücklich beschriftete Vergleichsfälle, sechs
+Kennzahlen, vier unterscheidbare Kurven und zwei Werttabellen zeigen Preis,
+Ausübungswert, Zeitwert und europäische Grenzen. Negative Zeitwerte werden
+nicht abgeschnitten. Ablauf und Nullvolatilität verwenden direkte
+Grenzrechnungen. Die Preisfunktion berechnet die günstigere Forward-OTM-Seite
+direkt und ergänzt die Gegenseite konsistent, um große gegenläufige
+Geldbausteine nicht unnötig zu subtrahieren. Die Kurve verändert nur den
+heutigen Spot. Amerikanische Ausübung, diskrete Dividendentermine, Sprünge
+und tatsächliche Handelsfriktionen werden nicht als gelöste Modellfälle
+ausgegeben. Die geschlossene Formel und Greeks sind ausdrücklich zusätzliche
+Verständnisvertiefungen, keine hinzu erfundenen Pflichtlernziele.
+
+Maßgeblich sind die tatsächlichen Lernziele 2027. Die öffentliche
+CFA-Übersicht von 2026 ist ergänzend gekennzeichnet. Die Research-Foundation-
+Fachpublikation von Clarke, de Silva und Thorley sowie OIC und ASX dienen als
+Grundlagenquellen; sämtliche Zahlungsfälle, Zahlen und Aufgaben sind eigene.
+20 kuratierte Wörterbuchverweise umfassen 14 neue Definitionen und sechs
+aktualisierte Grundbegriffe zu Sensitivitäten und Volatilität. Kontextabhängige
+Zeitwert-, Ausübungswert- und Moneyness-Verweise führen zur neuen Erklärung;
+allgemeine Vertrags-, Geldzeitwert- und Prepaid-Ziele bleiben erhalten.
+
+Die unabhängige Numerik verwendet eine Integration der Gaußdichte ohne die
+CDF-Koeffizienten oder die Preisfunktion des Programms. 729 vollständige
+Sechs-Faktor-Fälle prüfen sämtliche Kennzahlen, beide Tabellen, Grenzen und
+294.516 Kurvenkoordinaten. Alle 896 Buchkoordinaten, zwölf veröffentlichte
+Vergleichszeilen und 26 numerische Fragen einschließlich der beiden echten
+reservierten Transfers werden gesondert abgestimmt. Zusätzliche Referenzen
+prüfen beide Arbitragewege, Zustandspreise, Prämienfinanzierung, negative
+Zinsen, Delta und Vega-Einheiten. Die maximale beobachtete absolute
+Preisabweichung zur Gaußintegration beträgt rund 0,0000378 WE und liegt in
+der berücksichtigten Genauigkeit der verwendeten CDF-Näherung. Exakte
+Zahlungs- und Paritätsgleichungen erhalten engere numerische Toleranzen.
+
+487 unterschiedliche Tests bestehen: 411 Prüfungen des ersten Kernlaufs,
+eine danach ergänzte unabhängige Tabellenprüfung, 25 allgemeine
+Browserprüfungen, fünf neue Options-Browserprüfungen und 45 übergreifende
+CFA-Browserprüfungen. Die breiten Läufe verwendeten f1f32530113c6dec. Nach
+der visuellen Durchsicht wurden ausschließlich zwei zusätzliche lokale
+Formeltafeln, ein genaueres Anfangskostensymbol, beschriftete Tabellenfelder,
+ausdrückliche Fallkonventionen und vier Kurvenfarben ergänzt. 24 numerische
+Trainingslösungen verlieren einen doppelt angezeigten Lesartabsatz; die zwei
+reservierten Lösungen erhalten jeweils drei gesetzte Rechenschritte.
+Fragenstämme, Antwortmöglichkeiten und richtige Antworten bleiben gleich.
+
+Normalisierte Vergleiche bestätigen unveränderte übrige 86 Einheiten,
+unveränderte übrige Fragen und unverändertes Wörterbuch. Die Preisfunktion
+blieb identisch; die neue Modellfunktion unterscheidet sich nur durch vier
+Farbzuordnungen. Alle neun unabhängigen Options-Rechentests und fünf
+Options-Browserprüfungen bestehen auf der endgültigen Version erneut. Eine
+Textinventur berücksichtigt nun auch Formel-Lesarten, nachdem erklärende
+Prosa in eine Formeltafel verschoben wurde; dafür wurde keine numerische
+Abweichung akzeptiert. Alle 66 ersten Kontrollansichten wurden gelesen.
+Alle 52 nach der Endredaktion abweichenden Ansichten wurden erneut gelesen;
+14 sind per SHA-256 identisch. Lange Formeln, Diagramme und Tabellen bleiben
+seitlich und per Tastatur verschiebbar. Die echten unvollständigen Klausuren
+bleiben gesperrt; reservierte Lösungen wurden nur in isolierten Testkopien
+vorübergehend als Übungen gerendert.
+
+**Das Gesamtziel bleibt offen:** 87 von 102 Einheiten, 274 von 340
+Lernzielreferenzen und 3.054 Trainingsfragen. Zwei Derivate-, sieben
+Alternative-Investments- und sechs Portfolioeinheiten fehlen, zusammen
+15 Einheiten und 66 LOS. Jede echte Klausur enthält 145 von 180 Fragen;
+jeweils fehlen zwei Derivate-, 13 Alternative-Investments- und 20
+Portfoliofragen. Alle 87 Einheiten bleiben draft, Release bleibt false.
+Es bestehen 246 berechnete CFA-Buchgrafiken, zehn Ablaufbilder, 55 Modelle
+und 71 bisherige Finance-Kapitel mit primärem interaktivem Zugang. Das
+Wörterbuch besitzt 1.849 Definitionen, 4.018 Begriffe/Aliase und 1.587
+kuratierte Rückverweise. Die fachliche Gesamtabnahme und die Zielwerte
+90/100 Materialqualität sowie 80/100 Vorbereitungseignung sind weiterhin
+nicht erreicht. Diese Scores sind keine persönliche Bestehenswahrscheinlichkeit.
+
+Endgültige Inhaltsversion: ec80949a6d1e539f.
+Normalisierter HTML-SHA-256:
+f704d2d77f36fb31f33e90e0971dbe8aa164b4d35db584bd630b8d86466d021b
+bei 23.164.053 Bytes.
