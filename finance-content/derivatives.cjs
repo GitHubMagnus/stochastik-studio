@@ -23,3 +23,5 @@ module.exports[3].lab='futuresstates';
 module.exports[4].lab='swapvalue';
 
 module.exports[5].additionalLabs=[...(module.exports[5].additionalLabs||[]),'optionvalue'];
+
+module.exports[5].additionalLabs.push('parity');

@@ -768,6 +768,33 @@ models.optionvalue.presets=[
  {label:'Nur Restlaufzeit null',values:{s:100,k:100,r:5,q:0,v:20,t:0}},
  {label:'Nur Volatilität null',values:{s:100,k:100,r:5,q:0,v:0,t:1}}
 ];
+add('parity','Put-Call-Parität: gleiche Endleistung, zwei heutige Paketpreise','Europäische Rechte mit identischem Basiswert, Strike und Endtermin. Call und Put sind unabhängige hypothetische Preisangaben. Vergleiche die beiden Pakete und prüfe zusätzlich ihre Einzelpreisgrenzen.',[
+ field('s','Heutiger Aktienkurs (WE je Aktie)',25,250,1,105),
+ field('k','Gemeinsamer Strike (WE je Aktie)',25,250,1,100),
+ field('d','Diskontfaktor bis zum Endtermin',.7,1.2,.01,.94),
+ field('income','Barwert bekannter Ausschüttungen (WE)',0,20,.01,3.88),
+ field('c','Heutige Callquote (WE je Recht)',0,300,.01,11.12),
+ field('p','Heutige Putquote (WE je Recht)',0,300,.01,4)
+],p=>{
+ const a=p.s-p.income,b=p.k*p.d,left=p.c+b,right=p.p+a,raw=left-right,gap=Math.abs(raw)<1e-10?0:raw,fair=a/p.d,xmax=Math.max(300,2*p.k),call=x=>Math.max(x-p.k,0),put=x=>Math.max(p.k-x,0);
+ const lc=Math.max(a-b,0),lp=Math.max(b-a,0),bad=[];if(p.c<lc-1e-10||p.c>a+1e-10)bad.push('Callquote außerhalb ihrer Einzelpreisgrenzen');if(p.p<lp-1e-10||p.p>b+1e-10)bad.push('Putquote außerhalb ihrer Einzelpreisgrenzen');
+ const out=result([['Call + Strikebarwert (WE)',left],['Put + Prepaid-Aktienerhalt (WE)',right],['Paketdifferenz links minus rechts (WE)',gap],['Call minus Put: heutiger Preis (WE)',p.c-p.p],['Alter Forward zum Strike: Wert (WE)',a-b],['Neue faire Forwardquote (WE)',fair]],seq(0,xmax,x=>call(x)+p.k,100),'Aktienkurs am Endtermin (WE)','Gemeinsame Paketendleistung (WE)','Reibungsfreier europäischer Vergleich je einem Aktienrecht. Die zwei Kurven liegen deckungsgleich: Call plus am Ende sicher verfügbarer Strike und Put plus eine am Ende gelieferte Aktie. Die Markierung bezeichnet den Strike, keine Kursprognose. Der Ausschüttungsbarwert wird als bekannt und replizierbar angenommen; der Prepaid-Erhalt ist Spot minus dieser Barwert. Ein Diskontfaktor ist keine jährliche Zinsquote; er kann bei negativem Zins über eins liegen. Unabhängige hypothetische Call-/Putquoten können die Parität oder zusätzlich eigene Grenzen verletzen. Paritätsgleichheit allein bestimmt keine zwei Einzelpreise. Keine Geld-Brief-Spannen, Gebühren, Leihrestriktionen, vorzeitige Ausübung, Margins oder Kreditrisiken; die Buchfälle behandeln diese Grenzen. '+(bad.length?'Separate Grenzprüfung: '+bad.join('; ')+'.':'Separate Grenzprüfung: Beide Einzelquoten liegen innerhalb ihrer europäischen Grenzen.'));
+ out.series=[{name:'Call plus sichere Strikezahlung',color:'#087e82',points:out.points},{name:'Put plus Endaktie',color:'#d56718',dash:true,points:seq(0,xmax,x=>put(x)+x,100)}];out.yRange=[0,xmax*1.05];out.marker=[p.k,p.k];
+ out.projection={caption:'Jede Zeile ist ein eigener Endzustand, keine Reihe nacheinander eingehender Zahlungen. Endwerte enthalten keine erneute Addition der heutigen Prämien. Beide Pakete leisten in jedem Zustand dasselbe.',headers:['Endkurs (WE)','Call (WE)','Put (WE)','Call + Strike (WE)','Put + Aktie (WE)','Call − Put (WE)','Forward-Endleistung (WE)'],rows:[0,.5*p.k,p.k,1.5*p.k,2*p.k].map(x=>[x,call(x),put(x),call(x)+p.k,put(x)+x,call(x)-put(x),x-p.k])};
+ out.stable={caption:'Notwendige europäische Einzelpreisgrenzen unter derselben Ertrags- und Diskontannahme. Auch zwei gleich stark überteuerte Rechte können die Paketgleichheit erfüllen.',headers:['Recht','Quote (WE)','Untere Grenze (WE)','Obere Grenze (WE)','Separate Prüfung'],rows:[['Call',p.c,lc,a,p.c>=lc-1e-10&&p.c<=a+1e-10?'Innerhalb':'Außerhalb'],['Put',p.p,lp,b,p.p>=lp-1e-10&&p.p<=b+1e-10?'Innerhalb':'Außerhalb']]};return out;
+});
+models.parity.presets=[
+ {label:'Grundfall mit bekannten Ausschüttungen',values:{s:105,k:100,d:.94,income:3.88,c:11.12,p:4}},
+ {label:'Nur Callquote +2 WE',values:{s:105,k:100,d:.94,income:3.88,c:13.12,p:4}},
+ {label:'Nur Callquote −2 WE',values:{s:105,k:100,d:.94,income:3.88,c:9.12,p:4}},
+ {label:'Nur Ausschüttungsbarwert null',values:{s:105,k:100,d:.94,income:0,c:11.12,p:4}},
+ {label:'Nur Diskontfaktor 1,05',values:{s:105,k:100,d:1.05,income:3.88,c:11.12,p:4}},
+ {label:'Beide Optionsquoten +10 WE',values:{s:105,k:100,d:.94,income:3.88,c:21.12,p:14}},
+ {label:'Beide +100 WE: eigene Grenzen verletzt',values:{s:105,k:100,d:.94,income:3.88,c:111.12,p:104}},
+ {label:'Nur Strike 120, alte Quoten behalten',values:{s:105,k:120,d:.94,income:3.88,c:11.12,p:4}},
+ {label:'Nullzins ohne Ausschüttung, am Geld',values:{s:100,k:100,d:1,income:0,c:8,p:8}},
+ {label:'Put teurer als Call, Parität erfüllt',values:{s:50,k:100,d:.94,income:0,c:6,p:50}}
+];
 const api={models,calculate,annuity,price,bsm,cdf,europeanOption,forecastValue,companyPlan,covenantPlan,repaymentSchedule,bondIndexPlan,repoFundingPlan,yieldSpreadPlan,floaterPlan,moneyYieldPlan,yieldCurvePlan,bondHorizonPlan,bondRiskPlan,convexityPlan,keyRatePlan,creditPlan,creditDistribution,sovereignPlan,creditCashPlan,mortgagePoolPlan};
 if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.FinanceModels=api;
 })(globalThis);

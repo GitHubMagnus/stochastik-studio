@@ -351,3 +351,5 @@ module.exports={id:'option-values',intro:[
  {title:'Options Industry Council: Options Exercise; Ausübung und Verkauf eines Rechts unterscheiden',url:'https://www.optionseducation.org/referencelibrary/faq/options-exercise'},
  {title:'ASX: Option pricing in detail; Wertzerlegung und Einflussgrößen als ergänzende Börsenerläuterung',url:'https://www.asx.com.au/investors/investment-tools-and-resources/online-courses/advancing-in-options-course/option-pricing-in-detail'}
 ],review:{status:'draft',date:'2026-10-25',note:'Eigene Preis-, Replikations- und Grenzfälle; unabhängige mathematische und technische Gegenprüfung sowie fachliche Gesamtabnahme erforderlich.'}};
+
+module.exports.related.push({unit:'parity',section:'spot',label:'Passende Call- und Putrechte über ihre vollständigen Endpakete verknüpfen'});

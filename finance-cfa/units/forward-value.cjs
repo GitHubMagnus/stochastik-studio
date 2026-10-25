@@ -319,3 +319,5 @@ module.exports={id:'forward-value',intro:[
 
 module.exports.related.push({unit:'futures',section:'reset',label:'Forwardbewertung mit dem laufenden tatsächlichen Futuresausgleich vergleichen'});
 module.exports.related.push({unit:'swaps',section:'known-fixing',label:'Einzelne Zinsansprüche mit mehreren Swapperioden und bekannten Coupons verbinden'});
+
+module.exports.related.push({unit:'parity',section:'forward-case',label:'Aktuelle Lieferquote aus Optionspreisen ableiten und vom alten Wert unterscheiden'});

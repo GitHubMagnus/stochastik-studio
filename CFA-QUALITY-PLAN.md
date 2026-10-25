@@ -4037,3 +4037,80 @@ Endgültige Inhaltsversion: ec80949a6d1e539f.
 Normalisierter HTML-SHA-256:
 f704d2d77f36fb31f33e90e0971dbe8aa164b4d35db584bd630b8d86466d021b
 bei 23.164.053 Bytes.
+
+## Put-Call-Parität: geprüfter Ausbau (25.10.2026)
+
+Die 88. Einheit behandelt die beiden tatsächlichen Lernziele 2027 zu
+europäischer Spot- und Forward-Parität. 34 Abschnitte, 45 gesetzte Formeln
+mit Symbolen und Einheiten, 19 eigene Rechenbeispiele, sieben Tabellen,
+sechs berechnete Buchgrafiken und elf Vertiefungen erläutern die gemeinsame
+Endleistung, synthetische Positionen und die heutigen Finanzierungskosten.
+50 eigenständige Übungsfragen sowie je ein reservierter Transfer für beide
+Klausuren ergänzen den Lernteil; alle drei Antwortmöglichkeiten werden erklärt.
+
+Die Replikation unterscheidet heutige Preise, Zwischenzahlungen und
+Endzahlungen. Beide Arbitragerichtungen erhalten vollständige Zahlungsbücher;
+bekannte Dividenden und deren Kompensation bei einem Aktienleerverkauf werden
+zum richtigen Zeitpunkt finanziert. Der faire neue Forwardpreis, der Wert
+eines alten Forwards und die Optionspreisdifferenz werden getrennt hergeleitet.
+Negative Zinsen, ungleiche Kontraktmultiplikatoren, ausführbare Geld-Brief-
+Kurse und unterschiedliche Kredit- und Anlagepreise zeigen die Grenzen der
+vereinfachten Gleichung. Die europäische Box ist eine zusätzliche Vertiefung.
+Die amerikanische Ungleichung wird nur unter ihren ausdrücklich genannten
+Annahmen verwendet. Paritätsgleichheit wird nicht mit der Gültigkeit aller
+einzelnen Optionspreisgrenzen gleichgesetzt.
+
+Das zusätzliche Paritätslabor erhält die beiden bisherigen Optionsmodelle.
+Sechs Eingaben, zehn Vergleichsfälle, sechs Kennzahlen, zwei Werttabellen
+und zwei unterscheidbare, deckungsgleiche Endleistungskurven zeigen gezielte
+Änderungen einzelner Faktoren. Hypothetische Call- und Putquoten werden nicht
+automatisch passend gemacht. Eigene Grenzprüfungen kennzeichnen auch den
+Fall, in dem beide Quoten zu hoch sind und ihre Differenz trotzdem stimmt.
+20 kuratierte Wörterbuchverweise enthalten 19 neue Definitionen. Allgemeine
+Protective-Put-, Covered-Call- und Prepaid-Verweise behalten ihre bisherigen
+Ziele; kontextabhängige Paritätsbegriffe führen zur präzisen neuen Erklärung.
+
+Maßgeblich sind die zwei Lernziele auf Seite 24 der offiziellen Übersicht
+2027. Die öffentliche CFA-Übersicht 2026 ist als Ergänzung gekennzeichnet;
+die Research-Foundation-Fachpublikation und OIC dienen als Grundlagenquellen.
+Sämtliche Zahlenfälle und Fragen sind eigene. Eine unabhängige Rechenprüfung
+stimmt unter anderem alle 646 Buchkoordinaten, Replikationszahlungen,
+Quotengrenzen sowie die beiden reservierten Transfers ab.
+
+450 unterschiedliche Tests bestehen: 420 Kernprüfungen, 25 allgemeine
+Browserprüfungen und fünf neue Paritäts-Browserprüfungen. Die breiten Läufe
+verwendeten 95bfc05ebdb805cd. Danach wurde ausschließlich Übungsfrage pcp-48
+als allgemeine Analystenfrage statt als Programmfrage umformuliert; ihre
+richtige Aussage blieb erhalten. Alle fünf neuen Browserprüfungen bestehen
+auch auf der endgültigen Version. Normalisierte Vergleiche bestätigen alle
+88 unveränderten Lerneinheiten, das unveränderte Wörterbuch, die unveränderte
+numerische Modellfunktion und alle übrigen unveränderten Fragen.
+Die 45 übergreifenden CFA-Browserprüfungen des vorigen Stands wurden in
+diesem Arbeitsschritt nicht erneut ausgeführt und hier nicht mitgezählt.
+
+Alle 58 ersten Kontrollansichten wurden gelesen. Ihre Lern-, Modell- und
+reservierten Fragedaten blieben nach der Textänderung identisch; die geänderte
+Frage wurde zusätzlich in zwei neuen Ansichten bei 390 und 1440 Pixeln
+gelesen. Formeln, Tabellen und Grafiken sind bei schmaler Ansicht seitlich
+und per Tastatur zugänglich; es entsteht kein globaler Seitenüberlauf.
+Die echten unvollständigen Klausuren bleiben gesperrt. Die beiden
+reservierten Lösungen wurden ausschließlich in isolierten Testkopien
+vorübergehend als Übungen gerendert.
+
+**Das Gesamtziel bleibt offen:** 88 von 102 Einheiten, 276 von 340
+Lernzielreferenzen und 3.104 Trainingsfragen. Eine Derivate-, sieben
+Alternative-Investments- und sechs Portfolioeinheiten fehlen, zusammen
+14 Einheiten und 64 LOS. Jede echte Klausur enthält 146 von 180 Fragen;
+jeweils fehlen eine Derivate-, 13 Alternative-Investments- und 20
+Portfoliofragen. Alle 88 Einheiten bleiben draft, Release bleibt false.
+Es bestehen 252 berechnete CFA-Buchgrafiken, zehn Ablaufbilder, 56 Modelle
+und 71 bisherige Finance-Kapitel mit primärem interaktivem Zugang. Das
+Wörterbuch besitzt 1.868 Definitionen, 4.056 Begriffe/Aliase und 1.607
+kuratierte Rückverweise. Die Zielwerte 90/100 Materialqualität und 80/100
+Vorbereitungseignung sind weiterhin nicht erreicht; sie sind keine
+persönliche Bestehenswahrscheinlichkeit.
+
+Endgültige Inhaltsversion: dfe9245074725b04.
+Normalisierter HTML-SHA-256:
+e9c24b0bd0b4fdf983274b0759b430ab300181fc5a6e2f5dae32b1fcde5ca768
+bei 23.470.017 Bytes.
