@@ -841,6 +841,36 @@ models.commitment.presets=[
  {label:'Nur ursprüngliche Zusage auf 2000',values:{commitment:2000,paid:40,dist:20,recall:50,call:50,cash:300,nav:500}},
  {label:'Grundzusage voll eingezahlt, Wiederabruf bleibt',values:{commitment:1000,paid:100,dist:20,recall:50,call:50,cash:300,nav:500}}
 ];
+add('fundfees','Vom Bruttoertrag zum Anlegerergebnis','Vergleiche ausdrücklich definierte Einjahresverträge ohne externe Geldbewegungen. Gebührenbasis, Reihenfolge, Hürde und bisheriger Höchststand werden getrennt sichtbar.',[
+ field('capital','Anfangs-NAV (WE)',100,10000,100,100),field('gross','Bruttorendite im Jahr (%)',-50,100,1,20),field('management','Managementsatz (% p. a.)',0,5,.25,2),field('carry','Erfolgssatz (%)',0,40,1,20),field('hurdle','Hürdensatz (% p. a.; bei keiner Hürde ignoriert)',0,15,1,0),field('hwm','Vorherige High-Water Mark (% des Anfangs-NAV)',100,150,5,100),
+ {...field('base','Managementbasis',0,1,1,0),choices:[{value:0,label:'Anfangs-NAV'},{value:1,label:'Brutto-End-NAV'}]},
+ {...field('policy','Gebührenvertrag und Reihenfolge',0,2,1,0),choices:[{value:0,label:'Summe: Erfolg nach Management'},{value:1,label:'Summe: Erfolg vor Management'},{value:2,label:'Entweder/oder: Erfolg vor Management'}]},
+ {...field('rule','Hürdenklausel',0,2,1,0),choices:[{value:0,label:'Keine Hürde (Hürdensatz ignoriert)'},{value:1,label:'Harte Hürde: nur Überschuss'},{value:2,label:'Weiche Hürde: strikt überschreiten'}]}
+],p=>{
+ const B=p.capital,m=p.management/100,k=p.carry/100,h=p.hurdle/100,H=B*p.hwm/100,J=B*(1+h);
+ const calc=g=>{const G=B*(1+g/100),M=m*(p.base===0?B:G),Y=p.policy===0?G-M:G;
+  // A strict soft gate uses a relative tolerance only at the floating-point representation of equality.
+  const above=Y-J>1e-12*B,P=k*(p.rule===1?Math.max(Y-Math.max(H,J),0):p.rule===2?(above?Math.max(Y-H,0):0):Math.max(Y-H,0)),F=p.policy===2?Math.max(M,P):M+P,N=G-F;
+  return {G,M,Y,P,F,N,r:100*(N/B-1)};
+ },v=calc(p.gross),points=seq(-50,100,g=>calc(g).r,100),out=result([['Bruttogewinn (WE)',v.G-B],['Management-Komponente (WE)',v.M],['Erfolgs-Komponente (WE)',v.P],['Tatsächliche Gesamtgebühr (WE)',v.F],['Netto-End-NAV (WE)',v.N],['Netto-Jahresrendite (%)',v.r]],points,'Bruttorendite im Jahr (%)','Jahresrendite (%)','Eigene Einjahresverträge ohne externe Zahlungen, Steuern, Fremdkapital, sonstige Kosten oder mehrjährige Catch-up-/Clawback-Regeln. Alle Prozentsätze beziehen sich auf ein volles Jahr. Erfolg nach Management verwendet Brutto-End-NAV minus Management-Komponente; die beiden anderen Verträge verwenden den Brutto-End-NAV. Beim Entweder/oder-Vertrag wird nur die größere Komponente tatsächlich bezahlt; es werden nicht beide Beträge abgezogen. Die High-Water Mark ist ein vorheriger, nach damaligen Gebühren festgestellter Höchststand für denselben unveränderten Anteilbestand. Die harte Hürde belastet nur den Betrag über dem höheren Wert aus Hürde und High-Water Mark. Die weiche Hürde verlangt das strikte Überschreiten der Hürdenbasis, berechnet dann aber Erfolg auf den gesamten Gewinn über der High-Water Mark. Sie ist kein vollständiger Catch-up-Wasserfall. Keine Hürde ignoriert den Hürdensatz. Jeder Kurvenpunkt ist ein separater Jahresfall bei denselben Vertragsparametern, kein zeitlicher NAV-Pfad.');
+ const gross={name:'Bruttorendite vor Gebühren',color:'#7461a5',dash:true,points:seq(-50,100,g=>g,100)};
+ if(p.rule===2){const gate=p.policy===0?(p.base===0?100*(h+m):100*((1+h)/(1-m)-1)):100*h;
+  out.series=[gross,{name:'Netto bis zur weichen Schwelle',color:'#087e82',points:seq(-50,gate,g=>calc(g).r,50)},{name:'Netto oberhalb der weichen Schwelle',color:'#087e82',points:seq(gate+1e-7,100,g=>calc(g).r,50)}];
+  out.note+=' Die Nettoabschnitte sind an der weichen Schwelle getrennt gezeichnet, damit ein möglicher Gebührensprung nicht durch eine Verbindungslinie als kontinuierlicher Verlauf erscheint.';
+ }else out.series=[gross,{name:'Netto nach Vertragsgebühren',color:'#087e82',points}];
+ out.marker=[p.gross,v.r];
+ out.projection={caption:'Vergleich verschiedener Bruttoerträge unter genau demselben ausgewählten Jahresvertrag. Die Komponenten werden beim Entweder/oder-Fall nicht addiert.',headers:['Brutto (%)','Management (WE)','Erfolg (WE)','Gesamtgebühr (WE)','Netto-NAV (WE)','Netto (%)'],rows:[-20,0,10,20,40].map(g=>{const x=calc(g);return[g,x.M,x.P,x.F,x.N,x.r];})};
+ out.stable={collapsible:true,summary:'Gebührenvertrag, Bemessungsgrößen und Zahlungsabstimmung aufklappen',caption:'Brutto-Endwert = Netto-Endwert + tatsächliche Gesamtgebühr. Management- und Erfolgs-Komponente sind beim Entweder/oder-Vertrag Alternativen, keine zwei Zahlungen.',headers:['Größe','Wert','Bezug / Einheit'],rows:[
+ ['Gebührenvertrag',p.policy===0?'Summe; Erfolg nach Management':p.policy===1?'Summe; Erfolg vor Management':'Größere Komponente; Erfolg vor Management','Eigener ausdrücklich definierter Jahresvertrag'],
+ ['Managementbasis',p.base===0?B:v.G,'WE Anfangs-NAV oder Brutto-End-NAV'],['Brutto-End-NAV',v.G,'WE vor beiden Vertragsgebühren'],['Basis für Erfolgsprüfung',v.Y,'WE nach oder vor Management gemäß Vertrag'],['Bisherige High-Water Mark',H,'WE vorheriger Höchststand nach damaligen Gebühren'],
+ ['Hürdenbasis',p.rule===0?'Keine aktive Hürde':J,'WE Anfangs-NAV mal (1 + Hürdensatz)'],['Management-Komponente',v.M,'WE rechnerischer Managementbetrag'],['Erfolgs-Komponente',v.P,'WE rechnerischer Erfolgsbetrag'],['Tatsächlich bezahlte Gesamtgebühr',v.F,p.policy===2?'WE Maximum der Komponenten':'WE Summe der Komponenten'],['Netto-End-NAV',v.N,'WE nach tatsächlicher Gesamtgebühr'],['Abstimmung: Brutto minus Netto minus Gebühr',Math.abs(v.G-v.N-v.F)<1e-8?0:v.G-v.N-v.F,'WE; null bestätigt die Zahlungsaufteilung']]};return out;
+});
+{
+ const b={capital:100,gross:20,management:2,carry:20,hurdle:0,hwm:100,base:0,policy:0,rule:0},preset=(label,changes)=>({label,values:{...b,...changes}});
+ models.fundfees.presets=[
+ preset('Grundfall: 20 % brutto, 14,4 % netto',{}),preset('Nur Managementbasis auf Brutto-End-NAV',{base:1}),preset('Nur Erfolg vor Management berechnen',{policy:1}),preset('Nur Entweder/oder-Vertrag',{policy:2}),preset('Harte Hürde von 8 %',{rule:1,hurdle:8}),preset('Weiche Hürde von 8 %',{rule:2,hurdle:8}),preset('Nur früheren Höchststand auf 120 erhöhen',{hwm:120}),preset('Neuer Fall: Gewinn über früherem Höchststand',{hwm:120,gross:30,management:0}),preset('Gründerklasse: 1 % Management, 10 % Erfolg',{management:1,carry:10}),preset('Nur Bruttoverlust von 20 %',{gross:-20}),preset('Nur Erfolgsvergütung auf null',{carry:0}),preset('Weiche Hürde: Schwelle genau erreicht',{rule:2,hurdle:8,gross:10}),preset('Weiche Hürde: knapp oberhalb der Schwelle',{rule:2,hurdle:8,gross:11})
+ ];
+}
 const api={models,calculate,annuity,price,bsm,cdf,europeanOption,forecastValue,companyPlan,covenantPlan,repaymentSchedule,bondIndexPlan,repoFundingPlan,yieldSpreadPlan,floaterPlan,moneyYieldPlan,yieldCurvePlan,bondHorizonPlan,bondRiskPlan,convexityPlan,keyRatePlan,creditPlan,creditDistribution,sovereignPlan,creditCashPlan,mortgagePoolPlan};
 if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.FinanceModels=api;
 })(globalThis);

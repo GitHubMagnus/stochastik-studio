@@ -268,6 +268,7 @@ module.exports={id:'alternative-structures',intro:[
   'Die nachfolgenden Alternative-Investments-Einheiten vertiefen Performance, Gebühren und die einzelnen Anlagefamilien. Das vorliegende Kapitel liefert dafür die gemeinsame Sprache. Es erklärt, warum identische Bruttoanlagen je nach Zugang, Verschuldung, Kosten und Zahlungsrechten zu verschiedenen Anlegerergebnissen führen können.'
  ])
 ],explorations:[{section:'calculator',lesson:'alternatives-01',focus:'lab',label:'Restzusage, Wiederabruf und tatsächliche Liquidität mit NAV als separatem Bestand prüfen'}],related:[
+ {unit:'alternative-fees',section:'whole-fund',label:'Carry, Hürden, High-Water Marks und finale Rückforderungen vollständig durchrechnen'},
  {unit:'issuer-forms',section:'liability',label:'Beschränkte Haftung vom Wertverlust und von wirksamen Kapitalpflichten trennen'},
  {unit:'governance',section:'private-incentives',label:'Manageranreize als Bündel von Zahlungen und Entscheidungen analysieren'},
  {unit:'working-capital',section:'cash-budget',label:'Den höchsten Liquiditätsbedarf aus einem vollständigen Zahlungsplan gewinnen'},
