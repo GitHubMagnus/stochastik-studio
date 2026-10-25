@@ -287,7 +287,8 @@ module.exports={id:'alternative-fees',intro:[
  {unit:'benchmarks',section:'time-weighted',label:'TWR und MWR im allgemeinen Renditevergleich vertiefen'},
  {unit:'tvm',section:'implied',label:'Die Abzinsung hinter der IRR verstehen'},
  {unit:'standard-iii',section:'performance',label:'Performance vollständig und fair kommunizieren'},
- {unit:'standard-vi',section:'conflicts',label:'Vergütungsanreize und Konflikte sachlich beurteilen'}
+ {unit:'standard-vi',section:'conflicts',label:'Vergütungsanreize und Konflikte sachlich beurteilen'},
+ {unit:'hedge-funds',section:'high-water',label:'High-water mark und Gebühren anhand eines vollständigen Hedgefonds-Verlustausgleichs abstimmen'}
 ],sources:[
  {title:'CFA Institute: tatsächliche Level-I-Lernziele 2027, Alternative Investment Performance and Returns, Seite 25',url:'https://www.cfainstitute.org/sites/default/files/2027levelitopicoutline_online.pdf#page=25'},
  {title:'CFA Institute: ergänzende öffentliche Themenübersicht 2026, keine vollständige Curriculumquelle 2027; eigene Rechnungen und Fälle in diesem Kapitel',url:'https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/alternative-investment-performance-and-returns'},

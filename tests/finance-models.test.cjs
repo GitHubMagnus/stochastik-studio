@@ -10,6 +10,7 @@ test('every interactive Finance model matches independent reference values',()=>
  refs.binomialrep=[62.5,250/21,50/7,.5,-800/21,12];
  refs.commitment=[600,100,700,350,50,-50];
  refs.fundfees=[20,2,3.6,5.6,114.4,14.4];
+ refs.hedgeexposure=[250,50,1,10,3,2.5,10.5];
  refs.commodityledger=[1050,1011.8660139658735,-99.08365099660803,60.94966496247555,0,-3.631808193726327,0];
  refs.propertydcf=[1875.7094214127244,2000,-124.2905785872756,2208.1616064,80.12102879554821,6.5];
  refs.privatecapital=[100,40,37.897475,0,82.102525,2.052563125];

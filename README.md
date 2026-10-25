@@ -13,14 +13,14 @@ Direkt im Browser nutzbar, ohne Download oder Installation.
 - **Verständnis prüfen:** 1.034 Aufgaben, mindestens sechs in jedem Finance-Kapitel und 14 bei Duration. Grundverständnis, Herleitung oder Begründung, Rechen- oder Fallaufgabe, Vergleich, Transfer und Fehlersuche besitzen getrennte Hinweise und ausführliche Lösungen. Aufgabenangaben und Ergebnistabellen sind getrennt. Die Lösungen enthalten 544 gesetzte Formeltafeln und 90 gesetzte Inline-Formeln, einschließlich bewusst wiederverwendeter Kapitelrechnungen.
 - **Vertiefungen:** 361 zusätzliche Erklärabschnitte, 175 Vergleichstabellen, insgesamt 519 erläuterte Lösungsschritte, 740 Kapitelverbindungen und neun Erklärungsgrafiken. Wichtige Zusammenhänge wie Duration, Cashflowbewertung, CAPM und Optionsreplikation erhalten mehrere aufeinander aufbauende Herleitungen.
 - **Mathematische Notation:** 156 zentrale mathematische Formeltafeln, 219 Formeltafeln in Herleitungen und 383 numerische Lösungsschritte werden ausdrücklich in LaTeX verfasst und als MathML eingebettet. Auch Formeln in Vergleichstabellen und alle neun Kelly-Formeltafeln sind gesetzt. Qualitative Entscheidungsfragen werden als Prosa dargestellt. Es gibt keine automatische Umwandlung von Wörtern in vermeintliche Gleichungen.
-- **Fachwörterbuch:** 1.996 alphabetisch sortierte Definitionen mit 4.287 Begriffen und Aliasen; automatische Verlinkung aus den Lerntexten und Rückverweise auf erklärende Kapitel. 1.769 kuratierte Einträge besitzen zusätzlich einen präzisen Rückverweis in den neuen CFA-Lernpfad. Mehrdeutige Begriffe wie GMV, Forward, FFO, DSCR, Trustee, Subordination, Residual, WAL, Balloon Payment, Margin, Settlement und Delta werden abhängig vom Kapitel verlinkt. Direktlinks auf zusammengeführte Begriffe bleiben über deren Alias erhalten.
+- **Fachwörterbuch:** 2.023 alphabetisch sortierte Definitionen mit 4.328 Begriffen und Aliasen; automatische Verlinkung aus den Lerntexten und Rückverweise auf erklärende Kapitel. 1.799 kuratierte Einträge besitzen zusätzlich einen präzisen Rückverweis in den neuen CFA-Lernpfad. Mehrdeutige Begriffe wie GMV, Forward, FFO, DSCR, Trustee, Subordination, Residual, WAL, Balloon Payment, Margin, Settlement und Delta werden abhängig vom Kapitel verlinkt. Direktlinks auf zusammengeführte Begriffe bleiben über deren Alias erhalten.
 - **Kelly Studio:** Einzelpositionen, Szenarien, Portfoliooptimierung, Simulation und Herleitung. Der Zustand bleibt beim Modulwechsel erhalten.
 
 ## CFA Level I 2027: laufende Überarbeitung
 
 Der neue Bereich unter **Finance → CFA Level I 2027** führt 102 offizielle Module
 mit 340 einzeln zugeordneten Lernzielreferenzen. Der aktuelle Arbeitsstand enthält
-94 neu ausgearbeitete Einheiten und 3.474 eigenständige englische Trainingsfragen
+95 neu ausgearbeitete Einheiten und 3.534 eigenständige englische Trainingsfragen
 mit deutschen Lösungen. Alle zehn Ethics-Module und alle elf Quant-Module besitzen
 neue Erklärungen und Übungen. Weitere Vertiefungen behandeln EPS, Kennzahlen und
 Leasing/Vergütung. Der Quant-Bereich enthält jetzt auch ausführliche Testwahl,
@@ -688,20 +688,36 @@ zeigen, weshalb gleichbleibender Spot nicht gleiche Nettorendite bedeutet
 und beim Rollen kein zweiter voller Warenkauf bezahlt wird. Die eigenen
 252 Abrechnungsintervalle sind keine behauptete Börsenkalenderregel.
 
-Insgesamt 292 zusätzliche berechnete Grafiken und elf Ablaufbilder erläutern
+Hedgefonds ergänzen 41 ausführliche Abschnitte, 49 gesetzte Formeln mit
+Symbolhilfen, 34 erklärte Fälle, zehn berechnete Grafiken, sechs Tabellen
+und 16 Verständnisfragen. Je 20 Trainingsfragen für die drei tatsächlichen
+2027-Lernziele sowie vier getrennte Klausurtransfers prüfen Eigenschaften,
+Zugangsformen, Risiko und Diversifikation. Der vollständige Short-Broker-Fall
+verbindet Verkaufserlös, gebundenes Cash, echten Kredit, Dividenden und Zinsen
+bis zur abgestimmten Endbilanz. Dealwahrscheinlichkeiten, Spread-Ausweitung,
+Gebühren und High-water mark zeigen jeweils den vollständigen Rechenweg.
+Das neue Long-/Short-Labor trennt Bruttoexposure, Nettoexposure und Beta über
+acht Eingaben, 14 Vergleichsszenarien und eine aufklappbare Beitragsrechnung.
+Die lineare Einperiodenannahme ist ausdrücklich kein Finanzierungsnachweis.
+Alpha erhält eine eigenständige Erklärung einschließlich Faktorwahl,
+Schätzunsicherheit und Grenzen; niedrige historische Korrelation garantiert
+keinen Krisenschutz. Dreißig neue oder erweiterte Wörterbuchdefinitionen
+führen unmittelbar zu den passenden Erklärungen.
+
+Insgesamt 302 zusätzliche berechnete Grafiken und elf Ablaufbilder erläutern
 die neuen Zusammenhänge.
 Direkte Abschnittsverweise verbinden die Einheiten und passende Wörterbuchdefinitionen.
 
-293 Lernzielreferenzen sind aktuell sowohl neuen Erklärungen als auch Trainingsfragen
+296 Lernzielreferenzen sind aktuell sowohl neuen Erklärungen als auch Trainingsfragen
 zugeordnet. Dies ist **kein Nachweis vollständiger CFA-Vorbereitung**. Offene
 Einheiten sind sichtbar; die fachliche Endprüfung läuft. Zwei getrennte Probeklausuren
-haben bisher je 156 von 180 Fragen und bleiben gesperrt. Ihre Ethics- und Quant-Anteile
+haben bisher je 158 von 180 Fragen und bleiben gesperrt. Ihre Ethics- und Quant-Anteile
 sind mit jeweils 22 Fragen pro Thema, ihre Economics-Anteile mit je zwölf und
 ihre Abschlussanalyse-Anteile mit je 22 Fragen angelegt. Corporate Finance hat
 je zwölf reservierte Fragen. Damit sind die Themenanteile der ersten Sitzung
 angelegt. Die Aktienanteile der zweiten Sitzung sind mit je 22 reservierten Fragen
 angelegt. Der Anleihebereich enthält je 22 reservierte Fragen; Derivate je 13.
-Die ersten neun Alternative-Investments-Fragen je Klausur sind angelegt. Pro Klausur fehlen noch vier Fragen zu Alternative Investments und 20 zu Portfolio Construction.
+Elf Alternative-Investments-Fragen je Klausur sind angelegt. Pro Klausur fehlen noch zwei Fragen zu digitalen Assets und 20 zu Portfolio Construction.
 Der implementierte Ablauf
 mit zwei Sitzungen zu je 135 Minuten wird mit gesonderten künstlichen Testdaten
 geprüft, die nicht als echte Lernfragen veröffentlicht werden.
