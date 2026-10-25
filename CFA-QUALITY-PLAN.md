@@ -4695,3 +4695,126 @@ Endgültige Inhaltsversion: 2f11be5bdfe8fba1.
 Normalisierter HTML-SHA-256:
 275c20f061ef4ca755f2f8df067ac11621e99f311576f56b8a5c7e78fc157722
 bei 25083957 Bytes.
+
+
+## Land, Wald und Rohstoffe: reale Produktion und Futures-Cash (25.10.2026)
+
+Das neue Modul resources behandelt die drei tatsächlichen Lernziele 2027
+zu Land-/Forstanlagen, Rohstoffmerkmalen und Risiko-/Rendite-/Diversifikation.
+Der Umfang wurde am offiziellen Outline, Seite 26, geprüft. Die öffentliche
+CFA-Level-I-Übersicht 2026, eine ausdrücklich zusätzliche Level-II-Übersicht
+sowie primäre CME- und CFTC-Begriffserklärungen unterstützen die fachlichen
+Abgrenzungen. Ein vollständiges Curriculum 2027 wird damit nicht behauptet.
+Zusätzliche eigene Forstrotation und Cash-Zeitreihen werden nicht als neue
+offizielle Level-I-Lernziele ausgegeben.
+
+37 Abschnitte enthalten 51 formal gesetzte Gleichungen mit zugeordneten
+Symboldefinitionen, 27 erklärte Fälle, acht Tabellen und acht berechnete
+Grafiken mit 1047 unabhängigen Koordinaten. 16 Verständnisfragen mit
+aufklappbarer Selbstkontrolle und drei weitere Vertiefungen erläutern
+Zusammenhänge und Grenzen. Biologische Bestandsfunktion und Erntewert
+werden ausdrücklich mathematisch eingeführt; verbale Rechnungen in
+Grafiklegenden wurden durch kurze Beschriftungen ersetzt. Die normale
+Spotrendite erhält ebenfalls eine formale Definition statt einer rohen
+Textformel innerhalb einer Symbolerklärung. 30 Wörterbucheinträge wurden
+neu erstellt oder vertieft; frühere Carry-, Basis-, Futures- und Aktien-
+Gesamtrenditeziele bleiben erhalten und erhalten gezielte Ressourcenkontexte.
+
+Wesentliche wirtschaftliche Prüfungen:
+
+- Unbewirtschaftetes Land kann trotz Preisgewinn laufende Mittel verbrauchen.
+  Ein Preis von 100 auf 110 liefert nach fünf Besitzkosten nur fünf Prozent
+  Nettoertrag. Ein noch erhofftes Nutzungsrecht ist keine heutige Zahlung.
+- Feste Pacht, ertragsabhängige Pacht und eigener Betrieb besitzen verschiedene
+  Zahlungsquellen. 12 Pacht minus drei Eigentümerkosten auf Preis 150 ergeben
+  sechs Prozent laufenden Cash. Erntemenge minus zwanzig und Preis plus zehn
+  Prozent ergeben zwölf Prozent weniger Erlös; bei den eigenen Fixkosten sinkt
+  Cash von 80 auf 56. Forderungsbindung und zusätzliches Capex werden übergeleitet.
+- Biologischer Mengenzuwachs ist keine sichere Rendite. 108 Einheiten zu Preis
+  47,5 nach Kosten zwanzig ergeben nur 2970 statt heutiger Ernte 3000. Ein
+  zusätzlicher Pflegebetrag kann auch bei später nominal höherer Ernte den
+  Barwertvergleich umkehren. Wiederholte Pflanzkosten und Land-/Bestandsrechte
+  werden ohne doppelte Erntezahlung berücksichtigt.
+- Physische Ware, Produzentenaktie, Fonds, Future, Swap und Note sind
+  verschiedene Ansprüche. Lagerung, Finanzierung und physischer Nutzwert
+  erklären bestimmte Preisrelationen; Convenience Yield ist keine garantierte
+  ausgezahlte Dividende. Basis nennt ihr Vorzeichen und die passende Ware.
+  Contango, Backwardation und Erwartungen sind keine sicheren späteren Preise.
+- Entry-Future 105 und Endspot 110 ergeben fünf Preisgewinn relativ zu 105,
+  also 4,761905 Prozent, obwohl Spot von 100 auf 110 zehn Prozent steigt.
+  Renditezähler und Nenner werden konsistent geführt. Ein neuer fairer Future
+  hat beim Einstieg Wert null; sein volles Notional wird nicht als zusätzlicher
+  Warenkauf abgebucht. Spätere Abrechnungen erfassen Preisänderungen genau einmal.
+- Tägliche Kontobewegungen verbinden Öffnungscash, effektiven Intervallzins,
+  Variation Margin und bezeichnete Kosten. Frühere Gewinne und Verluste
+  verändern die spätere Zinsbasis bei gleichem Endpreis. Nach vollständiger
+  Abrechnung wird kein bereits übertragener Kontraktwert nochmals addiert.
+- Im Labor beginnt ein voll unterlegtes Konto bei 1050. Flacher Spot,
+  jährlicher Entry-Aufschlag fünf Prozent und effektiver Sicherheitenzins
+  drei Prozent ergeben nach Jahr eins 1030,756671 und nach Jahr zwei
+  1011,866014. Es gibt keine Kosten im Grundfall. Die neue Referenzmenge
+  wird aus vorhandenem Kapital gebildet. Bei Aufschlag null bleibt der
+  reine Zinseffekt von 6,09 Prozent über zwei Jahre. Alle Mengen sind
+  teilbare Lehrreferenzen, alle Sicherheiten hier liquide und gleich verzinst.
+- Die Indexbeispiele trennen Gewichte, Kontraktfälligkeit, Rollfenster,
+  Rebalancing und Excess-/Total-Return-Basis. Realer Inflationsschutz braucht
+  vollständige Nettozahlungen. Seltene Landbewertungen beweisen weder kleine
+  wirtschaftliche Risiken noch garantiert niedrige Korrelation. Gegenpartei,
+  Wetter, Standort und täglicher Cashbedarf werden im Stress verbunden.
+
+Das neue primäre Labor commodityledger besitzt acht Eingaben, 14 native
+Vergleichsszenarien, sieben Ergebnisse, tägliche Konto- und Spotreferenzkurven,
+fünf alternative Entry-Aufschläge und ein aufklappbares Jahresledger.
+Die reine Spotreferenz enthält keine physischen Lagerkosten und wird nicht
+als kostenfreie ausführbare Ware ausgegeben. Die 252 gleichlangen Intervalle
+sind eine eigene Zeitkonvention; reale Kalender und Marginregeln werden
+nicht als identisch vorausgesetzt. Preisverläufe sind eigene rückblickende
+Szenarien und keine heute garantierten handelbaren Zukunftspreise.
+
+Die unabhängige Mathematik löst die lineare Cash-Differenzengleichung mit
+gewichteten Polynomsummen. Sie überprüft 6561 Szenarien, 4.408.992 tägliche
+Konten und 8.831.106 Kurvenkoordinaten unabhängig vom schrittweisen Produkt-
+algorithmus. Jahreskonten, alle 14 Presets, fünf Alternativszenarien je Preset,
+Nullzins-Pfadinvarianz, Zinszeitpunkt, Gebühren, Wiederanlage, Skalierung
+und Eingabegrenzen stimmen. Alle 1047 Buchgrafikpunkte sowie 40 Zahlenantworten
+einschließlich beider reservierter Transfers wurden getrennt berechnet.
+
+Die endgültige eingefrorene Fassung besteht 500 unterschiedliche Tests:
+469 Kern- und 31 Browserprüfungen einschließlich sechs neuer Kapiteltests.
+Die acht vorab einzeln ausgeführten Numeriktests werden nicht doppelt gezählt.
+Alle 171 bisherigen Kapitel, 62 Modelle, Wörterbuch, Offlinebetrieb,
+51 Formel-/Symbolpanels, acht Grafiken, native Eingaben, Tastatur, 14 Presets,
+Szenario-/Jahres-/Kurventabellen, 60 tatsächliche Trainingsfragen sowie beide
+reservierten Transfers in isolierten mobilen und Desktopansichten wurden
+geprüft. Echte unvollständige Klausuren bleiben gesperrt. Ein zu knapper
+Antwortkommentar wurde erläutert; eine unzutreffende Testannahme zu beliebigen
+Schrittweiten und ein falscher Textabschnitt im Wörterbuch-Browsertest wurden
+korrigiert. Nach der zusätzlichen Formelsatzverbesserung liefen alle relevanten
+vollständigen Suiten erneut auf der endgültigen HTML-Fassung.
+
+105 neue Ansichten wurden visuell geprüft: acht Grafiken, alle 27 Beispiele,
+19 aufklappbare Texte, acht weitere Tabellen, mobile Symbolhilfen, 14 Presets,
+mobile Ausgaben, tatsächliche reservierte Lösungen, zusätzliche linke/mittlere/
+rechte Ledgeransichten und die zwei ergänzten Wachstumsgleichungen. Von der
+finalen Aufnahme waren 48 Ansichten per SHA-256 identisch; die 57 übrigen
+wurden erneut beziehungsweise neu gelesen. Lange Formeln, Kurven und Tabellen
+bleiben bei schmalen Breiten seitlich und per Tastatur erreichbar.
+
+**Das Gesamtziel bleibt offen:** 94 von 102 Einheiten und 293 von 340 LOS
+besitzen neue Erklärungen und Trainingszuordnungen. Es gibt 3474 Trainingsfragen
+und je 156 von 180 echten Klausurfragen. Je Klausur fehlen vier Alternative-
+Investments- und zwanzig Portfoliofragen. Hedgefonds, digitale Assets und
+sechs Portfolioeinheiten fehlen: zusammen acht Einheiten und 47 LOS.
+Alle 94 Einheiten bleiben draft, Release bleibt false. Gesamtbestand:
+292 berechnete CFA-Grafiken, elf Ablaufbilder, 62 Modelle, 75 bisherige
+Kapitel mit primärem interaktivem Zugang. Wörterbuch: 1996 Definitionen,
+4287 Begriffe/Aliase, 275 Kontextzuordnungen und 1769 kuratierte Rückverweise.
+Der separate vollständige CFA-Ablauf wurde zuletzt bei 89 Einheiten geprüft;
+der abschließende Gesamtaudit steht weiterhin aus. 90/100 Materialqualität
+und 80/100 Vorbereitungseignung sind weiterhin nicht als erreicht abgenommen
+und keine persönliche Bestehenswahrscheinlichkeit.
+
+Endgültige Inhaltsversion: 02266f7d7f10946f.
+Normalisierter HTML-SHA-256:
+4a688b258a937059bef87962062766192f46f822b3d59c57f1509d08185ffa7b
+bei 25430129 Bytes.
