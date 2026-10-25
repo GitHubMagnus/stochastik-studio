@@ -4114,3 +4114,102 @@ Endgültige Inhaltsversion: dfe9245074725b04.
 Normalisierter HTML-SHA-256:
 e9c24b0bd0b4fdf983274b0759b430ab300181fc5a6e2f5dae32b1fcde5ca768
 bei 23.470.017 Bytes.
+
+## Einperiodenreplikation und Risikoneutralität: geprüfter Ausbau (25.10.2026)
+
+Die 89. Einheit behandelt die beiden tatsächlichen Lernziele 2027 zur
+Derivatbewertung im Einperioden-Binomialmodell und zur Risikoneutralität.
+34 Abschnitte enthalten 48 gesetzte Formeln mit lokalen Symbolerklärungen,
+26 eigene Rechenbeispiele, elf Tabellen, fünf berechnete Buchgrafiken und
+14 Vertiefungen einschließlich zehn Verständnisfragen. 50 eigenständige
+Trainingsfragen und zwei getrennt reservierte Klausurtransfers ergänzen
+die Erklärungen. Alle Antwortmöglichkeiten erhalten eine Begründung.
+
+Die Herleitung beginnt mit zwei vollständigen Zahlungsgleichungen. Delta
+überbrückt die Differenz der Optionsleistungen; der Geldbaustein ergänzt
+das gemeinsame Zahlungsniveau. Heutiger Kredit und spätere Rückzahlung
+bleiben getrennt. Call und Put werden unabhängig repliziert und über
+Put-Call-Parität kontrolliert. Ein sicheres Aktien-minus-Call-Paket erklärt,
+warum der sichere Satz auf den Hedge und nicht ungeprüft auf die tatsächliche
+erwartete Optionszahlung angewandt wird. Erst aus derselben Replikation
+werden risikoneutrale Gewichte und Zustandspreise abgeleitet.
+
+Kontrollierte Vergleiche verändern tatsächliche Wahrscheinlichkeiten,
+Kursäste, Strike und Finanzierung jeweils ausdrücklich. Die tatsächliche
+Ertragserwartung und die Bewertung beantworten verschiedene Fragen.
+Andere Spreizung verändert auch die Preisgewichte; ein gleichbleibendes
+Delta kann bei anderem Zins trotzdem einen anderen Preis erzeugen.
+Beide Preisarbitragen erhalten vollständige Anfangs- und Endzahlungsbücher.
+Negative Nettorenditen, Quartalskonventionen, Digitalansprüche, tatsächliche
+Kontraktgrößen und Randarbitragen werden gesondert erklärt. Ein zusätzlicher
+Endkurs zeigt, weshalb Zweipunktdeckung nicht jede Optionsfunktion
+repliziert. Selbstfinanzierende Mehrperiodenhedges, zustandsabhängige
+Diskontfaktoren und amerikanische Ausübung sind ausdrücklich zusätzliche
+Vertiefungen, keine hinzu erfundenen Pflichtlernziele.
+
+Das neue zusätzliche Labor erhält den bisherigen kompakten Rechner.
+Sechs Eingaben, elf Vergleichsfälle, sechs Kennzahlen und zwei Tabellen
+zeigen beide Optionsnachbauten sowie Prognose und Finanzierung. Die vier
+Zahlungszeilen decken beide Rechte in beiden Zuständen. Die erweiterte
+Kursachse vergleicht Callfunktion und affine Nachbaugerade; allein die
+tabellierten zwei Aktienkurse gehören zum Modell. Abweichungen außerhalb
+dieser zwei Punkte werden ausdrücklich als Modellgrenze erklärt.
+Widersprüchliche Geld-/Aktienfaktoren werden abgelehnt, Preisgewichte nicht
+zurechtgestutzt. Bei wertlosen Optionen wird keine Rendite durch null
+gerechnet. 20 kuratierte Definitionen enthalten 18 neue Begriffe. Kontext-
+Delta und -Replikation führen zur neuen Herleitung; allgemeine Delta-,
+Replikations- und statistische Binomialbegriffe behalten ihre bisherigen Ziele.
+
+Maßgeblich sind die beiden Lernziele auf Seite 24 der offiziellen Übersicht
+2027. Die öffentliche CFA-Übersicht 2026 ist ergänzend gekennzeichnet.
+MIT OpenCourseWare, 18.642 Herbst 2024, Lecture 21, dient als zusätzliche
+Primärquelle zur Replikation und risikoneutralen Darstellung. Alle Zahlen,
+Rechenfälle, Grafikdaten und Fragen wurden eigenständig entwickelt.
+
+Neun neue unabhängige Rechenprüfungen bestehen. 486 gültige Kombinationen
+stimmen bei Kennzahlen, beiden Optionsnachbauten, Zustandspreisen,
+Ertragserwartungen und 78.732 Modellkoordinaten überein. 243 widersprüchliche
+Kombinationen werden ausdrücklich abgelehnt. Alle 438 Buchkoordinaten und
+37 numerischen Aufgaben einschließlich beider reservierter Transfers werden
+gesondert gegenberechnet. Weitere Nachweise prüfen beide Arbitragerichtungen,
+Short-Rücklieferung, Vergleichstabellen, zwei verschiedene zulässige
+Dreizustandsbewertungen und Selbstfinanzierung an beiden Zwischenknoten.
+
+504 unterschiedliche Tests bestehen auf derselben unveränderten
+Inhaltsversion: 429 Kernprüfungen einschließlich der neun neuen
+Rechenprüfungen, 25 allgemeine Browserprüfungen, fünf neue Binomial-
+Browserprüfungen und 45 übergreifende CFA-Browserprüfungen. Die neuen
+Browserprüfungen öffnen jede Symbolhilfe, alle elf Laborfälle, sämtliche
+50 Übungsfragen mit ihren Begründungen und die beiden tatsächlichen
+reservierten Lösungen in isolierten Testkopien. Die echten noch
+unvollständigen Klausuren bleiben gesperrt. Die breiten Prüfungen testen
+außerdem Navigation, Speicherung, Fehlerfälle und den Prüfungsablauf mit
+ausdrücklich künstlichen vollständigen Testklausuren.
+
+Alle 68 ersten Kontrollansichten wurden gelesen. Vier zusätzliche Ansichten
+prüfen die geöffnete Gewichtstabelle und die nach rechts verschobenen
+Replikationswerte bei 390 und 1440 Pixeln. Insgesamt wurden 72 Ansichten
+manuell durchgesehen. Lange Formeln, Grafiken und Tabellen zeigen bei
+schmalen Ansichten Verschiebehinweise und bleiben per Tastatur zugänglich.
+Es entsteht kein globaler Seitenüberlauf. Nach den Prüfungen wurden keine
+Inhalte, Aufgaben, Wörterbuchdefinitionen oder numerischen Modellfunktionen
+mehr verändert; die beim Staging geprüfte Version bleibt identisch.
+
+**Das Gesamtziel bleibt offen:** 89 von 102 Einheiten, 278 von 340
+Lernzielreferenzen und 3.154 Trainingsfragen. Alle zehn Derivateeinheiten
+besitzen neue Erklärungen und Übungen. Sieben Alternative-Investments-
+und sechs Portfolioeinheiten fehlen, zusammen 13 Einheiten und 62 LOS.
+Jede echte Klausur enthält 147 von 180 Fragen; die Derivateanteile sind
+mit je 13 Fragen angelegt. Jeweils fehlen 13 Alternative-Investments-
+und 20 Portfoliofragen. Alle 89 Einheiten bleiben draft, Release bleibt
+false. Es bestehen 257 berechnete CFA-Buchgrafiken, zehn Ablaufbilder,
+57 Modelle und 71 bisherige Finance-Kapitel mit primärem interaktivem
+Zugang. Das Wörterbuch besitzt 1.886 Definitionen, 4.095 Begriffe/Aliase
+und 1.627 kuratierte Rückverweise. Die Zielwerte 90/100 Materialqualität
+und 80/100 Vorbereitungseignung sind weiterhin nicht erreicht; sie
+sind keine persönliche Bestehenswahrscheinlichkeit.
+
+Endgültige Inhaltsversion: 11eb6a76af69ddee.
+Normalisierter HTML-SHA-256:
+3232633b6fbbe3e5ea6ecd2947af6e01008fae2b2e03ccceb40459f8ae98b09f
+bei 23.788.505 Bytes.

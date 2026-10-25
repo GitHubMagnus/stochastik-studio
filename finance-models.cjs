@@ -795,6 +795,31 @@ models.parity.presets=[
  {label:'Nullzins ohne Ausschüttung, am Geld',values:{s:100,k:100,d:1,income:0,c:8,p:8}},
  {label:'Put teurer als Call, Parität erfüllt',values:{s:50,k:100,d:.94,income:0,c:6,p:50}}
 ];
+add('binomialrep','Zwei Zustände: Call und Put mit Aktie und Geld nachbauen','Vergleiche die vollständigen Zahlungen beider Nachbauten. Verändere danach nur die tatsächliche Wahrscheinlichkeit: Sie ändert Ertragserwartungen, aber bei gleichen Marktpreisen keinen Replikationspreis.',[
+ field('s','Heutige Aktie (WE je Aktie)',25,250,1,100),field('k','Europäischer Strike (WE je Recht)',25,250,1,100),
+ field('u','Oberer Brutto-Kursfaktor',1.05,1.8,.01,1.2),field('d','Unterer Brutto-Kursfaktor',.2,.95,.01,.8),
+ field('r','Sichere effektive Periodenrendite (%)',-10,20,.5,5),field('p','Tatsächliche obere Wahrscheinlichkeit (%)',5,95,1,60)
+],p=>{
+ const R=1+p.r/100;if(!(p.d<R&&R<p.u))throw Error('Arbitragefreie Eingabe mit zwei möglichen Zuständen erfordert d < R = 1+r < u. Die Gewichte werden nicht begrenzt oder automatisch angepasst.');
+ const su=p.s*p.u,sd=p.s*p.d,q=(R-p.d)/(p.u-p.d),prob=p.p/100,cu=Math.max(su-p.k,0),cd=Math.max(sd-p.k,0),pu=Math.max(p.k-su,0),pd=Math.max(p.k-sd,0),dc=(cu-cd)/(su-sd),dp=(pu-pd)/(su-sd),bc=(cd-dc*sd)/R,bp=(pd-dp*sd)/R,C=dc*p.s+bc,P=dp*p.s+bp,ec=prob*cu+(1-prob)*cd,ep=prob*pu+(1-prob)*pd,clean=x=>Math.abs(x)<1e-10?0:x;
+ const xmax=Math.max(1.25*su,1.2*p.k),series=[{name:'Call-Endzahlung auf Vergleichsachse',color:'#087e82',points:seq(0,xmax,s=>Math.max(s-p.k,0),80)},{name:'Fester Nachbau: nur an zwei Zuständen exakt',color:'#d56718',dash:true,points:seq(0,xmax,s=>dc*s+R*bc,80)}];
+ const out=result([['Oberes Bewertungsgewicht q (%)',100*q],['Heutiger Callpreis (WE)',clean(C)],['Heutiger Putpreis (WE)',clean(P)],['Call-Delta (Aktien je Recht)',dc],['Call-Geldposition heute (WE)',clean(bc)],['Erwarteter Callpayoff unter P (WE)',ec]],series[0].points,'Gedanklicher Endaktienkurs (WE)','Endzahlung je Anspruch (WE)','Einperiodenmarkt ohne Ausschüttungen, europäische Rechte, Bruchstücke und Leerverkauf möglich, sichere gemeinsame Kredit-/Anlageverzinsung, keine Gebühren, Margins oder Ausfallrisiken. R ist ein Faktor über die ganze Baumperiode, keine ungeprüfte Jahresrate. Beide Endzustände gelten als tatsächlich möglich. Die Grafik erweitert nur die Vergleichsachse: Modellzustände sind ausschließlich die zwei tabellierten Aktienkurse. Der feste affine Callnachbau stimmt genau dort; Abweichungen dazwischen und außerhalb zeigen seine Modellgrenze. Eine negative gezeichnete Nachbauzahlung außerhalb dieser Zustände ist kein negativer Callpayoff. Die tatsächliche Wahrscheinlichkeit p verändert nur Erwartungen unter P; sie ist unabhängig vom risikoneutralen Preisgewicht q. Preise und Geldpositionen beziehen sich auf heute, die letzte Kennzahl auf eine erwartete Endzahlung. Ein negativer Geldbaustein bezeichnet Kredit. Alle Beträge je einzelnem Aktienrecht.');out.series=series;
+ out.projection={caption:'Beide vollständigen Replikationen: vier Zeilen sind alternative Anspruch-/Zustandsfälle. Sichere Endzahlung ist heutiger Geldbaustein mal R. Abweichung gleich null beweist die Deckung in beiden Modellzuständen.',headers:['Recht und Zustand','Aktienkurs (WE)','Optionszahlung (WE)','Delta (Aktien)','Aktienwert (WE)','Geld am Ende (WE)','Nachbau (WE)','Abweichung (WE)'],rows:[['Call oben',su,cu,dc,dc*su,R*bc,clean(dc*su+R*bc),clean(dc*su+R*bc-cu)],['Call unten',sd,cd,dc,dc*sd,R*bc,clean(dc*sd+R*bc),clean(dc*sd+R*bc-cd)],['Put oben',su,pu,dp,dp*su,R*bp,clean(dp*su+R*bp),clean(dp*su+R*bp-pu)],['Put unten',sd,pd,dp,dp*sd,R*bp,clean(dp*sd+R*bp),clean(dp*sd+R*bp-pd)]]};
+ out.stable={collapsible:true,summary:'Preisgewichte, Putnachbau und tatsächliche Erwartungen getrennt ansehen',caption:'Die tatsächliche Verteilung P ist keine zweite Preisrechnung. Erwartete Renditen verwenden positive heutige Kaufpreise; bei Preis null ist diese Renditequote nicht definiert.',headers:['Größe','Wert','Bezug / Einheit'],rows:[['Sicherer Bruttofaktor R',R,'Über die ganze Modellperiode'],['Oberer Zustandspreis',q/R,'WE heute je nur oben gezahlter End-WE'],['Unterer Zustandspreis',(1-q)/R,'WE heute je nur unten gezahlter End-WE'],['Summe Zustandspreise',1/R,'Preis einer sicheren End-WE'],['Put-Delta',dp,'Aktien je Putrecht'],['Put-Geldposition heute',clean(bp),'WE heute; positiv ist sichere Anlage'],['Tatsächlicher erwarteter Aktienendwert',prob*su+(1-prob)*sd,'WE am Ende unter P'],['Tatsächlicher erwarteter Putpayoff',ep,'WE am Ende unter P'],['Tatsächliche erwartete Callrendite',C>1e-10?100*(ec/C-1):'Nicht definiert bei Preis null','Prozent über die Modellperiode unter P'],['Tatsächliche erwartete Putrendite',P>1e-10?100*(ep/P-1):'Nicht definiert bei Preis null','Prozent über die Modellperiode unter P']]};return out;
+});
+models.binomialrep.presets=[
+ {label:'Grundfall: zwei Endkurse 120 / 80',values:{s:100,k:100,u:1.2,d:.8,r:5,p:60}},
+ {label:'Nur tatsächliches p auf 20 %',values:{s:100,k:100,u:1.2,d:.8,r:5,p:20}},
+ {label:'Nur tatsächliches p auf 80 %',values:{s:100,k:100,u:1.2,d:.8,r:5,p:80}},
+ {label:'Nur oberer Faktor auf 1,30',values:{s:100,k:100,u:1.3,d:.8,r:5,p:60}},
+ {label:'Nur Äste weiter: 140 / 60',values:{s:100,k:100,u:1.4,d:.6,r:5,p:60}},
+ {label:'Nur Strike 60: Call immer ITM',values:{s:100,k:60,u:1.2,d:.8,r:5,p:60}},
+ {label:'Nur Strike 140: Call immer wertlos',values:{s:100,k:140,u:1.2,d:.8,r:5,p:60}},
+ {label:'Nur sicherer Satz −5 %',values:{s:100,k:100,u:1.2,d:.8,r:-5,p:60}},
+ {label:'Nur sicherer Satz 0 %',values:{s:100,k:100,u:1.2,d:.8,r:0,p:60}},
+ {label:'Nur Periodensatz 3 %: Quartalsfall',values:{s:100,k:100,u:1.2,d:.8,r:3,p:60}},
+ {label:'Nur heutige Aktie 80: Call wertlos',values:{s:80,k:100,u:1.2,d:.8,r:5,p:60}}
+];
 const api={models,calculate,annuity,price,bsm,cdf,europeanOption,forecastValue,companyPlan,covenantPlan,repaymentSchedule,bondIndexPlan,repoFundingPlan,yieldSpreadPlan,floaterPlan,moneyYieldPlan,yieldCurvePlan,bondHorizonPlan,bondRiskPlan,convexityPlan,keyRatePlan,creditPlan,creditDistribution,sovereignPlan,creditCashPlan,mortgagePoolPlan};
 if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.FinanceModels=api;
 })(globalThis);
