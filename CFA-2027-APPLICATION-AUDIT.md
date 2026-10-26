@@ -154,3 +154,9 @@ bei 28.480.757 Bytes; CFA-Daten-SHA256:
 Die abschließende Gesamtfreigabe bleibt offen: Die erweiterte Trainingsprüfung
 untersucht weitere Aufgaben mit möglichen Abhängigkeiten von früheren Angaben.
 Einheiten bleiben Entwürfe; die Zielpunktzahlen werden nicht vorweggenommen.
+
+Nachtrag: Die 21 zusätzlichen Kontextfälle aus der anschließenden Trainingsprüfung
+sind inzwischen bearbeitet und einzeln ohne Voraufgabe geprüft; siehe
+[Aufgaben-Audit](CFA-2027-QUESTION-AUDIT.md). Die Lerneinheiten und sämtliche
+Beispielzuordnungen bleiben dabei exakt unverändert. Die Gesamtfreigabe wartet
+noch auf die dort dokumentierte Langzeitprüfung der Ergebnisspeicherung.

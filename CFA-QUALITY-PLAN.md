@@ -5819,3 +5819,63 @@ identischen Quellen oder der gesamten Trainingsbank behauptet.
 Die gezielte Kontextprüfung der Trainingsaufgaben und die zusammengeführte
 Bewertung bleiben offen. Alle 102 Einheiten bleiben draft; Release bleibt false.
 Die Zielwerte sind damit noch nicht als erreicht festgestellt.
+
+## Phase 109: Trainingsfragen mit vollständigen eigenen Angaben (27.10.2026)
+
+Die 100 Treffer der gezielten Rückverweissuche sind redaktionell abgeglichen.
+21 weitere Aufgaben werden unabhängig von Voraufgaben lösbar formuliert;
+`pcp-29` wurde bereits in Phase 108 korrigiert. Die übrigen 78 Treffer enthalten
+ihre nötigen Angaben oder sind begriffliche Fragen, für die kein Zahlenfall
+aus einer Voraufgabe benötigt wird. Dies ist kein automatischer Beweis für
+alle 4118 Trainingsaufgaben. Die betroffenen IDs und die Prüfmethode stehen im
+[Aufgaben-Audit](CFA-2027-QUESTION-AUDIT.md).
+
+Die Revision nennt vollständige Anfangsbestände, Vertragseigenschaften,
+Marktparameter, Zeitpunkte, Portfoliogewichte und Verteilungsregeln. Dazu gehören
+separate OC-Tilgungsmittel, GP-Catch-up, ein Ein-Aktien-Shortkonto, der vollständige
+Bondzahlungsplan, Tochter-/Holding-Verwertung, NAV-Ausgabe, ein europäischer
+Options-Reversal, Kovarianzeingaben, Immobilien- und Infrastrukturzahlungen,
+Carry, ein zweiperiodiges Cashkonto, diskreter Expected Shortfall und Verbriefung.
+Ein missverständlicher Ausdruck „20 jährliche Rückflüsse“ bezeichnet nun klar
+zwanzig Geldeinheiten an jedem der zehn Jahresenden.
+
+Fünf Lösungen erklären zusätzliche Zwischenschritte oder Vergleiche. Vier
+zusätzliche Formeltafeln und drei Tabellen zeigen, wie Korrelation, Gewichtung,
+Tilgung, Zins und diskrete Tail-Masse zu den unterschiedlichen Antwortwerten
+führen. Richtige Antworten und sämtliche Optionen bleiben erhalten.
+
+- **574 Kernprüfungen bestanden.** Elf neue Gegenprüfungen kontrollieren alle
+  21 Ergebnisse durch Cashverteilung, Grenzwertsuche, datierte Zahlungen,
+  Bilanzidentität, terminale Reversal-Auszahlungen, Volatilitäten und ein
+  äquivalentes diskretes Modell mit hundert gleich wahrscheinlichen Zuständen.
+  Ein Zeilenumbruchfehler der neuen Formelsetzung wurde vor dem Build vom
+  Compiler abgefangen und repariert; kein solcher Zwischenstand wurde publiziert.
+- **Zwei neue Browserprüfungen bestanden:** jede der 21 tatsächlichen Fragen mit
+  leerem Speicher und ausschließlich dieser einen verfügbaren Aufgabe, danach
+  ein gemischtes Set mit allen 21 Fragen einschließlich Wiederherstellung einer
+  Auswahl nach Neuladen. Gezielte Antworten ergeben 15 Treffer und sechs
+  Fehlerjournalzeilen, keine simulierten Lernerfolgsaussagen.
+- Optionen, alle Begründungen, Symbolhilfen, Tabellen, genaue Kapitelrücksprünge
+  und vier Breiten geprüft. Alle zwölf Desktop-/Mobilaufnahmen und acht lesbare
+  Ausschnitte der langen Mobilfälle einzeln gelesen. 27 überlaufende Formel-
+  oder Tabellenbereiche reagieren bei 320 Pixeln auf die Tastatur.
+- Vollständige JSON-Gleichheit aller 102 Lerneinheiten, aller 340 Lernzielnachweise
+  und 4457 Fragen nachgewiesen: 4097 Trainingsfragen und alle 360 reservierten
+  Aufgaben unverändert. 21 neue Fragenrevisionen verändern die Angaben;
+  fünf davon erweitern die Lösung. Compiler, Engine, Beispielprioritäten,
+  Modelle, Wörterbücher, Renderer und Stile bleiben exakt unverändert.
+  Die bestehenden vollständigen Klausurprüfungen betreffen dieselben reservierten
+  Daten und dieselbe Engine; sie werden hier nicht als neu ausgeführt bezeichnet.
+
+HTML-Fassung: 61a9aaa7f9b3053e; CFA-Inhaltsfassung: 7631f8c9383c5ac7.
+Vollständiger LF-HTML-SHA256: 61a9aaa7f9b3053e5bbc5010dde418fe67444236e217cdd33a6edee2d123ab34
+bei 28505378 Bytes; CFA-Daten-SHA256: 5d92e1d13bf2c5cb4aa8057f8d42b219869ca0a8d9b8c015027d9d5864e693cd.
+
+Die Kontextbefunde sind damit bearbeitet. Bei der anschließenden Langzeitprüfung
+wurde jedoch ein eigener, reproduzierbarer Speicherfehler festgestellt: Aus 4001
+verschiedenen gültigen Antworten übernimmt die bestehende Begrenzung nur 4000.
+Ein offener Fehler der ersten Aufgabe verschwindet dadurch aus dem Journal.
+Zudem kann ein später angefügtes, zeitlich älteres Ergebnis einen neueren
+richtigen Stand derselben Aufgabe überdecken. Diese beiden Fälle werden vor der
+Gesamtabnahme behoben. Alle Einheiten bleiben bis dahin draft, Release bleibt
+false und die Zielpunkte werden noch nicht vergeben.
