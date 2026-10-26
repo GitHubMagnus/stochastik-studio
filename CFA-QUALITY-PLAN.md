@@ -5154,3 +5154,71 @@ nicht als erreicht ausgegeben.
 Finale HTML-Fassung: 80c949df3b1c2d0c; CFA-Inhaltsfassung: 117cee3d9fc4efda.
 Vollständiger LF-HTML-SHA256: 80c949df3b1c2d0cd5580af18dee7750023c79dea8d956db897450bb74eac798
 bei 27020819 Bytes; vollständiger CFA-Daten-SHA256: e3a6f4ae932e584b95e157acd2021024f61e09f055ea7f7f22aec17afd1698e7.
+
+## 99. Einheit: Investmentprozess, Anleger und Anlagevehikel
+
+Alle sechs Lernziele von Portfolio Management: An Overview sind in 37 Abschnitten
+mit 40 gesetzten Formeltafeln, 20 ausgeführten Rechenfällen, zwölf Tabellen,
+sechs berechneten Grafiken, einem Zahlungs-/Anspruchsdiagramm und 24 zusätzlichen
+Verständnisfragen ausgearbeitet. Planung, Ausführung, Überwachung und Berichte
+werden mit dem Gesamtvermögen und den datierten Anlegerverpflichtungen verbunden.
+Leistungs- und Beitragszusage werden nach dem Vertrag eingeordnet; ein angezeigter
+Kontostand allein macht einen Cash-Balance-Plan nicht zum DC-Plan. US-Bezeichnungen
+für Pläne und Fonds sind ausdrücklich keine weltweit einheitlichen Rechtsregeln.
+
+Gezielte Zahlenvergleiche erklären Konzentration neben Erwerbseinkommen,
+kurzfristige Liquidität trotz langen Horizonts, Rebalancing, Zahlungsreihenfolge,
+Deckungsgrad und Diskontsatz, Beiträge und Zinseszins, reale Stiftungsausgaben,
+AUM versus Managergewinn, Ausgabe und Rückgabe von Fondsanteilen, Verwässerung,
+Ausschüttungen und den Unterschied zwischen NAV- und Börsenkursrendite. Gebühren
+werden nach einer ausdrücklich genannten Zahlungsbasis berechnet; bereits im
+Netto-NAV enthaltene Kosten werden nicht nochmals abgezogen. Drei bestehende
+Rechner sind mit abgegrenzten Aufgaben verknüpft: Rebalancing, lineare Asset-
+Liability-Sensitivität und Beitragsbarwert. Der letzte Rechner wird ausdrücklich
+nicht als Endwertrechner bezeichnet.
+
+72 eigenständige englische Trainingsfragen decken jedes der sechs Lernziele mit
+zwölf Aufgaben ab. Vier weitere, nicht im Training verwendete Transferfälle haben
+zusammenhängende deutsche Falllösungen und Begründungen für jede Antwortoption.
+31 numerische Antworten und sämtliche 419 Grafikkoordinaten werden unabhängig aus
+den jeweiligen Zahlungsreihen und Bilanzidentitäten kontrolliert. Die drei
+übernommenen Modelle werden über 297 Parameterkombinationen separat nachgerechnet;
+native Browserprüfungen kontrollieren ihre elf Zahlen-/Bereichseingabepaare,
+Randwerte, Tastaturbedienung, Zurücksetzen und Offlinezugriff.
+
+Das Wörterbuch enthält nun 2095 Definitionen mit 4485 Begriffen/Aliasen und 1881
+kuratierten CFA-Rückverweisen. Kontextbegriffe für DB/DC, NAV, Verwässerung, Prämie
+und Managed Account behalten die abweichenden vorhandenen Bedeutungen in den
+anderen Kapiteln bei. Bestehende Pensions- und Hedgekonto-Rückverweise werden
+zusätzlich mit tatsächlichen Browserwechseln geprüft.
+
+Quellenbasis: offizieller CFA-Outline 2027, öffentliche CFA-Konzeptübersicht zum
+Investmentprozess sowie die SEC-/Investor.gov-Primärinformationen zu Mutual Funds,
+ETFs, Closed-End Funds und Kosten. Für DB/DC/Cash Balance wurde außerdem die
+lesbare Suchindexfassung der US-DOL-Primärinformation abgeglichen; die direkten
+DOL-Seiten antworteten mit 403, weshalb keine vollständige Seiten- oder PDF-Lektüre
+behauptet wird. Eigene Zahlen und Zahlungszeitpunkte sind als Annahmen bezeichnet.
+
+Abnahme: 507 Kernprüfungen und 43 allgemeine/Portfolio-/Alternative-Browserprüfungen
+bestanden. Nach lokalen sprachlichen Präzisierungen wurden die 507 Kernprüfungen
+erneut ausgeführt. Danach wurden ausschließlich die vier eigenen reservierten
+Falllösungen erweitert; ein vollständiger Datenvergleich grenzt diese Änderung
+auf vier Lösungen und ihre Revisionen ein. Auf dem endgültigen Build bestehen
+alle acht neuen mathematischen/Inhaltsprüfungen und alle sechs Browserprüfungen
+dieser Einheit. Alle 87 finalen Ansichten sind gesichtet: 72 pixelidentisch zu den
+bereits gelesenen Bildern, 15 geänderte Ansichten erneut einzeln geprüft. Die
+Abnahme umfasst vollständige HTML-/CFA-Datenidentität und Quelldateihashes sowie
+die tatsächliche öffentliche GitHub-Pages-Fassung mit HTTP- und Edge-Prüfung.
+
+Gesamtziel bleibt offen: 99 von 102 Einheiten und 322 von 340 Lernzielen besitzen
+neue Erklärungen und Übungen. Es gibt 3878 Trainingsfragen und je 172 von 180
+reservierten Klausurfragen. Offen sind IPS mit acht, Behavioral Biases mit drei
+und Risk Management mit sieben Lernzielen; pro Klausur fehlen acht Fragen.
+Alle 99 Einheiten bleiben draft, Release false und unvollständige Klausuren gesperrt.
+Bestand: 329 berechnete CFA-Grafiken, 13 Ablaufbilder, 65 Modelle und 78 bisherige
+Kapitel mit primärem interaktivem Modell. Die Zielwerte 90/100 und 80/100 werden
+vor der vollständigen Gesamtprüfung weiterhin nicht als erreicht ausgegeben.
+
+Finale HTML-Fassung: 13a8c60effac6de8; CFA-Inhaltsfassung: 7e12876b316febe3.
+Vollständiger LF-HTML-SHA256: 13a8c60effac6de8887718cea2eea66b4c82e84e3fe6831bb3ddd3a6f9b3a646
+bei 27332690 Bytes; vollständiger CFA-Daten-SHA256: 399ef5c755215f653ac8f4afb801ec4edf77573771163ee837635fc4f3f0f85f.

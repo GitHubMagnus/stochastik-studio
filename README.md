@@ -13,14 +13,14 @@ Direkt im Browser nutzbar, ohne Download oder Installation.
 - **Verständnis prüfen:** 1.034 Aufgaben, mindestens sechs in jedem Finance-Kapitel und 14 bei Duration. Grundverständnis, Herleitung oder Begründung, Rechen- oder Fallaufgabe, Vergleich, Transfer und Fehlersuche besitzen getrennte Hinweise und ausführliche Lösungen. Aufgabenangaben und Ergebnistabellen sind getrennt. Die Lösungen enthalten 544 gesetzte Formeltafeln und 90 gesetzte Inline-Formeln, einschließlich bewusst wiederverwendeter Kapitelrechnungen.
 - **Vertiefungen:** 361 zusätzliche Erklärabschnitte, 175 Vergleichstabellen, insgesamt 519 erläuterte Lösungsschritte, 740 Kapitelverbindungen und neun Erklärungsgrafiken. Wichtige Zusammenhänge wie Duration, Cashflowbewertung, CAPM und Optionsreplikation erhalten mehrere aufeinander aufbauende Herleitungen.
 - **Mathematische Notation:** 156 zentrale mathematische Formeltafeln, 219 Formeltafeln in Herleitungen und 383 numerische Lösungsschritte werden ausdrücklich in LaTeX verfasst und als MathML eingebettet. Auch Formeln in Vergleichstabellen und alle neun Kelly-Formeltafeln sind gesetzt. Qualitative Entscheidungsfragen werden als Prosa dargestellt. Es gibt keine automatische Umwandlung von Wörtern in vermeintliche Gleichungen.
-- **Fachwörterbuch:** 2.080 alphabetisch sortierte Definitionen mit 4.457 Begriffen und Aliasen; automatische Verlinkung aus den Lerntexten und Rückverweise auf erklärende Kapitel. 1.863 kuratierte Einträge besitzen zusätzlich einen präzisen Rückverweis in den neuen CFA-Lernpfad. Mehrdeutige Begriffe wie GMV, Forward, FFO, DSCR, Trustee, Subordination, Residual, WAL, Balloon Payment, Margin, Settlement und Delta werden abhängig vom Kapitel verlinkt. Direktlinks auf zusammengeführte Begriffe bleiben über deren Alias erhalten.
+- **Fachwörterbuch:** 2.095 alphabetisch sortierte Definitionen mit 4.485 Begriffen und Aliasen; automatische Verlinkung aus den Lerntexten und Rückverweise auf erklärende Kapitel. 1.881 kuratierte Einträge besitzen zusätzlich einen präzisen Rückverweis in den neuen CFA-Lernpfad. Mehrdeutige Begriffe wie GMV, Forward, FFO, DSCR, Trustee, Subordination, Residual, WAL, Balloon Payment, Margin, Settlement und Delta werden abhängig vom Kapitel verlinkt. Direktlinks auf zusammengeführte Begriffe bleiben über deren Alias erhalten.
 - **Kelly Studio:** Einzelpositionen, Szenarien, Portfoliooptimierung, Simulation und Herleitung. Der Zustand bleibt beim Modulwechsel erhalten.
 
 ## CFA Level I 2027: laufende Überarbeitung
 
 Der neue Bereich unter **Finance → CFA Level I 2027** führt 102 offizielle Module
 mit 340 einzeln zugeordneten Lernzielreferenzen. Der aktuelle Arbeitsstand enthält
-98 neu ausgearbeitete Einheiten und 3.806 eigenständige englische Trainingsfragen
+99 neu ausgearbeitete Einheiten und 3.878 eigenständige englische Trainingsfragen
 mit deutschen Lösungen. Alle zehn Ethics-Module und alle elf Quant-Module besitzen
 neue Erklärungen und Übungen. Weitere Vertiefungen behandeln EPS, Kennzahlen und
 Leasing/Vergütung. Der Quant-Bereich enthält jetzt auch ausführliche Testwahl,
@@ -747,20 +747,34 @@ aus dem Einindexmodell. 108 eigene Trainingsfragen decken die neun Lernziele mit
 je zwölf Übungen ab; zwölf weitere Fälle sind den Klausuren vorbehalten. Prognose,
 historischer Schätzer und CAPM-Gleichgewicht werden ausdrücklich getrennt.
 
-Insgesamt 323 zusätzliche berechnete Grafiken und zwölf Ablaufbilder erläutern
+Der Investmentprozess ergänzt 37 Abschnitte zu Planung, Umsetzung, Kontrolle,
+Anlegertypen, Pensionsplänen, Asset Management und Anlagevehikeln. 40 Formeltafeln,
+20 vollständig erläuterte Rechenfälle, zwölf Tabellen, sechs berechnete Grafiken,
+ein Zahlungs- und Anspruchsdiagramm und 24 Verständnisfragen verbinden diese Themen.
+DB und DC werden anhand des versprochenen Vertrags unterschieden; eine Kontodarstellung
+allein bestimmt den Plantyp nicht. Gezielte Vergleiche erklären Liquiditätsbedarf,
+Entnahmereihenfolge, Deckungsgrade, NAV, Verwässerung, Ausschüttungen, ETF-Prämien
+und Gebühren über mehrere Jahre. Drei verknüpfte Rechner behandeln Rebalancing,
+Asset-Liability-Sensitivität und den Barwert von Beiträgen. 72 eigene englische
+Übungen decken jedes der sechs Lernziele zwölfmal ab; vier weitere Transferfälle
+bleiben den Klausuren vorbehalten. Alle Zahlenfälle benennen ihre Zahlungszeitpunkte
+und Konventionen; US-Produktbezeichnungen werden nicht als weltweit gleiche
+Rechts- oder Steuerregeln behandelt.
+
+Insgesamt 329 zusätzliche berechnete Grafiken und 13 Ablaufbilder erläutern
 die neuen Zusammenhänge.
 Direkte Abschnittsverweise verbinden die Einheiten und passende Wörterbuchdefinitionen.
 
-316 Lernzielreferenzen sind aktuell sowohl neuen Erklärungen als auch Trainingsfragen
+322 Lernzielreferenzen sind aktuell sowohl neuen Erklärungen als auch Trainingsfragen
 zugeordnet. Dies ist **kein Nachweis vollständiger CFA-Vorbereitung**. Offene
 Einheiten sind sichtbar; die fachliche Endprüfung läuft. Zwei getrennte Probeklausuren
-haben bisher je 170 von 180 Fragen und bleiben gesperrt. Ihre Ethics- und Quant-Anteile
+haben bisher je 172 von 180 Fragen und bleiben gesperrt. Ihre Ethics- und Quant-Anteile
 sind mit jeweils 22 Fragen pro Thema, ihre Economics-Anteile mit je zwölf und
 ihre Abschlussanalyse-Anteile mit je 22 Fragen angelegt. Corporate Finance hat
 je zwölf reservierte Fragen. Damit sind die Themenanteile der ersten Sitzung
 angelegt. Die Aktienanteile der zweiten Sitzung sind mit je 22 reservierten Fragen
 angelegt. Der Anleihebereich enthält je 22 reservierte Fragen; Derivate je 13.
-Die Alternative-Investments-Anteile sind mit je 13 reservierten Fragen vollständig angelegt. Der Portfolio-Anteil umfasst nun je zehn Transferfragen; pro Klausur fehlen noch zehn Fragen zu Portfolio Construction.
+Die Alternative-Investments-Anteile sind mit je 13 reservierten Fragen vollständig angelegt. Der Portfolio-Anteil umfasst nun je zwölf Transferfragen; pro Klausur fehlen noch acht Fragen zu IPS, Behavioral Biases und Risk Management.
 Der implementierte Ablauf
 mit zwei Sitzungen zu je 135 Minuten wird mit gesonderten künstlichen Testdaten
 geprüft, die nicht als echte Lernfragen veröffentlicht werden.
