@@ -8,7 +8,7 @@ Eine Zahl wird erst nach der Arbeit anhand der folgenden Kriterien vergeben.
 ## Offene Befunde
 
 - [x] Prüfungsjahr festlegen und sämtliche offiziellen Level-I-Lernziele einzeln katalogisieren (inhaltliche Erfüllung separat prüfen).
-- [ ] Zwischen bloßer Erwähnung, Erklärung, durchgerechneter Anwendung und selbstständiger Übung unterscheiden.
+- [x] Zwischen bloßer Erwähnung, Erklärung, durchgerechneter Anwendung und selbstständiger Übung unterscheiden (getrennte Nachweise und Abschnittslinks für alle 340 Lernziele; siehe Anwendungsabgleich).
 - [ ] EPS einschließlich Verwässerung, Kennzahlensysteme, Indexdivisoren und Leasingvergleich vollständig ausarbeiten.
 - [ ] Übrige Lücken aus dem Abgleich bearbeiten, einschließlich Methodenwahl, Annahmen und Gegenbeispielen.
 - [ ] Ethics nach einzelnen Standards präzisieren; Regeln, Empfehlungen und Fallausnahmen unterscheiden.
@@ -5523,3 +5523,44 @@ Der Errata-Abgleich ist abgeschlossen. Offen bleiben die zusammengeführte
 Gesamtabnahme und Neubewertung nach dem ursprünglichen Bewertungsmaßstab.
 Alle Einheiten bleiben bis dahin draft; Release bleibt false. Die Prüfungen
 sind keine externe Fachfreigabe oder empirische Bestehensprognose.
+
+## 26.10.2026: ausgearbeitete Anwendungen für alle 340 Lernziele
+
+Der [Anwendungsabgleich](CFA-2027-APPLICATION-AUDIT.md) unterscheidet Erklärungen,
+vollständig ausgearbeitete Fälle und selbstständiges Training. Eine zweite
+Bestandsprüfung fand zwölf Lernziele ohne eigenes ausführliches Beispiel.
+Zwölf neue Fälle schließen diese Lücken in zehn Einheiten; sie ergänzen sechs
+Formeltafeln und zwei Tabellen. Qualitative Ethics- und Analyseverfahren erhalten
+begründete Entscheidungsfolgen statt sachfremder Rechnungen. Der Lernzielindex
+verlinkt Erklärung und Anwendung getrennt. Die Release-Prüfung fordert nun
+auch den Anwendungsnachweis für jedes Lernziel.
+
+Prüfstand: 548 von 548 Kernprüfungen, darunter sechs neue fachliche Prüfungen.
+Alle drei neuen Browserfälle bestanden. Sie prüfen alle 340 tatsächlichen
+Linkpaare, alle zwölf neuen Zugänge, Formelsymbole, vier Viewports, Tastatur,
+Offlinebetrieb und die sichtbare Lücke in einer unvollständigen Testfixture.
+Alle 24 Desktop-/Mobilansichten wurden einzeln in voller Darstellung gelesen.
+Vier Errata-Browserfälle bestanden ebenfalls auf demselben Build. Die ersten
+beiden fehlgeschlagenen Testfälle wurden auf Fehler der Prüfannahme bzw. der
+automatischen Aufnahme zurückgeführt: Themenreihenfolge des sichtbaren Index
+gegenüber Quellenreihenfolge sowie implizite Viewportvergrößerung bei sehr langen
+Mobilansichten. Die Prüfrouten entsprechen nun der sichtbaren Themenreihenfolge;
+Bildaufnahmen erhalten die nötige Höhe ausdrücklich. Die numerische Layoutprobe
+zeigte davor bereits stabile Produktmaße, und die Breitenprüfung bleibt separat.
+
+Vollständiger Datenvergleich bestätigt 92 unveränderte Einheiten und alle 4478
+unveränderten Fragen. Beide vollständigen Klausuren und ihre Revisionskennungen,
+Modellcode, CFA-Engine, Mathematikrenderer, Stile und Wörterbuch bleiben erhalten.
+Der unmittelbar vorhergehende veröffentlichte Errata-Stand bestand zusätzlich
+alle 45 CFA-Browserfälle und erneut alle 542 damaligen Kernprüfungen. Der neue
+Trainingsbestand bleibt 4118; es werden keine weiteren Fragen hinzugezählt.
+
+HTML-Fassung: 4576280f84250c46; CFA-Inhaltsfassung: 05e4b815de24f23f.
+Vollständiger LF-HTML-SHA256: 4576280f84250c4636313b8334faed48c87f506b8696fda9b881ace488dddecb
+bei 28384109 Bytes; CFA-Daten-SHA256: 74295542c3f31566db97bc8e88ef0405b01388b78a6b9e3aa8da5dd6a458590c.
+
+Der nächste fachliche Befund betrifft die Plausibilität von Antwortalternativen:
+Bei einigen reservierten Ethics-Fragen sind falsche Optionen zu offensichtlich.
+Die Fragenbank wird daher vor der Zielbewertung inhaltlich geprüft; korrekte
+Auswertung und vollständige Themenzahlen allein belegen keine angemessene
+Schwierigkeit. Gesamtfreigabe und Zielbewertungen bleiben bis dahin offen.
