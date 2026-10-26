@@ -46,7 +46,12 @@ module.exports=[
  q('b1','mock-b','b','An investment earns 6% nominally while inflation is 8% over the same year. The exact real return is closest to:',[
  ['−1.85%.','1,06/1,08 − 1 ≈ −1,852 %.'],['−2.00%.','Das ist die lineare Näherung.'],['1.89%.','Das kehrt die beiden Wachstumsfaktoren um.']
  ],0,[F('R_{real}=1{,}06/1{,}08-1\\approx-1{,}852\\%','Das Preisniveau wächst schneller als das Geldvermögen.',[['R_{real}','Reale Jahresrendite.']])],'purchasing-power'),
- q('b2','mock-b','b','A quoted corporate-bond yield exceeds a comparable government-bond yield. Without additional information, interpreting the entire spread as expected default loss is:',[
- ['necessarily correct because liquidity never affects yields.','Liquidität kann relevant sein.'],['unwarranted because other risk premia and market effects may contribute.','Der Gesamtspread ist keine eindeutige Verlustzerlegung.'],['required whenever both yields are annualized.','Annualisierung schafft nur eine Zeitkonvention.']
- ],1,['Einheitenangleichung ermöglicht den Vergleich, identifiziert aber noch nicht seine wirtschaftlichen Ursachen.'],'premia')
+ q("b2",
+  "mock-b",
+  "b",
+  "A quoted corporate-bond yield exceeds a comparable government-bond yield. Without additional information, interpreting the entire spread as expected default loss is:",
+  [["justified if the two bonds have matching maturities and payment frequencies.","Gleiche Laufzeit und Zahlungsfrequenz verbessern die Vergleichbarkeit, entfernen aber nicht automatisch Liquiditätsunterschiede oder eine Vergütung für das Tragen von Kreditrisiko."],["unwarranted because liquidity effects and other risk premia may also contribute.","Der Gesamtspread ist keine eindeutige Verlustzerlegung."],["justified if the corporate issuer holds an investment-grade credit rating.","Ein Rating ordnet Kreditqualität ein. Es zerlegt einen beobachteten Spread weder vollständig noch setzt es alle anderen Risikoprämien und Markteinflüsse auf null."]],
+  1,
+  ["Einheitenangleichung ermöglicht den Vergleich, identifiziert aber noch nicht seine wirtschaftlichen Ursachen.","Selbst eine sorgfältig gematchte Renditedifferenz ist nicht ohne weitere Annahmen der physische erwartete Ausfallverlust. Erwarteter Schaden, Vergütung für unsicheres Kreditrisiko, Liquidität und weitere Marktbedingungen können auseinanderfallen. Für eine eindeutige Zerlegung werden zusätzliche Informationen und ein ausdrücklich benanntes Modell benötigt."],
+  "premia")
 ];

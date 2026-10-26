@@ -5609,3 +5609,67 @@ zusammengeführte Endabnahme und transparente Neubewertung bleiben offen.
 Alle Einheiten bleiben draft, Release false. Die verlangten Zielwerte werden
 vor dieser Prüfung nicht als erreicht ausgegeben und sind keine individuellen
 Bestehenswahrscheinlichkeiten.
+
+## 26.10.2026: Quant-Aufgaben präzisieren und Modellverschiebungen erklären
+
+Alle 44 reservierten Quant-Fragen wurden mit ihren Antwortalternativen und
+Einzelbegründungen gelesen. Zehn Aufgaben in neun Modulen wurden überarbeitet;
+drei Fragestellungen grenzen die verlangte Entscheidung präziser ab. Die
+[Aufgabenprüfung](CFA-2027-QUESTION-AUDIT.md) dokumentiert jeden betroffenen
+Fall: Geldgewichtung, zeitliche Leakage, Drift, Testwahl, effiziente Grenze,
+Steigungsstandardfehler, Schiefe, Spreadzerlegung, iid-Bootstrap und Forward-
+Interpretation. Die übrigen 34 Quant-Fragen bleiben exakt erhalten.
+
+Das Datenwissenschaftskapitel erhält vier gesetzte Formeln, eine Tabelle und
+einen eigenen vollständig gerechneten Kreditfall. Bei unverändertem Risiko
+innerhalb der Gruppen erhöht eine andere Gruppenmischung die Gesamtausfallquote
+von 2,8 auf 5,5 Prozent. Im getrennten Fall erhöht ein verändertes bedingtes
+Risiko bei unveränderter Mischung sie auf 4,8 Prozent. Herkunft und Grenzen der
+Schlussfolgerung sind erklärt; der Modellfall ist keine empirische Schätzung.
+Covariate Shift, Distribution Shift und Reweighting erhalten eigene präzise
+Wörterbuchdefinitionen und Rückverweise. Der Oberbegriff und die engere im
+Kapitel verwendete Konvention werden nicht unbemerkt gleichgesetzt.
+
+Prüfstand:
+
+- 551 Kernprüfungen bestanden, einschließlich dreier neuer Gegenrechnungen.
+  Erwartete Ausfallzahlen werden über Gruppenbestände abgestimmt. Im separaten
+  Dreizeilen-Bootstrapfall ergeben 27 gemeinsame Ziehungen einen anderen
+  Kovarianzerwartungswert als 729 unabhängige Spaltenziehungen; die sechs
+  vollständigen Permutationen liefern keine Kovarianzvariation. Eine separate
+  OLS-Neuschätzung bei verdoppelten X-Werten hält den Residualfehler konstant
+  und halbiert den konventionellen Steigungsstandardfehler.
+- Alle drei neuen Browserfälle auf dem abschließenden Build bestanden: alle
+  44 tatsächlichen Quant-Fragen mit Lösungen, Symbolhilfen und Rückverweisen
+  in isolierter Fixture; Offline-Lehrbeispiel, vier Breiten, Tastatur sowie
+  die drei tatsächlichen Wörterbuchzugänge und präzisen Rückwege.
+- Beide vollständigen tatsächlichen Klausuren mit allen 360 Fragen und Lösungen
+  bestanden zuvor auf denselben CFA-Lerneinheits- und Klausurdaten. Die zwei
+  zuletzt ergänzten Definitionen ändern nur das Wörterbuch; der abschließende
+  Lehrtext-/Wörterbuchtest wurde danach wiederholt. Eine erneute vollständige
+  Klausurausführung allein wegen dieser zwei Definitionen wird nicht behauptet.
+- Alle 14 Ansichten wurden einzeln gelesen: vier Aufgaben und drei Lehrblöcke
+  auf Desktop und Mobil. Zwei zusätzliche Ausschnitte des langen Mobilfalls
+  erlauben Lesen in Originalbreite. Lange Formeln und Tabellen sind innerhalb
+  ihrer Bereiche verschiebbar; die Tastaturprüfung bestätigt dies.
+- Vollständiger JSON-Vergleich bestätigt 101 unveränderte Einheiten und 4468
+  unveränderte Fragen, darunter alle 4118 Trainingsfragen und 350 reservierte
+  Fragen. Nur Data Science und die zehn benannten reservierten Aufgaben sind
+  geändert. Alle 1944 bisherigen kuratierten Definitionen bleiben exakt erhalten;
+  drei kommen hinzu. Engine, Renderer, Modellcode, UI, Stile und Kompilierung
+  bleiben unverändert. Aktueller Gesamtbestand: 2150 Definitionen, 4602 Labels,
+  1947 präzise CFA-Verweise; 102 Einheiten und 340 erklärte, angewandte und
+  geübte Lernzielreferenzen. Beide Klausuren umfassen weiterhin je 180 Fragen.
+
+HTML-Fassung: 7d146ceb064f7703; CFA-Inhaltsfassung: 400bf9e8775ca7d8.
+Vollständiger LF-HTML-SHA256: 7d146ceb064f7703606c861254868e395f5bdf1b807af2109cf8fe81422685f0
+bei 28426860 Bytes; CFA-Daten-SHA256: f5739f64210fef3d4ce1ebc69d17040871b7f61c9201824720432d72ebcbea52.
+
+Die weitere Durchsicht erfasst inzwischen zusätzlich alle 24 Economics-, 24
+Corporate- und 44 FSA-Fragen mit Antworttexten und Einzelbegründungen: insgesamt
+alle 180 Aufgaben der ersten Sitzungen beider Klausuren. Dabei wurden weitere
+18 redaktionelle Verbesserungsfälle dokumentiert; sie sind noch zu bearbeiten.
+Die 180 Aufgaben der zweiten Sitzungen sowie die zusammengeführte Bewertung
+bleiben offen. Die erste Durchsicht ist keine vollständige Wiederlektüre jedes
+Lösungsblocks und aller Trainingsfragen. Alle Einheiten bleiben bis zur
+Gesamtabnahme draft; Release bleibt false. Zielwerte werden nicht vorweggenommen.

@@ -77,7 +77,12 @@ module.exports=[
  q('b2','mock-b','c','The spot exchange rate is 1.20 domestic units per foreign unit. One-year risk-free rates are 2% domestic and 5% foreign. The covered no-arbitrage one-year forward rate is closest to:',[
  ['1.2353.','Das kehrt den vorgegebenen Währungszinsbruch um.'],['1.1640.','Das ist eine lineare Näherung.'],['1.1657.','1,20 × 1,02/1,05 ≈ 1,16571.']
  ],2,[eq('F=1{,}20\\cdot1{,}02/1{,}05\\approx1{,}16571','Die stärker verzinste Fremdwährung wird in dieser Quotierung mit Terminabschlag ausgeglichen.','F','Terminkurs in Heimatwährung je Fremdwährung.')],'fx-forward'),
- q('b3','mock-b','c','An implied forward interest rate is derived from current spot rates under no-arbitrage assumptions. It is best interpreted as:',[
- ['a rate consistent with current prices, not necessarily an unbiased forecast of the future spot rate.','Die Preisbeziehung ist von einer Erwartungshypothese zu trennen.'],['a guaranteed forecast of the rate available in the future spot market.','Ein heutiger Forwardpreis garantiert keine spätere Kassamarktnotierung.'],['the arithmetic difference between any two quoted yields.','Laufzeiten und Wachstumsfaktoren sind zu berücksichtigen.']
- ],0,['Replikation begründet einen heute konsistenten Preis. Eine Prognose benötigt zusätzliche ökonomische Annahmen.'],'forwards')
+ q("b3",
+  "mock-b",
+  "c",
+  "An implied forward interest rate is derived from current spot rates under no-arbitrage assumptions. It is best interpreted as:",
+  [["a rate consistent with current no-arbitrage prices and their specified compounding convention.","Die Preisbeziehung ist von einer Erwartungshypothese zu trennen."],["a physical expectation of the future spot rate needing no term-premium adjustment.","Die Gleichsetzung mit einer physischen bedingten Erwartung benötigt zusätzliche ökonomische Annahmen. No-Arbitrage allein entfernt weder Risikoprämien noch begründet es unverzerrte Prognosen."],["an arithmetic average of spot yields that is unaffected by compounding conventions.","Die exakte Terminrelation folgt aus passenden Laufzeiten und Wachstumsfaktoren. Ein beliebiger arithmetischer Durchschnitt ist keine konventionsunabhängige Replikationsgleichung."]],
+  0,
+  ["Replikation begründet einen heute konsistenten Preis. Eine Prognose benötigt zusätzliche ökonomische Annahmen.","Die heutige Replikation setzt die Preise verschiedener Laufzeitpfade zueinander in Beziehung. Welche Kassamarktrate später tatsächlich eintritt oder unter realen Wahrscheinlichkeiten erwartet wird, ist eine andere Frage. Eine Erwartungshypothese und Annahmen über Prämien dürfen nicht still in die No-Arbitrage-Rechnung eingefügt werden."],
+  "forwards")
 ];

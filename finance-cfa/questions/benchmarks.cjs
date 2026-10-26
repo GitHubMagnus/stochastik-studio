@@ -71,11 +71,14 @@ module.exports=[
   ['6.000','Hier wird die technische Zähleränderung nicht neutralisiert.'],
   ['6.400','Das Niveau bleibt 150, also muss 960 durch 6,4 geteilt werden.']
  ],2,[F('I=\\frac{900}{6}=150,\\qquad d_{neu}=\\frac{960}{150}=6{,}4','Bei größerem Zähler wird auch der Divisor vergrößert, um das Niveau zu erhalten.',[['I','Unverändertes Indexniveau.'],['d_{neu}','Angepasster Divisor.']])],'divisor'),
- q('b1','mock-b','a','An investor makes a large contribution immediately before a weak-return period. The manager does not control the contribution. All else equal, which statement best explains why the investor’s MWR may be below the portfolio’s annualized TWR?',[
-  ['More of the investor’s capital was exposed to the weak period.','MWR berücksichtigt die Geldbeträge, die zu den jeweiligen Zeitpunkten investiert sind.'],
-  ['TWR treats the contribution itself as an investment gain.','Korrekt berechnete TWR entfernt gerade den unmittelbaren Beitragseffekt.'],
-  ['MWR always exceeds TWR when there are contributions.','Es gibt keine solche allgemeine Rangfolge; das Timing relativ zu den Renditen ist entscheidend.']
- ],0,['Die Reihenfolge guter und schlechter Perioden gewinnt für den Anleger Gewicht, sobald Kapitalbeträge verändert werden. Eine geringere MWR beweist hier für sich allein keine schlechtere Managementleistung.'],'performance-example'),
+ q("b1",
+  "mock-b",
+  "a",
+  "An investor makes a large contribution immediately before a weak-return period. The manager does not control the contribution. All else equal, which statement best explains why the investor’s MWR may be below the portfolio’s annualized TWR?",
+  [["More of the investor’s capital was exposed to the weak period.","MWR berücksichtigt die Geldbeträge, die zu den jeweiligen Zeitpunkten investiert sind."],["TWR gives greater weight to periods with larger account balances.","TWR verknüpft die bereinigten Teilperiodenfaktoren. Die Größe des extern beigetragenen Kapitals bestimmt gerade nicht deren Gewicht wie bei der geldgewichteten Anlegerperspektive."],["MWR excludes the contribution’s timing when measuring the investor’s return.","Die Zeitpunkte und Beträge externer Zahlungen sind Eingaben der geldgewichteten Rendite. Ihr Weglassen würde den beschriebenen Unterschied nicht erklären."]],
+  0,
+  ["Die Reihenfolge guter und schlechter Perioden gewinnt für den Anleger Gewicht, sobald Kapitalbeträge verändert werden. Eine geringere MWR beweist hier für sich allein keine schlechtere Managementleistung.","Die Einzahlung ist kein Gewinn. Sie verändert aber den Betrag, der anschließend die schwache Rendite erfährt. Die geldgewichtete Anlegerrechnung reagiert auf diese Kapitalexposition; die zeitgewichtete Verkettung trennt die externen Zuflüsse von der Leistung der Teilperioden."],
+  "performance-example"),
  q('b2','mock-b','b','A manager’s reinvested-dividend portfolio returns 7%, while a matching price-return index rises 4% and its total-return version rises 6%. Before considering fees and risk, the economically comparable return difference is:',[
   ['1 percentage point.','7 % und 6 % verwenden beide eine Gesamtertragsbasis.'],
   ['3 percentage points.','Hier wird eine Gesamtrendite mit einer Kursrendite verglichen.'],

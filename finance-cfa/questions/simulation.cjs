@@ -59,7 +59,12 @@ module.exports=[
  q('a1','mock-a','c','A GBM stock starts at 100 with annual drift parameter 5%, annual volatility 30%, and horizon one year. The median terminal price is closest to:',[
  ['100.50.','100 exp(0,05 − 0,30²/2).'],['105.13.','Das ist der erwartete Preis.'],['95.60.','Das lässt den positiven Drift weg.']
  ],0,[eq('\\operatorname{Median}(S_1)=100e^{0{,}05-0{,}09/2}\\approx100{,}5013','Für den Median wird die mittlere Logrendite exponentiert.','\\operatorname{Median}(S_1)','Median des einjährigen Endpreises.')],'price-model'),
- q('b1','mock-b','a b','To bootstrap the covariance between two assets from paired historical returns, the analyst should ordinarily:',[
- ['resample each asset separately to ensure independent assets.','Das würde die zu schätzende Abhängigkeit verändern.'],['resample entire paired observations together.','Jede gezogene Einheit enthält die zusammengehörigen Renditen beider Anlagen.'],['use only the largest return from each asset.','Das erhält weder die gemeinsame Verteilung noch die Stichprobeninformation.']
- ],1,['Bei serieller Abhängigkeit ist zusätzlich ein geeignetes zeitliches Resampling-Design zu prüfen.'],'bootstrap-uncertainty')
+ q("b1",
+  "mock-b",
+  "a b",
+  "An analyst uses an iid nonparametric bootstrap to estimate uncertainty in the covariance of two assets from n paired historical return observations. Each bootstrap sample should be constructed by:",
+  [["sampling each asset’s n returns independently with replacement.","Unabhängige Spaltenziehungen zerstören die Zuordnung zusammengehöriger Renditen und damit die empirische Abhängigkeitsstruktur, deren Kovarianz untersucht werden soll."],["sampling n paired rows with replacement.","Jede gezogene Einheit enthält die zusammengehörigen Renditen beider Anlagen."],["sampling all n paired rows once without replacement.","Wer alle n Ausgangszeilen genau einmal zieht, permutiert nur ihre Reihenfolge. Die berechnete Kovarianz bleibt gleich; so entsteht keine Bootstrap-Verteilung ihrer Unsicherheit."]],
+  1,
+  ["Bei serieller Abhängigkeit ist zusätzlich ein geeignetes zeitliches Resampling-Design zu prüfen.","Die gemeinsame Beobachtung beider Anlagen ist die Ziehungseinheit. Mit Zurücklegen können Zeilen mehrfach vorkommen und andere fehlen; die einzelnen Stichproben müssen deshalb nicht dieselbe Kovarianz ergeben. Die ausdrücklich angenommene iid-Ziehung löst keine vorhandene Zeitreihenabhängigkeit; dafür wäre gegebenenfalls etwa ein passender Blockansatz zu prüfen."],
+  "bootstrap-uncertainty")
 ];

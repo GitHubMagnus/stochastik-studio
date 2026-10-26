@@ -95,7 +95,12 @@ module.exports=[
  q('b1','mock-b','a b','A normal-population sample has n = 25 and sample standard deviation 5%. Given t(0.975,24) = 2.064, the total width of its 95% confidence interval for the mean is:',[
  ['2.064 percentage points.','Das ist nur die halbe Breite.'],['4.128 percentage points.','Zweimal 2,064 × (5/√25).'],['20.640 percentage points.','Das verwendet s statt des Standardfehlers.']
  ],1,[eq('W=2\\cdot2{,}064\\cdot\\frac{5\\%}{\\sqrt{25}}=4{,}128\\%','Das Intervall reicht eine Fehlerspanne unter und eine über den Mittelwert; die Gesamtbreite wird in Prozentpunkten angegeben.','W','Gesamte Breite des Mittelwert-Konfidenzintervalls.')],'intervals'),
- q('b2','mock-b','c','An analyst has ordinal rankings for two variables and seeks evidence of a monotonic association. The most directly suitable measure is:',[
- ['a paired t-statistic.','Das setzt quantitative Differenzen mit einem sinnvollen Mittelwertziel voraus.'],['a chi-square variance ratio.','Das ist weder eine Rangkorrelation noch eine passende Form des Varianztests.'],['Spearman rank correlation.','Sie misst die lineare Übereinstimmung der Ränge und damit monotone Ordnung.']
- ],2,['Die Signifikanzbewertung muss zur Fallzahl und zu etwaigen Rangbindungen passen. Rangkorrelation ist kein Kausalitätsnachweis.'],'correlation-tests')
+ q("b2",
+  "mock-b",
+  "c",
+  "An analyst has ordinal rankings for two variables and seeks evidence of a monotonic association. The most directly suitable measure is:",
+  [["Chi-square independence statistic.","Ein Unabhängigkeitstest für kategoriale Häufigkeiten prüft einen anderen, nicht gezielt monotonen Zusammenhang. Spearman verwendet unmittelbar die gegebenen Rangordnungen."],["Paired-sample t-statistic.","Ein gepaarter t-Test untersucht den Mittelwert von Differenzen unter passenden metrischen Voraussetzungen. Er misst nicht unmittelbar eine monotone Übereinstimmung zweier Rangordnungen."],["Spearman rank correlation.","Sie misst die lineare Übereinstimmung der Ränge und damit monotone Ordnung."]],
+  2,
+  ["Die Signifikanzbewertung muss zur Fallzahl und zu etwaigen Rangbindungen passen. Rangkorrelation ist kein Kausalitätsnachweis.","Die Frage verbindet ordinal gemessene Reihenfolgen mit monotonem Zusammenhang. Spearman setzt an den Rängen an. Die Pearson-Korrelation genau dieser Ränge würde denselben Wert liefern und darf deshalb nicht als unqualifiziert falsche Alternative verwendet werden."],
+  "correlation-tests")
 ];

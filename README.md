@@ -13,7 +13,7 @@ Direkt im Browser nutzbar, ohne Download oder Installation.
 - **Verständnis prüfen:** 1.034 Aufgaben, mindestens sechs in jedem Finance-Kapitel und 14 bei Duration. Grundverständnis, Herleitung oder Begründung, Rechen- oder Fallaufgabe, Vergleich, Transfer und Fehlersuche besitzen getrennte Hinweise und ausführliche Lösungen. Aufgabenangaben und Ergebnistabellen sind getrennt. Die Lösungen enthalten 544 gesetzte Formeltafeln und 90 gesetzte Inline-Formeln, einschließlich bewusst wiederverwendeter Kapitelrechnungen.
 - **Vertiefungen:** 361 zusätzliche Erklärabschnitte, 175 Vergleichstabellen, insgesamt 519 erläuterte Lösungsschritte, 740 Kapitelverbindungen und neun Erklärungsgrafiken. Wichtige Zusammenhänge wie Duration, Cashflowbewertung, CAPM und Optionsreplikation erhalten mehrere aufeinander aufbauende Herleitungen.
 - **Mathematische Notation:** 156 zentrale mathematische Formeltafeln, 219 Formeltafeln in Herleitungen und 383 numerische Lösungsschritte werden ausdrücklich in LaTeX verfasst und als MathML eingebettet. Auch Formeln in Vergleichstabellen und alle neun Kelly-Formeltafeln sind gesetzt. Qualitative Entscheidungsfragen werden als Prosa dargestellt. Es gibt keine automatische Umwandlung von Wörtern in vermeintliche Gleichungen.
-- **Fachwörterbuch:** 2.147 alphabetisch sortierte Definitionen mit 4.597 Begriffen und Aliasen; automatische Verlinkung aus den Lerntexten und Rückverweise auf erklärende Kapitel. 1.944 kuratierte Einträge besitzen zusätzlich einen präzisen Rückverweis in den neuen CFA-Lernpfad. Mehrdeutige Begriffe wie GMV, Forward, FFO, DSCR, Trustee, Subordination, Residual, WAL, Balloon Payment, Margin, Settlement und Delta werden abhängig vom Kapitel verlinkt. Direktlinks auf zusammengeführte Begriffe bleiben über deren Alias erhalten.
+- **Fachwörterbuch:** 2.150 alphabetisch sortierte Definitionen mit 4.602 Begriffen und Aliasen; automatische Verlinkung aus den Lerntexten und Rückverweise auf erklärende Kapitel. 1.947 kuratierte Einträge besitzen zusätzlich einen präzisen Rückverweis in den neuen CFA-Lernpfad. Mehrdeutige Begriffe wie GMV, Forward, FFO, DSCR, Trustee, Subordination, Residual, WAL, Balloon Payment, Margin, Settlement und Delta werden abhängig vom Kapitel verlinkt. Direktlinks auf zusammengeführte Begriffe bleiben über deren Alias erhalten.
 - **Kelly Studio:** Einzelpositionen, Szenarien, Portfoliooptimierung, Simulation und Herleitung. Der Zustand bleibt beim Modulwechsel erhalten.
 
 ## CFA Level I 2027: laufende Überarbeitung
@@ -29,6 +29,10 @@ ergänzte ausführliche Fälle und die geprüften Unterschiede.
 Die [Aufgabenprüfung](CFA-2027-QUESTION-AUDIT.md) dokumentiert die Überarbeitung
 aller 44 reservierten Ethics-Fragen: konkrete Regelverwechslungen als falsche
 Alternativen und ausführlichere Begründungen statt leicht erkennbarer Ablenkungen.
+Zehn Quant-Fragen wurden ebenfalls präzisiert. Das Datenwissenschaftskapitel
+vergleicht Covariate Shift und Concept Drift in einem durchgerechneten Kreditfall;
+vier gesetzte Formeln, eine Tabelle und drei neue Wörterbucheinträge erläutern
+die Unterschiede zwischen Gruppenmischung und bedingtem Ausfallrisiko.
 
 Der neue Bereich unter **Finance → CFA Level I 2027** führt 102 offizielle Module
 mit 340 einzeln zugeordneten Lernzielreferenzen. Der aktuelle Arbeitsstand enthält
