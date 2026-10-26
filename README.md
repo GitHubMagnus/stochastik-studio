@@ -20,7 +20,7 @@ Direkt im Browser nutzbar, ohne Download oder Installation.
 
 Der neue Bereich unter **Finance → CFA Level I 2027** führt 102 offizielle Module
 mit 340 einzeln zugeordneten Lernzielreferenzen. Der aktuelle Arbeitsstand enthält
-96 neu ausgearbeitete Einheiten und 3.614 eigenständige englische Trainingsfragen
+97 neu ausgearbeitete Einheiten und 3.698 eigenständige englische Trainingsfragen
 mit deutschen Lösungen. Alle zehn Ethics-Module und alle elf Quant-Module besitzen
 neue Erklärungen und Übungen. Weitere Vertiefungen behandeln EPS, Kennzahlen und
 Leasing/Vergütung. Der Quant-Bereich enthält jetzt auch ausführliche Testwahl,
@@ -723,20 +723,31 @@ präzisen Erklärungen; der allgemeine Dachfondsbegriff bleibt vom spezielleren
 Hedgefondsfall getrennt. Weiterführende Poolmathematik ist als Vertiefung
 gekennzeichnet und wird nicht als zusätzliches offizielles Lernziel ausgegeben.
 
-Insgesamt 311 zusätzliche berechnete Grafiken und zwölf Ablaufbilder erläutern
+Portfolioauswahl und Diversifikation ist nun als erste der sechs Portfolioeinheiten
+mit 29 Abschnitten ausgearbeitet: Anlageklassen, vergleichbare Total Returns,
+Stichproben- und Populationsmomente, vollständige gepaarte Vierperiodenrechnung,
+Zeitabhängigkeit, Zweianlagenvarianz, marginale Diversifikation, GMV und effiziente
+Grenze, Long-only-Beschränkungen, gemeinsame Matrixzulässigkeit, Risikosockel,
+Risikoaversion, Indifferenzkurven, CAL und Kreditknick. Sechs berechnete Grafiken,
+19 Schritt-für-Schritt-Beispiele, acht Tabellen, 24 Verständnisfragen und drei
+verknüpfte Rechner verbinden die Begriffe. 84 Originalfragen decken die sieben
+Lernziele mit jeweils zwölf Übungen ab; acht weitere Fälle bleiben den beiden
+Probeklausuren vorbehalten.
+
+Insgesamt 317 zusätzliche berechnete Grafiken und zwölf Ablaufbilder erläutern
 die neuen Zusammenhänge.
 Direkte Abschnittsverweise verbinden die Einheiten und passende Wörterbuchdefinitionen.
 
-300 Lernzielreferenzen sind aktuell sowohl neuen Erklärungen als auch Trainingsfragen
+307 Lernzielreferenzen sind aktuell sowohl neuen Erklärungen als auch Trainingsfragen
 zugeordnet. Dies ist **kein Nachweis vollständiger CFA-Vorbereitung**. Offene
 Einheiten sind sichtbar; die fachliche Endprüfung läuft. Zwei getrennte Probeklausuren
-haben bisher je 160 von 180 Fragen und bleiben gesperrt. Ihre Ethics- und Quant-Anteile
+haben bisher je 164 von 180 Fragen und bleiben gesperrt. Ihre Ethics- und Quant-Anteile
 sind mit jeweils 22 Fragen pro Thema, ihre Economics-Anteile mit je zwölf und
 ihre Abschlussanalyse-Anteile mit je 22 Fragen angelegt. Corporate Finance hat
 je zwölf reservierte Fragen. Damit sind die Themenanteile der ersten Sitzung
 angelegt. Die Aktienanteile der zweiten Sitzung sind mit je 22 reservierten Fragen
 angelegt. Der Anleihebereich enthält je 22 reservierte Fragen; Derivate je 13.
-Die Alternative-Investments-Anteile sind mit je 13 reservierten Fragen vollständig angelegt. Pro Klausur fehlen noch 20 Fragen zu Portfolio Construction.
+Die Alternative-Investments-Anteile sind mit je 13 reservierten Fragen vollständig angelegt. Der Portfolio-Anteil umfasst nun je vier Transferfragen; pro Klausur fehlen noch 16 Fragen zu Portfolio Construction.
 Der implementierte Ablauf
 mit zwei Sitzungen zu je 135 Minuten wird mit gesonderten künstlichen Testdaten
 geprüft, die nicht als echte Lernfragen veröffentlicht werden.

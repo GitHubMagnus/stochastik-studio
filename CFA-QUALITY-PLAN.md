@@ -4953,3 +4953,72 @@ Endgültige Inhaltsversion: 15926d3b4c7cd47e.
 Normalisierter HTML-SHA-256:
 51152f08835079d06c366510a8007d59d7478424038306a3525cbcc633ed96ee
 bei 26182691 Bytes.
+
+## 26.10.2026: Portfolioauswahl und Diversifikation
+
+Die erste Portfolioeinheit behandelt alle sieben Lernziele von Portfolio Risk and
+Return: Part I des offiziellen 2027-Katalogs (Seite 27). Sie enthält 29 Abschnitte,
+62 mathematische Blöcke mit Symbolerklärungen, 19 durchgerechnete beziehungsweise
+argumentativ aufgeschlüsselte Beispiele, acht Tabellen, sechs berechnete Grafiken
+und 27 aufklappbare Erläuterungen, darunter 24 Verständnisfragen. Die Grundherleitungen
+werden aus dem Portfoliomathematik-Kapitel übernommen, für diese Darstellung kopiert
+und um ausdrückliche Beispielmathematik ergänzt; das Grundlagenkapitel wird dadurch
+nicht verändert. Abschnittstitel besitzen keine widersprüchliche zweite Nummerierung.
+
+Behandelt werden wirtschaftliche Anlageklassenmerkmale und gemeinsame Risikotreiber,
+vergleichbare Total Returns, Stichproben- gegenüber Populationsmomenten, zeitliche
+Kovarianz und Grenzen der Wurzelregel. Ein eigener Vierperiodenfall wird direkt aus
+Portfoliorenditen und unabhängig über die Kovarianzformel gerechnet. Die Darstellung
+unterscheidet den Vorteil gegenüber dem gewichteten Volatilitätsmittel von einer
+Risikosenkung gegenüber der risikoärmeren Einzelanlage. Weitere Fälle zeigen
+marginale Diversifikation, GMV, Dominanz und effiziente Grenze, unzulässige negative
+Gewichte, perfekte Korrelation und Singularität, gemeinsame Matrixzulässigkeit,
+Diversifikationsgrenzen, Risikoaversion, Risikofähigkeit, Indifferenzkurven und
+beschränkte Cash-Allokation einschließlich höherem Kreditzins. Historische Daten und
+Parameter sind ausdrücklich eigene Lehrannahmen und keine Marktprognosen.
+
+84 englische Originalübungen verteilen sich mit jeweils zwölf Fragen auf die sieben
+Lernziele. Acht weitere Fälle bleiben getrennt für die beiden Klausuren reserviert.
+Alle Antworten haben begründete Alternativen und einen genauen Kapitelrückverweis.
+42 numerische Aufgaben sind unabhängig gegengerechnet. Zehn Wörterbucheinträge
+wurden ergänzt oder präzisiert; vorhandene Long-only- und Risikofähigkeitsbegriffe
+werden zusammengeführt und nicht als konkurrierende Definitionen verdoppelt.
+
+**Nachweise und Grenzen:** Die drei verknüpften bestehenden Rechner wurden gegen
+545 unabhängige Faktorkonstruktionen und direkte Nutzenrechnungen einschließlich
+33245 Kurvenpunkten geprüft; alle 1524 Buchgrafikpunkte besitzen Gegenrechnungen.
+Auf der endgültigen Inhaltsversion bestehen 492 Kernprüfungen, fünf neue
+Kapitel-Browserprüfungen und 25 allgemeine Browserprüfungen, zusammen 522.
+Vor der abschließenden zusätzlichen Formeldarstellung bestanden außerdem sämtliche
+45 separaten CFA-Ablaufprüfungen mit den damals bereits 97 Einheiten; diese 45 werden
+nicht als erneuter Lauf auf der endgültigen Notationsversion ausgegeben. Die fünf
+Kapitelprüfungen wurden nach der Notationsänderung vollständig wiederholt. Sie zeigen
+alle 62 Symbolhilfen, sechs Grafiken, alle 84 tatsächlichen Trainingsfragen und alle
+acht reservierten Fälle in isolierten Desktop- und Mobilfixtures. Drei Modellzugänge,
+zwölf Zahlen-/Schiebereglerpaare, Grenzwerte, Tastatur, Reset, Fehlerzustände,
+Wörterbuchrückwege und Offlinebetrieb sind geprüft. 89 endgültige Ansichten wurden
+auf 23 Kontaktblättern vollständig visuell gelesen.
+
+Als übergreifender Folgebefund bleiben die sehr kleinen Achsenbeschriftungen der
+bisherigen kompakten Rechner bei 320 Pixel Breite für die abschließende
+Lesbarkeitsverbesserung offen. Die Rechnerwerte sind korrekt und ihre Wertetabellen
+stehen als Alternative zur Verfügung. Dieser Befund wird nicht durch einen bestandenen
+Überlauftest als erledigt betrachtet.
+
+**Das Gesamtziel bleibt offen:** 97 von 102 Einheiten und 307 von 340 Lernzielen
+besitzen neue Erklärungen und Übungen. Es gibt 3698 Trainingsfragen und je 164 von
+180 reservierten Klausurfragen. Offen bleiben Portfolio-Pricing (neun Lernziele),
+Investmentprozess (sechs), IPS (acht), Behavioral Finance (drei) und Risikomanagement
+(sieben), zusammen 33 Lernziele und je 16 Klausurfragen. Alle 97 Einheiten bleiben
+draft, Release false und unvollständige Klausuren gesperrt. Gesamtbestand: 317
+berechnete CFA-Grafiken, zwölf Ablaufbilder, 64 Modelle und 77 bisherige Kapitel mit
+primärem interaktivem Zugang. Das Wörterbuch enthält 2072 Definitionen, 4429
+Begriffe/Aliase, 298 Kontextzuordnungen und 1854 kuratierte Rückverweise. Die
+abschließende fachliche Gesamtbewertung bleibt ausstehend; 90/100 Materialqualität
+und 80/100 Vorbereitungseignung sind noch nicht als Gesamtziel abgenommen und
+keine persönliche Bestehenswahrscheinlichkeit.
+
+Endgültige Inhaltsversion: 1a632c79396aef6f.
+Normalisierter HTML-SHA-256:
+c818e2da3361ace1bc7baa0e617ecbb58818a1cc27ef9d4e9c131435d53d8979
+bei 26599464 Bytes.
