@@ -85,12 +85,19 @@ function compile({release=false}={}){
    mockQuestions:questions.filter(q=>q.pool!=='practice'&&q.objectives.includes(o.id)).length
   }))
  }));
+ const objectives=new Map(coverage.flatMap(m=>m.objectives).map(o=>[o.id,o]));
+ for(const [id,section] of Object.entries(require('./application-links.cjs'))){
+  const objective=objectives.get(id);
+  if(!objective)throw Error('Beispielzuordnung: unbekanntes Lernziel '+id);
+  if(typeof section!=='string'||!objective.applications.includes(section))throw Error('Beispielzuordnung: kein passender ausgearbeiteter Fall für '+id+'/'+section);
+  objective.applications=[section,...objective.applications.filter(s=>s!==section)];
+ }
  if(release){
   const gaps=coverage.flatMap(m=>m.objectives.filter(o=>!o.sections.length||!o.applications.length||!o.practice.length).map(o=>o.id));
   if(gaps.length)throw Error('Offene Lernziele: '+gaps.join(', '));
   if(units.some(u=>u.review?.status!=='checked'))throw Error('Fachliche Prüfung nicht vollständig');
  }
- const version=crypto.createHash('sha256').update(JSON.stringify({units,questions})).digest('hex').slice(0,16);
+ const version=crypto.createHash('sha256').update(JSON.stringify({units,questions,coverage})).digest('hex').slice(0,16);
  return {...curriculum,version,units,questions,coverage,release,inventory:engine.inventory(questions)};
 }
 module.exports={compile,compileBlock};

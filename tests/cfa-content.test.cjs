@@ -951,7 +951,7 @@ test('the complete Lumen case reconciles its published statements to a transacti
  assert.equal(running,cfo);
  const bridge=section('reconcile').find(b=>b.kind==='figure').plot.series[0].points;
  assert.deepEqual(bridge,[[0,100],[1,100+cfo],[2,100+cfo+cfi],[3,100+cfo+cfi+cff]]);
- const variants=section('ifrs18-case').find(b=>b.kind==='table');
+ const variants=section('ifrs18-case').find(b=>b.kind==='example').steps.find(b=>b.kind==='table');
  for(const [i,us,ifrs] of [[0,cfo,cfo+20],[1,cfi,cfi],[2,cff,cff-20],[3,cfo+cfi+cff,cfo+cfi+cff]]){
   assert.equal(number(variants.rows[i][1]),us);assert.equal(number(variants.rows[i][2]),ifrs);
  }
