@@ -61,24 +61,36 @@ module.exports=[
   ['Whether the information was delivered electronically rather than verbally.','Der Übertragungskanal entscheidet die Bedeutung nicht.'],
   ['Its significance and reliability for a reasonable investment decision.','Bedeutung, Konkretheit und Glaubwürdigkeit helfen, Wesentlichkeit zu beurteilen.']
  ],2,['Ein einzelnes Schlagwort oder eine universelle Prozentgrenze reicht nicht. Die Bedeutung für die Anlageentscheidung muss aus dem Sachverhalt abgeleitet werden.'],'material-public'),
- q('a1','mock-a','a c','An issuer broadly publishes a material announcement through established market channels. An analyst reasonably expects it to have reached the market. Under Standard II(A), the analyst:',[
-  ['must treat it as permanently nonpublic because it was once confidential.','Der Status kann sich durch angemessene allgemeine Verbreitung ändern.'],
-  ['may analyze and act on the now-public information, subject to other applicable duties.','Öffentlich gewordene wesentliche Informationen sind nicht allein wegen ihrer Bedeutung verboten.'],
-  ['must wait until every investor confirms reading it.','Eine solche individuelle Bestätigung aller Marktteilnehmer ist nicht erforderlich.']
- ],1,['Allgemeine Verfügbarkeit und angemessene Verbreitung sind entscheidend. Die langsamste individuelle Kenntnisnahme setzt keine universelle Wartefrist.'],'material-public'),
- q('a2','mock-a','a c','A trader places orders solely to create a false appearance of demand, with the intention of misleading other participants rather than executing those orders. This most directly raises a concern under:',[
-  ['record retention only, because quoted interest cannot affect market integrity.','Irreführende Auftragssignale können die Marktbeurteilung anderer beeinflussen.'],
-  ['a rule that all unexecuted orders are automatically prohibited.','Nicht jede nicht ausgeführte Order ist manipulativ; die Täuschungsabsicht ist hier entscheidend.'],
-  ['Standard II(B), Market Manipulation.','Der Zweck ist ein bewusst falsches Bild tatsächlichen Handelsinteresses.']
- ],2,['Die Aufgabe gibt den Täuschungszweck ausdrücklich vor. Sie darf nicht zu einem pauschalen Verbot jeder später stornierten Order verallgemeinert werden.'],'manipulation'),
- q('b1','mock-b','a c','An analyst possesses reliable material nonpublic information and tells a friend to trade on it without making any personal trade. The analyst most likely:',[
-  ['violates the prohibition by causing another person to act on the information.','Die Nutzung muss nicht im eigenen Depot stattfinden.'],
-  ['complies because only personal profit is relevant.','Ein eigener Geldgewinn ist keine notwendige Voraussetzung.'],
-  ['complies if the friend is not a CFA candidate.','Der Status des Freundes beseitigt die Pflicht des Analysten nicht.']
- ],0,['Die Grenze betrifft auch das Veranlassen anderer. Der Umweg über eine andere Person erhält den unzulässigen Informationsvorsprung wirtschaftlich aufrecht.'],'receipt'),
- q('b2','mock-b','a c','A research team’s genuine independent conclusion differs sharply from market consensus. It is based entirely on public information, transparently states assumptions, and is published without deceptive intent. A resulting price movement:',[
-  ['necessarily proves market manipulation.','Eine neue ehrliche Analyse darf die Bewertung anderer Marktteilnehmer verändern.'],
-  ['does not by itself make the research manipulative.','Ungewöhnlichkeit und Preiswirkung ersetzen keinen Täuschungssachverhalt.'],
-  ['makes every underlying public source retroactively nonpublic.','Der Informationsstatus der Quellen ändert sich nicht durch die spätere Schlussfolgerung.']
- ],1,['Research kann gerade dazu beitragen, dass Preise neue Einschätzungen widerspiegeln. Die Fallfrage schließt wesentliche unzulässige Quellen und Täuschung ausdrücklich aus.'],'boundaries')
+ q("a1",
+  "mock-a",
+  "a c",
+  "An issuer broadly publishes a material announcement through established market channels. An analyst reasonably expects it to have reached the market. Under Standard II(A), the analyst:",
+  [["must obtain separate consent from the issuer before acting on the released information.","Nach wirksamer öffentlicher Bekanntgabe verlangt II(A) keine zusätzliche Handelserlaubnis des Emittenten. Andere einschlägige Pflichten bleiben unabhängig davon bestehen."],["may act on the now-public information, subject to other applicable duties.","Öffentlich gewordene wesentliche Informationen sind nicht allein wegen ihrer Bedeutung verboten."],["must continue the restriction until the next periodic financial report confirms the announcement.","Die Aufgabe gibt bereits eine breite Bekanntgabe und vernünftigerweise erfolgte Marktverbreitung vor. Ein weiterer periodischer Bericht ist keine allgemeine zusätzliche Voraussetzung."]],
+  1,
+  ["Allgemeine Verfügbarkeit und angemessene Verbreitung sind entscheidend. Die langsamste individuelle Kenntnisnahme setzt keine universelle Wartefrist.","Wesentlichkeit allein verbietet die Nutzung nicht. Entscheidend ist hier, dass die Information nach der gegebenen breiten Veröffentlichung nicht mehr nichtöffentlich ist."],
+  "material-public"),
+ q("a2",
+  "mock-a",
+  "a c",
+  "A trader places orders solely to create a false appearance of demand, with the intention of misleading other participants rather than executing those orders. This most directly raises a concern under:",
+  [["Standard III(B), because the orders could favor one client allocation over another.","Der Fall beschreibt kein Verteilungsverfahren zwischen Kunden. Der gezielte falsche Eindruck tatsächlicher Nachfrage betrifft unmittelbar die Integrität des Markts."],["Standard II(A), because unexecuted orders are material nonpublic information.","Eigene Orderabsichten werden hier nicht als fremde vertrauliche Anlageinformation genutzt. Die relevante Handlung ist das bewusste Erzeugen eines irreführenden Nachfragesignals."],["Standard II(B), because the orders intentionally create a false appearance of demand.","Der Zweck ist ein bewusst falsches Bild tatsächlichen Handelsinteresses."]],
+  2,
+  ["Die Aufgabe gibt den Täuschungszweck ausdrücklich vor. Sie darf nicht zu einem pauschalen Verbot jeder später stornierten Order verallgemeinert werden.","Beurteile Zweck und tatsächliches Handelsinteresse. Nicht jede stornierte Order ist Manipulation; der ausdrücklich genannte Täuschungszweck ohne Ausführungsabsicht macht diesen Fall wesentlich anders."],
+  "manipulation"),
+ q("b1",
+  "mock-b",
+  "a c",
+  "An analyst possesses reliable material nonpublic information and tells a friend to trade on it without making any personal trade. The analyst most likely:",
+  [["violates II(A) by causing another person to trade on the protected information.","Die Nutzung muss nicht im eigenen Depot stattfinden."],["complies because the friend independently places the order and bears the investment risk.","Die selbstständige technische Ordererteilung durch den Freund ändert nicht, dass der Analyst einen anderen zum Handeln auf Grundlage der Information veranlasst."],["complies if the analyst receives no compensation and has no beneficial interest in the account.","Eigener Gewinn oder ein eigenes Depotinteresse ist keine notwendige Voraussetzung des Verbots. Die Weitergabe zur veranlassten Anlagehandlung reicht im beschriebenen Fall aus."]],
+  0,
+  ["Die Grenze betrifft auch das Veranlassen anderer. Der Umweg über eine andere Person erhält den unzulässigen Informationsvorsprung wirtschaftlich aufrecht.","Der Standard erfasst nicht nur eigenes Handeln, sondern auch das Veranlassen anderer. Dass der Freund die Order selbst ausführt und den Gewinn behält, beseitigt den gegebenen Informationsmissbrauch nicht."],
+  "receipt"),
+ q("b2",
+  "mock-b",
+  "a c",
+  "A research team’s genuine independent conclusion differs sharply from market consensus. It is based entirely on public information, transparently states assumptions, and is published without deceptive intent. A resulting price movement:",
+  [["constitutes information-based manipulation if the team expected publication to move the price.","Eine erwartete Kursreaktion auf aufrichtiges, gut begründetes Research ist nicht mit Täuschungsabsicht gleichzusetzen. Die Aufgabe schließt irreführende Absicht und Darstellung ausdrücklich aus."],["does not establish manipulation merely because genuine public-source research moves the price.","Ungewöhnlichkeit und Preiswirkung ersetzen keinen Täuschungssachverhalt."],["violates Standard II(A) because combining public sources can produce a material conclusion.","Eine wesentliche Schlussfolgerung aus zulässiger öffentlicher Recherche ist nicht allein deshalb nichtöffentliche verbotene Information. Der Fall gibt ausschließlich öffentliche Quellen vor."]],
+  1,
+  ["Research kann gerade dazu beitragen, dass Preise neue Einschätzungen widerspiegeln. Die Fallfrage schließt wesentliche unzulässige Quellen und Täuschung ausdrücklich aus.","Eine Empfehlung darf vom Konsens abweichen und Preise beeinflussen. Entscheidend sind die Informationsgrundlage und das Fehlen der beschriebenen Täuschungsmerkmale, nicht die bloße Größe der Marktreaktion."],
+  "boundaries")
 ];

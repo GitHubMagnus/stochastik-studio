@@ -61,24 +61,36 @@ module.exports=[
  ['A report only when the employee changes jobs.','Das bietet keine laufende Übersicht.'],
  ['No updates after the first approval, regardless of changes.','Die ursprüngliche Freigabe ersetzt keine aktuelle Information.']
  ],0,['Die Leitlinie zur regelmäßigen internen Berichterstattung ist von der Information des Kunden vor Vertragsabschluss zu unterscheiden.'],'referral-controls'),
- q('a1','mock-a','a c','A research analyst is appointed to a paid board role at a company she covers. She keeps the role confidential because she has not yet changed any recommendation. Her approach:',[
- ['complies until a recommendation changes.','Der mögliche Einfluss ist bereits relevant.'],
- ['fails to address a relevant conflict created by the new role.','Die vergütete Organrolle kann Unabhängigkeit und Pflichten berühren.'],
- ['complies if she attends meetings outside working hours.','Die Uhrzeit beseitigt den Konflikt nicht.']
- ],1,['Die Rolle, nicht erst eine veränderte Empfehlung, löst die Prüfung aus. Arbeitgeber und betroffene Kunden benötigen angemessene Information bzw. Konfliktvermeidung.'],'conflicts'),
- q('a2','mock-a','a c','An adviser receives a one-time payment for each successful service referral. Before the client agrees to the service, the adviser says only “we sometimes cooperate” and omits the payment’s nature and estimated value. This is most likely:',[
- ['sufficient because the phrase mentions cooperation.','Sie vermittelt den wirtschaftlichen Vorteil nicht.'],
- ['sufficient if the service itself is suitable.','Eignung ersetzt die eigenständige Offenlegung nicht.'],
- ['insufficient disclosure of the referral benefit.','Art und wirtschaftlicher Umfang bleiben verborgen.']
- ],2,['Der Kunde soll die möglicherweise vergütete Empfehlung erkennen und einordnen. Die unbestimmte Formulierung erlaubt dies nicht.'],'referrals'),
- q('b1','mock-b','a c','A trader obtains personal-trade approval by omitting a pending customer order she knows about. She then trades ahead of that order for personal benefit. The approval:',[
- ['does not excuse the transaction-priority violation.','Eine auf unvollständigen Angaben beruhende Freigabe heilt den Verstoß nicht.'],
- ['fully transfers responsibility to the approval system.','Die Person bleibt für Angaben und Handlung verantwortlich.'],
- ['makes the pending client order irrelevant.','Gerade diese bekannte Information erklärt den Konflikt.']
- ],0,['Materielle Pflicht und Kontrollschritt sind getrennt. Eine erschlichene Freigabe beweist keine Regelkonformität.'],'personal-controls'),
- q('b2','mock-b','a c','A manager receives valuable software licenses for referring clients to a provider. He reports the arrangement only to his employer. Before affected clients sign the provider’s service contract, the manager should also:',[
- ['wait for a client to ask whether compensation exists.','Die relevante Information ist nicht nur auf Nachfrage erforderlich.'],
- ['make appropriate disclosure of the referral benefit to those clients.','Die Arbeitgeberinformation ersetzt die Kundeninformation nicht.'],
- ['describe the licenses as having no value because they are not cash.','Sachvorteile können erheblichen Wert haben.']
- ],1,['Empfänger getrennt prüfen. Die intern bekannte Vergütung bleibt für die Entscheidung der betroffenen Kunden relevant.'],'referrals')
+ q("a1",
+  "mock-a",
+  "a c",
+  "A research analyst is appointed to a paid board role at a company she covers. She keeps the role confidential because she has not yet changed any recommendation. Her approach:",
+  [["complies if the employer approves the board role without a corresponding client disclosure.","Eine interne Zustimmung beantwortet nicht sämtliche Offenlegungspflichten gegenüber betroffenen Kunden. Eine vergütete Organrolle kann gerade die Unabhängigkeit der Analyse beeinflussen."],["fails to address a relevant conflict created by the paid board role before any recommendation changes.","Die vergütete Organrolle kann Unabhängigkeit und Pflichten berühren."],["complies if the board remuneration is paid as a fixed amount rather than linked to the stock price.","Eine fixe Vergütung beseitigt weder die Organpflichten noch den relevanten Interessenkonflikt mit der Researchrolle. Die Konfliktbeurteilung reicht über unmittelbare Kursanreize hinaus."]],
+  1,
+  ["Die Rolle, nicht erst eine veränderte Empfehlung, löst die Prüfung aus. Arbeitgeber und betroffene Kunden benötigen angemessene Information bzw. Konfliktvermeidung.","Der Konflikt entsteht mit der relevanten neuen Rolle und ihren Pflichten, nicht erst mit einer geänderten Empfehlung. Vermeidung und angemessene Offenlegung sind deshalb bereits zu diesem Zeitpunkt zu prüfen."],
+  "conflicts"),
+ q("a2",
+  "mock-a",
+  "a c",
+  "An adviser receives a one-time payment for each successful service referral. Before the client agrees to the service, the adviser says only “we sometimes cooperate” and omits the payment’s nature and estimated value. This is most likely:",
+  [["sufficient if the provider gives full payment details after the service contract is signed.","Die Information muss vor Abschluss für die Entscheidung nutzbar sein. Eine erst nach Vertragsschluss erteilte vollständige Beschreibung behebt den anfänglichen Offenlegungsmangel nicht rechtzeitig."],["sufficient if the adviser includes the payment in the firm’s internal conflict register.","Interne Dokumentation ersetzt die nötige Information des betroffenen Kunden nicht. Der Kunde soll Art und wirtschaftliche Bedeutung des Empfehlungsanreizes verstehen können."],["insufficient because the referral payment’s nature and estimated economic value remain undisclosed.","Art und wirtschaftlicher Umfang bleiben verborgen."]],
+  2,
+  ["Der Kunde soll die möglicherweise vergütete Empfehlung erkennen und einordnen. Die unbestimmte Formulierung erlaubt dies nicht.","Die vage Zusammenarbeitserklärung nennt weder Art noch geschätzten Wert der Vermittlungsvergütung. Diese Informationen gehören rechtzeitig zum Entscheidungsrahmen des Kunden und werden nicht durch interne Erfassung ersetzt."],
+  "referrals"),
+ q("b1",
+  "mock-b",
+  "a c",
+  "A trader obtains personal-trade approval by omitting a pending customer order she knows about. She then trades ahead of that order for personal benefit. The approval:",
+  [["does not excuse trading ahead of the deliberately omitted pending client order.","Eine auf unvollständigen Angaben beruhende Freigabe heilt den Verstoß nicht."],["satisfies transaction priority if the approval process was the firm’s required control.","Eine Freigabe auf bewusst unvollständigen Angaben ist kein materieller Schutz vor dem bekannten Kundenvorrang. Die Pflicht bleibt auch bei formal durchlaufenem Kontrollschritt bestehen."],["satisfies transaction priority if the customer order is later executed at its stated limit price.","Die spätere Erfüllung eines Preislimits erlaubt kein vorangehendes Eigengeschäft auf Kosten der Priorität eines bekannten Kundenauftrags. Reihenfolge und mögliche Interessenkollision bleiben relevant."]],
+  0,
+  ["Materielle Pflicht und Kontrollschritt sind getrennt. Eine erschlichene Freigabe beweist keine Regelkonformität.","Der Fall enthält bewusst verschwiegene Auftragskenntnis und ein Eigengeschäft vor dem Kunden. Die interne Freigabe kann diesen Sachverhalt nicht ändern; auch ein später eingehaltenes Kundenlimit ist keine solche Erlaubnis."],
+  "personal-controls"),
+ q("b2",
+  "mock-b",
+  "a c",
+  "A manager receives valuable software licenses for referring clients to a provider. He reports the arrangement only to his employer. Before affected clients sign the provider’s service contract, the manager should also:",
+  [["omit a monetary estimate because the benefit consists of licenses used in the investment business.","Ein nutzbarer Sachvorteil ist nicht wertlos. Für die Vermittlungsvergütung sind auch Art und geschätzter wirtschaftlicher Umfang gegenüber betroffenen Kunden relevant."],["disclose the licenses’ nature and estimated value before clients sign the service contract.","Die Arbeitgeberinformation ersetzt die Kundeninformation nicht."],["include the arrangement in the next annual client report after the new contracts are signed.","Eine spätere Sammelmeldung kommt für die bereits getroffene Vertragsentscheidung zu spät. Die Kunden sollen den Anreiz vor Abschluss des betroffenen Dienstleistungsvertrags beurteilen können."]],
+  1,
+  ["Empfänger getrennt prüfen. Die intern bekannte Vergütung bleibt für die Entscheidung der betroffenen Kunden relevant.","Die Arbeitgeberinformation und die rechtzeitige Kundeninformation erfüllen unterschiedliche Zwecke. Auch nicht bar ausgezahlte Vermittlungsvorteile können die Empfehlungsentscheidung beeinflussen und müssen angemessen beschrieben werden."],
+  "referrals")
 ];

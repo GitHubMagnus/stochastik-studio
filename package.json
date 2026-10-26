@@ -15,7 +15,8 @@
     "test:risk-management:browser": "node --test tests/risk-management.browser.test.cjs",
     "test:complete-mocks:browser": "node --test tests/complete-mocks.browser.test.cjs",
     "test:errata-2027:browser": "node --test tests/errata-2027.browser.test.cjs",
-    "test:applications:browser": "node --test tests/cfa-application.browser.test.cjs"
+    "test:applications:browser": "node --test tests/cfa-application.browser.test.cjs",
+    "test:ethics-mocks:browser": "node --test tests/ethics-mocks.browser.test.cjs tests/complete-mocks.browser.test.cjs"
   },
   "devDependencies": {
     "katex": "^0.18.6",

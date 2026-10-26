@@ -61,14 +61,20 @@ module.exports=[
  ['evaluate the stated conflict obligations without assuming unrelated violations.','Die Schlussfolgerung muss von den gegebenen Fakten getragen werden.'],
  ['ignore the conflict unless a loss is proven.','Potenzielle Konflikte können schon vor einem Schaden relevant sein.']
  ],1,['Sorgfalt bedeutet weder pauschale Entlastung noch pauschale Verdächtigung. Jede Verletzung braucht ihre Voraussetzungen.'],'case-method'),
- q('a1','mock-a','a b','An adviser discloses a product-sales incentive but knowingly gives clients a false description of the product’s redemption terms. Which assessment is most accurate?',[
- ['Disclosure permits the false statement.','Konflikttransparenz hebt das Verbot falscher Darstellung nicht auf.'],
- ['A sales incentive automatically makes every statement false.','Das wäre eine nicht belegte allgemeine Schlussfolgerung.'],
- ['The false description remains a separate violation despite the incentive disclosure.','Die zwei Pflichten sind unabhängig.']
- ],2,['Der entscheidende Fehler ist die wissentlich falsche Produktinformation. Die Offenlegung einer anderen Tatsache korrigiert sie nicht.'],'case-method'),
- q('b1','mock-b','a b','An analyst has a reasonable research basis, fairly informs all affected clients, and retains the supporting records. The investment subsequently loses value. On these facts alone:',[
- ['the loss does not establish a violation of those duties.','Ein Ergebnisverlust beweist keine fehlende Sorgfalt, Fairness oder Dokumentation.'],
- ['the analyst must have violated record retention.','Der Sachverhalt nennt ausdrücklich vorhandene Nachweise.'],
- ['fair distribution becomes a violation retroactively.','Das spätere Ergebnis ändert die frühere Verteilung nicht.']
- ],0,['Die Aufgabe verlangt, Prozess und Ergebnis auseinanderzuhalten. Nicht genannte weitere Verstöße dürfen nicht unterstellt werden.'],'case-method')
+ q("a1",
+  "mock-a",
+  "a b",
+  "An adviser discloses a product-sales incentive but knowingly gives clients a false description of the product’s redemption terms. Which assessment is most accurate?",
+  [["complies because clients were informed of the incentive before the product was recommended.","Eine rechtzeitige Anreizoffenlegung erfüllt nicht zugleich die Pflicht zu zutreffenden Angaben. Die wissentlich falsche Beschreibung der Rückgaberegeln bleibt ein eigenständiges Problem."],["violates conflict disclosure only; the product description is a separate contractual matter.","Die wahrheitsgemäße Beschreibung der angebotenen Anlage gehört selbst zu den beruflichen Pflichten. Sie kann nicht allein an einen späteren Vertragsstreit ausgelagert werden."],["violates accurate communication despite disclosure of the separate product-sales incentive.","Die zwei Pflichten sind unabhängig."]],
+  2,
+  ["Der entscheidende Fehler ist die wissentlich falsche Produktinformation. Die Offenlegung einer anderen Tatsache korrigiert sie nicht.","Prüfe die zwei Handlungen getrennt: Die Offenlegung betrifft den Verkaufsanreiz, die falsche Rückgabebeschreibung die inhaltliche Kommunikation. Die Erfüllung der ersten Pflicht heilt die Verletzung der zweiten nicht."],
+  "case-method"),
+ q("b1",
+  "mock-b",
+  "a b",
+  "An analyst has a reasonable research basis, fairly informs all affected clients, and retains the supporting records. The investment subsequently loses value. On these facts alone:",
+  [["the loss alone does not establish inadequate research, unfair dealing, or missing records.","Ein Ergebnisverlust beweist keine fehlende Sorgfalt, Fairness oder Dokumentation."],["the loss demonstrates that the original research lacked a reasonable basis under Standard V(A).","Der Fall gibt eine vernünftige Analysegrundlage ausdrücklich vor. Ein späterer Verlust beweist nicht rückwirkend, dass diese Grundlage fehlte."],["the loss demonstrates a failure to present performance fairly under Standard III(D).","Eine ungünstige Rendite kann zutreffend und fair berichtet werden. Die Aufgabe nennt keine irreführende Performanceangabe; der Verlust allein belegt keinen solchen Verstoß."]],
+  0,
+  ["Die Aufgabe verlangt, Prozess und Ergebnis auseinanderzuhalten. Nicht genannte weitere Verstöße dürfen nicht unterstellt werden.","Beurteile die genannten Pflichten anhand von Prozess und Verhalten. Ergebnisunsicherheit bleibt auch bei sachgerechter Analyse bestehen. Für einen weiteren Verstoß wären zusätzliche Tatsachen nötig, die hier nicht vorliegen."],
+  "case-method")
 ];

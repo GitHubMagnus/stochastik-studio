@@ -71,24 +71,36 @@ module.exports=[
  ['Apply the relevant rules to the facts given and distinguish facts from assumptions.','Eine tragfähige Schlussfolgerung braucht die beschriebenen Voraussetzungen.'],
  ['Treat every missing consent statement as explicit approval.','Nicht genannte Zustimmung darf nicht erfunden werden.']
  ],1,['Sorgfältiges Fallverständnis vermeidet sowohl erfundene Schuld als auch erfundene Entlastung.'],'limits'),
- q('a1','mock-a','f','An analyst removes a risk warning after colleagues say that including it will make the team miss its sales target. The most evident situational influence is:',[
- ['a guaranteed improvement in analysis quality.','Ein Verkaufsziel belegt keine bessere Analyse.'],
- ['the elimination of all conflicts by teamwork.','Gruppenarbeit kann selbst Druck erzeugen.'],
- ['group and incentive pressure on the analyst’s judgment.','Sozialer und wirtschaftlicher Druck wirken auf die Darstellung.']
- ],2,['Der Fall nennt die Einflussquelle ausdrücklich. Die richtige Analyse erkennt diesen Druck, statt Teamzustimmung als Rechtfertigung zu verwenden.'],'pressure'),
- q('a2','mock-a','b c','A professional association publishes a code but never investigates credible allegations or holds members accountable. The main weakness is that:',[
- ['announced expectations are not supported by meaningful enforcement.','Ein öffentlicher Anspruch benötigt auch glaubwürdige Verantwortlichkeit.'],
- ['technical expertise has become unnecessary.','Die Aussage folgt nicht aus fehlender Durchsetzung.'],
- ['a code must guarantee positive investment returns.','Das ist nicht die Funktion eines Berufskodex.']
- ],0,['Vertrauen verlangt mehr als einen gedruckten Text. Verantwortlichkeit verbindet Grundsätze mit tatsächlichem Verhalten.'],'profession'),
- q('b1','mock-b','h','A professional reports a credible problem to a supervisor and later observes that it continues unchanged. Under an ethical decision-making framework, the professional should most appropriately:',[
- ['assume the initial report has permanently ended all responsibility.','Neue Beobachtungen können weitere Schritte erfordern.'],
- ['reassess the situation and pursue appropriate follow-up or escalation.','Handlung und tatsächliche Wirkung müssen verbunden bleiben.'],
- ['erase the original evidence because the matter was reported.','Das erschwert angemessene Untersuchung und Nachverfolgung.']
- ],1,['Die fortgesetzte Störung ist neue Information. Ein Rahmen ist kein einmalig abzuhakender Ablauf.'],'framework'),
- q('b2','mock-b','d e','Clients cannot easily distinguish skill from luck in a single year of investment returns. This most strongly supports the need for:',[
- ['judging ethical conduct only by the highest return.','Das verstärkt gerade den beschriebenen Bewertungsfehler.'],
- ['removing all professional standards.','Unsicherheit erhöht den Bedarf an nachvollziehbaren Prozessen.'],
- ['competent processes, transparent duties, and ethical accountability.','Diese Merkmale ergänzen die unsichere Ergebnisbeobachtung.']
- ],2,['Renditeunsicherheit macht Prozessqualität wertvoll. Sie kann Pflichten nicht ersetzen.'],'trust')
+ q("a1",
+  "mock-a",
+  "f",
+  "An analyst removes a risk warning after colleagues say that including it will make the team miss its sales target. The most evident situational influence is:",
+  [["overconfidence arising from the analyst’s belief in the precision of her own forecasts.","Übermäßiges Vertrauen in die eigene Prognose wäre eine andere Einflussquelle. Hier wird die Änderung ausdrücklich durch Kollegen und ein gemeinsames Absatzziel begründet."],["reliance on a legal minimum when deciding which client disclosures are required.","Der Fall nennt keinen Vergleich einer Gesetzesnorm mit einer strengeren Berufspflicht. Die konkrete Einflussquelle ist der soziale und wirtschaftliche Druck im Team."],["group and incentive pressure influencing whether the analyst retains the risk warning.","Sozialer und wirtschaftlicher Druck wirken auf die Darstellung."]],
+  2,
+  ["Der Fall nennt die Einflussquelle ausdrücklich. Die richtige Analyse erkennt diesen Druck, statt Teamzustimmung als Rechtfertigung zu verwenden.","Ordne die Ursache den gegebenen Tatsachen zu: Der Warnhinweis wird wegen Reaktionen der Kollegen und eines Verkaufsziels entfernt. Eine nicht genannte Prognoseüberzeugung oder Rechtsprüfung darf nicht ergänzt werden."],
+  "pressure"),
+ q("a2",
+  "mock-a",
+  "b c",
+  "A professional association publishes a code but never investigates credible allegations or holds members accountable. The main weakness is that:",
+  [["professional expectations lack meaningful enforcement and accountability when allegations are ignored.","Ein öffentlicher Anspruch benötigt auch glaubwürdige Verantwortlichkeit."],["its code should give more detailed instructions for selecting valuation models.","Technische Detailregeln können hilfreich sein, beheben aber nicht die genannte fehlende Untersuchung glaubwürdiger Vorwürfe. Der Befund betrifft Verantwortlichkeit und Durchsetzung."],["its members should be assessed primarily through published investment performance.","Anlageerfolg ist kein Ersatz für die Beurteilung beruflichen Verhaltens. Eine Organisation kann Fehlverhalten nicht dadurch angemessen verfolgen, dass sie stattdessen Renditen vergleicht."]],
+  0,
+  ["Vertrauen verlangt mehr als einen gedruckten Text. Verantwortlichkeit verbindet Grundsätze mit tatsächlichem Verhalten.","Die Lücke liegt zwischen veröffentlichtem Anspruch und tatsächlicher Rechenschaft. Ein umfangreicherer Fachtext oder ein Leistungsvergleich beantwortet nicht, wie glaubwürdige Verstöße untersucht und gegebenenfalls sanktioniert werden."],
+  "profession"),
+ q("b1",
+  "mock-b",
+  "h",
+  "A professional reports a credible problem to a supervisor and later observes that it continues unchanged. Under an ethical decision-making framework, the professional should most appropriately:",
+  [["wait until the next scheduled annual review before revisiting the reported problem.","Ein jährlicher Kontrolltermin ersetzt keine angemessene Reaktion auf ein weiterhin bestehendes glaubwürdiges Problem. Neue Beobachtungen verlangen zeitgerechte Neubewertung."],["reassess the continuing problem and pursue appropriate follow-up or escalation.","Handlung und tatsächliche Wirkung müssen verbunden bleiben."],["treat the supervisor’s receipt of the report as sufficient evidence that the issue is resolved.","Empfang und tatsächliche Behebung sind verschiedene Tatsachen. Die ausdrücklich beobachtete Fortsetzung widerspricht der Annahme einer bereits wirksamen Lösung."]],
+  1,
+  ["Die fortgesetzte Störung ist neue Information. Ein Rahmen ist kein einmalig abzuhakender Ablauf.","Ein Entscheidungsrahmen umfasst auch Nachverfolgung. Die gemeldete Ursache, die gewählte Handlung und deren tatsächliche Wirkung müssen erneut verglichen werden, wenn sich das Problem unverändert fortsetzt."],
+  "framework"),
+ q("b2",
+  "mock-b",
+  "d e",
+  "Clients cannot easily distinguish skill from luck in a single year of investment returns. This most strongly supports the need for:",
+  [["evaluating professional conduct primarily by the consistency of benchmark outperformance.","Auch wiederholte Überrendite trennt zulässiges Verhalten nicht zuverlässig von Glück, anderem Risiko oder Fehlverhalten. Die Frage betrifft gerade den ergänzenden Bedarf an überprüfbaren Pflichten und Prozessen."],["relying on legal compliance as the principal evidence of professional competence.","Rechtskonformität ist wichtig, beweist aber weder die fachliche Befähigung noch die Erfüllung aller beruflichen Pflichten. Das Informationsproblem der Kunden wird dadurch nicht vollständig gelöst."],["competent processes, transparent professional duties, and accountability beyond investment returns alone.","Diese Merkmale ergänzen die unsichere Ergebnisbeobachtung."]],
+  2,
+  ["Renditeunsicherheit macht Prozessqualität wertvoll. Sie kann Pflichten nicht ersetzen.","Weil das Anlageergebnis Fähigkeiten und Zufall vermischt, braucht Vertrauen zusätzliche überprüfbare Grundlagen. Weder eine Renditerangliste noch bloße Einhaltung gesetzlicher Mindestregeln ersetzt Kompetenz und berufliche Verantwortlichkeit."],
+  "trust")
 ];
