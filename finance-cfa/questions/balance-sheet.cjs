@@ -136,11 +136,16 @@ module.exports=[
  ['€7 million of entirely new comprehensive income in addition to the existing OCI gain.','Das würde denselben Wertzuwachs doppelt zählen.'],
  ['the same no-recycling treatment as the FVOCI election for ordinary equity investments.','Schuld- und Eigenkapital-FVOCI haben unterschiedliche Recyclingregeln.']
  ],0,['Der Verkaufspreis entspricht bereits dem Buchwert. Das relevante kumulierte Schuldinstrument-OCI wird ins Ergebnis umgegliedert; der Wertzuwachs entsteht nicht erst ein zweites Mal beim Verkauf.'],'equity-instruments'),
- q('a2','mock-a','a e','Two otherwise identical firms incur qualifying development expenditure. Firm A capitalizes part of it; Firm B expenses all of it. Before the capitalized asset is available for use, and ignoring taxes and impairment, which comparison is correct?',[
- ['Firm A has higher profit and equity, while total cash paid is unchanged.','Aktivierung verschiebt Aufwand und lässt einen Vermögenswert stehen; die Zahlung bleibt dieselbe.'],
- ['Firm A must have higher total cash because its expense is lower.','Gewinnabgrenzung ist nicht gleich Zahlung.'],
- ['Firm A has lower assets and the same equity.','Der nicht sofort erfasste Aufwand erhöht im Fall sowohl Vermögen als auch Eigenkapital gegenüber B.']
- ],0,['Die Gewinnverbesserung der ersten Periode ist durch spätere Amortisation und mögliche Wertminderung zu beurteilen. Eine größere Bilanzsumme beweist für sich keine höhere wirtschaftliche Rentabilität.'],'amortisation'),
+ Q("bs-a2",
+   "balance-sheet",
+   "statements",
+   "mock-a",
+   "a e",
+   "Two otherwise identical firms incur the same development expenditure. Under their respective applicable reporting bases, Firm A is required to capitalize a qualifying portion and Firm B is required to expense all of it. Before the capitalized asset is available for use, and ignoring taxes and impairment, which comparison is correct?",
+   [["Firm A has higher profit and equity, while total cash paid is unchanged.","Aktivierung verschiebt Aufwand und lässt einen Vermögenswert stehen; die Zahlung bleibt dieselbe."],["Firm A must have higher total cash because its expense is lower.","Gewinnabgrenzung ist nicht gleich Zahlung."],["Firm A has lower assets and the same equity.","Der nicht sofort erfasste Aufwand erhöht im Fall sowohl Vermögen als auch Eigenkapital gegenüber B."]],
+   0,
+   ["Die Gewinnverbesserung der ersten Periode ist durch spätere Amortisation und mögliche Wertminderung zu beurteilen. Eine größere Bilanzsumme beweist für sich keine höhere wirtschaftliche Rentabilität."],
+   {"section":"amortisation"}),
  q('b1','mock-b','b e','An acquisition report uses full goodwill with NCI of €52 million. A comparable proportional-NCI presentation would show NCI of €44 million. All other acquisition measurements are unchanged. Converting from full to proportional goodwill would:',[
  ['reduce goodwill and total equity by €8 million each.','Der NCI-Unterschied wirkt gleich hoch auf den Erwerbsrestbetrag und das nicht beherrschende Eigenkapital.'],
  ['reduce acquisition cash paid by €8 million.','Die Bewertungsmethode ändert keine tatsächlich gezahlte Gegenleistung.'],

@@ -76,9 +76,14 @@ module.exports=[
   ['4 in operating and 20 in financing cash outflows.','Dies entspricht etwa US Finance Lease oder einem früheren IFRS-Wahlrecht, nicht der angegebenen Basis.'],
   ['24 in investing cash outflows.','Eine Leasingrückzahlung ist kein Cashkauf des Nutzungsrechts in dieser Zuordnung.']
  ],0,['Die Frage benennt sowohl IFRS-18-Anwendung als auch den Geschäftstyp. Dadurch ist das ältere IAS-7-Wahlrecht keine passende Antwort. Die Unterscheidung ist besonders wichtig, wenn Lernunterlagen aus unterschiedlichen Berichtsjahren verglichen werden.'],'lease-comparison'),
- q('b2','mock-b','b','A cash-settled share-based award remains outstanding at the reporting date. Compared with an otherwise simple equity-settled award, its measurement most likely requires:',[
-  ['using only the grant-date share price with no subsequent adjustment.','Dies verwechselt die Verpflichtungsbewertung mit einer gewöhnlichen Eigenkapitalzusage.'],
-  ['ignoring the award until cash is paid.','Die bereits erbrachte Arbeitsleistung ist vor der Auszahlung zu erfassen.'],
-  ['remeasuring the liability at the reporting date.','Der bar zu erfüllende Anspruch wird grundsätzlich bis zur Erfüllung neu bewertet.']
- ],2,['Die Erfüllungsart ist die entscheidende Weiche. Ein späterer Kursanstieg kann deshalb bei der bar erfüllten Zusage zusätzlichen Aufwand erzeugen, während der Grant-Date-Fair-Value einer einfachen Eigenkapitalzusage grundsätzlich bestehen bleibt.'],'share-payments')
+ Q("lc-b2",
+   "leases-compensation",
+   "statements",
+   "mock-b",
+   "b",
+   "An IFRS reporter has recognized a liability for employee services already received under a cash-settled share-based award. The award remains outstanding at the reporting date. Compared with an otherwise simple equity-settled award, its measurement most likely requires:",
+   [["fixing the liability at its grant-date fair value, as for a simple equity-settled award.","Die Grant-Date-Festlegung einer einfachen Eigenkapitalzusage ist nicht die Folgebewertung einer bar zu erfüllenden Verpflichtung. IFRS 2 verlangt deren Fair-Value-Neubewertung."],["remeasuring only until vesting and then freezing the liability until payment.","Vesting beendet die Neubewertung der noch offenen Cash-settled-Verpflichtung nicht. IFRS 2.30 und 2.33 verlangen sie an jedem Berichtsstichtag und am Erfüllungstag."],["remeasuring the liability at the reporting date.","Der bar zu erfüllende Anspruch wird grundsätzlich bis zur Erfüllung neu bewertet."]],
+   2,
+   ["Die Erfüllungsart ist die entscheidende Weiche. Ein späterer Kursanstieg kann deshalb bei der bar erfüllten Zusage zusätzlichen Aufwand erzeugen, während der Grant-Date-Fair-Value einer einfachen Eigenkapitalzusage grundsätzlich bestehen bleibt.","IFRS 2.30–33 unterscheidet bereits erbrachte Leistungen von der späteren Auszahlung: Die Leistung begründet die Verpflichtung; deren Fair Value wird bis zur Erfüllung aktualisiert. Änderungen werden erfolgswirksam erfasst. Die Aufgabe setzt eine bereits erfasste Verpflichtung voraus und behauptet keinen positiven Ansatz vor jeder Leistungserbringung."],
+   {"section":"share-payments"})
 ];

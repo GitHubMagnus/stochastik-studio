@@ -86,10 +86,24 @@ module.exports=[
  q('b1','mock-b','b c','A single-price firm faces demand elasticity −3 at an interior profit maximum with marginal cost 20. The implied optimal price is:',[
  ['26.67.','Das behandelt den Lerner-Index fälschlich als Aufschlag auf MC.'],['30.00.','(P − 20)/P = 1/3 ergibt P = 30.'],['60.00.','Das multipliziert MC mit dem Elastizitätsbetrag ohne die Grenzerlösbeziehung.']
  ],1,[eq('P=\\frac{20}{1-1/3}=30','Der relative Aufschlag bezieht sich auf den Verkaufspreis, nicht direkt auf die Grenzkosten.','P','Optimaler einheitlicher Preis unter den genannten Annahmen.')],'market-power'),
- q('b2','mock-b','c','A monopolistic competitor in standard long-run equilibrium produces below the quantity that minimizes ATC. This is associated with:',[
- ['a guaranteed negative economic profit.','Langfristig kann trotzdem genau Nullgewinn gelten.'],['the absence of any product differentiation.','Differenzierung ist Teil dieses Modells.'],['excess capacity despite zero economic profit.','Die Menge liegt links vom Stückkostenminimum, während P = ATC an der gewählten Menge gilt.']
- ],2,['Excess Capacity bezeichnet hier den Abstand zur kostenminimalen Menge, nicht automatisch eine direkt gemessene physische Leerlaufquote.'],'monopolistic-competition'),
- q('b3','mock-b','d','In a one-period pricing game, each firm earns more by cutting its price regardless of whether the rival holds or cuts. Price cutting is:',[
- ['a dominant strategy for each firm.','Die eigene beste Wahl bleibt bei beiden Rivalenentscheidungen dieselbe.'],['proof that jointly holding prices is the Nash equilibrium.','Jede Firma hätte von dort einen einseitigen Abweichungsanreiz.'],['possible only if firms explicitly coordinate.','Dominante individuelle Anreize benötigen keine Koordination.']
- ],0,['Das gemeinsame Gleichgewicht kann für beide schlechter sein als ein Ergebnis, von dem eine einseitige Abweichung verlockend wäre.'],'strategic-choices')
+ Q("ms-b2",
+   "market-structures",
+   "economics",
+   "mock-b",
+   "c",
+   "A monopolistic competitor in standard long-run equilibrium produces below the quantity that minimizes ATC. This is associated with:",
+   [["a positive economic profit because unused capacity prevents entry from eliminating the markup.","Ein Aufschlag auf Grenzkosten ist bei differenzierten Produkten möglich, ohne ökonomischen Gewinn zu erzeugen: Der Preis deckt im langfristigen Gleichgewicht gerade die durchschnittlichen Gesamtkosten."],["productive efficiency because zero economic profit implies operation at minimum ATC.","Nullgewinn bedeutet Preis gleich ATC an der gewählten Menge. Das ist keine Gleichsetzung dieser Menge mit dem Minimum der ATC-Kurve."],["excess capacity despite zero economic profit.","Die Menge liegt links vom Stückkostenminimum, während P = ATC an der gewählten Menge gilt."]],
+   2,
+   ["Excess Capacity bezeichnet hier den Abstand zur kostenminimalen Menge, nicht automatisch eine direkt gemessene physische Leerlaufquote."],
+   {"section":"monopolistic-competition"}),
+ Q("ms-b3",
+   "market-structures",
+   "economics",
+   "mock-b",
+   "d",
+   "In a one-period pricing game, each firm earns more by cutting its price regardless of whether the rival holds or cuts. Price cutting is:",
+   [["a dominant strategy for each firm.","Die eigene beste Wahl bleibt bei beiden Rivalenentscheidungen dieselbe."],["a best response only when the rival holds its price, rather than a dominant strategy.","Die Aufgabe nennt ausdrücklich einen höheren eigenen Gewinn durch Senkung bei beiden Entscheidungen des Rivalen, nicht nur bei unverändertem Rivalenpreis."],["consistent with jointly holding prices being a Nash equilibrium if both firms prefer that joint outcome.","Eine gemeinsam bevorzugte Auszahlung ist noch kein Nash-Gleichgewicht: Hier kann jede Firma von unveränderten Preisen einseitig profitabel abweichen."]],
+   0,
+   ["Das gemeinsame Gleichgewicht kann für beide schlechter sein als ein Ergebnis, von dem eine einseitige Abweichung verlockend wäre."],
+   {"section":"strategic-choices"})
 ];

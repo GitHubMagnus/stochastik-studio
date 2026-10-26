@@ -126,11 +126,16 @@ module.exports=[
  ['€30 million','CFO nach Investition ist 70; zur Überleitung auf 100 sind 30 Nettoaufnahme erforderlich.'],
  ['€60 million','Nachsteuerzins wurde unnötig in eine bereits nach Zins definierte CFO-zu-FCFE-Brücke eingefügt.']
  ],1,[F('NB=FCFE-CFO+FCInv=100-190+120=30','Die Zinsdaten werden für diese konkrete Überleitung nicht benötigt, weil CFO bereits nach Zins gemessen ist.',[['NB','Nettokreditaufnahme in Mio. Euro.'],['FCFE','Freier Cashflow an Eigenkapitalgeber.'],['CFO','Operativer Cashflow nach Zins.'],['FCInv','Kapitalinvestition.']])],'fcfe'),
- q('a2','mock-a','a b','A company has positive CFO and an interest-coverage ratio above its covenant minimum. Most of its annual customer receipts arrive after a large mandatory debt payment date. The ratio alone:',[
- ['does not establish that cash is available when that debt payment falls due.','Eine Jahresaggregation verdeckt die zeitliche Liquiditätslücke.'],
- ['guarantees that the company can meet every interim payment.','Jahressumme und Zahlungszeitpunkt sind nicht identisch.'],
- ['makes the maturity schedule irrelevant.','Fälligkeiten sind gerade zur Einschätzung der beschriebenen Lücke erforderlich.']
- ],0,['Ein Liquiditätsplan mit Zahlungsterminen, verfügbaren Anfangsmitteln und belastbaren Kreditlinien ergänzt die Deckungsquote. Zusätzlich kann eine reine Zinsquote große Tilgungszahlungen ausblenden.'],'coverage-ratios'),
+ Q("cfl-a2",
+   "cashflow-analysis",
+   "statements",
+   "mock-a",
+   "a b",
+   "A company has positive CFO and an interest-coverage ratio above its covenant minimum. Most of its annual customer receipts arrive after a large mandatory debt payment date. The ratio alone:",
+   [["does not establish that cash is available when that debt payment falls due.","Eine Jahresaggregation verdeckt die zeitliche Liquiditätslücke."],["establishes interim debt-payment capacity because the positive annual CFO covers the cash-flow period containing the payment.","Eine positive Jahressumme sagt nicht, welcher Betrag am Fälligkeitstag bereits verfügbar ist. Die im Fall späten Eingänge können eine zwischenzeitliche Deckungslücke lassen."],["permits the analyst to defer the maturity review until the covenant is breached, since interest coverage is currently adequate.","Ein eingehaltener Zinsdeckungs-Covenant ersetzt keine Prüfung von Tilgungsterminen und rechtzeitiger Liquidität. Auf einen späteren Covenant-Bruch zu warten löst die heutige Analyseaufgabe nicht."]],
+   0,
+   ["Ein Liquiditätsplan mit Zahlungsterminen, verfügbaren Anfangsmitteln und belastbaren Kreditlinien ergänzt die Deckungsquote. Zusätzlich kann eine reine Zinsquote große Tilgungszahlungen ausblenden."],
+   {"section":"coverage-ratios"}),
  q('b1','mock-b','a b','A firm changes from CFO after interest of €154 million to CFO excluding interest of €182 million. Its €28 million interest payment remains fully deductible at a 25% cash tax rate; taxes paid are unchanged. Capital investment is €90 million. Correct FCFF under either presentation is:',[
  ['€85 million','Alte Basis: 154 + 21 − 90; neue Basis: 182 − 7 − 90.'],
  ['€92 million','Die neue CFO-Basis enthält noch den Zinssteuervorteil 7.'],

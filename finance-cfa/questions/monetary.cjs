@@ -65,13 +65,27 @@ module.exports=[
  q('a1','mock-a','b c','A nominal one-year rate is 5% and inflation over that year is assumed fixed at 2%. The exact implied real rate is closest to:',[
  ['3.00%.','Das ist die Differenznäherung.'],['7.10%.','Das multipliziert statt zu deflationieren.'],['2.94%.','1,05/1,02 − 1.']
  ],2,[eq('r^e=1{,}05/1{,}02-1\\approx2{,}9412\\%','Die Bruttozinsrelation liefert die Kaufkraftänderung unter der festen Inflationsannahme.','r^e','Implizierter Realzins.')],'real-rate'),
- q('a2','mock-a','a c','A central bank publishes the information that would trigger a change in its projected policy path. After that information changes, it adjusts the path and explains why. This behavior is most consistent with:',[
- ['transparent state-contingent communication.','Die ursprüngliche Aussage war ausdrücklich von den Umständen abhängig.'],['a necessarily broken unconditional promise.','Es lag gerade kein unbedingtes Versprechen vor.'],['automatic abandonment of price stability.','Eine Anpassung an neue Daten kann der Zielverfolgung dienen.']
- ],0,['Glaubwürdigkeit verlangt verständliche und konsistente Zielverfolgung, nicht eine unveränderte Reaktion auf beliebig neue Informationen.'],'credibility'),
+ Q("mon-a2",
+   "monetary",
+   "economics",
+   "mock-a",
+   "a c",
+   "A central bank publishes the information that would trigger a change in its projected policy path. After that information changes, it adjusts the path and explains why. This behavior is most consistent with:",
+   [["transparent state-contingent communication.","Die ursprüngliche Aussage war ausdrücklich von den Umständen abhängig."],["a necessarily broken unconditional promise.","Es lag gerade kein unbedingtes Versprechen vor."],["discretionary policy unrelated to its published reaction conditions.","Die Bank nennt die auslösende Information vorab und erklärt die spätere Anpassung damit. Das entspricht einer veröffentlichten bedingten Reaktion."]],
+   0,
+   ["Glaubwürdigkeit verlangt verständliche und konsistente Zielverfolgung, nicht eine unveränderte Reaktion auf beliebig neue Informationen."],
+   {"section":"credibility"}),
  q('b1','mock-b','b','Expected short rates over four successive years are 2%, 3%, 4%, and 5%. With a term premium of 0.5 percentage points, the arithmetic-approximation four-year yield is:',[
  ['3.50%.','Das ignoriert die Laufzeitprämie.'],['4.00%.','Der Erwartungsdurchschnitt ist 3,5 %, dazu 0,5 Punkte.'],['5.50%.','Das verwendet nur den letzten kurzen Zins.']
  ],1,[eq('y_4=(2+3+4+5)/4+0{,}5=4\\%','Es handelt sich um die ausdrücklich gefragte Näherungszerlegung.','y_4','Angenäherte Vierjahresrendite, Eingaben in Prozent.')],'yield-curve'),
- q('b2','mock-b','d','Fiscal tightening and monetary easing occur together. Which conclusion is most appropriate without quantified response estimates?',[
- ['Aggregate output must rise because only monetary policy matters.','Fiskalische Nachfrageänderungen verschwinden dadurch nicht.'],['Aggregate output must fall because lower rates cannot affect private demand.','Günstigere Finanzierung kann sehr wohl private Nachfrage beeinflussen.'],['Private and public demand may shift in opposite directions, while the net output effect remains uncertain.','Die relative Größe und Geschwindigkeit der beiden Wirkungen fehlen.']
- ],2,['Ein sinnvoller Vergleich nennt die Zusammensetzung und Bedingungen statt aus zwei Politiketiketten einen sicheren Gesamteffekt abzuleiten.'],'policy-mix')
+ Q("mon-b2",
+   "monetary",
+   "economics",
+   "mock-b",
+   "d",
+   "Fiscal tightening and monetary easing occur together. Which conclusion is most appropriate without quantified response estimates?",
+   [["Aggregate output is unchanged because an easing policy necessarily offsets a tightening policy of the other type.","Die entgegengesetzten Vorzeichen sagen nichts über gleich große oder zeitgleiche Wirkungen aus. Multiplikatoren, Übertragung und Umfang sind nicht quantifiziert."],["Aggregate output rises because lower funding costs necessarily outweigh the fiscal reduction in demand.","Eine wirksame Zinssenkung kann private Nachfrage stützen. Dass ihr Effekt den fiskalischen Rückgang übersteigt, folgt ohne Größen und Reaktionsschätzungen nicht."],["Private and public demand may shift in opposite directions, while the net output effect remains uncertain.","Die relative Größe und Geschwindigkeit der beiden Wirkungen fehlen."]],
+   2,
+   ["Ein sinnvoller Vergleich nennt die Zusammensetzung und Bedingungen statt aus zwei Politiketiketten einen sicheren Gesamteffekt abzuleiten."],
+   {"section":"policy-mix"})
 ];

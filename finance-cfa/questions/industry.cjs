@@ -241,11 +241,16 @@ module.exports=[
  ['higher sales always imply a higher intrinsic value.','Kapitalbedarf und Kosten können den zusätzlichen Gewinn überwiegen.'],
  ['investment can be ignored when comparing positive EBIT margins.','Marge ist nur eine Ertragsquote, kein vollständiger Werttreiber.']
  ],['Zuerst werden Markt- und Anteilshypothesen zu Umsatz und Marge verbunden. Danach werden erforderliche Bestände, Anlagen und Risiken einbezogen.','Im ausdrücklich stabilen Vergleich kann Wachstum unterrentablen Kapitals Wert senken, obwohl der ausgewiesene Gewinn positiv bleibt.'],'integrated'),
- q('a1','mock-a','a b','For a cross-border demand analysis, an analyst selects companies solely by their headquarters and matches the word “Sector” across GICS and ICB as if it represented the same level. The most appropriate correction is to:',[
- ['reconcile the different hierarchy levels and investigate actual segment and customer exposures.','Klassifikationsebene und wirtschaftliche Region müssen beide zur Frage passen.'],
- ['retain both choices because all providers use identical hierarchy labels and headquarters determine sales.','Beide Annahmen verwechseln administrative Ordnung mit wirtschaftlichem Inhalt.'],
- ['discard all standardized classifications because no classification can help organize a universe.','Standardisierte Taxonomien sind nützlich, wenn ihre Bedeutung und Grenzen beachtet werden.']
- ],['GICS verwendet Sector als breiteste Ebene, ICB Industry. Gleiche Wörter können deshalb nicht ohne Zuordnung verglichen werden.','Firmensitz, Segmentaktivitäten und Absatzregion werden anschließend getrennt erfasst. Klassifikation unterstützt die Auswahl, ersetzt sie nicht.'],'taxonomies'),
+ Q("ind-a1",
+   "industry",
+   "equity",
+   "mock-a",
+   "a b",
+   "For a cross-border demand analysis, an analyst selects companies solely by their headquarters and matches the word “Sector” across GICS and ICB as if it represented the same level. The most appropriate correction is to:",
+   [["reconcile the different hierarchy levels and investigate actual segment and customer exposures.","Klassifikationsebene und wirtschaftliche Region müssen beide zur Frage passen."],["map the hierarchy levels, but continue using headquarters as the measure of customer demand exposure.","Damit wäre nur das Taxonomieproblem gelöst. Der Firmensitz ist weiterhin kein verlässlicher Ersatz für die tatsächlichen Absatzregionen und Segmentaktivitäten."],["replace headquarters with listing country, while keeping the two providers’ “Sector” labels as the same hierarchy level.","Der Börsenplatz misst ebenso wenig die tatsächliche Nachfrageexposition. Außerdem bleibt die ausdrücklich unterschiedliche Taxonomieebene unabgestimmt."]],
+   0,
+   ["GICS verwendet Sector als breiteste Ebene, ICB Industry. Gleiche Wörter können deshalb nicht ohne Zuordnung verglichen werden.","Firmensitz, Segmentaktivitäten und Absatzregion werden anschließend getrennt erfasst. Klassifikation unterstützt die Auswahl, ersetzt sie nicht."],
+   {"section":"taxonomies"}),
  q('a2','mock-a','c d','A supplier wins new business from a large buyer. Annual credit sales rise from 120 to 146, DSO rises from 25 to 55, and after-tax operating profit rises by 20. Use 365 days and steady sales within each period. All other operating capital and net investment are unchanged. The increase in free operating cash flow from these changes is closest to:',[
  ['6.2192','Der zusätzliche Ertrag wird um den tatsächlichen Forderungsaufbau bei veränderter Umsatzbasis reduziert.'],
  ['8.0000','Dies verwendet den neuen Umsatz fälschlich auch für den alten Forderungsbestand.'],

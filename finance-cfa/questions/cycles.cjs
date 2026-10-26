@@ -50,9 +50,16 @@ module.exports=[
  q('16','practice','c','Exports stay at 80 while imports decline from 100 to 70 because domestic demand weakens. Net exports:',[
  ['improve by 30, which alone does not establish a stronger domestic economy.','Der Saldo steigt von −20 auf +10, aber die Ursache ist schwache Binnennachfrage.'],['deteriorate by 30.','Das verwechselt die Richtung des Importbeitrags im Saldo.'],['remain unchanged because exports do not change.','Importe sind der zweite Bestandteil von Nettoexporten.']
  ],0,['Die Ausgabenidentität und eine Wohlfahrts- oder Konjunkturbeurteilung sind unterschiedliche Aussagen.'],'housing-trade'),
- q('a1','mock-a','a c','Broad activity has started rising from a trough, while unemployment continues increasing. This combination is:',[
- ['impossible because every indicator turns simultaneously.','Messgrößen reagieren nicht zwingend gleichzeitig.'],['consistent with employment adjustment lagging an early recovery.','Unternehmen können zunächst Arbeitszeit und Auslastung erhöhen, bevor sie mehr Personal benötigen.'],['proof that the new expansion has already ended.','Eine einzelne nachlaufende Reihe reicht dafür nicht aus.']
- ],1,['Wendepunktdatierung und Diagnose benötigen mehrere Datenreihen mit ihren Veröffentlichungs- und Reaktionszeiten.'],'resources'),
+ Q("cyc-a1",
+   "cycles",
+   "economics",
+   "mock-a",
+   "a c",
+   "Broad activity has started rising from a trough, while unemployment continues increasing. This combination is:",
+   [["evidence that a trough should be dated only after unemployment has also started falling.","Eine nachlaufende Arbeitsmarktgröße muss nicht bereits drehen, damit die breite Aktivität einen Tiefpunkt überschritten hat."],["consistent with employment adjustment lagging an early recovery.","Unternehmen können zunächst Arbeitszeit und Auslastung erhöhen, bevor sie mehr Personal benötigen."],["evidence that rising unemployment outweighs the activity recovery when identifying the current cycle phase.","Der gleichzeitige Verlauf mehrerer Reihen ist zu beurteilen; die nachlaufende Arbeitslosigkeit widerlegt den beschriebenen Beginn der Erholung nicht."]],
+   1,
+   ["Wendepunktdatierung und Diagnose benötigen mehrere Datenreihen mit ihren Veröffentlichungs- und Reaktionszeiten."],
+   {"section":"resources"}),
  q('b1','mock-b','b','An institution has assets 120 and debt 90. Assets then fall by 10%, with debt unchanged. Equity falls by:',[
  ['10%.','Das ist der Vermögensverlust in Prozent des Vermögens, nicht des kleineren Eigenkapitals.'],['12%.','Das verwechselt den absoluten Verlustbetrag 12 mit der relativen Eigenkapitaländerung.'],['40%.','Eigenkapital fällt von 30 auf 18; Verlust 12/30.']
  ],2,[eq('\\frac{30-(108-90)}{30}=\\frac{12}{30}=40\\%','Unveränderte Schulden verstärken den relativen Eigenkapitalverlust.','108,90,30','Vermögenswerte nach dem Schock, unveränderte Schulden und ursprüngliches Eigenkapital.')],'leverage')

@@ -236,9 +236,14 @@ module.exports=[
  ['345.00.','Dies besteuert entgegen der Angabe auch die Tilgung vierhundert.'],
  ['460.00.','Dies ist die Bruttozahlung ohne Steuer auf sechzig Zins.']
  ],[F('T_1=1200/3=400,\\quad I_1=1200\\cdot0{,}05=60','Gleiche Tilgung bestimmt die Kapitalrückgabe; die volle Anfangsschuld erzeugt den ersten Jahreszins.',[['T_1,I_1','Erste Tilgung und erster Jahreszins.']]),F('CF_{1,net}=400+60(1-0{,}25)=445','Nur der Zins wird nach der ausdrücklich gegebenen Fallregel besteuert.',[['CF_{1,net}','Tatsächlich verfügbarer erster Netto-Cashzufluss.']])],'tax-cash'),
- q('b1','mock-b','a b','A note adds 10% interest to outstanding debt annually rather than paying cash for two years, starting from principal 1,000. An analyst also claims that the note’s offshore label alone exempts every holder and resale from all regulation and taxes. The most accurate combined assessment is that:',[
- ['debt grows to 1,210 under the specified capitalization, while the broad regulatory and tax claim is unsupported.','Zinseszins erhöht die Schuld; Offshore ersetzt keine konkrete Prüfung von Regeln und Anlegerstatus.'],
- ['debt stays at 1,000 because there are no cash coupons, and the offshore label establishes the exemption.','Dies verwechselt Cashfreiheit mit Zinsfreiheit und überdehnt die Marktbezeichnung.'],
- ['debt grows to 1,200, and legal or tax differences cannot affect any cash flow or trading access.','Dies ignoriert Zins auf kapitalisierten Zins sowie die Bedeutung konkreter Markt- und Steuerregeln.']
- ],[F('B_2=1000\\cdot1{,}10^2=1210','Die zwei Jahre werden auf die jeweils ausstehende Schuld angewendet.',[['B_2','Schuld nach zwei Jahren im gegebenen Kapitalisierungsplan.']]),'Marktklassifikation, Vertragsrecht, Angebotszulässigkeit, Übertragung und Anlegerbesteuerung werden getrennt geprüft.'],'jurisdictions')
+ Q("bcf-b1",
+   "bond-cashflows",
+   "bonds",
+   "mock-b",
+   "a b",
+   "A note adds 10% interest to outstanding debt annually rather than paying cash for two years, starting from principal 1,000. An analyst also claims that the note’s offshore label alone exempts every holder and resale from all regulation and taxes. The most accurate combined assessment is that:",
+   [["debt grows to 1,210 under the specified capitalization, while the broad regulatory and tax claim is unsupported.","Zinseszins erhöht die Schuld; Offshore ersetzt keine konkrete Prüfung von Regeln und Anlegerstatus."],["debt stays at 1,000 because there are no cash coupons, and the offshore label establishes the exemption.","Dies verwechselt Cashfreiheit mit Zinsfreiheit und überdehnt die Marktbezeichnung."],["debt grows to 1,200 using simple interest, while the offshore label alone does not establish a blanket exemption.","Der rechtliche Vorbehalt ist zutreffend. Die Schuldrechnung lässt jedoch den Zins auf den bereits kapitalisierten ersten Jahreszins weg: Im zweiten Jahr verzinsen sich 1100 statt 1000."]],
+   0,
+   [{"kind":"formula","tex":"B_2=1000\\cdot1{,}10^2=1210","reading":"Die zwei Jahre werden auf die jeweils ausstehende Schuld angewendet.","symbols":[["B_2","Schuld nach zwei Jahren im gegebenen Kapitalisierungsplan."]]},"Marktklassifikation, Vertragsrecht, Angebotszulässigkeit, Übertragung und Anlegerbesteuerung werden getrennt geprüft."],
+   {"section":"jurisdictions"})
 ];

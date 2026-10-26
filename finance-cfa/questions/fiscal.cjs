@@ -65,9 +65,16 @@ module.exports=[
  q('a1','mock-a','b','Opening nominal GDP and debt are both 100. Nominal growth is 4%, the effective interest rate is 6%, and the primary surplus equals 2% of current GDP. With no other adjustments, the new debt ratio is closest to:',[
  ['99.92%.','Neue Schuld 106 − 2,08 = 103,92; neues BIP 104.'],['100.00%.','Das entspricht hier nur der Näherung ohne Wachstumsnenner.'],['102.00%.','Das verwendet den Primärsaldo und den Nenner inkonsistent.']
  ],0,[eq('d_1=(106-2{,}08)/104\\approx99{,}9231\\%','Die exakte Rechnung verwendet den Primärüberschuss als Anteil des neuen BIP.','d_1','Schuldenquote der neuen Periode.')],'debt-dynamics'),
- q('a2','mock-a','d','A government cuts purchases while raising autonomous net taxes, holding the economic environment and other policies constant. These discretionary actions are most likely:',[
- ['expansionary because tax revenue rises.','Höhere Einnahmen sind nicht automatisch höhere private Nachfrage.'],['contractionary through both direct purchases and disposable income.','Weniger Käufe und geringeres verfügbares Einkommen dämpfen die betrachteten Nachfragekanäle.'],['neutral whenever public debt is positive.','Der Schuldenbestand hebt diese Nachfrageänderungen nicht automatisch auf.']
- ],1,['Die Aussage betrifft die Richtung unter konstanten Rahmenbedingungen, nicht die genaue Größe oder gesellschaftliche Zweckmäßigkeit.'],'multipliers'),
+ Q("fis-a2",
+   "fiscal",
+   "economics",
+   "mock-a",
+   "d",
+   "A government cuts purchases while raising autonomous net taxes, holding the economic environment and other policies constant. These discretionary actions are most likely:",
+   [["expansionary because tax revenue rises.","Höhere Einnahmen sind nicht automatisch höhere private Nachfrage."],["contractionary through both direct purchases and disposable income.","Weniger Käufe und geringeres verfügbares Einkommen dämpfen die betrachteten Nachfragekanäle."],["neutral because the improvement in the government budget balance offsets the reduction in private disposable income.","Ein besserer staatlicher Budgetsaldo ist kein zusätzlicher privater Nachfrageimpuls, der die Kürzung von Staatskäufen und verfügbaren Einkommen automatisch kompensiert."]],
+   1,
+   ["Die Aussage betrifft die Richtung unter konstanten Rahmenbedingungen, nicht die genaue Größe oder gesellschaftliche Zweckmäßigkeit."],
+   {"section":"multipliers"}),
  q('b1','mock-b','c','A fixed-price model has MPC 0.60, a marginal net tax rate of 0.20, and marginal import propensity 0.08. Government purchases rise by 12. The increase in equilibrium output is:',[
  ['12.','Das ignoriert induzierte Nachfrage.'],['30.','Das ignoriert Steuern und Importe.'],['20.','12/[1 − 0,6 × 0,8 + 0,08].']
  ],2,[eq('\\Delta Y=12/[1-0{,}6(1-0{,}2)+0{,}08]=20','Der Nenner beträgt 0,6, der Ausgabenmultiplikator 5/3.','\\Delta Y','Outputänderung bei unveränderten übrigen Modellannahmen.')],'multipliers'),
