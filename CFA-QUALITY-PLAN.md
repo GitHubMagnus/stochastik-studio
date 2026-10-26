@@ -5022,3 +5022,43 @@ Endgültige Inhaltsversion: 1a632c79396aef6f.
 Normalisierter HTML-SHA-256:
 c818e2da3361ace1bc7baa0e617ecbb58818a1cc27ef9d4e9c131435d53d8979
 bei 26599464 Bytes.
+
+## 26.10.2026: mobile Lesbarkeit aller Rechnerdiagramme
+
+Der im vorherigen Abschnitt festgehaltene Darstellungsbefund ist behoben: Alle 64
+Finance-Rechner benutzen nun dieselbe zugängliche Grafikregion. Die SVG-Grafiken
+behalten mindestens ihre ursprünglichen 660 Bildpunkte Breite, sodass die
+Achsenschrift im Browser mindestens zwölf Bildpunkte groß bleibt. Bei geringerer
+verfügbarer Breite verschiebt sich die Grafik innerhalb ihres Rahmens. Die gesamte
+Website wird dabei nicht breiter. Der Rahmen ist per Tastatur fokussierbar, hat
+sichere Fokusmarkierung und lässt sich über Pfeiltasten verschieben. Ein Hinweis
+erscheint bei tatsächlichem horizontalem Überlauf und passt sich Größenänderungen
+an. Er wird einmal pro Modell angelegt und bei Eingabeänderungen nicht dupliziert.
+
+**Prüfung:** Drei neue Browserprüfungen erfassen alle 64 tatsächlichen Modellzugänge,
+256 Kombinationen aus Modell und Bildschirmbreite und 3072 Achsen-/Titelbeschriftungen.
+Sie prüfen die tatsächlich dargestellte Schriftgröße und die Grenzen der SVG-Texte,
+nicht nur CSS-Regeln. Alle Kurvenpfade bleiben beim Verändern der Bildschirmbreite
+gleich. Zusätzlich wurden 128 Eingabeänderungen an Modellgrenzen, Fehlerzustände,
+Reset und native Tastaturverschiebung für alle Modelle geprüft. Die drei
+Portfoliozugänge funktionieren aus der eigenständigen HTML-Datei bei gesperrten
+Netzwerkzugriffen; die Hinweise reagieren auch beim Wechsel auf 1920 Pixel.
+
+492 Kernprüfungen, 36 bestehende Browserprüfungen und die drei neuen Prüfungen sind
+fehlerfrei, insgesamt 531 verschiedene Tests. Die bestehenden Browserprüfungen
+umfassen die allgemeine Anwendung, Buchgrafiken, Formelerklärungen, Portfolioauswahl
+und digitale Vermögenswerte. 32 Übersichtsansichten und acht zusätzliche
+Detailansichten der längeren Rechner wurden auf zehn Kontaktblättern visuell
+geprüft. Rechenmodelle, Lerntexte und Fragenbank sind inhaltlich unverändert; die
+vollständige kompilierte Datenstruktur besitzt weiterhin denselben SHA-256.
+
+Das Gesamtziel bleibt offen: 97 von 102 Einheiten, 307 von 340 Lernzielen, 3698
+Trainingsfragen und je 164 von 180 reservierten Klausurfragen. Als Nächstes folgen
+die fünf verbleibenden Portfolioeinheiten und die fachliche Gesamtprüfung. Die
+Zielbewertungen 90/100 und 80/100 werden weiterhin nicht als erreicht ausgegeben.
+
+HTML-Fassung: a6416e44a7d71236; CFA-Inhaltsfassung: 1a632c79396aef6f.
+Normalisierter HTML-SHA-256:
+a6416e44a7d712368a0d35bee292ff53c01b691a0e263f5a469d8259c5323b75
+bei 26598657 Bytes. SHA-256 der unveränderten CFA-Daten:
+8e6d80914ab83ff73065ea6689fd7f6360f8f2ff60730b42c5ebe03e84f1d5d8.
