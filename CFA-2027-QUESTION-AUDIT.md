@@ -1,6 +1,6 @@
 # CFA 2027: Aufgabenprüfung und Revision der Probeklausuren
 
-Prüfstand: 26. Oktober 2026. Die Aufgaben sind selbst verfasst und keine
+Prüfstand: 27. Oktober 2026. Die Aufgaben sind selbst verfasst und keine
 offiziellen CFA-Fragen. Eine passende Themenzahl und technisch korrekte
 Auswertung beweisen keine empirisch vergleichbare Schwierigkeit.
 
@@ -267,3 +267,54 @@ zusammengeführte Bewertung des Gesamtmaterials und die endgültige Abnahme
 bleiben ein eigener Arbeitsschritt. Alle Einheiten bleiben bis dahin als
 Entwurf geführt. Unabhängige Lernendenversuche und statistische Kalibrierung
 an offiziellen Prüfungsergebnissen liegen weiterhin nicht vor.
+
+## Trainingsstichprobe und Prüfung auf fehlende eigene Angaben
+
+Eine zusätzliche, vor der Lektüre festgelegte Stichprobe enthält zwei Einheiten
+je Themenbereich. Pro Einheit wurde die Aufgabe an Position `floor(0,6 × n)`
+der verfassten Trainingsliste ausgewählt; sie wurde nicht anhand ihrer Qualität
+ausgetauscht. Vollständig gelesen wurden Aufgabenstellung, Optionen, sämtliche
+Einzelbegründungen und Lösungen dieser 20 Aufgaben:
+
+| Bereich | Aufgaben |
+|---|---|
+| Ethics | `eiii-10`, `ev-08` |
+| Quant | `inf-17`, `rg-15` |
+| Economics | `fis-13`, `tr-14` |
+| FSA | `tax-17`, `is-17` |
+| Corporate | `ca-25`, `cs-25` |
+| Equity | `dcf-33`, `ind-29` |
+| Fixed Income | `ydr-32`, `mbs-49` |
+| Derivatives | `opv-37`, `pcp-31` |
+| Alternatives | `afe-37`, `pca-37` |
+| Portfolio | `ips-58`, `rm-51` |
+
+Die Zahlen wurden gegengerechnet; ein Fehler der richtigen Ergebnisse wurde
+in dieser Stichprobe nicht gefunden. Sie enthält sowohl Grundlagenfragen als
+auch Methoden- und Interpretationsabgrenzungen. Sie ist kein statistischer
+Nachweis für die Qualität aller 4118 Aufgaben und keine neue vollständige
+Wiederlektüre dieses Bestands.
+
+Eine anschließende Suche nach Rückverweisen fand im Ausgangsstand 100 sprachliche
+Treffer, darunter viele vollständig angegebene Aufgaben und harmlose Bezüge
+auf ein früheres Geschäftsjahr. Der erste bestätigte Befund `pcp-29` setzte
+Aktienpreis und Diskontfaktor aus der vorherigen Frage voraus. Da das gemischte
+Training Aufgaben umordnet, konnte die Frage dort nicht verlässlich allein
+gelöst werden. Beide Angaben und die Ausschüttungsfreiheit stehen jetzt direkt
+in der Aufgabe. Die Lösung verwendet die allgemeine Forward-Wertformel mit
+erklärtem Aktienpreis, Lieferbetrag, Diskontfaktor und Zeitpunkten. Der richtige
+Wert bleibt fünf, gegenüber null für den neu fairen Vertrag und 105,263158 als
+neuer fairer Lieferquote. Ein eigener numerischer Test und eine isolierte
+Ein-Fragen-Browserfixture prüfen die Korrektur.
+
+Die erweiterte Liste zeigt weitere möglicherweise fehlende Angaben, etwa bei
+Portfolio-, Verwertungs- und Rohstofffällen. Diese werden vor der Gesamtabnahme
+einzeln abgeglichen und gegebenenfalls ergänzt. Die 100 Suchtreffer werden weder
+als 100 Fehler noch als bereits abgeschlossene Inhaltsprüfung ausgegeben.
+
+In dieser Revision bleiben alle anderen 4477 Fragen einschließlich sämtlicher
+360 reservierter Fragen vollständig unverändert. Der
+[Anwendungs-Audit](CFA-2027-APPLICATION-AUDIT.md) dokumentiert die gleichzeitig
+präzisierten Lernzielzugänge, drei Rechenvergleiche und den Build mit 563
+bestandenen Kernprüfungen und sechs bestandenen Browserprüfungen. Die
+Material- und Vorbereitungspunktzahlen bleiben bis zum Gesamtabschluss offen.

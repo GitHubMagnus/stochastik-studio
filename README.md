@@ -38,6 +38,11 @@ Klausurfragen sind inzwischen durchgesehen. Weitere 58 Fragen aus den übrigen
 acht Themenbereichen wurden präzisiert; insbesondere sind Zahlenalternativen
 bei Optionsreplikation, Unternehmensbewertung und M² nachvollziehbar hergeleitet.
 Die Risikoquote erhält eine ausführliche Herleitung aus der Nutzenfunktion.
+21 Lernziele führen jetzt zuerst zu einem gezielter passenden ausgearbeiteten
+Beispiel. Zusätzliche vollständige Rechenvergleiche erklären IFRS-/US-GAAP-
+Cashflows, absolute Gewinne gegenüber Margen und Spot-/Par-/Forwardkurven.
+Die abschließende Trainingsprüfung ergänzt außerdem fehlende eigene Angaben
+in Aufgaben, die bisher einen vorherigen Fall voraussetzten.
 
 Der neue Bereich unter **Finance → CFA Level I 2027** führt 102 offizielle Module
 mit 340 einzeln zugeordneten Lernzielreferenzen. Der aktuelle Arbeitsstand enthält

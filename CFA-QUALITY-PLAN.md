@@ -5737,3 +5737,85 @@ Damit sind alle 58 zusätzlichen Revisionsfälle behoben. Die zusammengeführte
 Abnahme der Material- und Vorbereitungskriterien bleibt als eigener Audit offen.
 Alle 102 Einheiten bleiben bis dahin draft und Release bleibt false. Es werden
 weder neue Zielpunkte noch eine persönliche Bestehenswahrscheinlichkeit vorweggenommen.
+
+## Phase 108: relevante Beispielzugänge und allein lösbare Trainingsfragen
+
+Der Gesamtprüfungsschritt hat alle 340 eigenen Lernzielbezeichnungen mit ihren
+ersten beiden Beispielzuordnungen abgeglichen. Bei breit zugeordneten Abschnitten
+konnte der erste automatische Zugang einen allgemeineren Fall öffnen. Eine
+kuratierte Auswahl priorisiert nun 21 fachlich gezieltere Abschnitte. Alle 18
+ausgewählten bereits vorhandenen Beispielabschnitte wurden mit Angaben,
+vollständigen Schritten, Tabellen und Schlussfolgerungen gelesen.
+
+Drei Vergleiche sind jetzt als vollständige Lernfälle ausgearbeitet:
+
+- IFRS-18-/US-GAAP-Cashflows aus denselben Transaktionen: direkte und indirekte
+  Kontrolle, CFO 120/140, CFI jeweils minus 45, CFF minus fünf/minus 25 und
+  unveränderte gesamte Geldänderung 70.
+- Common-Size-Ergebnisrechnung: zwanzig Prozent mehr Umsatz und acht Prozent
+  mehr EBIT bei Rückgang der operativen Marge von zwanzig auf achtzehn Prozent;
+  Bruttomargen- und operative Kostenbeiträge werden separat übergeleitet.
+- Drei gleiche Zinskonventionen bei steigender, fallender und buckelförmiger
+  Spotfolge: Par-Preise und Forwardfaktoren werden gerechnet, mit den bestehenden
+  Grafikpunkten abgestimmt und gegenüber allgemeinen Prognosebehauptungen abgegrenzt.
+
+Sie ergänzen sieben gesetzte Formeltafeln mit Lesart und Symbolen. Sechs längere
+zusammengesetzte Tafeln verwenden nach der Sichtkontrolle mehrere Rechenzeilen.
+Ein Compiler-Prüfschritt verhindert unbekannte Lernziele, falschen Abschnittsbezug
+oder Prioritäten ohne ausgearbeiteten Fall. Eine reine Prioritätsänderung fließt
+jetzt in die Inhaltsversionskennung ein.
+
+Eine zusätzliche Trainingsstichprobe mit zwei vorab gewählten Einheiten pro
+Themengebiet und deterministischer Position wurde vollständig gelesen und
+numerisch kontrolliert. Die 20 IDs und Grenzen der Aussage sind im
+[Aufgaben-Audit](CFA-2027-QUESTION-AUDIT.md) genannt. Die anschließende Suche nach
+abhängigen Aufgabenstellungen ergab im Ausgangsstand 100 sprachliche Treffer;
+viele davon sind vollständig angegeben oder keine Abhängigkeit von einer
+anderen Aufgabe. `pcp-29` fehlten aber tatsächlich Aktienpreis und Diskontfaktor
+aus der Vorfrage. Beide stehen jetzt in der Aufgabe; die Lösung enthält eine
+allgemeine Gleichung und erklärte Symbole. Sie wurde isoliert ohne jede andere
+Frage geprüft. Weitere mögliche Abhängigkeiten in der Liste sind vor der
+Gesamtabnahme noch einzeln abzugleichen und nötigenfalls zu korrigieren.
+
+Verifikation des endgültigen Builds:
+
+- **563 Kernprüfungen bestanden**, darunter sieben neue Kontrollen zu Prioritäten,
+  ungültigen Zuordnungen, Versionsänderung ohne Fragenänderung, Cashflowgleichheit,
+  Margenbrücke, Kurvenpreisen und der eigenständig lösbaren Forward-Frage.
+  Der bestehende Lumen-Gegenrechnungstest greift nach der Umstrukturierung auf
+  dieselbe Vergleichstabelle innerhalb des Lernfalls zu.
+- **Sechs Browserprüfungen bestanden:** alle 21 gezielteren tatsächlichen Zugänge,
+  340 unverändert getrennte Erklärungs-/Beispielpaare, Offlinefälle und sämtliche
+  neuen Symbole/Tabellen, vier Breiten, Tastatur sowie die isolierte Forward-Frage.
+  Die zwölf früheren Ergänzungsfälle und die fehlende-Anwendung-Fixture bestehen
+  ebenfalls auf demselben finalen Build.
+- Alle 14 Desktop-/Mobilansichten und neun zusätzliche lesbare Ausschnitte der
+  langen Mobilfälle einzeln kontrolliert. Überlaufende Formeln und Tabellen bleiben
+  innerhalb ihrer eigenen Bereiche per Tastatur erreichbar.
+- Vollständiger Datenvergleich: 99 Einheiten unverändert; nur die benannten drei
+  Abschnitte ändern sich in den übrigen Einheiten. 4477 Fragen bleiben exakt gleich,
+  darunter alle 360 reservierten Fragen und 4117 Trainingsfragen. Nur `pcp-29`
+  erhält eine neue Revision bei identischen Antwortoptionen und gleichem Ergebnis.
+  Alle bisherigen Anwendungszuordnungen bleiben erhalten; acht Lernziele gewinnen
+  Fallabschnitte. Insgesamt ändern sich 22 erste Beispielzugänge, davon 21 durch
+  die explizite Priorisierung. Alle 347 CFA-Grafiken sind exakt unverändert.
+  Wörterbücher, Modelle, Engine, Renderer, UI und Stile bleiben unverändert.
+- Die beiden vollständigen tatsächlichen Klausuren aus Phase 107 verwenden
+  exakt dieselben reservierten Daten und dieselbe Engine. Ein weiterer frischer
+  Durchlauf wird für diese Revision nicht behauptet.
+
+HTML-Fassung: 78abd9b393018c13; CFA-Inhaltsfassung: 1960e126b9122f3d.
+Vollständiger LF-HTML-SHA256: 78abd9b393018c1310c8179ee6b6898975119e7b0a898c390ccfdd953b3f9f3e
+bei 28480757 Bytes; CFA-Daten-SHA256: d3030cbaf76874ff48391562821c84ca04b5a8345f27a7da43e3de98c475f8fc.
+
+Die frisch abgerufene offizielle 2027-Lernzielübersicht und die Oktober-2026-
+Errata sind bytegleich mit den zuvor vollständig geprüften Fassungen.
+Outline-SHA256: 7099c76889428357ffb4f562a88fe7974e71808054f02df90526c2b6102c3c01.
+Errata-SHA256: 44ed7cf1dc7fadbdfabab7ae923a429342f7f7c1173d0673e98e378369fea7af.
+Die offizielle Prüfungsseite bestätigt weiterhin die 2027-Gewichte und zwei
+135-Minuten-Sitzungen. Es wird keine neue vollständige Lektüre der bereits
+identischen Quellen oder der gesamten Trainingsbank behauptet.
+
+Die gezielte Kontextprüfung der Trainingsaufgaben und die zusammengeführte
+Bewertung bleiben offen. Alle 102 Einheiten bleiben draft; Release bleibt false.
+Die Zielwerte sind damit noch nicht als erreicht festgestellt.
