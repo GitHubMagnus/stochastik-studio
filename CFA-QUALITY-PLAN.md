@@ -5222,3 +5222,81 @@ vor der vollständigen Gesamtprüfung weiterhin nicht als erreicht ausgegeben.
 Finale HTML-Fassung: 13a8c60effac6de8; CFA-Inhaltsfassung: 7e12876b316febe3.
 Vollständiger LF-HTML-SHA256: 13a8c60effac6de8887718cea2eea66b4c82e84e3fe6831bb3ddd3a6f9b3a646
 bei 27332690 Bytes; vollständiger CFA-Daten-SHA256: 399ef5c755215f653ac8f4afb801ec4edf77573771163ee837635fc4f3f0f85f.
+
+## 100. Einheit: Anlagepolitik und Portfoliokonstruktion (IPS)
+
+Alle acht Lernziele von Basics of Portfolio Planning and Construction sind in
+40 Abschnitten mit 43 gesetzten Formeltafeln, 25 erläuterten Fällen, neun Tabellen,
+sechs berechneten Grafiken und 24 zusätzlichen Verständnisfragen ausgearbeitet.
+Zweck, Aufbau und Verantwortlichkeiten des schriftlichen Anlageauftrags werden
+mit Zielrechnung, Restriktionen, geeigneten Anlageklassen und Umsetzung verbunden.
+Renditebedarf, Wunsch und unsichere Kapitalmarktprognose bleiben getrennt;
+finanzielle Tragfähigkeit und persönliche Bereitschaft werden nicht zu einer
+unbegründeten Fragebogen-Durchschnittszahl verrechnet.
+
+Gezielte Zahlenfälle erläutern Nominal-/Realrechnung, Ziele mit unterschiedlicher
+Laufzeit, feste datierte Entnahmen, Gebühr auf die angegebene Vermögensbasis und
+Steuer nur auf den ausdrücklich bezeichneten positiven Gewinn. Laufende Steuer und
+Steuerstundung verwenden dieselbe Exposition und getrennte Zahlungszeitpunkte;
+keine konkrete nationale Steuerregel wird behauptet. Weitere Vergleiche behandeln
+Liquidität, verschachtelte Regionalgewichte, Währung, Klassenkorrelation,
+Rendite-Zulässigkeit, Prognoseempfindlichkeit, Drift und Band-Rebalancing sowie
+eine vorher festgelegte Policy-Benchmark.
+
+ESG-Ziel, Screening, materielle finanzielle Integration, Thema, Stewardship und
+Impact werden anhand eigener Entscheidungs- und Nachweisfälle unterschieden.
+Aktivitäten, verifizierte Ergebnisse und ein ursächlicher Anlegerbeitrag werden
+nicht gleichgesetzt. Der integrierte Finanzierungsfall zeigt eine Lücke bei
+konstant fortgeschriebenen Planraten unter Kosten und Aktienlimit; er behauptet
+keine deterministische Grenze für jedes mögliche zufällige Marktergebnis.
+Alle relevanten Formeln haben unmittelbar erreichbare Symbol- und Einheitenhilfen.
+
+96 eigene englische Trainingsfragen decken jedes Lernziel mit zwölf Übungen ab.
+Acht weitere disjunkte Fälle bleiben den Klausuren vorbehalten und besitzen
+zusammenhängende deutsche Herleitungen sowie Begründungen für jede Antwort.
+Alle 25 numerischen Antworten und alle 527 Buchkoordinaten werden unabhängig
+aus Vermögensidentitäten, Zahlungsreihen und gemeinsamen Varianzbeiträgen geprüft.
+Die drei verknüpften Modelle isolieren Risikoaversion, Modellsteuer und Drift;
+135 Parameterkombinationen einschließlich aller 8235 Kurvenwerte werden gesondert
+nachgerechnet. Die native Bedienprüfung umfasst zehn Zahlen-/Bereichseingabepaare,
+Randwerte, Tastatur, Fehlerzustand, Zurücksetzen und Offlinebetrieb.
+
+Das Wörterbuch enthält jetzt 2113 Definitionen mit 4520 Begriffen/Aliasen und
+1902 kuratierten CFA-Rückverweisen. Neue Kontextdefinitionen im IPS-Kapitel
+bewahren die bisherigen globalen Ziele für Investment Policy Statement,
+Risikotragfähigkeit, Rebalancing und Stewardship. Ihr tatsächlicher Aufruf und die
+jeweiligen Rücksprünge werden im Browser kontrolliert. Drei vorhandene Einheiten
+verweisen zusätzlich auf den integrierten neuen Planungsfall.
+
+Abnahme: Alle 516 Kernprüfungen, 42 allgemeine/Portfolio-Browserprüfungen und die
+fünf neuen IPS-Browserprüfungen bestanden. Die Sichtprüfung umfasst 102 Ansichten
+von Grafiken, Fällen, Tabellen, geöffneten Erläuterungen, mobilen Symbolhilfen,
+Rechnern und allen reservierten Falllösungen. Danach wurde ausschließlich die
+Lesart einer Grafik präzisiert: Eine benötigte Zielrate ist kein Nachweis ihrer
+Erreichbarkeit am Markt. Ein vollständiger Datenvergleich beschränkt diese
+Änderung auf Lesart und SVG dieser Grafik sowie die Inhaltsversion; alle übrigen
+99 Einheiten, sämtliche Fragen, Modelle, Wörterbuch und Renderer sind unverändert.
+Auf dem finalen Build bestehen alle neun neuen Inhalts-/Mathematikprüfungen und
+alle fünf IPS-Browserprüfungen erneut. Alle 102 finalen Ansichten sind gesichtet:
+33 pixelidentisch, 69 abweichende Ansichten erneut geprüft. Die abschließende
+Veröffentlichungsprüfung umfasst vollständige HTML-/CFA-Datenidentität und
+Quelldateihashes sowie die tatsächliche öffentliche HTTP- und Edge-Fassung.
+
+Quellenbasis: verbindlicher CFA-Outline 2027, ergänzende öffentliche CFA-Übersicht
+2026 zu Basics of Portfolio Planning and Construction, CFA-Standard III(C) samt
+öffentlicher Eignungshinweise und die gemeinsamen PRI-/CFA-/GSIA-Definitionen für
+verantwortliche Anlageansätze. Zahlen, Familienfälle, Zahlungspfade und die
+integrierte Zielrechnung sind eigene Annahmen und unabhängig nachgerechnet.
+
+Gesamtziel bleibt offen: 100 von 102 Einheiten, 330 von 340 Lernzielen,
+3974 Trainingsfragen und je 176 von 180 reservierten Klausurfragen. Offen sind
+Behavioral Biases mit drei und Risk Management mit sieben Lernzielen; pro Klausur
+fehlen noch vier Fragen. Alle 100 Einheiten bleiben draft, Release false und
+unvollständige Klausuren gesperrt. Bestand: 335 berechnete CFA-Grafiken,
+13 Ablaufbilder, 65 Modelle und 78 bisherige Kapitel mit primärem interaktivem Modell.
+Die Zielwerte 90/100 und 80/100 werden vor der vollständigen Endprüfung weiterhin
+nicht als erreicht ausgegeben.
+
+Finale HTML-Fassung: 2998e8fc011299a0; CFA-Inhaltsfassung: beea96e788d446c2.
+Vollständiger LF-HTML-SHA256: 2998e8fc011299a09e5731dd1aa0d1447fc949546371024dfe5357d123f30da2
+bei 27678034 Bytes; vollständiger CFA-Daten-SHA256: 5f9591b6f98bd5a31c0eb5e59553cbe77180023a5f35f68dd2e8a6790ccbcbef.

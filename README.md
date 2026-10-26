@@ -13,14 +13,14 @@ Direkt im Browser nutzbar, ohne Download oder Installation.
 - **Verständnis prüfen:** 1.034 Aufgaben, mindestens sechs in jedem Finance-Kapitel und 14 bei Duration. Grundverständnis, Herleitung oder Begründung, Rechen- oder Fallaufgabe, Vergleich, Transfer und Fehlersuche besitzen getrennte Hinweise und ausführliche Lösungen. Aufgabenangaben und Ergebnistabellen sind getrennt. Die Lösungen enthalten 544 gesetzte Formeltafeln und 90 gesetzte Inline-Formeln, einschließlich bewusst wiederverwendeter Kapitelrechnungen.
 - **Vertiefungen:** 361 zusätzliche Erklärabschnitte, 175 Vergleichstabellen, insgesamt 519 erläuterte Lösungsschritte, 740 Kapitelverbindungen und neun Erklärungsgrafiken. Wichtige Zusammenhänge wie Duration, Cashflowbewertung, CAPM und Optionsreplikation erhalten mehrere aufeinander aufbauende Herleitungen.
 - **Mathematische Notation:** 156 zentrale mathematische Formeltafeln, 219 Formeltafeln in Herleitungen und 383 numerische Lösungsschritte werden ausdrücklich in LaTeX verfasst und als MathML eingebettet. Auch Formeln in Vergleichstabellen und alle neun Kelly-Formeltafeln sind gesetzt. Qualitative Entscheidungsfragen werden als Prosa dargestellt. Es gibt keine automatische Umwandlung von Wörtern in vermeintliche Gleichungen.
-- **Fachwörterbuch:** 2.095 alphabetisch sortierte Definitionen mit 4.485 Begriffen und Aliasen; automatische Verlinkung aus den Lerntexten und Rückverweise auf erklärende Kapitel. 1.881 kuratierte Einträge besitzen zusätzlich einen präzisen Rückverweis in den neuen CFA-Lernpfad. Mehrdeutige Begriffe wie GMV, Forward, FFO, DSCR, Trustee, Subordination, Residual, WAL, Balloon Payment, Margin, Settlement und Delta werden abhängig vom Kapitel verlinkt. Direktlinks auf zusammengeführte Begriffe bleiben über deren Alias erhalten.
+- **Fachwörterbuch:** 2.113 alphabetisch sortierte Definitionen mit 4.520 Begriffen und Aliasen; automatische Verlinkung aus den Lerntexten und Rückverweise auf erklärende Kapitel. 1.902 kuratierte Einträge besitzen zusätzlich einen präzisen Rückverweis in den neuen CFA-Lernpfad. Mehrdeutige Begriffe wie GMV, Forward, FFO, DSCR, Trustee, Subordination, Residual, WAL, Balloon Payment, Margin, Settlement und Delta werden abhängig vom Kapitel verlinkt. Direktlinks auf zusammengeführte Begriffe bleiben über deren Alias erhalten.
 - **Kelly Studio:** Einzelpositionen, Szenarien, Portfoliooptimierung, Simulation und Herleitung. Der Zustand bleibt beim Modulwechsel erhalten.
 
 ## CFA Level I 2027: laufende Überarbeitung
 
 Der neue Bereich unter **Finance → CFA Level I 2027** führt 102 offizielle Module
 mit 340 einzeln zugeordneten Lernzielreferenzen. Der aktuelle Arbeitsstand enthält
-99 neu ausgearbeitete Einheiten und 3.878 eigenständige englische Trainingsfragen
+100 neu ausgearbeitete Einheiten und 3.974 eigenständige englische Trainingsfragen
 mit deutschen Lösungen. Alle zehn Ethics-Module und alle elf Quant-Module besitzen
 neue Erklärungen und Übungen. Weitere Vertiefungen behandeln EPS, Kennzahlen und
 Leasing/Vergütung. Der Quant-Bereich enthält jetzt auch ausführliche Testwahl,
@@ -761,20 +761,35 @@ bleiben den Klausuren vorbehalten. Alle Zahlenfälle benennen ihre Zahlungszeitp
 und Konventionen; US-Produktbezeichnungen werden nicht als weltweit gleiche
 Rechts- oder Steuerregeln behandelt.
 
-Insgesamt 329 zusätzliche berechnete Grafiken und 13 Ablaufbilder erläutern
+Anlagepolitik und Portfoliokonstruktion ergänzt 40 Abschnitte mit 43 Formeltafeln,
+25 erläuterten Fällen, neun Tabellen, sechs berechneten Grafiken und 24 zusätzlichen
+Verständnisfragen. Die Zielrechnung trennt nominal/real, brutto/netto, Steuerzeitpunkt,
+Renditebedarf und Prognose. Risikobereitschaft und wirtschaftliche Tragfähigkeit
+werden an verschiedenen Anlegerlagen verglichen. Weitere Abschnitte verbinden
+Liquidität, Horizont, Recht, Steuern, überlappende Anlageklassen, Währungsrisiken,
+strategische/taktische Allokation, empfindliche Eingaben, Benchmarks und Rebalancing.
+ESG-Ausschlüsse, finanzielle Integration, Thema, Stewardship und Impact erhalten
+getrennte Entscheidungs- und Nachweisfragen. Ein zusammenhängender Finanzierungsfall
+zeigt die Lücke eines konstant fortgeschriebenen Plans unter Kosten und Aktienlimit,
+ohne daraus eine sichere Aussage über jedes zufällige Endergebnis abzuleiten.
+96 eigene englische Übungen decken die acht Lernziele mit je zwölf Fragen ab;
+acht getrennte Transferfälle bleiben den Klausuren vorbehalten. Drei verknüpfte
+Rechner isolieren Risikoaversion, Modellsteuer und Gewichtsdrift.
+
+Insgesamt 335 zusätzliche berechnete Grafiken und 13 Ablaufbilder erläutern
 die neuen Zusammenhänge.
 Direkte Abschnittsverweise verbinden die Einheiten und passende Wörterbuchdefinitionen.
 
-322 Lernzielreferenzen sind aktuell sowohl neuen Erklärungen als auch Trainingsfragen
+330 Lernzielreferenzen sind aktuell sowohl neuen Erklärungen als auch Trainingsfragen
 zugeordnet. Dies ist **kein Nachweis vollständiger CFA-Vorbereitung**. Offene
 Einheiten sind sichtbar; die fachliche Endprüfung läuft. Zwei getrennte Probeklausuren
-haben bisher je 172 von 180 Fragen und bleiben gesperrt. Ihre Ethics- und Quant-Anteile
+haben bisher je 176 von 180 Fragen und bleiben gesperrt. Ihre Ethics- und Quant-Anteile
 sind mit jeweils 22 Fragen pro Thema, ihre Economics-Anteile mit je zwölf und
 ihre Abschlussanalyse-Anteile mit je 22 Fragen angelegt. Corporate Finance hat
 je zwölf reservierte Fragen. Damit sind die Themenanteile der ersten Sitzung
 angelegt. Die Aktienanteile der zweiten Sitzung sind mit je 22 reservierten Fragen
 angelegt. Der Anleihebereich enthält je 22 reservierte Fragen; Derivate je 13.
-Die Alternative-Investments-Anteile sind mit je 13 reservierten Fragen vollständig angelegt. Der Portfolio-Anteil umfasst nun je zwölf Transferfragen; pro Klausur fehlen noch acht Fragen zu IPS, Behavioral Biases und Risk Management.
+Die Alternative-Investments-Anteile sind mit je 13 reservierten Fragen vollständig angelegt. Der Portfolio-Anteil umfasst nun je 16 Transferfragen; pro Klausur fehlen noch vier Fragen zu Behavioral Biases und Risk Management.
 Der implementierte Ablauf
 mit zwei Sitzungen zu je 135 Minuten wird mit gesonderten künstlichen Testdaten
 geprüft, die nicht als echte Lernfragen veröffentlicht werden.

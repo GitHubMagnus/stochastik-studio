@@ -314,3 +314,5 @@ module.exports={id:'investment-process',intro:[
  {title:'SEC Investor.gov: Publicly Traded Closed-End Funds; Rückgabe und Börsenhandel unterscheiden',url:'https://www.investor.gov/introduction-investing/investing-basics/investment-products/closed-end-funds/publicly-traded-closed-end-funds'},
  {title:'SEC Investor.gov: Mutual Fund and ETF Fees and Expenses; Gebührenbasis, Gesamtkosten und Anlegerbelastung',url:'https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins/mutual-fund-and-etf-fees-and-expenses-investor-bulletin'}
 ],review:{status:'draft',date:'2026-10-26',note:'Eigene Fälle mit expliziten Zahlungs- und Gebührenkonventionen. Wirtschaftliche Grundmodelle werden von landes- und vertragsabhängigen Einzelregeln getrennt. Fachliche Gesamtfreigabe bleibt ausstehend.'}};
+
+module.exports.related.push({unit:'ips',section:'case',label:'Ziele, finanzielle Tragfähigkeit und Portfolioauftrag gemeinsam abstimmen'});
