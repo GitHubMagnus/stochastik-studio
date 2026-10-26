@@ -61,24 +61,36 @@ module.exports=[
   ['A requirement that departing staff forget all general professional experience.','Allgemeine Fähigkeiten lassen sich nicht mit geschützten Firmenunterlagen gleichsetzen.'],
   ['Automatic permission to retain every file on a personal device.','Der private Speicherort ändert nicht automatisch die Eigentums- und Vertraulichkeitslage.']
  ],0,['Die Kontrolle muss auf tatsächliche Daten und Zugänge zielen. Allgemeines Wissen bleibt nutzbar, unberechtigt mitgenommene Datensätze dagegen nicht.'],'controls'),
- q('a1','mock-a','a c','An adviser accepts a conflicting client bonus arrangement after receiving only a verbal approval from her employer. She plans to obtain written confirmation after the performance period. At acceptance, she most likely:',[
-  ['complies because verbal approval is always equivalent to documented consent.','Die geforderte schriftliche Zustimmung fehlt zum maßgeblichen Zeitpunkt.'],
-  ['violates the requirement for prior written consent.','Spätere Dokumentation ist kein bereits vor Annahme vorliegender schriftlicher Konsens.'],
-  ['complies if no bonus is ultimately paid.','Die Annahme der Vereinbarung löst die Prüfung aus, nicht erst die spätere Auszahlung.']
- ],1,['Die fehlende Voraussetzung ist konkret: schriftliche Zustimmung vor Annahme. Ein späteres wirtschaftliches Ergebnis ändert diese zeitliche Tatsache nicht.'],'compensation'),
- q('a2','mock-a','a c','A senior supervisor delegates daily monitoring to a qualified team leader but gives no instructions about compliance responsibilities and ignores reports of control failures. The delegation:',[
-  ['eliminates the senior supervisor’s obligations.','Delegation beseitigt nicht die eigene angemessene Organisations- und Überwachungspflicht.'],
-  ['is prohibited in every organization.','Geeignete Delegation ist grundsätzlich möglich.'],
-  ['does not excuse the failure to ensure reasonable supervision.','Die bekannten Kontrolllücken und fehlende Anleitung bleiben relevant.']
- ],2,['Die Frage richtet sich nicht gegen Delegation selbst. Sie betrifft deren mangelhafte Durchführung und das Ignorieren konkreter Hinweise.'],'supervision'),
- q('b1','mock-b','a c','After employment ends, a researcher uses her general valuation skills at a new firm. She takes no former-employer records or confidential information, and no applicable agreement restricts the activity. Standard IV(A) most likely:',[
-  ['permits the use of that general professional experience.','Fachliche Fähigkeiten sind nicht automatisch vertrauliches Firmeneigentum.'],
-  ['requires her to abandon all skills learned at the prior firm.','Dies überdehnt den Schutz von Unterlagen und vertraulichen Informationen.'],
-  ['allows her to recreate confidential client databases from unauthorized copies.','Diese Zusatzhandlung ist gerade ausgeschlossen und wäre gesondert problematisch.']
- ],0,['Der Sachverhalt grenzt allgemeine Fähigkeiten von Daten und geschützten Informationen ab. Diese Trennung ist für den Stellenwechsel zentral.'],'leaving'),
- q('b2','mock-b','b','A firm has a detailed compliance manual, but staff are not trained on it and no one reviews whether procedures are followed. The best assessment is that:',[
-  ['a written manual alone necessarily establishes effective supervision.','Vorhandener Text belegt keine tatsächliche Anwendung.'],
-  ['communication, implementation, and monitoring are also needed.','Ein System muss im Arbeitsalltag funktionieren.'],
-  ['monitoring is unnecessary if employees are experienced.','Erfahrung ersetzt keine angemessene Kontrolle.']
- ],1,['Die Ursache liegt im Unterschied zwischen geschriebenen Regeln und gelebtem Prozess. Schulung, Zuständigkeiten und Prüfung der Anwendung schließen diese Lücke.'],'controls')
+ q("a1",
+  "mock-a",
+  "a c",
+  "An adviser accepts a conflicting client bonus arrangement after receiving only a verbal approval from her employer. She plans to obtain written confirmation after the performance period. At acceptance, she most likely:",
+  [["complies at acceptance if the employer’s verbal permission is documented before any bonus is paid.","Maßgeblich ist die erforderliche schriftliche Zustimmung vor Annahme der Vereinbarung. Eine spätere Dokumentation vor Auszahlung erfüllt diesen Zeitpunkt nicht rückwirkend."],["violates the prior written-consent requirement at acceptance, even if the employer gave verbal permission.","Spätere Dokumentation ist kein bereits vor Annahme vorliegender schriftlicher Konsens."],["complies at acceptance if the bonus is disclosed to the other affected clients.","Eine Kundeninformation ersetzt die fehlende vorherige schriftliche Zustimmung der beteiligten Parteien nicht. Mehrere Pflichten sind gegebenenfalls nebeneinander zu erfüllen."]],
+  1,
+  ["Die fehlende Voraussetzung ist konkret: schriftliche Zustimmung vor Annahme. Ein späteres wirtschaftliches Ergebnis ändert diese zeitliche Tatsache nicht.","Die Frage fragt ausdrücklich nach dem Zeitpunkt der Annahme. Weder eine erst später erstellte Bestätigung noch eine zusätzliche Offenlegung an andere Personen ist dann bereits vorhandener schriftlicher Konsens."],
+  "compensation"),
+ q("a2",
+  "mock-a",
+  "a c",
+  "A senior supervisor delegates daily monitoring to a qualified team leader but gives no instructions about compliance responsibilities and ignores reports of control failures. The delegation:",
+  [["satisfies supervision duties once a qualified employee accepts the delegated role.","Die Auswahl einer geeigneten Person ist nur ein Teil wirksamer Delegation. Fehlende Zuständigkeitsanleitung und ignorierte bekannte Kontrollausfälle bleiben relevant."],["requires the senior supervisor to perform every monitoring check personally.","Angemessene Delegation ist möglich. Der Fehler besteht nicht im Übertragen der täglichen Prüfung, sondern in fehlendem Rahmen und ausbleibender Reaktion auf bekannte Lücken."],["does not excuse failure to establish instructions or address known control problems.","Die bekannten Kontrolllücken und fehlende Anleitung bleiben relevant."]],
+  2,
+  ["Die Frage richtet sich nicht gegen Delegation selbst. Sie betrifft deren mangelhafte Durchführung und das Ignorieren konkreter Hinweise.","Unterscheide zulässige Übertragung von Aufgaben und fortbestehende Pflicht zu einem angemessenen Aufsichtssystem. Qualifikation allein ist kein Ersatz für klare Zuständigkeit, Überwachung und Reaktion auf Warnsignale."],
+  "supervision"),
+ q("b1",
+  "mock-b",
+  "a c",
+  "After employment ends, a researcher uses her general valuation skills at a new firm. She takes no former-employer records or confidential information, and no applicable agreement restricts the activity. Standard IV(A) most likely:",
+  [["permits general professional skills to be used without misappropriating former-employer property.","Fachliche Fähigkeiten sind nicht automatisch vertrauliches Firmeneigentum."],["requires the former employer’s consent before she applies valuation techniques learned during employment.","Allgemeines fachliches Können ist von vertraulichen Firmenunterlagen zu unterscheiden. Der Fall schließt verbotene Datenmitnahme und entgegenstehende Vereinbarungen ausdrücklich aus."],["permits using those skills only for clients who were never served by the former employer.","Eine solche pauschale Beschränkung allgemeiner Fähigkeiten folgt aus IV(A) nicht. Andere gültige Abreden und vertrauliche Informationen wären gesondert zu beachten, sind hier aber nicht gegeben."]],
+  0,
+  ["Der Sachverhalt grenzt allgemeine Fähigkeiten von Daten und geschützten Informationen ab. Diese Trennung ist für den Stellenwechsel zentral.","Berufliche Erfahrung, Firmeneigentum und vertragliche Beschränkungen sind verschiedene Kategorien. Nach dem geschilderten Ende des Arbeitsverhältnisses darf allgemeines Können unter den ausdrücklich erlaubten Bedingungen eingesetzt werden."],
+  "leaving"),
+ q("b2",
+  "mock-b",
+  "b",
+  "A firm has a detailed compliance manual, but staff are not trained on it and no one reviews whether procedures are followed. The best assessment is that:",
+  [["the manual is sufficient if employees acknowledge receiving it each year.","Eine Empfangsbestätigung belegt keine verständliche Schulung, Umsetzung oder tatsächliche Kontrolle. Der Fall nennt gerade das Fehlen dieser wirksamen Bestandteile."],["the manual requires effective communication, implementation, and monitoring to support reasonable supervision.","Ein System muss im Arbeitsalltag funktionieren."],["annual external assurance can replace the firm’s ongoing implementation and monitoring.","Externe Prüfungen können ergänzen, ersetzen aber nicht die angemessene laufende Durchführung und Überwachung des betrieblichen Systems. Ein vorhandener Text muss praktisch wirksam sein."]],
+  1,
+  ["Die Ursache liegt im Unterschied zwischen geschriebenen Regeln und gelebtem Prozess. Schulung, Zuständigkeiten und Prüfung der Anwendung schließen diese Lücke.","Bewerte, ob das System Verhalten tatsächlich steuert und Verstöße erkennt. Ein Handbuch, dessen Anwendung weder vermittelt noch überwacht wird, erfüllt diesen Zweck nicht allein durch Existenz oder Unterschrift."],
+  "controls")
 ];

@@ -61,24 +61,36 @@ module.exports=[
   ['Evaluate the data, assumptions, relevant validation, and limitations for the intended use.','Die Untersuchung verbindet Modellnachweis und tatsächlichen Einsatz.'],
   ['Assume that high subscription fees prove reliability.','Der Preis ist kein Validierungsnachweis.']
  ],1,['Eine passende Untersuchung fragt unter anderem, ob die Tests die neue Anwendung repräsentieren. Sie muss nicht mit einer vollständigen Eigenentwicklung identisch sein.'],'research-process'),
- q('a1','mock-a','a c','A firm thoroughly evaluates a new investment process and retains complete records. It fails to tell clients about a significant new liquidity limitation. The completed research and records:',[
-  ['eliminate any need to explain the limitation.','Analyse und Archiv ersetzen die Kommunikation nicht.'],
-  ['prove that the limitation cannot be significant.','Die Bedeutung der Einschränkung ist im Sachverhalt ausdrücklich angegeben.'],
-  ['do not remedy the separate communication failure.','Jede Stufe von Standard V ist eigenständig zu erfüllen.']
- ],2,['Der beschriebene Mangel betrifft, was die Kunden erfahren. Gute Grundlagen und Nachweise können zugleich vorhanden sein, während die Information unzureichend bleibt.'],'linked-case'),
- q('a2','mock-a','a c','A former employee wants to use an old employer’s research report at a new firm. The supporting records are unavailable, and he has no permission to take the former employer’s files. The most appropriate action is to:',[
-  ['recreate an adequate supporting basis using permissible sources before relying on the work.','Neue Verwendung braucht eine zulässige nachvollziehbare Grundlage.'],
-  ['use the old recommendation solely because he remembers its conclusion.','Die Erinnerung an das Ergebnis ersetzt die fehlenden Nachweise nicht.'],
-  ['take confidential backups without permission because record retention overrides ownership.','Die Aufbewahrungspflicht schafft kein allgemeines Recht zur unberechtigten Mitnahme.']
- ],0,['Die Pflichten aus Arbeitgeberloyalität und Dokumentation müssen gemeinsam erfüllt werden. Ein fehlendes Archiv darf nicht durch unerlaubte Datenübernahme ersetzt werden.'],'retention-controls'),
- q('b1','mock-b','a c','An analyst receives new reliable evidence that materially undermines a published recommendation. She continues distributing the unchanged recommendation without assessing the evidence. The main issue is:',[
-  ['all published recommendations must remain permanently unchanged.','Neue wesentliche Informationen können eine erneute Prüfung erfordern.'],
-  ['the recommendation’s continuing reasonable basis has not been reassessed.','Die frühere Grundlage kann durch die neue Evidenz unzureichend geworden sein.'],
-  ['research is unnecessary once the initial recommendation was profitable.','Ein früherer Gewinn ersetzt keine aktuelle sachliche Grundlage.']
- ],1,['Die Pflicht bezieht sich auf die tatsächlich weiterverwendete Empfehlung. Wesentliche neue Informationen dürfen nicht ignoriert werden, weil der erste Bericht einmal vertretbar war.'],'basis'),
- q('b2','mock-b','b','A firm uses messaging applications for substantive investment advice but excludes those messages from its archive solely because they are not formal reports. Its record policy should:',[
-  ['continue excluding them because only signed paper reports count.','Das Format entscheidet nicht allein über die inhaltliche Nachweispflicht.'],
-  ['delete all supporting research to treat every channel equally.','Gleichmäßiger Verlust der Nachweise ist keine angemessene Lösung.'],
-  ['capture relevant communications regardless of medium through an appropriate retention process.','Der Inhalt und die Entscheidungsfunktion bestimmen die Relevanz.']
- ],2,['Ein kanalübergreifender Prozess verhindert, dass wesentliche Beratung nur wegen der verwendeten App später nicht mehr nachvollziehbar ist.'],'retention-controls')
+ q("a1",
+  "mock-a",
+  "a c",
+  "A firm thoroughly evaluates a new investment process and retains complete records. It fails to tell clients about a significant new liquidity limitation. The completed research and records:",
+  [["satisfy Standard V if clients accepted the strategy’s original investment objective.","Die Zustimmung zum ursprünglichen Anlageziel ersetzt keine Information über eine spätere wesentliche Liquiditätsbegrenzung. Analysegrundlage und laufende Kommunikation sind getrennte Pflichten."],["permit disclosure at the next scheduled review even when affected clients can act beforehand.","Eine wesentliche neue Einschränkung darf nicht allein deshalb bis zu einem Routinetermin zurückgehalten werden, weil die interne Untersuchung bereits abgeschlossen ist. Die relevante Kundenentscheidung braucht rechtzeitige Information."],["do not cure the separate failure to communicate a significant new limitation to affected clients.","Jede Stufe von Standard V ist eigenständig zu erfüllen."]],
+  2,
+  ["Der beschriebene Mangel betrifft, was die Kunden erfahren. Gute Grundlagen und Nachweise können zugleich vorhanden sein, während die Information unzureichend bleibt.","Der konkrete Mangel liegt nicht in der Untersuchung oder Aufbewahrung. Die wesentliche neue Liquiditätseigenschaft wurde den Kunden nicht mitgeteilt; gute interne Arbeit beseitigt diese eigenständige Kommunikationslücke nicht."],
+  "linked-case"),
+ q("a2",
+  "mock-a",
+  "a c",
+  "A former employee wants to use an old employer’s research report at a new firm. The supporting records are unavailable, and he has no permission to take the former employer’s files. The most appropriate action is to:",
+  [["rebuild adequate supporting evidence from permissible sources before relying on the research.","Neue Verwendung braucht eine zulässige nachvollziehbare Grundlage."],["rely on the previously published report because final recommendations were already disclosed publicly.","Öffentliche Verfügbarkeit einer Empfehlung ersetzt keine heute tragfähige nachvollziehbare Grundlage. Die fehlenden unterstützenden Nachweise sind vor erneuter Verwendung angemessen zu rekonstruieren."],["request only the former supervisor’s verbal assurance that the original research was adequate.","Eine allgemeine Erinnerung an frühere Sorgfalt stellt die benötigte Unterstützung für die neue Verwendung nicht wieder her. Die Grundlage muss aus erlaubten Quellen nachvollziehbar verfügbar sein."]],
+  0,
+  ["Die Pflichten aus Arbeitgeberloyalität und Dokumentation müssen gemeinsam erfüllt werden. Ein fehlendes Archiv darf nicht durch unerlaubte Datenübernahme ersetzt werden.","Die neue Firma benötigt eine eigene zulässige Beleggrundlage. Vertrauliches Firmeneigentum darf dafür nicht unerlaubt mitgenommen werden; Erinnerung und frühere Veröffentlichung ersetzen die fehlenden Nachweise nicht."],
+  "retention-controls"),
+ q("b1",
+  "mock-b",
+  "a c",
+  "An analyst receives new reliable evidence that materially undermines a published recommendation. She continues distributing the unchanged recommendation without assessing the evidence. The main issue is:",
+  [["the analyst should wait for the next scheduled research cycle before assessing the evidence.","Ein üblicher Veröffentlichungstermin rechtfertigt nicht, neue wesentliche Gegeninformationen ungeprüft zu ignorieren und die unveränderte Empfehlung weiterzuverbreiten. Die Grundlage muss zeitgerecht überprüft werden."],["the recommendation’s continuing reasonable basis must be reassessed in light of the reliable material contrary evidence.","Die frühere Grundlage kann durch die neue Evidenz unzureichend geworden sein."],["the analyst may rely on the original review because the new evidence came from outside the firm.","Zuverlässige relevante externe Evidenz ist nicht allein wegen ihrer Herkunft unbeachtlich. Die Aufgabe gibt ihre Wesentlichkeit und Verlässlichkeit ausdrücklich vor."]],
+  1,
+  ["Die Pflicht bezieht sich auf die tatsächlich weiterverwendete Empfehlung. Wesentliche neue Informationen dürfen nicht ignoriert werden, weil der erste Bericht einmal vertretbar war.","Die ursprüngliche Grundlage war eine zeitpunktbezogene Beurteilung. Wenn verlässliche neue Informationen sie wesentlich infrage stellen, muss geprüft werden, ob und wie die Empfehlung weiterhin tragfähig ist."],
+  "basis"),
+ q("b2",
+  "mock-b",
+  "b",
+  "A firm uses messaging applications for substantive investment advice but excludes those messages from its archive solely because they are not formal reports. Its record policy should:",
+  [["retain formal reports and preserve messages only when a client files a complaint.","Die Relevanz einer aufbewahrungspflichtigen Beratung entsteht nicht erst durch eine Beschwerde. Geschäftsbezogene Nachrichten können bereits die Anlageentscheidung und wesentliche Kommunikation dokumentieren."],["rely on clients to retain advice messages because they are the recipients.","Die eigene angemessene Dokumentation wird nicht durch die Hoffnung auf Kundenkopien ersetzt. Der betriebliche Prozess muss relevante Kommunikation und ihre Unterstützung tatsächlich sichern."],["archive substantive advice messages and their supporting records through an appropriate retention process.","Der Inhalt und die Entscheidungsfunktion bestimmen die Relevanz."]],
+  2,
+  ["Ein kanalübergreifender Prozess verhindert, dass wesentliche Beratung nur wegen der verwendeten App später nicht mehr nachvollziehbar ist.","Für den Aufbewahrungsumfang zählt die geschäftliche Funktion der Nachricht. Der digitale Kanal oder die fehlende Form eines unterschriebenen Berichts beseitigt die Relevanz inhaltlicher Anlageberatung nicht."],
+  "retention-controls")
 ];

@@ -5564,3 +5564,48 @@ Bei einigen reservierten Ethics-Fragen sind falsche Optionen zu offensichtlich.
 Die Fragenbank wird daher vor der Zielbewertung inhaltlich geprüft; korrekte
 Auswertung und vollständige Themenzahlen allein belegen keine angemessene
 Schwierigkeit. Gesamtfreigabe und Zielbewertungen bleiben bis dahin offen.
+
+## 26.10.2026: alle reservierten Ethics-Fragen redaktionell überarbeiten
+
+Die [Aufgabenprüfung](CFA-2027-QUESTION-AUDIT.md) vergleicht die eigenen Fragen
+mit den öffentlichen offiziellen Beispielformaten und dokumentiert die vollständige
+Revision aller 44 reservierten Ethics-Fragen. 88 falsche Alternativen behandeln
+nun konkrete Verwechslungen zwischen Einzelstandards, Zeitpunkt, Zustimmung,
+Informationsstatus und wirksamer Kontrolle. Alle richtigen Antworten wurden
+sprachlich geprüft und präzisiert; das fachliche Urteil bleibt bestehen.
+Jede Lösung erhielt eine zusätzliche spezifische Argumentation, jede falsche
+Option eine ausführlichere Begründung. Die Antwortlängen liefern kein einfaches
+Muster „immer die längste wählen“; richtige Buchstaben verteilen sich auf
+15 A, 14 B und 15 C. Solche Kontrollen sind keine empirische Kalibrierung.
+
+548 von 548 Kernprüfungen bestanden. Beide vollständigen tatsächlichen Klausuren
+wurden erneut durch sämtliche Fragen und Lösungen geführt, einschließlich Reload,
+Markierung, zwei getrennten Sitzungen und zurückgehaltener Lösung vor Abgabe.
+A erzielt bei absichtlich 18 gesetzten Fehlern genau 162 Treffer und 18
+Journaleinträge, B bei vollständig richtiger Auswahl genau 180 Treffer ohne
+Fehlerjournal. Der dritte Browserfall führt alle 44 geänderten Fragen in einer
+isolierten Darstellungsfixture durch: jeder Antworttext, richtige Markierung,
+alle Begründungen, vier Viewports, Rückverweise und 44 bewusst erzeugte
+Journaleinträge. Drei von drei Browserfällen bestanden (158,9 Sekunden).
+Acht vollständige Desktop-/Mobilansichten aus vier Regelabgrenzungen wurden
+einzeln gelesen. Für die übrigen 40 Fragen werden Text- und Layoutprüfungen,
+aber keine weiteren individuellen Bildaufnahmen behauptet.
+
+Vollständiger JSON-Vergleich bestätigt alle 102 unveränderten Einheiten, alle
+340 unveränderten Anwendungsnachweise und 4434 unveränderte Fragen. Die 44
+geänderten reservierten Fragen behalten Aufgabenstellung, Lernziele, Abschnitt
+und Pool. Geänderte Inhalte erhalten neue Revisionskennungen; die vorhandene
+Reconciliation verhindert stilles Weiterbewerten veralteter Klausurantworten.
+Alle 4118 Trainingsfragen sowie 316 andere reservierte Fragen, beide vollständigen
+Themenbaupläne, Modellcode, Renderer, Engine, Kompilierung, UI und Wörterbuch
+bleiben unverändert. Es werden keine zusätzlichen Fragen gezählt.
+
+HTML-Fassung: 0bfc7cc0fdde0cc0; CFA-Inhaltsfassung: dd62f1691106dcb1.
+Vollständiger LF-HTML-SHA256: 0bfc7cc0fdde0cc0865a7527d038d285dafff15ec413258c76fe1ebabc330f56
+bei 28409076 Bytes; CFA-Daten-SHA256: 5b7a5e6a43d03cbec3988086169da23b52ca9130925c04423d594712ae3767bd.
+
+Der konkrete Ethics-Distraktorenbefund ist bearbeitet. Die übrige Aufgabenprüfung,
+zusammengeführte Endabnahme und transparente Neubewertung bleiben offen.
+Alle Einheiten bleiben draft, Release false. Die verlangten Zielwerte werden
+vor dieser Prüfung nicht als erreicht ausgegeben und sind keine individuellen
+Bestehenswahrscheinlichkeiten.

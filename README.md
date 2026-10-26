@@ -26,6 +26,9 @@ Alle 340 Lernziele besitzen getrennte Zugänge zu Erklärung, ausgearbeitetem
 Rechen- oder Fallbeispiel und selbstständigem Training. Der
 [Anwendungsabgleich](CFA-2027-APPLICATION-AUDIT.md) dokumentiert zwölf dazu
 ergänzte ausführliche Fälle und die geprüften Unterschiede.
+Die [Aufgabenprüfung](CFA-2027-QUESTION-AUDIT.md) dokumentiert die Überarbeitung
+aller 44 reservierten Ethics-Fragen: konkrete Regelverwechslungen als falsche
+Alternativen und ausführlichere Begründungen statt leicht erkennbarer Ablenkungen.
 
 Der neue Bereich unter **Finance → CFA Level I 2027** führt 102 offizielle Module
 mit 340 einzeln zugeordneten Lernzielreferenzen. Der aktuelle Arbeitsstand enthält

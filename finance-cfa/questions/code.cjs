@@ -61,24 +61,36 @@ module.exports=[
  ['always proves misconduct regardless of effectiveness.','Das würde Empfehlung und Pflicht gleichsetzen.'],
  ['eliminates all documentation requirements.','Andere Pflichten bleiben unberührt.']
  ],0,['Es ist die tatsächlich erforderliche Pflicht zu prüfen. Alternative angemessene Umsetzung kann möglich sein.'],'substandards'),
- q('a1','mock-a','a','Which source can give rise to a professional conduct investigation?',[
- ['Only a final criminal conviction.','Die möglichen Auslöser sind weiter.'],
- ['A credible written complaint or relevant public information.','Beides kann Anlass für eine Untersuchung liefern.'],
- ['Only a member’s voluntary admission.','Auch unabhängige Hinweise können relevant sein.']
- ],1,['Die Untersuchung soll gerade erst klären, ob eine Verletzung vorliegt. Ein vorheriges Geständnis oder Strafurteil ist keine allgemeine Voraussetzung.'],'conduct-program'),
- q('a2','mock-a','b c','An employee corrects a misleading investment analysis despite pressure to preserve a personal bonus. This most directly illustrates the Code’s requirement to:',[
- ['maximize personal compensation before considering clients.','Das wäre die entgegengesetzte Priorität.'],
- ['guarantee the analysis will predict prices perfectly.','Korrektheit und Sorgfalt sind keine Prognosegarantie.'],
- ['place client interests and professional integrity above personal interests.','Die Handlung ordnet den eigenen Bonus der beruflichen Pflicht unter.']
- ],2,['Die Entscheidung zeigt die Rangfolge der Interessen in einer konkreten Konfliktsituation.'],'six-principles'),
- q('b1','mock-b','a','Following an investigation, Professional Conduct staff finds insufficient grounds for disciplinary action. The process:',[
- ['can conclude without a disciplinary sanction.','Nicht jede Untersuchung endet mit einem festgestellten Verstoß.'],
- ['must impose a sanction because a complaint existed.','Eine Beschwerde ist noch kein Beweis.'],
- ['must guarantee compensation for every market loss.','Das ist nicht die Funktion des Verfahrens.']
- ],0,['Untersuchungen klären Sachverhalte; ein sanktionsloses Ergebnis ist möglich.'],'process'),
- q('b2','mock-b','b c','An adviser explains service costs, key process risks, and the distinction between facts and forecasts. These topics fall most directly under:',[
- ['only the rules for use of the CFA designation.','Es geht um Anlagekommunikation, nicht um Status.'],
- ['Standard V(B), communication with clients and prospective clients.','Kosten, Methode, Risiken und Aussageart sind zentrale Kommunikationspunkte.'],
- ['only the rules for exam security.','Prüfungsinhalte sind hier nicht betroffen.']
- ],1,['Die Sachverhaltsmerkmale führen zur konkreten Kommunikationspflicht, nicht nur allgemein zu „Ethik“.'],'standard-map')
+ q("a1",
+  "mock-a",
+  "a",
+  "Which source can give rise to a professional conduct investigation?",
+  [["A written complaint only after a court has found a legal violation.","Eine berufsständische Untersuchung setzt kein vorheriges Gerichtsurteil voraus. Ob Pflichten verletzt wurden, soll durch die Untersuchung erst geklärt werden."],["Credible written complaints or relevant public information concerning potential professional misconduct.","Beides kann Anlass für eine Untersuchung liefern."],["A member’s self-disclosure, after the member accepts a proposed sanction.","Eine eigene Offenlegung kann ein Auslöser sein, ist aber kein notwendiger erster Schritt. Zustimmung zu einer Sanktion gehört gegebenenfalls zu einer späteren Verfahrensstufe."]],
+  1,
+  ["Die Untersuchung soll gerade erst klären, ob eine Verletzung vorliegt. Ein vorheriges Geständnis oder Strafurteil ist keine allgemeine Voraussetzung.","Unterscheide Auslöser, Untersuchung und Feststellung. Glaubwürdige externe Hinweise können eine Untersuchung veranlassen, ohne bereits einen Verstoß oder die Zustimmung des Betroffenen zu beweisen."],
+  "conduct-program"),
+ q("a2",
+  "mock-a",
+  "b c",
+  "An employee corrects a misleading investment analysis despite pressure to preserve a personal bonus. This most directly illustrates the Code’s requirement to:",
+  [["give the employer’s commercial objectives priority over a client’s information needs.","Arbeitgeberloyalität erlaubt keine irreführende Kundeninformation. Im geschilderten Konflikt darf das Vertriebsinteresse die zutreffende Analyse nicht verdrängen."],["resolve personal incentives through disclosure rather than correcting investment communications.","Ein persönlicher Anreiz kann offenzulegen sein. Dies ersetzt aber nicht die hier erforderliche Korrektur einer bereits irreführenden Analyse."],["place client interests and professional integrity above personal bonus incentives.","Die Handlung ordnet den eigenen Bonus der beruflichen Pflicht unter."]],
+  2,
+  ["Die Entscheidung zeigt die Rangfolge der Interessen in einer konkreten Konfliktsituation.","Die konkrete Handlung korrigiert eine irreführende Darstellung trotz persönlicher Nachteile. Entscheidend ist die Rangfolge gegenüber dem Bonus; allgemeine Arbeitgeberloyalität oder Konfliktoffenlegung erlauben keine fortgesetzte Falschinformation."],
+  "six-principles"),
+ q("b1",
+  "mock-b",
+  "a",
+  "Following an investigation, Professional Conduct staff finds insufficient grounds for disciplinary action. The process:",
+  [["can conclude without imposing a sanction when evidence provides insufficient grounds.","Nicht jede Untersuchung endet mit einem festgestellten Verstoß."],["requires a disciplinary hearing even when the investigation does not support a charge.","Die Untersuchung kann ohne Sanktion enden. Eine zuvor eingegangene Beschwerde erzwingt bei unzureichender Grundlage weder einen Schuldspruch noch eine streitige Anhörung."],["requires a reprimand because credible information was sufficient to open the investigation.","Die Schwelle für eine Untersuchung ist nicht die Feststellung eines Verstoßes. Eine glaubwürdige Ausgangsinformation allein rechtfertigt noch keine obligatorische Rüge."]],
+  0,
+  ["Untersuchungen klären Sachverhalte; ein sanktionsloses Ergebnis ist möglich.","Das Ergebnis der Untersuchung ist im Fall ausdrücklich unzureichende Grundlage für Disziplinarmaßnahmen. Der Verfahrensbeginn darf nicht mit einer bereits bewiesenen Pflichtverletzung gleichgesetzt werden."],
+  "process"),
+ q("b2",
+  "mock-b",
+  "b c",
+  "An adviser explains service costs, key process risks, and the distinction between facts and forecasts. These topics fall most directly under:",
+  [["Standard III(C), which governs the suitability of recommendations for client objectives and constraints.","Geeignetheit betrifft die Passung einer Empfehlung zum Kunden beziehungsweise Mandat. Die genannten Erläuterungen zu Kosten, Prozess und Aussageart betreffen unmittelbar die Kommunikation nach V(B)."],["Standard V(B), communication of process, material limitations, risks, costs, and statement types.","Kosten, Methode, Risiken und Aussageart sind zentrale Kommunikationspunkte."],["Standard V(A), which governs the diligence and reasonable basis supporting an investment recommendation.","Sorgfalt ist für die zugrunde liegende Analyse nötig. Gefragt ist hier jedoch die Mitteilung dieser Informationen an Kunden; dafür ist V(B) der unmittelbar passende Einzelstandard."]],
+  1,
+  ["Die Sachverhaltsmerkmale führen zur konkreten Kommunikationspflicht, nicht nur allgemein zu „Ethik“.","Achte auf das Tätigkeitsverb: Die Beraterin erklärt Informationen an Kunden. Die Frage prüft damit den Kommunikationsschritt und nicht vorrangig die vorausgehende Analyse oder eine bestimmte Eignungsentscheidung."],
+  "standard-map")
 ];

@@ -81,44 +81,68 @@ module.exports=[
  ['Agreeing an appropriate trusted-contact process with the client in advance.','Vorab geklärte Zustimmung und Grenzen erleichtern eine zulässige Reaktion.'],
  ['Posting concerns on social media to seek assistance.','Öffentliche Offenlegung ist keine angemessene Schutzmaßnahme.']
  ],1,['Ein dokumentierter Kontaktprozess verbindet Schutz und Vertraulichkeit. Der zulässige Umfang und geltendes Recht sind weiterhin zu beachten.'],'controls'),
- q('a1','mock-a','a c','A manager directs client brokerage commissions to pay the manager’s office rent, providing no client investment benefit. Even though the manager discloses this arrangement, it most likely:',[
- ['complies because disclosure cures all conflicts.','Offenlegung beseitigt die materielle Kundenpflicht nicht.'],
- ['complies if the rent is reasonably priced.','Der Preis macht eine eigene Betriebsausgabe nicht zum Kundennutzen.'],
- ['violates the duty to act for the clients’ benefit.','Die Kundenressource wird für einen eigenen Betriebszweck eingesetzt.']
- ],2,['Entscheidend ist die Verwendung der Kundenprovisionen. Die eigene Bürofinanzierung ohne Kundennutzen wird durch ihre Offenlegung nicht angemessen.'],'loyalty'),
- q('a2','mock-a','a c','An adviser changes a stock recommendation from buy to sell. An unaware client submits a purchase order based on the old advice. Before accepting that order, the adviser should:',[
- ['inform the client of the changed recommendation.','Die wesentliche Änderung ist vor Annahme zu erläutern.'],
- ['execute it and explain the change only after settlement.','Die rechtzeitige Information fehlt.'],
- ['conceal the change unless the client asks directly.','Die Pflicht hängt nicht von dieser Nachfrage ab.']
- ],0,['Der Kunde entscheidet auf einer bekannten veralteten Grundlage. Rechtzeitige Kommunikation gibt ihm die Möglichkeit, die Entscheidung neu zu treffen.'],'fair-dealing'),
- q('a3','mock-a','a c','A fund’s binding mandate prohibits leverage. Its manager uses borrowing because a model predicts a higher risk-adjusted return. Under Standard III(C), the model result:',[
- ['automatically amends the mandate.','Eine Modellrechnung ändert keine verbindliche Grenze.'],
- ['does not justify violating the mandate.','Die wirtschaftliche Attraktivität ersetzt keine Erlaubnis.'],
- ['removes the requirement to communicate with clients.','Kommunikationspflichten entfallen dadurch ebenfalls nicht.']
- ],1,['Mandatstreue ist eine eigenständige Bedingung. Selbst eine plausible Verbesserung darf nicht gegen ausdrücklich geltende Grenzen umgesetzt werden.'],'suitability'),
- q('a4','mock-a','a c','A client authorizes an adviser to share only the account balance with a named accountant. The adviser sends the balance and unrelated confidential medical notes. No other disclosure basis applies. This action:',[
- ['complies because any permission releases all client information.','Die Einwilligung hat einen begrenzten Umfang.'],
- ['complies because accountants are professionals.','Der Beruf des Empfängers erweitert die Erlaubnis nicht.'],
- ['exceeds the permitted scope of disclosure.','Die zusätzlichen Notizen sind nicht umfasst.']
- ],2,['Prüfe nicht nur das Vorliegen einer Zustimmung, sondern Inhalt und Empfänger. Die medizinischen Angaben überschreiten den ausdrücklich erlaubten Umfang.'],'confidentiality'),
- q('b1','mock-b','a c','A client directs use of a particular broker. The adviser explains that this may prevent best execution, follows applicable requirements, and prudently implements the instruction. The broker restriction:',[
- ['should be understood as a client-imposed limit on execution choices.','Der Auftrag begrenzt den verfügbaren Ausführungsraum; die Folgen sind erläutert.'],
- ['eliminates every remaining duty of care.','Auch innerhalb der Einschränkung bleibt sorgfältige Ausführung erforderlich.'],
- ['proves that the adviser must ignore the client’s instruction.','Die Aufgabe gibt keine Grundlage für ein pauschales Ignorieren.']
- ],0,['Directed Brokerage ist nach seinen konkreten Bedingungen zu beurteilen. Offen erläuterte Kundenbeschränkungen und fortbestehende Sorgfaltspflichten sind gemeinsam zu betrachten.'],'loyalty'),
- q('b2','mock-b','a c','A manager’s sibling holds an ordinary fee-paying client account managed under the same rules as all other suitable accounts. For a scarce issue, the manager should:',[
- ['automatically award the sibling priority.','Verwandtschaft begründet keinen Vorrang.'],
- ['treat the account fairly under the normal client allocation policy.','Ein echtes Kundenkonto darf weder bevorzugt noch allein wegen Verwandtschaft ausgeschlossen werden.'],
- ['automatically exclude the account solely because of the relationship.','Das wäre die umgekehrte unsachliche Benachteiligung.']
- ],1,['Unterscheide persönliche Eigenzuteilungen von einem regulären Familienkundenkonto. Die Aufgabe beschreibt ausdrücklich den zweiten Fall.'],'fair-dealing'),
- q('b3','mock-b','a c','A client’s new employment contract creates a large, concentrated exposure to the same company already held in the investment portfolio. Before recommending more of that company’s shares, an adviser should:',[
- ['consider only the return forecast for those shares.','Die neue Konzentration und die Kundensituation fehlen.'],
- ['assume employment income is unrelated to investment risk.','Beide Exponierungen können vom selben Unternehmen abhängen.'],
- ['reassess the recommendation in the context of the updated client circumstances and total portfolio.','Die neue Information kann die geeignete Risikoposition verändern.']
- ],2,['Eine attraktive Einzelprognose beantwortet die Konzentrationsfrage nicht. Aktuelle Kundeninformationen müssen in die Eignungsprüfung einfließen.'],'suitability'),
- q('b4','mock-b','a c','An adviser accurately reports a strategy’s one-year return but describes it as the firm’s consistent ten-year result, although no such record exists. This most directly:',[
- ['misrepresents the period and representativeness of performance.','Die einzelne Zahl ist richtig, ihre behauptete Bedeutung nicht.'],
- ['complies because at least one return is correct.','Darstellungswahrheit erfordert mehr als eine richtige Einzelzahl.'],
- ['complies if a risk disclaimer appears elsewhere.','Eine allgemeine Risikoklausel korrigiert keine falsche Historie.']
- ],0,['Der Zeitraum ist Bestandteil der Aussage. Eine Rendite aus einem Jahr kann keinen nicht vorhandenen zehnjährigen Nachweis ersetzen.'],'performance')
+ q("a1",
+  "mock-a",
+  "a c",
+  "A manager directs client brokerage commissions to pay the manager’s office rent, providing no client investment benefit. Even though the manager discloses this arrangement, it most likely:",
+  [["complies if the manager fully discloses the rent payment and its economic value to clients.","Offenlegung macht die Verwendung von Kundenprovisionen für reine eigene Betriebskosten nicht zu einer kundenbezogenen Anlageleistung. Die Mittelverwendung ist materiell zu beurteilen."],["complies if the commission rate remains competitive with rates offered by other brokers.","Ein marktüblicher Provisionssatz beantwortet die separate Frage nach dem zulässigen Nutzen der bezahlten Leistung nicht. Hier erhält allein der Manager die genannte Mietleistung."],["violates the clients’ benefit requirement by diverting their commissions to the manager’s operating costs.","Die Kundenressource wird für einen eigenen Betriebszweck eingesetzt."]],
+  2,
+  ["Entscheidend ist die Verwendung der Kundenprovisionen. Die eigene Bürofinanzierung ohne Kundennutzen wird durch ihre Offenlegung nicht angemessen.","Prüfe Verwendung und Begünstigten der Kundenressource. Ein angemessener Preis oder eine Offenlegung kann den fehlenden kundenseitigen Anlagevorteil dieses reinen Eigenaufwands nicht ersetzen."],
+  "loyalty"),
+ q("a2",
+  "mock-a",
+  "a c",
+  "An adviser changes a stock recommendation from buy to sell. An unaware client submits a purchase order based on the old advice. Before accepting that order, the adviser should:",
+  [["explain the revised recommendation before accepting the purchase order based on old advice.","Die wesentliche Änderung ist vor Annahme zu erläutern."],["execute the unsolicited order and include the updated recommendation in the trade confirmation.","Der Kunde handelt ausdrücklich noch auf der alten Empfehlung. Die wesentliche Änderung muss vor Annahme erklärt werden; eine Bestätigung nach der Ausführung kommt für diese Entscheidung zu spät."],["obtain the client’s acknowledgement that unsolicited orders are outside the adviser’s research service.","Die Einstufung als Kundeninitiative ersetzt nicht die Information über die bereits geänderte eigene Empfehlung. Die bekannte Fehlvorstellung muss vor Annahme angesprochen werden."]],
+  0,
+  ["Der Kunde entscheidet auf einer bekannten veralteten Grundlage. Rechtzeitige Kommunikation gibt ihm die Möglichkeit, die Entscheidung neu zu treffen.","Die neue Empfehlung besteht bereits und ist dem Kunden unbekannt. Gefragt ist der richtige nächste Kommunikationsschritt vor Annahme, nicht ein pauschales Verbot jedes vom Kunden gewünschten Kaufs."],
+  "fair-dealing"),
+ q("a3",
+  "mock-a",
+  "a c",
+  "A fund’s binding mandate prohibits leverage. Its manager uses borrowing because a model predicts a higher risk-adjusted return. Under Standard III(C), the model result:",
+  [["supports a temporary mandate exception if the expected Sharpe ratio improves.","Ein besseres modelliertes Risiko-Rendite-Verhältnis ändert keine bindende Anlagerestriktion. Ohne zulässige Mandatsänderung darf das ausdrückliche Leverage-Verbot nicht überschritten werden."],["does not override the fund’s binding leverage restriction without a valid mandate change.","Die wirtschaftliche Attraktivität ersetzt keine Erlaubnis."],["permits borrowing if the deviation is disclosed in the next periodic client report.","Nachträgliche Information ist keine vorherige Mandatsänderung. Die Berichterstattung kann eine unzulässige Anlagehandlung nicht allein nachträglich erlauben."]],
+  1,
+  ["Mandatstreue ist eine eigenständige Bedingung. Selbst eine plausible Verbesserung darf nicht gegen ausdrücklich geltende Grenzen umgesetzt werden.","Die Frage gibt ein bindendes Verbot vor. Eine wirtschaftlich attraktiv erscheinende Maßnahme muss innerhalb des Mandats bleiben; ein Modellwert ist keine Zustimmung zur Änderung der Restriktion."],
+  "suitability"),
+ q("a4",
+  "mock-a",
+  "a c",
+  "A client authorizes an adviser to share only the account balance with a named accountant. The adviser sends the balance and unrelated confidential medical notes. No other disclosure basis applies. This action:",
+  [["complies because the named recipient is the client’s professional accountant.","Die berufliche Rolle des Empfängers erweitert die ausdrücklich auf den Kontostand begrenzte Erlaubnis nicht. Für die zusätzlichen vertraulichen Angaben fehlt im Fall eine andere Grundlage."],["complies if the adviser believes the additional notes could improve the accountant’s advice.","Ein vermuteter Nutzen ersetzt keine passende Offenlegungsbefugnis. Der Umfang der Zustimmung und mögliche gesonderte Offenlegungsgründe sind zu prüfen; Letztere sind hier ausgeschlossen."],["exceeds the authorized disclosure by including unrelated confidential medical information.","Die zusätzlichen Notizen sind nicht umfasst."]],
+  2,
+  ["Prüfe nicht nur das Vorliegen einer Zustimmung, sondern Inhalt und Empfänger. Die medizinischen Angaben überschreiten den ausdrücklich erlaubten Umfang.","Die Einwilligung ist inhaltlich begrenzt. Empfänger, Informationsumfang und andere zulässige Offenlegungsgründe werden getrennt geprüft; die genannten medizinischen Notizen überschreiten die einzige gegebene Erlaubnis."],
+  "confidentiality"),
+ q("b1",
+  "mock-b",
+  "a c",
+  "A client directs use of a particular broker. The adviser explains that this may prevent best execution, follows applicable requirements, and prudently implements the instruction. The broker restriction:",
+  [["constitutes a client-imposed execution constraint that still requires prudent implementation.","Der Auftrag begrenzt den verfügbaren Ausführungsraum; die Folgen sind erläutert."],["requires the adviser to select another broker whenever a lower commission is available.","Ein ausdrücklich angewiesener Broker begrenzt die Ausführungswahl. Ein günstigeres Entgelt allein erlaubt nicht, eine nach Aufklärung wirksame Kundenweisung zu ignorieren."],["requires treating the directed account less favorably in unrelated investment allocations.","Eine Brokerbeschränkung erklärt bestimmte Ausführungsunterschiede, rechtfertigt aber keine Benachteiligung bei davon unabhängigen Zuteilungen. Die übrigen Kundenpflichten bleiben bestehen."]],
+  0,
+  ["Directed Brokerage ist nach seinen konkreten Bedingungen zu beurteilen. Offen erläuterte Kundenbeschränkungen und fortbestehende Sorgfaltspflichten sind gemeinsam zu betrachten.","Die Aufgabe nennt eine aufgeklärte Kundenweisung und umsichtige Umsetzung. Dies begrenzt den Ausführungsraum, beseitigt aber weder Sorgfalt noch Fairness in anderen Entscheidungen."],
+  "loyalty"),
+ q("b2",
+  "mock-b",
+  "a c",
+  "A manager’s sibling holds an ordinary fee-paying client account managed under the same rules as all other suitable accounts. For a scarce issue, the manager should:",
+  [["exclude the account from the issue to eliminate the appearance of a family conflict.","Ein gewöhnliches gebührenzahlendes geeignetes Kundenkonto darf nicht allein wegen der Verwandtschaft von einer fairen Zuteilung ausgeschlossen werden. Konfliktkontrolle darf nicht zu ungerechtfertigter Benachteiligung führen."],["include the suitable fee-paying account in the same fair allocation process as comparable clients.","Ein echtes Kundenkonto darf weder bevorzugt noch allein wegen Verwandtschaft ausgeschlossen werden."],["allocate to unrelated clients first and consider the sibling only after their orders are filled.","Eine pauschale nachrangige Behandlung eines echten Familienkundenkontos ist ebenfalls keine faire normale Kundenzuteilung. Der Fall grenzt dieses Konto von einem persönlichen Eigenhandelskonto ab."]],
+  1,
+  ["Unterscheide persönliche Eigenzuteilungen von einem regulären Familienkundenkonto. Die Aufgabe beschreibt ausdrücklich den zweiten Fall.","Entscheidend ist der gegebene Status als normales Kundenkonto. Die Beziehung verlangt angemessene Konfliktkontrolle, aber weder Priorität noch automatischen Ausschluss gegenüber vergleichbaren geeigneten Kunden."],
+  "fair-dealing"),
+ q("b3",
+  "mock-b",
+  "a c",
+  "A client’s new employment contract creates a large, concentrated exposure to the same company already held in the investment portfolio. Before recommending more of that company’s shares, an adviser should:",
+  [["retain the original suitability conclusion unless the client formally changes the investment policy statement.","Wesentliche neue Umstände müssen in die Eignungsprüfung einfließen. Eine bekannte zusätzliche Konzentration darf nicht bis zur formalen Dokumentenänderung ignoriert werden."],["approve the purchase if the security independently meets the portfolio’s stated return target.","Die Eignung betrifft den Gesamtzusammenhang von Risiko, Vermögen und Umständen. Ein isoliertes Renditeziel berücksichtigt die neue gemeinsame Unternehmensabhängigkeit nicht."],["reassess suitability against updated circumstances and the client’s combined exposure before recommending more shares.","Die neue Information kann die geeignete Risikoposition verändern."]],
+  2,
+  ["Eine attraktive Einzelprognose beantwortet die Konzentrationsfrage nicht. Aktuelle Kundeninformationen müssen in die Eignungsprüfung einfließen.","Die neue Vergütungs- oder Beschäftigungsexposition verändert die Gesamtbetrachtung, auch wenn das Wertpapier selbst unverändert ist. Die Empfehlung wird anhand der aktualisierten Umstände und des gesamten Portfolios neu geprüft."],
+  "suitability"),
+ q("b4",
+  "mock-b",
+  "a c",
+  "An adviser accurately reports a strategy’s one-year return but describes it as the firm’s consistent ten-year result, although no such record exists. This most directly:",
+  [["misrepresents the available performance history by describing a single year as a consistent ten-year result.","Die einzelne Zahl ist richtig, ihre behauptete Bedeutung nicht."],["complies if the one-year figure is accurate and the period is identified in the underlying data.","Die öffentlich behauptete Zehnjahresbedeutung bleibt trotz richtiger Rohdaten irreführend. Eine nicht vorhandene Historie darf nicht durch Verweis auf die ursprüngliche Jahreszahl suggeriert werden."],["complies if the presentation includes a warning that past performance does not predict future results.","Ein Hinweis zur Zukunftsunsicherheit korrigiert keine falsche Aussage über Länge und Repräsentativität der vorhandenen Vergangenheit. Diese Tatsachen müssen selbst richtig beschrieben werden."]],
+  0,
+  ["Der Zeitraum ist Bestandteil der Aussage. Eine Rendite aus einem Jahr kann keinen nicht vorhandenen zehnjährigen Nachweis ersetzen.","Die Zahl und ihre behauptete Bedeutung sind getrennt zu prüfen. Ein korrekt berechnetes Jahr darf nicht als tatsächlich vorhandener Zehnjahresnachweis bezeichnet werden."],
+  "performance")
 ];

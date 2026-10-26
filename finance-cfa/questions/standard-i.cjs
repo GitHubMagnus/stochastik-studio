@@ -61,34 +61,52 @@ module.exports=[
   ['Allow all analysts to approve every model once they have read a general ethics statement.','Allgemeine Regeln vermitteln keine fehlenden fachlichen Modellkenntnisse.'],
   ['Match approval responsibilities to demonstrated skills and provide targeted training for gaps.','Befugnis und tatsächliche Fähigkeiten werden miteinander verbunden.']
  ],2,['Die Kontrolle muss die konkrete neue Verantwortung mit den vorhandenen Fähigkeiten abgleichen. Eine Schulung kann geeignet sein, wenn sie diese Lücke tatsächlich schließt.'],'controls'),
- q('a1','mock-a','a c','A jurisdiction requires advisers to provide a particular risk disclosure that is more detailed than the minimum otherwise required by the CFA Standards. The requirement applies to the adviser’s activity. She should:',[
-  ['provide the more detailed legally required disclosure.','Die strengere einschlägige Anforderung gilt.'],
-  ['omit it because CFA membership supersedes local rules.','Mitgliedschaft befreit nicht von anwendbaren gesetzlichen Pflichten.'],
-  ['provide it only if every other jurisdiction also requires it.','Die Regeln anderer nicht einschlägiger Rechtsordnungen entscheiden diesen Fall nicht.']
- ],0,['Die Pflicht folgt aus der tatsächlich anwendbaren strengeren Regel. Es ist keine Mehrheitsentscheidung zwischen Rechtsordnungen.'],'law'),
- q('a2','mock-a','a c','A consultant knowingly advertises that all client valuations are personally completed by her, while most are produced by qualified external specialists and she performs only a final review. The quality of the specialists’ work is satisfactory. The advertisement most likely:',[
-  ['complies because outsourcing is always prohibited and therefore cannot be relevant.','Outsourcing ist nicht pauschal verboten; die tatsächliche Leistung muss zutreffend beschrieben werden.'],
-  ['misrepresents how the promised service is delivered.','Die sachliche Qualität beseitigt die falsche Behauptung persönlicher Durchführung nicht.'],
-  ['complies because review and personal completion are identical.','Die konkrete Werbeaussage vermittelt einen anderen Leistungsumfang.']
- ],1,['Entscheidend ist die wissentlich falsche Beschreibung. Die Kundin darf qualifizierte Dritte einsetzen, muss deren Rolle aber mit ihrer Leistungsdarstellung in Einklang bringen.'],'representation'),
- q('a3','mock-a','b','A company requires analysts to record gifts but never reviews the register or imposes restrictions. Several benefits are explicitly conditional on favorable coverage. The most appropriate improvement is to:',[
-  ['keep the register unchanged because recording alone makes all gifts permissible.','Dokumentation ist keine Freigabe problematischer Einflussnahme.'],
-  ['delete the register to avoid evidence of conflicts.','Dies verschlechtert Nachvollziehbarkeit und Kontrolle.'],
-  ['review proposed benefits and reject those that could reasonably impair objectivity.','Die Kontrolle muss Folgen haben und vor der beeinträchtigten Entscheidung greifen.']
- ],2,['Ein Register liefert Informationen. Erst die sachgerechte Beurteilung und Durchsetzung verhindert, dass bekannte Konflikte unverändert fortbestehen.'],'controls'),
- q('b1','mock-b','a c','An analyst’s employer threatens to reduce her compensation unless she changes a well-supported unfavorable research conclusion to win an issuer mandate. The analyst’s primary professional response should be to:',[
-  ['maintain an independent conclusion and use appropriate escalation procedures.','Interner wirtschaftlicher Druck darf die Analyse nicht in ein gewünschtes Ergebnis umwandeln.'],
-  ['change the conclusion because only external gifts threaten independence.','Auch firmeninterner Druck kann Objektivität beeinträchtigen.'],
-  ['change the conclusion if the issuer’s management agrees with the revised version.','Die Zustimmung des wirtschaftlich interessierten Emittenten ist keine unabhängige Grundlage.']
- ],0,['Die Drohung betrifft die Ergebnisrichtung, nicht eine sachliche Korrektur der Analyse. Berufliche Objektivität erfordert, die Empfehlung an der Evidenz auszurichten.'],'independence'),
- q('b2','mock-b','a c','A member uses a technically sound process within her expertise and clearly communicates its risks. An unforeseeable adverse outcome produces a client loss. On these facts alone, the loss:',[
-  ['proves a violation of the competence requirement.','Ein Verlust allein belegt kein Fähigkeitsdefizit.'],
-  ['does not establish a violation of Standard I(E).','Kompetenz wird am aufgabengerechten Können und Vorgehen beurteilt.'],
-  ['proves that no risks were communicated.','Der Sachverhalt nennt eine klare Risikokommunikation ausdrücklich.']
- ],1,['Prüfe, ob die notwendige Befähigung vorhanden war. Eine ungewisse Kapitalanlage kann trotz kompetenter Durchführung einen Verlust erzeugen.'],'competence'),
- q('b3','mock-b','a c','A member knowingly invents evidence in a professional due-diligence report to conceal that a required site inspection never occurred. The most accurate conclusion is that:',[
-  ['the conduct is acceptable if the inspection would probably have found no problems.','Die hypothetische Unbedenklichkeit rechtfertigt keine erfundenen Tatsachen.'],
-  ['only the missing travel expense determines whether a violation occurred.','Der relevante Sachverhalt ist die berufliche Täuschung.'],
-  ['the fabricated professional evidence violates integrity requirements.','Der Bericht täuscht den Empfänger über die tatsächliche Prüfung.']
- ],2,['Die Aussage muss dem wirklich durchgeführten Prozess entsprechen. Eine nachträgliche Vermutung über ein mögliches Prüfergebnis kann einen erfundenen Nachweis nicht ersetzen.'],'misconduct')
+ q("a1",
+  "mock-a",
+  "a c",
+  "A jurisdiction requires advisers to provide a particular risk disclosure that is more detailed than the minimum otherwise required by the CFA Standards. The requirement applies to the adviser’s activity. She should:",
+  [["provide the more detailed disclosure required by the applicable local law.","Die strengere einschlägige Anforderung gilt."],["use the CFA minimum if the client acknowledges the shorter disclosure.","Die Zustimmung eines Kunden hebt die ausdrücklich anwendbare gesetzliche Mindestanforderung nicht auf. Die ausführlichere Information ist hier rechtlich verpflichtend."],["use the employer’s standard disclosure until its compliance manual is updated.","Ein veralteter interner Text suspendiert keine geltende Pflicht. Die Beraterin muss die erforderliche Information bereitstellen und den nötigen Prozess anpassen lassen."]],
+  0,
+  ["Die Pflicht folgt aus der tatsächlich anwendbaren strengeren Regel. Es ist keine Mehrheitsentscheidung zwischen Rechtsordnungen.","Die Aufgabe legt Anwendbarkeit und höhere Schutzanforderung fest. Daher ist keine weitere Erlaubnis des Kunden oder Aktualisierung einer internen Vorlage Voraussetzung für die Befolgung dieser Regel."],
+  "law"),
+ q("a2",
+  "mock-a",
+  "a c",
+  "A consultant knowingly advertises that all client valuations are personally completed by her, while most are produced by qualified external specialists and she performs only a final review. The quality of the specialists’ work is satisfactory. The advertisement most likely:",
+  [["complies because she accepts final professional responsibility for the specialists’ work.","Verantwortung für eine fremde Leistung und persönliche vollständige Durchführung sind unterschiedliche Aussagen. Die wissentlich unzutreffende Werbung bleibt auch bei sorgfältiger Endprüfung irreführend."],["misrepresents the delivery of the service despite satisfactory outsourced work.","Die sachliche Qualität beseitigt die falsche Behauptung persönlicher Durchführung nicht."],["complies if clients receive valuations of the quality promised in the advertisement.","Die Qualitätsaussage ist nur ein Teil des Versprechens. Auch die ausdrücklich behauptete persönliche Erstellung muss den Tatsachen entsprechen."]],
+  1,
+  ["Entscheidend ist die wissentlich falsche Beschreibung. Die Kundin darf qualifizierte Dritte einsetzen, muss deren Rolle aber mit ihrer Leistungsdarstellung in Einklang bringen.","Das Problem ist nicht die zulässige Beauftragung qualifizierter Dritter. Der behauptete Leistungsweg stimmt nicht mit dem tatsächlichen überein; ein gutes Ergebnis oder persönliche Verantwortung macht diese Beschreibung nicht wahr."],
+  "representation"),
+ q("a3",
+  "mock-a",
+  "b",
+  "A company requires analysts to record gifts but never reviews the register or imposes restrictions. Several benefits are explicitly conditional on favorable coverage. The most appropriate improvement is to:",
+  [["retain the recording process and provide clients with annual summaries of accepted gifts.","Zusätzliche Offenlegung allein verhindert keine ergebnisabhängige Einflussnahme. Die ausdrücklich bedingten Vorteile müssen materiell beurteilt und gegebenenfalls vor Annahme abgelehnt werden."],["authorize line managers to approve benefits whenever analysts state that their opinions are unchanged.","Eine Selbsteinschätzung ersetzt nicht die Prüfung der objektiv zu erwartenden Beeinträchtigung. Interne Freigaben dürfen die Pflicht zur Unabhängigkeit nicht außer Kraft setzen."],["review proposed benefits and reject those reasonably expected to compromise independent judgment.","Die Kontrolle muss Folgen haben und vor der beeinträchtigten Entscheidung greifen."]],
+  2,
+  ["Ein Register liefert Informationen. Erst die sachgerechte Beurteilung und Durchsetzung verhindert, dass bekannte Konflikte unverändert fortbestehen.","Die Ursache ist eine bekannte Kopplung von Vorteil und günstiger Berichterstattung. Eine Kontrolle muss diese Einflussnahme unterbrechen; mehr Dokumentation oder die bloße Bestätigung unveränderter Meinungen genügt dafür nicht."],
+  "controls"),
+ q("b1",
+  "mock-b",
+  "a c",
+  "An analyst’s employer threatens to reduce her compensation unless she changes a well-supported unfavorable research conclusion to win an issuer mandate. The analyst’s primary professional response should be to:",
+  [["maintain the supported independent conclusion and use appropriate escalation procedures.","Interner wirtschaftlicher Druck darf die Analyse nicht in ein gewünschtes Ergebnis umwandeln."],["publish the favorable conclusion after disclosing the employer’s investment-banking interest.","Die Offenlegung eines Mandatsinteresses rechtfertigt keine sachlich unbegründete Änderung des Urteils. Die veröffentlichte Empfehlung muss weiterhin die unabhängige Analyse widerspiegeln."],["replace the recommendation with neutral wording until the issuer mandate has been secured.","Ein aus Geschäftsinteresse abgeschwächtes Urteil bleibt ein Eingriff in die unabhängige Kommunikation. Die Sicherung des Mandats ist kein sachlicher Anlass, eine gut begründete Empfehlung zu verfälschen."]],
+  0,
+  ["Die Drohung betrifft die Ergebnisrichtung, nicht eine sachliche Korrektur der Analyse. Berufliche Objektivität erfordert, die Empfehlung an der Evidenz auszurichten.","Die Drohung liefert keine neue Anlageevidenz. Zulässig wäre eine sachlich begründete Änderung nach neuen Informationen; im gegebenen Fall soll dagegen das Ergebnis für ein Geschäftsmandat verändert werden."],
+  "independence"),
+ q("b2",
+  "mock-b",
+  "a c",
+  "A member uses a technically sound process within her expertise and clearly communicates its risks. An unforeseeable adverse outcome produces a client loss. On these facts alone, the loss:",
+  [["establishes a competence violation because the process did not preserve the client’s capital.","Die Kompetenzpflicht ist keine Kapitalerhaltungsgarantie. Ein unerwarteter Verlust kann trotz aufgabengerechten Könnens und technisch tragfähigen Vorgehens eintreten."],["does not establish a competence violation merely because the investment lost value.","Kompetenz wird am aufgabengerechten Können und Vorgehen beurteilt."],["establishes misrepresentation because the disclosed risks did not prevent the loss.","Risikokommunikation soll zutreffend informieren, nicht Risiken beseitigen. Der Fall nennt weder falsche Angaben noch eine verschwiegene wesentliche Eigenschaft."]],
+  1,
+  ["Prüfe, ob die notwendige Befähigung vorhanden war. Eine ungewisse Kapitalanlage kann trotz kompetenter Durchführung einen Verlust erzeugen.","Trenne Fähigkeit, wahrheitsgemäße Kommunikation und späteres Marktergebnis. Die gegebenen Tatsachen belegen einen Verlust, aber keinen Mangel an Kompetenz oder eine Falschdarstellung."],
+  "competence"),
+ q("b3",
+  "mock-b",
+  "a c",
+  "A member knowingly invents evidence in a professional due-diligence report to conceal that a required site inspection never occurred. The most accurate conclusion is that:",
+  [["is primarily a record-retention deficiency that can be remedied by arranging the inspection later.","Eine später durchgeführte Besichtigung macht einen zuvor wissentlich erfundenen Nachweis nicht wahr. Es fehlt nicht nur eine Datei, sondern der Bericht behauptet eine tatsächlich nicht erbrachte Prüfung."],["is acceptable if a supervisor assumes responsibility for the final due-diligence recommendation.","Die Verantwortung eines Vorgesetzten erlaubt dem Mitglied keine wissentlich falschen Belege. Eigene Integritätspflichten bleiben bei Delegation und Freigabe bestehen."],["violates professional integrity by knowingly claiming an inspection that never occurred.","Der Bericht täuscht den Empfänger über die tatsächliche Prüfung."]],
+  2,
+  ["Die Aussage muss dem wirklich durchgeführten Prozess entsprechen. Eine nachträgliche Vermutung über ein mögliches Prüfergebnis kann einen erfundenen Nachweis nicht ersetzen.","Der Nachweis wurde bewusst erfunden, um einen nicht ausgeführten Prozess als abgeschlossen darzustellen. Die spätere fachliche Arbeit oder die Verantwortung eines anderen kann die ursprüngliche Täuschung nicht rückwirkend aufheben."],
+  "misconduct")
 ];

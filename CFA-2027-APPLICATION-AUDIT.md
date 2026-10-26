@@ -56,3 +56,8 @@ Durchsicht der reservierten Ethics-Fragen zeigt teilweise zu leicht erkennbare
 Distraktoren. Diese Schwäche wird nicht durch die bloße Anzahl der Fragen oder
 bestandene technische Tests aufgehoben. Die Zielbewertungen werden erst nach
 dieser Prüfung vergeben; alle Einheiten bleiben bis dahin redaktionelle Entwürfe.
+
+Nachtrag vom selben Tag: Der genannte Ethics-Befund wurde in der
+[Aufgabenrevision](CFA-2027-QUESTION-AUDIT.md) für alle 44 reservierten Ethics-
+Fragen bearbeitet. Die größere Aufgaben- und Gesamtabnahme bleibt ein eigener
+Prüfschritt.

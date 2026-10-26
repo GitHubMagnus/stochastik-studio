@@ -61,24 +61,36 @@ module.exports=[
  ['may accurately refer to current candidacy.','Die Phase nach der Prüfung bis zum Ergebnis ist in der Kandidatur berücksichtigt.'],
  ['has earned a partial charter.','Eine solche Teilbezeichnung entsteht nicht.']
  ],1,['Kandidatur, Prüfungsabschluss und verliehener Charter bleiben getrennte Zustände.'],'status-controls'),
- q('a1','mock-a','a','A candidate posts an original example explaining a published curriculum formula. The example uses no actual exam information. This activity is:',[
- ['permissible on the stated facts.','Eigene Lernarbeit mit öffentlichem Stoff ist keine Prüfungsenthüllung.'],
- ['prohibited because every curriculum formula is confidential.','Veröffentlichter Lernstoff ist nicht automatisch vertraulich.'],
- ['permitted only after the candidate obtains the charter.','Diese Einschränkung folgt nicht aus dem Standard.']
- ],0,['Die Aufgabe unterscheidet ausdrücklich eigene Lehrinhalte von tatsächlicher Prüfungserfahrung.'],'exam-integrity'),
- q('a2','mock-a','a','A professional accurately describes the rigor of the CFA Program but then states that the designation eliminates the possibility of investment losses. The latter statement:',[
- ['is a factual implication of passing the exams.','Keine Ausbildung beseitigt das wirtschaftliche Verlustrisiko.'],
- ['misrepresents the implications of the designation.','Es wird eine unbelegte Verlustgarantie suggeriert.'],
- ['is acceptable when preceded by a correct status statement.','Eine richtige erste Aussage heilt die falsche zweite nicht.']
- ],1,['Ausbildungsanforderung und Anlagerisiko sind getrennt. Eine korrekte Beschreibung des Programms begründet keine Garantie.'],'claims'),
- q('b1','mock-b','a','A candidate privately tells another candidate which formulas appeared in her actual exam. She does not share complete questions. Her conduct:',[
- ['is allowed because it is a private conversation.','Vertraulichkeit gilt auch bei einzelnen privaten Empfängern.'],
- ['is allowed because formulas themselves may appear in textbooks.','Die Information über ihre Verwendung in der echten Prüfung ist zusätzlich und vertraulich.'],
- ['violates the confidentiality of actual exam content.','Entscheidend ist die Verbindung zur konkreten Prüfung.']
- ],2,['Die Formel kann öffentlich bekannt sein, während ihr tatsächliches Vorkommen im Examen geschützt bleibt.'],'exam-integrity'),
- q('b2','mock-b','a','A resume uses the label “partial CFA charterholder” to describe passing two exam levels without having received the charter. This label:',[
- ['misrepresents the status achieved.','Es gibt daraus keine verliehene Teilbezeichnung.'],
- ['is accurate whenever more than one exam is passed.','Die Anzahl bestandener Prüfungen schafft keine Teilverleihung.'],
- ['is accurate if the person plans to take the final exam.','Ein künftiger Plan ändert den aktuellen Status nicht.']
- ],0,['Die Prüfungen dürfen zutreffend beschrieben werden. Der erfundene Zwischenstatus ist der Fehler.'],'status')
+ q("a1",
+  "mock-a",
+  "a",
+  "A candidate posts an original example explaining a published curriculum formula. The example uses no actual exam information. This activity is:",
+  [["permissible as original instruction on public concepts without revealing actual exam content.","Eigene Lernarbeit mit öffentlichem Stoff ist keine Prüfungsenthüllung."],["prohibited if posted before the current examination window has closed.","Die zeitliche Nähe allein macht ein selbst konstruiertes Beispiel zu öffentlichem Lernstoff nicht zu geschützter Prüfungsinformation. Der Fall schließt jede Verbindung zu tatsächlichen Prüfungsinhalten aus."],["permissible only after CFA Institute approves the candidate’s original calculation.","Für diese eigenständige Erklärung öffentlicher Lerninhalte folgt aus VII(A) keine allgemeine vorherige Freigabe der einzelnen Rechnung. Prüfungsvertraulichkeit bleibt unabhängig davon verbindlich."]],
+  0,
+  ["Die Aufgabe unterscheidet ausdrücklich eigene Lehrinhalte von tatsächlicher Prüfungserfahrung.","Unterscheide öffentlichen Lernstoff und Informationen darüber, was in einer konkreten Prüfung vorkam. Nur der erste Bereich ist hier betroffen; eine tatsächliche Prüfungsenthüllung ist ausdrücklich ausgeschlossen."],
+  "exam-integrity"),
+ q("a2",
+  "mock-a",
+  "a",
+  "A professional accurately describes the rigor of the CFA Program but then states that the designation eliminates the possibility of investment losses. The latter statement:",
+  [["complies if the professional adds that the guarantee applies only to suitable portfolios.","Auch Geeignetheit macht Kapitalanlagen nicht verlustfrei. Die Einschränkung auf passende Portfolios belegt die behauptete aus der Bezeichnung folgende Garantie nicht."],["misrepresents the designation’s implications by treating a professional qualification as a guarantee against investment losses.","Es wird eine unbelegte Verlustgarantie suggeriert."],["complies if the statement describes the benefits of the program rather than the individual’s track record.","Die irreführende Wirkung betrifft auch Aussagen über die Bedeutung des Programms oder der Bezeichnung. Eine unbelegte Verlustgarantie wird nicht durch diesen anderen Bezug zulässig."]],
+  1,
+  ["Ausbildungsanforderung und Anlagerisiko sind getrennt. Eine korrekte Beschreibung des Programms begründet keine Garantie.","Eine korrekte Qualifikationsbeschreibung kann mit einer falschen Folgerung verbunden sein. Das erworbene Wissen und die Bezeichnung garantieren kein bestimmtes Anlageergebnis; genau diese zusätzliche Behauptung ist zu beurteilen."],
+  "claims"),
+ q("b1",
+  "mock-b",
+  "a",
+  "A candidate privately tells another candidate which formulas appeared in her actual exam. She does not share complete questions. Her conduct:",
+  [["complies if both candidates have already completed their own examination sessions.","Die Vertraulichkeit tatsächlicher Prüfungsinhalte endet nicht dadurch, dass die Gesprächsteilnehmer ihre Sitzungen abgeschlossen haben. Auch die Identifikation getesteter Formeln ist eine konkrete Inhaltsangabe."],["complies if the discussion omits the numerical inputs and the answer choices.","Vollständige Aufgaben sind keine Voraussetzung einer geschützten Inhaltsenthüllung. Die Mitteilung, welche Formeln tatsächlich geprüft wurden, betrifft bereits die konkrete Prüfung."],["violates actual-exam confidentiality despite omitting complete questions and using a private conversation.","Entscheidend ist die Verbindung zur konkreten Prüfung."]],
+  2,
+  ["Die Formel kann öffentlich bekannt sein, während ihr tatsächliches Vorkommen im Examen geschützt bleibt.","Die Verknüpfung mit der realen Prüfung ist die entscheidende zusätzliche Information. Dass eine Formel auch öffentlich lernbar ist, macht die Aussage über ihr tatsächliches Vorkommen nicht frei mitteilbar."],
+  "exam-integrity"),
+ q("b2",
+  "mock-b",
+  "a",
+  "A resume uses the label “partial CFA charterholder” to describe passing two exam levels without having received the charter. This label:",
+  [["misrepresents status because passing individual exam levels confers no partial charter.","Es gibt daraus keine verliehene Teilbezeichnung."],["is acceptable if a footnote accurately lists the two examination levels passed.","Eine ergänzende richtige Fußnote macht die irreführende nicht verliehene Teilbezeichnung nicht zutreffend. Die Qualifikation muss unmittelbar sachlich korrekt beschrieben werden."],["is acceptable if the person is currently registered for the Level III examination.","Eine aktuelle Kandidatur und bestandene Stufen verleihen keinen teilweisen Charter. Der zulässige tatsächliche Kandidatenstatus muss von der nicht erworbenen Bezeichnung getrennt bleiben."]],
+  0,
+  ["Die Prüfungen dürfen zutreffend beschrieben werden. Der erfundene Zwischenstatus ist der Fehler.","Beschreibe die tatsächlich bestandenen Prüfungen und gegebenenfalls den zutreffenden aktuellen Kandidatenstatus. Daraus entsteht keine stufenweise verliehene Teilversion der Charter-Bezeichnung."],
+  "status")
 ];
