@@ -100,9 +100,16 @@ module.exports=[
  q('a1','mock-a','a','Using 365 days, an issuer has average inventory of 150 with annual cost of goods sold of 1,825, average receivables of 160 with annual credit sales of 2,920, and average payables of 120 with annual credit purchases of 2,190. Its cash conversion cycle in days is:',[
  ['30','Vorratstage dreißig plus Forderungstage zwanzig minus Verbindlichkeitstage zwanzig.'],['50','Dies ist der operative Zyklus ohne Abzug des Lieferantenkredits.'],['70','Dies addiert die Verbindlichkeitstage statt sie abzuziehen.']
  ],[F('CCC=365\\left(\\frac{150}{1825}+\\frac{160}{2920}-\\frac{120}{2190}\\right)=30','Die drei unterschiedlichen Jahresströme liefern die jeweilige Tagesbasis.',[['CCC','Cash Conversion Cycle in Tagen.']]),'Die Lieferantenfinanzierung deckt zwanzig der fünfzig Tage zwischen Warenbindung und Kundenzahlung.'],'cycle-formulas'),
- q('a2','mock-a','b c','Two forecasts have identical total receipts and payments over a quarter. In the second forecast, a large customer receipt arrives a month later, after a major supplier payment. Which conclusion is most appropriate?',[
- ['The peak funding requirement can increase even if quarter-end cash before financing is unchanged.','Die Reihenfolge kann eine zwischenzeitliche Finanzierungslücke vergrößern.'],['Equal quarterly totals guarantee identical liquidity needs on every date.','Gesamtsummen verdecken unterjährige Termine.'],['The delayed receipt necessarily reduces the contractual supplier payment.','Eine spätere Kundenzahlung ändert nicht automatisch die eigene Verpflichtung.']
- ],['Liquiditätsplanung wird auf ausreichend kurze Perioden heruntergebrochen. Die maximale Inanspruchnahme, nicht nur der Endsaldo, bestimmt den benötigten Kreditrahmen.','Zusätzlich sind Reserven, tatsächliche Abruffähigkeit und eventuelle Kosten der längeren Finanzierung zu prüfen.'],'cash-budget'),
+ Q("wc-a2",
+   "working-capital",
+   "corporate",
+   "mock-a",
+   "b c",
+   "Two forecasts have identical total receipts and payments over a quarter. In the second forecast, a large customer receipt arrives a month later, after a major supplier payment. Which conclusion is most appropriate?",
+   [["The peak funding requirement can increase even if quarter-end cash before financing is unchanged.","Die Reihenfolge kann eine zwischenzeitliche Finanzierungslücke vergrößern."],["Equal quarterly totals guarantee identical liquidity needs on every date.","Gesamtsummen verdecken unterjährige Termine."],["Equal quarter-end cash allows the firm to size its financing solely from the quarter totals rather than the payment dates.","Gerade der vorgezogene Lieferantenabfluss kann vor dem späteren Kundeneingang Cash erfordern. Ein gleicher Endbestand ersetzt keine rollierende Terminrechnung."]],
+   0,
+   ["Liquiditätsplanung wird auf ausreichend kurze Perioden heruntergebrochen. Die maximale Inanspruchnahme, nicht nur der Endsaldo, bestimmt den benötigten Kreditrahmen.","Zusätzlich sind Reserven, tatsächliche Abruffähigkeit und eventuelle Kosten der längeren Finanzierung zu prüfen."],
+   {"section":"cash-budget"}),
  q('b1','mock-b','a b','Two merchants use the same credit-sales and purchase conventions. Relative to last year, a merchant’s inventory days fall by 4, receivable days rise by 9 and payable days rise by 7. The change in its cash conversion cycle, in days, is:',[
  ['−2','Minus vier plus neun minus sieben ergibt minus zwei.'],['12','Dies addiert die Änderung der Lieferantentage mit falschem Vorzeichen.'],['2','Dies kehrt die Richtung der gesamten Veränderung um.']
  ],[F('\\Delta CCC=-4+9-7=-2','Der schnellere Lagerumschlag und zusätzliche Lieferantenkredit überwiegen die langsamere Kundenzahlung knapp.',[['\\Delta CCC','Veränderung des Cash Conversion Cycle in Tagen.']]),'Eine Verringerung um zwei Tage sagt ohne Volumen und Strombasen noch nicht, wie viele Euro freigesetzt werden.'],'sensitivity'),

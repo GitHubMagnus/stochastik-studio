@@ -53,8 +53,26 @@ module.exports=[
  q('50','practice','b','Even after a consistent option adjustment, the remaining spread can:',[['still reflect credit, liquidity, tax and other pricing effects.','Optionsbereinigung macht die Restkompensation nicht eindeutig rein kreditbedingt.'],['be treated as a guaranteed excess return.','Risiken und Realisationsbedingungen bleiben.'],['replace contract and credit analysis completely.','Die Kennzahl ergänzt diese Prüfungen.']],['Bereinigt bedeutet nicht annahmenfrei oder risikolos.'],'oas-limits'),
  q('51','practice','a b','Which statement separates IRR and terminal wealth correctly?',[['The promised cash-flow IRR is defined without actual reinvestment trades, while terminal-wealth return depends on accumulated intermediate payments.','Definition und realisierter Vermögenspfad sind verschiedene Fragen.'],['No IRR can be calculated before all coupons were reinvested at that IRR.','Eine Gleichung benötigt keine bereits ausgeführten Wiederanlagegeschäfte.'],['An annualized terminal-wealth return always equals current yield.','Die Kuponquote ignoriert Kapital- und Wiederanlageeffekte.']],['Alle Renditeberichte benennen Kennzahl, Horizont und Zahlungsannahmen.'],'realized'),
  q('52','practice','a b','A bond yield is nominal annually with semiannual compounding; its benchmark is quoted as an effective annual yield. Before reporting an annual effective yield difference, an analyst should:',[['convert both to the same annual basis and verify the benchmark, price and entitlement definitions.','Erst dann werden vergleichbare Raten subtrahiert.'],['subtract the printed numbers directly without conversion.','Unterschiedliche Jahreskonventionen werden vermischt.'],['divide the benchmark by two and call the result annual effective.','Das liefert keine korrekte Jahresvergleichsbasis.']],['Zeit-, Preis-, Vertrags- und Einheitenkontrolle stehen vor der Interpretation.'],'workflow'),
- q('a1','mock-a','a b','An own bond YTM is quoted at 6% nominal annually with semiannual compounding. A matched same-currency government comparison is 4.8% EFFECTIVE annually. For an explicitly defined annual-effective G-spread, the result is closest to:',[['129 bp.','Bondquote auf 6,09 Prozent effektiv umrechnen und 4,8 Prozent abziehen.'],['120 bp.','Die gedruckten, unterschiedlich definierten Jahresquoten werden direkt subtrahiert.'],['12.9 bp.','Der Prozentpunkt-zu-Basispunkt-Faktor ist um zehn zu klein.']],[F('y_{B,\\rm eff}=1{,}03^2-1=0{,}0609,\\quad s_G=(0{,}0609-0{,}048)\\cdot10\\,000=129\\,\\mathrm{bp}','Beide Yields verwenden vor der Differenz dieselbe effektive Jahresbasis.',[['y_{B,\\rm eff}','Effektive jährliche Bond-YTM.'],['s_G','Hier ausdrücklich auf effektiver Jahresbasis definierter G-Spread.'],['\\mathrm{bp}','Basispunkt.']])],'benchmarks'),
- q('b1','mock-b','a b','An own model has annual cash flows of 4 after one year and 104 after two. Reference spot quotes are 4% and 6%, both NOMINAL annually with semiannual compounding. Define Z-spread as 40 bp added to each EFFECTIVE annual spot after conversion. Full price is closest to:',[['95.539737.','Spots werden zuerst zu 4,04 und 6,09 Prozent effektiv umgerechnet; danach wird 0,4 Prozentpunkt addiert.'],['95.696418.','Die nominalen Jahresquoten wurden ohne Umrechnung als effektive Spots benutzt.'],['95.518075.','Der Aufschlag wurde in der nominalen Halbjahreskonvention statt wie definiert nach der Umrechnung addiert.']],[F('P=\\frac4{1{,}02^2+0{,}004}+\\frac{104}{(1{,}03^2+0{,}004)^2}\\approx95{,}539737','Erst Konventionen vereinheitlichen, dann den definierten konstanten Spread anwenden und nach Zahlungsjahren diskontieren.',[['P','Voller Preis der beiden Zielzahlungen.']])],'z-definition')
+ Q("fyd-a1",
+   "fixed-yields",
+   "bonds",
+   "mock-a",
+   "a b",
+   "A bond’s YTM is quoted at 6% nominal annually with semiannual compounding. A matched same-currency government comparison is 4.8% effective annually. For an explicitly defined annual-effective G-spread, the result is closest to:",
+   [["129 bp.","Bondquote auf 6,09 Prozent effektiv umrechnen und 4,8 Prozent abziehen."],["120 bp.","Die gedruckten, unterschiedlich definierten Jahresquoten werden direkt subtrahiert."],["12.9 bp.","Der Prozentpunkt-zu-Basispunkt-Faktor ist um zehn zu klein."]],
+   0,
+   [{"kind":"formula","tex":"y_{B,\\rm eff}=1{,}03^2-1=0{,}0609,\\quad s_G=(0{,}0609-0{,}048)\\cdot10\\,000=129\\,\\mathrm{bp}","reading":"Beide Yields verwenden vor der Differenz dieselbe effektive Jahresbasis.","symbols":[["y_{B,\\rm eff}","Effektive jährliche Bond-YTM."],["s_G","Hier ausdrücklich auf effektiver Jahresbasis definierter G-Spread."],["\\mathrm{bp}","Basispunkt."]]}],
+   {"section":"benchmarks"}),
+ Q("fyd-b1",
+   "fixed-yields",
+   "bonds",
+   "mock-b",
+   "a b",
+   "A model has annual cash flows of 4 after one year and 104 after two. Reference spot quotes are 4% and 6%, both nominal annually with semiannual compounding. Define Z-spread as 40 bp added to each effective annual spot after conversion. Full price is closest to:",
+   [["95.539737.","Spots werden zuerst zu 4,04 und 6,09 Prozent effektiv umgerechnet; danach wird 0,4 Prozentpunkt addiert."],["95.696418.","Die nominalen Jahresquoten wurden ohne Umrechnung als effektive Spots benutzt."],["95.518075.","Der Aufschlag wurde in der nominalen Halbjahreskonvention statt wie definiert nach der Umrechnung addiert."]],
+   0,
+   [{"kind":"formula","tex":"P=\\frac4{1{,}02^2+0{,}004}+\\frac{104}{(1{,}03^2+0{,}004)^2}\\approx95{,}539737","reading":"Erst Konventionen vereinheitlichen, dann den definierten konstanten Spread anwenden und nach Zahlungsjahren diskontieren.","symbols":[["P","Voller Preis der beiden Zielzahlungen."]]}],
+   {"section":"z-definition"})
 ];
 
 module.exports.push(

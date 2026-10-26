@@ -2615,7 +2615,7 @@ test('enterprise bridge, sensitivity rows and terminal forward-versus-trailing b
  const questions=new Map(data.questions.map(q=>[q.id,q]));
  const wrong=(id,value)=>questions.get(id).options.find(o=>Number(o.text)===value);
  near(63.33,(900+50+20-180-30)/12,.005);assert.match(wrong('mult-a1',63.33).why,/Tochteranteile/);
- near(85,(75*(1-.03/.125)/.06+20-120)/10);assert.match(wrong('mult-b1',85).why,/doppelt so hohem ROIC/);
+ near(115,(75/.06+20-120)/10);assert.match(wrong('mult-b1',115).why,/Nettoinvestition fehlt/);
  near(26.4,.2*8+.3*16+.5*40);assert.match(wrong('mult-b2',26.4).why,/arithmetische/);
 });
 

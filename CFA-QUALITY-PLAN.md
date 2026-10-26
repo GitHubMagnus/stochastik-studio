@@ -5673,3 +5673,67 @@ Die 180 Aufgaben der zweiten Sitzungen sowie die zusammengeführte Bewertung
 bleiben offen. Die erste Durchsicht ist keine vollständige Wiederlektüre jedes
 Lösungsblocks und aller Trainingsfragen. Alle Einheiten bleiben bis zur
 Gesamtabnahme draft; Release bleibt false. Zielwerte werden nicht vorweggenommen.
+
+## Phase 107: vollständige Durchsicht der reservierten Fragen und 58 Revisionen
+
+Die noch ausstehende zweite Klausurhälfte mit Equity, Fixed Income, Derivatives,
+Alternatives und Portfolio ist nun vollständig auf Aufgabenstellung, drei
+Antwortmöglichkeiten und Einzelbegründungen durchgesehen. Damit umfasst diese
+Prüfung alle 360 reservierten Aufgaben. Die 58 zusätzlich festgehaltenen
+Revisionsfälle aus den acht Bereichen außerhalb Ethics und Quant sind bearbeitet.
+Der [Aufgaben-Audit](CFA-2027-QUESTION-AUDIT.md) nennt sämtliche IDs, die
+Prüfmethode und deren Grenzen. Die vollständigen Lösungsblöcke dieser 58 Fälle
+wurden anschließend ebenfalls gelesen; eine neue Volllektüre aller übrigen
+Lösungen und sämtlicher 4118 Trainingsaufgaben wird nicht behauptet.
+
+- Falsche Antworten prüfen nun konkretere Fehler wie Budgetsaldo gegenüber
+  Nachfrageimpuls, dominante Strategie gegenüber Nash-Gleichgewicht, Beta
+  gegenüber R², Informationszugang gegenüber formaler Unabhängigkeit oder
+  Volatilität gegenüber datierter Zahlungsfähigkeit. Zehn reine Sprachfälle
+  verlieren unidiomatische Formulierungen, ohne ihre Eingaben zu ändern.
+- Die falsche Optionspreiszahl ohne Finanzierung wird auf den tatsächlichen
+  Aktienbaustein 66,666667 korrigiert; der richtige Callpreis bleibt 7,843137.
+  Die Multiple-Aufgabe verwendet 115 aus unterlassener Reinvestition statt
+  eines anderen ROIC-Modells. M²-Alternativen werden vollständig aus den
+  gegebenen Größen abgeleitet; die Aktienrenditefrage erhält drei Zahlenantworten.
+- Die optimale Risikoquote wird aus Nutzenfunktion und erster Ableitung
+  hergeleitet. M² erklärt allgemeine Formel, Volatilitätsanpassung, Cashaddition
+  und Abgrenzung des Renditeniveaus zur Benchmarkdifferenz. Neue Symbole sind
+  mit Periodenbasis und Einheiten erläutert.
+- Die IFRS-Aufgabe setzt bereits erbrachte Leistungen und eine offene
+  Cash-settled-Verpflichtung voraus. IFRS 2.30–33 wurde im offiziellen Text
+  gezielt geprüft. Entwicklungsaufwand folgt den jeweils geltenden Grundlagen,
+  nicht einer suggerierten freien Wahl. Der Futures-Fall trennt Finanzierungs-
+  und zugrunde liegenden Referenzzins ausdrücklich.
+
+Verifikation am unveränderten finalen Anwendungsbuild:
+
+- **556 Kernprüfungen bestanden.** Fünf zusätzliche Kontrollen rechnen
+  Aktienrendite, Reinvestition/EV-Brücke, beide Optionszustände, M²-Skalierung
+  und Nutzenmaximierung unabhängig nach. Der neue Minuszeichenparser und ein
+  Test auf die absichtlich ersetzte 85-Alternative wurden passend korrigiert.
+- Beide vollständigen tatsächlichen Klausuren erneut bestanden: je 180 Fragen
+  und 180 Lösungen, gespeicherte Antworten und Markierungen, zwei Sitzungen,
+  keine vorzeitigen Lösungen. Gezielte A-Testeingaben ergeben 162 Treffer und
+  18 Fehlerjournalzeilen; gezielte B-Eingaben 180 Treffer und null Fehler.
+- Gesonderter Browserdurchlauf aller 58 Revisionen mit sämtlichen Antworten,
+  Einzelbegründungen, Formeln, Symbolhilfen, exakten Lernabschnittslinks und
+  58 Fehlerjournalzeilen bestanden. Der abschließend ergänzte Tastaturdurchlauf
+  derselben 58 Fälle besteht ebenfalls; alle 31 überlaufenden Formelbereiche
+  reagieren bei 320 Pixeln auf die Tastatur. Kein Seitenüberlauf bei vier Breiten.
+- Alle 16 Desktop-/Mobilaufnahmen, neun lesbare Ausschnitte langer Mobilfälle
+  und fünf bis zum Ende verschobene Formelansichten einzeln gelesen.
+- Vollständige JSON-Gleichheit aller 102 Lerneinheiten und 340 Lernzielnachweise
+  sowie der 4420 unveränderten Fragen nachgewiesen: alle 4118 Trainingsfragen
+  und 302 reservierte Fragen bleiben exakt erhalten. Die 58 neuen Revisionen
+  bewahren korrekte Antworttexte, Autorenpositionen, Lernziele, Pools und Rückwege.
+  Wörterbuch, Modellcode, Engine, Renderer, UI, Stile und Compiler unverändert.
+
+HTML-Fassung: 242a81677cf05461; CFA-Inhaltsfassung: ae9ecfb59aba3e8b.
+Vollständiger LF-HTML-SHA256: 242a81677cf05461cee6f30cd20415b9172850b82aa056d1c40c9635e26ea9e5
+bei 28449971 Bytes; CFA-Daten-SHA256: c830be8d7065f0b297f2381dc2ae844ae85fb9bbd31c4ccc87c0038d3827504a.
+
+Damit sind alle 58 zusätzlichen Revisionsfälle behoben. Die zusammengeführte
+Abnahme der Material- und Vorbereitungskriterien bleibt als eigener Audit offen.
+Alle 102 Einheiten bleiben bis dahin draft und Release bleibt false. Es werden
+weder neue Zielpunkte noch eine persönliche Bestehenswahrscheinlichkeit vorweggenommen.

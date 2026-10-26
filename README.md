@@ -33,6 +33,11 @@ Zehn Quant-Fragen wurden ebenfalls präzisiert. Das Datenwissenschaftskapitel
 vergleicht Covariate Shift und Concept Drift in einem durchgerechneten Kreditfall;
 vier gesetzte Formeln, eine Tabelle und drei neue Wörterbucheinträge erläutern
 die Unterschiede zwischen Gruppenmischung und bedingtem Ausfallrisiko.
+Die Aufgabenstellungen, Antworten und Einzelbegründungen aller 360 reservierten
+Klausurfragen sind inzwischen durchgesehen. Weitere 58 Fragen aus den übrigen
+acht Themenbereichen wurden präzisiert; insbesondere sind Zahlenalternativen
+bei Optionsreplikation, Unternehmensbewertung und M² nachvollziehbar hergeleitet.
+Die Risikoquote erhält eine ausführliche Herleitung aus der Nutzenfunktion.
 
 Der neue Bereich unter **Finance → CFA Level I 2027** führt 102 offizielle Module
 mit 340 einzeln zugeordneten Lernzielreferenzen. Der aktuelle Arbeitsstand enthält

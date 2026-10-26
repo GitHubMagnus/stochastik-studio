@@ -136,9 +136,14 @@ module.exports=[
  ['€40 higher, and cumulative profit is also €40 higher.','Dies übersieht den früheren IFRS-Zuschreibungsgewinn.'],
  ['the same, because the sales price is identical.','Die Buchwerte vor Verkauf sind verschieden.']
  ],0,[F('GP_{US}=170-100=70,\\quad GP_{IFRS}=170-140=30','Die Differenz betrifft den Zeitraum der Erfassung.',[['GP_{US},GP_{IFRS}','Bruttogewinn im Verkaufsjahr in Euro.']]),'Gesamtergebnis: US −50 + 70 = 20; IFRS −50 + 40 + 30 = 20. Beide haben dieselben wirtschaftlichen Anschaffungs- und Verkaufsvorgänge.'],'reversal'),
- q('b2','mock-b','a c','An analyst separately adds an inventory write-down back to net income and also uses the unadjusted inventory balance decrease, which includes that write-down, as an operating cash-flow increase. All other adjustments are correct. The resulting CFO is:',[
- ['overstated by the amount of the write-down.','Derselbe nicht zahlungswirksame Verlust wird zweimal neutralisiert.'],
- ['correct because every non-cash expense requires two adjustments.','Eine Neutralisierung darf insgesamt nur einmal erfolgen.'],
- ['understated by the amount of the write-down.','Die zusätzliche positive Korrektur erhöht statt senkt den Cashflow.']
- ],0,['Entweder wird der Verlust über eine passend verwendete Bestandsüberleitung erfasst, oder er wird separat zurückgenommen und die Bestandsbewegung entsprechend bereinigt. Die vollständige Rechnung muss zur tatsächlichen Zahlung führen.'],'write-down-effects')
+ Q("inv-b2",
+   "inventory",
+   "statements",
+   "mock-b",
+   "a c",
+   "An analyst separately adds an inventory write-down back to net income and also uses the unadjusted inventory balance decrease, which includes that write-down, as an operating cash-flow increase. All other adjustments are correct. The resulting CFO is:",
+   [["overstated by the amount of the write-down.","Derselbe nicht zahlungswirksame Verlust wird zweimal neutralisiert."],["correct because the profit adjustment and the working-capital adjustment address separate accounting components.","Die Komponenten sind hier nicht unabhängig: Der nicht zahlungswirksame Abschreibungsbetrag steckt bereits im unbereinigten Bestandsrückgang. Die zusätzliche Rücknahme im Gewinn neutralisiert denselben Verlust ein zweites Mal."],["understated by the amount of the write-down.","Die zusätzliche positive Korrektur erhöht statt senkt den Cashflow."]],
+   0,
+   ["Entweder wird der Verlust über eine passend verwendete Bestandsüberleitung erfasst, oder er wird separat zurückgenommen und die Bestandsbewegung entsprechend bereinigt. Die vollständige Rechnung muss zur tatsächlichen Zahlung führen."],
+   {"section":"write-down-effects"})
 ];

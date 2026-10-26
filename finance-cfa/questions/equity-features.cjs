@@ -100,13 +100,34 @@ module.exports=[
  q('a1','mock-a','a','Two preferred classes of the same issuer have identical scheduled dividends and liquidation ranking. Class X can be redeemed at the issuer’s option after next year; Class Y has no such option. If required returns decline substantially, the most appropriate assessment is that:',[
  ['the issuer’s option can limit X’s benefit from falling required returns and expose its holders to reinvestment risk.','Ein für den Anleger attraktiver Zahlungsstrom kann durch den Emittenten zu den vereinbarten Bedingungen beendet werden.'],['X must have the greater value because the holder can always force redemption.','Das gegebene Recht gehört dem Emittenten, nicht dem Inhaber.'],['both prices must stay at their reference amounts because the scheduled dividends are fixed.','Konstante Zahlungen implizieren keine konstanten Barwerte.']
  ],['Zunächst wird das Wahlrecht seinem Inhaber zugeordnet. Der Rückkauf kann für den Emittenten attraktiv werden, wenn alternative Finanzierung billiger ist.','Die tatsächliche Ausübung und der genaue Preis hängen von Zeitpunkt, Kosten und Vertragsbedingungen ab.'],'options'),
- q('a2','mock-a','b','An analyst must fund a known cash need in six months. A mature private company offers shares at a stated appraisal value, with transfers requiring approval and no committed buyer. Which consideration most directly limits their suitability for this cash need?',[
- ['The appraisal does not ensure that the position can be sold for cash by the required date.','Bewertungsansatz und rechtzeitiger tatsächlicher Geldzugang sind verschiedene Eigenschaften.'],['Mature private companies are prohibited from ever paying distributions.','Diese allgemeine Behauptung folgt weder aus Reife noch Privatstatus.'],['An appraisal eliminates any need to investigate transfer provisions.','Gerade die Übertragungsbedingungen bestimmen den möglichen vorzeitigen Ausstieg.']
- ],['Selbst eine begründete Bewertung löst keinen Liquiditätsbedarf, wenn kein Käufer oder keine zulässige Übertragung rechtzeitig vorhanden ist.','Die Frage betrifft die Passung zum Zahlungszeitpunkt, nicht allein die langfristigen Erfolgsaussichten.'],'liquidity'),
- q('b1','mock-b','a b','A venture investor holds non-participating preferred shares with an optional common conversion. At exit, the investor argues that it should receive both its full liquidation preference and its full as-converted share of total proceeds. There are no additional participation rights. The analyst should:',[
- ['reject the proposed addition and compare the available preference payment with the alternative conversion payment.','Der gegebene Vertrag enthält eine Wahl zwischen Ansprüchen, keine kumulierte Auszahlung beider.'],['accept the addition because every preferred share has unlimited participation rights.','Solche Rechte müssten ausdrücklich vereinbart sein.'],['ignore the preference because all private financing instruments automatically become common shares at every exit.','Die Frage enthält eine optionale und keine automatische Wandlung.']
- ],['Zuerst wird der tatsächlich verfügbare Betrag nach vorrangigen Verpflichtungen bestimmt.','Dann werden die beiden zulässigen Alternativen berechnet. Die vorhandene Masse darf nicht durch Addition widersprüchlicher Ansprüche doppelt verteilt werden.'],'exit'),
- q('b2','mock-b','a','An overseas share pays a cash dividend through a depositary-receipt program. The bank deducts an authorized custody fee, and the program specifies how voting instructions are transmitted. Which statement is most accurate?',[
- ['The receipt conveys an interest through a contractual structure whose fees and voting process must be examined.','Zugang zum zugrunde liegenden Anteil bedeutet nicht identische Abwicklung ohne zusätzliche Bedingungen.'],['The receipt must provide cost-free direct legal ownership of every underlying corporate asset.','Weder gebührenfreie Abwicklung noch individuelles Eigentum an Unternehmensaktiva folgen daraus.'],['Trading the receipt in the investor’s currency eliminates both business and exchange-rate risk.','Die Notierung beseitigt diese wirtschaftlichen Risiken nicht automatisch.']
- ],['Hinterlegungsverhältnis, Gebühren und Rechteweiterleitung sind Teil des zu analysierenden Instruments.','Der Anleger bleibt wirtschaftlichen Risiken der zugrunde liegenden Beteiligung ausgesetzt.'],'depositary')
+ Q("eqf-a2",
+   "equity-features",
+   "equity",
+   "mock-a",
+   "b",
+   "An analyst must fund a known cash need in six months. A mature private company offers shares at a stated appraisal value, with transfers requiring approval and no committed buyer. Which consideration most directly limits their suitability for this cash need?",
+   [["The appraisal does not ensure that the position can be sold for cash by the required date.","Bewertungsansatz und rechtzeitiger tatsächlicher Geldzugang sind verschiedene Eigenschaften."],["A recent appraisal would make the six-month funding plan adequate without identifying an executable sale route.","Ein aktueller Schätzwert verbessert die Bewertungsinformation, schafft aber weder eine Übertragungsgenehmigung noch einen Käufer zum benötigten Termin."],["A stable reported appraisal series would establish low risk of a cash shortfall at the required date.","Geringe berichtete Wertschwankungen messen nicht die rechtzeitige Realisierbarkeit. Ohne verbindlichen Käufer bleibt der datierte Liquiditätsbedarf gesondert zu prüfen."]],
+   0,
+   ["Selbst eine begründete Bewertung löst keinen Liquiditätsbedarf, wenn kein Käufer oder keine zulässige Übertragung rechtzeitig vorhanden ist.","Die Frage betrifft die Passung zum Zahlungszeitpunkt, nicht allein die langfristigen Erfolgsaussichten."],
+   {"section":"liquidity"}),
+ Q("eqf-b1",
+   "equity-features",
+   "equity",
+   "mock-b",
+   "a b",
+   "A venture investor holds non-participating preferred shares with an optional common conversion. At exit, the investor argues that it should receive both its full liquidation preference and its full as-converted share of total proceeds. There are no additional participation rights. The analyst should:",
+   [["reject the proposed addition and compare the available preference payment with the alternative conversion payment.","Der gegebene Vertrag enthält eine Wahl zwischen Ansprüchen, keine kumulierte Auszahlung beider."],["accept both payments if the exit proceeds are sufficient to pay the preference and the conversion amount.","Die verfügbare Zahlungssumme schafft keine vertraglichen Participating-Rechte. Der nicht teilnehmende Anspruch erlaubt hier die Alternative aus Präferenz oder Umwandlung, keine Addition."],["pay the preference first and then apply the as-converted ownership percentage to the remaining exit proceeds.","Das entspräche einer teilnehmenden Auszahlungslogik. Für die ausdrücklich nicht teilnehmenden Anteile wird der alternative As-converted-Anspruch auf die gesamten verfügbaren Erlöse verglichen."]],
+   0,
+   ["Zuerst wird der tatsächlich verfügbare Betrag nach vorrangigen Verpflichtungen bestimmt.","Dann werden die beiden zulässigen Alternativen berechnet. Die vorhandene Masse darf nicht durch Addition widersprüchlicher Ansprüche doppelt verteilt werden."],
+   {"section":"exit"}),
+ Q("eqf-b2",
+   "equity-features",
+   "equity",
+   "mock-b",
+   "a",
+   "An overseas share pays a cash dividend through a depositary-receipt program. The bank deducts an authorized custody fee, and the program specifies how voting instructions are transmitted. Which statement is most accurate?",
+   [["The receipt conveys an interest through a contractual structure whose fees and voting process must be examined.","Zugang zum zugrunde liegenden Anteil bedeutet nicht identische Abwicklung ohne zusätzliche Bedingungen."],["The receipt gives the same direct-shareholder legal and voting process, with the bank acting only as a payment address.","Die Bank leitet Rechte innerhalb der Hinterlegungsstruktur weiter. Gebühren und Abstimmungsverfahren sind vertraglich geregelt und dürfen nicht ungeprüft mit direktem Aktienbesitz gleichgesetzt werden."],["Trading the receipt in the investor’s currency eliminates both business and exchange-rate risk.","Die Notierung beseitigt diese wirtschaftlichen Risiken nicht automatisch."]],
+   0,
+   ["Hinterlegungsverhältnis, Gebühren und Rechteweiterleitung sind Teil des zu analysierenden Instruments.","Der Anleger bleibt wirtschaftlichen Risiken der zugrunde liegenden Beteiligung ausgesetzt."],
+   {"section":"depositary"})
 ];

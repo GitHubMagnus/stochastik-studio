@@ -91,16 +91,26 @@ module.exports=[
  ['€24 million','Bei alter Laufzeit wären 60 gebunden; tatsächlich sind es 84.'],
  ['€34 million','Das ist der gesamte Anstieg, einschließlich des Volumeneffekts.']
  ],1,[F('AR^*=50\\frac{876}{730}=60,\\qquad\\Delta AR_{time}=84-60=24','Zuerst wird der Altbestand mit dem Umsatz skaliert, dann der verbleibende Unterschied ermittelt.',[['AR^*','Forderungsbestand bei neuer Umsatzhöhe und alter Laufzeit in Mio. Euro.'],['\\Delta AR_{time}','Zusätzliche Bindung durch veränderte Laufzeit unter den Annahmen.']]),'Der Befund erklärt noch nicht die Ursache: Zahlungsziele, Saisonalität, Kundenmix und Ausfälle sind zu untersuchen.'],'worked-process'),
- q('a1','mock-a','a c','A bank’s annual report shows consolidated assets, while a data vendor’s debt figure covers only the parent company. Before using their ratio in a lending decision, an analyst should:',[
- ['align the reporting entities and document the reconciliation.','Zähler und Nenner müssen einen sachlich zusammenpassenden Berichtskreis besitzen.'],
- ['use the ratio because both figures share the same year-end.','Ein gemeinsamer Stichtag behebt den unterschiedlichen Konsolidierungskreis nicht.'],
- ['replace parent debt with consolidated revenue.','Das würde die Kennzahl verändern, ohne die benötigte Schuldengröße zu ermitteln.']
- ],0,['Tochterunternehmen können eigene Verbindlichkeiten und eingeschränkt verfügbare Mittel haben. Die korrekte Abgrenzung hängt von Kreditnehmer, Garantien und Analysezweck ab; sie darf nicht zufällig vom Datenanbieter bestimmt werden.'],'filings'),
- q('a2','mock-a','d e','An analyst finds that the latest regulatory filing contradicts management’s earlier public forecast. The most appropriate response is to:',[
- ['keep the forecast because management is always the most informed source.','Eine Prognose muss gegen später veröffentlichte belastbare Daten aktualisiert werden.'],
- ['trace definitions and dates, investigate the discrepancy, and revise assumptions where warranted.','Die Abweichung kann aus neuer Information oder anderen Definitionen stammen und erfordert Klärung.'],
- ['average the two numbers without further investigation.','Ein Durchschnitt löst weder eine Definitionsabweichung noch eine zeitliche Veränderung.']
- ],1,['Quellenrang allein ersetzt keine Prüfung von Berichtskreis, Zeitraum und Kennzahlendefinition. Die Schlussfolgerung muss zeigen, welche Information die ursprüngliche Annahme verändert hat.'],'report-followup'),
+ Q("af-a1",
+   "analysis-framework",
+   "statements",
+   "mock-a",
+   "a c",
+   "A bank’s annual report shows consolidated assets, while a data vendor’s debt figure covers only the parent company. Before using their ratio in a lending decision, an analyst should:",
+   [["align the reporting entities and document the reconciliation.","Zähler und Nenner müssen einen sachlich zusammenpassenden Berichtskreis besitzen."],["use the ratio because both figures share the same year-end.","Ein gemeinsamer Stichtag behebt den unterschiedlichen Konsolidierungskreis nicht."],["scale parent debt by consolidated assets divided by parent assets, without checking subsidiary liabilities.","Eine proportional angenommene Verschuldung gleicht den Berichtskreis nicht verlässlich ab. Die tatsächlichen Schulden und Konsolidierungseffekte können von dieser pauschalen Skalierung abweichen."]],
+   0,
+   ["Tochterunternehmen können eigene Verbindlichkeiten und eingeschränkt verfügbare Mittel haben. Die korrekte Abgrenzung hängt von Kreditnehmer, Garantien und Analysezweck ab; sie darf nicht zufällig vom Datenanbieter bestimmt werden."],
+   {"section":"filings"}),
+ Q("af-a2",
+   "analysis-framework",
+   "statements",
+   "mock-a",
+   "d e",
+   "An analyst finds that the latest regulatory filing contradicts management’s earlier public forecast. The most appropriate response is to:",
+   [["replace the forecast with the filing’s number solely because the filing is newer, without checking definitions or periods.","Die spätere Veröffentlichung ist relevant, doch unterschiedliche Definitionen, Perioden oder Prognosehorizonte müssen vor einer inhaltlichen Ersetzung abgestimmt werden."],["trace definitions and dates, investigate the discrepancy, and revise assumptions where warranted.","Die Abweichung kann aus neuer Information oder anderen Definitionen stammen und erfordert Klärung."],["average the two numbers without further investigation.","Ein Durchschnitt löst weder eine Definitionsabweichung noch eine zeitliche Veränderung."]],
+   1,
+   ["Quellenrang allein ersetzt keine Prüfung von Berichtskreis, Zeitraum und Kennzahlendefinition. Die Schlussfolgerung muss zeigen, welche Information die ursprüngliche Annahme verändert hat."],
+   {"section":"report-followup"}),
  q('b1','mock-b','b c','A profitable firm has ample total assets but an auditor highlights uncertainty about refinancing a large debt maturity. An equity analyst should most appropriately:',[
  ['ignore the issue because a positive income statement proves liquidity.','Periodengewinn garantiert keine Mittel zum Fälligkeitstermin.'],
  ['incorporate refinancing scenarios and their effects on residual shareholder value.','Finanzierungslücken können trotz Gewinn den für Aktionäre verbleibenden Wert stark verändern.'],
