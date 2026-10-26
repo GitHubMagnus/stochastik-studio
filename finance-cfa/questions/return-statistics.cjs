@@ -77,3 +77,12 @@ module.exports=[
  ['0.60.','0,003/(0,10 × 0,05) = 0,6.'],['0.06.','Das enthält einen Dezimalstellenfehler.'],['0.30.','Das verwendet nicht das Produkt beider Standardabweichungen.']
  ],0,[eq('\\rho=0{,}003/(0{,}10\\cdot0{,}05)=0{,}6','Die Renditen werden konsistent als Dezimalzahlen eingesetzt.','\\rho','Korrelation.')],'covariance')
 ];
+
+module.exports.push(
+ q('errata-even-01','practice','a','Four equally weighted observations sorted in ascending order are 2, 6, 8 and 20. Under the usual average-of-two-central-values convention, their median is:',[
+ ['7.','Die mittleren ganzzahligen Ränge zwei und drei enthalten sechs und acht.'],['9.','Das ist der arithmetische Mittelwert aller vier Werte.'],['6.','Das verwendet nur den unteren mittleren Rang.']
+ ],0,[eq('Z=(6+8)/2=7','Bei geradem Umfang werden die beiden mittleren Beobachtungen gemittelt.','Z','Median der vier gegebenen Beobachtungen.')],'center'),
+ q('errata-even-02','practice','a','In the sorted observations 2, 6, 8 and 20, only 20 is replaced by 100. The new median and arithmetic mean are respectively:',[
+ ['7 and 29.','Die mittleren Werte bleiben sechs und acht; die Summe steigt auf 116.'],['29 and 7.','Das vertauscht Median und Mittelwert.'],['27 and 29.','Der Randwert verändert hier nicht die mittleren Ränge.']
+ ],0,[eq('Z_{\\mathrm{med}}=(6+8)/2=7,\\quad Z_{\\mathrm{mean}}=(2+6+8+100)/4=29','Der einzelne große Wert verändert den Mittelwert, während die Mitte der geordneten Reihe gleich bleibt.','Z','Mit Index med der Median, mit Index mean der arithmetische Mittelwert; beide in derselben Beobachtungseinheit.')],'center')
+);
