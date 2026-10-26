@@ -318,3 +318,77 @@ In dieser Revision bleiben alle anderen 4477 Fragen einschließlich sämtlicher
 präzisierten Lernzielzugänge, drei Rechenvergleiche und den Build mit 563
 bestandenen Kernprüfungen und sechs bestandenen Browserprüfungen. Die
 Material- und Vorbereitungspunktzahlen bleiben bis zum Gesamtabschluss offen.
+
+## 21 weitere Trainingsfragen ohne Abhängigkeit von Voraufgaben
+
+Die erweiterte Prüfung der 100 sprachlichen Suchtreffer ist abgeschlossen.
+21 Fälle erhalten vollständige Angaben oder eine eindeutigere Modellregel;
+`pcp-29` war bereits in der vorherigen Revision behoben. Bei den übrigen 78
+Treffern sind die benötigten Angaben bereits genannt oder es handelt sich um
+eine begriffliche Frage. Beispielsweise benötigt eine ausdrücklich angegebene
+Preisänderung keine Vorrechnung, und „voriges Geschäftsjahr“ ist kein Verweis
+auf eine andere Aufgabe. Dies ist eine redaktionelle Prüfung der Suchtreffer,
+keine automatische semantische Fehlerfreiheitsgarantie für alle 4118 Fragen.
+
+| Aufgaben | Präzisierung |
+|---|---|
+| `abs-62` | Separates Tilgungscash gehört nicht zum unveränderten OC-Kreditzähler. |
+| `afe-50` | Vollständige Verteilungsfolge einschließlich Catch-up auf 20 Prozent. |
+| `bhv-40`, `bhv-42` | Explizite Preisfortschreibung beziehungsweise Ein-Aktien-Shortkonto mit vollständig benannter Margenregel. |
+| `bpr-10` | Nominal, Kupon, drei Jahreszahlungen, Bewertungszeitpunkt und effektive Jahres-YTM. |
+| `ccr-50`, `ccr-52` | Vollständige Verwertungsansprüche und getrennter Zugriff auf Tochter und Holding. |
+| `ipc-63` | Anfangsvermögen, bestehende Anteile, Zufluss und Ausgabepreis. |
+| `pcp-13` | Aktienpreis, passende europäische Optionen, Strike und Diskontfaktor. |
+| `prk-65`, `prk-75` | Beide Volatilitäten, Korrelation und Gewichte auf derselben Periodenbasis. |
+| `rea-34`, `rea-62`, `rea-67`, `rea-72` | Kauf, Finanzierung, laufende Zahlungen, Konzessionslaufzeit und frei verfügbares Cash nach Reserve. |
+| `res-25`, `res-45`, `res-50` | Sämtliche Carry-Eingaben, Rohstoffrenditen beziehungsweise Anfangscash und Abrechnungszeitpunkte. |
+| `rm-75` | Vollständige diskrete Verlustverteilung und genau definierter Fünf-Prozent-Tail. |
+| `scz-21`, `scz-37` | Ausgangsbilanz und angenommener Verkauf beziehungsweise Junior-/Senior-Kapital und First-Loss-Reihenfolge. |
+
+Die richtigen Antwortwerte und sämtliche Optionen bleiben erhalten. Fünf
+Lösungen werden zusätzlich erläutert: benötigter gegenüber tatsächlich bezahltem
+Catch-up, Kovarianzbeitrag bei veränderter Korrelation, Minimumvarianz gegenüber
+Einzelanlage und Gleichgewichtung, Immobilienrendite mit und ohne Fremdkapital
+sowie Teilverwendung einer diskreten Wahrscheinlichkeitsmasse beim ES. Vier
+zusätzliche gesetzte Formeltafeln und drei Tabellen machen die Zwischenschritte
+und Unterschiede der Antwortzahlen sichtbar. Alle neuen Formeln besitzen
+erklärte Symbole und Einheiten.
+
+**574 Kernprüfungen bestanden.** Elf zusätzliche Prüfungen rechnen die 21 Fälle
+mit unabhängigen Kontrollansätzen nach: Verteilungsalgorithmus, Margin-Grenze,
+diskontierter Zahlungsplan, getrennte Rechtsträger, NAV-Vermögensübertragung,
+Bilanzidentität, sämtliche terminalen Reversal-Zahlungen, Portfoliovarianz,
+einzelne datierte Projektzahlungen, Cashkonto und eine äquivalente Verteilung
+aus hundert gleich wahrscheinlichen Zuständen. Ein zunächst fehlerhaft gesetzter
+Zeilenumbruch in den neu erstellten Formeln wurde vor dem Build durch den
+Compiler abgefangen und korrigiert; es wurde kein solcher Zwischenstand veröffentlicht.
+
+**Beide neuen Browserprüfungen bestanden.** Alle 21 tatsächlichen Aufgaben werden
+jeweils mit frischem Speicher und genau einer verfügbaren Frage aufgerufen.
+Geprüft werden Optionen, alle Einzelbegründungen, Formeln, aufgeklappte Symbole,
+Tabellen, vier Breiten, Tastatur und tatsächliche Kapitelrücksprünge. Ein zweiter
+Fall durchläuft alle 21 in einem gemischten Set und stellt eine Auswahl nach
+Neuladen wieder her. Gezielte Testeingaben ergeben 15 richtige Antworten und
+sechs Fehlerjournalzeilen; dies sind keine Ergebnisse eines Lernenden.
+Alle zwölf Desktop-/Mobilansichten und acht zusätzliche lesbare Mobilabschnitte
+wurden einzeln kontrolliert. 27 überlaufende Formel- oder Tabellenbereiche wurden
+bei 320 Pixeln per Tastatur verschoben.
+
+Vollständiger Datenvergleich: alle 102 Lerneinheiten und 340 Lernzielzuordnungen
+sowie 4457 Fragen bleiben exakt gleich, darunter 4097 Trainingsfragen und alle
+360 reservierten Fragen. Nur die 21 benannten Trainingsfragen erhalten neue
+Revisionskennungen. Engine, Compiler, Beispielprioritäten, Modelle, Wörterbücher,
+Renderer und Stile bleiben unverändert. Die früher vollständig geprüften
+Klausuren verwenden weiterhin dieselben reservierten Daten und dieselbe Engine.
+
+HTML-Fassung: `61a9aaa7f9b3053e`; CFA-Inhaltsfassung: `7631f8c9383c5ac7`.
+LF-HTML-SHA256: `61a9aaa7f9b3053e5bbc5010dde418fe67444236e217cdd33a6edee2d123ab34`
+bei 28.505.378 Bytes; CFA-Daten-SHA256:
+`5d92e1d13bf2c5cb4aa8057f8d42b219869ca0a8d9b8c015027d9d5864e693cd`.
+
+Bei der ergänzenden Langzeitprüfung ist ein eigener Speicherbefund entstanden:
+Ein konstruierter Verlauf aus 4001 verschiedenen gültigen Antworten wird bisher
+auf 4000 gekürzt; damit verschwindet der erste offene Fehler. Außerdem kann ein
+später angefügtes, zeitlich älteres Ergebnis einen neueren richtigen Stand im
+Journal überdecken. Diese reproduzierten Fälle werden vor der abschließenden
+Freigabe behoben. Die Gesamtbewertung bleibt daher weiterhin offen.

@@ -43,6 +43,10 @@ Beispiel. Zusätzliche vollständige Rechenvergleiche erklären IFRS-/US-GAAP-
 Cashflows, absolute Gewinne gegenüber Margen und Spot-/Par-/Forwardkurven.
 Die abschließende Trainingsprüfung ergänzt außerdem fehlende eigene Angaben
 in Aufgaben, die bisher einen vorherigen Fall voraussetzten.
+21 weitere solche Trainingsaufgaben sind jetzt ohne Voraufgabe lösbar und
+einzeln sowie in einem gemischten Set geprüft. Lösungen erläutern zusätzlich
+Catch-up, Diversifikation, Minimumvarianz, Immobilienhebel und diskreten Expected
+Shortfall mit nachvollziehbaren Zwischenrechnungen und Vergleichstabellen.
 
 Der neue Bereich unter **Finance → CFA Level I 2027** führt 102 offizielle Module
 mit 340 einzeln zugeordneten Lernzielreferenzen. Der aktuelle Arbeitsstand enthält
