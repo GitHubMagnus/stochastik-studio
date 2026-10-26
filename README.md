@@ -13,14 +13,19 @@ Direkt im Browser nutzbar, ohne Download oder Installation.
 - **Verständnis prüfen:** 1.034 Aufgaben, mindestens sechs in jedem Finance-Kapitel und 14 bei Duration. Grundverständnis, Herleitung oder Begründung, Rechen- oder Fallaufgabe, Vergleich, Transfer und Fehlersuche besitzen getrennte Hinweise und ausführliche Lösungen. Aufgabenangaben und Ergebnistabellen sind getrennt. Die Lösungen enthalten 544 gesetzte Formeltafeln und 90 gesetzte Inline-Formeln, einschließlich bewusst wiederverwendeter Kapitelrechnungen.
 - **Vertiefungen:** 361 zusätzliche Erklärabschnitte, 175 Vergleichstabellen, insgesamt 519 erläuterte Lösungsschritte, 740 Kapitelverbindungen und neun Erklärungsgrafiken. Wichtige Zusammenhänge wie Duration, Cashflowbewertung, CAPM und Optionsreplikation erhalten mehrere aufeinander aufbauende Herleitungen.
 - **Mathematische Notation:** 156 zentrale mathematische Formeltafeln, 219 Formeltafeln in Herleitungen und 383 numerische Lösungsschritte werden ausdrücklich in LaTeX verfasst und als MathML eingebettet. Auch Formeln in Vergleichstabellen und alle neun Kelly-Formeltafeln sind gesetzt. Qualitative Entscheidungsfragen werden als Prosa dargestellt. Es gibt keine automatische Umwandlung von Wörtern in vermeintliche Gleichungen.
-- **Fachwörterbuch:** 2.145 alphabetisch sortierte Definitionen mit 4.590 Begriffen und Aliasen; automatische Verlinkung aus den Lerntexten und Rückverweise auf erklärende Kapitel. 1.942 kuratierte Einträge besitzen zusätzlich einen präzisen Rückverweis in den neuen CFA-Lernpfad. Mehrdeutige Begriffe wie GMV, Forward, FFO, DSCR, Trustee, Subordination, Residual, WAL, Balloon Payment, Margin, Settlement und Delta werden abhängig vom Kapitel verlinkt. Direktlinks auf zusammengeführte Begriffe bleiben über deren Alias erhalten.
+- **Fachwörterbuch:** 2.147 alphabetisch sortierte Definitionen mit 4.597 Begriffen und Aliasen; automatische Verlinkung aus den Lerntexten und Rückverweise auf erklärende Kapitel. 1.944 kuratierte Einträge besitzen zusätzlich einen präzisen Rückverweis in den neuen CFA-Lernpfad. Mehrdeutige Begriffe wie GMV, Forward, FFO, DSCR, Trustee, Subordination, Residual, WAL, Balloon Payment, Margin, Settlement und Delta werden abhängig vom Kapitel verlinkt. Direktlinks auf zusammengeführte Begriffe bleiben über deren Alias erhalten.
 - **Kelly Studio:** Einzelpositionen, Szenarien, Portfoliooptimierung, Simulation und Herleitung. Der Zustand bleibt beim Modulwechsel erhalten.
 
 ## CFA Level I 2027: laufende Überarbeitung
 
+Der [Abgleich der offiziellen Curriculum-Korrekturen 2027](CFA-2027-ERRATA-AUDIT.md)
+ergänzt unter anderem aktivierte Zinsen, FCFE und tatsächliche Ausschüttungen,
+die Medianberechnung sowie halbjährliche Z-Spreads. In der Prüfungsübersicht
+sind die Rechnerübungen und die offizielle Rechnerregel direkt verlinkt.
+
 Der neue Bereich unter **Finance → CFA Level I 2027** führt 102 offizielle Module
 mit 340 einzeln zugeordneten Lernzielreferenzen. Der aktuelle Arbeitsstand enthält
-102 neu ausgearbeitete Einheiten und 4.106 eigenständige englische Trainingsfragen
+102 neu ausgearbeitete Einheiten und 4.118 eigenständige englische Trainingsfragen
 mit deutschen Lösungen. Alle zehn Ethics-Module und alle elf Quant-Module besitzen
 neue Erklärungen und Übungen. Weitere Vertiefungen behandeln EPS, Kennzahlen und
 Leasing/Vergütung. Der Quant-Bereich enthält jetzt auch ausführliche Testwahl,
@@ -57,7 +62,7 @@ Das integrierte Prognosekapitel ergänzt 21 Abschnitte und 32 Trainingsfälle:
 Ein vollständiges Modell stimmt Plan-GuV, Bilanz, direkte und indirekte Zahlungen
 sowie Kreditbedarf ab. Es erläutert Zinsrückkopplung, Prognosefehler, Wettbewerb,
 Inflation, Szenarien und den Zusammenhang von Wachstum, Reinvestition und Wert.
-Die Gewinnrechnung wurde auf zehn Abschnitte und 30 Trainingsfragen erweitert,
+Die Gewinnrechnung umfasst elf Abschnitte und 34 Trainingsfragen,
 das Kennzahlensystem auf zwölf Abschnitte und 32 Fragen. Zusätzliche Fälle zeigen
 Leistungsfortschritt, Aufwand über mehrere Jahre, aufgegebene Bereiche, Renditebasen,
 Branchenkennzahlen und eine vollständige DuPont-Veränderungsbrücke.

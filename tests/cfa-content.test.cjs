@@ -2488,7 +2488,7 @@ test('preferred values independently reconcile payment frequency, maturity and e
 
 test('DCF objectives have substantial authored applications, distinct reserved cases and precise glossary return links',()=>{
  const u=data.units.find(u=>u.id==='dcf-equity'),coverage=data.coverage.find(x=>x.id===u.id),bank=data.questions.filter(q=>q.unit===u.id);
- assert.equal(u.sections.length,28);assert.equal(u.review.status,'draft');assert.equal(bank.filter(q=>q.pool==='practice').length,50);
+ assert.equal(u.sections.length,29);assert.equal(u.review.status,'draft');assert.equal(bank.filter(q=>q.pool==='practice').length,54);
  assert.deepEqual(u.explorations,[{section:'sensitivity',lesson:'equity-08',focus:'lab',label:'Dividende, Wachstum und Renditeforderung im Gordon-Rechner verändern'}]);
  for(const pool of ['mock-a','mock-b'])assert.equal(bank.filter(q=>q.pool===pool).length,3);
  for(const o of coverage.objectives){assert.ok(o.sections.length>=5);assert.ok(o.practice.length>=10);assert.ok(o.mockQuestions>=2);}

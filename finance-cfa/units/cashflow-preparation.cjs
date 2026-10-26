@@ -133,7 +133,7 @@ module.exports={id:'cashflow-preparation',intro:[
   ],'Ohne ausreichende Zusatzinformationen lässt sich eine exakte direkte Rechnung nicht aus jedem veröffentlichten Saldo rekonstruieren.'),
   'Die entscheidende Routine ist eine Bestandsidentität in Worten: Anfang plus Zugänge minus Abgänge gleich Ende. Erst danach wird nach dem gesuchten Geldbetrag umgestellt. Diese Vorgehensweise ist verlässlicher als eine auswendig gelernte Liste von Plus- und Minuszeichen.'
  ])
-],related:[{unit:'analysis-framework',section:'statement-map',label:'Die Rechenwerke und ihren Zweck verbinden'},{unit:'income-statement',section:'revenue',label:'Warum Umsatz vor Zahlung entstehen kann'},{unit:'leases-compensation',section:'lease-comparison',label:'Leasing und Cashflowklassifikation'},{unit:'ratios',section:'activity',label:'Kapitalbindung über Umschlag und Tage erklären'}],
+],related:[{unit:'income-statement',section:'capitalized-interest',label:'Gezahlte aktivierte Zinsen: US-GAAP-Anlagenfall und IFRS-18-Abgrenzung'},{unit:'analysis-framework',section:'statement-map',label:'Die Rechenwerke und ihren Zweck verbinden'},{unit:'income-statement',section:'revenue',label:'Warum Umsatz vor Zahlung entstehen kann'},{unit:'leases-compensation',section:'lease-comparison',label:'Leasing und Cashflowklassifikation'},{unit:'ratios',section:'activity',label:'Kapitalbindung über Umschlag und Tage erklären'}],
  sources:[
  {title:'CFA Institute: Lernziele Level I 2027',url:'https://www.cfainstitute.org/sites/default/files/2027levelitopicoutline_online.pdf#page=12'},
  {title:'CFA Institute: Analyzing Statements of Cash Flows I',url:'https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/analyzing-statements-of-cash-flows-i'},

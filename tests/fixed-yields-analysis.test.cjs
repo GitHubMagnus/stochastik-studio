@@ -6,7 +6,7 @@ const annual=(C,n,y,R=100)=>{const v=1/(1+y);return y===0?n*C+R:C*v*(1-v**n)/(1-
 const curve=(coupon,z,s)=>[1,2,3].reduce((sum,t)=>sum+(coupon+(t===3?100:0))/(1+z[t-1]+s)**t,0);
 test('fixed yields meet both actual objectives with fifty-two independent training questions and original disjoint reserved cases',()=>{
  assert.equal(u.sections.length,33);assert.equal(u.review.status,'draft');assert.equal(d.release,false);assert.ok(u.sources[0].url.endsWith('#page=20'));
- const q=d.questions.filter(q=>q.unit===u.id);assert.equal(q.filter(q=>q.pool==='practice').length,52);
+ const q=d.questions.filter(q=>q.unit===u.id);assert.equal(q.filter(q=>q.pool==='practice').length,54);
  for(const pool of ['mock-a','mock-b']){assert.equal(q.filter(q=>q.pool===pool).length,1);assert.ok(d.inventory[pool].bonds<=require('../finance-cfa/engine.cjs').blueprint.bonds);}
  for(const o of d.coverage.find(x=>x.id===u.id).objectives){assert.ok(o.sections.length>=9);assert.ok(o.practice.length>=10);assert.equal(o.mockQuestions,2);}
  const b=require('../finance-content/bonds.cjs');assert.equal(b[1].lab,'repofunding');assert.equal(b[2].lab,'repayment');assert.equal(b[4].lab,'bond');assert.equal(b[7].lab,'bond');assert.equal(b[10].lab,'yieldspread');assert.equal(b[12].lab,'abs');

@@ -5474,3 +5474,52 @@ Die Inventarlücken sind damit geschlossen. Die umfassende fachliche Endabnahme,
 der vollständige aktuelle Errata-Abgleich und eine evidenzbasierte Neubewertung
 bleiben offen. Alle Einheiten bleiben draft, Release false. Die Zielwerte 90/100
 und 80/100 werden weiterhin nicht vor der Gesamtabnahme als erreicht ausgegeben.
+
+## 26.10.2026: vollständiger Errata-Abgleich und gezielte Präzisierungen
+
+Alle 42 Seiten der offiziellen Curriculum-Korrekturen 2027 wurden gelesen,
+einschließlich 16 gerenderter Originalseiten mit mathematischen Darstellungen
+und drei verlinkten Ergänzungen. Der [Errata-Abgleich](CFA-2027-ERRATA-AUDIT.md)
+ordnet jede Korrekturgruppe den eigenen Erklärungen zu und trennt bereits
+korrekte Behandlung, nötige Vertiefung und fremde nicht übernommene Zahlenfälle.
+Erkannte interne Widersprüche der Quelle werden nicht ungeprüft übernommen.
+
+Neue Vertiefungen erklären aktivierte Zinsen und ihre spätere Abschreibung,
+den US-GAAP-Zahlungsausweis sowie den ausdrücklich benannten allgemeinen
+IFRS-18-Fall; FCFE gegenüber Dividenden, Rückkäufen, Aktienausgabe und
+Cashretention; die ganzzahligen mittleren Rangplätze bei geradem Stichprobenumfang;
+und nominale halbjährliche Spot-/Z-Spread-Diskontierung. Acht Formeltafeln,
+fünf durchgerechnete Beispiele, drei Vergleichstabellen, zwölf neue englische
+Trainingsfälle und zwei Wörterbucheinträge ergänzen die bisherigen Darstellungen.
+Die Rechnerpraxis ist direkt aus dem Prüfungsrahmen erreichbar. Die Übersicht
+richtet ihre Klausurverfügbarkeit nach dem tatsächlichen Bestand aus.
+
+Aktueller Bestand: 102 Einheiten, 340 erklärte und geübte Lernzielreferenzen,
+4118 Trainingsfragen, zwei disjunkte Klausuren mit je 180 Fragen, 2147
+Wörterbucheinträge mit 4597 Bezeichnungen und 1944 präzisen CFA-Rückverweisen.
+347 CFA-Grafiken, 13 Ablaufbilder und 65 interaktive Modelle bleiben erhalten.
+
+- 542 Kernprüfungen bestanden, einschließlich acht neuer fachlicher Gegenprüfungen.
+- Vier neue Browserfälle bestanden: vier tatsächliche vollständige Trainingsfolgen,
+  alle zwölf neuen Lösungen, Symbolhilfen, genaue Querverweise und die Übersicht
+  mit vollständigen sowie isoliert unvollständigen Klausurbeständen.
+- Alle 45 aufgenommenen Ansichten wurden gelesen: 44 Lehrbuch-/Lösungsansichten
+  in elf Kontaktbögen und die neue Rechnerübersicht zusätzlich in voller Breite.
+  Vier Viewports, Tastatur und Offlinebetrieb wurden geprüft.
+- Vollständiger JSON-Vergleich bestätigt 96 unveränderte Einheiten und alle 4466
+  bisherigen Fragen. Nur sechs Einheiten wurden gezielt ergänzt; zwölf neue
+  Trainingsfragen kommen hinzu. Beide reservierten Klausurpools, Modellcode,
+  Mathematikrenderer, CFA-Engine und CFA-Stile bleiben exakt unverändert.
+- Der unmittelbar vorhergehende Stand bestand alle 45 CFA-Browserfälle,
+  55 allgemeine und Modelllesbarkeitsfälle und beide vollständigen tatsächlichen
+  Klausurdurchläufe. Diese Ergänzung behauptet keine erneute vollständige
+  Ausführung jener unveränderten Bereiche.
+
+HTML-Fassung: d4cc108445fc68a7; CFA-Inhaltsfassung: 8f28cb2320889968.
+Vollständiger LF-HTML-SHA256: d4cc108445fc68a7c29c3e08718c2db679dd0bce0df9acbcfbca790f8c784ad8
+bei 28321188 Bytes; CFA-Daten-SHA256: e578870eb1e542bdbad2cb946daaca84fd98c005f9ebc4b01755f7509546a045.
+
+Der Errata-Abgleich ist abgeschlossen. Offen bleiben die zusammengeführte
+Gesamtabnahme und Neubewertung nach dem ursprünglichen Bewertungsmaßstab.
+Alle Einheiten bleiben bis dahin draft; Release bleibt false. Die Prüfungen
+sind keine externe Fachfreigabe oder empirische Bestehensprognose.
