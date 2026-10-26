@@ -74,9 +74,14 @@ module.exports=[
  q('b1','mock-b','a','Portfolio P holds 60% in A and 40% in B. Cov(A,B) is 0.002 and Var(B) is 0.01. Cov(P,B) equals:',[
  ['0.0052.','0,6 × 0,002 + 0,4 × 0,01 = 0,0052.'],['0.0070.','Dieser Wert verwendet nicht die gegebenen Gewichte.'],['0.0120.','Das addiert Kovarianz und Varianz ohne Gewichtung.']
  ],0,[eq('\\operatorname{Cov}(R_P,R_B)=0{,}6\\cdot0{,}002+0{,}4\\cdot0{,}01=0{,}0052','Kovarianz ist in den Portfoliogewichten linear.','\\operatorname{Cov}(R_P,R_B)','Kovarianz von P und B.')],'many-assets'),
- q('b2','mock-b','b','A feasible portfolio lies on the lower branch of a conventional risky-asset minimum-variance frontier, below the global minimum-variance portfolio. It is:',[
- ['efficient because it is on a minimum-variance frontier.','Die gesamte Minimumvarianzgrenze und ihr effizienter oberer Teil sind nicht identisch.'],['inefficient because an attainable portfolio offers higher expected return for the same risk.','Der untere Ast wird durch den oberen dominiert.'],['necessarily risk-free.','Die Position unterhalb des GMV-Erwartungswerts sagt nicht, dass Varianz null ist.']
- ],1,['Die effiziente Grenze ist der obere nicht dominierte Teil. Die reine Minimierung der Varianz bei einem niedrigen Renditeziel kann einen Punkt auf dem unteren Ast liefern.'],'efficient-frontier'),
+ q("b2",
+  "mock-b",
+  "b",
+  "A feasible portfolio lies on the lower branch of a conventional risky-asset minimum-variance frontier, below the global minimum-variance portfolio. It is:",
+  [["efficient: it minimizes variance for its own expected return.","Die Eigenschaft des Minimumvarianzrandes gilt auch für den unteren Ast. Sie allein belegt keine Effizienz, weil dort bei derselben Volatilität eine höhere erwartete Rendite erreichbar ist."],["inefficient: an attainable portfolio offers higher expected return at the same risk.","Der untere Ast wird durch den oberen dominiert."],["inefficient: an attainable portfolio offers lower risk at the same expected return.","Das wäre keine zutreffende Begründung für einen Punkt auf dem Minimumvarianzrand: Für seine vorgegebene Rendite ist die Varianz bereits minimal. Die Dominanz kommt hier aus höherer Rendite bei gleichem Risiko."]],
+  1,
+  ["Die effiziente Grenze ist der obere nicht dominierte Teil. Die reine Minimierung der Varianz bei einem niedrigen Renditeziel kann einen Punkt auf dem unteren Ast liefern.","Halte beim Vergleich jeweils eine Größe fest. Der Minimumvarianzrand minimiert das Risiko bei einer vorgegebenen erwarteten Rendite. Sein unterer Ast ist trotzdem nicht effizient, weil der obere Ast bei gleichem Risiko mehr erwartete Rendite bietet. Diese beiden Vergleichsrichtungen sind nicht austauschbar."],
+  "efficient-frontier"),
  q('b3','mock-b','c','A risky portfolio expects 8% return with 10% volatility. An investor allocates 150% to it by borrowing 50% of equity at 4%. Expected portfolio return is:',[
  ['12%.','Das ist der Anlageertrag vor Finanzierungskosten.'],['8%.','Das ist die ungehebelte Rendite des riskanten Portfolios.'],['10%.','1,5 × 8 % − 0,5 × 4 % = 10 %.']
  ],2,[eq('\\mu_C=1{,}5\\cdot0{,}08-0{,}5\\cdot0{,}04=10\\%','Die Volatilität beträgt dabei 15 %, sofern die Finanzierung selbst über den Horizont sicher ist.','\\mu_C','Erwartete Rendite relativ zum Eigenkapital.')],'risk-free')

@@ -67,9 +67,14 @@ module.exports=[
  q('a1','mock-a','a','A sample contains the values 2, 4, and 6. Its sample variance is:',[
  ['4.00.','Die quadrierten Abstände sind 4, 0 und 4; geteilt durch 2 ergibt 4.'],['2.67.','Das wäre die Populationsvarianz dieser drei Werte.'],['2.00.','Das ist die Stichprobenstandardabweichung.']
  ],0,[eq('s^2=(4+0+4)/2=4','Der Mittelwert ist 4; n−1 = 2.','s^2','Stichprobenvarianz.')],'degrees-freedom'),
- q('a2','mock-a','b','A manager highlights that a strategy earns a small positive return in most months but does not discuss rare large negative outcomes. The distributional characteristic most directly omitted is:',[
- ['positive skewness.','Große seltene Verluste betreffen den linken Rand.'],['negative skewness.','Der lange linke Rand kann trotz vieler positiver Monate bedeutsam sein.'],['a guaranteed zero variance.','Seltene Verluste sind gerade eine Quelle von Streuung.']
- ],1,['Eine hohe Gewinnhäufigkeit allein sagt wenig über das Verhältnis kleiner Gewinne zu großen Verlusten aus.'],'shape'),
+ q("a2",
+  "mock-a",
+  "b",
+  "A strategy typically earns small positive monthly returns but occasionally suffers much larger negative returns. The direction of return asymmetry most consistent with this description is:",
+  [["zero skewness.","Viele kleine positive und seltene viel größere negative Renditen beschreiben im gegebenen Fall keine symmetrische Verteilung. Die Richtung des langen Randes ist entscheidend."],["negative skewness.","Der lange linke Rand kann trotz vieler positiver Monate bedeutsam sein."],["positive skewness.","Positive Schiefe würde den langen Rand auf der Seite großer positiver Werte betonen. Beschrieben werden dagegen die seltenen großen negativen Ausgänge."]],
+  1,
+  ["Eine hohe Gewinnhäufigkeit allein sagt wenig über das Verhältnis kleiner Gewinne zu großen Verlusten aus.","Die Richtung der Asymmetrie ist von der durchschnittlichen Rendite und der Wölbung zu trennen. Viele positive Monate garantieren keinen positiven Mittelwert; große Verluste können sie überkompensieren. Die Frage fragt gezielt nach Schiefe, damit ein möglicher zusätzlicher Befund schwerer Ränder nicht als zweite richtige Antwort auftaucht."],
+  "shape"),
  q('b1','mock-b','d','Returns are −5%, 0%, 5%, and 10%. Target downside deviation is calculated around zero using a denominator of n−1. The result is closest to:',[
  ['2.50%.','Das verwendet n statt des ausdrücklich angegebenen n−1.'],['5.00%.','Das verwendet nur die eine negative Beobachtung als Nenner.'],['2.89%.','√(25/3) ≈ 2,8868 Prozentpunkte.']
  ],2,[eq('DD_0=\\sqrt{25/3}\\approx2{,}887','Nur −5 % liegt unter null. Der vorgegebene Nenner beträgt trotzdem 3.','DD_0','Zielabweichung um null in Prozentpunkten, mit n−1-Konvention.')],'downside'),

@@ -83,7 +83,12 @@ module.exports=[
  q('b1','mock-b','c','A simple normal-error model predicts Y = 10 at the sample mean of X. It has n = 18 and residual standard error 2. Given a critical t-value of 2.12, the upper 95% prediction limit for one new observation is closest to:',[
  ['11.00.','Das verwendet nur den Standardfehler des Mittelwerts.'],['14.24.','Das lässt die Parameterschätzunsicherheit weg.'],['14.36.','10 + 2,12 × 2 × √(1 + 1/18).']
  ],2,[eq('U=10+2{,}12\\cdot2\\sqrt{1+1/18}\\approx14{,}3562','Am X-Mittel fällt der Abstandsterm weg, nicht aber die zusätzliche Eins für den zukünftigen Fehler.','U','Obere Grenze des Einzelprognoseintervalls.')],'prediction'),
- q('b2','mock-b','b','Keeping residual standard error unchanged, a larger centered sum of squared X deviations results in:',[
- ['a smaller conventional standard error of the slope.','Sxx steht unter der Wurzel im Nenner des Standardfehlers.'],['a larger conventional standard error of the slope.','Das kehrt die Abhängigkeit um.'],['proof of a causal relationship.','Mehr X-Variation liefert unter dem Modell mehr Präzision, keine Kausalitätsidentifikation.']
- ],0,['Die Aussage gilt bei passenden gleichen Modellannahmen. Ein extremer fehlerhafter X-Wert kann die Formel numerisch verändern, ohne das Modell verlässlicher zu machen.'],'coefficient-tests')
+ q("b2",
+  "mock-b",
+  "b",
+  "Keeping residual standard error unchanged, a larger centered sum of squared X deviations results in:",
+  [["a smaller conventional standard error of the slope.","Sxx steht unter der Wurzel im Nenner des Standardfehlers."],["a larger conventional standard error of the slope.","Bei unverändertem Residualstandardfehler steht die größere zentrierte X-Quadratsumme im Nenner des konventionellen Steigungsstandardfehlers. Die behauptete Richtung ist umgekehrt."],["an unchanged conventional standard error of the slope.","Gleicher Residualstandardfehler allein hält den Steigungsstandardfehler nicht konstant. Auch die Streuung der erklärenden Variable bestimmt die Präzision der Steigung."]],
+  0,
+  ["Die Aussage gilt bei passenden gleichen Modellannahmen. Ein extremer fehlerhafter X-Wert kann die Formel numerisch verändern, ohne das Modell verlässlicher zu machen.","Der konventionelle Standardfehler der Steigung ist der Residualstandardfehler dividiert durch die Quadratwurzel der zentrierten X-Quadratsumme. Unter unverändert passenden Modellannahmen bedeutet mehr X-Variation damit mehr rechnerische Steigungspräzision. Ein fehlerhafter Ausreißer oder missspezifiziertes Modell wird durch diese Formel nicht automatisch verlässlich."],
+  "coefficient-tests")
 ];
