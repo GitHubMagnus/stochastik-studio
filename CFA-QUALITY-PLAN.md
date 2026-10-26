@@ -5381,3 +5381,96 @@ ausgegeben; sie sind keine persönliche Bestehenswahrscheinlichkeit.
 Finale HTML-Fassung: b63507a520c45628; CFA-Inhaltsfassung: 1cfc1ffe888c1897.
 Vollständiger LF-HTML-SHA256: b63507a520c45628f2ffdcf6f522a409097c8a1cbf04e3b6b670f42e9434e210
 bei 27904452 Bytes; vollständiger CFA-Daten-SHA256: f4fe8ac7c29ccec07cd42c6016f5ee0e4e1ad13a75fda6e55fc1fa109711a709.
+
+## 102. Einheit: Risikomanagement und vollständige Fragenpools
+
+Die letzte neue Einheit behandelt alle sieben Lernziele von Introduction to Risk
+Management nach dem offiziellen Outline 2027, Seite 28. Die öffentliche CFA-
+Begriffsdarstellung wird als Ausgabe 2026 kenntlich gemacht. Die eigenen Zahlen-
+und Vertragsfälle sind keine Behauptung universeller Rechts-, Broker- oder
+Versicherungsregeln. Der abschließende Abgleich sämtlicher 2027-Errata bleibt eine
+separate Voraussetzung für die Gesamtfreigabe.
+
+40 Abschnitte verbinden Rahmenwerk und Daten, Befugnisse und unabhängige Kontrolle,
+Toleranz und konkrete Grenzen, Kapital- und Risikogewichte, gemeinsame Risikoquellen
+sowie Messung und Veränderung des gesamten verbleibenden Profils. Enthalten sind
+41 gesetzte Formeltafeln mit Symbolen und Konventionen, 23 eigene Fallbeispiele,
+sechs berechnete Grafiken, 13 Tabellen, drei zusätzliche Vertiefungen und 24
+beantwortete Verständnisfragen. Drei bestehende Rechner sind direkt verknüpft.
+
+Die neuen Rechnungen trennen insbesondere:
+
+- Euler-Komponenten und marginale Beiträge von Kapitalgewichten; die finanzierte
+  Umschichtung verwendet die Differenz beider marginaler Wirkungen. Im eigenen
+  unkorrelierten Sechzig-Vierzig-Fall mit je zwanzig Prozent Volatilität betragen
+  die Risikogewichte rund 69,23 und 30,77 Prozent. Ein Gegenbeispiel erklärt einen
+  negativen Beitrag bei positiver eigener und gesamter Volatilität.
+- Marktliquidität und heutige Finanzierung: Im eigenen Bestandsverkauf wird der
+  Puffer bei zwanzig Prozent Abschlag aufgebraucht. Der integrierte Stress rechnet
+  Kundenausfall, fällige Zahlung, Cashsicherheit und Verkauf gemeinsam zu einem
+  verbleibenden Cashbestand von 75 000 Euro.
+- Diskretes Quantil und schlechtesten Verteilungsanteil: Der eigene VaR 95 beträgt
+  zehn, ES 95 vierundzwanzig. Bedingte Mittelwerte mindestens gleich und strikt
+  über der Grenze sind siebzehn beziehungsweise 27,5 und werden ausdrücklich
+  nicht fälschlich als derselbe ES bezeichnet. Ein schwererer Ein-Prozent-Zustand
+  erhöht ES auf 34 bei unverändertem VaR zehn.
+- Normalmodell und unbeschränkte Realität: Horizon, Verlustvorzeichen, Dezimalrate,
+  Wurzel-Zeit-Annahmen und fehlende Verlustobergrenze sind erläutert. Der neue
+  unabhängige Integrationsvergleich fand eine kleine verstärkte Rundungsabweichung
+  der bisherigen Quantilnäherung bei hoher Konfidenz. Nur die Inversion für den
+  Normalrisiko-Rechner wurde auf eine positive Integralreihe mit Bisektion
+  umgestellt. Die übrigen Normal-CDF-Modelle wurden nicht verändert. 81 Vergleiche
+  gegen separate Simpson-Integration stimmen nun bis 1e-8 Prozentpunkten überein.
+- Vertragsprofil und Kosten: Die eigene Police deckelt Erstattung und lässt bei
+  hundert Euro Schaden inklusive Prämie 52 zurück. Der Protective Put wird mit
+  identischen 103 Euro Anfangskapital gegen Aktie plus Cash verglichen; sein
+  Verlustboden ist minus dreizehn. Der Devisenforward fixiert den passenden USD-
+  Erlös, garantiert aber keine vorherige Sicherheitenfinanzierung.
+
+84 eigene englische Übungsfragen mit Begründungen aller Optionen decken jedes
+Lernziel mit zwölf Fragen ab. Vier neue reservierte Transferfälle vervollständigen
+beide disjunkten Klausuren auf je 180 Fragen und exakt den Themenbauplan. Insgesamt
+bestehen nun 102 Einheiten, 340 erklärte und geübte Lernzielreferenzen, 4106
+Trainingsfragen und 360 reservierte Klausurfragen. Es gibt 347 berechnete CFA-
+Grafiken, 13 Ablaufbilder, 65 Modelle und 78 bisherige Kapitel mit primärem Modell.
+Das Wörterbuch enthält 2145 Einträge, 4590 Bezeichnungen und 1942 präzise CFA-
+Rückverweise. Bestehende Wrong-way- und Basisrisiko-Verweise bleiben erhalten.
+
+Prüfstand dieser Ergänzung:
+
+- 534 von 534 Kernprüfungen bestanden, darunter neun neue Fachtests. Alle 966
+  Koordinaten der sechs Grafiken wurden gegen unabhängige Matrizen, Cashledgers,
+  Verteilungen und Vertragszahlungen geprüft. Die 22 tatsächlichen numerischen
+  Übungsantworten wurden einzeln gegengerechnet; 81 Normalfälle und 39 Kredit-
+  beziehungsweise Optionsfälle ergänzen die Grenz- und Vorzeichenprüfung.
+- Fünf neue Browserfälle bestanden: Offline-Kapitel, alle 41 Symboltafeln, alle
+  84 Übungsfragen mit Lösungen und Rückverweisen, vier reservierte Fälle in
+  isolierten Desktop-/Mobilfixtures und drei echte Modellverknüpfungen. Zwölf
+  native Zahlenfeld-Regler-Paare und ein Strategieauswahlfeld wurden mit Grenzen,
+  Tastatur, Rücksetzen, Fehlermeldung, separaten Kennzahlen und Offlinebetrieb geprüft.
+- Alle 90 aufgenommenen Ansichten wurden tatsächlich gelesen: sechs Grafiken,
+  23 Beispiele, 27 geöffnete Vertiefungen, 13 Tabellen, vier mobile Symboltafeln,
+  neun Modellzustände und acht reservierte Lösungen. Ergänzende lesbare Ausschnitte
+  prüfen die langen Kredit- und mobilen Optionsdarstellungen. Keine visuelle
+  Korrektur war erforderlich. Lange Inhalte bleiben innerhalb ihrer Bereiche
+  verschiebbar und zeigen entsprechende Hinweise.
+- Alle 45 Fälle des vollständigen CFA-Browsertests bestanden (709,8 Sekunden).
+  Weitere 55 allgemeine, Portfolio-, Wörterbuch-, Notations- und Modelllesbarkeits-
+  Prüfungen bestanden. Die Lesbarkeit aller 65 Modelle wurde über vier Viewports
+  mit 260 Ansichten und ihren tatsächlichen Achsenbeschriftungen kontrolliert.
+- Beide echten vollständigen Klausuren wurden gesondert durch alle 180 Aufgaben
+  und ihre 180 Lösungen im Browser geführt. Bei A wurden bewusst 18 Fehler gesetzt
+  und korrekt 162 Treffer sowie 18 Journaleinträge erhalten; B erhielt korrekt
+  180 Treffer und kein Fehlerjournal. Reload, Markierung, Sicherheitseinschätzung,
+  abgeschlossene erste Sitzung, zweite 135-Minuten-Uhr und getrennte Fragenpools
+  wurden am tatsächlichen unveränderten Lernmaterial geprüft. Zwei von zwei
+  vollständigen Durchläufen bestanden (112,7 Sekunden).
+
+HTML-Fassung: aaf28f531fad5b84; CFA-Inhaltsfassung: 38f7c21eefdbfe70.
+Vollständiger LF-HTML-SHA256: aaf28f531fad5b84b5d53712b657ff5370f53c5e019c7e8c62455d4081a71798
+bei 28256325 Bytes; vollständiger CFA-Daten-SHA256: 77ec5e53eba3586beabcc5e297c43116f9f02410a57f8a17a6f06a364af803ff.
+
+Die Inventarlücken sind damit geschlossen. Die umfassende fachliche Endabnahme,
+der vollständige aktuelle Errata-Abgleich und eine evidenzbasierte Neubewertung
+bleiben offen. Alle Einheiten bleiben draft, Release false. Die Zielwerte 90/100
+und 80/100 werden weiterhin nicht vor der Gesamtabnahme als erreicht ausgegeben.
