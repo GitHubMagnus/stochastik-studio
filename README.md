@@ -22,6 +22,10 @@ Der [Abgleich der offiziellen Curriculum-Korrekturen 2027](CFA-2027-ERRATA-AUDIT
 ergänzt unter anderem aktivierte Zinsen, FCFE und tatsächliche Ausschüttungen,
 die Medianberechnung sowie halbjährliche Z-Spreads. In der Prüfungsübersicht
 sind die Rechnerübungen und die offizielle Rechnerregel direkt verlinkt.
+Alle 340 Lernziele besitzen getrennte Zugänge zu Erklärung, ausgearbeitetem
+Rechen- oder Fallbeispiel und selbstständigem Training. Der
+[Anwendungsabgleich](CFA-2027-APPLICATION-AUDIT.md) dokumentiert zwölf dazu
+ergänzte ausführliche Fälle und die geprüften Unterschiede.
 
 Der neue Bereich unter **Finance → CFA Level I 2027** führt 102 offizielle Module
 mit 340 einzeln zugeordneten Lernzielreferenzen. Der aktuelle Arbeitsstand enthält

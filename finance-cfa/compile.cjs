@@ -1,6 +1,7 @@
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const curriculum=require('./curriculum.cjs'),engine=require('./engine.cjs'),{renderLatex}=require('../finance-math.cjs');
 function load(directory){return fs.readdirSync(path.join(__dirname,directory)).filter(n=>n.endsWith('.cjs')).sort().flatMap(n=>require('./'+directory+'/'+n));}
+function hasApplication(blocks){return blocks.some(b=>b&&typeof b==='object'&&(b.kind==='example'||hasApplication(b.blocks||[])));}
 function compileBlock(block,owner){
  if(typeof block==='string'){if(!block.trim())throw Error(owner+': leerer Absatz');return block;}
  if(!block||typeof block!=='object')throw Error(owner+': ungültiger Inhaltsblock');
@@ -79,12 +80,13 @@ function compile({release=false}={}){
   id:m.id,objectives:m.objectives.map(o=>({
    id:o.id,
    sections:(byUnit.get(m.id)?.sections||[]).filter(s=>s.objectives.includes(o.letter)).map(s=>s.id),
+   applications:(byUnit.get(m.id)?.sections||[]).filter(s=>s.objectives.includes(o.letter)&&hasApplication(s.blocks)).map(s=>s.id),
    practice:questions.filter(q=>q.pool==='practice'&&q.objectives.includes(o.id)).map(q=>q.id),
    mockQuestions:questions.filter(q=>q.pool!=='practice'&&q.objectives.includes(o.id)).length
   }))
  }));
  if(release){
-  const gaps=coverage.flatMap(m=>m.objectives.filter(o=>!o.sections.length||!o.practice.length).map(o=>o.id));
+  const gaps=coverage.flatMap(m=>m.objectives.filter(o=>!o.sections.length||!o.applications.length||!o.practice.length).map(o=>o.id));
   if(gaps.length)throw Error('Offene Lernziele: '+gaps.join(', '));
   if(units.some(u=>u.review?.status!=='checked'))throw Error('Fachliche Prüfung nicht vollständig');
  }
