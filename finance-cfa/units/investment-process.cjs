@@ -316,3 +316,5 @@ module.exports={id:'investment-process',intro:[
 ],review:{status:'draft',date:'2026-10-26',note:'Eigene Fälle mit expliziten Zahlungs- und Gebührenkonventionen. Wirtschaftliche Grundmodelle werden von landes- und vertragsabhängigen Einzelregeln getrennt. Fachliche Gesamtfreigabe bleibt ausstehend.'}};
 
 module.exports.related.push({unit:'ips',section:'case',label:'Ziele, finanzielle Tragfähigkeit und Portfolioauftrag gemeinsam abstimmen'});
+
+module.exports.related.push({unit:'behavioral',section:'decision-process',label:'Verhaltensfehler von Präferenz und echter Restriktion unterscheiden'});

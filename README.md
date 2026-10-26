@@ -13,14 +13,14 @@ Direkt im Browser nutzbar, ohne Download oder Installation.
 - **Verständnis prüfen:** 1.034 Aufgaben, mindestens sechs in jedem Finance-Kapitel und 14 bei Duration. Grundverständnis, Herleitung oder Begründung, Rechen- oder Fallaufgabe, Vergleich, Transfer und Fehlersuche besitzen getrennte Hinweise und ausführliche Lösungen. Aufgabenangaben und Ergebnistabellen sind getrennt. Die Lösungen enthalten 544 gesetzte Formeltafeln und 90 gesetzte Inline-Formeln, einschließlich bewusst wiederverwendeter Kapitelrechnungen.
 - **Vertiefungen:** 361 zusätzliche Erklärabschnitte, 175 Vergleichstabellen, insgesamt 519 erläuterte Lösungsschritte, 740 Kapitelverbindungen und neun Erklärungsgrafiken. Wichtige Zusammenhänge wie Duration, Cashflowbewertung, CAPM und Optionsreplikation erhalten mehrere aufeinander aufbauende Herleitungen.
 - **Mathematische Notation:** 156 zentrale mathematische Formeltafeln, 219 Formeltafeln in Herleitungen und 383 numerische Lösungsschritte werden ausdrücklich in LaTeX verfasst und als MathML eingebettet. Auch Formeln in Vergleichstabellen und alle neun Kelly-Formeltafeln sind gesetzt. Qualitative Entscheidungsfragen werden als Prosa dargestellt. Es gibt keine automatische Umwandlung von Wörtern in vermeintliche Gleichungen.
-- **Fachwörterbuch:** 2.113 alphabetisch sortierte Definitionen mit 4.520 Begriffen und Aliasen; automatische Verlinkung aus den Lerntexten und Rückverweise auf erklärende Kapitel. 1.902 kuratierte Einträge besitzen zusätzlich einen präzisen Rückverweis in den neuen CFA-Lernpfad. Mehrdeutige Begriffe wie GMV, Forward, FFO, DSCR, Trustee, Subordination, Residual, WAL, Balloon Payment, Margin, Settlement und Delta werden abhängig vom Kapitel verlinkt. Direktlinks auf zusammengeführte Begriffe bleiben über deren Alias erhalten.
+- **Fachwörterbuch:** 2.130 alphabetisch sortierte Definitionen mit 4.557 Begriffen und Aliasen; automatische Verlinkung aus den Lerntexten und Rückverweise auf erklärende Kapitel. 1.921 kuratierte Einträge besitzen zusätzlich einen präzisen Rückverweis in den neuen CFA-Lernpfad. Mehrdeutige Begriffe wie GMV, Forward, FFO, DSCR, Trustee, Subordination, Residual, WAL, Balloon Payment, Margin, Settlement und Delta werden abhängig vom Kapitel verlinkt. Direktlinks auf zusammengeführte Begriffe bleiben über deren Alias erhalten.
 - **Kelly Studio:** Einzelpositionen, Szenarien, Portfoliooptimierung, Simulation und Herleitung. Der Zustand bleibt beim Modulwechsel erhalten.
 
 ## CFA Level I 2027: laufende Überarbeitung
 
 Der neue Bereich unter **Finance → CFA Level I 2027** führt 102 offizielle Module
 mit 340 einzeln zugeordneten Lernzielreferenzen. Der aktuelle Arbeitsstand enthält
-100 neu ausgearbeitete Einheiten und 3.974 eigenständige englische Trainingsfragen
+101 neu ausgearbeitete Einheiten und 4.022 eigenständige englische Trainingsfragen
 mit deutschen Lösungen. Alle zehn Ethics-Module und alle elf Quant-Module besitzen
 neue Erklärungen und Übungen. Weitere Vertiefungen behandeln EPS, Kennzahlen und
 Leasing/Vergütung. Der Quant-Bereich enthält jetzt auch ausführliche Testwahl,
@@ -776,20 +776,33 @@ ohne daraus eine sichere Aussage über jedes zufällige Endergebnis abzuleiten.
 acht getrennte Transferfälle bleiben den Klausuren vorbehalten. Drei verknüpfte
 Rechner isolieren Risikoaversion, Modellsteuer und Gewichtsdrift.
 
-Insgesamt 335 zusätzliche berechnete Grafiken und 13 Ablaufbilder erläutern
+Verhaltensfehler ergänzt 33 Abschnitte, 20 Formeltafeln, 25 erklärte Fälle,
+fünf Vergleichstabellen, sechs berechnete Grafiken und 24 zusätzliche Verständnisfragen.
+Alle 15 in der ergänzenden CFA-Gruppierung genannten Biases werden mit Mechanismus,
+Folge und gezielter Gegenmaßnahme erläutert. Kontrollierte Fälle unterscheiden
+Verzerrung, bewusste Präferenz und tatsächliche wirtschaftliche Einschränkung.
+Weitere Rechnungen verbinden Basisraten, Referenzpunkte und Verlustasymmetrie,
+Handelskosten, späten Sparbeginn, stilisierte Preisrückkopplung und Sicherheitenbedarf.
+Wertfunktionen und Marktpfade sind ausdrücklich eigene Illustrationen, keine
+Parameterschätzung oder sichere Handelsprognose. 48 eigene englische Aufgaben
+und vier getrennte Klausurfälle prüfen Mechanismen und vorsichtige Marktinterpretation.
+Zwei verknüpfte Rechner dienen dem Vergleich von Risikoaversionsmodell und
+regelgebundener Gewichtsprüfung; sie werden nicht als Bias-Diagnose bezeichnet.
+
+Insgesamt 341 zusätzliche berechnete Grafiken und 13 Ablaufbilder erläutern
 die neuen Zusammenhänge.
 Direkte Abschnittsverweise verbinden die Einheiten und passende Wörterbuchdefinitionen.
 
-330 Lernzielreferenzen sind aktuell sowohl neuen Erklärungen als auch Trainingsfragen
+333 Lernzielreferenzen sind aktuell sowohl neuen Erklärungen als auch Trainingsfragen
 zugeordnet. Dies ist **kein Nachweis vollständiger CFA-Vorbereitung**. Offene
 Einheiten sind sichtbar; die fachliche Endprüfung läuft. Zwei getrennte Probeklausuren
-haben bisher je 176 von 180 Fragen und bleiben gesperrt. Ihre Ethics- und Quant-Anteile
+haben bisher je 178 von 180 Fragen und bleiben gesperrt. Ihre Ethics- und Quant-Anteile
 sind mit jeweils 22 Fragen pro Thema, ihre Economics-Anteile mit je zwölf und
 ihre Abschlussanalyse-Anteile mit je 22 Fragen angelegt. Corporate Finance hat
 je zwölf reservierte Fragen. Damit sind die Themenanteile der ersten Sitzung
 angelegt. Die Aktienanteile der zweiten Sitzung sind mit je 22 reservierten Fragen
 angelegt. Der Anleihebereich enthält je 22 reservierte Fragen; Derivate je 13.
-Die Alternative-Investments-Anteile sind mit je 13 reservierten Fragen vollständig angelegt. Der Portfolio-Anteil umfasst nun je 16 Transferfragen; pro Klausur fehlen noch vier Fragen zu Behavioral Biases und Risk Management.
+Die Alternative-Investments-Anteile sind mit je 13 reservierten Fragen vollständig angelegt. Der Portfolio-Anteil umfasst nun je 18 Transferfragen; pro Klausur fehlen noch zwei Fragen zu Risk Management.
 Der implementierte Ablauf
 mit zwei Sitzungen zu je 135 Minuten wird mit gesonderten künstlichen Testdaten
 geprüft, die nicht als echte Lernfragen veröffentlicht werden.
