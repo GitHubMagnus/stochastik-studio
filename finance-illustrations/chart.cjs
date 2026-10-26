@@ -20,7 +20,10 @@ function render(f){
   return Array.from({length:last-first+1},(_,i)=>Number(((first+i)*step).toPrecision(12)));
  };
  const xt=p.xTicks||ticks(p.x),yt=p.yTicks||ticks(p.y);
- const grid=yt.map(v=>`<path d="M${L} ${y(v)}H${W-R}" stroke="#dbe5eb"/><text x="${L-12}" y="${y(v)+5}" text-anchor="end">${esc(fmt(v))}</text>`).join('')+xt.map(v=>`<path d="M${x(v)} ${H-B}v6" stroke="#648292"/><text x="${x(v)}" y="${H-B+27}" text-anchor="middle">${esc(fmt(v))}</text>`).join('');
+ // Narrow ranges need enough significant decimal places to distinguish ticks.
+ const precision=values=>{const gaps=values.slice(1).map((v,i)=>Math.abs(v-values[i])).filter(v=>v>0);return gaps.length?Math.max(2,Math.min(12,Math.ceil(-Math.log10(Math.min(...gaps)))+1)):2;};
+ const xd=precision(xt),yd=precision(yt);
+ const grid=yt.map(v=>`<path d="M${L} ${y(v)}H${W-R}" stroke="#dbe5eb"/><text x="${L-12}" y="${y(v)+5}" text-anchor="end">${esc(fmt(v,yd))}</text>`).join('')+xt.map(v=>`<path d="M${x(v)} ${H-B}v6" stroke="#648292"/><text x="${x(v)}" y="${H-B+27}" text-anchor="middle">${esc(fmt(v,xd))}</text>`).join('');
  const areas=(p.areas||[]).map(a=>`<path class="illustration-area" d="${path(a.points)} Z" fill="${a.color||colors[1]}" fill-opacity="${a.opacity??.18}" stroke="${a.color||colors[1]}" stroke-width="1"/>`).join('');
  const lines=p.series.map((s,i)=>`<path class="illustration-curve" d="${path(s.points)}" fill="none" stroke="${s.color||colors[i%colors.length]}" stroke-width="${s.width||3}" ${s.dash?`stroke-dasharray="${esc(s.dash===true?'7 5':s.dash)}"`:''} stroke-linejoin="round"/>`).join('');
  const zero=p.y[0]<0&&p.y[1]>0?`<path d="M${L} ${y(0)}H${W-R}" stroke="#8ca2af" stroke-width="1.5"/>`:'';

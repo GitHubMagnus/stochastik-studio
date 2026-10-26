@@ -6,7 +6,7 @@ window.FinanceCFA=(()=>{
  const root=document.getElementById('page-cfa'),key='studio-cfa-2027-v1';
  const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const prose=(s,unit)=>window.FinanceStudy.glossaryText(s,unit);
- const format=n=>n.toLocaleString('de-DE',{maximumFractionDigits:1});
+ const format=n=>n.toLocaleString('de-DE',{maximumFractionDigits:6});
  const label=t=>D.topics.find(x=>x.id===t)?.title||t;
  let scrollFrame=null;
  function updateScrollRegions(){

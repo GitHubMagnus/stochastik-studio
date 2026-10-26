@@ -216,3 +216,5 @@ module.exports={id:'equity-factors',intro:[
 ],review:{status:'draft',date:'2026-10-16',note:'Eigene kontrollierte Risiko-, Regressions-, Bewertungs- und Faktorbeispiele. Zahlen, Grafiken und Modellverbindungen wurden technisch und durch unabhängige Gegenrechnungen geprüft. Der fachliche Gesamtaudit bleibt offen.'}};
 
 module.exports.related.push({"unit":"derivative-uses","section":"investor-market","label":"Ein Zielbeta mit einem Indexfutures-Overlay unter expliziten Annahmen einstellen"});
+
+module.exports.related.push({unit:"portfolio-pricing",section:"metric-connections",label:"Alpha mit Sharpe, Treynor und M² algebraisch verbinden"});

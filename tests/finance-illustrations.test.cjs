@@ -5,6 +5,11 @@ const byFigure=Object.fromEntries(Object.values(F).flat().map(f=>[f.id,f]));
 const near=(a,b,tol=1e-9)=>assert.ok(Math.abs(a-b)<=tol,`${a} != ${b}`);
 const integral=(fn,a,b,n=10000)=>{const h=(b-a)/n;let sum=fn(a)+fn(b);for(let i=1;i<n;i++)sum+=(i%2?4:2)*fn(a+i*h);return sum*h/3;};
 const polygonArea=pts=>Math.abs(pts.reduce((a,[x,y],i)=>{const next=pts[(i+1)%pts.length];return a+x*next[1]-y*next[0];},0))/2;
+test('all legacy and CFA chart axes distinguish every tick, including narrow fractional Sharpe scales',()=>{
+ const {render}=require('../finance-illustrations/chart.cjs'),flat=a=>a.flatMap(b=>[b,...flat(b.blocks||b.steps||[])]),d=require('../finance-cfa/compile.cjs').compile(),figures=[...Object.values(F).flat().map(f=>({id:f.id,svg:render(f)})),...d.units.flatMap(u=>u.sections.flatMap(s=>flat(s.blocks))).filter(b=>b.kind==='figure')];
+ for(const f of figures){const grid=f.svg.split('<g clip-path=')[0],ticks=[...grid.matchAll(/<text [^>]*text-anchor="(end|middle)"[^>]*>([^<]+)<\/text>/g)];for(const axis of ['end','middle']){const labels=ticks.filter(m=>m[1]===axis).map(m=>m[2]);assert.ok(labels.length>1,f.id);assert.equal(new Set(labels).size,labels.length,f.id+' '+axis+': '+labels.join(', '));}}
+ const narrow=figures.find(f=>f.id.endsWith('mixture-sharpe'));assert.ok(narrow);assert.match(narrow.svg,/>0,285<\/text>/);assert.match(narrow.svg,/>0,295<\/text>/);
+});
 test('43 illustrations are embedded with accessible SVG, mathematics, assumptions and valid chapter links',()=>{
  const html=fs.readFileSync(require('node:path').join(__dirname,'../index.html'),'utf8');
  const data=JSON.parse(html.match(/id="finance-data">([\s\S]*?)<\/script>/)[1]);

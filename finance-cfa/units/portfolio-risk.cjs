@@ -249,3 +249,5 @@ const replacements={
   2:N('Z=0{,}6(-0{,}30)+0{,}4(-0{,}10)=-0{,}22','Das separate gemeinsame Stressszenario ergibt einen Verlust von 22 Prozent. Es ist eine konkrete Verlustannahme, keine aus der Standardabweichung abgeleitete Wahrscheinlichkeit.','Einfache Portfoliorendite im ausdrücklich vorgegebenen Stressszenario.')}
 };
 let applied=0;const visit=blocks=>{for(const b of blocks){if(typeof b==='string')continue;if(b.kind==='example'){const r=replacements[b.title];if(r){for(const[i,v]of Object.entries(r)){if(typeof b.steps[i]!=='string')throw Error('Unerwartete Beispielstruktur: '+b.title);b.steps[i]=v;applied++;}delete replacements[b.title];}visit(b.steps);}if(b.blocks)visit(b.blocks);}};for(const section of module.exports.sections)visit(section.blocks);if(Object.keys(replacements).length)throw Error('Fehlende Rechenbeispiele: '+Object.keys(replacements));
+
+module.exports.related.push({unit:"portfolio-pricing",section:"cml-sml",label:"Gesamtrisiko, Beta und vier Performancemaße unterscheiden"});

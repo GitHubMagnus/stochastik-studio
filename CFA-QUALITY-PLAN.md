@@ -5062,3 +5062,95 @@ Normalisierter HTML-SHA-256:
 a6416e44a7d712368a0d35bee292ff53c01b691a0e263f5a469d8259c5323b75
 bei 26598657 Bytes. SHA-256 der unveränderten CFA-Daten:
 8e6d80914ab83ff73065ea6689fd7f6360f8f2ff60730b42c5ebe03e84f1d5d8.
+
+
+## 26.10.2026: Portfoliobewertung, CAPM und Performancemaße
+
+Die zweite Portfolioeinheit behandelt alle neun Lernziele von Portfolio Risk and
+Return: Part II des 2027-Outline (S. 27–28). Sie enthält 38 Abschnitte, 54 gesetzte
+Formeltafeln mit lokalen Symbolhilfen, 19 Rechenbeispiele, zehn Tabellen, sechs
+berechnete Grafiken und 27 aufklappbare Erläuterungen, davon 24 Verständnisfragen.
+Cash-Allokation und Kreditknick, CML/SML, systematische und Restvarianz, Marktmodell,
+Beta und CAPM werden mit Sharpe, Treynor, Jensen-Alpha und beiden M²-Konventionen
+verbunden. Grundlagenabschnitte werden ausdrücklich kopiert und nicht an ihrer
+bisherigen Quelle verändert; die Querverweise zwischen beiden Portfolioeinheiten
+und dem Eigenkapital-Faktorkapitel sind ergänzt.
+
+Ein einheitlicher eigener Analysefall verwendet Fondsrendite zehn Prozent,
+sicheren Satz drei Prozent, Marktrendite neun Prozent, Marktvolatilität zwanzig
+Prozent, Fondsvolatilität fünfundzwanzig Prozent und Beta 1,1. Daraus folgen Sharpe
+0,28, Treynor rund 6,3636 Prozent je Beta, M²-Niveau 8,6 Prozent, M²-Differenz minus
+0,4 Prozentpunkte und Jensen-Alpha plus 0,4 Prozentpunkte. Der positive Alpha-Fall
+wird ausdrücklich als Analyseabweichung vom CAPM-Gleichgewicht gekennzeichnet.
+Die algebraische M²-Zerlegung erklärt den unterschiedlichen Risikonenner über
+Korrelation 0,88. Erwartung, historische Schätzung und realisierter Ausgang bleiben
+getrennt. Ein eigener Preisfall berücksichtigt, dass der Anfangspreis auch Beta
+verändern kann. Der Unterschied zwischen Roh- und Überschussintercept, wechselnde
+historische Vergleichszinsen, serielle Abhängigkeit, negative Überschüsse und
+Beta-null/-negativ-Grenzen werden erläutert.
+
+Das neue Performance-Labor berechnet aus sechs Eingaben eine gemeinsam zulässige
+Einindex-Risikostruktur. Zwölf native Szenarien, acht Kennzahlen, zwei Kurven mit
+242 Werten und eine Siebenzeilentabelle isolieren die Wirkung von Restvarianz,
+Beta, Fonds-/Marktrendite, sicherem Zins und Marktvolatilität. Der zweite Zugang
+führt zum bestehenden CAPM-Rechner für auch negative Betas. Das Labor ist kein
+Prognoseverfahren und keine automatische Gleichgewichtsvalidierung.
+
+108 eigenständige englische Übungen decken jedes der neun Lernziele mit zwölf
+Fragen ab. Zwölf weitere Fälle bleiben exklusiv den beiden Klausuren vorbehalten.
+Alle 53 numerischen Antworten werden aus den jeweiligen Aufgabenangaben getrennt
+nachgerechnet. Der Rechner wird mit vier gleich gewichteten orthogonalen
+Faktorzuständen über 729 Parameterkombinationen einschließlich sämtlicher 176418
+Kurvenwerte unabhängig geprüft; alle zwölf Presets und 714 Buchkoordinaten werden
+zusätzlich kontrolliert. Eine niedrigere eigenständige Sharpe Ratio wird anhand
+einer vollständigen Mischung als anderes Urteil als der Ergänzungsnutzen erklärt.
+
+Die Wörterbucherweiterung behält vorhandene Roh-Intercept- und Marktproxy-Ziele bei
+und ergänzt ihre Erklärungen und Aliase. Jensen-Alpha erhält nur in dieser Einheit
+eine eigene Kontextdefinition; der allgemeine Alpha-Begriff bleibt erhalten.
+Gesamtbestand: 2080 Definitionen, 4457 Begriffe/Aliase und 1863 kuratierte
+CFA-Einträge. Doppelte normalisierte Aliase und veränderte Rückverweise werden
+explizit geprüft.
+
+**Gefundene und behobene Darstellungsfehler:** Eine enge Sharpe-Achse rundete
+unterschiedliche Werte auf dieselbe Beschriftung. Der gemeinsame Grafikrenderer
+passt die Genauigkeit nun an den tatsächlichen Tick-Abstand an. Alle 366 Buch-
+und CFA-Grafiken werden auf eindeutige Achsenwerte geprüft. CFA-Grafikwertetabellen
+zeigten zuvor nur eine Nachkommastelle; sie verwenden nun bis zu sechs, sodass
+kleine Sharpe-Unterschiede nachvollziehbar bleiben. Die sechs neuen Wertetabellen
+werden im Browser vollständig gegen ihre zugrunde liegenden Koordinaten geprüft.
+
+**Prüfung und Abnahmeumfang:** 499 Kernprüfungen, 45 allgemeine/Portfolio-/Rechner-
+Browserprüfungen und die vollständigen 45 CFA-Ablaufprüfungen sind erfolgreich.
+Letztere prüfen alle 98 Einheiten, das bestehende Training, Speicherung und den
+Klausurablauf. Die Modellprüfung umfasst 65 Zugänge, 260 Breitenzustände, 3120
+Beschriftungen und 130 native Randwerteingaben. Nach diesem Lauf wurden ausschließlich
+lokale Symbolerläuterungen und die eigenen Eingaben eines übernommenen Beispiels
+präzisiert; ein vollständiger Vergleich des kompilierten Datenbestands beweist,
+dass alle übrigen 97 Einheiten, sämtliche Fragen, Modelle und Renderer unverändert
+sind. Anschließend wurden alle 499 Kernprüfungen und die sechs Browserprüfungen
+der betroffenen Einheit erneut auf dem finalen Build ausgeführt. Die Sichtprüfung
+umfasst 109 finale Ansichten; gegenüber der bereits gelesenen Fassung werden
+abweichende und neue Bilder einzeln nachgeprüft. Die finale Abnahme umfasst ferner
+vollständige HTML-/CFA-Datenidentität, komplette Quelldateihashes und die tatsächliche
+öffentliche GitHub-Pages-Fassung mit HTTP- und Edge-Funktionsprüfung.
+
+Quellenbasis: verbindlicher CFA-Outline 2027, öffentliche ergänzende CFA-Konzept-
+übersicht 2026 und Sharpes Originalaufsatz von 1994. Modigliani/Modigliani 1997 ist
+als weiterführende Originalveröffentlichung bibliografisch nachgewiesen; eine
+vollständige inhaltliche PDF-Lektüre wird nicht behauptet. Die eigenen M²- und
+Preisbeispiele werden unabhängig algebraisch und numerisch geprüft.
+
+**Gesamtziel weiter offen:** 98 von 102 Einheiten und 316 von 340 Lernzielen besitzen
+neue Erklärungen und Übungen. Es gibt 3806 Trainingsfragen und je 170 von 180
+reservierten Klausurfragen. Offen sind Investment Process (sechs Lernziele), IPS
+(acht), Behavioral Biases (drei) und Risk Management (sieben), zusammen 24 Lernziele
+und je zehn Klausurfragen. Alle 98 Einheiten bleiben draft, Release false und
+unvollständige Klausuren gesperrt. Bestand: 323 berechnete CFA-Grafiken, zwölf
+Ablaufbilder, 65 Modelle und 78 bisherige Kapitel mit primärem interaktivem Modell.
+Die Zielwerte 90/100 und 80/100 werden vor der vollständigen Gesamtprüfung weiterhin
+nicht als erreicht ausgegeben.
+
+Finale HTML-Fassung: 80c949df3b1c2d0c; CFA-Inhaltsfassung: 117cee3d9fc4efda.
+Vollständiger LF-HTML-SHA256: 80c949df3b1c2d0cd5580af18dee7750023c79dea8d956db897450bb74eac798
+bei 27020819 Bytes; vollständiger CFA-Daten-SHA256: e3a6f4ae932e584b95e157acd2021024f61e09f055ea7f7f22aec17afd1698e7.

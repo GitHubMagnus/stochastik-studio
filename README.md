@@ -13,14 +13,14 @@ Direkt im Browser nutzbar, ohne Download oder Installation.
 - **Verständnis prüfen:** 1.034 Aufgaben, mindestens sechs in jedem Finance-Kapitel und 14 bei Duration. Grundverständnis, Herleitung oder Begründung, Rechen- oder Fallaufgabe, Vergleich, Transfer und Fehlersuche besitzen getrennte Hinweise und ausführliche Lösungen. Aufgabenangaben und Ergebnistabellen sind getrennt. Die Lösungen enthalten 544 gesetzte Formeltafeln und 90 gesetzte Inline-Formeln, einschließlich bewusst wiederverwendeter Kapitelrechnungen.
 - **Vertiefungen:** 361 zusätzliche Erklärabschnitte, 175 Vergleichstabellen, insgesamt 519 erläuterte Lösungsschritte, 740 Kapitelverbindungen und neun Erklärungsgrafiken. Wichtige Zusammenhänge wie Duration, Cashflowbewertung, CAPM und Optionsreplikation erhalten mehrere aufeinander aufbauende Herleitungen.
 - **Mathematische Notation:** 156 zentrale mathematische Formeltafeln, 219 Formeltafeln in Herleitungen und 383 numerische Lösungsschritte werden ausdrücklich in LaTeX verfasst und als MathML eingebettet. Auch Formeln in Vergleichstabellen und alle neun Kelly-Formeltafeln sind gesetzt. Qualitative Entscheidungsfragen werden als Prosa dargestellt. Es gibt keine automatische Umwandlung von Wörtern in vermeintliche Gleichungen.
-- **Fachwörterbuch:** 2.064 alphabetisch sortierte Definitionen mit 4.412 Begriffen und Aliasen; automatische Verlinkung aus den Lerntexten und Rückverweise auf erklärende Kapitel. 1.844 kuratierte Einträge besitzen zusätzlich einen präzisen Rückverweis in den neuen CFA-Lernpfad. Mehrdeutige Begriffe wie GMV, Forward, FFO, DSCR, Trustee, Subordination, Residual, WAL, Balloon Payment, Margin, Settlement und Delta werden abhängig vom Kapitel verlinkt. Direktlinks auf zusammengeführte Begriffe bleiben über deren Alias erhalten.
+- **Fachwörterbuch:** 2.080 alphabetisch sortierte Definitionen mit 4.457 Begriffen und Aliasen; automatische Verlinkung aus den Lerntexten und Rückverweise auf erklärende Kapitel. 1.863 kuratierte Einträge besitzen zusätzlich einen präzisen Rückverweis in den neuen CFA-Lernpfad. Mehrdeutige Begriffe wie GMV, Forward, FFO, DSCR, Trustee, Subordination, Residual, WAL, Balloon Payment, Margin, Settlement und Delta werden abhängig vom Kapitel verlinkt. Direktlinks auf zusammengeführte Begriffe bleiben über deren Alias erhalten.
 - **Kelly Studio:** Einzelpositionen, Szenarien, Portfoliooptimierung, Simulation und Herleitung. Der Zustand bleibt beim Modulwechsel erhalten.
 
 ## CFA Level I 2027: laufende Überarbeitung
 
 Der neue Bereich unter **Finance → CFA Level I 2027** führt 102 offizielle Module
 mit 340 einzeln zugeordneten Lernzielreferenzen. Der aktuelle Arbeitsstand enthält
-97 neu ausgearbeitete Einheiten und 3.698 eigenständige englische Trainingsfragen
+98 neu ausgearbeitete Einheiten und 3.806 eigenständige englische Trainingsfragen
 mit deutschen Lösungen. Alle zehn Ethics-Module und alle elf Quant-Module besitzen
 neue Erklärungen und Übungen. Weitere Vertiefungen behandeln EPS, Kennzahlen und
 Leasing/Vergütung. Der Quant-Bereich enthält jetzt auch ausführliche Testwahl,
@@ -734,20 +734,33 @@ verknüpfte Rechner verbinden die Begriffe. 84 Originalfragen decken die sieben
 Lernziele mit jeweils zwölf Übungen ab; acht weitere Fälle bleiben den beiden
 Probeklausuren vorbehalten.
 
-Insgesamt 317 zusätzliche berechnete Grafiken und zwölf Ablaufbilder erläutern
+Portfoliobewertung, CAPM und Performancemaße behandeln jetzt alle neun Lernziele
+von Portfolio Risk and Return: Part II in 38 Abschnitten. 54 gesetzte Formeltafeln,
+19 Rechenbeispiele, zehn Tabellen, sechs berechnete Grafiken und 24 Verständnisfragen
+verbinden Cash-Allokation, CML und SML, systematisches und Residualrisiko, Beta,
+Marktmodell und CAPM mit Sharpe, Treynor, Jensen-Alpha und beiden M²-Konventionen.
+Ein durchgehender eigener Fall erklärt algebraisch positives Alpha bei zugleich
+negativem M²-Abstand und den Unterschied zwischen Roh- und Überschussintercept.
+Ein neues interaktives Performance-Labor mit sechs Eingaben und zwölf Szenarien
+isoliert die Wirkung der Restvarianz; Gesamtrisiko und Korrelation folgen konsistent
+aus dem Einindexmodell. 108 eigene Trainingsfragen decken die neun Lernziele mit
+je zwölf Übungen ab; zwölf weitere Fälle sind den Klausuren vorbehalten. Prognose,
+historischer Schätzer und CAPM-Gleichgewicht werden ausdrücklich getrennt.
+
+Insgesamt 323 zusätzliche berechnete Grafiken und zwölf Ablaufbilder erläutern
 die neuen Zusammenhänge.
 Direkte Abschnittsverweise verbinden die Einheiten und passende Wörterbuchdefinitionen.
 
-307 Lernzielreferenzen sind aktuell sowohl neuen Erklärungen als auch Trainingsfragen
+316 Lernzielreferenzen sind aktuell sowohl neuen Erklärungen als auch Trainingsfragen
 zugeordnet. Dies ist **kein Nachweis vollständiger CFA-Vorbereitung**. Offene
 Einheiten sind sichtbar; die fachliche Endprüfung läuft. Zwei getrennte Probeklausuren
-haben bisher je 164 von 180 Fragen und bleiben gesperrt. Ihre Ethics- und Quant-Anteile
+haben bisher je 170 von 180 Fragen und bleiben gesperrt. Ihre Ethics- und Quant-Anteile
 sind mit jeweils 22 Fragen pro Thema, ihre Economics-Anteile mit je zwölf und
 ihre Abschlussanalyse-Anteile mit je 22 Fragen angelegt. Corporate Finance hat
 je zwölf reservierte Fragen. Damit sind die Themenanteile der ersten Sitzung
 angelegt. Die Aktienanteile der zweiten Sitzung sind mit je 22 reservierten Fragen
 angelegt. Der Anleihebereich enthält je 22 reservierte Fragen; Derivate je 13.
-Die Alternative-Investments-Anteile sind mit je 13 reservierten Fragen vollständig angelegt. Der Portfolio-Anteil umfasst nun je vier Transferfragen; pro Klausur fehlen noch 16 Fragen zu Portfolio Construction.
+Die Alternative-Investments-Anteile sind mit je 13 reservierten Fragen vollständig angelegt. Der Portfolio-Anteil umfasst nun je zehn Transferfragen; pro Klausur fehlen noch zehn Fragen zu Portfolio Construction.
 Der implementierte Ablauf
 mit zwei Sitzungen zu je 135 Minuten wird mit gesonderten künstlichen Testdaten
 geprüft, die nicht als echte Lernfragen veröffentlicht werden.
@@ -770,6 +783,7 @@ Die veröffentlichte Website ist über [GitHub Pages](https://githubmagnus.githu
 
 - [Finance Studio](https://githubmagnus.github.io/stochastik-studio/#finance)
 - [CFA Level I 2027: Lernpfad und Training](https://githubmagnus.github.io/stochastik-studio/#cfa)
+- [Portfoliobewertung und Performancemaße](https://githubmagnus.github.io/stochastik-studio/#cfa~learn-portfolio-pricing)
 - [Neue Portfoliotheorie: Herleitung und Grafiken](https://githubmagnus.github.io/stochastik-studio/#cfa~learn-portfolio-math)
 - [Aktien: Ansprüche, Vorzüge und private Beteiligungen](https://githubmagnus.github.io/stochastik-studio/#cfa~learn-equity-features)
 - [Verbriefung: Geldwege, Zahlungsprioritäten und Verluste](https://githubmagnus.github.io/stochastik-studio/#cfa~learn-securitization)
@@ -855,4 +869,4 @@ Die Prüfungen umfassen alle Kapitel, Modelle, Eingabegrenzen, Offline-Aufruf, Q
 
 `tests/finance-illustrations.test.cjs` prüft unter anderem Tangential- und Minimumvarianzbedingungen, Kostenableitungen, Wohlfahrtsflächen, VaR/ES durch numerische Integration, Kapitalwertnullstellen, Zinskurvenidentitäten, Optionsgrenzen und Immunisierung. `tests/illustrations.browser.test.cjs` durchläuft alle 43 neuen Grafiken, prüft abgeschnittene oder überlappende Punktbeschriftungen, Formeln, Quellen, Direktlinks und mobile Bedienung. Mit `STUDIO_TEST_URL` lässt sich diese Grafikprüfung auch auf die veröffentlichte Website richten.
 
-Die Diagramme aller 64 Finance-Rechner behalten auch auf schmalen Bildschirmen eine lesbare Achsenschrift. Bei Bedarf kann die Grafik innerhalb ihres Rahmens horizontal verschoben werden, auch nach Tastaturfokus über die Pfeiltasten. Der Verschiebehinweis folgt der tatsächlich verfügbaren Breite. `npm.cmd run test:model-readability` prüft die Darstellung bei vier Bildschirmbreiten, Eingabegrenzen, Zurücksetzen und Offlinezugänge.
+Die Diagramme aller 65 Finance-Rechner behalten auch auf schmalen Bildschirmen eine lesbare Achsenschrift. Bei Bedarf kann die Grafik innerhalb ihres Rahmens horizontal verschoben werden, auch nach Tastaturfokus über die Pfeiltasten. Der Verschiebehinweis folgt der tatsächlich verfügbaren Breite. `npm.cmd run test:model-readability` prüft die Darstellung bei vier Bildschirmbreiten, Eingabegrenzen, Zurücksetzen und Offlinezugänge.
