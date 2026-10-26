@@ -253,3 +253,5 @@ let applied=0;const visit=blocks=>{for(const b of blocks){if(typeof b==='string'
 module.exports.related.push({unit:"portfolio-pricing",section:"cml-sml",label:"Gesamtrisiko, Beta und vier Performancemaße unterscheiden"});
 
 module.exports.related.push({unit:'investment-process',section:'process',label:"Anlegertypen und der vollständige Investmentprozess"});
+
+module.exports.related.push({unit:'ips',section:'case',label:'Ziele, finanzielle Tragfähigkeit und Portfolioauftrag gemeinsam abstimmen'});
