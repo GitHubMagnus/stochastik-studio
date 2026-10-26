@@ -7,7 +7,10 @@ const seq=(lo,hi,fn,n=60)=>Array.from({length:n+1},(_,i)=>{const x=lo+(hi-lo)*i/
 const result=(metrics,points,xLabel,yLabel,note='')=>({metrics,points,xLabel,yLabel,note});
 const add=(id,title,intro,controls,calc)=>{models[id]={title,intro,controls,calc};};
 const cdf=x=>{const a=Math.abs(x),t=1/(1+.2316419*a),p=1-Math.exp(-a*a/2)/Math.sqrt(2*Math.PI)*t*(.319381530+t*(-.356563782+t*(1.781477937+t*(-1.821255978+t*1.330274429))));return x<0?1-p:p;};
-const inv=p=>{let a=-10,b=10;for(let i=0;i<80;i++){let m=(a+b)/2;if(cdf(m)<p)a=m;else b=m;}return(a+b)/2;};
+// Positive-term integral series avoids the tail amplification of the shorter
+// CDF approximation when inverting probabilities for normal VaR and ES.
+const quantileCDF=x=>{const a=Math.abs(x);if(a>=8)return x<0?0:1;let term=a,sum=a;for(let n=1;n<200;n++){term*=a*a/(2*n+1);sum+=term;if(term<=sum*Number.EPSILON)break;}const area=Math.exp(-a*a/2)/Math.sqrt(2*Math.PI)*sum;return .5+(x<0?-area:area);};
+const inv=p=>{let a=-8,b=8;for(let i=0;i<60;i++){const m=(a+b)/2;if(quantileCDF(m)<p)a=m;else b=m;}return(a+b)/2;};
 const annuity=(c,r,n)=>r===0?c*n:c*(-Math.expm1(-n*Math.log1p(r)))/r;
 const price=(coupon,y,n)=>annuity(coupon,y,n)+100/(1+y)**n;
 const bsm=(S,K,r,v,T)=>{const d1=(Math.log(S/K)+(r+v*v/2)*T)/(v*Math.sqrt(T)),d2=d1-v*Math.sqrt(T);const call=S*cdf(d1)-K*Math.exp(-r*T)*cdf(d2);return {call,put:call-S+K*Math.exp(-r*T),delta:cdf(d1)};};
