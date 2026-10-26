@@ -311,3 +311,5 @@ module.exports={id:'ips',intro:[
  {title:'CFA Institute: Standard III(C) Suitability; Kundeninformationen, Gesamtportfolio und regelmäßige Aktualisierung',url:'https://www.cfainstitute.org/standards/professionals/code-ethics-standards/standards-of-practice-iii-c'},
  {title:'PRI, CFA Institute und GSIA: Definitions for Responsible Investment Approaches, 2023; unterschiedliche ESG-Ansätze',url:'https://public.unpri.org/investment-tools/definitions-for-responsible-investment-approaches/11874.article'}
 ],review:{status:'draft',date:'2026-10-26',note:'Eigene integrierte Ziel- und Zahlungsfälle mit ausdrücklich genannten Konventionen. Rechtliche und steuerliche Mechanismen werden von nationalen Einzelvorschriften getrennt. Fachliche Gesamtfreigabe bleibt ausstehend.'}};
+
+module.exports.related.push({unit:'behavioral',section:'decision-process',label:'Verhaltensfehler von Präferenz und echter Restriktion unterscheiden'});

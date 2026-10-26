@@ -5300,3 +5300,84 @@ nicht als erreicht ausgegeben.
 Finale HTML-Fassung: 2998e8fc011299a0; CFA-Inhaltsfassung: beea96e788d446c2.
 Vollständiger LF-HTML-SHA256: 2998e8fc011299a09e5731dd1aa0d1447fc949546371024dfe5357d123f30da2
 bei 27678034 Bytes; vollständiger CFA-Daten-SHA256: 5f9591b6f98bd5a31c0eb5e59553cbe77180023a5f35f68dd2e8a6790ccbcbef.
+
+## 101. Einheit: Verhaltensfehler und mögliche Marktfolgen
+
+Alle drei Lernziele von The Behavioral Biases of Individuals sind in 33 Abschnitten
+mit 20 gesetzten Formeltafeln, 25 erläuterten Fällen, fünf Vergleichstabellen,
+sechs berechneten Grafiken und 24 zusätzlichen Verständnisfragen ausgearbeitet.
+Die 15 in der ergänzenden CFA-Gruppierung genannten Biases werden einzeln mit
+Mechanismus, möglicher Folge und gezielter Gegenmaßnahme erklärt. Kontrollierte
+Fälle unterscheiden kognitive und emotionale Verzerrung, bewusste Präferenz und
+echte wirtschaftliche oder rechtliche Einschränkung; einzelne Gewinne oder
+Verluste werden nicht als eindeutige psychologische Diagnose behandelt.
+
+Eigene Zahlenfälle erläutern Basisraten mit vollständiger Häufigkeitstabelle,
+Referenzabhängigkeit bei unveränderten Endvermögen, Verlustasymmetrie und ihre
+Abgrenzung zur Risikoaversion, Prognosekalibrierung, wiederholte Handelskosten
+und ausgelassene frühe Beiträge. Marktfolgen behandeln langsame Anpassung,
+Rückkopplung, mögliche Fortsetzung und Umkehr sowie Anreize und Arbitragegrenzen.
+Ein vollständig datierter Short-Cash-Fall zeigt, warum zusätzlicher
+Sicherheitenbedarf vor einer erhofften späteren Korrektur auftreten kann.
+Die eigene Wertfunktion und die Preisgleichungen sind ausdrücklich Illustrationen,
+keine empirisch geschätzten Kunden- oder Marktmodelle und keine sichere Handelschance.
+
+48 eigene englische Übungen verteilen sich auf zwölf Vergleichs-/Einordnungsfragen,
+24 Fragen zu konkreten Mechanismen und zwölf Fragen zur Marktinterpretation.
+Vier zusätzliche Fälle bleiben den Klausuren vorbehalten. Alle Antworten haben
+Begründungen für jede Option, die reservierten Fälle zusammenhängende deutsche
+Herleitungen. Alle zwölf numerischen Antworten und 538 Buchkoordinaten werden
+unabhängig über Häufigkeiten, Zahlungen, Bewertungsfunktionen, eine getrennt
+hergeleitete Preisfehler-Rekursion und die Short-Bilanz nachgerechnet. Zwei
+verknüpfte Rechner werden über 108 Parameterkombinationen kontrolliert. Sie
+demonstrieren Mittelwert-Varianz-Präferenz und Gewichtsdrift; das erste Modell
+wird ausdrücklich nicht als Verlustaversions- oder Diagnosemodell bezeichnet.
+
+Das Wörterbuch umfasst jetzt 2130 Definitionen mit 4557 Begriffen/Aliasen und
+1921 kuratierten CFA-Rückverweisen. Neue Biasbegriffe erhalten klare Erklärungen;
+die bestehenden Definitionen von Bestätigungsfehler, Verankerung und Überkonfidenz
+werden vertieft, während ihre bisherigen Prognosekapitel-Rückverweise erhalten
+bleiben. Risikoaversion und Verlustaversion haben weiterhin getrennte Ziele.
+Die direkten Begriffswechsel und Rücksprünge werden nativ im Browser geprüft.
+
+Abnahme: Alle 525 Kernprüfungen, 42 allgemeine/Portfolio-Browserprüfungen und fünf
+neue Behavioral-Browserprüfungen bestanden. Eine bisherige Testannahme zum festen
+Zwischenbestand an Portfolio-Klausurfragen wurde durch die fortbestehende
+Blueprint-Obergrenze ersetzt; die eigenen reservierten Fragen jeder Einheit
+werden weiterhin genau gezählt. Alle 84 Ansichten von Grafiken, Fällen, Tabellen,
+geöffneten Erklärungen, Symbolhilfen, Rechnern und reservierten Lösungen sind
+vor der letzten sprachlichen Präzisierung gesichtet. Abschließend wurde nur die
+Bildunterschrift der Basisratengrafik in klare Prosa übersetzt; die mathematische
+Formel bleibt in ihrer eigenen gesetzten Tafel. Ein vollständiger Datenvergleich
+beweist unveränderte übrige 100 Einheiten, alle Fragen, Formeln, Kurvenwerte,
+Modelle, Wörterbuch und Renderer. Auf dem finalen Build bestehen alle neun neuen
+Inhalts-/Mathematikprüfungen und alle fünf Browserprüfungen erneut. Die abschließend
+geänderte Abbildung ist in Desktop- und Mobilansicht gesondert gesichtet. Im
+Desktopfall benötigt nur eine lange Formeltafel seitliches Scrollen und besitzt
+den passenden Hinweis; die native Prüfung umfasst außerdem sämtliche Symbolhilfen,
+alle Fragen, sieben Eingabepaare, Randwerte, Tastatur und Offlinebetrieb.
+Veröffentlichungsprüfung: vollständige HTML-/CFA-Datenidentität, komplette
+Quelldateihashes und tatsächliche öffentliche HTTP-/Edge-Fassung.
+
+Quellenbasis: verbindlicher CFA-Outline 2027, die vollständige öffentliche
+CFA-Konzeptübersicht 2026 mit ihrer Gruppierung und ausgewählte Teile der
+veröffentlichten Barber-/Odean-Originalarbeit 2000. Deren ältere abweichende
+Working-Paper-Zahlen werden nicht übernommen. Kahneman/Tversky 1979 ist als
+weiterführende Originalveröffentlichung nachgewiesen; eine vollständige Lektüre
+des bildbasierten Original-PDFs wird nicht behauptet. Insbesondere werden die
+selbst gewählten Wertfunktionsparameter nicht als empirische Schätzwerte aus
+dieser Veröffentlichung ausgegeben.
+
+Gesamtziel bleibt offen: 101 von 102 Einheiten, 333 von 340 Lernzielen,
+4022 Trainingsfragen und je 178 von 180 reservierten Klausurfragen. Offen ist
+Risk Management mit sieben Lernzielen und je zwei weiteren Klausurfragen.
+Alle 101 Einheiten bleiben draft, Release false und unvollständige Klausuren
+gesperrt. Bestand: 341 berechnete CFA-Grafiken, 13 Ablaufbilder, 65 Modelle und
+78 bisherige Kapitel mit primärem interaktivem Modell. Die vollständige Endprüfung
+muss zusätzlich die aktuellen offiziellen Errata 2027 berücksichtigen. Die
+Zielwerte 90/100 und 80/100 werden vor dieser Prüfung weiterhin nicht als erreicht
+ausgegeben; sie sind keine persönliche Bestehenswahrscheinlichkeit.
+
+Finale HTML-Fassung: b63507a520c45628; CFA-Inhaltsfassung: 1cfc1ffe888c1897.
+Vollständiger LF-HTML-SHA256: b63507a520c45628f2ffdcf6f522a409097c8a1cbf04e3b6b670f42e9434e210
+bei 27904452 Bytes; vollständiger CFA-Daten-SHA256: f4fe8ac7c29ccec07cd42c6016f5ee0e4e1ad13a75fda6e55fc1fa109711a709.
