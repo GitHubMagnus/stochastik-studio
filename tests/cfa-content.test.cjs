@@ -3,7 +3,7 @@ const {compile}=require('../finance-cfa/compile.cjs');
 const data=compile();
 test('financial forecast valuation covers its three official objectives, original training and precise glossary connections',()=>{
  const u=data.units.find(u=>u.id==='valuation-model'),coverage=data.coverage.find(c=>c.id===u.id),q=data.questions.filter(q=>q.unit===u.id);
- assert.equal(u.sections.length,26);assert.equal(u.review.status,'draft');assert.equal(data.release,false);
+ assert.equal(u.sections.length,26);assert.equal(u.review.status,'checked');assert.equal(data.release,false);
  assert.equal(q.filter(q=>q.pool==='practice').length,40);
  for(const pool of ['mock-a','mock-b'])assert.equal(q.filter(q=>q.pool===pool).length,2);
  for(const o of coverage.objectives){assert.ok(o.sections.length>=12);assert.ok(o.practice.length>=10);assert.ok(o.mockQuestions>=2);}
@@ -2488,7 +2488,7 @@ test('preferred values independently reconcile payment frequency, maturity and e
 
 test('DCF objectives have substantial authored applications, distinct reserved cases and precise glossary return links',()=>{
  const u=data.units.find(u=>u.id==='dcf-equity'),coverage=data.coverage.find(x=>x.id===u.id),bank=data.questions.filter(q=>q.unit===u.id);
- assert.equal(u.sections.length,29);assert.equal(u.review.status,'draft');assert.equal(bank.filter(q=>q.pool==='practice').length,54);
+ assert.equal(u.sections.length,29);assert.equal(u.review.status,'checked');assert.equal(bank.filter(q=>q.pool==='practice').length,54);
  assert.deepEqual(u.explorations,[{section:'sensitivity',lesson:'equity-08',focus:'lab',label:'Dividende, Wachstum und Renditeforderung im Gordon-Rechner verändern'}]);
  for(const pool of ['mock-a','mock-b'])assert.equal(bank.filter(q=>q.pool===pool).length,3);
  for(const o of coverage.objectives){assert.ok(o.sections.length>=5);assert.ok(o.practice.length>=10);assert.ok(o.mockQuestions>=2);}
@@ -2621,7 +2621,7 @@ test('enterprise bridge, sensitivity rows and terminal forward-versus-trailing b
 
 test('relative valuation has substantial coverage, distinct reserved pools and precise dictionary return paths',()=>{
  const u=data.units.find(u=>u.id==='multiples'),coverage=data.coverage.find(x=>x.id===u.id),bank=data.questions.filter(q=>q.unit===u.id);
- assert.equal(u.sections.length,28);assert.equal(u.review.status,'draft');assert.equal(bank.filter(q=>q.pool==='practice').length,48);
+ assert.equal(u.sections.length,28);assert.equal(u.review.status,'checked');assert.equal(bank.filter(q=>q.pool==='practice').length,48);
  for(const pool of ['mock-a','mock-b'])assert.equal(bank.filter(q=>q.pool===pool).length,2);
  for(const o of coverage.objectives){assert.ok(o.sections.length>=10);assert.ok(o.practice.length>=15);assert.ok(o.mockQuestions>=2);}
  const glossary=require('../finance-glossary.cjs'),resolve=t=>glossary.find(g=>[g.term,...g.aliases].includes(t));
@@ -2645,8 +2645,10 @@ test('relative valuation keeps prospective and derivative Forward meanings separ
  assert.deepEqual(pe.cfa,{unit:'multiples',section:'periods'});
 });
 
-test('unwritten modules remain visible as gaps and cannot pass the release gate',()=>{
- if(!data.release&&data.units.length<data.modules.length)assert.throws(()=>compile({release:true}),/Fragen|Lernziele|Prüfung/);
+test('the complete documented course passes the release gate and every objective has a worked application',()=>{
+ const release=compile({release:true});assert.equal(release.release,true);assert.equal(release.units.length,102);assert.equal(release.questions.length,4478);
+ assert.ok(release.units.every(u=>u.review.status==='checked'&&u.review.method==='documented-self-audit'));
+ assert.ok(release.coverage.flatMap(m=>m.objectives).every(o=>o.sections.length&&o.applications.length&&o.practice.length));
  const eps=data.coverage.find(m=>m.id==='income-statement');
  assert.ok(eps.objectives.every(o=>o.sections.length&&o.practice.length));
 });

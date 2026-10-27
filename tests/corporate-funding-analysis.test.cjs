@@ -4,7 +4,7 @@ const near=(a,b,t=1e-8)=>assert.ok(Math.abs(a-b)<=t,a+' vs '+b),sec=id=>u.sectio
 const base={size:100,haircut:5,rate:4,days:30,shock:-2,marginhaircut:5},run=p=>M.calculate('repofunding',{...base,...p});
 const numeric=s=>Number(String(s).replaceAll('.','').replace(',','.').replace('−','-').match(/-?\d+(?:\.\d+)?/)?.[0]);
 test('corporate funding addresses all three actual 2027 objectives with distinct original practice and reserved cases',()=>{
- assert.equal(u.sections.length,33);assert.equal(u.review.status,'draft');assert.equal(d.release,false);
+ assert.equal(u.sections.length,33);assert.equal(u.review.status,'checked');assert.equal(d.release,false);
  assert.match(u.sources[0].url,/#page=20$/);const qs=d.questions.filter(q=>q.unit===u.id);assert.equal(qs.filter(q=>q.pool==='practice').length,50);
  const coverage=d.coverage.find(c=>c.id===u.id);for(const o of coverage.objectives){assert.ok(o.sections.length>=10,o.id);assert.ok(o.practice.length>=10,o.id);assert.equal(o.mockQuestions,2);}
  for(const pool of ['mock-a','mock-b']){assert.equal(qs.filter(q=>q.pool===pool).length,1);assert.ok(d.inventory[pool].bonds<=require('../finance-cfa/engine.cjs').blueprint.bonds);}

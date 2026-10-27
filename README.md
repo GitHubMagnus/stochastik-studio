@@ -6,6 +6,14 @@ Ein online, lokal und offline nutzbarer Lernbereich im gemeinsamen Kelly-Studio-
 
 Direkt im Browser nutzbar, ohne Download oder Installation.
 
+**CFA Level I 2027: dokumentierte eigene Abnahme vom 27.10.2026.**
+Materialqualität **90/100**, Vorbereitungseignung **82/100** nach dem vorab
+festgelegten Bewertungsmaßstab. Das sind Selbsteinschätzungen des Materials,
+keine persönliche Bestehenswahrscheinlichkeit. Der
+[Abnahmebericht](CFA-2027-ACCEPTANCE.md) nennt Einzelnachweise für alle 102
+Einheiten, Punkteabzüge und Grenzen; insbesondere fehlt eine empirische
+Kalibrierung der eigenen Fragen. [Direkt zum Lernpfad](https://githubmagnus.github.io/stochastik-studio/#cfa).
+
 - **Formeln verstehen:** Alle 171 Finance-Kapitel wurden auf Symboldefinitionen geprüft. Die Hauptformeln haben eine sichtbare Lesart und Symboltabelle; Herleitungen, Beispiele, Grafikformeln, Vergleichstabellen und Aufgaben besitzen direkt zugeordnete, aufklappbare Symbolhilfen. 1.299 Definitionseinträge erläutern Größen, Einheiten, Indizes und abweichende Konventionen für 948 unterschiedliche Kombinationen aus Kapitel und Formel. Auch die 33 Stochastik-Kapitel und die neun Kelly-Hauptformeln besitzen Symbolhilfen. [Direkt zum Zeitreihenkapitel](https://githubmagnus.github.io/stochastik-studio/#lesson-quant-11~formula).
 - **Lehrbuchgrafiken:** 43 neu berechnete Abbildungen in 36 Kapiteln, zusätzlich zu den neun bestehenden Erklärungsgrafiken. Alle zwölf VWL-Kapitel erhalten neue Grafiken; in der Portfoliotheorie gibt es 14 neue Abbildungen in zwölf Kapiteln. Ein eigener Kapitelsprung **Grafiken** führt zu Achsen, Legenden, Lesehilfen, aufklappbaren Modellgleichungen und Annahmen, Quellen und Querverweisen. Alle Grafiken funktionieren offline; auf kleinen Bildschirmen lässt sich ausschließlich der Grafikbereich seitlich verschieben.
 - **Statistik → Stochastik-Studio:** 33 interaktive Kapitel von Wahrscheinlichkeit bis Regression und stochastischen Prozessen.
@@ -16,7 +24,7 @@ Direkt im Browser nutzbar, ohne Download oder Installation.
 - **Fachwörterbuch:** 2.150 alphabetisch sortierte Definitionen mit 4.602 Begriffen und Aliasen; automatische Verlinkung aus den Lerntexten und Rückverweise auf erklärende Kapitel. 1.947 kuratierte Einträge besitzen zusätzlich einen präzisen Rückverweis in den neuen CFA-Lernpfad. Mehrdeutige Begriffe wie GMV, Forward, FFO, DSCR, Trustee, Subordination, Residual, WAL, Balloon Payment, Margin, Settlement und Delta werden abhängig vom Kapitel verlinkt. Direktlinks auf zusammengeführte Begriffe bleiben über deren Alias erhalten.
 - **Kelly Studio:** Einzelpositionen, Szenarien, Portfoliooptimierung, Simulation und Herleitung. Der Zustand bleibt beim Modulwechsel erhalten.
 
-## CFA Level I 2027: laufende Überarbeitung
+## CFA Level I 2027: Ausbau und dokumentierte Abnahme
 
 Der [Abgleich der offiziellen Curriculum-Korrekturen 2027](CFA-2027-ERRATA-AUDIT.md)
 ergänzt unter anderem aktivierte Zinsen, FCFE und tatsächliche Ausschüttungen,
@@ -843,11 +851,12 @@ Trainings- und Klausurpools bleiben getrennt. Der Ablauf wird zusätzlich mit
 künstlichen Testdaten geprüft, die nicht als Lernfragen veröffentlicht werden.
 
 Die vollständige Zuordnung ist **kein Nachweis einer persönlichen
-Bestehenswahrscheinlichkeit**. Alle 102 Einheiten sind bis zum abschließenden
-fachlichen Gesamtaudit weiterhin als Entwurf gekennzeichnet. Quellenabgleich,
-aktuelle offizielle Errata, unabhängige Rechnungen und Browserprüfungen werden im
-Qualitätsplan dokumentiert; die Zielwerte werden nicht allein wegen der Anzahl
-von Kapiteln oder Fragen als erreicht erklärt.
+Bestehenswahrscheinlichkeit**. Die eigene fachliche Gesamtabnahme ist im
+[Abnahmebericht](CFA-2027-ACCEPTANCE.md) dokumentiert. Alle 102 Einheiten besitzen
+datierte Nachweise für genau ihren geprüften Inhalt und Fragenpool; frühere
+Entwurfsnotizen bleiben als Historie erhalten. Quellen, Errata, Gegenrechnungen,
+Lernzielzugänge und Browserverhalten tragen die Bewertung. Eine externe
+Fachredaktion oder statistische Schwierigkeitsschätzung wird nicht behauptet.
 
 Training, Antwortbegründungen und Fehlerjournal funktionieren offline. Zahlenantworten
 werden geordnet; Textantworten erhalten eine stabile Reihenfolge ohne mechanisch
@@ -900,7 +909,7 @@ Offline: Das Projekt herunterladen und `index.html` direkt im Browser öffnen; `
 
 ### Veröffentlichung auf GitHub Pages
 
-GitHub Pages veröffentlicht den Stammordner `/` des Branches `main` unter der oben verlinkten Adresse. `.nojekyll` kennzeichnet die Dateien als fertige statische Website. Änderungen werden nach einem Push auf `main` automatisch veröffentlicht; die Veröffentlichung kann einige Minuten dauern. Bei Änderungen an Lerntexten oder Modulen zuvor `node build-finance.cjs` ausführen und die aktualisierten HTML-Dateien mit einchecken. Der Website-Link steht auch rechts im GitHub-Repository unter **About**.
+GitHub Pages veröffentlicht den Stammordner `/` des Branches `main` unter der oben verlinkten Adresse. `.nojekyll` kennzeichnet die Dateien als fertige statische Website. Änderungen werden nach einem Push auf `main` automatisch veröffentlicht; die Veröffentlichung kann einige Minuten dauern. Bei Änderungen an Lerntexten oder Modulen zuvor `npm run build` ausführen und die aktualisierten HTML-Dateien mit einchecken. Geänderte CFA-Kapitel und Fragen benötigen eine erneute dokumentierte Prüfung, bevor ihre Fingerprints im Abnahmenachweis aktualisiert werden. Der Website-Link steht auch rechts im GitHub-Repository unter **About**.
 
 Kapiteladressen verwenden `#lesson-<id>`. Abschnittsverweise sind beispielsweise `~explanation`, `~formula`, `~derivations`, `~derivation-2`, `~comparison-0`, `~example` oder `~lab`. Browser-Zurück/Vorwärts und Tastaturfokus werden unterstützt. Der lokale Server liefert ausschließlich die beiden App-Dokumente aus.
 
@@ -908,16 +917,16 @@ Der Fragenbereich ist über `~question` erreichbar, einzelne Aufgaben über `~qu
 
 ## Modelle und Lernumfang
 
-56 interaktive Modelle werden in 71 Kapiteln eingesetzt. Der Anleihenrechner zeigt Preis, Macaulay und Modified Duration, DV01, Konvexität und den Vergleich zwischen exaktem Zinsschock, linearer und quadratischer Näherung. Kupon, Rendite, Laufzeit, Zahlungsfrequenz und Schock lassen sich getrennt verändern. Der neue Abschlussbewertungsrechner verbindet Prognoseergebnisse, Kapitalbedarf, Eigentümerzahlungen und eine gesondert normalisierte Endphase. Der Auron-Vertragsrechner stimmt Kredit, Mittelverwendung, Ausschüttung und vier Vertragsprüfungen ab. Der Tilgungsrechner vergleicht Endfälligkeit, gleiche Tilgung, Annuität und Ballon mit vollständigen Zahlungsreihen und einem gemeinsamen Diskontsatz. Der Indexrechner stimmt Anfangsmarktwerte, Vollpreisänderungen, Cashkupons und Gesamtrendite ab. Der Repo-Rechner trennt ursprüngliches Cash, ACT/360-Zins, Endrückkaufpreis und aktuelle Sicherheitenanforderung. Der Spotkurvenrechner bestimmt einen passenden Z-Spread, zwei einzelne YTMs und ihren nominalen Abstand mit vollständigem Barwertledger. Der Floaterrechner löst die Discount Margin aus dem Vollpreis und zeigt jede unterstellte Zahlung; der Geldmarktrechner stellt sechs Renditequoten für denselben Anspruch nebeneinander. Der gemeinsame Kurvenrechner zeigt Spot-, Par- und Einjahresforwardkurven aus denselben drei Knoten; der Bondkupon kann unabhängig verändert werden. Der Horizontrechner vergleicht drei annualisierte Renditekurven auf denselben historischen Kaufpreis und trennt Kuponcash, Wiederanlagezins, Verkauf und Tilgung. Der Barbell-/Bullet-Rechner zeigt darüber hinaus, wie die Zeitstreuung bei gleichem Marktwert und gleicher Duration die Konvexität verändert; er stellt drei Kurven, feste Endzahlungen und Geldbeiträge nebeneinander. Der zusätzliche Knotenrechner stimmt die erste parallele Sensitivität automatisch ab und zerlegt verschiedene Kurvenverformungen in drei getrennte Beiträge. Alle Modelle nennen ihre Annahmen und Einheiten.
+65 interaktive Modelle werden in 78 Kapiteln eingesetzt. Der Anleihenrechner zeigt Preis, Macaulay und Modified Duration, DV01, Konvexität und den Vergleich zwischen exaktem Zinsschock, linearer und quadratischer Näherung. Kupon, Rendite, Laufzeit, Zahlungsfrequenz und Schock lassen sich getrennt verändern. Der neue Abschlussbewertungsrechner verbindet Prognoseergebnisse, Kapitalbedarf, Eigentümerzahlungen und eine gesondert normalisierte Endphase. Der Auron-Vertragsrechner stimmt Kredit, Mittelverwendung, Ausschüttung und vier Vertragsprüfungen ab. Der Tilgungsrechner vergleicht Endfälligkeit, gleiche Tilgung, Annuität und Ballon mit vollständigen Zahlungsreihen und einem gemeinsamen Diskontsatz. Der Indexrechner stimmt Anfangsmarktwerte, Vollpreisänderungen, Cashkupons und Gesamtrendite ab. Der Repo-Rechner trennt ursprüngliches Cash, ACT/360-Zins, Endrückkaufpreis und aktuelle Sicherheitenanforderung. Der Spotkurvenrechner bestimmt einen passenden Z-Spread, zwei einzelne YTMs und ihren nominalen Abstand mit vollständigem Barwertledger. Der Floaterrechner löst die Discount Margin aus dem Vollpreis und zeigt jede unterstellte Zahlung; der Geldmarktrechner stellt sechs Renditequoten für denselben Anspruch nebeneinander. Der gemeinsame Kurvenrechner zeigt Spot-, Par- und Einjahresforwardkurven aus denselben drei Knoten; der Bondkupon kann unabhängig verändert werden. Der Horizontrechner vergleicht drei annualisierte Renditekurven auf denselben historischen Kaufpreis und trennt Kuponcash, Wiederanlagezins, Verkauf und Tilgung. Der Barbell-/Bullet-Rechner zeigt darüber hinaus, wie die Zeitstreuung bei gleichem Marktwert und gleicher Duration die Konvexität verändert; er stellt drei Kurven, feste Endzahlungen und Geldbeiträge nebeneinander. Der zusätzliche Knotenrechner stimmt die erste parallele Sensitivität automatisch ab und zerlegt verschiedene Kurvenverformungen in drei getrennte Beiträge. Alle Modelle nennen ihre Annahmen und Einheiten.
 
-Die bisherigen 171 Kapitel verwenden eine **2026-Einordnung** und verbinden Grundlagen und Vertiefungen über mehrere Levels; die drei Level-III-Wahlpfade sind Alternativen. Der separate neue Lernpfad gleicht gezielt **Level I 2027** ab. Alte Kapitel werden nicht allein durch einen Link als vollständig auf 2027 aktualisiert gewertet. Das eigenständige Lehrmaterial bildet noch nicht jedes offizielle Learning Outcome oder Pflichtmodul vollständig ab. Für eine konkrete Prüfung ist deren jahresspezifisches Curriculum maßgeblich. Quellen zu CFA Institute, OpenStax, IFRS und den NYU-Lehrmaterialien sind im Lernbereich verlinkt.
+Die bisherigen 171 Kapitel verwenden eine **2026-Einordnung** und verbinden Grundlagen und Vertiefungen über mehrere Levels; die drei Level-III-Wahlpfade sind Alternativen. Der separate neue Lernpfad gleicht gezielt **Level I 2027** ab und ordnet alle 340 Lernziele einzeln zu Erklärung, Anwendung und Training zu. Alte Kapitel werden nicht allein durch einen Link als vollständig auf 2027 aktualisiert gewertet. Das offizielle Practical Skills Module bleibt separat und wird durch das eigene Lehrmaterial nicht ersetzt. Für eine konkrete Prüfung ist deren jahresspezifisches Curriculum maßgeblich. Quellen zu CFA Institute, OpenStax, IFRS und den NYU-Lehrmaterialien sind im Lernbereich verlinkt.
 
 ## Bearbeiten und bauen
 
 - `finance-cfa/curriculum.cjs`: einzeln geprüfter 2027-Katalog mit eigenen kurzen Lernzielbezeichnungen und offiziellen Quellenverweisen.
 - `finance-cfa/units/`, `questions/`, `glossary.cjs`, `connections.cjs`: neue Lehrtexte, unabhängige Fragen, Definitionen und präzise Kapitelverbindungen.
 - `finance-cfa/compile.cjs`, `engine.cjs`, `ui.js`, `style.css`: Validierung, Bewertungs- und Sitzungslogik sowie Offline-Lernoberfläche.
-- `node build-finance.cjs --release-cfa`: zusätzliche Freigabeprüfung; sie muss beim aktuellen unvollständigen Arbeitsstand scheitern. Normales Bauen veröffentlicht den offen gekennzeichneten Zwischenstand.
+- `npm run build` beziehungsweise `node build-finance.cjs --release-cfa`: Freigabebuild mit Lernziel-, Fragen-, Klausur- und Abnahmenachweisen. Der aktuelle geprüfte Stand besteht die Sperre. Nach Inhaltsänderungen muss die Prüfung erneuert werden; ein geänderter Fingerprint verhindert die Veröffentlichung als freigegebenes Material. `node build-finance.cjs` ohne Flag bleibt ein ausdrücklich als Zwischenstand gekennzeichneter Arbeitsbuild.
 
 - `finance-outline.json`: Themenstruktur und Titel.
 - `finance-content/` und `finance-textbook/`: Grundtexte, erklärte Beispiele, Anwendungen und Grenzen.
@@ -938,7 +947,7 @@ Die bisherigen 171 Kapitel verwenden eine **2026-Einordnung** und verbinden Grun
 - `finance-glossary*.cjs`: Definitionen, Synonyme und vertiefte Wörterbucheinträge.
 - `finance-ui.js`, `finance-deep-ui.js` und CSS-Dateien: Lernansicht und Navigation.
 
-`node build-finance.cjs` prüft Vollständigkeit, Verweise, Formelsyntax und Tabellenstruktur und bettet das Ergebnis in `index.html` ein. `node tests/deep-inventory.cjs` zählt die tatsächlich eingebetteten Inhalte.
+`npm run build` prüft Vollständigkeit, Verweise, Formelsyntax und Tabellenstruktur und bettet das Ergebnis in `index.html` ein. `node tests/deep-inventory.cjs` zählt die tatsächlich eingebetteten Inhalte.
 
 ## Prüfen
 

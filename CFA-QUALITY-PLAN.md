@@ -5,24 +5,32 @@ Eignung als alleinige CFA-Level-I-Vorbereitung 35/100. Die Zielwerte 90/100 und
 80/100 bewerten das Material. Sie sind keine gemessene Bestehenswahrscheinlichkeit.
 Eine Zahl wird erst nach der Arbeit anhand der folgenden Kriterien vergeben.
 
+**Aktueller Abschlussstand, 27.10.2026:** Die eigene dokumentierte Abnahme ergibt
+**90/100 Materialqualität** und **82/100 Vorbereitungseignung**. Die vollständige
+Begründung, die Punkteabzüge und Einzelnachweise für alle 102 Einheiten stehen im
+[Abnahmebericht](CFA-2027-ACCEPTANCE.md). Die folgenden Arbeitsprotokolle bleiben
+als datierte Historie erhalten. Weder diese Scores noch technische Testresultate
+sind eine gemessene persönliche Bestehenswahrscheinlichkeit oder eine externe
+CFA-Fachfreigabe.
+
 ## Offene Befunde
 
 - [x] Prüfungsjahr festlegen und sämtliche offiziellen Level-I-Lernziele einzeln katalogisieren (inhaltliche Erfüllung separat prüfen).
 - [x] Zwischen bloßer Erwähnung, Erklärung, durchgerechneter Anwendung und selbstständiger Übung unterscheiden (getrennte Nachweise und Abschnittslinks für alle 340 Lernziele; siehe Anwendungsabgleich).
-- [ ] EPS einschließlich Verwässerung, Kennzahlensysteme, Indexdivisoren und Leasingvergleich vollständig ausarbeiten.
-- [ ] Übrige Lücken aus dem Abgleich bearbeiten, einschließlich Methodenwahl, Annahmen und Gegenbeispielen.
-- [ ] Ethics nach einzelnen Standards präzisieren; Regeln, Empfehlungen und Fallausnahmen unterscheiden.
-- [ ] Kapitel mit zu geringer Tiefe ergänzen; komplizierte Konzepte in übersichtliche Unterabschnitte aufteilen.
-- [ ] Eigenständige Fragen mit drei plausiblen Antwortmöglichkeiten und Begründungen für alle Optionen erstellen.
-- [ ] Zwei disjunkte vollständige Probeklausuren mit je 180 Fragen und passender Themengewichtung bereitstellen.
-- [ ] Trainingsaufgaben von reservierten Klausuraufgaben trennen; bereits gesehene Klausuren kennzeichnen.
-- [x] Zwei Sitzungen zu je 135 Minuten, Navigation, Markierung, Abgabe und Auswertung implementieren (Ablauf mit ausdrücklich künstlichen vollständigen Testklausuren geprüft; echte Klausurinhalte weiterhin unvollständig).
+- [x] EPS einschließlich Verwässerung, Kennzahlensysteme, Indexdivisoren und Leasingvergleich vollständig ausarbeiten.
+- [x] Übrige Lücken aus dem Abgleich bearbeiten, einschließlich Methodenwahl, Annahmen und Gegenbeispielen.
+- [x] Ethics nach einzelnen Standards präzisieren; Regeln, Empfehlungen und Fallausnahmen unterscheiden.
+- [x] Kapitel mit zu geringer Tiefe ergänzen; komplizierte Konzepte in übersichtliche Unterabschnitte aufteilen.
+- [x] Eigene Fragen mit drei Antwortmöglichkeiten und Begründungen für alle Optionen erstellen (methodisch ähnliche Trainingsfälle werden nicht als unabhängige Designs gewertet; Grenzen im Aufgaben-Audit).
+- [x] Zwei disjunkte vollständige Probeklausuren mit je 180 Fragen und passender Themengewichtung bereitstellen.
+- [x] Trainingsaufgaben von reservierten Klausuraufgaben trennen; bereits gesehene Klausuren kennzeichnen.
+- [x] Zwei Sitzungen zu je 135 Minuten, Navigation, Markierung, Abgabe und Auswertung implementieren (beide tatsächlichen vollständigen Klausuren im Browser geprüft).
 - [x] Fehlerjournal, thematische Ergebnisse und Wiederholungsbedarf aus tatsächlichen Antworten ableiten.
-- [ ] Englische Prüfungsbegriffe, Frageformulierungen und zugelassene Finanzrechner berücksichtigen.
-- [ ] Alle neuen Formeln mit Symbolen, Einheiten, Konventionen und erklärten Rechenschritten versehen.
-- [ ] Offlinebetrieb, Mobilansicht, Tastaturbedienung, Speicherung und fehlerhafte Speicherdaten prüfen.
-- [ ] Fachliche Zweitprüfung mit Gegenrechnungen und Prüfung mehrdeutiger Antwortmöglichkeiten durchführen.
-- [ ] Abschließenden Audit mit verbleibenden Grenzen und nachvollziehbaren Punkten dokumentieren.
+- [x] Englische Prüfungsbegriffe, Frageformulierungen und zugelassene Finanzrechner berücksichtigen.
+- [x] Alle neuen Formeln mit Symbolen, Einheiten, Konventionen und erklärten Rechenschritten versehen.
+- [x] Offlinebetrieb, Mobilansicht, Tastaturbedienung, Speicherung und fehlerhafte Speicherdaten prüfen.
+- [x] Zweite eigene fachliche Prüfung mit separat formulierten Gegenrechnungen und Prüfung mehrdeutiger Antwortmöglichkeiten durchführen (keine externe Zweitredaktion; genauer Lektüreumfang im Abnahmebericht).
+- [x] Abschließenden Audit mit verbleibenden Grenzen und nachvollziehbaren Punkten dokumentieren.
 
 ## Bewertungsmaßstab: Materialqualität (100 Punkte)
 
@@ -5879,3 +5887,91 @@ Zudem kann ein später angefügtes, zeitlich älteres Ergebnis einen neueren
 richtigen Stand derselben Aufgabe überdecken. Diese beiden Fälle werden vor der
 Gesamtabnahme behoben. Alle Einheiten bleiben bis dahin draft, Release bleibt
 false und die Zielpunkte werden noch nicht vergeben.
+
+## Phase 110/111: Langzeitspeicherung und dokumentierte Gesamtabnahme (27.10.2026)
+
+Die beiden am Ende von Phase 109 festgestellten Speicherfehler sind behoben.
+Eine feste Zahl jüngster Versuche durfte nicht die letzten Antworten zu älteren
+Aufgaben löschen: Der reale Kurs besitzt mehr als 4000 Fragen. Die gemeinsame
+Speicherfunktion erhält jetzt jeden letzten Aufgabenstand sowie die jüngsten
+Wiederholungen. Das Journal verwendet den größten Zeitstempel; bei Gleichstand
+zählt die später gespeicherte Antwort. Lehrtextänderungen ohne Aufgabenänderung
+setzen weder gültige Klausuren noch Sets zurück und lösen durch reine
+Verdichtung alter Versuche keine falsche Änderungsmeldung aus. Speicherschlüssel,
+Schema 2 und Exam-Engine-Version 1 bleiben kompatibel.
+
+Die neuen Regressionen prüfen alle 4478 Aufgaben, 9000 Wiederholungen,
+Zeitstempelreihenfolge, Gleichstände, Raten gegenüber sicherer Lösung, ungültige
+Einträge, geänderte Revisionen und laufende Sitzungen. Der echte Edge-Speicher-
+und Exportfall erhält 4001 verschiedene Aufgaben nach erneuter Lösung der ersten
+Frage. Ein großer realistischer Zustand mit Klausurmetadaten behält alle 4478
+letzten Aufgabenstände in 8477 Antwortzeilen und passt mit rund 3,63 MB UTF-16
+in den tatsächlich verfügbaren Browserspeicher. Ein weiterer Belastungstest
+wiederholt den längsten tatsächlichen reservierten Datensatz rm-exam-a1 mit
+vier Lernzielreferenzen. Auch dieser Zustand mit rund 4,51 MB UTF-16 wird über
+eine echte Antwortaktion gespeichert und nach Reload mit laufender Klausur,
+Training und 30 früheren Klausurversuchen korrekt wiederhergestellt.
+Beide vollen Klausuren mit allen
+360 Erklärungen wurden wegen der Engine-Änderung erneut erfolgreich geprüft.
+Details und Abgrenzungen stehen im Aufgaben-Audit.
+
+Der [Abnahmebericht](CFA-2027-ACCEPTANCE.md) bearbeitet jeden ursprünglichen
+Befund und führt Einzelnachweise für alle 102 Einheiten zusammen. Die früheren
+Einzelprüfungen, der komplette aktuelle Errata-Abgleich, die separate Prüfung
+von Erklärung/Anwendung/Training und die redaktionelle Fragenprüfung bilden
+gemeinsam die fachliche Prüfbasis. Ergänzende gezielte Lektüre bestätigt die
+Herleitungen und Grenzen bei Duration, Jensen-Alpha/M², EPS-Verwässerung,
+Regressionsintervallen, Betriebsschwellen und ungeeigneten Kundenaufträgen.
+Es wird weder eine neue vollständige Lektüre aller Kapitel an diesem letzten
+Tag noch eine externe Fachprüfung behauptet.
+
+Die Prüfmetadaten werden transparent für alle 102 Einheiten aktualisiert;
+die ursprünglichen Entwurfsnotizen bleiben unter review.previous erhalten.
+Ein neuer Abnahmenachweis bindet jede Entscheidung über vollständige SHA256-
+Fingerprints an genau den Text und Fragenpool. Der Release-Gate prüft zusätzlich
+alle Lernziele und beide Klausurpläne. Tests bestätigen, dass nachträglich
+geänderte Absätze, Antwortoptionen, ungeprüfte Einheiten oder unvollständige
+Nachweise die Freigabe verhindern. Ein früher bedingter, inzwischen leerlaufender
+Test wird durch eine tatsächliche positive Gesamtfreigabeprüfung ersetzt.
+
+Die Selbstbewertung nach den ursprünglichen Gewichten beträgt **90/100 für
+Materialqualität** (23+23+14+14+16) und **82/100 für Vorbereitungseignung**
+(28+21+13+9+11). Der Abnahmebericht begründet jeden Abzug. Vor allem sind die
+eigenen Fragen nicht empirisch kalibriert, die zwei reservierten Klausuren keine
+unbegrenzte Quelle neuer Transferfälle und die Unterrichtssprache überwiegend
+Deutsch. Eine externe Fachredaktion und gemessene Kandidatenergebnisse fehlen.
+Eine persönliche Bestehenswahrscheinlichkeit wird ausdrücklich nicht angegeben.
+
+Vollständige JSON-Gleichheit gegenüber 2d1cefaab0005d56b80b286d7152d21befa3878b
+bestätigt: alle 102 Lehrinhalte, alle 340 Lernzielzuordnungen und alle 4478 Fragen
+sind unverändert. Nur die Kapitel-Prüfmetadaten ändern sich. Frühere Notizen sind
+vollständig erhalten. Modellcode, Formelrenderer, Stile, Wörterbücher,
+Lernzielkatalog, Diagrammrenderer und Beispielprioritäten bleiben bytegleich
+nach Zeilenendennormalisierung. Der Modellcode stimmt zudem vollständig mit dem
+letzten Audit aller 65 Modelle über 260 Ansichten in Phase 102 überein.
+
+Freigegebene HTML-Fassung: 30cc084694bb8090; CFA-Inhaltsfassung: 0d2ac8cc1c4a1890.
+Vollständiger LF-HTML-SHA256:
+30cc084694bb8090ddc281ee41e6dda6b3d5e75d1da11a93306eb413b807d1f1
+bei 28538844 Bytes; CFA-Daten-SHA256:
+083ce861f3906da585951916afcb636ac90624099b13f678d221ae7e60986b99.
+
+Der freigegebene Build besteht alle **580 Kernprüfungen und 50 Browserfälle**.
+Der gemeinsame Lauf mit 45 vollständigen CFA-Fällen, beiden realen Vollklausuren
+und zwei Speicher-/Exportfällen besteht 49 von 49 Prüfungen in 800,5 Sekunden.
+Der zusätzliche Belastungsfall mit dem längsten reservierten Ergebnisdatensatz
+besteht in 8,6 Sekunden. Es gibt keine fehlgeschlagenen oder übersprungenen Fälle.
+Alle drei aktuellen Desktop-/Mobilansichten des Journals wurden einzeln gelesen.
+Der Build enthält release true und 102 dokumentiert geprüfte Einheiten.
+Auch der gesamte HTML-Inhalt außerhalb der CFA-Daten und der gezielt veränderten
+Engine/UI ist vollständig gleich geblieben. Bestehende fachliche Testdateien
+ändern ausschließlich den Prüfmetadatenstatus; ihre numerischen Kontrollen
+bleiben unverändert. Der frühere leerlaufende Gesamtfreigabetest wurde durch
+die oben dokumentierte tatsächliche Freigabeprüfung ersetzt.
+
+Zur Auslieferung gehören der erfolgreiche GitHub-Pages-Lauf für den Commit
+und der vollständige öffentliche HTML-/CFA-Datenabgleich mit diesem Build.
+Zusätzlich werden auf der tatsächlich veröffentlichten Website eine laufende
+Klausur nach Reload, Symbol- und Wörterbuchrücksprünge sowie die Erhaltung von
+4001 verschiedenen Aufgabenständen einschließlich echter Fehlerkorrektur,
+JSON-Download und zeitlich älterem nachgetragenem Ergebnis geprüft.

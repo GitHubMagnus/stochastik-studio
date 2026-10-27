@@ -288,7 +288,7 @@ module.exports={id:'carry',intro:[
  {title:'CME: Calculating Fair Value; Praxisbeispiel mit ausdrücklich einfacher Tagesverzinsung und Indexdividenden, eigene Rechnungen hier separat',url:'https://www.cmegroup.com/trading/equity-index/fairvalue.html'},
  {title:'CME: What is Equity Index Basis? Explizit entgegengesetzte Basiskonvention und Besitz-/Dividendenbehandlung',url:'https://www.cmegroup.com/education/courses/introduction-to-equity-index-products/what-is-equity-index-basis'},
  {title:'CME: What is Contango and Backwardation? Rohstoffkurven, Lagerung und Convenience Yield',url:'https://www.cmegroup.com/education/courses/introduction-to-base-metals/what-is-contango-and-backwardation'}
-],review:{status:'draft',date:'2026-10-24',note:'Eigene Replikationspfade, kontrollierte Preisvergleiche und Fragen; mathematische und Browsergegenprüfung ersetzen keine unabhängige fachliche Gesamtabnahme.'}};
+],review:{"status":"checked","date":"2026-10-27","method":"documented-self-audit","acceptance":"CFA-2027-ACCEPTANCE.md#carry","note":"Eigene dokumentierte Gesamtabnahme: Lernziel-, Errata-, Fach- und Funktionsprüfungen; keine externe CFA-Freigabe. Genaue Evidenz und Grenzen im verlinkten Abnahmebericht.","previous":{"status":"draft","date":"2026-10-24","note":"Eigene Replikationspfade, kontrollierte Preisvergleiche und Fragen; mathematische und Browsergegenprüfung ersetzen keine unabhängige fachliche Gesamtabnahme."}}};
 
 module.exports.related.push({"unit":"forward-value","section":"replication","label":"Bestehende Lieferverträge und spätere Zinsperioden vollständig bewerten"});
 module.exports.related.push({unit:'futures',section:'deterministic',label:'Die Bedingungen gleicher Forward- und Futuresquotes und ihre Grenzen nachvollziehen'});

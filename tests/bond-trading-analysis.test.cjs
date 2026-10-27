@@ -4,7 +4,7 @@ const sec=id=>u.sections.find(s=>s.id===id),near=(a,b,t=1e-8)=>assert.ok(Math.ab
 const number=s=>Number(String(s).replaceAll('.','').replace(',','.').replace('−','-').replace(/[^0-9.-]/g,''));
 const defaults={nominal:100,open:100,close:99,coupon:3},run=p=>M.calculate('bondindex',{...defaults,...p});
 test('issuance and trading cover all three actual 2027 objectives with original cases and disjoint reserved questions',()=>{
- assert.equal(u.sections.length,35);assert.equal(u.review.status,'draft');assert.equal(d.release,false);
+ assert.equal(u.sections.length,35);assert.equal(u.review.status,'checked');assert.equal(d.release,false);
  assert.match(u.sources[0].url,/2027levelitopicoutline_online\.pdf#page=19$/);assert.ok(u.sources.some(s=>s.title.includes('3.2 September 2026')));
  const qs=d.questions.filter(q=>q.unit===u.id);assert.equal(qs.filter(q=>q.pool==='practice').length,50);
  for(const pool of ['mock-a','mock-b']){assert.equal(qs.filter(q=>q.pool===pool).length,1);assert.ok(d.inventory[pool].bonds<=require('../finance-cfa/engine.cjs').blueprint.bonds);}

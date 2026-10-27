@@ -392,3 +392,38 @@ auf 4000 gekürzt; damit verschwindet der erste offene Fehler. Außerdem kann ei
 später angefügtes, zeitlich älteres Ergebnis einen neueren richtigen Stand im
 Journal überdecken. Diese reproduzierten Fälle werden vor der abschließenden
 Freigabe behoben. Die Gesamtbewertung bleibt daher weiterhin offen.
+
+## Langfristiger Antwortstand und Fehlerjournal (Phase 110)
+
+Bei 4001 verschiedenen gültigen Trainingsantworten verwarf die alte Begrenzung
+den ersten Eintrag. War dieser noch falsch, verschwand sein offener Lernpunkt.
+Außerdem konnte ein später angefügtes altes Ergebnis den zeitlich neueren
+richtigen Stand derselben Frage überdecken. Beide Fälle wurden mit der realen
+Fragenbank reproduziert und in der Engine korrigiert.
+
+Erhalten bleiben jetzt der zeitlich letzte gültige Stand jeder Frage und ein
+begrenztes Fenster jüngster Wiederholungen. Bei identischem Zeitstempel zählt
+die zuletzt gespeicherte Antwort. Ein einfacher Lehrtextwechsel erhält gültige
+Sets, Antworten und laufende Klausuren, ohne eine falsche Aufgabenänderung zu
+melden. Geänderte oder entfernte Fragen werden weiterhin getrennt verworfen.
+
+Vier neue Kernprüfungen bestehen mit der vollständigen Bank, 9000 Wiederholungen,
+ungültigen Daten, zeitlicher Reihenfolge und Materialmigration. Zwei neue
+Browserprüfungen bestehen mit echten UI-Aktionen, Reload und tatsächlichem
+JSON-Download. Der große Edge-Fall behält alle 4478 Aufgaben bei 8477 gespeicherten
+Antworten; sein JSON hat rund 1,82 MB beziehungsweise 3,63 MB UTF-16. Ein zusätzlicher
+echter Edge-Test mit 4000 Wiederholungen des längsten reservierten Ergebnis-
+datensatzes rm-exam-a1 erhält dieselben 4478 letzten Aufgabenstände bei rund
+4,51 MB UTF-16, laufender Klausur, Training und 30 früheren Versuchen.
+Die erste
+offene Aufgabe aus 4001 verschiedenen Antworten bleibt sichtbar und wird durch
+eine tatsächlich richtige neue Lösung geschlossen. Alle drei Mobil-/Desktop-
+Aufnahmen wurden gelesen. Alte bereits gelöschte Daten werden nicht erfunden.
+
+Beide vollständigen realen Klausuren wurden wegen der Engine-Änderung erneut
+geführt: A 162 Treffer/18 Fehler, B 180 Treffer/keine Fehler; alle 360 Lösungen
+geöffnet und mit ihren Begründungen verglichen. 578 Kernprüfungen und vier
+Browserfälle bestanden vor der formalen Gesamtabnahme. Für den freigegebenen
+Build werden die vollständigen aktuellen Prüfläufe im letzten Qualitätsplan-
+Eintrag dokumentiert. Keine der 4478 Fragen wurde durch diese Speicherarbeit
+inhaltlich geändert.

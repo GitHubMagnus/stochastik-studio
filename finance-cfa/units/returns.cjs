@@ -98,4 +98,4 @@ module.exports={id:'returns',intro:[
  sources:[
  {title:'CFA Institute: Rates and Returns – wirtschaftliche Grundlagen',url:'https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/rates-and-returns'},
  {title:'OpenStax: Time Value of Money Basics',url:'https://openstax.org/books/principles-finance-2e/pages/7-2-time-value-of-money-tvm-basics'}
- ],review:{status:'draft',date:'2026-09-18',note:'Eigene Beispiele mit getrennten Erwartungs-, Vertrags- und Realgrößen; Fisher-Umrechnung und Prämiengrenzen ausdrücklich erläutert.'}};
+ ],review:{"status":"checked","date":"2026-10-27","method":"documented-self-audit","acceptance":"CFA-2027-ACCEPTANCE.md#returns","note":"Eigene dokumentierte Gesamtabnahme: Lernziel-, Errata-, Fach- und Funktionsprüfungen; keine externe CFA-Freigabe. Genaue Evidenz und Grenzen im verlinkten Abnahmebericht.","previous":{"status":"draft","date":"2026-09-18","note":"Eigene Beispiele mit getrennten Erwartungs-, Vertrags- und Realgrößen; Fisher-Umrechnung und Prämiengrenzen ausdrücklich erläutert."}}};

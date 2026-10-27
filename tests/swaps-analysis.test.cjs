@@ -6,7 +6,7 @@ test('both actual2027 swap outcomes have textbook explanations, independently au
  assert.equal(bank.length,52);assert.equal(bank.filter(q=>q.pool==='practice').length,50);for(const pool of ['mock-a','mock-b'])assert.equal(bank.filter(q=>q.pool===pool).length,1);
  for(const o of d.coverage.find(c=>c.id==='swaps').objectives){assert.equal(o.practice.length,25);assert.equal(o.mockQuestions,1);assert.ok(o.sections.length>=18);}
  for(const q of bank){assert.ok(q.options.every(o=>o.why.length>=15),q.id);assert.ok(u.sections.some(s=>s.id===q.section));}assert.equal(new Set(bank.map(q=>q.stem)).size,bank.length);
- assert.equal(u.review.status,'draft');assert.equal(d.release,false);assert.ok(u.sources[0].url.endsWith('2027levelitopicoutline_online.pdf#page=24'));for(const site of ['cmegroup.com','bianchetti.org','bis.org','isda.org'])assert.ok(u.sources.some(s=>s.url.includes(site)));
+ assert.equal(u.review.status,'checked');assert.equal(d.release,false);assert.ok(u.sources[0].url.endsWith('2027levelitopicoutline_online.pdf#page=24'));for(const site of ['cmegroup.com','bianchetti.org','bis.org','isda.org'])assert.ok(u.sources.some(s=>s.url.includes(site)));
  assert.equal(require('../finance-content/derivatives.cjs')[4].lab,'swapvalue');for(const id of ['futures','forward-value'])assert.ok(d.units.find(u=>u.id===id).related.some(r=>r.unit==='swaps'));
 });
 // Reference via telescoping zero-coupon differences, rather than reproducing the model's projected-coupon sum.

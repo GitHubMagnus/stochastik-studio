@@ -5,7 +5,7 @@ const number=s=>Number(String(s).replaceAll('.','').replace(',','.').replace('âˆ
 const mean=a=>a.reduce((s,x)=>s+x,0)/a.length;
 const fit=(x,y)=>{const mx=mean(x),my=mean(y),xx=x.reduce((s,v)=>s+(v-mx)**2,0),xy=x.reduce((s,v,i)=>s+(v-mx)*(y[i]-my),0),b=xy/xx,a=my-b*mx,e=y.map((v,i)=>v-a-b*x[i]),sse=e.reduce((s,v)=>s+v*v,0),sst=y.reduce((s,v)=>s+(v-my)**2,0);return {a,b,e,sse,sst,xx,r2:1-sse/sst,se:Math.sqrt(sse/(x.length-2))};};
 test('factor unit covers the two actual 2027 outcomes and completes only the equity mock allocation',()=>{
- assert.equal(u.sections.length,33);assert.equal(u.review.status,'draft');assert.equal(d.release,false);
+ assert.equal(u.sections.length,33);assert.equal(u.review.status,'checked');assert.equal(d.release,false);
  const qs=d.questions.filter(q=>q.unit===u.id);assert.equal(qs.filter(q=>q.pool==='practice').length,44);
  for(const pool of ['mock-a','mock-b']){assert.equal(qs.filter(q=>q.pool===pool).length,1);assert.equal(d.inventory[pool].equity,require('../finance-cfa/engine.cjs').blueprint.equity);}
  const c=d.coverage.find(c=>c.id===u.id);assert.deepEqual(c.objectives.map(o=>o.id),['equity-factors-a','equity-factors-b']);

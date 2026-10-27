@@ -96,6 +96,7 @@ function compile({release=false}={}){
   const gaps=coverage.flatMap(m=>m.objectives.filter(o=>!o.sections.length||!o.applications.length||!o.practice.length).map(o=>o.id));
   if(gaps.length)throw Error('Offene Lernziele: '+gaps.join(', '));
   if(units.some(u=>u.review?.status!=='checked'))throw Error('Fachliche Prüfung nicht vollständig');
+  require('./acceptance.cjs').validateAcceptance(sourceUnits,sourceQuestions,require('./acceptance.json'));
  }
  const version=crypto.createHash('sha256').update(JSON.stringify({units,questions,coverage})).digest('hex').slice(0,16);
  return {...curriculum,version,units,questions,coverage,release,inventory:engine.inventory(questions)};

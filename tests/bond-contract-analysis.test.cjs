@@ -12,7 +12,7 @@ function allocate(c,other=80){
  return {bank:secured+bankOther,bond:note,junior,equity:Math.max(0,assets)};
 }
 test('bond instrument features cover the actual two 2027 outcomes with original cases and correctly reserved questions',()=>{
- assert.equal(u.sections.length,33);assert.equal(u.review.status,'draft');assert.equal(d.release,false);
+ assert.equal(u.sections.length,33);assert.equal(u.review.status,'checked');assert.equal(d.release,false);
  assert.match(u.sources[0].url,/2027levelitopicoutline_online\.pdf#page=19$/);
  const qs=d.questions.filter(q=>q.unit===u.id);assert.equal(qs.filter(q=>q.pool==='practice').length,42);
  for(const pool of ['mock-a','mock-b']){assert.equal(qs.filter(q=>q.pool===pool).length,1);assert.ok(d.inventory[pool].bonds<=require('../finance-cfa/engine.cjs').blueprint.bonds);}

@@ -350,7 +350,7 @@ module.exports={id:'option-values',intro:[
  {title:'Options Industry Council: Option Price Behavior; isolierte Faktoren und gleichzeitige Preisänderungen',url:'https://www.optionseducation.org/referencelibrary/faq/option-price-behavior'},
  {title:'Options Industry Council: Options Exercise; Ausübung und Verkauf eines Rechts unterscheiden',url:'https://www.optionseducation.org/referencelibrary/faq/options-exercise'},
  {title:'ASX: Option pricing in detail; Wertzerlegung und Einflussgrößen als ergänzende Börsenerläuterung',url:'https://www.asx.com.au/investors/investment-tools-and-resources/online-courses/advancing-in-options-course/option-pricing-in-detail'}
-],review:{status:'draft',date:'2026-10-25',note:'Eigene Preis-, Replikations- und Grenzfälle; unabhängige mathematische und technische Gegenprüfung sowie fachliche Gesamtabnahme erforderlich.'}};
+],review:{"status":"checked","date":"2026-10-27","method":"documented-self-audit","acceptance":"CFA-2027-ACCEPTANCE.md#option-values","note":"Eigene dokumentierte Gesamtabnahme: Lernziel-, Errata-, Fach- und Funktionsprüfungen; keine externe CFA-Freigabe. Genaue Evidenz und Grenzen im verlinkten Abnahmebericht.","previous":{"status":"draft","date":"2026-10-25","note":"Eigene Preis-, Replikations- und Grenzfälle; unabhängige mathematische und technische Gegenprüfung sowie fachliche Gesamtabnahme erforderlich."}}};
 
 module.exports.related.push({unit:'parity',section:'spot',label:'Passende Call- und Putrechte über ihre vollständigen Endpakete verknüpfen'});
 module.exports.related.push({unit:'binomial',section:'replication',label:'Den Zweizustandsnachbau vollständig herleiten und über Preisgewichte gegenprüfen'});

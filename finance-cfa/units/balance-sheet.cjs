@@ -177,4 +177,4 @@ module.exports={id:'balance-sheet',intro:[
  {title:'FASB: ASU 2016-01, Änderungen für Finanzinstrumente',url:'https://storage.fasb.org/ASU%202016-01.pdf'},
  {title:'FASB: ASU 2017-04, Goodwill-Wertminderung',url:'https://storage.fasb.org/ASU2017-04.pdf'},
  {title:'FASB: Darstellung bestehender R&D-Grundsätze im Forschungsdokument; kein neuer Standard',url:'https://storage.fasb.org/2023%20FRIC%20Materials.pdf'}
- ],review:{status:'draft',date:'2026-09-24',note:'Ansatz, Bewertung, GuV/OCI, Cashflow und Kennzahlen anhand eigener abgestimmter Fälle getrennt; vereinfachte Beispiele nennen ihre Voraussetzungen.'}};
+ ],review:{"status":"checked","date":"2026-10-27","method":"documented-self-audit","acceptance":"CFA-2027-ACCEPTANCE.md#balance-sheet","note":"Eigene dokumentierte Gesamtabnahme: Lernziel-, Errata-, Fach- und Funktionsprüfungen; keine externe CFA-Freigabe. Genaue Evidenz und Grenzen im verlinkten Abnahmebericht.","previous":{"status":"draft","date":"2026-09-24","note":"Ansatz, Bewertung, GuV/OCI, Cashflow und Kennzahlen anhand eigener abgestimmter Fälle getrennt; vereinfachte Beispiele nennen ihre Voraussetzungen."}}};

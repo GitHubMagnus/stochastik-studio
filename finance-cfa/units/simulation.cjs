@@ -128,4 +128,4 @@ module.exports={id:'simulation',intro:[
  {title:'CFA Institute: Simulation Methods',url:'https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/simulation-methods'},
  {title:'NIST: Bootstrap Plot',url:'https://www.itl.nist.gov/div898/handbook/eda/section3/eda334.htm'},
  {title:'NIST: Bootstrap Fit',url:'https://itl.nist.gov/div898/software/dataplot/refman1/auxillar/bootfit.htm'}
- ],review:{status:'draft',date:'2026-09-18',note:'Eigene historische Szenarien, vollständig aufzählbarer Bootstrap und analytische GBM-/Korrelationskontrollen. Quantilkonvention und Simulationsgrenzen explizit.'}};
+ ],review:{"status":"checked","date":"2026-10-27","method":"documented-self-audit","acceptance":"CFA-2027-ACCEPTANCE.md#simulation","note":"Eigene dokumentierte Gesamtabnahme: Lernziel-, Errata-, Fach- und Funktionsprüfungen; keine externe CFA-Freigabe. Genaue Evidenz und Grenzen im verlinkten Abnahmebericht.","previous":{"status":"draft","date":"2026-09-18","note":"Eigene historische Szenarien, vollständig aufzählbarer Bootstrap und analytische GBM-/Korrelationskontrollen. Quantilkonvention und Simulationsgrenzen explizit."}}};

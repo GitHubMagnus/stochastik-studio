@@ -175,5 +175,5 @@ module.exports={
   {title:'IFRS Foundation: IAS 33 – Earnings per Share',url:'https://www.ifrs.org/issued-standards/list-of-standards/ias-33-earnings-per-share/'},
   {title:'CFA Institute: Analyzing Income Statements – Lerngebiet und Analysefragen',url:'https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/analyzing-income-statements'}
  ],
- review:{status:'draft',note:'Rechenfälle werden unabhängig getestet; fachliche Abschlussprüfung noch offen.'}
+ review:{"status":"checked","date":"2026-10-27","method":"documented-self-audit","acceptance":"CFA-2027-ACCEPTANCE.md#income-statement","note":"Eigene dokumentierte Gesamtabnahme: Lernziel-, Errata-, Fach- und Funktionsprüfungen; keine externe CFA-Freigabe. Genaue Evidenz und Grenzen im verlinkten Abnahmebericht.","previous":{"status":"draft","note":"Rechenfälle werden unabhängig getestet; fachliche Abschlussprüfung noch offen."}}
 };

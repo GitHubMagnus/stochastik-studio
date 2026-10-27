@@ -1,0 +1,518 @@
+{
+  "schema": 1,
+  "date": "2026-10-27",
+  "method": "documented-self-audit",
+  "report": "CFA-2027-ACCEPTANCE.md",
+  "units": [
+    {
+      "id": "abs",
+      "unitSha256": "157e1a3603d65044de2ef7fa4c7e123b2c043022fba044ff6f75f33e7b82a918",
+      "questionsSha256": "ae278e964d96679b96dd7de0ae65ec7c370bdeb56199cb18ac43227fa934faa8"
+    },
+    {
+      "id": "alternative-fees",
+      "unitSha256": "81fb552e6f6fb799a5f52fbfc02e8a31f19fcc8527b97f772c8ec8c27625bc9d",
+      "questionsSha256": "718d8b93f8a94e3654d1704cde67bb2a37a8ce35877f75c1f2dde89b4a07bee4"
+    },
+    {
+      "id": "alternative-structures",
+      "unitSha256": "7186ef7f7978ead3146fbf64af9fd9f227e2e7d3dd99624bb81d5c0bfeb1a5cf",
+      "questionsSha256": "ee8037da720c22a3536e0ca9f0e04c8c93167c215fc3fc4b9b832b826801e529"
+    },
+    {
+      "id": "analysis-framework",
+      "unitSha256": "16d3cf3812fd9b35179fb384e37f2ce7de0bbc537470fa258052e590f85b38ee",
+      "questionsSha256": "41b134edf9e53a1e143dc0282cbac165056bbc3e0aa0e00e374064ff5cbdabef"
+    },
+    {
+      "id": "balance-sheet",
+      "unitSha256": "4b51f91f2fc385ec9a83a9e97d0fe56a7be71ebdf105451c53884f1b551a4605",
+      "questionsSha256": "1b538965a0887511529f82cdbde74dbb9910c4817caa29c0bcca0168a9984cd6"
+    },
+    {
+      "id": "behavioral",
+      "unitSha256": "5a88b3bc877888014e10963edb77d05423907f4b4b7b651d8eca1a9d444289f4",
+      "questionsSha256": "56b73fb67c97d9f90d1b25814c95d197a02412dc01ae20bfd1a83fafab135fe9"
+    },
+    {
+      "id": "benchmarks",
+      "unitSha256": "a6ee6b75c5e44e91e05805ab4c792e99e385b548c1d9b4b3b97bbd6124bae918",
+      "questionsSha256": "70bf06883379515c29043d4ee424893e1c54e21d98bb95ddddfb467512cbd668"
+    },
+    {
+      "id": "binomial",
+      "unitSha256": "bd9c240066f903938536ef78c4fa3eace4b5de2c228697a0935c37e1773ab519",
+      "questionsSha256": "5a071cb34f135e6d5dd4a527452919afc57eea5eb067d654fb08e132d9600e8c"
+    },
+    {
+      "id": "bond-cashflows",
+      "unitSha256": "97b7c28a6a21aede82139a7417b26071d0aa4532194e028c7ae3fccd395f7965",
+      "questionsSha256": "44fcc6f342b39a08c038dd85ee18963ee02ab2f407487bb148a34c489239ca04"
+    },
+    {
+      "id": "bond-features",
+      "unitSha256": "6a8d17b95644495ae8f82d5733e6e53c392af7b41d668cbf9604c04551bdfd55",
+      "questionsSha256": "5200408f422a16a0a6b5af72253c70bf6ba360cbdda85154eb91c17f6ebf9015"
+    },
+    {
+      "id": "bond-prices",
+      "unitSha256": "6a45ce525c1cae3a4966dec35a1f10d2b7d9fb736172a2f7e7bf7d9042b57212",
+      "questionsSha256": "148b3595050bb4fa9ab742c2cdd896fdc57998d5298420f01930e35a228812ca"
+    },
+    {
+      "id": "bond-return",
+      "unitSha256": "343dfeae30e7ae38c563af0e5f414d69f7b49d924874838d7db43de2e4bc785a",
+      "questionsSha256": "f0a5f221b97534785a71f620baa1080852999e5d0921b86adcbaee1b67d60aef"
+    },
+    {
+      "id": "bond-trading",
+      "unitSha256": "89e17c88ddc4129253e181f0abf7acde234cf6b8332de48f987b3c71a2878fd6",
+      "questionsSha256": "998ca7ceba4e9cb754ad17cd4e91cdfde6000fe1dd03ba4446fef0fb6990ac7f"
+    },
+    {
+      "id": "business-models",
+      "unitSha256": "a240cea3d7d2caadcdb69a41b088f80ce8663437dfee6e35eb9511a0034119ee",
+      "questionsSha256": "3e5491d5bfa3834cb38cb74440f9c41e97973a18d8d9eafe55839fc091ddeba0"
+    },
+    {
+      "id": "capital-allocation",
+      "unitSha256": "7798c9ac238e4a503a7387ffe9556f3c2941840a24793925289b8fe8584f4516",
+      "questionsSha256": "4c03e548b8e26884e385b6c3aab00918c967df46b5ca2901053a6257bcb6aef5"
+    },
+    {
+      "id": "capital-structure",
+      "unitSha256": "a9cd47cbf3a381614db8c1509067e6f7ca2a5d1fa01c3ba227c54433484bc678",
+      "questionsSha256": "fe602a3c585bb3ec99adb5e81ed4b5ef9b02ef17b02ecd5582973e42dc2a6e21"
+    },
+    {
+      "id": "carry",
+      "unitSha256": "b0f773c66746529d6dd3d9fa333fd2ad4fc1ae0752b818715d8d5bd3f8cc09c0",
+      "questionsSha256": "2faca0b3e7927b332546df3c4d4bbb3e6fa0b487f280b2d7fd13673f3265c110"
+    },
+    {
+      "id": "cashflow-analysis",
+      "unitSha256": "50726925f0c2cdd828a7620674e60b62458d081ce8e7c37fde2dd93b2ffd81ae",
+      "questionsSha256": "a69f398612d06c552355fcac506c0701a6717ee9fad464ac8054a0b323a50fd1"
+    },
+    {
+      "id": "cashflow-preparation",
+      "unitSha256": "19293b84b905228b643603c7ea3372df9f564a23481312372d3a525823bc1a82",
+      "questionsSha256": "c87f0111848f93bbe7af30b63f1730c48c1a99a6e9ac7e7d501ecd64bbf0c0d6"
+    },
+    {
+      "id": "code",
+      "unitSha256": "7cb19b464f3c9cef05063679814ec011c1998efd832494791242fad1d64dea7b",
+      "questionsSha256": "acc7184c25e92a236036d1775b61172070517d615a913c160c146b1d91211cc4"
+    },
+    {
+      "id": "company",
+      "unitSha256": "7a0af47057d755a6179d7a9abf704659829c383e56485385c2d25ead1ae8b76f",
+      "questionsSha256": "83aabcf27f0f10266c467348eb50fdea54d14dce697d188a0477aa5f55367133"
+    },
+    {
+      "id": "convexity",
+      "unitSha256": "e04d6567919317aae0bccc2ee12e7d51f647f006cd27571d5362e859263c0479",
+      "questionsSha256": "bd55ea4286a885b4e6bde8d0904269cb554b1375e63939d902e00bbec15ce211"
+    },
+    {
+      "id": "corporate-credit",
+      "unitSha256": "df33c95da077e8089b8c317562df4a5c1268d697d9fa7d605354f223247a6e8c",
+      "questionsSha256": "095351a8f97499485032f88ff1718edcb0d1745dad4072039889219334a05c61"
+    },
+    {
+      "id": "corporate-funding",
+      "unitSha256": "7148865a45658a595319b66e296924979772a0073fd6f2815f7f0136788f016d",
+      "questionsSha256": "cf32742eb1311978ed664d02d099cab85c500c79bd93730dbdecb36d79b91158"
+    },
+    {
+      "id": "credit-risk",
+      "unitSha256": "d2b020359c5ab008f4e7295def9cd9933beb2cc40284df3068963687a5a1b004",
+      "questionsSha256": "682ab28fee2c84f229b0b065b5731f0cfc2a1a16156e5c74b24e26f35a42a09d"
+    },
+    {
+      "id": "curve-risk",
+      "unitSha256": "b6468d6bb8041cacbfdb919269d6c25fb66d69591e391df32b3e60bc5377f451",
+      "questionsSha256": "57ea374da368a960b2c2792693235fe605defba1b5a9c47e9879fa619d1ccb97"
+    },
+    {
+      "id": "cycles",
+      "unitSha256": "ebd7006849e27a293faa9e1cc58819873cc6b58ffe526c05f94af00f19c0bed1",
+      "questionsSha256": "8eb58a49a1b9663f77d6968831024510248e536933debbc114283c588b4749fa"
+    },
+    {
+      "id": "data-science",
+      "unitSha256": "1bfaecdd11caa3513d0bce61330afa82f060582944d2fdfa763c61f5333b7e72",
+      "questionsSha256": "f58c8e5ca381e1c23bbe1e33335564ecc84eabb7f96a08e00077c94f55b04992"
+    },
+    {
+      "id": "dcf-equity",
+      "unitSha256": "d0cce1205e9aa01b274256e6527307d0c4a0485c1aabdb2d2444b4d2ad3a901c",
+      "questionsSha256": "ac2a5d164855ac96dfc92d0f49956daa5872ceebb9378d26c1c79b09ded403f9"
+    },
+    {
+      "id": "derivative-contracts",
+      "unitSha256": "397f1c63322965fe3f32b96cb5da0819205159c007a28816cb37717d002c571f",
+      "questionsSha256": "36880f16d8fc646ca2c39f1d4008571d78eb911214a9c7813ef51a90ca8b6618"
+    },
+    {
+      "id": "derivative-markets",
+      "unitSha256": "de7d17e84ab90371d72b086437e959d17bb29b3549f964f9f71703caa8b464d7",
+      "questionsSha256": "d994b0af7fbfff85c0f51d7f65676cfef819905b2844ad5d1562e5a1af0b49d8"
+    },
+    {
+      "id": "derivative-uses",
+      "unitSha256": "1d2c36c46c0bc37b51e165fc3627b0f2e613db3497dc3a4731c0328a92173b1b",
+      "questionsSha256": "3af109ab2a7f69fa595a53ba27f0f0caf179092ee013f73af3c7b47262866d9e"
+    },
+    {
+      "id": "digital-assets",
+      "unitSha256": "cac2e3df1b3a8e7009550e9a8c16b9069f833e2d150b86e731ac61182b6bab19",
+      "questionsSha256": "8c69a81af7168556f2c5920b2d194b8923bf43e308733765fb13e58ca8ad61ec"
+    },
+    {
+      "id": "distributions",
+      "unitSha256": "658d9e2acc459ebf66e659c6acf19e4bac6bcc285243ff0c78c0726275578e0b",
+      "questionsSha256": "1fe3e54d2a1df03f6b22f814018ae21f076c5db2d9b5dd13a571c1bb8b0e962b"
+    },
+    {
+      "id": "duration",
+      "unitSha256": "2197415ccfed4df8654a1bb2e21eb235924ce872cd8753768d96896e6e610aa7",
+      "questionsSha256": "6adc3fcdf702c5448c10e057b9fc70f02cd57b7e8a6f23bc62a0fbf2c88f5b63"
+    },
+    {
+      "id": "equity-factors",
+      "unitSha256": "aecff8a1d2f0bde8eba1cb3434409fa9ddc05c00a2d53dc489c1edaa3e76084b",
+      "questionsSha256": "ab3711e5b45f45461da113fe69d3f630268248a9e677bd6e4a21225c942a3ba0"
+    },
+    {
+      "id": "equity-features",
+      "unitSha256": "b8ee81b26f9b6f4c071cb3e09771bd058c1a0f5548557d099b116fa1643b0314",
+      "questionsSha256": "df15282ba73c88082a3b80a41f83e42b71622ed7c33b5f968ffb6ac777cc0beb"
+    },
+    {
+      "id": "equity-returns",
+      "unitSha256": "7be0ce1cb4cedfd1ba9c0c30a5267d63db95927960bea1699179a807ac211665",
+      "questionsSha256": "11af84cff088032a24e0256635a00806a0fd06c0c262b1314c8ddaf4ef1cc826"
+    },
+    {
+      "id": "equity-trading",
+      "unitSha256": "416f2b12b0c74fdeb656ccdf6d13f40f89d14c7c7e35148657101dfd6ea87176",
+      "questionsSha256": "47a198be359703d5d1ca9892eb6f61d0b77620314efff3a8bcbd0fc91b52b98b"
+    },
+    {
+      "id": "ethics-cases",
+      "unitSha256": "302c475739e77cf22285bf9cf4239c96dfeb2e9e1cff81967bdc644f81ea6b3c",
+      "questionsSha256": "594a3a273b54d9bd5a095a62c7c19393c98705e3739860b8721c65e2c26b9f26"
+    },
+    {
+      "id": "ethics-foundations",
+      "unitSha256": "59c36e8af459da32503beaa48ae5a483a58c0928ec7511e554b2a9634053d05c",
+      "questionsSha256": "e87bd29f2d04c445ef736c262e8938954fd664603148ab19828f84dc0e5d9830"
+    },
+    {
+      "id": "fiscal",
+      "unitSha256": "2dd0037d2332e605cce809869513e53ab95f848c47a8639eab912ccb2f5cf588",
+      "questionsSha256": "d4165834a4780491c657e2b4df3a423620f2151a30a0ccbea83611bef6c4343e"
+    },
+    {
+      "id": "fixed-yields",
+      "unitSha256": "15ad4b13a7c91de5e075d1aa3eb16bdd01fbabe32d3c88316954ef3c3f54938d",
+      "questionsSha256": "4e210f164983ce7c773fb82690ffb93739cb230f01979b208bd098444e0e27dc"
+    },
+    {
+      "id": "floating-yields",
+      "unitSha256": "ffd4cfbd4e2bc34f9b4db7410f39be5e92623c759afbc83aed5ddbfd4ce7c5cd",
+      "questionsSha256": "22a18bb77621c65c8b6ece76668dbf80e41492f5d627d5b2fbe8b14ba165e544"
+    },
+    {
+      "id": "forecasting",
+      "unitSha256": "944603ea68733a48cf5dd4146f2192a44ca4dc56833d49b8347fb768d6874be8",
+      "questionsSha256": "882a60c78f2055a5bf57d185ed2ff6fe9fb671965223e0f8afef1e578154f35c"
+    },
+    {
+      "id": "forward-value",
+      "unitSha256": "f199182b191326143c56239b102f1f22359ff73553e796e4253221abd47f1b84",
+      "questionsSha256": "08db656e01a23c1f9d16aeea20fbd4446ff3bfa70ad25b46b1812b2d818a04f3"
+    },
+    {
+      "id": "futures",
+      "unitSha256": "9f82fb99f6f29040fb80e064f5450388ccd88ac66b15091f1ca67703766a2c27",
+      "questionsSha256": "4eb925ab4cfb74a4cce4353e8fbbdc7825c7d194a68bf672f9e8fdb6aff1bb9c"
+    },
+    {
+      "id": "fx-calculation",
+      "unitSha256": "863f1f5602d5820813a6d36237d5d2288597318efbb6f665ae13740bdeba984a",
+      "questionsSha256": "5b4fad3694219c993d19b8b3ece75321166a3729ac51f73efd63950a345598dd"
+    },
+    {
+      "id": "fx-markets",
+      "unitSha256": "210edb70a0054399b5c0a7fedd52ab055880a463ea2b462a84ec08a30d305b85",
+      "questionsSha256": "3b8619d29810e8f405fa757ff745c67c7475962aa1be56ced30d1cc2bfa014bb"
+    },
+    {
+      "id": "geopolitics",
+      "unitSha256": "738d13a464e0b447c83c12041304dc74c35a09e90b85030eaf35b43c4e24adf2",
+      "questionsSha256": "2bacb9fbc9188e81e795511fea3b1c8d028dcd36264ba732367e3ec71a1525c0"
+    },
+    {
+      "id": "governance",
+      "unitSha256": "f7222b1ff4b0ac3eddea94241893906779b744283b814f43bd09581e4b7c9f81",
+      "questionsSha256": "39f24f1cb797618ef228341a55888c59249208f0f5fc4aa419abf58e1d884b41"
+    },
+    {
+      "id": "government-funding",
+      "unitSha256": "973f03125ade19efba4da747d3858a72c5ef5d372da3d49abac37aaa44ea5ffa",
+      "questionsSha256": "ec7ef912585180105202256cc987d41fa9c30958d43764f1c717f43cfd3141d8"
+    },
+    {
+      "id": "hedge-funds",
+      "unitSha256": "8057104492cdd0a9582c128318892dd5ccf49f220a92eafe20fef39e1a75b730",
+      "questionsSha256": "eb6194dd51335681ee3104f6f6c687c8367d8fe2456a64c32aa1c149923c40b5"
+    },
+    {
+      "id": "income-statement",
+      "unitSha256": "2bbce92cad85d9d8198bba003735eb7d09036833fef4b3f35a778bee39ecc4f5",
+      "questionsSha256": "0feacdf7b4a387c74ab01b04c2b6e8818d2431fe6dd26c7515b7a2857d299e68"
+    },
+    {
+      "id": "income-taxes",
+      "unitSha256": "af49636d1dec5e7cc571af6f4f623f675883f69919aec99e35428fc77d767eb2",
+      "questionsSha256": "74591cdc4459b8dd5322f18df1ca2a4f7f77cb2235567dd7eaaecfb941ff7d15"
+    },
+    {
+      "id": "industry",
+      "unitSha256": "70ec013a34239c5c85a2a0ef667427ad784655646a9491b175042d8d1cd82cf6",
+      "questionsSha256": "087e1c1e6854f8b5d37f2091d95f392b01cbbf53bac1292797bbf4ebbd68a88b"
+    },
+    {
+      "id": "inference",
+      "unitSha256": "bd39759eb71f7df902bc635ec4d884f7d0c52da5c5d4853c9eb0d32130e0a70e",
+      "questionsSha256": "3803a727452714ea5d08867b2174e90b3755f6f3142a8eb0ed69d3d67d235f51"
+    },
+    {
+      "id": "inventory",
+      "unitSha256": "2720fce090e1745e3999c747ec58c76169ffe2b6091f955866f84831564f1c28",
+      "questionsSha256": "734ab69ea540dba98c7092284e3531da7ca6be64dd88f0d697feb3267db9c35b"
+    },
+    {
+      "id": "investment-process",
+      "unitSha256": "968d29a762c0193f3ae7ff6c91bff01a36e736470da23862adb4c7928e3e18b1",
+      "questionsSha256": "1facbad3be9c5fb6e673b9da7c33acae4431a853c28bf4795da7965df75d236f"
+    },
+    {
+      "id": "ips",
+      "unitSha256": "878114f490308ecb0cce274435af6c87e614bdbe455da6ae46f9b905cace21b8",
+      "questionsSha256": "c78162d5e3ee306a1bdf8661a87bb218fb54c52b276cdc44ed40ac6dd0456f4d"
+    },
+    {
+      "id": "issuer-forms",
+      "unitSha256": "74318d012f79b5254844252ce04e1d6f27454b6f429a5589fdc5937942fd3ee4",
+      "questionsSha256": "c38f0b8fea795018e3a1aef5e349a20e80bb2d7421a3109a2790b6acb9b14fb3"
+    },
+    {
+      "id": "leases-compensation",
+      "unitSha256": "56c5a9bb238de0e55156ad932736ebe19bd895912f1fb6393101529ac24b1e33",
+      "questionsSha256": "371f37c256eb57b1d8512bb251f2e785cf5833e7207b10f3cd75972c49ddcdd9"
+    },
+    {
+      "id": "long-assets",
+      "unitSha256": "a949871f5cf7e0b16f7de2cb715624471f2462dbc77d1e45d71aa0524428dd2d",
+      "questionsSha256": "3f11f736d9e40b682d6b278e0ac0d6b437dd51891fa9954cc0fd4dfe9fa7fa32"
+    },
+    {
+      "id": "market-structures",
+      "unitSha256": "97c06c035a3a64386f339223625c6564d005bd45145d27ea37c3fa1b03306496",
+      "questionsSha256": "52b17387d94c01b908d598f862a5573b33a0be25a487baf04f83f22e6ac40d6b"
+    },
+    {
+      "id": "mbs",
+      "unitSha256": "b82b1f17a2f2824049a4ac4e087c7a9631474ec2a391c72b5e2636355e13c594",
+      "questionsSha256": "2b96e5fd45974549e5b6e104be8d84607308620993a9e9cd7ce50ee13b528e58"
+    },
+    {
+      "id": "monetary",
+      "unitSha256": "34a7680c84c49c37c7fbb8a06546be88b76cf4937d3aee4606132e7f023f172a",
+      "questionsSha256": "1b5ab687cd657fdcb75cf9aa89798fd9465f27e40f6e97918a6c50ab6d6f5b1a"
+    },
+    {
+      "id": "multiples",
+      "unitSha256": "dfad8c4119d23f7a791b9b743f08ffc5d3eb097ff5d77f759275f3783714e84f",
+      "questionsSha256": "36e3f40ccd24691b8a04182c868d95c38a3b8d67a0bf3536c7b882334a663df3"
+    },
+    {
+      "id": "option-values",
+      "unitSha256": "a83036f821b16e6388d5032353243dbcc4e3e8f5c1699166d469fad1255edecf",
+      "questionsSha256": "9443a9b22a95123926a9fa74f8e3b8754a79abebb9be048e8ee9c7ff4668f7e3"
+    },
+    {
+      "id": "parity",
+      "unitSha256": "6c824e35f0eba9652d0af18fc5b7c9a8c9a9984a44a4eaa05b9f0a4eb5efc3d5",
+      "questionsSha256": "d592533579fb020e427f8e4e0455477faffb40cc3d38a2d43b4967334d003170"
+    },
+    {
+      "id": "portfolio-math",
+      "unitSha256": "f005362456152e253cd2d702f18c6f74c0bb31dce48107aaa2c3aa309e2d31fa",
+      "questionsSha256": "47e0effacc28231c57c06c070a8d784436a53ee726552459b35a2d62cb5198ca"
+    },
+    {
+      "id": "portfolio-pricing",
+      "unitSha256": "3dd7bee6bd563af8fea5e3a3d9e4ff4f21fa641dfe385f79781ea8bb582db193",
+      "questionsSha256": "eded933d72d9549b71b8419f7653f6ac1ab3b19742e3dec534319b3f062bd6ab"
+    },
+    {
+      "id": "portfolio-risk",
+      "unitSha256": "12e65f259877e95dffcb0f0c4f8c76d6abfa6769f0fc0d51122cc2ae814d2c74",
+      "questionsSha256": "e7c07c64aba1beca64cf1dda354b009f8cc228c875e36b8ebecfd6efce7893f1"
+    },
+    {
+      "id": "private-capital",
+      "unitSha256": "221375e71602d039fc440e0ce89875bd23024f10c37218888659f0fcc4d22597",
+      "questionsSha256": "91cf2be4876e506ebfad3139674bdb3513736b583e23c5ff6537d05af512bd94"
+    },
+    {
+      "id": "ratios",
+      "unitSha256": "691d3028832a489e3cc79cbb3326a868abe47e330ef4f96206e8f05cfb247415",
+      "questionsSha256": "87cf31dc9042c3a167b7d8d74838644e2fd8ec2c9bd075af907efb68d89ceec0"
+    },
+    {
+      "id": "real-assets",
+      "unitSha256": "60542ddb5d96c8d2630ddadf70964845a5766c5daf025a592b046402fba39f17",
+      "questionsSha256": "59c282a49f5778389068eef6bf49469c6a5cd897fad754bc4503077fbd280bf1"
+    },
+    {
+      "id": "regression",
+      "unitSha256": "7076ae32c57421c5772d286ffa0814b85056512c1c08b0db9936e9805d5ff9ae",
+      "questionsSha256": "fa9b00e586afbb6428008936affd32478d6e3d09fce716793bb11a6069e4e662"
+    },
+    {
+      "id": "reporting-quality",
+      "unitSha256": "a90cfab28233dea16ad6f373544ec6c8e8e1d27fc9d1b2e5f3a90d193cf8d151",
+      "questionsSha256": "4a90f085289c856987682e34907117b47ee7c2a9bb26bb1ad00d4daadea337e9"
+    },
+    {
+      "id": "research",
+      "unitSha256": "6ee54ef9b82ae85438bdb8ab644652f91ce034380a76accf169d76da1134f83c",
+      "questionsSha256": "2e8c1c8e9f5603747d94b6edff1f7db8555d8f5ee2605cf8c5cbe79ebfaadd5a"
+    },
+    {
+      "id": "resources",
+      "unitSha256": "bb16cbc3d491f21a5b96461c7ef0f88b58c0023e26a38aafa5082b8e04e4e6c5",
+      "questionsSha256": "e903cd1535cc62a2c84aa4943fb2f4ea6f3622a514a709f10044dd9af0cfa505"
+    },
+    {
+      "id": "return-statistics",
+      "unitSha256": "b667e4e8da124eb62ac5c2bfb0ea0db9d0376fc423b613fa42353cd368e75fac",
+      "questionsSha256": "b48a14e60e0574a54a76d7d9623c04f2ac8cdb88d8b2068355e68490a69f3494"
+    },
+    {
+      "id": "return-types",
+      "unitSha256": "4d76aab6f84922ea7560e5eedc4d600b7f9f518363ee83f78eecfa40908821a2",
+      "questionsSha256": "4d8189452d525a95aa7af9d33fb78fcee3aec65160b9665cf4b75e3b66f7fd64"
+    },
+    {
+      "id": "returns",
+      "unitSha256": "7c8fa312787a51fd6722b8eb93150e9bd7594f658eb93d0c74202d11949d5ee3",
+      "questionsSha256": "a0eb71cf8c06f31c336ba946697011898a3becbb8fb0346f33ae82e3ac6241ec"
+    },
+    {
+      "id": "risk-management",
+      "unitSha256": "2a4a1f6f752528db0adb88368d60c61be1b75bd9c662238e8fe1a088a23dad88",
+      "questionsSha256": "ff293ddc1ba51b9eecec86210988640d34e5bff355439369938810c1de0de4da"
+    },
+    {
+      "id": "securitization",
+      "unitSha256": "512d238233278c0d5595199fb16247e5acd5ad88b157d5187cda3603f83c6718",
+      "questionsSha256": "4ada7307ef07413a6506e7a799d60010f4d8380f1ae82be4243192d25709bbc5"
+    },
+    {
+      "id": "simulation",
+      "unitSha256": "290e37444b95d54151af518c6b220ff69a1f3e94281e285ae57a8e91a7e77e61",
+      "questionsSha256": "e5de9c58f6d6ed2e9984a92536b408dcf61027c567eb95e85391452580bab0b5"
+    },
+    {
+      "id": "sovereign-credit",
+      "unitSha256": "afada8e838ebad535fdf238552e23aafdb82ef47c64e7d3c889397dc3d965347",
+      "questionsSha256": "a7f317c0c76da3465c13c3bd87e020c90817f4c5864e948a23ba3dbe27fc9a3c"
+    },
+    {
+      "id": "stakeholders",
+      "unitSha256": "25a9d55bea8270074c6010ffb15257a23c58ead24001b0114ab8ee9315335010",
+      "questionsSha256": "6a85c4e5817c7fa17e1790342b9b1c3226016a273268db2bf1f258cb3eea409e"
+    },
+    {
+      "id": "standard-i",
+      "unitSha256": "6266497424d8015f3aef777b58bce286ded8a55197f5595350d0993cec7ba94c",
+      "questionsSha256": "6d82a69031f4239cdeaf86d667d9c62961329f751ff94fd7441138b4ef45d3aa"
+    },
+    {
+      "id": "standard-ii",
+      "unitSha256": "d2c5962969ca94b0e540e24d31989e0b1384d2d51bb03a8586b306609ccd0984",
+      "questionsSha256": "d66e957d6cc723d1b40454e54eac97ccb5bb3c66d2b1a5f2bfd28ae534cc9a1d"
+    },
+    {
+      "id": "standard-iii",
+      "unitSha256": "e1d13080f3c4b43993514ba2c364063fe9d8eaa5fcbdf14b6a1b15d4f6a666e4",
+      "questionsSha256": "3241bd8dbd25166fedacb250bcf704a195dd475a5a0a5c11c3fe12d67123a3df"
+    },
+    {
+      "id": "standard-iv",
+      "unitSha256": "d4acd733c1f3f9cbf8ad98b5d15f0cd9af655033a6c9daa04a553f65a77cd627",
+      "questionsSha256": "3598d08685a71908360149d80e620e14b0baef521e3118103d3e2bd569ef83c4"
+    },
+    {
+      "id": "standard-v",
+      "unitSha256": "8cbc4f01e4982fa7b720faf15e7175c11959fca076413f653774da87f992340c",
+      "questionsSha256": "d3ee2cfdaa0a44783c7d87a7e80f06828e38592cd496213e68398ef0facb66a0"
+    },
+    {
+      "id": "standard-vi",
+      "unitSha256": "3a71985b7ab3055115342a4638809ed8544aa50f6fb29e4fcb1c7c9ada8a040b",
+      "questionsSha256": "f6dc4e290e819e2200394bc5a925773940d56024505b5a8d7268f70049aa2191"
+    },
+    {
+      "id": "standard-vii",
+      "unitSha256": "bae306016f9a1e5866e5ec85fd30bb614f146f6eb8d69b1317451aff72500a0d",
+      "questionsSha256": "e9b745fb3c0cb3386959c97526c502b9ec142cdd29eb502c8133b9e37d142532"
+    },
+    {
+      "id": "swaps",
+      "unitSha256": "7208f65db4f1d84c989b904e95b623dd9d02d73f43469be5181aa618cdbaa2d7",
+      "questionsSha256": "4d45b9099e957749f03c66074ae0a834a0f4fe42a027a3d6b7a982683e137990"
+    },
+    {
+      "id": "trade",
+      "unitSha256": "7e986c649d0e9d2cb05b755d6a454336210dec67e99c2a66475b49084092c53b",
+      "questionsSha256": "74cef2f03bee7d7fd5c138fe94db9e73643b5cdc495696afb70d900a6db17bbc"
+    },
+    {
+      "id": "tvm",
+      "unitSha256": "7f5fb617fb331dd02c4ca808e58d97f95f6a8aa54b0d8956c60880e06b6ba0e9",
+      "questionsSha256": "5afe8c70d2d64d5922b5f9e543c33ad81f0dfd06d07e7cd561a643312f8cafe0"
+    },
+    {
+      "id": "valuation-model",
+      "unitSha256": "2b312aacac7c5ddfd0bb4d73d471025a718d5260068eacda215d7a88674e1fe4",
+      "questionsSha256": "03677cb36e1c182f207e850e542fcf9453254eb4761ee4a7aa2d0c9b4ef17d9c"
+    },
+    {
+      "id": "valuation-overview",
+      "unitSha256": "5d608dc0d9ce79f4e886df7081d1c26cd9a63ad8d0b2942e1fccb55ff0b21b3d",
+      "questionsSha256": "fce151a434232c863057f4307f8d5062f16f151bf703ecfbbb3a14c1c27e8ae9"
+    },
+    {
+      "id": "voting",
+      "unitSha256": "7cbbcca8b86032ce8f855fc07919c805154e97c6ee750d3f7f38cf844b016197",
+      "questionsSha256": "2d2b49a26135d42b666e5b6a67025e03fb7f7c4d41500a923ac97dc0080ca796"
+    },
+    {
+      "id": "working-capital",
+      "unitSha256": "206ef0f1af03f7e89ea3f4f0c3fa352c5820ba225c94f044ee300514fdc12718",
+      "questionsSha256": "30bb014c35b7c650e658c340d2d3c53a7caaa11eac978b34aa7e5bad0783e97c"
+    },
+    {
+      "id": "yield-curves",
+      "unitSha256": "35d106ffcef054b1107ff9040a74f11648d5ca96ae2e38d5f085a63bf1ca7836",
+      "questionsSha256": "82f310f2d4219d02e9126f6c479f8e880445496c0c11c589920de74ef5da8f0d"
+    }
+  ]
+}

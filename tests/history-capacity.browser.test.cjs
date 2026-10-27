@@ -1,0 +1,13 @@
+const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),{chromium}=require('playwright'),{createServer}=require('../.server.js'),E=require('../finance-cfa/engine.cjs'),d=require('../finance-cfa/compile.cjs').compile();
+test('Edge persists all last results plus 4000 repetitions of the longest real reserved result, with active exam and training',async()=>{
+ const server=createServer();await new Promise(r=>server.listen(0,'127.0.0.1',r));const browser=await chromium.launch({headless:true,channel:'msedge'}),p=await browser.newPage(),key='studio-cfa-2027-v1',errors=[];p.on('pageerror',e=>errors.push(e.message));
+ try{
+  const now=Date.now(),rows=d.questions.map((q,i)=>({...E.grade(d.questions,[q.id],{[q.id]:q.correct},{[q.id]:'sure'}).results[0],at:now-20000+i,version:d.version,revision:q.revision}));
+  const reserved=new Set(d.questions.filter(q=>q.pool!=='practice').map(q=>q.id)),longest=rows.filter(r=>reserved.has(r.id)).sort((a,b)=>JSON.stringify(b).length-JSON.stringify(a).length)[0],q=d.questions.find(q=>q.pool==='practice');
+  const history=E.retainHistory([...rows,...Array.from({length:9000},(_,i)=>({...longest,at:now-10000+i}))]),state={schema:2,version:d.version,questionVersions:Object.fromEntries(d.questions.map(q=>[q.id,q.revision])),history,exam:E.createExam(d.questions,'mock-a',now),training:{ids:[q.id],position:0,answers:{},confidence:{},revealed:[]},runs:Array.from({length:30},(_,i)=>({mock:i%2?'mock-a':'mock-b',percent:99,at:now-100000+i,seenBefore:true}))};
+  const url='http://127.0.0.1:'+server.address().port;await p.goto(url+'/#cfa');await p.evaluate(({key,state})=>localStorage.setItem(key,JSON.stringify(state)),{key,state});await p.goto(url+'/#cfa~practice');await p.reload();await p.locator('input[name="cfa-answer"]').nth(q.correct).check();assert.equal(await p.locator('#cfa-storage').isHidden(),true);
+  const raw=await p.evaluate(key=>localStorage.getItem(key),key),saved=JSON.parse(raw);assert.equal(saved.history.length,8477);assert.equal(new Set(saved.history.map(r=>r.id)).size,4478);assert.deepEqual(saved.exam,state.exam);assert.equal(saved.training.answers[q.id],q.correct);assert.equal(saved.runs.length,30);
+  await p.reload();assert.equal(await p.locator('input[name="cfa-answer"]').nth(q.correct).isChecked(),true);assert.deepEqual(errors,[]);
+  fs.writeFileSync('test-results/history-capacity-browser-proof.json',JSON.stringify({cfaVersion:d.version,largestReservedId:longest.id,rowChars:JSON.stringify(longest).length,retained:8477,seen:4478,utf8Bytes:Buffer.byteLength(raw),utf16Bytes:raw.length*2,savedByActualUI:true,examPreserved:true,trainingReloaded:true,errors},null,2));
+ }finally{await p.close();await browser.close();await new Promise(r=>server.close(r));}
+});

@@ -7,7 +7,7 @@ const table=(id,index=0)=>section(id).blocks.filter(b=>b.kind==='table')[index];
 
 test('industry analysis connects the four 2027 objectives to independent training without claiming release',()=>{
  const coverage=data.coverage.find(c=>c.id===unit.id),bank=data.questions.filter(q=>q.unit===unit.id);
- assert.equal(unit.sections.length,28);assert.equal(unit.review.status,'draft');assert.equal(data.release,false);
+ assert.equal(unit.sections.length,28);assert.equal(unit.review.status,'checked');assert.equal(data.release,false);
  assert.deepEqual(coverage.objectives.map(o=>o.id),['industry-a','industry-b','industry-c','industry-d']);
  assert.equal(bank.filter(q=>q.pool==='practice').length,48);
  for(const o of coverage.objectives){assert.ok(o.sections.length);assert.ok(o.practice.length>=9);assert.ok(o.mockQuestions>=1);}

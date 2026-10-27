@@ -7,7 +7,7 @@ const value=(R,q,dm,m,n)=>annuity(100*(R+q)/m,(R+dm)/m,n)+100/(1+(R+dm)/m)**n;
 const defaults=id=>Object.fromEntries(M.models[id].controls.map(f=>[f.key,f.value]));
 const run=(id,p={})=>M.calculate(id,{...defaults(id),...p});
 test('floating yields cover both actual 2027 objectives with original questions and separately reachable calculators',()=>{
- assert.equal(u.sections.length,30);assert.equal(u.review.status,'draft');assert.equal(d.release,false);assert.ok(u.sources[0].url.endsWith('#page=20'));
+ assert.equal(u.sections.length,30);assert.equal(u.review.status,'checked');assert.equal(d.release,false);assert.ok(u.sources[0].url.endsWith('#page=20'));
  const qs=d.questions.filter(q=>q.unit===u.id);assert.equal(qs.filter(q=>q.pool==='practice').length,52);
  for(const pool of ['mock-a','mock-b']){assert.equal(qs.filter(q=>q.pool===pool).length,1);assert.ok(d.inventory[pool].bonds<=require('../finance-cfa/engine.cjs').blueprint.bonds);}
  for(const o of d.coverage.find(c=>c.id===u.id).objectives){assert.ok(o.sections.length>=15);assert.ok(o.practice.length>=25);assert.equal(o.mockQuestions,2);}

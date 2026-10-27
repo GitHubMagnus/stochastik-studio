@@ -125,4 +125,4 @@ module.exports={id:'benchmarks',intro:[
   {title:'CFA Institute: Security Market Indexes',url:'https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/security-market-indexes'},
   {title:'S&P Dow Jones Indices: Index Mathematics Methodology',url:'https://www.spglobal.com/spdji/en/documents/methodologies/methodology-index-math.pdf'},
   {title:'S&P Dow Jones Indices: Methodology Matters',url:'https://www.spglobal.com/spdji/en/research-insights/index-literacy/methodology-matters/'}
- ],review:{status:'draft',date:'2026-09-17',note:'Eigene kontrastierende Beispiele; MWR, Indexgewichte und Divisor werden unabhängig geprüft.'}};
+ ],review:{"status":"checked","date":"2026-10-27","method":"documented-self-audit","acceptance":"CFA-2027-ACCEPTANCE.md#benchmarks","note":"Eigene dokumentierte Gesamtabnahme: Lernziel-, Errata-, Fach- und Funktionsprüfungen; keine externe CFA-Freigabe. Genaue Evidenz und Grenzen im verlinkten Abnahmebericht.","previous":{"status":"draft","date":"2026-09-17","note":"Eigene kontrastierende Beispiele; MWR, Indexgewichte und Divisor werden unabhängig geprüft."}}};

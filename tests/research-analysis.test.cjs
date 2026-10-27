@@ -12,7 +12,7 @@ const pv=({sales=500,margin=.16,r=.12,k=.09,g=.03}={})=>{
 
 test('research reports cover the three actual 2027 objectives with original practice and disjoint reserved cases',()=>{
  const coverage=data.coverage.find(c=>c.id===unit.id),bank=data.questions.filter(q=>q.unit===unit.id);
- assert.equal(unit.sections.length,28);assert.equal(unit.review.status,'draft');assert.equal(data.release,false);
+ assert.equal(unit.sections.length,28);assert.equal(unit.review.status,'checked');assert.equal(data.release,false);
  assert.equal(bank.filter(q=>q.pool==='practice').length,40);
  for(const pool of ['mock-a','mock-b']){assert.equal(bank.filter(q=>q.pool===pool).length,1);assert.ok(data.inventory[pool].equity<=require('../finance-cfa/engine.cjs').blueprint.equity);}
  assert.deepEqual(coverage.objectives.map(o=>o.id),['research-a','research-b','research-c']);

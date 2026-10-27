@@ -112,4 +112,4 @@ module.exports={id:'return-types',intro:[
  sources:[
  {title:'CFA Institute: Rates and Returns',url:'https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/rates-and-returns'},
  {title:'OpenStax: TVM Basics',url:'https://openstax.org/books/principles-finance-2e/pages/7-2-time-value-of-money-tvm-basics'}
- ],review:{status:'draft',date:'2026-09-18',note:'Explizite Zeit-, Gebühren-, Steuer- und Währungskonventionen; eigene kontrollierte Vergleiche.'}};
+ ],review:{"status":"checked","date":"2026-10-27","method":"documented-self-audit","acceptance":"CFA-2027-ACCEPTANCE.md#return-types","note":"Eigene dokumentierte Gesamtabnahme: Lernziel-, Errata-, Fach- und Funktionsprüfungen; keine externe CFA-Freigabe. Genaue Evidenz und Grenzen im verlinkten Abnahmebericht.","previous":{"status":"draft","date":"2026-09-18","note":"Explizite Zeit-, Gebühren-, Steuer- und Währungskonventionen; eigene kontrollierte Vergleiche."}}};

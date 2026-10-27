@@ -8,7 +8,7 @@ const duration=(C,i,n,m)=>{const h=1e-6,derivative=(pv(C,i+h,n)-pv(C,i-h,n))/(2*
 const answer=id=>{const q=d.questions.find(q=>q.id==='bhr-'+id);return q.options[q.correct].text;};
 const first=s=>Number(s.match(/-?\d+(?:\.\d+)?/)?.[0]);
 test('bond return covers the three actual 2027 objectives with original practice and separate transfer cases',()=>{
- assert.equal(u.sections.length,34);assert.equal(u.review.status,'draft');assert.equal(d.release,false);assert.ok(u.sources[0].url.endsWith('#page=20'));
+ assert.equal(u.sections.length,34);assert.equal(u.review.status,'checked');assert.equal(d.release,false);assert.ok(u.sources[0].url.endsWith('#page=20'));
  const qs=d.questions.filter(q=>q.unit===u.id);assert.equal(qs.filter(q=>q.pool==='practice').length,60);for(const pool of ['mock-a','mock-b']){assert.equal(qs.filter(q=>q.pool===pool).length,2);assert.ok(d.inventory[pool].bonds<=require('../finance-cfa/engine.cjs').blueprint.bonds);}
  for(const o of d.coverage.find(c=>c.id===u.id).objectives){assert.ok(o.sections.length>=15);assert.ok(o.practice.length>=20);assert.ok(o.mockQuestions>=2);}
  assert.equal(require('../finance-content/bonds.cjs')[8].lab,'bondhorizon');assert.equal(require('../finance-content/bonds.cjs')[7].lab,'bond');assert.ok(Object.keys(M.models).length>=50);

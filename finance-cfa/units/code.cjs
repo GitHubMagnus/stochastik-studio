@@ -80,4 +80,4 @@ module.exports={id:'code',intro:[
  {title:'CFA Institute: Standards of Practice Handbook, Vorwort',url:'https://www.cfainstitute.org/sites/default/files/-/media/documents/code/code-ethics-standards/standards-practice-handbook-12th-edition.pdf'},
  {title:'CFA Institute: Professional Conduct',url:'https://www.cfainstitute.org/standards/professionals/conduct'},
  {title:'CFA Institute: aktuelle Rules of Procedure',url:'https://www.cfainstitute.org/standards/professionals/conduct/rules-procedure'}
- ],review:{status:'draft',date:'2026-09-17',note:'Eigene Strukturübersicht und Fallunterscheidungen; 6 Kodexkomponenten, 7 Standards und 23 Unterstandards.'}};
+ ],review:{"status":"checked","date":"2026-10-27","method":"documented-self-audit","acceptance":"CFA-2027-ACCEPTANCE.md#code","note":"Eigene dokumentierte Gesamtabnahme: Lernziel-, Errata-, Fach- und Funktionsprüfungen; keine externe CFA-Freigabe. Genaue Evidenz und Grenzen im verlinkten Abnahmebericht.","previous":{"status":"draft","date":"2026-09-17","note":"Eigene Strukturübersicht und Fallunterscheidungen; 6 Kodexkomponenten, 7 Standards und 23 Unterstandards."}}};
