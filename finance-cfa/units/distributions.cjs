@@ -145,4 +145,4 @@ module.exports={id:'distributions',intro:[
  {title:'NIST: Lognormal Distribution',url:'https://www.itl.nist.gov/div898/handbook/eda/section3/eda3669.htm'},
  {title:'NIST: Uniform Distribution',url:'https://www.itl.nist.gov/div898/handbook/eda/section3/eda3662.htm'},
  {title:'NIST: Binomial Distribution',url:'https://itl.nist.gov/div898/handbook/eda/section3/eda366i.htm'}
- ],review:{status:'draft',date:'2026-09-18',note:'Eigene Szenariotabellen, bedingte Momente und Bayes-Fälle. Gemeinsame und bedingte Verteilungen sowie Logparameter ausdrücklich getrennt.'}};
+ ],review:{"status":"checked","date":"2026-10-27","method":"documented-self-audit","acceptance":"CFA-2027-ACCEPTANCE.md#distributions","note":"Eigene dokumentierte Gesamtabnahme: Lernziel-, Errata-, Fach- und Funktionsprüfungen; keine externe CFA-Freigabe. Genaue Evidenz und Grenzen im verlinkten Abnahmebericht.","previous":{"status":"draft","date":"2026-09-18","note":"Eigene Szenariotabellen, bedingte Momente und Bayes-Fälle. Gemeinsame und bedingte Verteilungen sowie Logparameter ausdrücklich getrennt."}}};

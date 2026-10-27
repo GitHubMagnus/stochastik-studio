@@ -77,4 +77,4 @@ module.exports={id:'standard-ii',intro:[
  sources:[
   {title:'CFA Institute: Standard II(A), Material Nonpublic Information',url:'https://www.cfainstitute.org/standards/professionals/code-ethics-standards/standards-of-practice-ii-a'},
   {title:'CFA Institute: Standard II(B), Market Manipulation',url:'https://www.cfainstitute.org/standards/professionals/code-ethics-standards/standards-of-practice-ii-b'}
- ],review:{status:'draft',date:'2026-09-17',note:'Eigene Fälle; Materialität, Öffentlichkeit, Mosaik und manipulative Absicht getrennt.'}};
+ ],review:{"status":"checked","date":"2026-10-27","method":"documented-self-audit","acceptance":"CFA-2027-ACCEPTANCE.md#standard-ii","note":"Eigene dokumentierte Gesamtabnahme: Lernziel-, Errata-, Fach- und Funktionsprüfungen; keine externe CFA-Freigabe. Genaue Evidenz und Grenzen im verlinkten Abnahmebericht.","previous":{"status":"draft","date":"2026-09-17","note":"Eigene Fälle; Materialität, Öffentlichkeit, Mosaik und manipulative Absicht getrennt."}}};

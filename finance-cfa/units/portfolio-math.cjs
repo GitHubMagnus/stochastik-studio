@@ -132,4 +132,4 @@ module.exports={id:'portfolio-math',intro:[
  sources:[
  {title:'CFA Institute: Portfolio Risk and Return, Part I',url:'https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/portfolio-risk-return-part-1'},
  {title:'CFA Institute: Portfolio Risk and Return, Part II',url:'https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/portfolio-risk-return-part-2'}
- ],review:{status:'draft',date:'2026-09-18',note:'Eigene Herleitungen und Parametervergleiche mit drei berechneten Abbildungen; vollständige Gewichts-, Risiko- und Zinsannahmen.'}};
+ ],review:{"status":"checked","date":"2026-10-27","method":"documented-self-audit","acceptance":"CFA-2027-ACCEPTANCE.md#portfolio-math","note":"Eigene dokumentierte Gesamtabnahme: Lernziel-, Errata-, Fach- und Funktionsprüfungen; keine externe CFA-Freigabe. Genaue Evidenz und Grenzen im verlinkten Abnahmebericht.","previous":{"status":"draft","date":"2026-09-18","note":"Eigene Herleitungen und Parametervergleiche mit drei berechneten Abbildungen; vollständige Gewichts-, Risiko- und Zinsannahmen."}}};

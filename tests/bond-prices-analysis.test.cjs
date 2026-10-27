@@ -5,7 +5,7 @@ const price=(c,y,n,m=1)=>{const i=y/m,C=100*c/m;return i===0?C*n+100:C*(-Math.ex
 const full=(c,y,n,m,w)=>price(c,y,n,m)*(1+y/m)**(1-w);
 const sec=id=>u.sections.find(s=>s.id===id),number=s=>Number(String(s).replaceAll('.','').replace(',','.').replace('−','-').match(/-?\d+(?:\.\d+)?/)?.[0]);
 test('bond prices address all three actual objectives with disjoint original practice and two cases in each reserved pool',()=>{
- assert.equal(u.sections.length,30);assert.equal(u.review.status,'draft');assert.equal(data.release,false);
+ assert.equal(u.sections.length,30);assert.equal(u.review.status,'checked');assert.equal(data.release,false);
  const qs=data.questions.filter(q=>q.unit===u.id);assert.equal(qs.length,54);assert.equal(qs.filter(q=>q.pool==='practice').length,50);
  for(const p of ['mock-a','mock-b']){assert.equal(qs.filter(q=>q.pool===p).length,2);assert.ok(data.inventory[p].bonds<=require('../finance-cfa/engine.cjs').blueprint.bonds);}
  for(const o of data.coverage.find(x=>x.id===u.id).objectives){assert.ok(o.sections.length>=7);assert.ok(o.practice.length>=8);assert.ok(o.mockQuestions>=2);}

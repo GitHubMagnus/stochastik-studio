@@ -4,7 +4,7 @@ test('the benefits/risks and issuer/investor outcomes have textbook explanations
  assert.equal(u.sections.length,32);for(const[k,n]of [['formula',24],['example',18],['figure',8],['diagram',1],['table',11],['disclosure',8]])assert.equal(blocks.filter(b=>b.kind===k).length,n);
  assert.ok(blocks.filter(b=>typeof b==='string').join(' ').length>29000);assert.equal(bank.filter(q=>q.pool==='practice').length,50);for(const pool of ['mock-a','mock-b'])assert.equal(bank.filter(q=>q.pool===pool).length,2);
  const c=d.coverage.find(c=>c.id===u.id);assert.equal(c.objectives.length,2);for(const o of c.objectives){assert.equal(o.practice.length,25);assert.ok(o.sections.length>=20);assert.equal(o.mockQuestions,2);}
- assert.equal(d.release,false);assert.equal(u.review.status,'draft');assert.ok(u.sources[0].url.endsWith('#page=23'));for(const domain of ['cmegroup.com','fsb.org','bis.org'])assert.ok(u.sources.some(s=>s.url.includes(domain)));
+ assert.equal(d.release,false);assert.equal(u.review.status,'checked');assert.ok(u.sources[0].url.endsWith('#page=23'));for(const domain of ['cmegroup.com','fsb.org','bis.org'])assert.ok(u.sources.some(s=>s.url.includes(domain)));
  assert.equal(require('../finance-content/derivatives.cjs')[11].lab,'hedgeuse');assert.ok(M.models.hedgeuse);assert.ok(M.models.option&&M.models.forwardvalue);for(const id of ['derivative-contracts','derivative-markets','fx-markets','equity-factors'])assert.ok(d.units.find(u=>u.id===id).related.some(r=>r.unit===u.id));
  for(const q of bank){assert.ok(q.options.every(o=>o.why.length>=15));assert.ok(u.sections.some(s=>s.id===q.section));}for(const q of bank.filter(q=>q.pool!=='practice'))assert.ok(!bank.some(p=>p.pool==='practice'&&p.stem===q.stem));
 });

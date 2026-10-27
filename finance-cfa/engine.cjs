@@ -119,19 +119,39 @@
   for(const t of Object.values(topics))t.percent=t.total?100*t.correct/t.total:0;
   return {total:ids.length,answered,unanswered:ids.length-answered,correct,percent:ids.length?100*correct/ids.length:0,topics,results,confidentErrors:results.filter(r=>!r.correct&&r.confidence==='sure').length};
  }
+ const eventTime=entry=>Number.isFinite(entry?.at)?entry.at:-Infinity;
+ function latestById(entries){
+  const latest=new Map();
+  for(const [index,entry]of entries.entries())if(entry&&typeof entry.id==='string'&&entry.id){
+   const previous=latest.get(entry.id);
+   if(!previous||eventTime(entry)>=eventTime(previous.entry))latest.set(entry.id,{entry,index});
+  }
+  return latest;
+ }
+ function retainHistory(entries,recentLimit=4000){
+  if(!Array.isArray(entries))return [];
+  // Keep every question's latest result as well as recent attempts, even when
+  // the course contains more distinct questions than the recent-attempt cap.
+  const valid=entries.filter(e=>e&&typeof e.id==='string'&&e.id&&Number.isFinite(e.at)),limit=Number.isFinite(recentLimit)?Math.max(0,Math.floor(recentLimit)):4000;
+  const keep=new Set([...latestById(valid).values()].map(e=>e.index));
+  const recent=valid.map((entry,index)=>({entry,index})).sort((a,b)=>eventTime(b.entry)-eventTime(a.entry)||b.index-a.index).slice(0,limit);
+  for(const e of recent)keep.add(e.index);
+  return valid.filter((_,index)=>keep.has(index));
+ }
  function reconcile(saved,bank,version,now=Date.now()){
   const empty={exam:null,training:null,history:[],runs:[],updated:false};
   if(!saved||typeof saved!=='object'||Array.isArray(saved))return empty;
   const byId=new Map(bank.map(q=>[q.id,q])),sameVersion=saved.version===version;
   const unchanged=id=>{const q=byId.get(id);return !!q&&(sameVersion||(saved.schema===2&&typeof q.revision==='string'&&saved.questionVersions?.[id]===q.revision));};
   const validChoice=v=>Number.isInteger(v)&&v>=0&&v<3;
-  const history=(Array.isArray(saved.history)?saved.history:[]).filter(h=>h&&unchanged(h.id)&&Number.isFinite(h.at)&&(h.selected===null||validChoice(h.selected))&&(h.revision?byId.get(h.id).revision===h.revision:h.version===saved.version)).slice(-4000).map(h=>({...h,correct:h.selected===byId.get(h.id).correct,revision:byId.get(h.id).revision,version}));
+  const validHistory=(Array.isArray(saved.history)?saved.history:[]).filter(h=>h&&unchanged(h.id)&&Number.isFinite(h.at)&&(h.selected===null||validChoice(h.selected))&&(h.revision?byId.get(h.id).revision===h.revision:h.version===saved.version)).map(h=>({...h,correct:h.selected===byId.get(h.id).correct,revision:byId.get(h.id).revision,version}));
+  const history=retainHistory(validHistory);
   const exam=saved.exam?.items?.every?.(unchanged)?restore(saved.exam,bank,now):null;
   const t=saved.training;
   let training=null;
   if(t&&Array.isArray(t.ids)&&t.ids.length&&new Set(t.ids).size===t.ids.length&&t.ids.every(id=>unchanged(id)&&byId.get(id).pool==='practice')&&Number.isInteger(t.position)&&t.position>=0&&t.position<t.ids.length&&t.answers&&typeof t.answers==='object'&&!Array.isArray(t.answers)&&t.confidence&&typeof t.confidence==='object'&&!Array.isArray(t.confidence)&&Array.isArray(t.revealed)&&t.revealed.every(id=>t.ids.includes(id)&&validChoice(t.answers[id]))&&Object.entries(t.answers).every(([id,v])=>t.ids.includes(id)&&validChoice(v))&&Object.entries(t.confidence).every(([id,v])=>t.ids.includes(id)&&['sure','unsure','guess'].includes(v)))training=clone(t);
   const runs=(Array.isArray(saved.runs)?saved.runs:[]).filter(r=>r&&['mock-a','mock-b'].includes(r.mock)&&Number.isFinite(r.at)&&Number.isFinite(r.percent)&&r.percent>=0&&r.percent<=100).slice(-30).map(r=>({...r,outdated:!!r.outdated||!ready(bank,r.mock)||!bank.filter(q=>q.pool===r.mock).every(q=>unchanged(q.id))}));
-  return {exam,training,history,runs,updated:!sameVersion&&(!!saved.exam&&!exam||!!t&&!training||(saved.history?.length||0)>history.length)};
+  return {exam,training,history,runs,updated:!sameVersion&&(!!saved.exam&&!exam||!!t&&!training||(saved.history?.length||0)>validHistory.length)};
  }
  function practice(bank,{topic='',limit=10,history=[],random=Math.random}={}){
   const seen=new Set(history.map(h=>h.id));const candidates=bank.filter(q=>q.pool==='practice'&&(!topic||q.topic===topic));
@@ -140,8 +160,8 @@
   return [...shuffle(candidates.filter(q=>!seen.has(q.id))),...shuffle(candidates.filter(q=>seen.has(q.id)))].slice(0,Math.max(0,Math.floor(limit))).map(q=>q.id);
  }
  function journal(history){
-  const latest=new Map();for(const entry of history){if(entry&&typeof entry.id==='string'&&typeof entry.correct==='boolean')latest.set(entry.id,entry);}
-  return [...latest.values()].filter(e=>!e.correct||e.confidence==='guess').sort((a,b)=>(b.confidence==='sure')-(a.confidence==='sure')||(a.at||0)-(b.at||0));
+  const latest=latestById(history.filter(entry=>entry&&typeof entry.correct==='boolean'));
+  return [...latest.values()].map(e=>e.entry).filter(e=>!e.correct||e.confidence==='guess').sort((a,b)=>(b.confidence==='sure')-(a.confidence==='sure')||(a.at||0)-(b.at||0));
  }
- return {VERSION,SESSION_MS,blueprint,first,second,inventory,issues,ready,createExam,bounds,active,tick,transition,restore,grade,reconcile,practice,journal};
+ return {VERSION,SESSION_MS,blueprint,first,second,inventory,issues,ready,createExam,bounds,active,tick,transition,restore,grade,reconcile,retainHistory,practice,journal};
 });

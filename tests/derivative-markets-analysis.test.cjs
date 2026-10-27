@@ -4,7 +4,7 @@ test('derivative market foundations explain the two actual 2027 outcomes with or
  assert.equal(u.sections.length,33);for(const[k,n]of [['formula',17],['figure',6],['diagram',2],['example',12],['table',13],['disclosure',2]])assert.equal(blocks.filter(b=>b.kind===k).length,n);
  assert.equal(bank.filter(q=>q.pool==='practice').length,40);for(const pool of ['mock-a','mock-b'])assert.equal(bank.filter(q=>q.pool===pool).length,1);
  const coverage=d.coverage.find(c=>c.id===u.id);assert.equal(coverage.objectives.length,2);for(const o of coverage.objectives){assert.equal(o.practice.length,20);assert.ok(o.sections.length>=15);assert.equal(o.mockQuestions,1);}
- assert.equal(d.release,false);assert.equal(u.review.status,'draft');assert.ok(u.sources[0].url.endsWith('#page=23'));assert.ok(u.sources.some(s=>s.url.includes('unidroit.org')));assert.ok(u.sources.some(s=>s.url.includes('cmegroup.com')));assert.ok(blocks.filter(b=>typeof b==='string').join(' ').length>25000);
+ assert.equal(d.release,false);assert.equal(u.review.status,'checked');assert.ok(u.sources[0].url.endsWith('#page=23'));assert.ok(u.sources.some(s=>s.url.includes('unidroit.org')));assert.ok(u.sources.some(s=>s.url.includes('cmegroup.com')));assert.ok(blocks.filter(b=>typeof b==='string').join(' ').length>25000);
  for(const pool of ['mock-a','mock-b'])assert.ok(d.inventory[pool].derivatives>=bank.filter(q=>q.pool===pool).length);assert.equal(require('../finance-content/derivatives.cjs')[0].lab,'forwardvalue');assert.equal(require('../finance-content/derivatives.cjs')[2].lab,'forwardvalue');assert.ok(Object.keys(M.models).length>=50);
  for(const id of ['credit-risk','corporate-funding','tvm','mbs'])assert.ok(d.units.find(u=>u.id===id).related.some(r=>r.unit==='derivative-markets'));
 });

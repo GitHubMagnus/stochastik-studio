@@ -96,4 +96,4 @@ module.exports={id:'ethics-foundations',intro:[
  {title:'CFA Institute: Ethics and Trust in the Investment Profession',url:'https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/ethics-and-trust-investment-profession'},
  {title:'CFA Institute: Ethical Decision-Making Framework',url:'https://www.cfainstitute.org/insights/professional-learning/ethics-resources/ethical-decision-making'},
  {title:'CFA Institute: Ethics and Trust in a Changing Investment Industry',url:'https://www.cfainstitute.org/about/ethics-in-finance'}
- ],review:{status:'draft',date:'2026-09-17',note:'Eigene Erklärungsfälle; grundlegende Konzepte mit dem 2027-Lernzielkatalog abgeglichen.'}};
+ ],review:{"status":"checked","date":"2026-10-27","method":"documented-self-audit","acceptance":"CFA-2027-ACCEPTANCE.md#ethics-foundations","note":"Eigene dokumentierte Gesamtabnahme: Lernziel-, Errata-, Fach- und Funktionsprüfungen; keine externe CFA-Freigabe. Genaue Evidenz und Grenzen im verlinkten Abnahmebericht.","previous":{"status":"draft","date":"2026-09-17","note":"Eigene Erklärungsfälle; grundlegende Konzepte mit dem 2027-Lernzielkatalog abgeglichen."}}};

@@ -3,7 +3,7 @@ const d=require('../finance-cfa/compile.cjs').compile(),u=d.units.find(u=>u.id==
 const sec=id=>u.sections.find(s=>s.id===id),near=(a,b,t=1e-8)=>assert.ok(Math.abs(a-b)<=t,a+' vs '+b);
 const num=s=>Number(String(s).replaceAll('.','').replace(',','.').replace('−','-').match(/-?\d+(?:\.\d+)?/)?.[0]);
 test('public funding addresses both actual 2027 objectives with original questions and preserves existing question identifiers and the repo model',()=>{
- assert.equal(u.sections.length,31);assert.equal(u.review.status,'draft');assert.equal(d.release,false);
+ assert.equal(u.sections.length,31);assert.equal(u.review.status,'checked');assert.equal(d.release,false);
  assert.match(u.sources[0].url,/#page=20$/);assert.ok(u.sources.some(s=>s.title.includes('1. April 2026')));
  const qs=d.questions.filter(q=>q.unit===u.id);assert.equal(qs.filter(q=>q.pool==='practice').length,46);assert.ok(qs.every(q=>q.id.startsWith('gfu-')));
  for(const o of d.coverage.find(c=>c.id===u.id).objectives){assert.ok(o.sections.length>=15);assert.ok(o.practice.length>=20);assert.equal(o.mockQuestions,2);}

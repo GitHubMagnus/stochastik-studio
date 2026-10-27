@@ -136,4 +136,4 @@ module.exports={id:'geopolitics',intro:[
  {title:'IMF: The IMF and the World Bank',url:'https://www.imf.org/en/about/factsheets/sheets/2022/imf-world-bank-new'},
  {title:'World Bank Group: Who We Are',url:'https://www.worldbank.org/ext/en/who-we-are'},
  {title:'WTO: What We Do',url:'https://www.wto.org/english/thewto_e/whatis_e/what_we_do_e.htm'}
- ],review:{status:'draft',date:'2026-09-24',note:'Eigenständige Lieferketten-, Szenario- und Vorsorgefälle; Typologien als Analysehilfen, Wahrscheinlichkeiten ausdrücklich hypothetisch.'}};
+ ],review:{"status":"checked","date":"2026-10-27","method":"documented-self-audit","acceptance":"CFA-2027-ACCEPTANCE.md#geopolitics","note":"Eigene dokumentierte Gesamtabnahme: Lernziel-, Errata-, Fach- und Funktionsprüfungen; keine externe CFA-Freigabe. Genaue Evidenz und Grenzen im verlinkten Abnahmebericht.","previous":{"status":"draft","date":"2026-09-24","note":"Eigenständige Lieferketten-, Szenario- und Vorsorgefälle; Typologien als Analysehilfen, Wahrscheinlichkeiten ausdrücklich hypothetisch."}}};

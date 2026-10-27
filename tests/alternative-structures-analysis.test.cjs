@@ -5,7 +5,7 @@ test('three actual 2027 outcomes receive explanations, original exercises and th
  for(const[k,n]of [['formula',26],['example',21],['table',16],['figure',4],['disclosure',13],['diagram',1]])assert.equal(blocks.filter(b=>b.kind===k).length,n);
  assert.equal(bank.length,64);assert.equal(bank.filter(q=>q.pool==='practice').length,60);for(const p of ['mock-a','mock-b']){assert.equal(bank.filter(q=>q.pool===p).length,2);assert.ok(data.inventory[p].alternatives>=2&&data.inventory[p].alternatives<=require('../finance-cfa/engine.cjs').blueprint.alternatives);}
  for(const o of data.coverage.find(c=>c.id===u.id).objectives){assert.equal(o.practice.length,20);assert.ok(o.mockQuestions>=1);assert.ok(o.sections.length>=20);}
- assert.equal(new Set(bank.map(q=>q.stem)).size,64);assert.ok(bank.every(q=>q.options.every(o=>o.why.length>12)));assert.equal(data.release,false);assert.equal(u.review.status,'draft');assert.ok(u.sources[0].url.endsWith('#page=25'));
+ assert.equal(new Set(bank.map(q=>q.stem)).size,64);assert.ok(bank.every(q=>q.options.every(o=>o.why.length>12)));assert.equal(data.release,false);assert.equal(u.review.status,'checked');assert.ok(u.sources[0].url.endsWith('#page=25'));
  assert.equal(require('../finance-content/alternatives.cjs')[0].lab,'commitment');for(const id of ['issuer-forms','working-capital'])assert.ok(data.units.find(u=>u.id===id).related.some(r=>r.unit===u.id));
 });
 test('2187 independent event ledgers preserve commitment capacity, cash needs, NAV separation and 266814 curve coordinates',t=>{

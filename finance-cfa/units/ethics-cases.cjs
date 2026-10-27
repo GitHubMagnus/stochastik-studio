@@ -77,4 +77,4 @@ module.exports={id:'ethics-cases',intro:[
  sources:[
  {title:'CFA Institute: aktuelle Standards und Einzelguidance',url:'https://www.cfainstitute.org/standards/professionals/code-ethics-standards'},
  {title:'CFA Institute: Ethical Decision-Making Framework',url:'https://www.cfainstitute.org/insights/professional-learning/ethics-resources/ethical-decision-making'}
- ],review:{status:'draft',date:'2026-09-17',note:'Ausschließlich eigene kombinierte Fälle und Ein-Tatsachen-Gegenproben; keine offiziellen Prüfungsaufgaben.'}};
+ ],review:{"status":"checked","date":"2026-10-27","method":"documented-self-audit","acceptance":"CFA-2027-ACCEPTANCE.md#ethics-cases","note":"Eigene dokumentierte Gesamtabnahme: Lernziel-, Errata-, Fach- und Funktionsprüfungen; keine externe CFA-Freigabe. Genaue Evidenz und Grenzen im verlinkten Abnahmebericht.","previous":{"status":"draft","date":"2026-09-17","note":"Ausschließlich eigene kombinierte Fälle und Ein-Tatsachen-Gegenproben; keine offiziellen Prüfungsaufgaben."}}};

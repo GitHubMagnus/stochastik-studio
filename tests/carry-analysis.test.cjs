@@ -4,7 +4,7 @@ test('actual2027 arbitrage/replication and spot/expectation/carry outcomes have 
  assert.equal(u.sections.length,32);assert.ok(blocks.filter(b=>typeof b==='string').join(' ').length>25000);for(const[k,n]of [['formula',31],['example',14],['table',9],['figure',4],['disclosure',11]])assert.equal(blocks.filter(b=>b.kind===k).length,n);
  const c=d.coverage.find(c=>c.id===u.id);assert.equal(c.objectives.length,2);for(const o of c.objectives){assert.equal(o.practice.length,25);assert.equal(o.mockQuestions,2);assert.ok(o.sections.length>=20);}
  assert.equal(bank.filter(q=>q.pool==='practice').length,50);for(const pool of ['mock-a','mock-b'])assert.equal(bank.filter(q=>q.pool===pool).length,2);
- assert.equal(d.release,false);assert.equal(u.review.status,'draft');assert.ok(u.sources[0].url.endsWith('2027levelitopicoutline_online.pdf#page=23'));assert.ok(u.sources.some(s=>s.url.includes('cmegroup.com')));
+ assert.equal(d.release,false);assert.equal(u.review.status,'checked');assert.ok(u.sources[0].url.endsWith('2027levelitopicoutline_online.pdf#page=23'));assert.ok(u.sources.some(s=>s.url.includes('cmegroup.com')));
  for(const q of bank){assert.match(q.id,/^car-(?:\d{2}|exam-[ab][12])$/);assert.ok(q.options.every(o=>o.why.length>=15),q.id);assert.ok(u.sections.some(s=>s.id===q.section));}assert.equal(new Set(bank.map(q=>q.stem)).size,bank.length);
  for(const id of ['derivative-contracts','derivative-markets','derivative-uses'])assert.ok(d.units.find(u=>u.id===id).related.some(r=>r.unit==='carry'));
  assert.equal(require('../finance-content/derivatives.cjs')[1].lab,'forward');

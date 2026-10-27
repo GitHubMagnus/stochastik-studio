@@ -5,7 +5,7 @@ const number=s=>Number(String(s).replaceAll('.','').replace(',','.').replace('âˆ
 const factors=z=>z.map((s,k)=>1/Math.pow(1+s,k+1)),par=(D,n)=>(1-D[n-1])/D.slice(0,n).reduce((a,b)=>a+b,0);
 const run=p=>M.calculate('yieldcurve',{z1:3,z2:4,z3:5,coupon:5,...p});
 test('yield curves implement the three actual 2027 objectives with original questions, two disjoint questions per mock and a dedicated curve calculator',()=>{
- assert.equal(u.sections.length,36);assert.equal(u.review.status,'draft');assert.equal(d.release,false);assert.ok(u.sources[0].url.endsWith('#page=20'));
+ assert.equal(u.sections.length,36);assert.equal(u.review.status,'checked');assert.equal(d.release,false);assert.ok(u.sources[0].url.endsWith('#page=20'));
  const qs=d.questions.filter(q=>q.unit===u.id);assert.equal(qs.filter(q=>q.pool==='practice').length,60);
  for(const pool of ['mock-a','mock-b']){assert.equal(qs.filter(q=>q.pool===pool).length,2);assert.ok(d.inventory[pool].bonds<=require('../finance-cfa/engine.cjs').blueprint.bonds);}
  for(const o of d.coverage.find(c=>c.id===u.id).objectives){assert.ok(o.sections.length>=10);assert.ok(o.practice.length>=20);assert.equal(o.mockQuestions,2);}

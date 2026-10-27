@@ -8,7 +8,7 @@ function ledger(p,debt=p.debt,shock=p.depreciation){
  return{positions,values,interest,maturity,cash,issue,extra,end,Y,ratio:end/Y*100,need:issue/Y*100};
 }
 test('public credit supplies the actual single objective, 40 sections, independent practice and two reserved transfers while retaining the original spread model',()=>{
- assert.equal(u.sections.length,40);assert.equal(u.review.status,'draft');assert.equal(d.release,false);
+ assert.equal(u.sections.length,40);assert.equal(u.review.status,'checked');assert.equal(d.release,false);
  for(const[k,n]of Object.entries({formula:28,example:8,table:3,figure:6,disclosure:3}))assert.equal(blocks.filter(b=>b.kind===k).length,n,k);
  const coverage=d.coverage.find(c=>c.id===u.id);assert.equal(coverage.objectives.length,1);assert.equal(coverage.objectives[0].sections.length,40);assert.equal(coverage.objectives[0].practice.length,64);assert.equal(coverage.objectives[0].mockQuestions,2);
  assert.ok(u.sources[0].url.endsWith('#page=21'));const bonds=require('../finance-content/bonds.cjs');assert.equal(bonds[10].lab,'yieldspread');assert.deepEqual(bonds[10].additionalLabs,['sovereign']);assert.equal(bonds[1].lab,'repofunding');assert.deepEqual(bonds[1].additionalLabs,['floater','moneyyield']);assert.ok(Object.keys(M.models).length>=50);

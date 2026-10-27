@@ -33,7 +33,7 @@ window.FinanceCFA=(()=>{
   const restored=E.reconcile(saved,D.questions,D.version);
   ({exam,training,history,runs}=restored);contentUpdated=restored.updated;
  }catch{storageOK=false;}
- function save(){try{localStorage.setItem(key,JSON.stringify({schema:2,version:D.version,questionVersions:Object.fromEntries(D.questions.map(q=>[q.id,q.revision])),exam,training,history,runs}));storageOK=true;}catch{storageOK=false;}const note=root.querySelector('#cfa-storage');if(note)note.hidden=storageOK;}
+ function save(){history=E.retainHistory(history);try{localStorage.setItem(key,JSON.stringify({schema:2,version:D.version,questionVersions:Object.fromEntries(D.questions.map(q=>[q.id,q.revision])),exam,training,history,runs}));storageOK=true;}catch{storageOK=false;}const note=root.querySelector('#cfa-storage');if(note)note.hidden=storageOK;}
  function resolve(route){
   const [base,view='',focus='']=route.split('~');if(base!=='cfa')return null;
   if(!view)return {view:'home'};
@@ -125,7 +125,7 @@ window.FinanceCFA=(()=>{
   area.querySelectorAll('.cfa-confidence input').forEach(el=>el.onchange=()=>{training.confidence[id]=el.value;save();});
   area.querySelector('#cfa-check')?.addEventListener('click',()=>{
    if(!Number.isInteger(training.answers[id])){area.querySelector('#cfa-answer-required').hidden=false;return;}
-   training.revealed.push(id);history.push({id,selected:training.answers[id],correct:training.answers[id]===q.correct,confidence:training.confidence[id]||'unspecified',at:Date.now(),version:D.version,revision:q.revision});history=history.slice(-4000);save();drawTraining();area.querySelector('.cfa-solution').scrollIntoView({block:'nearest'});
+   training.revealed.push(id);history.push({id,selected:training.answers[id],correct:training.answers[id]===q.correct,confidence:training.confidence[id]||'unspecified',at:Date.now(),version:D.version,revision:q.revision});save();drawTraining();area.querySelector('.cfa-solution').scrollIntoView({block:'nearest'});
   });
   for(const [button,delta] of [['#cfa-train-prev',-1],['#cfa-train-next',1]])area.querySelector(button).onclick=()=>{training.position+=delta;save();drawTraining();root.querySelector('#cfa-question-title').focus();};
  }
@@ -133,7 +133,7 @@ window.FinanceCFA=(()=>{
   if(exam?.phase!=='finished'||exam.recorded)return;
   const score=E.grade(D.questions,exam.items,exam.answers,exam.confidence);exam.recorded=true;
   for(const r of score.results)history.push({...r,at:exam.ended,version:D.version,revision:questions.get(r.id).revision});
-  history=history.slice(-4000);runs.push({mock:exam.mock,percent:score.percent,at:exam.ended,seenBefore:exam.seenBefore});runs=runs.slice(-30);save();
+  runs.push({mock:exam.mock,percent:score.percent,at:exam.ended,seenBefore:exam.seenBefore});runs=runs.slice(-30);save();
  }
  function examView(){
   if(exam)exam=E.tick(exam);recordFinished();
@@ -194,7 +194,7 @@ window.FinanceCFA=(()=>{
  function journalView(){
   const entries=E.journal(history);
   root.innerHTML=header('Dein Fehlerjournal','Zuletzt falsche Antworten und geratene Treffer gezielt nacharbeiten.')+
-   '<p>'+entries.length+' offene Lernpunkte aus '+history.length+' gespeicherten Antworten. Eine später richtig und nicht geraten gelöste Trainingsaufgabe verschwindet aus dieser Liste. Bei Klausurfragen helfen zuerst die verlinkte Erklärung und neue Trainingsfälle.</p>'+
+   '<p>'+entries.length+(entries.length===1?' offener Lernpunkt':' offene Lernpunkte')+' aus '+history.length+' gespeicherten Antworten. Eine später richtig und nicht geraten gelöste Trainingsaufgabe verschwindet aus dieser Liste. Bei Klausurfragen helfen zuerst die verlinkte Erklärung und neue Trainingsfälle.</p>'+
    (entries.length?entries.map(e=>{const q=questions.get(e.id);return '<details class="cfa-module"><summary><span>'+esc(modules.get(q.unit)?.title||label(q.topic))+'</span><small>'+(e.correct?'Geratener Treffer':e.confidence==='sure'?'Selbstsicherer Fehler':'Nacharbeiten')+'</small></summary><p lang="en">'+esc(q.stem)+'</p>'+solutionHTML(q,e.selected??null)+'<button class="btn ghost" data-review-unit="'+q.unit+'">Neue Trainingsfälle zur Einheit</button></details>';}).join(''):'<p class="cfa-takeaway">Noch keine offenen Lernpunkte. Das bedeutet nur, dass hier keine entsprechenden Antworten gespeichert sind.</p>')+
    '<button class="btn ghost" id="cfa-export">Ergebnisse als JSON sichern</button>';
   root.querySelectorAll('[data-review-unit]').forEach(b=>b.onclick=()=>{const ids=E.practice(D.questions.filter(q=>q.unit===b.dataset.reviewUnit),{limit:10,history});startTraining(ids);location.hash='cfa~practice';});

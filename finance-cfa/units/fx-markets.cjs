@@ -145,6 +145,6 @@ module.exports={id:'fx-markets',intro:[
  {title:'IMF: Real Exchange Rates — What Money Can Buy',url:'https://www.imf.org/en/publications/fandd/issues/series/back-to-basics/real-exchange-rates'},
  {title:'IMF: Capital Flows',url:'https://www.imf.org/en/topics/capital-flows'},
  {title:'IMF: Guidance on Liberalization and Management of Capital Flows',url:'https://www.imf.org/en/publications/policy-papers/issues/2023/12/11/guidance-note-on-the-liberalization-and-management-of-capital-flows-542289'}
- ],review:{status:'draft',date:'2026-09-24',note:'Notierungsrichtung, reale Preisrelationen und Mengenreaktionen ausdrücklich definiert; eigene Umrechnungs-, Handelsbilanz- und Fremdwährungsbilanzfälle.'}};
+ ],review:{"status":"checked","date":"2026-10-27","method":"documented-self-audit","acceptance":"CFA-2027-ACCEPTANCE.md#fx-markets","note":"Eigene dokumentierte Gesamtabnahme: Lernziel-, Errata-, Fach- und Funktionsprüfungen; keine externe CFA-Freigabe. Genaue Evidenz und Grenzen im verlinkten Abnahmebericht.","previous":{"status":"draft","date":"2026-09-24","note":"Notierungsrichtung, reale Preisrelationen und Mengenreaktionen ausdrücklich definiert; eigene Umrechnungs-, Handelsbilanz- und Fremdwährungsbilanzfälle."}}};
 
 module.exports.related.push({"unit":"derivative-uses","section":"issuer-fx","label":"Dollarzuflüsse und Dollarzahlungen durch passende Termingeschäftsrichtungen unterscheiden"});

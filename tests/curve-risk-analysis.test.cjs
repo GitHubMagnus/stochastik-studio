@@ -11,7 +11,7 @@ function tree(s,kind='straight'){
 }
 const measure=(kind,h=.0025)=>{const P=tree(.03,kind).P,pm=tree(.03-h,kind).P,pp=tree(.03+h,kind).P;return{P,pm,pp,D:(pm-pp)/(2*P*h),C:(pm+pp-2*P)/(P*h*h),down:(pm-P)/(P*h),up:(P-pp)/(P*h)};};
 test('curve risk implements all four actual 2027 objectives, independent practice and separate reserved transfers, retaining existing calculators',()=>{
- assert.equal(u.sections.length,40);assert.equal(u.review.status,'draft');assert.equal(data.release,false);assert.ok(u.sources[0].url.endsWith('#page=21'));
+ assert.equal(u.sections.length,40);assert.equal(u.review.status,'checked');assert.equal(data.release,false);assert.ok(u.sources[0].url.endsWith('#page=21'));
  assert.equal(blocks.filter(b=>b.kind==='formula').length,36);assert.equal(blocks.filter(b=>b.kind==='example').length,8);assert.equal(blocks.filter(b=>b.kind==='table').length,8);assert.equal(blocks.filter(b=>b.kind==='disclosure').length,4);
  const qs=data.questions.filter(q=>q.unit===u.id);assert.equal(qs.filter(q=>q.pool==='practice').length,72);
  for(const pool of ['mock-a','mock-b']){assert.equal(qs.filter(q=>q.pool===pool).length,1);assert.ok(data.inventory[pool].bonds<=require('../finance-cfa/engine.cjs').blueprint.bonds);}

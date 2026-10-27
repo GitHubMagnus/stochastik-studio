@@ -9,7 +9,7 @@ const ref=(c,y,T,m=1)=>{const n=T*m,C=c/m,r=y/m,b=1+r,B=b**-n;let P,derivative;
  return{P,mod:-derivative/P,mac:-derivative/P*b,derivative};};
 const answer=id=>{const q=data.questions.find(q=>q.id==='ydr-'+id);return q.options[q.correct].text;},number=s=>Number(s.replaceAll(',','').match(/[−-]?\d+(?:\.\d+)?/)?.[0].replace('−','-'));
 test('duration addresses both actual 2027 objectives with substantive independent training and one transfer case per mock',()=>{
- assert.equal(u.sections.length,32);assert.equal(u.review.status,'draft');assert.equal(data.release,false);assert.ok(u.sources[0].url.endsWith('#page=21'));
+ assert.equal(u.sections.length,32);assert.equal(u.review.status,'checked');assert.equal(data.release,false);assert.ok(u.sources[0].url.endsWith('#page=21'));
  const qs=data.questions.filter(q=>q.unit===u.id);assert.equal(qs.filter(q=>q.pool==='practice').length,52);for(const pool of ['mock-a','mock-b']){assert.equal(qs.filter(q=>q.pool===pool).length,1);assert.ok(data.inventory[pool].bonds<=require('../finance-cfa/engine.cjs').blueprint.bonds);}
  for(const o of data.coverage.find(c=>c.id===u.id).objectives){assert.ok(o.sections.length>=15);assert.ok(o.practice.length>=20);assert.ok(o.mockQuestions>=1);}
  assert.equal(require('../finance-content/bonds.cjs')[7].lab,'bond');assert.ok(Object.keys(M.models).length>=50);assert.equal(M.models.bond.controls.length,6);assert.equal(M.models.bond.presets.length,6);

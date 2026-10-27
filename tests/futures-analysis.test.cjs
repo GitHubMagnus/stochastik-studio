@@ -6,7 +6,7 @@ test('the actual2027 comparison outcomes have a complete original chapter, separ
  assert.equal(bank.length,52);assert.equal(bank.filter(q=>q.pool==='practice').length,50);for(const p of ['mock-a','mock-b'])assert.equal(bank.filter(q=>q.pool===p).length,1);
  for(const o of d.coverage.find(c=>c.id==='futures').objectives){assert.equal(o.practice.length,25);assert.equal(o.mockQuestions,1);assert.ok(o.sections.length>=15);}
  for(const q of bank){assert.ok(q.options.every(o=>o.why.length>=15),q.id);assert.ok(u.sections.some(s=>s.id===q.section));}assert.equal(new Set(bank.map(q=>q.stem)).size,bank.length);
- assert.equal(u.review.status,'draft');assert.equal(d.release,false);assert.ok(u.sources[0].url.endsWith('2027levelitopicoutline_online.pdf#page=24'));
+ assert.equal(u.review.status,'checked');assert.equal(d.release,false);assert.ok(u.sources[0].url.endsWith('2027levelitopicoutline_online.pdf#page=24'));
  for(const site of ['cftc.gov','cmegroup.com','bis.org','lme.com'])assert.ok(u.sources.some(s=>s.url.includes(site)),site);
  assert.equal(require('../finance-content/derivatives.cjs')[3].lab,'futuresstates');for(const id of ['carry','forward-value'])assert.ok(d.units.find(u=>u.id===id).related.some(r=>r.unit==='futures'));
 });

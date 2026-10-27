@@ -12,7 +12,7 @@ function ref(c,y,T,m=1){
 const question=id=>data.questions.find(q=>q.id==='bcv-'+id),answer=id=>question(id).options[question(id).correct].text;
 const num=s=>Number(s.replaceAll(',','').match(/[−-]?\d+(?:\.\d+)?/)?.[0].replace('−','-'));
 test('convexity implements all three actual 2027 objectives with distinct reserved transfer cases and working cross-chapter destinations',()=>{
- assert.equal(u.sections.length,38);assert.equal(u.review.status,'draft');assert.equal(data.release,false);assert.ok(u.sources[0].url.endsWith('#page=21'));
+ assert.equal(u.sections.length,38);assert.equal(u.review.status,'checked');assert.equal(data.release,false);assert.ok(u.sources[0].url.endsWith('#page=21'));
  const qs=data.questions.filter(q=>q.unit===u.id);assert.equal(qs.filter(q=>q.pool==='practice').length,60);for(const pool of ['mock-a','mock-b']){assert.equal(qs.filter(q=>q.pool===pool).length,1);assert.ok(data.inventory[pool].bonds<=require('../finance-cfa/engine.cjs').blueprint.bonds);}
  for(const o of data.coverage.find(c=>c.id===u.id).objectives){assert.ok(o.sections.length>=19);assert.ok(o.practice.length>=25);assert.ok(o.mockQuestions>=1);}
  const l=require('../finance-content/bonds.cjs')[7];assert.equal(l.lab,'bond');assert.ok(l.additionalLabs.includes('bondconvex'));assert.ok(Object.keys(M.models).length>=50);

@@ -159,4 +159,4 @@ module.exports={id:'regression',intro:[
  {title:'NIST: Least Squares',url:'https://www.itl.nist.gov/div898/handbook/pmd/section4/pmd431.htm'},
  {title:'NIST: Uncertainty of a Single Response',url:'https://www.itl.nist.gov/div898/handbook/pmd/section5/pmd512.htm'},
  {title:'NIST: Regression Diagnostics',url:'https://itl.nist.gov/div898/software/dataplot/refman1/auxillar/regrdiag.htm'}
- ],review:{status:'draft',date:'2026-09-18',note:'Zusammenhängendes eigenes Rechenbeispiel von OLS bis CAPM; Nenner, Annahmen, Einheiten und Prognoseziele ausdrücklich getrennt.'}};
+ ],review:{"status":"checked","date":"2026-10-27","method":"documented-self-audit","acceptance":"CFA-2027-ACCEPTANCE.md#regression","note":"Eigene dokumentierte Gesamtabnahme: Lernziel-, Errata-, Fach- und Funktionsprüfungen; keine externe CFA-Freigabe. Genaue Evidenz und Grenzen im verlinkten Abnahmebericht.","previous":{"status":"draft","date":"2026-09-18","note":"Zusammenhängendes eigenes Rechenbeispiel von OLS bis CAPM; Nenner, Annahmen, Einheiten und Prognoseziele ausdrücklich getrennt."}}};

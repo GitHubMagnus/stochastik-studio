@@ -9,7 +9,7 @@ const defaults=()=>Object.fromEntries(M.models.companydrivers.controls.map(c=>[c
 
 test('company analysis covers its actual 2027 strategy, operating and capital objectives with original training',()=>{
  const coverage=data.coverage.find(c=>c.id===unit.id),qs=data.questions.filter(q=>q.unit===unit.id);
- assert.equal(unit.sections.length,32);assert.equal(unit.review.status,'draft');assert.equal(data.release,false);
+ assert.equal(unit.sections.length,32);assert.equal(unit.review.status,'checked');assert.equal(data.release,false);
  assert.equal(qs.filter(q=>q.pool==='practice').length,48);
  for(const pool of ['mock-a','mock-b'])assert.equal(qs.filter(q=>q.pool===pool).length,1);
  assert.deepEqual(coverage.objectives.map(o=>o.id),['company-a','company-b','company-c']);

@@ -18,7 +18,7 @@ function reference(p){
  return rows;
 }
 test('cash-flow structures cover both actual 2027 outcomes with original training, sources and precise connections',()=>{
- assert.equal(u.sections.length,36);assert.equal(u.review.status,'draft');assert.equal(d.release,false);
+ assert.equal(u.sections.length,36);assert.equal(u.review.status,'checked');assert.equal(d.release,false);
  assert.match(u.sources[0].url,/2027levelitopicoutline_online\.pdf#page=19$/);
  const qs=d.questions.filter(q=>q.unit===u.id);assert.equal(qs.filter(q=>q.pool==='practice').length,46);
  for(const pool of ['mock-a','mock-b']){assert.equal(qs.filter(q=>q.pool===pool).length,1);assert.ok(d.inventory[pool].bonds<=require('../finance-cfa/engine.cjs').blueprint.bonds);}

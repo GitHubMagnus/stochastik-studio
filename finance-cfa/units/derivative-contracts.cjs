@@ -271,7 +271,7 @@ module.exports={id:'derivative-contracts',intro:[
  {title:'Options Industry Council: Naked Put, begrenzter Gewinn und großer, durch Aktienkurs null begrenzter Verlust',url:'https://www.optionseducation.org/strategies/all-strategies/naked-put-uncovered-put-short-put'},
  {title:'Pricing and Hedging Derivative Securities: Options Markets, ergänzender didaktischer Vergleich von Endwert- und Gewinndiagrammen',url:'https://book.derivative-securities.org/Chapter_IntroOptions.html'},
  {title:'Federal Reserve: Credit Default Swaps, 2022, historische konzeptionelle Darstellung der Schutz- und Recoverymechanik',url:'https://www.federalreserve.gov/econres/feds/files/2022023pap.pdf'}
-],review:{status:'draft',date:'2026-10-24',note:'Eigene Zahlungs-, Options- und CDS-Fälle; mathematische und Browsergegenprüfungen ersetzen keine unabhängige fachliche Gesamtabnahme.'}};
+],review:{"status":"checked","date":"2026-10-27","method":"documented-self-audit","acceptance":"CFA-2027-ACCEPTANCE.md#derivative-contracts","note":"Eigene dokumentierte Gesamtabnahme: Lernziel-, Errata-, Fach- und Funktionsprüfungen; keine externe CFA-Freigabe. Genaue Evidenz und Grenzen im verlinkten Abnahmebericht.","previous":{"status":"draft","date":"2026-10-24","note":"Eigene Zahlungs-, Options- und CDS-Fälle; mathematische und Browsergegenprüfungen ersetzen keine unabhängige fachliche Gesamtabnahme."}}};
 
 module.exports.related.push({"unit":"derivative-uses","section":"long-hedge","label":"Absicherung nach Ziel, Menge, Basis und Zahlungszeitpunkt prüfen"});
 

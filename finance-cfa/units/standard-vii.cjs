@@ -56,4 +56,4 @@ module.exports={id:'standard-vii',intro:[
    'Eine ausdrücklich historische, wahrheitsgemäße Beschreibung kann zulässig sein. Sie darf nicht wieder denselben Eindruck aktueller Berechtigung erzeugen.'
   ],'Statuspflege ist eine laufende Kommunikationsaufgabe. Richtig erlangte frühere Rechte sind nicht automatisch unbegrenzt aktuell.')
  ])],sources:['a','b'].map((s,i)=>({title:'CFA Institute: Standard VII('+String.fromCharCode(65+i)+')',url:'https://www.cfainstitute.org/standards/professionals/code-ethics-standards/standards-of-practice-vii-'+s})),
- review:{status:'draft',date:'2026-09-17',note:'Eigene Fallpaare zu Prüfungsvertraulichkeit, Status und Ergebnisversprechen.'}};
+ review:{"status":"checked","date":"2026-10-27","method":"documented-self-audit","acceptance":"CFA-2027-ACCEPTANCE.md#standard-vii","note":"Eigene dokumentierte Gesamtabnahme: Lernziel-, Errata-, Fach- und Funktionsprüfungen; keine externe CFA-Freigabe. Genaue Evidenz und Grenzen im verlinkten Abnahmebericht.","previous":{"status":"draft","date":"2026-09-17","note":"Eigene Fallpaare zu Prüfungsvertraulichkeit, Status und Ergebnisversprechen."}}};

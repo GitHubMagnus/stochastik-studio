@@ -169,4 +169,4 @@ module.exports={id:'inference',intro:[
  {title:'NIST: Rank Sum Test',url:'https://www.itl.nist.gov/div898/software/dataplot/refman1/auxillar/ranksum.htm'},
  {title:'NIST: Rank Correlation Independence Test',url:'https://itl.nist.gov/div898/software/dataplot/refman1/auxillar/rankcorr.htm'},
  {title:'NIST: Chi-Square Independence Test',url:'https://itl.nist.gov/div898/software/dataplot/refman1/auxillar/chistest.htm'}
- ],review:{status:'draft',date:'2026-09-18',note:'Eigene vollständige Testbeispiele und bewusste Gegenvergleiche. Parametrische, gepaarte, rangbasierte und kategoriale Fragestellungen getrennt.'}};
+ ],review:{"status":"checked","date":"2026-10-27","method":"documented-self-audit","acceptance":"CFA-2027-ACCEPTANCE.md#inference","note":"Eigene dokumentierte Gesamtabnahme: Lernziel-, Errata-, Fach- und Funktionsprüfungen; keine externe CFA-Freigabe. Genaue Evidenz und Grenzen im verlinkten Abnahmebericht.","previous":{"status":"draft","date":"2026-09-18","note":"Eigene vollständige Testbeispiele und bewusste Gegenvergleiche. Parametrische, gepaarte, rangbasierte und kategoriale Fragestellungen getrennt."}}};

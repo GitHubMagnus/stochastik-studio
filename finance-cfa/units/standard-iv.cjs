@@ -72,4 +72,4 @@ module.exports={id:'standard-iv',intro:[
   ],'Eine wirksame Genehmigung bezieht sich auf eine bestimmte vollständige Vereinbarung. Der Prozess braucht deshalb auch Änderungskontrolle und fortlaufende Überwachung.')
  ])],
  sources:['a','b','c'].map((x,i)=>({title:'CFA Institute: Standard IV('+String.fromCharCode(65+i)+'), Guidance (April 2024)',url:'https://www.cfainstitute.org/standards/professionals/code-ethics-standards/standards-of-practice-iv-'+x})),
- review:{status:'draft',date:'2026-09-17',note:'Eigene Fälle; vorherige schriftliche Zustimmung und Grenzen der Arbeitgeberloyalität präzisiert.'}};
+ review:{"status":"checked","date":"2026-10-27","method":"documented-self-audit","acceptance":"CFA-2027-ACCEPTANCE.md#standard-iv","note":"Eigene dokumentierte Gesamtabnahme: Lernziel-, Errata-, Fach- und Funktionsprüfungen; keine externe CFA-Freigabe. Genaue Evidenz und Grenzen im verlinkten Abnahmebericht.","previous":{"status":"draft","date":"2026-09-17","note":"Eigene Fälle; vorherige schriftliche Zustimmung und Grenzen der Arbeitgeberloyalität präzisiert."}}};
