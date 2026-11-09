@@ -1,4 +1,4 @@
-const {test}=require('node:test'),assert=require('node:assert/strict'),M=require('../finance-models.cjs'),d=require('../finance-cfa/compile.cjs').compile(),u=d.units.find(u=>u.id==='swaps');
+const {test}=require('node:test'),assert=require('node:assert/strict'),M=require('../finance-models.cjs'),d=require('./original-course.cjs'),u=d.units.find(u=>u.id==='swaps');
 const flat=a=>a.flatMap(b=>typeof b==='string'?[b]:[b,...flat(b.blocks||b.steps||[])]),blocks=u.sections.flatMap(s=>flat(s.blocks)),bank=d.questions.filter(q=>q.unit==='swaps'),near=(a,b,t=1e-10)=>assert.ok(Math.abs(a-b)<=1e-8+t*Math.max(1,Math.abs(a),Math.abs(b)),a+' vs '+b),defaults=Object.fromEntries(M.models.swapvalue.controls.map(c=>[c.key,c.value]));
 test('both actual2027 swap outcomes have textbook explanations, independently authored training and two real reserved transfers',()=>{
  assert.equal(u.sections.length,32);assert.ok(blocks.filter(b=>typeof b==='string').join(' ').length>19500);

@@ -1,4 +1,4 @@
-const {test}=require('node:test'),assert=require('node:assert/strict'),M=require('../finance-models.cjs'),{compile}=require('../finance-cfa/compile.cjs'),d=compile(),u=d.units.find(u=>u.id==='derivative-markets');
+const {test}=require('node:test'),assert=require('node:assert/strict'),M=require('../finance-models.cjs'),{compile}=require('../finance-cfa/compile.cjs'),d=require('./original-course.cjs'),u=d.units.find(u=>u.id==='derivative-markets');
 const flat=a=>a.flatMap(b=>typeof b==='string'?[b]:[b,...flat(b.blocks||b.steps||[])]),blocks=u.sections.flatMap(s=>flat(s.blocks)),bank=d.questions.filter(q=>q.unit===u.id),figures=blocks.filter(b=>b.kind==='figure'),near=(a,b,t=1e-9)=>assert.ok(Math.abs(a-b)<=t*Math.max(1,Math.abs(b)),a+' vs '+b);
 test('derivative market foundations explain the two actual 2027 outcomes with original practice, separate transfers and contextual chapter connections',()=>{
  assert.equal(u.sections.length,33);for(const[k,n]of [['formula',17],['figure',6],['diagram',2],['example',12],['table',13],['disclosure',2]])assert.equal(blocks.filter(b=>b.kind===k).length,n);

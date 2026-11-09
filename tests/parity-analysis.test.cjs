@@ -1,4 +1,4 @@
-const {test}=require('node:test'),assert=require('node:assert/strict'),M=require('../finance-models.cjs'),d=require('../finance-cfa/compile.cjs').compile(),u=d.units.find(u=>u.id==='parity');
+const {test}=require('node:test'),assert=require('node:assert/strict'),M=require('../finance-models.cjs'),d=require('./original-course.cjs'),u=d.units.find(u=>u.id==='parity');
 const flat=a=>a.flatMap(b=>typeof b==='string'?[b]:[b,...flat(b.blocks||b.steps||[])]),blocks=u.sections.flatMap(s=>flat(s.blocks)),bank=d.questions.filter(q=>q.unit===u.id),near=(a,b,t=1e-8)=>assert.ok(Math.abs(a-b)<=t,a+' vs '+b);
 test('both actual 2027 parity outcomes have extensive explanations, original practice and separate real reserved transfers',()=>{
  assert.equal(u.sections.length,34);assert.ok(blocks.map(b=>typeof b==='string'?b:b.reading||'').join(' ').length>=22000);

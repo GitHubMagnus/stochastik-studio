@@ -1,5 +1,5 @@
 const {test}=require('node:test'),assert=require('node:assert/strict');
-const d=require('../finance-cfa/compile.cjs').compile(),u=d.units.find(u=>u.id==='corporate-funding'),M=require('../finance-models.cjs');
+const d=require('./original-course.cjs'),u=d.units.find(u=>u.id==='corporate-funding'),M=require('../finance-models.cjs');
 const near=(a,b,t=1e-8)=>assert.ok(Math.abs(a-b)<=t,a+' vs '+b),sec=id=>u.sections.find(s=>s.id===id);
 const base={size:100,haircut:5,rate:4,days:30,shock:-2,marginhaircut:5},run=p=>M.calculate('repofunding',{...base,...p});
 const numeric=s=>Number(String(s).replaceAll('.','').replace(',','.').replace('−','-').match(/-?\d+(?:\.\d+)?/)?.[0]);

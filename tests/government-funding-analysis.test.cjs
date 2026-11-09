@@ -1,5 +1,5 @@
 const {test}=require('node:test'),assert=require('node:assert/strict');
-const d=require('../finance-cfa/compile.cjs').compile(),u=d.units.find(u=>u.id==='government-funding');
+const d=require('./original-course.cjs'),u=d.units.find(u=>u.id==='government-funding');
 const sec=id=>u.sections.find(s=>s.id===id),near=(a,b,t=1e-8)=>assert.ok(Math.abs(a-b)<=t,a+' vs '+b);
 const num=s=>Number(String(s).replaceAll('.','').replace(',','.').replace('−','-').match(/-?\d+(?:\.\d+)?/)?.[0]);
 test('public funding addresses both actual 2027 objectives with original questions and preserves existing question identifiers and the repo model',()=>{

@@ -1,4 +1,4 @@
-const {test}=require('node:test'),assert=require('node:assert/strict'),M=require('../finance-models.cjs'),data=require('../finance-cfa/compile.cjs').compile(),u=data.units.find(u=>u.id==='alternative-structures');
+const {test}=require('node:test'),assert=require('node:assert/strict'),M=require('../finance-models.cjs'),data=require('./original-course.cjs'),u=data.units.find(u=>u.id==='alternative-structures');
 const flat=a=>a.flatMap(b=>typeof b==='string'?[b]:[b,...flat(b.blocks||b.steps||[])]),blocks=u.sections.flatMap(s=>flat(s.blocks)),bank=data.questions.filter(q=>q.unit===u.id),near=(a,b,t=1e-8)=>assert.ok(Math.abs(a-b)<=t,a+' vs '+b),de=s=>Number(s.replaceAll('−','-').replaceAll('.','').replace(',','.'));
 test('three actual 2027 outcomes receive explanations, original exercises and the planned four separate transfers',()=>{
  assert.equal(u.sections.length,32);assert.ok(blocks.map(b=>typeof b==='string'?b:b.reading||'').join(' ').length>26500);

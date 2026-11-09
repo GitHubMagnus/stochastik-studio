@@ -14,3 +14,9 @@ test('release acceptance rejects changed prose, question choices, unchecked unit
  assert.throws(()=>validateAcceptance(units,questions,{...record,units:[...record.units.slice(1),record.units[1]]}),/doppelte/);
  assert.throws(()=>validateAcceptance(units,questions,{...record,method:'automatic-count'}),/ungültig/);
 });
+
+test('acceptance binds calculator answers, keystrokes, language checks and their sources',()=>{
+ const workshop=require('../finance-cfa/workshop.cjs');
+ for(const mutate of [w=>w.examples[0].answer++,w=>w.examples[0].ba.push('unreviewed step'),w=>w.examples[0].hp[0]+=' changed',w=>w.checks[0].correct=1,w=>w.terms[0][1]+=' changed',w=>w.sources.pop()]){const changed=copy(workshop);mutate(changed);assert.throws(()=>validateAcceptance(units,questions,record,changed),/Rechner- und Sprachpraxis/);}
+ assert.throws(()=>validateAcceptance(units,questions,{...record,workshop:undefined}),/Rechner- und Sprachpraxis/);
+});

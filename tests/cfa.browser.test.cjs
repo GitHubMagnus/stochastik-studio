@@ -8,7 +8,7 @@ async function open(t,route='cfa'){
 }
 
 test('reserved yield curve transfer cases render their actual choices, mathematics and symbols in an isolated test fixture',async t=>{
- const reserved=actual.questions.filter(q=>q.unit==='yield-curves'&&q.pool!=='practice');assert.equal(reserved.length,4);
+ const reserved=actual.questions.filter(q=>q.unit==='yield-curves'&&q.pool!=='practice');assert.equal(reserved.length,6);
  // Test-only conversion exercises the shared answer renderer. The published pools remain disjoint.
  const fixture={...actual,version:'reserved-curve-render-fixture',questions:reserved.map(q=>({...q,pool:'practice'}))};fixture.inventory=E.inventory(fixture.questions);
  const html=fs.readFileSync(require('node:path').join(__dirname,'../index.html'),'utf8').replace(/(<script type="application\/json" id="cfa-data">)[\s\S]*?(<\/script>)/,(_,a,b)=>a+JSON.stringify(fixture).replaceAll('<','\\u003c')+b);

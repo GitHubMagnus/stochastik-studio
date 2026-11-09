@@ -1,4 +1,4 @@
-const {test}=require('node:test'),assert=require('node:assert/strict'),{compile}=require('../finance-cfa/compile.cjs'),d=compile(),u=d.units.find(u=>u.id==='mbs');
+const {test}=require('node:test'),assert=require('node:assert/strict'),{compile}=require('../finance-cfa/compile.cjs'),d=require('./original-course.cjs'),u=d.units.find(u=>u.id==='mbs');
 const flat=a=>a.flatMap(b=>typeof b==='string'?[b]:[b,...flat(b.blocks||b.steps||[])]),blocks=u.sections.flatMap(s=>flat(s.blocks)),figures=blocks.filter(b=>b.kind==='figure'),bank=d.questions.filter(q=>q.unit==='mbs');
 const near=(a,b,t=1e-8)=>assert.ok(Math.abs(a-b)<=t*Math.max(1,Math.abs(b)),a+' vs '+b);
 // Independent closed-form loan balances, rather than the executable monthly recursion.

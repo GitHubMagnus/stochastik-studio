@@ -98,7 +98,16 @@ function compile({release=false}={}){
   if(units.some(u=>u.review?.status!=='checked'))throw Error('Fachliche Prüfung nicht vollständig');
   require('./acceptance.cjs').validateAcceptance(sourceUnits,sourceQuestions,require('./acceptance.json'));
  }
- const version=crypto.createHash('sha256').update(JSON.stringify({units,questions,coverage})).digest('hex').slice(0,16);
- return {...curriculum,version,units,questions,coverage,release,inventory:engine.inventory(questions)};
+ const workshopSource=require('./workshop.cjs');
+ const workshop={...workshopSource,examples:workshopSource.examples.map(q=>{
+  if(!Number.isFinite(q.answer)||!Number.isFinite(q.tolerance)||q.tolerance<=0||!q.ba?.length||!q.hp?.length||!byUnit.get(q.unit)?.sections.some(s=>s.id===q.section))throw Error('Ungültige Rechnerübung: '+q.id);
+  return {...q,math:compileBlock(q.math,'workshop/'+q.id)};
+ }),checks:workshopSource.checks.map(q=>{
+  if(q.choices.length!==3||!q.why||!Number.isInteger(q.correct)||!q.choices[q.correct])throw Error('Ungültige Sprachübung: '+q.id);
+  const choices=q.choices.map((text,i)=>({text,i,key:crypto.createHash('sha256').update(q.id+'\0'+text).digest('hex')})).sort((a,b)=>a.key.localeCompare(b.key));
+  return {...q,choices:choices.map(x=>x.text),correct:choices.findIndex(x=>x.i===q.correct)};
+ })};
+ const version=crypto.createHash('sha256').update(JSON.stringify({units,questions,coverage,workshop})).digest('hex').slice(0,16);
+ return {...curriculum,version,units,questions,coverage,workshop,release,inventory:engine.inventory(questions)};
 }
 module.exports={compile,compileBlock};

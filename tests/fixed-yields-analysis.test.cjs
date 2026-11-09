@@ -1,5 +1,5 @@
 const {test}=require('node:test'),assert=require('node:assert/strict');
-const d=require('../finance-cfa/compile.cjs').compile(),u=d.units.find(x=>x.id==='fixed-yields');
+const d=require('./original-course.cjs'),u=d.units.find(x=>x.id==='fixed-yields');
 const sec=id=>u.sections.find(s=>s.id===id),near=(a,b,t=1e-7)=>assert.ok(Math.abs(a-b)<=t,a+' vs '+b);
 const german=s=>Number(String(s).replaceAll('.','').replace(',','.').replace('−','-').match(/-?\d+(?:\.\d+)?/)?.[0]);
 const annual=(C,n,y,R=100)=>{const v=1/(1+y);return y===0?n*C+R:C*v*(1-v**n)/(1-v)+R*v**n;};

@@ -19,11 +19,11 @@ test('4001 unique practice results keep the first error; a real correction, relo
 });
 test('out-of-order answers do not reopen a resolved error and a maximum realistic retained payload saves in Edge',async t=>{
  const base=d.questions.map((x,i)=>row(x,1000+i)),repeat=Array.from({length:9000},(_,i)=>row(q,10000+i)),history=E.retainHistory([...base,...repeat]);
- assert.equal(history.length,8477);const state=saved(history);state.runs=Array.from({length:30},(_,i)=>({mock:i%2?'mock-a':'mock-b',percent:80+i/10,at:1000+i,seenBefore:true}));state.training={ids:[q.id],position:0,answers:{},confidence:{},revealed:[]};state.exam=E.createExam(d.questions,'mock-a');
+ assert.equal(history.length,8837);const state=saved(history);state.runs=Array.from({length:30},(_,i)=>({mock:i%2?'mock-a':'mock-b',percent:80+i/10,at:1000+i,seenBefore:true}));state.training={ids:[q.id],position:0,answers:{},confidence:{},revealed:[]};state.exam=E.createExam(d.questions,'mock-a');
  const p=await page(t,state);assert.equal(await p.locator('#page-cfa .cfa-module').count(),0);
  await p.goto(url+'/#cfa~practice');await p.locator('input[name="cfa-answer"]').nth(q.correct).check();await p.reload();assert.equal(await p.locator('input[name="cfa-answer"]').nth(q.correct).isChecked(),true);assert.equal(await p.locator('#cfa-storage').isHidden(),true);
- let restored=await p.evaluate(key=>JSON.parse(localStorage.getItem(key)),key);assert.equal(new Set(restored.history.map(h=>h.id)).size,4478);assert.equal(restored.history.length,8477);assert.deepEqual(restored.exam,state.exam);assert.equal(restored.runs.length,30);
- const raw=JSON.stringify(restored);measurements.push({case:'all4478 plus4000 recent',retained:restored.history.length,utf8Bytes:Buffer.byteLength(raw),utf16Bytes:raw.length*2,savedInEdge:true});
+ let restored=await p.evaluate(key=>JSON.parse(localStorage.getItem(key)),key);assert.equal(new Set(restored.history.map(h=>h.id)).size,4838);assert.equal(restored.history.length,8837);assert.deepEqual(restored.exam,state.exam);assert.equal(restored.runs.length,30);
+ const raw=JSON.stringify(restored);measurements.push({case:'all4838 plus4000 recent',retained:restored.history.length,utf8Bytes:Buffer.byteLength(raw),utf16Bytes:raw.length*2,savedInEdge:true});
  const newer=row(q,30000),older=row(q,20000,false);restored.history=[newer,older];await p.evaluate(({key,state})=>localStorage.setItem(key,JSON.stringify(state)),{key,state:restored});await p.goto(url+'/#cfa~journal');await p.reload();assert.equal(await p.locator('#page-cfa .cfa-module').count(),0);
  restored.history=[newer,{...older,at:30000}];await p.evaluate(({key,state})=>localStorage.setItem(key,JSON.stringify(state)),{key,state:restored});await p.reload();assert.equal(await p.locator('#page-cfa .cfa-module').count(),1);assert.equal(await p.locator('#cfa-storage').isHidden(),true);
 });

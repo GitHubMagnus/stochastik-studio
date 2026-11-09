@@ -1,4 +1,4 @@
-const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),M=require('../finance-models.cjs'),d=require('../finance-cfa/compile.cjs').compile(),u=d.units.find(u=>u.id==='sovereign-credit');
+const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),M=require('../finance-models.cjs'),d=require('./original-course.cjs'),u=d.units.find(u=>u.id==='sovereign-credit');
 const base=Object.fromEntries(M.models.sovereign.controls.map(c=>[c.key,c.value])),run=p=>M.calculate('sovereign',{...base,...p}),near=(a,b,t=1e-9)=>assert.ok(Math.abs(a-b)<=t*Math.max(1,Math.abs(b)),a+' vs '+b);
 const flat=a=>a.flatMap(b=>typeof b==='string'?[b]:[b,...(b.blocks?flat(b.blocks):[]),...(b.steps?flat(b.steps):[])]),blocks=u.sections.flatMap(s=>flat(s.blocks)),q=id=>d.questions.find(q=>q.id==='svr-'+id),answer=id=>q(id).options[q(id).correct].text;
 // Independent transaction ledger: remove old principal, then add financing or extra repayment.

@@ -5975,3 +5975,54 @@ Zusätzlich werden auf der tatsächlich veröffentlichten Website eine laufende
 Klausur nach Reload, Symbol- und Wörterbuchrücksprünge sowie die Erhaltung von
 4001 verschiedenen Aufgabenständen einschließlich echter Fehlerkorrektur,
 JSON-Download und zeitlich älterem nachgetragenem Ergebnis geprüft.
+
+
+## Phase 112 – Vorbereitung auf 90/100, Abnahme 9.11.2026
+
+Der [Ergänzungsbericht](CFA-90-REVIEW.md) dokumentiert 360 neue vollständig
+gelesene Klausurfälle, unabhängige Gegenrechnungen aller 206 mathematischen
+Entscheidungen, gemischtes Zeittraining, 20 englische Arbeitsausdrücke, acht
+Lesechecks und neun Zahlenübungen mit beiden Rechnerfamilien. Der aktuelle
+Outline ist unverändert; alle 43 November-Errata-Seiten und gerendert die
+neuen Einträge wurden gelesen. Binomialschiefe und Beta/Korrelation erhalten
+gezielte, unabhängig aus Zuständen überprüfte Lehrvergleiche.
+
+Der Ausgangscommit ist 24d3a4636333dbe27fc0fe6fa6104814bb387abe. Alle alten
+4478 Fragen und ihre Revisionen sind identisch, ebenso 100 vollständige
+Lerneinheiten und alle 340 bisherigen Erklärung-/Beispiel-/Trainingszuordnungen.
+Zwei Einheiten erhalten die dokumentierten Ergänzungen. Die ältere
+Finance-Oberfläche, Lehrdaten und das Modellprogramm sind bytegleich;
+Kelly bleibt bytegleich. Die ausschließlich auf CFA-Fragennavigation begrenzte
+CSS-Korrektur behebt einen im Browser gefundenen Desktopüberlauf.
+
+Validierung: **599 Kernprüfungen** in 144.2 Sekunden, **45 vollständige
+CFA-Browserfälle** in 1159.1 Sekunden und **13 Erweiterungs-/Klausur-/
+Speicherfälle** in 987.4 Sekunden, nach gezielter Korrektur eines zu breit gefassten Tabellen-Testselektors.
+Alle vier tatsächlichen 180er-Klausuren und 720 Erklärungen wurden bedient.
+Die absichtlichen Ergebnisse sind A 162/18, B 180/0, C 150/30, D 154/26
+(richtig/falsch). Das sind Softwareprüfdaten, keine Schwierigkeitsschätzung.
+25 neue ausgewählte Ansichten wurden gelesen; alle 360 neuen Fragen wurden
+zusätzlich bei vier Breiten geprüft. 171 Formelbereiche wurden mit der Tastatur
+verschoben. Edge speichert den vollständigen Belastungsfall mit 8837 Zeilen,
+4,70 MB UTF-16, laufender Klausur, Training und 30 früheren Versuchen.
+
+Die Freigabesperre bindet nun auch alle Rechner-/Sprachinhalte einschließlich
+Tastenfolgen und Quellen. Die historischen Kapitelprüfungen bleiben erhalten.
+Die 34 historischen Kapitelregressionen behalten ihre vollständigen
+ursprünglichen Trainings-/A-/B-Assertions; C/D werden gesondert mit allen
+360 Fällen getestet. Der Compiler prüft dabei weiterhin die ganze aktuelle Bank.
+
+Eigene Neubewertung mit denselben Gewichten: 28 + 26 + 13 + 9 + 14 =
+**90/100 Vorbereitungseignung**. Materialqualität bleibt konservativ
+**90/100**. Gründe, acht zusätzliche Punkte und sämtliche verbleibenden Abzüge
+stehen im Ergänzungsbericht und der aktualisierten Gesamtabnahme. Keine
+Bestehenswahrscheinlichkeit, externe CFA-Freigabe oder empirische Kalibrierung.
+
+Geprüftes Artefakt ea704f25a8b95efa; CFA-Version e93a6ac6b0676003.
+HTML: 29126298 Bytes; SHA256
+ea704f25a8b95efa62745ebafc9ce37a275c36d9b82168c03726b375834b8b46.
+Vollständige CFA-Daten: SHA256
+7e21c40310f232899cb2096a00605d2efe63f791a84e89fc817bb754e449a26a.
+Die öffentliche Auslieferung wird nach Push mit genau diesen vollständigen
+Hashes, den Quellen des veröffentlichten Commits und echten Bedienaktionen
+für Rechner, Zeittraining und Klausur D verglichen.

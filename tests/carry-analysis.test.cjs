@@ -1,4 +1,4 @@
-const {test}=require('node:test'),assert=require('node:assert/strict'),M=require('../finance-models.cjs'),{compile}=require('../finance-cfa/compile.cjs'),d=compile(),u=d.units.find(u=>u.id==='carry');
+const {test}=require('node:test'),assert=require('node:assert/strict'),M=require('../finance-models.cjs'),{compile}=require('../finance-cfa/compile.cjs'),d=require('./original-course.cjs'),u=d.units.find(u=>u.id==='carry');
 const flat=a=>a.flatMap(b=>typeof b==='string'?[b]:[b,...flat(b.blocks||b.steps||[])]),blocks=u.sections.flatMap(s=>flat(s.blocks)),bank=d.questions.filter(q=>q.unit==='carry'),near=(a,b,t=1e-9)=>assert.ok(Math.abs(a-b)<=t*Math.max(1,Math.abs(b)),a+' vs '+b);
 test('actual2027 arbitrage/replication and spot/expectation/carry outcomes have detailed explanations, valid sources and disjoint original questions',()=>{
  assert.equal(u.sections.length,32);assert.ok(blocks.filter(b=>typeof b==='string').join(' ').length>25000);for(const[k,n]of [['formula',31],['example',14],['table',9],['figure',4],['disclosure',11]])assert.equal(blocks.filter(b=>b.kind===k).length,n);

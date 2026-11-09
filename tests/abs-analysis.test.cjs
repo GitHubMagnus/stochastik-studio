@@ -1,4 +1,4 @@
-const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),{compile}=require('../finance-cfa/compile.cjs'),d=compile(),u=d.units.find(u=>u.id==='abs');
+const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),{compile}=require('../finance-cfa/compile.cjs'),d=require('./original-course.cjs'),u=d.units.find(u=>u.id==='abs');
 const flat=a=>a.flatMap(b=>typeof b==='string'?[b]:[b,...flat(b.blocks||b.steps||[])]),blocks=u.sections.flatMap(s=>flat(s.blocks)),figures=blocks.filter(b=>b.kind==='figure'),bank=d.questions.filter(q=>q.unit==='abs'),q=id=>bank.find(q=>q.id==='abs-'+id),answer=id=>q(id).options[q(id).correct].text;
 const near=(a,b,t=1e-9)=>assert.ok(Math.abs(a-b)<=t*Math.max(1,Math.abs(b)),a+' vs '+b);
 // Independent terminal payments: spend remaining assets on claims in seniority order.

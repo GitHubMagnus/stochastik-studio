@@ -1,4 +1,4 @@
-const {test}=require('node:test'),assert=require('node:assert/strict'),M=require('../finance-models.cjs'),d=require('../finance-cfa/compile.cjs').compile(),u=d.units.find(x=>x.id==='portfolio-pricing'),bank=d.questions.filter(q=>q.unit===u.id),flat=a=>a.flatMap(b=>[b,...flat(b.blocks||b.steps||[])]),near=(a,b,t=1e-8)=>assert.ok(Math.abs(a-b)<=t,`${a} != ${b}`),base={rp:10,rf:3,rm:9,beta:1.1,marketvol:20,residual:141};
+const {test}=require('node:test'),assert=require('node:assert/strict'),M=require('../finance-models.cjs'),d=require('./original-course.cjs'),u=d.units.find(x=>x.id==='portfolio-pricing'),bank=d.questions.filter(q=>q.unit===u.id),flat=a=>a.flatMap(b=>[b,...flat(b.blocks||b.steps||[])]),near=(a,b,t=1e-8)=>assert.ok(Math.abs(a-b)<=t,`${a} != ${b}`),base={rp:10,rf:3,rm:9,beta:1.1,marketvol:20,residual:141};
 // Four equally weighted, orthogonal factor states: calculate moments from returns,
 // rather than repeating the model's variance decomposition as the reference.
 const mean=a=>a.reduce((z,x)=>z+x,0)/a.length,cov=(a,b)=>mean(a.map((x,i)=>(x-mean(a))*(b[i]-mean(b))));

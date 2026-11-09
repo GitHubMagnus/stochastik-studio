@@ -4,7 +4,7 @@ const crypto=require('node:crypto');
 const hash=value=>crypto.createHash('sha256').update(JSON.stringify(value)).digest('hex');
 const unitHash=unit=>{const {review,...content}=unit;return hash(content);};
 const questionsHash=(questions,id)=>hash(questions.filter(q=>q.unit===id).sort((a,b)=>a.id.localeCompare(b.id)));
-function validateAcceptance(units,questions,record){
+function validateAcceptance(units,questions,record,workshop=require('./workshop.cjs')){
  if(record?.schema!==1||record.method!=='documented-self-audit'||record.report!=='CFA-2027-ACCEPTANCE.md'||!Array.isArray(record.units))throw Error('Abnahmenachweis fehlt oder ist ungültig');
  const byId=new Map(record.units.map(r=>[r.id,r]));
  if(byId.size!==record.units.length||byId.size!==units.length)throw Error('Abnahmenachweis: unvollständige oder doppelte Einheiten');
@@ -13,5 +13,6 @@ function validateAcceptance(units,questions,record){
   if(u.review?.status!=='checked'||u.review.method!==record.method||u.review.date!==record.date||u.review.acceptance!==record.report+'#'+u.id)throw Error(u.id+': dokumentierte fachliche Prüfung fehlt');
   if(!r||r.unitSha256!==unitHash(u)||r.questionsSha256!==questionsHash(questions,u.id))throw Error(u.id+': Inhalt seit der Abnahme geändert');
  }
+ if(record.workshop?.report!=='CFA-90-REVIEW.md#rechner-und-sprache'||record.workshop.sha256!==hash(workshop))throw Error('Rechner- und Sprachpraxis seit der Abnahme geändert oder nicht dokumentiert');
 }
-module.exports={unitHash,questionsHash,validateAcceptance};
+module.exports={unitHash,questionsHash,workshopHash:hash,validateAcceptance};

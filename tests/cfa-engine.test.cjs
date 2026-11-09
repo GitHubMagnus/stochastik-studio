@@ -1,6 +1,6 @@
 const {test}=require('node:test'),assert=require('node:assert/strict');
 const E=require('../finance-cfa/engine.cjs'),C=require('../finance-cfa/curriculum.cjs');
-function fixture(){return ['practice','mock-a','mock-b'].flatMap(pool=>Object.entries(E.blueprint).flatMap(([topic,n])=>Array.from({length:n},(_,i)=>({id:pool+'-'+topic+'-'+i,pool,topic,unit:'fixture',objectives:['fixture-a'],stem:'Independent state-machine fixture '+pool+' '+topic+' '+i,options:[0,1,2].map(n=>({text:String(n),why:'Fixture option '+n})),correct:i%3,solution:['Fixture explanation']}))));}
+function fixture(){return ['practice',...E.MOCKS].flatMap(pool=>Object.entries(E.blueprint).flatMap(([topic,n])=>Array.from({length:n},(_,i)=>({id:pool+'-'+topic+'-'+i,pool,topic,unit:'fixture',objectives:['fixture-a'],stem:'Independent state-machine fixture '+pool+' '+topic+' '+i,options:[0,1,2].map(n=>({text:String(n),why:'Fixture option '+n})),correct:i%3,solution:['Fixture explanation']}))));}
 test('2027 references and mock blueprint cover every official module and weight range',()=>{
  assert.equal(C.modules.length,102);assert.equal(C.modules.reduce((n,m)=>n+m.objectives.length,0),340);
  assert.equal(new Set(C.modules.flatMap(m=>m.objectives.map(o=>o.id))).size,340);

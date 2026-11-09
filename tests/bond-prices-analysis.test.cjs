@@ -1,5 +1,5 @@
 const {test}=require('node:test'),assert=require('node:assert/strict');
-const data=require('../finance-cfa/compile.cjs').compile(),u=data.units.find(x=>x.id==='bond-prices');
+const data=require('./original-course.cjs'),u=data.units.find(x=>x.id==='bond-prices');
 const near=(a,b,t=1e-6)=>assert.ok(Math.abs(a-b)<=t,a+' vs '+b);
 const price=(c,y,n,m=1)=>{const i=y/m,C=100*c/m;return i===0?C*n+100:C*(-Math.expm1(-n*Math.log1p(i)))/i+100*Math.exp(-n*Math.log1p(i));};
 const full=(c,y,n,m,w)=>price(c,y,n,m)*(1+y/m)**(1-w);

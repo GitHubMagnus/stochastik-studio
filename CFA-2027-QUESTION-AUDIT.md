@@ -1,5 +1,9 @@
 # CFA 2027: Aufgabenprüfung und Revision der Probeklausuren
 
+Nachtrag vom 9.11.2026: Die [Ergänzungsprüfung](CFA-90-REVIEW.md) dokumentiert
+360 weitere reservierte Fragen in Klausuren C/D. Die folgende Prüfung betrifft
+die ursprünglichen Klausuren A/B und bleibt als historische Evidenz erhalten.
+
 Prüfstand: 27. Oktober 2026. Die Aufgaben sind selbst verfasst und keine
 offiziellen CFA-Fragen. Eine passende Themenzahl und technisch korrekte
 Auswertung beweisen keine empirisch vergleichbare Schwierigkeit.

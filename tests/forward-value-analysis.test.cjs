@@ -1,4 +1,4 @@
-const {test}=require('node:test'),assert=require('node:assert/strict'),M=require('../finance-models.cjs'),{compile}=require('../finance-cfa/compile.cjs'),d=compile(),u=d.units.find(u=>u.id==='forward-value');
+const {test}=require('node:test'),assert=require('node:assert/strict'),M=require('../finance-models.cjs'),{compile}=require('../finance-cfa/compile.cjs'),d=require('./original-course.cjs'),u=d.units.find(u=>u.id==='forward-value');
 const flat=a=>a.flatMap(b=>typeof b==='string'?[b]:[b,...flat(b.blocks||b.steps||[])]),blocks=u.sections.flatMap(s=>flat(s.blocks)),bank=d.questions.filter(q=>q.unit===u.id),near=(a,b,t=1e-10)=>assert.ok(Math.abs(a-b)<=1e-8+t*Math.max(1,Math.abs(a),Math.abs(b)),a+' vs '+b);
 test('actual2027 lifecycle and interest-forward outcomes have detailed textbook explanations, separate original practice and real reserved transfers',()=>{
  assert.equal(u.sections.length,36);assert.ok(blocks.filter(b=>typeof b==='string').join(' ').length>24000);for(const[k,n]of [['formula',37],['example',17],['table',8],['figure',7],['diagram',1],['disclosure',12]])assert.equal(blocks.filter(b=>b.kind===k).length,n,k);

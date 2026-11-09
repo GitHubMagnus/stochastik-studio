@@ -1,6 +1,9 @@
 # CFA Level I 2027: Abgleich der Curriculum-Korrekturen
 
-Prüfstand: 26. Oktober 2026. Gegenstand ist das eigene Finance-Studio-Material,
+Aktueller Nachtrag vom 9. November 2026: siehe unten und
+[Ergänzungsprüfung](CFA-90-REVIEW.md#november-errata).
+
+Historischer Prüfstand: 26. Oktober 2026. Gegenstand ist das eigene Finance-Studio-Material,
 keine Wiedergabe des offiziellen Lehrbuchs. Referenz ist die
 [Errata-Ausgabe Oktober 2026](https://www.cfainstitute.org/sites/default/files/2027-cfa-program-level-1-errata-notice.pdf).
 Alle 42 Seiten wurden gelesen. Bei Formeln und eingebetteten Grafiken wurden
@@ -78,3 +81,35 @@ Browserfälle, 55 allgemeine und Modelllesbarkeitstests sowie beide tatsächlich
 vollständigen Klausuren. Quellenabgleich ist ein Baustein der Gesamtbewertung;
 ein automatischer Testlauf ist keine unabhängige externe Fachfreigabe oder
 empirische Bestehensprognose.
+
+## Nachtrag: Ausgabe November 2026, geprüft am 9.11.2026
+
+Die aktuelle Datei besitzt 43 Seiten und SHA256
+8c14c06a44af4a0183a5fb846a7a65e9fb79e796395b1235e97642e868cfe3a1.
+Alle aktuellen Seiten wurden gelesen. Die sieben neuen Zeilen auf den Seiten
+4–6 wurden zusätzlich in gerenderten Originalseiten gelesen. Sie wiederholen
+sich im vollständigen Verzeichnis. Die nachfolgenden Seitenzuordnungen gelten
+für November; die historische Oktobertabelle oben behält ihre alten Seitenzahlen.
+
+| November-Seiten | Prüfung gegenüber dem eigenen Material |
+|---|---|
+| 1–3 | Ausgabe, Gebrauchshinweise und Gliederung gelesen. |
+| 4–6, 13–14, 26–27 | Sieben neue Zeilen: Mittel/Median und positive Ausreißer; PMT und Kreditbasis; Binomialschiefe; Beta/Korrelation; drei Prognose-Gleichungsverweise. Eigene zusätzliche Schiefe- und Peer-Vergleiche mit Formeln, Symbolen und kontrollierten Zahlen. |
+| 7–8 | Historische Voraussetzungstabellen und Bilanz-/Steuerrelationen: keine Übernahme fremder Zahlen oder unpassender Nenner. |
+| 9–15 | Renditefaktoren, Gebühren, FX, MWR/TWR, Indizes, Zahlungsperioden, Median und Binomialrichtung mit den eigenen getrennten Modellen abgeglichen. |
+| 16–18 | Bedingte Momente, Testseite, Portfoliovarianz, historische Quantilkonvention und Koeffizientenintervall bleiben sachlich konsistent. Die bereits dokumentierten widersprüchlichen Testziffern werden nicht ungeprüft kopiert. |
+| 19–21 | Lager-/Umsatzrelation im Zyklus, Fiskalwirkung, Akteursbezeichnung, CCC und Unternehmensformen. Eigene Beispiele benennen ihre Annahmen und vermeiden historische Firmennamensbehauptungen. |
+| 22–24 | Aktivierter Zins, Cashflowabstimmung, Vergütung, DTA, Disclosure und Forecast-Zahl. Die eigenen Primärquellen-/Cashledger-Fälle bleiben anwendbar. |
+| 25–27 | FCFE ist verfügbarer Cash vor Aktionärsverwendung; neue Beta-/Korrelationspräzisierung und Gleichungsverweise werden separat behandelt. |
+| 28–35 | Zahlungsfrequenz, Repo, Matrixpricing, halbjährliche Spot-/Z-Spread-Notierung, Floater, Tagesbasis, Forwarddatierung, Duration und Konvexität. Die eigene einheitliche Zinskoordinate ersetzt fremde inkonsistente Einzelziffern. |
+| 36–37 | Effektive Konvexität, kleiner Schock, Kurvenszenario und empirische Duration: Vorzeichen und Definitionen sind im eigenen Material getrennt erklärt. Die gedruckte Bid/Offer-Zeile enthält weiterhin eine interne Unstimmigkeit; Käufer, Verkäufer und Midpreis folgen den ausdrücklich angegebenen Ansprüchen. |
+| 38 | Optionsprofil und risikoneutrale Replikation; fremde Gleichungs- und Bildnummern haben keine eigene Bedeutung im Studio. |
+| 39–40 | Management-/Incentive-Reihenfolge, HWM/Hurdle, Nettovermögen und CV-Rangfolge. Neue Gebührenfragen verwenden zusätzlich ausdrücklich definierte Basen. |
+| 41–42 | Portfoliogrenzen, Währungsvolatilität, Mandatstreue und Prüfungssicherheit. Keine Übernahme einer fremden Antwortwahl ohne den zugehörigen Fall. |
+| 43 | Leeres Glossar-Korrekturverzeichnis, keine neue materielle Änderung. |
+
+Der Outline-Abruf vom selben Tag ist bytegleich zur dokumentierten Fassung
+7099c76889428357ffb4f562a88fe7974e71808054f02df90526c2b6102c3c01.
+Die neuen Beispielsupplemente sind in `distributions/discrete` und aufklappbar
+in `multiples/peers` enthalten. Die [Ergänzungsprüfung](CFA-90-REVIEW.md)
+nennt unabhängige Zustandsrechnungen, Fragenprüfung und Grenzen des Abgleichs.

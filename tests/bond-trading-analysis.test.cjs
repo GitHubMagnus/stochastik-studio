@@ -1,5 +1,5 @@
 const {test}=require('node:test'),assert=require('node:assert/strict');
-const d=require('../finance-cfa/compile.cjs').compile(),u=d.units.find(u=>u.id==='bond-trading'),M=require('../finance-models.cjs');
+const d=require('./original-course.cjs'),u=d.units.find(u=>u.id==='bond-trading'),M=require('../finance-models.cjs');
 const sec=id=>u.sections.find(s=>s.id===id),near=(a,b,t=1e-8)=>assert.ok(Math.abs(a-b)<=t,a+' vs '+b);
 const number=s=>Number(String(s).replaceAll('.','').replace(',','.').replace('−','-').replace(/[^0-9.-]/g,''));
 const defaults={nominal:100,open:100,close:99,coupon:3},run=p=>M.calculate('bondindex',{...defaults,...p});

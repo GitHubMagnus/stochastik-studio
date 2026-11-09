@@ -2646,7 +2646,7 @@ test('relative valuation keeps prospective and derivative Forward meanings separ
 });
 
 test('the complete documented course passes the release gate and every objective has a worked application',()=>{
- const release=compile({release:true});assert.equal(release.release,true);assert.equal(release.units.length,102);assert.equal(release.questions.length,4478);
+ const release=compile({release:true});assert.equal(release.release,true);assert.equal(release.units.length,102);assert.equal(release.questions.length,4838);
  assert.ok(release.units.every(u=>u.review.status==='checked'&&u.review.method==='documented-self-audit'));
  assert.ok(release.coverage.flatMap(m=>m.objectives).every(o=>o.sections.length&&o.applications.length&&o.practice.length));
  const eps=data.coverage.find(m=>m.id==='income-statement');

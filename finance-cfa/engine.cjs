@@ -2,20 +2,21 @@
 (function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.CFAEngine=api;})(typeof globalThis!=='undefined'?globalThis:this,function(){
  'use strict';
  const VERSION=1,SESSION_MS=135*60*1000;
+ const MOCKS=['mock-a','mock-b','mock-c','mock-d'];
  const blueprint={ethics:22,quant:22,economics:12,statements:22,corporate:12,equity:22,bonds:22,derivatives:13,alternatives:13,portfolio:20};
  const first=['ethics','quant','economics','statements','corporate'];
  const second=['equity','bonds','derivatives','alternatives','portfolio'];
  const clone=x=>JSON.parse(JSON.stringify(x));
  const own=(o,k)=>Object.prototype.hasOwnProperty.call(o,k);
  function inventory(bank){
-  return Object.fromEntries(['practice','mock-a','mock-b'].map(pool=>[pool,Object.fromEntries(Object.keys(blueprint).map(topic=>[topic,bank.filter(q=>q.pool===pool&&q.topic===topic).length]))]));
+  return Object.fromEntries(['practice',...MOCKS].map(pool=>[pool,Object.fromEntries(Object.keys(blueprint).map(topic=>[topic,bank.filter(q=>q.pool===pool&&q.topic===topic).length]))]));
  }
  function issues(bank,{requireMocks=false}={}){
   const problems=[],ids=new Set(),stems=new Map();
   for(const q of bank){
    if(!q.id||ids.has(q.id))problems.push('Doppelte oder fehlende Aufgaben-ID: '+q.id);ids.add(q.id);
    if(!own(blueprint,q.topic))problems.push(q.id+': unbekanntes Thema');
-   if(!['practice','mock-a','mock-b'].includes(q.pool))problems.push(q.id+': unbekannter Pool');
+   if(!['practice',...MOCKS].includes(q.pool))problems.push(q.id+': unbekannter Pool');
    if(!Array.isArray(q.objectives)||!q.objectives.length)problems.push(q.id+': Lernziel fehlt');
    if(typeof q.stem!=='string'||q.stem.length<30)problems.push(q.id+': Aufgabenstellung fehlt');
    if(!Array.isArray(q.options)||q.options.length!==3||q.options.some(o=>!o.text||!o.why))problems.push(q.id+': drei erklärte Antworten erforderlich');
@@ -25,11 +26,11 @@
    const stem=String(q.stem).toLowerCase().replace(/\s+/g,' ').trim();
    if(stems.has(stem))problems.push(q.id+': identische Frage wie '+stems.get(stem));stems.set(stem,q.id);
   }
-  if(requireMocks){const n=inventory(bank);for(const pool of ['mock-a','mock-b'])for(const [topic,count] of Object.entries(blueprint))if(n[pool][topic]!==count)problems.push(pool+'/'+topic+': '+n[pool][topic]+' statt '+count+' Fragen');}
+  if(requireMocks){const n=inventory(bank);for(const pool of MOCKS)for(const [topic,count] of Object.entries(blueprint))if(n[pool][topic]!==count)problems.push(pool+'/'+topic+': '+n[pool][topic]+' statt '+count+' Fragen');}
   return problems;
  }
  function ready(bank,mock){
-  if(!['mock-a','mock-b'].includes(mock))return false;
+  if(!MOCKS.includes(mock))return false;
   const n=inventory(bank)[mock];return Object.entries(blueprint).every(([t,count])=>n[t]===count);
  }
  function createExam(bank,mock,now=Date.now()){
@@ -139,19 +140,20 @@
   return valid.filter((_,index)=>keep.has(index));
  }
  function reconcile(saved,bank,version,now=Date.now()){
-  const empty={exam:null,training:null,history:[],runs:[],updated:false};
+  const empty={exam:null,training:null,drill:null,history:[],runs:[],updated:false};
   if(!saved||typeof saved!=='object'||Array.isArray(saved))return empty;
   const byId=new Map(bank.map(q=>[q.id,q])),sameVersion=saved.version===version;
   const unchanged=id=>{const q=byId.get(id);return !!q&&(sameVersion||(saved.schema===2&&typeof q.revision==='string'&&saved.questionVersions?.[id]===q.revision));};
   const validChoice=v=>Number.isInteger(v)&&v>=0&&v<3;
   const validHistory=(Array.isArray(saved.history)?saved.history:[]).filter(h=>h&&unchanged(h.id)&&Number.isFinite(h.at)&&(h.selected===null||validChoice(h.selected))&&(h.revision?byId.get(h.id).revision===h.revision:h.version===saved.version)).map(h=>({...h,correct:h.selected===byId.get(h.id).correct,revision:byId.get(h.id).revision,version}));
   const history=retainHistory(validHistory);
-  const exam=saved.exam?.items?.every?.(unchanged)?restore(saved.exam,bank,now):null;
+  const exam=Array.isArray(saved.exam?.items)&&saved.exam.items.every(unchanged)?restore(saved.exam,bank,now):null;
+  const drill=Array.isArray(saved.drill?.items)&&saved.drill.items.every(unchanged)?restoreDrill(saved.drill,bank,now):null;
   const t=saved.training;
   let training=null;
   if(t&&Array.isArray(t.ids)&&t.ids.length&&new Set(t.ids).size===t.ids.length&&t.ids.every(id=>unchanged(id)&&byId.get(id).pool==='practice')&&Number.isInteger(t.position)&&t.position>=0&&t.position<t.ids.length&&t.answers&&typeof t.answers==='object'&&!Array.isArray(t.answers)&&t.confidence&&typeof t.confidence==='object'&&!Array.isArray(t.confidence)&&Array.isArray(t.revealed)&&t.revealed.every(id=>t.ids.includes(id)&&validChoice(t.answers[id]))&&Object.entries(t.answers).every(([id,v])=>t.ids.includes(id)&&validChoice(v))&&Object.entries(t.confidence).every(([id,v])=>t.ids.includes(id)&&['sure','unsure','guess'].includes(v)))training=clone(t);
-  const runs=(Array.isArray(saved.runs)?saved.runs:[]).filter(r=>r&&['mock-a','mock-b'].includes(r.mock)&&Number.isFinite(r.at)&&Number.isFinite(r.percent)&&r.percent>=0&&r.percent<=100).slice(-30).map(r=>({...r,outdated:!!r.outdated||!ready(bank,r.mock)||!bank.filter(q=>q.pool===r.mock).every(q=>unchanged(q.id))}));
-  return {exam,training,history,runs,updated:!sameVersion&&(!!saved.exam&&!exam||!!t&&!training||(saved.history?.length||0)>validHistory.length)};
+  const runs=(Array.isArray(saved.runs)?saved.runs:[]).filter(r=>r&&MOCKS.includes(r.mock)&&Number.isFinite(r.at)&&Number.isFinite(r.percent)&&r.percent>=0&&r.percent<=100).slice(-30).map(r=>({...r,outdated:!!r.outdated||!ready(bank,r.mock)||!bank.filter(q=>q.pool===r.mock).every(q=>unchanged(q.id))}));
+  return {exam,training,drill,history,runs,updated:!sameVersion&&(!!saved.exam&&!exam||!!t&&!training||!!saved.drill&&!drill||(saved.history?.length||0)>validHistory.length)};
  }
  function practice(bank,{topic='',limit=10,history=[],random=Math.random}={}){
   const seen=new Set(history.map(h=>h.id));const candidates=bank.filter(q=>q.pool==='practice'&&(!topic||q.topic===topic));
@@ -163,5 +165,42 @@
   const latest=latestById(history.filter(entry=>entry&&typeof entry.correct==='boolean'));
   return [...latest.values()].map(e=>e.entry).filter(e=>!e.correct||e.confidence==='guess').sort((a,b)=>(b.confidence==='sure')-(a.confidence==='sure')||(a.at||0)-(b.at||0));
  }
- return {VERSION,SESSION_MS,blueprint,first,second,inventory,issues,ready,createExam,bounds,active,tick,transition,restore,grade,reconcile,retainHistory,practice,journal};
+ function createDrill(bank,count=20,history=[],now=Date.now(),random=Math.random){
+  if(![10,20,40].includes(count)||!Number.isFinite(now))throw Error('Ungültige Kurzprüfung');
+  const topics=Object.keys(blueprint),quotas=Object.fromEntries(topics.map(t=>[t,1]));
+  for(let n=topics.length;n<count;n++){const t=topics.reduce((a,b)=>count*blueprint[b]/180-quotas[b]>count*blueprint[a]/180-quotas[a]?b:a);quotas[t]++;}
+  const items=topics.flatMap(topic=>{const ids=practice(bank,{topic,limit:quotas[topic],history,random});if(ids.length!==quotas[topic])throw Error('Zu wenige Trainingsfragen: '+topic);return ids;});
+  for(let i=items.length-1;i>0;i--){const j=Math.floor(random()*(i+1));[items[i],items[j]]=[items[j],items[i]];}
+  return {version:1,items,position:0,answers:{},flags:{},confidence:{},phase:'active',started:now,deadline:now+count*90000,ended:null,recorded:false};
+ }
+ function tickDrill(state,now=Date.now()){
+  if(state?.phase==='active'&&now>=state.deadline)return {...state,phase:'finished',ended:state.deadline};
+  return state;
+ }
+ function drillTransition(state,event,now=Date.now()){
+  let s=tickDrill(state,now);if(!s||s.phase!=='active'||event.type==='tick')return s;
+  s=clone(s);const id=s.items[s.position];
+  if(event.type==='finish')return {...s,phase:'finished',ended:now};
+  if(event.type==='navigate'){if(!Number.isInteger(event.position)||event.position<0||event.position>=s.items.length)throw Error('Ungültige Frage');s.position=event.position;}
+  else if(event.type==='answer'){if(!Number.isInteger(event.choice)||event.choice<0||event.choice>2)throw Error('Ungültige Antwort');s.answers[id]=event.choice;}
+  else if(event.type==='clear')delete s.answers[id];
+  else if(event.type==='flag')s.flags[id]=!s.flags[id];
+  else if(event.type==='confidence'){if(!['sure','unsure','guess'].includes(event.value))throw Error('Ungültige Sicherheit');s.confidence[id]=event.value;}
+  else throw Error('Unbekannte Kurzprüfungsaktion');
+  return s;
+ }
+ function restoreDrill(raw,bank,now=Date.now()){
+  try{
+   const s=typeof raw==='string'?JSON.parse(raw):clone(raw),byId=new Map(bank.map(q=>[q.id,q]));
+   if(s?.version!==1||![10,20,40].includes(s.items?.length)||new Set(s.items).size!==s.items.length||!s.items.every(id=>byId.get(id)?.pool==='practice'))return null;
+   if(!['active','finished'].includes(s.phase)||!Number.isInteger(s.position)||s.position<0||s.position>=s.items.length||!Number.isFinite(s.started)||s.deadline!==s.started+s.items.length*90000||typeof s.recorded!=='boolean')return null;
+   if(s.phase==='active'?(s.ended!==null||s.recorded):(!Number.isFinite(s.ended)||s.ended<s.started||s.ended>s.deadline))return null;
+   for(const k of ['answers','flags','confidence'])if(!s[k]||typeof s[k]!=='object'||Array.isArray(s[k]))return null;
+   if(Object.entries(s.answers).some(([id,v])=>!s.items.includes(id)||!Number.isInteger(v)||v<0||v>2))return null;
+   if(Object.entries(s.flags).some(([id,v])=>!s.items.includes(id)||typeof v!=='boolean'))return null;
+   if(Object.entries(s.confidence).some(([id,v])=>!s.items.includes(id)||!['sure','unsure','guess'].includes(v)))return null;
+   return tickDrill(s,now);
+  }catch{return null;}
+ }
+ return {VERSION,SESSION_MS,MOCKS,blueprint,first,second,inventory,issues,ready,createExam,bounds,active,tick,transition,restore,grade,reconcile,retainHistory,practice,journal,createDrill,tickDrill,drillTransition,restoreDrill};
 });

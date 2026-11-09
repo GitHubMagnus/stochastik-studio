@@ -6,8 +6,8 @@ Ein online, lokal und offline nutzbarer Lernbereich im gemeinsamen Kelly-Studio-
 
 Direkt im Browser nutzbar, ohne Download oder Installation.
 
-**CFA Level I 2027: dokumentierte eigene Abnahme vom 27.10.2026.**
-Materialqualität **90/100**, Vorbereitungseignung **82/100** nach dem vorab
+**CFA Level I 2027: dokumentierte eigene Abnahme vom 9.11.2026.**
+Materialqualität **90/100**, Vorbereitungseignung **90/100** nach dem vorab
 festgelegten Bewertungsmaßstab. Das sind Selbsteinschätzungen des Materials,
 keine persönliche Bestehenswahrscheinlichkeit. Der
 [Abnahmebericht](CFA-2027-ACCEPTANCE.md) nennt Einzelnachweise für alle 102
@@ -26,6 +26,21 @@ Kalibrierung der eigenen Fragen. [Direkt zum Lernpfad](https://githubmagnus.gith
 
 ## CFA Level I 2027: Ausbau und dokumentierte Abnahme
 
+Neu im November: vier reservierte Vollklausuren mit insgesamt 720 Fragen,
+gemischtes englisches [Training mit Zeitlimit](https://githubmagnus.github.io/stochastik-studio/#cfa~sprint)
+und [Sprach-/Rechnerpraxis](https://githubmagnus.github.io/stochastik-studio/#cfa~skills).
+20 Arbeitsausdrücke, acht Lesechecks und neun Zahlenaufgaben erklären BA II Plus
+und HP 12C im RPN-Modus. Alle 360 zusätzlichen Klausurfragen wurden geprüft,
+einschließlich 206 unabhängiger mathematischer Gegenrechnungen. Insgesamt
+4838 Fragen: 4118 Training und vier vollständig getrennte 180er-Klausuren.
+Die November-Errata ergänzen insbesondere Binomialschiefe und Beta/Korrelation.
+
+Die [Ergänzungsprüfung und Neubewertung](CFA-90-REVIEW.md#bewertung) dokumentiert
+den Schritt von 82 auf 90/100 Vorbereitungseignung. 599 Kernprüfungen und
+58 Browserfälle sind bestanden; alle vier tatsächlichen Klausuren und
+sämtliche neuen Lösungsansichten wurden durchlaufen. Die folgenden Abschnitte
+enthalten weiterhin die jeweiligen historischen Kapitelaufbauten.
+
 Der [Abgleich der offiziellen Curriculum-Korrekturen 2027](CFA-2027-ERRATA-AUDIT.md)
 ergänzt unter anderem aktivierte Zinsen, FCFE und tatsächliche Ausschüttungen,
 die Medianberechnung sowie halbjährliche Z-Spreads. In der Prüfungsübersicht
@@ -41,8 +56,8 @@ Zehn Quant-Fragen wurden ebenfalls präzisiert. Das Datenwissenschaftskapitel
 vergleicht Covariate Shift und Concept Drift in einem durchgerechneten Kreditfall;
 vier gesetzte Formeln, eine Tabelle und drei neue Wörterbucheinträge erläutern
 die Unterschiede zwischen Gruppenmischung und bedingtem Ausfallrisiko.
-Die Aufgabenstellungen, Antworten und Einzelbegründungen aller 360 reservierten
-Klausurfragen sind inzwischen durchgesehen. Weitere 58 Fragen aus den übrigen
+Die Aufgabenstellungen, Antworten und Einzelbegründungen aller 360 ursprünglichen
+Klausurfragen A/B wurden in der Oktoberprüfung durchgesehen. Weitere 58 Fragen aus den übrigen
 acht Themenbereichen wurden präzisiert; insbesondere sind Zahlenalternativen
 bei Optionsreplikation, Unternehmensbewertung und M² nachvollziehbar hergeleitet.
 Die Risikoquote erhält eine ausführliche Herleitung aus der Nutzenfunktion.
@@ -950,6 +965,11 @@ Die bisherigen 171 Kapitel verwenden eine **2026-Einordnung** und verbinden Grun
 `npm run build` prüft Vollständigkeit, Verweise, Formelsyntax und Tabellenstruktur und bettet das Ergebnis in `index.html` ein. `node tests/deep-inventory.cjs` zählt die tatsächlich eingebetteten Inhalte.
 
 ## Prüfen
+
+Nach dem Release-Build prüft `npm.cmd run test:release:browser` alle 58 aktuellen
+CFA-Browserfälle einschließlich der vier vollständigen Klausuren und der neuen
+Prüfungspraxis. `npm.cmd run test:90:browser` führt gezielt die zehn neuen
+Praxis-/Darstellungs-/Klausurfälle aus. Erst bauen, dann Browserprüfungen starten.
 
 `npm.cmd run test:cfa` prüft zusätzlich den neuen Lernpfad, unabhängige
 Rechenkontrollen, Fragenverweise, Speicherung, Trainingsfeedback, Offlinebetrieb

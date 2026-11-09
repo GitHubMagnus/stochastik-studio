@@ -27,24 +27,24 @@ window.FinanceCFA=(()=>{
  new ResizeObserver(updateScrollRegions).observe(root);
  root.addEventListener('toggle',updateScrollRegions,true);
  window.addEventListener('resize',updateScrollRegions);
- let storageOK=true,exam=null,training=null,history=[],runs=[],lastRoute='cfa',timer=null,contentUpdated=false;
+ let storageOK=true,exam=null,training=null,drill=null,history=[],runs=[],lastRoute='cfa',timer=null,contentUpdated=false;
  try{
   const saved=JSON.parse(localStorage.getItem(key)||'null');
   const restored=E.reconcile(saved,D.questions,D.version);
-  ({exam,training,history,runs}=restored);contentUpdated=restored.updated;
+  ({exam,training,drill,history,runs}=restored);contentUpdated=restored.updated;
  }catch{storageOK=false;}
- function save(){history=E.retainHistory(history);try{localStorage.setItem(key,JSON.stringify({schema:2,version:D.version,questionVersions:Object.fromEntries(D.questions.map(q=>[q.id,q.revision])),exam,training,history,runs}));storageOK=true;}catch{storageOK=false;}const note=root.querySelector('#cfa-storage');if(note)note.hidden=storageOK;}
+ function save(){history=E.retainHistory(history);try{localStorage.setItem(key,JSON.stringify({schema:2,version:D.version,questionVersions:Object.fromEntries(D.questions.map(q=>[q.id,q.revision])),exam,training,drill,history,runs}));storageOK=true;}catch{storageOK=false;}const note=root.querySelector('#cfa-storage');if(note)note.hidden=storageOK;}
  function resolve(route){
   const [base,view='',focus='']=route.split('~');if(base!=='cfa')return null;
   if(!view)return {view:'home'};
   if(view.startsWith('learn-')&&modules.has(view.slice(6)))return {view:'learn',id:view.slice(6),focus};
-  if(['practice','exam','journal','results'].includes(view))return {view,focus};
+  if(['practice','exam','journal','results','sprint','skills'].includes(view))return {view,focus};
   return null;
  }
  function header(title,subtitle=''){
   const updateNotice=contentUpdated?'<p class="cfa-notice" role="status">Einige Aufgaben wurden überarbeitet. Betroffene Übungssets oder Klausuren wurden zurückgesetzt. Antworten zu unveränderten Aufgaben bleiben erhalten; frühere Klausurversuche bleiben als Wiederholung erkennbar.</p>':'';
   return updateNotice+'<nav class="study-breadcrumb" aria-label="Lernpfad"><a href="#finance">Finance Studio</a><a href="#cfa">CFA Level I · 2027</a></nav><h1 id="cfa-heading" tabindex="-1">'+esc(title)+'</h1>'+(subtitle?'<p class="lede">'+esc(subtitle)+'</p>':'')+
-   '<nav class="cfa-tabs" aria-label="CFA-Lernbereich"><a href="#cfa">Lernpfad</a><a href="#cfa~practice">Training</a><a href="#cfa~exam">Probeklausuren</a><a href="#cfa~journal">Fehlerjournal</a></nav><p id="cfa-storage" class="cfa-notice" role="status" '+(storageOK?'hidden':'')+'>Der Browserspeicher ist nicht verfügbar oder enthielt ungültige Daten. Du kannst weiterarbeiten; sichere wichtige Ergebnisse vor dem Schließen.</p>';
+   '<nav class="cfa-tabs" aria-label="CFA-Lernbereich"><a href="#cfa">Lernpfad</a><a href="#cfa~practice">Training</a><a href="#cfa~sprint">Training mit Zeitlimit</a><a href="#cfa~skills">Prüfungspraxis</a><a href="#cfa~exam">Probeklausuren</a><a href="#cfa~journal">Fehlerjournal</a></nav><p id="cfa-storage" class="cfa-notice" role="status" '+(storageOK?'hidden':'')+'>Der Browserspeicher ist nicht verfügbar oder enthielt ungültige Daten. Du kannst weiterarbeiten; sichere wichtige Ergebnisse vor dem Schließen.</p>';
  }
  let tableSerial=0;
  function blocks(items,unit){
@@ -67,7 +67,7 @@ window.FinanceCFA=(()=>{
   const all=D.coverage.flatMap(m=>m.objectives),explained=all.filter(o=>o.sections.length).length,practised=all.filter(o=>o.practice.length).length;
   root.innerHTML=header('Dein Lernpfad für CFA Level I 2027','Lernziele nachschlagen, Zusammenhänge durcharbeiten und anschließend ohne Lösungshilfe anwenden.')+
    '<div class="cfa-metrics"><div><strong>'+D.modules.length+'</strong><span>Module im Abgleich</span></div><div><strong>'+explained+' / '+all.length+'</strong><span>Lernziele mit neuer Vertiefung</span></div><div><strong>'+practised+' / '+all.length+'</strong><span>Lernziele mit eigenständiger Trainingsfrage</span></div><div><strong>'+D.questions.filter(q=>q.pool==='practice').length+'</strong><span>Trainingsfragen</span></div></div>'+
-   (!D.release?'<p class="cfa-notice">'+(explained===all.length&&practised===all.length?'Alle Lernziele sind mit Erklärungen und Training verknüpft. Die fachliche Gesamtprüfung läuft.':'Die Überarbeitung läuft. Offene Einträge sind sichtbar; ein Link auf ein bisheriges Kapitel wird nicht als abgeschlossene Vertiefung gezählt.')+' '+(['mock-a','mock-b'].every(id=>E.ready(D.questions,id))?'Beide Probeklausuren sind vollständig verfügbar.':'Vollständige Probeklausuren werden nach Befüllung freigeschaltet.')+'</p>':'')+
+   (!D.release?'<p class="cfa-notice">'+(explained===all.length&&practised===all.length?'Alle Lernziele sind mit Erklärungen und Training verknüpft. Die fachliche Gesamtprüfung läuft.':'Die Überarbeitung läuft. Offene Einträge sind sichtbar; ein Link auf ein bisheriges Kapitel wird nicht als abgeschlossene Vertiefung gezählt.')+' '+(E.MOCKS.every(id=>E.ready(D.questions,id))?'Alle vier Probeklausuren sind vollständig verfügbar.':'Vollständige Probeklausuren werden nach Befüllung freigeschaltet.')+'</p>':'')+
    '<p>Bei jedem Lernziel führen getrennte Links zur Erklärung und zu einem ausgearbeiteten Rechen- oder Fallbeispiel. Die Zahl der Trainingsfragen zeigt die anschließenden Aufgaben ohne vorab sichtbare Lösung. Eine Zuordnung beschreibt das vorhandene Material und bewertet noch nicht deinen Lernerfolg.</p><p>Arbeite eine Einheit durch und rechne die Beispiele zunächst selbst. Das Training enthält eigene englische Fragen mit deutschen Lösungswegen. Klausurfragen sind vom Trainingspool getrennt. Die Ergebnisse beschreiben diese Aufgaben; sie sind keine offizielle CFA-Bestehensprognose.</p>'+
    '<div class="cfa-controls"><label>Einheit oder Lernziel suchen<input id="cfa-search" type="search" placeholder="z. B. EPS, Duration, Standard IV"></label><label>Themenbereich<select id="cfa-topic"><option value="">Alle Themen</option>'+D.topics.map(t=>'<option value="'+t.id+'">'+esc(t.title)+'</option>').join('')+'</select></label></div>'+
    '<p id="cfa-search-count" role="status"></p><div id="cfa-curriculum">'+D.topics.map(t=>'<section class="cfa-topic" data-topic="'+t.id+'"><h2>'+esc(t.title)+' <small>'+t.min+'–'+t.max+' % der Prüfung</small></h2>'+D.modules.filter(m=>m.topic===t.id).map(m=>{
@@ -91,13 +91,13 @@ window.FinanceCFA=(()=>{
   updateScrollRegions();
   if(focus)requestAnimationFrame(()=>{const el=document.getElementById('cfa-section-'+focus);if(el){el.scrollIntoView({block:'start'});el.focus({preventScroll:true});}});
  }
- function confidenceHTML(id,value,disabled=false){
-  return '<fieldset class="cfa-confidence"><legend>Wie sicher bist du?</legend>'+[['sure','Sicher'],['unsure','Unsicher'],['guess','Geraten']].map(([v,t])=>'<label><input type="radio" name="confidence-'+id+'" value="'+v+'" '+(value===v?'checked ':'')+(disabled?'disabled':'')+'> '+t+'</label>').join('')+'</fieldset>';
+ function confidenceHTML(id,value,disabled=false,english=false){
+  return '<fieldset class="cfa-confidence"><legend>'+(english?'How confident are you?':'Wie sicher bist du?')+'</legend>'+(english?[['sure','Sure'],['unsure','Unsure'],['guess','Guess']]:[['sure','Sicher'],['unsure','Unsicher'],['guess','Geraten']]).map(([v,t])=>'<label><input type="radio" name="confidence-'+id+'" value="'+v+'" '+(value===v?'checked ':'')+(disabled?'disabled':'')+'> '+t+'</label>').join('')+'</fieldset>';
  }
- function questionHTML(q,selected,{revealed=false,confidence='',examMode=false}={}){
+ function questionHTML(q,selected,{revealed=false,confidence='',examMode=false,english=false}={}){
   return '<article class="cfa-question"><p class="kicker" lang="en">'+esc(label(q.topic))+'</p><h2 id="cfa-question-title" tabindex="-1" lang="en">'+esc(q.stem)+'</h2>'+
-   (q.given?blocks(q.given,q.unit):'')+'<fieldset class="cfa-choices" '+(revealed?'disabled':'')+'><legend class="sr-only">Antwort auswählen</legend>'+q.options.map((o,i)=>'<label class="'+(revealed?(i===q.correct?'correct':i===selected?'incorrect':''):'')+'"><input type="radio" name="cfa-answer" value="'+i+'" '+(selected===i?'checked':'')+'><span lang="en"><b>'+String.fromCharCode(65+i)+'.</b> '+esc(o.text)+'</span></label>').join('')+'</fieldset>'+
-   confidenceHTML(q.id,confidence,revealed)+
+   (q.given?blocks(q.given,q.unit):'')+'<fieldset class="cfa-choices" '+(revealed?'disabled':'')+'><legend class="sr-only">'+(english?'Select an answer':'Antwort auswählen')+'</legend>'+q.options.map((o,i)=>'<label class="'+(revealed?(i===q.correct?'correct':i===selected?'incorrect':''):'')+'"><input type="radio" name="cfa-answer" value="'+i+'" '+(selected===i?'checked':'')+'><span lang="en"><b>'+String.fromCharCode(65+i)+'.</b> '+esc(o.text)+'</span></label>').join('')+'</fieldset>'+
+   confidenceHTML(q.id,confidence,revealed,english)+
    (revealed?solutionHTML(q,selected):examMode?'':'<button class="btn" id="cfa-check">Antwort prüfen</button><p id="cfa-answer-required" role="alert" hidden>Wähle zunächst eine Antwort aus.</p>')+'</article>';
  }
  function solutionHTML(q,selected){
@@ -135,11 +135,44 @@ window.FinanceCFA=(()=>{
   for(const r of score.results)history.push({...r,at:exam.ended,version:D.version,revision:questions.get(r.id).revision});
   runs.push({mock:exam.mock,percent:score.percent,at:exam.ended,seenBefore:exam.seenBefore});runs=runs.slice(-30);save();
  }
+ function recordDrill(){
+  if(drill?.phase!=='finished'||drill.recorded)return;
+  drill.recorded=true;
+  for(const r of E.grade(D.questions,drill.items,drill.answers,drill.confidence).results)history.push({...r,at:drill.ended,version:D.version,revision:questions.get(r.id).revision,mode:'timed'});
+  save();
+ }
+ function drillView(){
+  if(drill)drill=E.tickDrill(drill);recordDrill();
+  root.innerHTML=header('English timed practice','Gemischte Trainingsfragen mit 90 Sekunden je Aufgabe als gemeinsame Zeitreserve. Alle zehn Themen sind vertreten; reservierte Klausurfragen werden hier nie verwendet.');
+  if(exam&&exam.phase!=='finished'){root.insertAdjacentHTML('beforeend','<p>Eine Probeklausur läuft. Schließe zuerst beide Sitzungen ab. <a href="#cfa~exam">Zur laufenden Klausur →</a></p>');return;}
+  if(!drill||drill.phase==='finished'){
+   root.insertAdjacentHTML('beforeend','<section lang="en"><p>Choose a set size. The clock keeps running when you leave this page or reload. You may skip, flag, clear, and revise answers until submission or expiry. Explanations appear only after the set is finished.</p><label>Number of questions <select id="cfa-drill-count"><option>10</option><option selected>20</option><option>40</option></select></label> <button class="btn" id="cfa-drill-start">Start timed set</button></section>');
+   root.querySelector('#cfa-drill-start').onclick=()=>{drill=E.createDrill(D.questions,Number(root.querySelector('#cfa-drill-count').value),history);save();drillView();root.querySelector('#cfa-question-title').focus();};
+   if(!drill)return;
+   const score=E.grade(D.questions,drill.items,drill.answers,drill.confidence);
+   root.insertAdjacentHTML('beforeend','<section lang="en"><h2>Completed set</h2><p class="cfa-takeaway">'+score.correct+' / '+score.total+' correct · '+score.unanswered+' unanswered. This result describes these practice items and is not a calibrated pass estimate.</p><div class="cfa-table"><table><caption>Results by topic</caption><thead><tr><th>Topic</th><th>Correct</th><th>Questions</th></tr></thead><tbody>'+Object.entries(score.topics).map(([id,t])=>'<tr><td>'+esc(label(id))+'</td><td>'+t.correct+'</td><td>'+t.total+'</td></tr>').join('')+'</tbody></table></div></section><h2>Antworten und Zusammenhänge nacharbeiten</h2><div id="cfa-drill-review">'+score.results.map((r,i)=>'<details class="cfa-module"><summary><span>'+ (i+1)+'. '+esc(label(r.topic))+'</span><small>'+(r.correct?'Richtig':r.selected===null?'Unbeantwortet':'Falsch')+'</small></summary><p lang="en">'+esc(questions.get(r.id).stem)+'</p>'+solutionHTML(questions.get(r.id),r.selected)+'</details>').join('')+'</div><p><a href="#cfa~journal">Fehlerjournal öffnen →</a></p>');
+   return;
+  }
+  const id=drill.items[drill.position],q=questions.get(id),blank=drill.items.filter(id=>!Number.isInteger(drill.answers[id])).length;
+  root.insertAdjacentHTML('beforeend','<section lang="en"><div class="cfa-exam-status"><strong>Question '+(drill.position+1)+' / '+drill.items.length+'</strong><span id="cfa-drill-clock" role="timer" aria-live="off"></span><span>'+blank+' unanswered</span></div><div class="cfa-exam-layout"><div>'+questionHTML(q,drill.answers[id],{examMode:true,english:true,confidence:drill.confidence[id]})+'<div class="cfa-actions"><button class="btn ghost" id="cfa-drill-prev" '+(!drill.position?'disabled':'')+'>Previous</button><button class="btn ghost" id="cfa-drill-flag" aria-pressed="'+!!drill.flags[id]+'">'+(drill.flags[id]?'Unflag':'Flag for review')+'</button><button class="btn ghost" id="cfa-drill-clear" '+(!Number.isInteger(drill.answers[id])?'disabled':'')+'>Clear answer</button><button class="btn" id="cfa-drill-next" '+(drill.position===drill.items.length-1?'disabled':'')+'>Next</button></div></div><aside class="cfa-question-nav" aria-label="Questions in this timed set">'+drill.items.map((id,i)=>'<button data-drill-position="'+i+'" class="'+(Number.isInteger(drill.answers[id])?'answered ':'')+(drill.flags[id]?'flagged':'')+'" aria-label="Question '+(i+1)+(Number.isInteger(drill.answers[id])?', answered':'')+(drill.flags[id]?', flagged':'')+'" '+(i===drill.position?'aria-current="step"':'')+'>'+(i+1)+(drill.flags[id]?' ⚑':'')+'</button>').join('')+'</aside></div><details class="study-details"><summary>Submit timed set</summary><p>'+blank+' questions remain unanswered. Submission ends this attempt and unlocks explanations.</p><button class="btn" id="cfa-drill-finish">Finish and review</button></details></section>');
+  const act=(event,focus)=>{drill=E.drillTransition(drill,event);recordDrill();save();drillView();root.querySelector(focus||'#cfa-question-title')?.focus();};
+  root.querySelectorAll('input[name="cfa-answer"]').forEach(el=>el.onchange=()=>act({type:'answer',choice:Number(el.value)},'input[name="cfa-answer"][value="'+el.value+'"]'));
+  root.querySelectorAll('.cfa-confidence input').forEach(el=>el.onchange=()=>act({type:'confidence',value:el.value},'.cfa-confidence input[value="'+el.value+'"]'));
+  root.querySelector('#cfa-drill-prev').onclick=()=>act({type:'navigate',position:drill.position-1});
+  root.querySelector('#cfa-drill-next').onclick=()=>act({type:'navigate',position:drill.position+1});
+  root.querySelector('#cfa-drill-flag').onclick=()=>act({type:'flag'},'#cfa-drill-flag');
+  root.querySelector('#cfa-drill-clear').onclick=()=>act({type:'clear'});
+  root.querySelectorAll('[data-drill-position]').forEach(b=>b.onclick=()=>act({type:'navigate',position:Number(b.dataset.drillPosition)}));
+  root.querySelector('#cfa-drill-finish').onclick=()=>act({type:'finish'},'#cfa-heading');
+  clock();
+ }
  function examView(){
   if(exam)exam=E.tick(exam);recordFinished();
+  if(drill)drill=E.tickDrill(drill);recordDrill();
   root.innerHTML=header('Probeklausuren','Je 180 eigene Fragen · zwei Sitzungen zu je 135 Minuten · Auswertung nach der vollständigen Abgabe.');
+  if(drill?.phase==='active'){root.insertAdjacentHTML('beforeend','<p>Ein Training mit Zeitlimit läuft. <a href="#cfa~sprint">Zuerst das laufende Set abschließen →</a></p>');return;}
   if(!exam||exam.phase==='finished'){
-   root.insertAdjacentHTML('beforeend','<div class="cfa-mock-list">'+['mock-a','mock-b'].map((id,i)=>{
+   root.insertAdjacentHTML('beforeend','<div class="cfa-mock-list">'+E.MOCKS.map((id,i)=>{
     const ready=E.ready(D.questions,id),n=Object.values(D.inventory[id]).reduce((a,b)=>a+b,0),seen=runs.some(r=>r.mock===id);
     return '<section class="study-section"><h2>Probeklausur '+String.fromCharCode(65+i)+'</h2><p>'+n+' / 180 Fragen vorhanden. '+(seen?'Bereits bearbeitet: Ein weiterer Versuch ist eine Wiederholung.':'Noch nicht abgegeben.')+'</p><p>90 Fragen pro Sitzung. Innerhalb einer Sitzung kannst du zurückspringen und Fragen markieren. Nach Abgabe oder Zeitablauf ist die Sitzung geschlossen. Zwischen den Sitzungen bestimmst du die Pausenlänge; während einer Sitzung läuft die Zeit auch bei Navigation oder Neuladen weiter.</p><button class="btn" data-start-mock="'+id+'" '+(ready?'':'disabled')+'>Klausur '+String.fromCharCode(65+i)+' starten</button></section>';
    }).join('')+'</div>');
@@ -176,6 +209,11 @@ window.FinanceCFA=(()=>{
   clock();
  }
  function clock(){
+  if(drill?.phase==='active'){
+   const prior=drill.phase;drill=E.tickDrill(drill);
+   if(drill.phase!==prior){recordDrill();if(resolve(lastRoute)?.view==='sprint')drillView();}
+   else {const el=root.querySelector('#cfa-drill-clock');if(el){const seconds=Math.max(0,Math.ceil((drill.deadline-Date.now())/1000));el.textContent='Time left '+Math.floor(seconds/60)+':'+String(seconds%60).padStart(2,'0');el.classList.toggle('urgent',seconds<=120);}}
+  }
   if(!exam||!E.active(exam))return;
   const prior=exam.phase;exam=E.tick(exam);
   if(exam.phase!==prior){save();recordFinished();if(resolve(lastRoute)?.view==='exam'){if(exam.phase==='finished')location.hash='cfa~results';else examView();}return;}
@@ -202,7 +240,8 @@ window.FinanceCFA=(()=>{
  }
  function render(route){
   const r=resolve(route);if(!r)return;lastRoute=route;clearInterval(timer);
-  if(r.view==='home')home();else if(r.view==='learn')learn(r.id,r.focus);else if(r.view==='practice')trainingView();else if(r.view==='exam')examView();else if(r.view==='journal')journalView();else resultsView();
+  if(drill)drill=E.tickDrill(drill);recordDrill();
+  if(r.view==='home')home();else if(r.view==='learn')learn(r.id,r.focus);else if(r.view==='practice')trainingView();else if(r.view==='exam')examView();else if(r.view==='journal')journalView();else if(r.view==='sprint')drillView();else if(r.view==='skills')window.CFASkills.render({root,data:D.workshop,header,blocks,esc});else resultsView();
   timer=setInterval(clock,500);
   if(!r.focus)requestAnimationFrame(()=>{root.querySelector('#cfa-heading')?.focus({preventScroll:true});document.getElementById('main-content').scrollIntoView({block:'start'});});
  }
